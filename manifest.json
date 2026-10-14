@@ -92,6 +92,7 @@
         "purchaselock.js",
         "bot.js",
         "chatsize.js",
+        "scrollbar.js",
         "compat.js",
         "content.js"
       ],
