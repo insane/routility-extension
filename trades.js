@@ -124,6 +124,7 @@
     const offers = [...document.querySelectorAll('.trade-list-detail-offer, .trade-request-window-offer')];
     if (!offers.length) return;
     const cardsPerOffer = offers.map(offerCards);
+    cardsPerOffer.forEach(cards => cards.forEach(openButton));
     const keysPerOffer = cardsPerOffer.map(cards => cards.map(cardKey));
     const pricesPerOffer = await Promise.all(keysPerOffer.map(keys => prices(keys)));
     if (pricesPerOffer.some(list => list.some(p => p === undefined))) { setTimeout(schedule, 2500); return; }
@@ -138,18 +139,21 @@
     }));
 
     if (!totals.some(t => t.priced > 0)) {
-      offers.forEach(o => o.querySelectorAll('.routility-injected').forEach(n => n.remove()));
+      offers.forEach(o => o.querySelectorAll('.routility-injected:not(.routility-open-item)').forEach(n => n.remove()));
       return;
     }
 
     offers.forEach((offer, i) => {
       cardsPerOffer[i].forEach((card, j) => {
-        if (card.isConnected && cardKey(card) === keysPerOffer[i][j]) {
-          openButton(card);
+        if (valuesOn && card.isConnected && cardKey(card) === keysPerOffer[i][j]) {
           cardLine(card, keysPerOffer[i][j], pricesPerOffer[i][j]);
           window.RoUtilityUI.cardTags(card, pricesPerOffer[i][j]);
         }
       });
+      if (!valuesOn) {
+        offer.querySelectorAll('.routility-trade-usd, .routility-trade-val, .routility-card-usd, .routility-card-tags, .routility-trade-diffs').forEach(n => n.remove());
+        return;
+      }
       const t = totals[i];
       const text = t.priced ? formatUSD(t.usd) + (t.missing ? '+' : '') : (t.missing ? lt('N/A') : '$0');
       if (show.price) summaryRow(offer, 'routility-trade-usd', lt('Price:'), text, { withLogo: true, title: t.missing ? ltn(t.missing, '{n} unpriced', '{n} unpriced') : '' });
@@ -162,7 +166,7 @@
       tradeWarning(offers, totals);
       lastRequest = { totals, rap: [nativeTotal(offers[0]), nativeTotal(offers[1])], items: cardsPerOffer.map(list => list.length) };
     }
-    if (offers.length === 2) diffPills(offers, totals);
+    if (offers.length === 2 && valuesOn) diffPills(offers, totals);
   }
 
   function diffPills(offers, totals) {
@@ -383,7 +387,9 @@
   let ownToken = 0;
   let ownOn = true;
   let ageOn = true;
+  let valuesOn = true;
   chrome.storage.local.get('routilitySettings', (s) => {
+    valuesOn = (s.routilitySettings || {}).tradeValues !== false;
     ownOn = (s.routilitySettings || {}).tradeOwnership !== false;
     ageOn = (s.routilitySettings || {}).tradeAge !== false;
   });
@@ -1027,6 +1033,10 @@
         continue;
       }
       dateRow(row, entry);
+      if (!valuesOn) {
+        row.querySelectorAll('.routility-row-pills').forEach(n => n.remove());
+        continue;
+      }
       if (done) continue;
       const near = !rect || (rect.bottom > view.top - 300 && rect.top < view.bottom + 600);
       if (near) annotateRow(row, entry);

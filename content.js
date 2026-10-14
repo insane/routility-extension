@@ -586,9 +586,9 @@
     if (tradeBuilder || /^\/trades\/?$/i.test(path)) {
       chrome.storage.local.get('routilitySettings', (stored) => {
         const settings = { tradeValues: true, ...(stored.routilitySettings || {}) };
-        if (!settings.tradeValues || window.location.pathname !== path) return;
+        if (window.location.pathname !== path) return;
         window.RoUtilityTrades.setup();
-        if (!tradeBuilder) return;
+        if (!tradeBuilder || !settings.tradeValues) return;
         window.RoUtilityInventory.setup();
         if (!counter) {
           window.RoUtilityProfile.setupTrade(path.match(/^\/users\/(\d+)\//)[1]);
