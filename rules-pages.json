@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "regexSubstitution": "https://www.roblox.com/charts?routility=\\1&\\2\\3"
+      }
+    },
+    "condition": {
+      "regexFilter": "^https://www\\.roblox\\.com(/forum(?:/[^?#]*)?)(?:\\?([^#]*))?(#.*)?$",
+      "isUrlFilterCaseSensitive": true,
+      "resourceTypes": [
+        "main_frame"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "regexSubstitution": "https://www.roblox.com/charts?routility=\\1&\\2\\3"
+      }
+    },
+    "condition": {
+      "regexFilter": "^https://www\\.roblox\\.com(/trades/calculator/?)(?:\\?([^#]*))?(#.*)?$",
+      "isUrlFilterCaseSensitive": true,
+      "resourceTypes": [
+        "main_frame"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "regexSubstitution": "https://www.roblox.com/charts?routility=\\1&\\2\\3"
+      }
+    },
+    "condition": {
+      "regexFilter": "^https://www\\.roblox\\.com(/trade-ads/?)(?:\\?([^#]*))?(#.*)?$",
+      "isUrlFilterCaseSensitive": true,
+      "resourceTypes": [
+        "main_frame"
+      ]
+    }
+  }
+]

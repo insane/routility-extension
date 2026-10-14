@@ -1,0 +1,104 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "regexFilter": "^https://apis\\.roblox\\.com/marketplace-sales/v1/item/[^/]+/purchase-(item|resale)",
+      "requestMethods": [
+        "post"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "regexFilter": "^https://apis\\.roblox\\.com/game-passes/v1/game-passes/[0-9]+/purchase",
+      "requestMethods": [
+        "post"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "regexFilter": "^https://apis\\.roblox\\.com/developer-products/v1/developer-products/[0-9]+/purchase",
+      "requestMethods": [
+        "post"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "regexFilter": "^https://economy\\.roblox\\.com/v1/purchases/products/[0-9]+",
+      "requestMethods": [
+        "post"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "regexFilter": "^https://apis\\.roblox\\.com/cloud/v2/avatar-marketplace-orders",
+      "requestMethods": [
+        "post"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "regexFilter": "^https://apis\\.roblox\\.com/v1/subscriptions/purchase-with-robux/",
+      "requestMethods": [
+        "post"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest",
+        "other"
+      ]
+    }
+  }
+]

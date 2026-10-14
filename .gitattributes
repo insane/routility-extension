@@ -1,0 +1,4 @@
+* text=auto
+*.png binary
+*.wasm binary
+*.woff2 binary

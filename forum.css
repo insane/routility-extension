@@ -1,0 +1,1553 @@
+html.routility-forum-page #content > .request-error-page-content {
+  display: none !important;
+}
+
+html.routility-forum-page:not(.routility-forum-ready) #content::after {
+  content: "";
+  display: block;
+  width: calc(100% - 24px);
+  max-width: 1100px;
+  height: 603px;
+  margin: 20px auto 0;
+  background: var(--routility-sk, rgba(127, 127, 127, 0.18));
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='76'%3E%3Crect x='0' y='0' width='24' height='24' rx='6' fill='black'/%3E%3Crect x='32' y='5' width='130' height='14' rx='6' fill='black'/%3E%3Crect x='0' y='53' width='190' height='14' rx='6' fill='black' fill-opacity='0.6'/%3E%3C/svg%3E") left top / 220px 76px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='76'%3E%3Crect x='320' y='3' width='100' height='14' rx='6' fill='black'/%3E%3Crect x='0' y='53' width='160' height='14' rx='6' fill='black' fill-opacity='0.6'/%3E%3Crect x='168' y='44' width='190' height='32' rx='8' fill='black' fill-opacity='0.6'/%3E%3Crect x='366' y='44' width='54' height='32' rx='8' fill='black' fill-opacity='0.6'/%3E%3C/svg%3E") right top / 420px 76px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='520' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='1000' height='39' rx='0' fill='black'/%3E%3Crect x='0' y='40' width='1000' height='480' rx='0' fill='black' fill-opacity='0.5'/%3E%3C/svg%3E") 0 83px / 100% 520px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='76'%3E%3Crect x='0' y='0' width='24' height='24' rx='6' fill='black'/%3E%3Crect x='32' y='5' width='130' height='14' rx='6' fill='black'/%3E%3Crect x='0' y='53' width='190' height='14' rx='6' fill='black' fill-opacity='0.6'/%3E%3C/svg%3E") left top / 220px 76px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='76'%3E%3Crect x='320' y='3' width='100' height='14' rx='6' fill='black'/%3E%3Crect x='0' y='53' width='160' height='14' rx='6' fill='black' fill-opacity='0.6'/%3E%3Crect x='168' y='44' width='190' height='32' rx='8' fill='black' fill-opacity='0.6'/%3E%3Crect x='366' y='44' width='54' height='32' rx='8' fill='black' fill-opacity='0.6'/%3E%3C/svg%3E") right top / 420px 76px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='520' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='1000' height='39' rx='0' fill='black'/%3E%3Crect x='0' y='40' width='1000' height='480' rx='0' fill='black' fill-opacity='0.5'/%3E%3C/svg%3E") 0 83px / 100% 520px no-repeat;
+  animation: routility-sk-pulse 1.2s ease-in-out infinite;
+}
+
+html.routility-forum-topbar #navigation-robux-container {
+  display: none !important;
+}
+
+.routility-forum-nav-icon {
+  display: inline-block;
+  background-image: none !important;
+  background-color: currentColor !important;
+  -webkit-mask: var(--svg) center / contain no-repeat;
+  mask: var(--svg) center / contain no-repeat;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill-rule='evenodd' d='M6 5h14a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-8.6l-4.7 3.8A1 1 0 0 1 5 22v-3.2A3 3 0 0 1 3 16V8a3 3 0 0 1 3-3zm0 2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1 1 1 0 0 1 1 1v1.9l3.4-2.7a1 1 0 0 1 .6-.2h9a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H6z' fill='black'/%3E%3Cpath d='M25 11a1 1 0 0 1 1-1 3 3 0 0 1 3 3v8a3 3 0 0 1-2 2.8V26a1 1 0 0 1-1.6.8L21.7 24H15a1 1 0 1 1 0-2h7a1 1 0 0 1 .6.2l2.4 1.8V23a1 1 0 0 1 1-1 1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1 1 1 0 0 1-1-1z' fill='black'/%3E%3C/svg%3E");
+}
+
+.routility-forum {
+  box-sizing: border-box;
+  max-width: 1124px;
+  margin: 0 auto;
+  padding: 20px 12px 48px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.routility-forum-top,
+.routility-forum-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.routility-forum-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration: none !important;
+}
+
+.routility-forum-logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.routility-forum-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.routility-forum-ficon {
+  width: 16px;
+  height: 16px;
+  --icon-size-small: 16px;
+  --icon-size-medium: 16px;
+  --icon-size-large: 16px;
+}
+
+.routility-forum-navbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-decoration: none !important;
+}
+
+.routility-forum-navbtn:hover {
+  color: var(--color-content-emphasis, inherit);
+}
+
+.routility-forum-navbtn-primary {
+  margin-left: 4px;
+  background: var(--color-action-standard-background, rgba(127, 127, 127, 0.12));
+  color: var(--color-content-emphasis, inherit);
+}
+
+.routility-forum-head {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--routility-sk, rgba(127, 127, 127, 0.18));
+}
+
+.routility-forum-head img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.routility-forum-head img.routility-loaded {
+  opacity: 1;
+}
+
+.routility-forum-compose-who {
+  gap: 8px;
+}
+
+.routility-forum-gavel {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M9.6 1.6a1 1 0 0 1 1.4 0l4.4 4.4a1 1 0 0 1 0 1.4l-1.1 1.1a1 1 0 0 1-1.4 0l-.4-.4-2.3 2.3 1 1a1 1 0 0 1 0 1.4l-.3.3a1 1 0 0 1-1.4 0l-1-1-5.7 5.7a1.5 1.5 0 0 1-2.1-2.1l5.7-5.7-1-1a1 1 0 0 1 0-1.4l.3-.3a1 1 0 0 1 1.4 0l1 1 2.3-2.3-.4-.4a1 1 0 0 1 0-1.4l1.1-1.1z' fill='black'/%3E%3Crect x='10' y='17' width='9' height='2' rx='1' fill='black'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M9.6 1.6a1 1 0 0 1 1.4 0l4.4 4.4a1 1 0 0 1 0 1.4l-1.1 1.1a1 1 0 0 1-1.4 0l-.4-.4-2.3 2.3 1 1a1 1 0 0 1 0 1.4l-.3.3a1 1 0 0 1-1.4 0l-1-1-5.7 5.7a1.5 1.5 0 0 1-2.1-2.1l5.7-5.7-1-1a1 1 0 0 1 0-1.4l.3-.3a1 1 0 0 1 1.4 0l1 1 2.3-2.3-.4-.4a1 1 0 0 1 0-1.4l1.1-1.1z' fill='black'/%3E%3Crect x='10' y='17' width='9' height='2' rx='1' fill='black'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.routility-forum-navbtn-mod {
+  color: var(--color-system-emphasis, #335fff);
+}
+
+.routility-forum-navbtn-text {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.routility-forum-where {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+}
+
+.routility-forum-crumbs a:hover,
+.routility-forum-crumbs-bottom a:hover,
+.routility-forum-subject-link:hover,
+.routility-forum-author-link:hover,
+.routility-forum-in:hover,
+.routility-forum-mini a:hover,
+.routility-forum-pager a:hover,
+.routility-forum-summary:hover .routility-forum-title,
+.routility-forum-lastlink:hover .routility-forum-user {
+  text-decoration: underline;
+}
+
+.routility-forum-bar {
+  margin: 20px 0 7px;
+  min-height: 32px;
+}
+
+.routility-forum-search {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.routility-forum-q {
+  width: 320px;
+  max-width: 100%;
+}
+
+.routility-forum-q-icon {
+  color: var(--color-content-muted, #999);
+  width: 18px;
+  height: 18px;
+}
+
+.routility-forum-q input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.routility-forum-q-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-content-muted, #999);
+  cursor: pointer;
+}
+
+.routility-forum-q-clear[hidden] {
+  display: none;
+}
+
+.routility-forum-q-clear .routility-forum-ficon {
+  width: 14px;
+  height: 14px;
+}
+
+.routility-forum-crumbs,
+.routility-forum-crumbs-bottom {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.routility-forum-sep {
+  width: 10px;
+  height: 10px;
+  color: var(--color-content-muted, #999);
+  opacity: 0.7;
+}
+
+.routility-forum-crumb {
+  max-width: 280px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.routility-forum-crumb-current {
+  font-weight: 700;
+}
+
+.routility-forum-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.routility-forum-results {
+  font-size: 14px;
+}
+
+.routility-forum-btn-large {
+  font-size: 15px;
+}
+
+.routility-forum-strong {
+  font-weight: 700;
+}
+
+
+.routility-forum-note {
+  margin-bottom: 7px;
+}
+
+.routility-forum-note:empty {
+  display: none;
+}
+
+.routility-forum-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.routility-forum-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--color-surface-100, #f9f9f9);
+  border: 1px solid var(--color-stroke-muted, rgba(127, 127, 127, 0.16));
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.routility-forum-table th,
+.routility-forum-table td {
+  padding: 12px 16px;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.routility-forum-cat th {
+  height: 48px;
+  background: var(--color-surface-200, #f2f4f5);
+  color: var(--color-content-emphasis, #191919);
+  border-bottom: 1px solid var(--color-stroke-muted, rgba(127, 127, 127, 0.16));
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.routility-forum-cat th.routility-forum-num,
+.routility-forum-cat th.routility-forum-author-head,
+.routility-forum-cat th.routility-forum-subject-head {
+  color: var(--color-content-muted, #6b6b6b);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.routility-forum-table th.routility-forum-num,
+.routility-forum-table td.routility-forum-num {
+  text-align: center;
+}
+
+.routility-forum-index {
+  table-layout: fixed;
+}
+
+.routility-forum-index .routility-forum-cat th.routility-forum-num {
+  width: 110px;
+  white-space: nowrap;
+}
+
+.routility-forum-index .routility-forum-cat th.routility-forum-num:last-child {
+  width: 170px;
+}
+
+.routility-forum-row td {
+  transition: background-color 0.12s ease;
+}
+
+.routility-forum-index .routility-forum-row + .routility-forum-row td,
+.routility-forum-threads .routility-forum-row + .routility-forum-row td {
+  border-top: 1px solid var(--color-stroke-muted, rgba(127, 127, 127, 0.16));
+}
+
+.routility-forum-row:hover td {
+  background: var(--color-state-hover, rgba(0, 0, 0, 0.04));
+}
+
+.routility-forum-summary,
+.routility-forum-lastlink {
+  display: block;
+  text-decoration: none !important;
+}
+
+.routility-forum-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.routility-forum-desc {
+  margin-top: 2px;
+  color: var(--color-content-default, #393b3d);
+  overflow-wrap: anywhere;
+}
+
+.routility-forum-num {
+  font-size: 13px;
+  line-height: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+
+.routility-forum-lastlink > div {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.routility-forum-sk {
+  display: block;
+  margin: 3px auto;
+  border-radius: 6px;
+  background: var(--routility-sk, rgba(127, 127, 127, 0.18));
+  animation: routility-sk-pulse 1.2s ease-in-out infinite;
+}
+
+.routility-forum-threads th,
+.routility-forum-threads td {
+  padding: 8px 10px;
+}
+
+.routility-forum-threads .routility-forum-cat th {
+  height: 44px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.routility-forum-threads .routility-forum-cat th.routility-forum-num {
+  width: 1%;
+  padding: 8px 16px;
+}
+
+.routility-forum-threads .routility-forum-cat th.routility-forum-num:last-child {
+  padding: 8px 28px;
+}
+
+.routility-forum-author-head {
+  width: 130px;
+}
+
+.routility-forum-thread td {
+  height: 52px;
+}
+
+.routility-forum-icon-cell {
+  width: 28px;
+  padding-left: 16px !important;
+  padding-right: 4px !important;
+  text-align: center !important;
+}
+
+.routility-forum-subject-link {
+  font-weight: 600;
+}
+
+.routility-forum-subject {
+  overflow-wrap: anywhere;
+}
+
+.routility-forum-subject-link {
+  display: block;
+}
+
+.routility-forum-in {
+  display: block;
+  font-size: 90%;
+  line-height: 18px;
+}
+
+.routility-forum-pages {
+  width: 90px;
+  padding-right: 12px !important;
+}
+
+.routility-forum-mini {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.routility-forum-mini-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 6px;
+  background: var(--color-shift-200, rgba(127, 127, 127, 0.1));
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.routility-forum-mini-gap {
+  font-size: 12px;
+}
+
+.routility-forum-author {
+  font-size: 13px;
+  line-height: 18px;
+  overflow-wrap: anywhere;
+}
+
+.routility-forum-message {
+  height: 72px;
+  text-align: center !important;
+}
+
+.routility-forum-message a {
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.routility-forum-footer {
+  display: none;
+}
+
+.routility-forum-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  background-color: var(--color-content-muted, #999);
+  -webkit-mask: var(--svg) center / contain no-repeat;
+  mask: var(--svg) center / contain no-repeat;
+}
+
+.routility-forum-icon.routility-forum-unread {
+  background-color: var(--color-system-success, #02b757);
+}
+
+.routility-forum-icon-popular.routility-forum-unread {
+  background-color: var(--color-system-warning, #f68802);
+}
+
+.routility-forum-icon-pinned.routility-forum-unread {
+  background-color: var(--color-system-emphasis, #335fff);
+}
+
+.routility-forum-icon-thread,
+.routility-forum-icon-popular {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-4 3.5V15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z' fill='black'/%3E%3C/svg%3E");
+}
+
+.routility-forum-icon-popular {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill-rule='evenodd' d='M4 2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-4 3.5V15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7.2 2.5L7 9.6h2.6L8.8 13l4.2-5.1h-2.6l.8-3.4z' fill='black'/%3E%3C/svg%3E");
+}
+
+.routility-forum-icon-pinned {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M7 2h6a1 1 0 0 1 .7 1.7L12.5 5v4l2.8 2.3A1 1 0 0 1 14.7 13H10.8v4.2a.8.8 0 0 1-1.6 0V13H5.3a1 1 0 0 1-.6-1.7L7.5 9V5L6.3 3.7A1 1 0 0 1 7 2z' fill='black'/%3E%3C/svg%3E");
+}
+
+.routility-forum-icon-locked {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill-rule='evenodd' d='M6 8V6a4 4 0 1 1 8 0v2h.5A1.5 1.5 0 0 1 16 9.5v7a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 4 16.5v-7A1.5 1.5 0 0 1 5.5 8H6zm2 0h4V6a2 2 0 1 0-4 0v2z' fill='black'/%3E%3C/svg%3E");
+}
+
+.routility-forum-pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  min-height: 32px;
+  margin-top: 12px;
+}
+
+.routility-forum-pager-label {
+  font-size: 13px;
+}
+
+.routility-forum-pager-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.routility-forum-pg {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-decoration: none !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.routility-forum-pg-current {
+  background: var(--color-system-contrast, #191919);
+  color: var(--color-surface-0, var(--color-surface-100, #fff));
+}
+
+.routility-forum-pg-arrow {
+  width: 32px;
+  padding: 0;
+}
+
+.routility-forum-pg-off {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.routility-forum-pg-gap {
+  padding: 0 2px;
+}
+
+.routility-forum-pg .routility-forum-chevron {
+  width: 16px;
+  height: 16px;
+}
+
+.routility-forum-chevron-left {
+  transform: rotate(90deg);
+}
+
+.routility-forum-chevron-right {
+  transform: rotate(-90deg);
+}
+
+.routility-forum-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.routility-forum-tools {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.routility-forum-days {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.routility-forum-tools-label {
+  font-size: 13px;
+}
+
+.routility-forum-tools button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.routility-forum-select {
+  white-space: nowrap;
+}
+
+.routility-forum-pop {
+  position: fixed;
+  z-index: 1050;
+  min-width: 180px;
+  animation: routility-reveal 0.15s ease-out;
+}
+
+.routility-forum-chevron,
+.routility-forum-check {
+  display: inline-block;
+  flex-shrink: 0;
+  background-image: none !important;
+  background-color: currentColor !important;
+  -webkit-mask: var(--svg) center / contain no-repeat;
+  mask: var(--svg) center / contain no-repeat;
+}
+
+.routility-forum-chevron {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M8.29 12.29a1 1 0 0 1 1.42 0L16 18.59l6.29-6.3a1 1 0 1 1 1.42 1.42l-7 7a1 1 0 0 1-1.42 0l-7-7a1 1 0 0 1 0-1.42z' fill='black'/%3E%3C/svg%3E");
+}
+
+.routility-forum-check {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M26.7 8.3a1 1 0 0 1 0 1.4l-13 13a1 1 0 0 1-1.4 0l-6-6a1 1 0 1 1 1.4-1.4l5.3 5.29L25.3 8.3a1 1 0 0 1 1.4 0z' fill='black'/%3E%3C/svg%3E");
+}
+
+.routility-forum-check-off {
+  visibility: hidden;
+}
+
+.routility-forum-thread-head {
+  margin: 20px 0 20px;
+}
+
+.routility-forum-thread-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 34px;
+  overflow-wrap: anywhere;
+}
+
+.routility-forum-title-hidden {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.routility-forum-locked {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.routility-forum-locked .routility-forum-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.routility-forum-thread-actions:empty {
+  display: none;
+}
+
+.routility-forum-posts {
+  table-layout: fixed;
+}
+
+.routility-forum-postbar td {
+  height: 48px;
+  padding: 8px 12px;
+  background: var(--color-surface-200, #f2f4f5);
+  color: var(--color-content-emphasis, #191919);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.routility-forum-postbar + .routility-forum-post td,
+.routility-forum-postbar:first-child td {
+  border-bottom: 1px solid var(--color-stroke-muted, rgba(127, 127, 127, 0.16));
+}
+
+.routility-forum-post + .routility-forum-postbar td {
+  border-top: 1px solid var(--color-stroke-muted, rgba(127, 127, 127, 0.16));
+}
+
+.routility-forum-prevnext {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.routility-forum-threadnav {
+  background: var(--color-action-standard-background, rgba(127, 127, 127, 0.12));
+  font-size: 13px;
+  padding: 0 12px;
+}
+
+.routility-forum-threadnav .routility-forum-chevron {
+  width: 14px;
+  height: 14px;
+}
+
+.routility-forum-post td {
+  vertical-align: top;
+  background: var(--color-surface-100, #f9f9f9);
+}
+
+.routility-forum-posts .routility-forum-post-col {
+  padding: 12px 16px 0 !important;
+}
+
+.routility-forum-col-author {
+  width: 170px;
+}
+
+.routility-forum-author-col {
+  width: 170px;
+  padding: 12px 8px 12px 16px !important;
+}
+
+.routility-forum-poster {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  line-height: 20px;
+}
+
+.routility-forum-poster-name {
+  min-width: 0;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.routility-forum-poster-name:hover,
+.routility-forum-group a:hover {
+  text-decoration: underline;
+}
+
+.routility-forum-presence {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.routility-forum-presence-on {
+  background: var(--color-system-success, #00b000);
+}
+
+.routility-forum-presence-off {
+  background: var(--color-system-alert, #c00000);
+}
+
+.routility-forum-badges {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  --icon-size-small: 14px;
+  --icon-size-large: 14px;
+}
+
+.routility-forum-badges:empty {
+  display: none;
+}
+
+.routility-forum-badges .icon {
+  width: 14px;
+  height: 14px;
+}
+
+
+.routility-forum-avatar {
+  position: relative;
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: 3px 0 2px 1px;
+}
+
+.routility-forum-avatar-sk {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: var(--routility-sk, rgba(127, 127, 127, 0.18));
+  animation: routility-sk-pulse 1.2s ease-in-out infinite;
+}
+
+.routility-forum-avatar-img {
+  position: absolute;
+  inset: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.routility-forum-avatar-img.routility-loaded {
+  opacity: 1;
+}
+
+.routility-forum-avatar:has(.routility-loaded) .routility-forum-avatar-sk {
+  display: none;
+}
+
+.routility-forum-rank {
+  display: flex;
+  margin: 2px 0 3px 1px;
+}
+
+.routility-forum-rank img {
+  display: block;
+}
+
+.routility-forum-meta {
+  font-size: 90%;
+  line-height: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.routility-forum-joined .routility-forum-sk {
+  display: inline-block;
+  margin: 0;
+  vertical-align: -1px;
+}
+
+.routility-forum-group {
+  min-height: 20px;
+  padding-top: 2px;
+}
+
+.routility-forum-post-col {
+  padding: 3px 3px 0 !important;
+}
+
+.routility-forum-post-date {
+  font-size: 90%;
+  line-height: 18px;
+  padding: 1px 0 3px;
+}
+
+.routility-forum-post-body {
+  min-height: 125px;
+  padding-top: 3px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.routility-forum-post-hidden {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-style: italic;
+}
+
+.routility-forum-hidden-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  background-color: var(--color-content-muted, #999);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill-rule='evenodd' d='M4.3 4.3a1 1 0 0 1 1.4 0l22 22a1 1 0 0 1-1.4 1.4l-4.2-4.2A13.6 13.6 0 0 1 16 25C9.6 25 5 20.4 2.6 16.6a1.2 1.2 0 0 1 0-1.2 22 22 0 0 1 5-5.7L4.3 5.7a1 1 0 0 1 0-1.4zm4.7 6.8a19.8 19.8 0 0 0-4.4 4.9C6.9 19.5 10.9 23 16 23c1.8 0 3.5-.4 5-1.1l-2.4-2.4A4 4 0 0 1 12.5 14L9 11.1zm5 4.4a2 2 0 0 0 2.5 2.5L14 15.5zM16 9c-.9 0-1.8.1-2.7.4a1 1 0 0 1-.6-1.9C13.8 7.2 14.9 7 16 7c6.4 0 11 4.6 13.4 8.4.2.4.2.8 0 1.2-.8 1.3-1.8 2.6-3 3.8a1 1 0 0 1-1.4-1.4c.9-1 1.8-2 2.4-3-2.3-3.5-6.3-7-11.4-7z' fill='black'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill-rule='evenodd' d='M4.3 4.3a1 1 0 0 1 1.4 0l22 22a1 1 0 0 1-1.4 1.4l-4.2-4.2A13.6 13.6 0 0 1 16 25C9.6 25 5 20.4 2.6 16.6a1.2 1.2 0 0 1 0-1.2 22 22 0 0 1 5-5.7L4.3 5.7a1 1 0 0 1 0-1.4zm4.7 6.8a19.8 19.8 0 0 0-4.4 4.9C6.9 19.5 10.9 23 16 23c1.8 0 3.5-.4 5-1.1l-2.4-2.4A4 4 0 0 1 12.5 14L9 11.1zm5 4.4a2 2 0 0 0 2.5 2.5L14 15.5zM16 9c-.9 0-1.8.1-2.7.4a1 1 0 0 1-.6-1.9C13.8 7.2 14.9 7 16 7c6.4 0 11 4.6 13.4 8.4.2.4.2.8 0 1.2-.8 1.3-1.8 2.6-3 3.8a1 1 0 0 1-1.4-1.4c.9-1 1.8-2 2.4-3-2.3-3.5-6.3-7-11.4-7z' fill='black'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.routility-forum-post-spacer td {
+  height: 1px;
+  padding: 0 !important;
+  background: var(--color-stroke-muted, rgba(127, 127, 127, 0.16)) !important;
+}
+
+.routility-forum-posts + .routility-forum-pager-slot,
+.routility-forum-threads + .routility-forum-pager-slot {
+  margin-top: 4px;
+}
+
+.routility-forum-nav-links .routility-forum-account {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.routility-forum-nav-links .routility-forum-account:hover {
+  text-decoration: underline;
+}
+
+.routility-forum-notice {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--color-surface-200, rgba(127, 127, 127, 0.12));
+  color: var(--color-content-emphasis, inherit);
+  animation: routility-reveal 0.15s ease-out;
+}
+
+.routility-forum-notice[hidden] {
+  display: none;
+}
+
+.routility-forum-notice-icon {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-system-emphasis, #335fff);
+}
+
+.routility-forum-notice-alert .routility-forum-notice-icon {
+  background: var(--color-system-alert, #df281f);
+}
+
+.routility-forum-notice-success .routility-forum-notice-icon {
+  background: var(--color-system-success, #02b757);
+}
+
+.routility-forum-notice-text {
+  min-width: 0;
+}
+
+.routility-forum-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.routility-forum-thread-actions:not(:empty) {
+  display: flex;
+  margin: -8px 0 7px;
+}
+
+.routility-forum-post-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 31px;
+  padding: 0 4px 4px 0;
+}
+
+.routility-forum-report {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  color: var(--color-content-muted, #999) !important;
+  text-decoration: none !important;
+  transition: color 0.12s ease;
+}
+
+.routility-forum-report:hover,
+.routility-forum-report[aria-expanded="true"] {
+  color: var(--color-system-alert, #df281f) !important;
+}
+
+.routility-forum-report .routility-forum-ficon {
+  width: 14px;
+  height: 14px;
+}
+
+.routility-forum-report-busy {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.routility-forum-reported {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.routility-forum-post-new td {
+  animation: routility-forum-flash 2.4s ease-out;
+}
+
+@keyframes routility-forum-flash {
+  0%, 35% { background-color: var(--color-state-hover, rgba(51, 95, 255, 0.12)); }
+  100% { background-color: var(--color-surface-100, transparent); }
+}
+
+.routility-forum-compose-head:empty {
+  height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.routility-forum-form-label {
+  padding-top: 14px !important;
+  vertical-align: top !important;
+}
+
+.routility-forum-form-field {
+  padding: 8px 12px 8px 3px !important;
+}
+
+.routility-forum-compose .routility-forum-post-spacer td,
+.routility-forum-compose .routility-forum-form-row td {
+  border: 0;
+}
+
+
+.routility-forum-textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 220px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-stroke-contrast-alpha, var(--color-stroke-default, #ccc));
+  border-radius: 8px;
+  background: transparent;
+  font-family: inherit;
+  line-height: 20px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.12s ease;
+}
+
+.routility-forum-textarea:focus {
+  border-color: var(--color-system-emphasis, #335fff);
+}
+
+.routility-forum-textarea::placeholder,
+.routility-forum-compose input::placeholder {
+  color: var(--color-content-muted, #999);
+}
+
+.routility-forum-count {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.routility-forum-form-error:empty {
+  display: none;
+}
+
+.routility-forum-form-error {
+  margin-bottom: 8px;
+}
+
+.routility-forum-form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-bottom: 8px;
+}
+
+.routility-forum-form-buttons button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.routility-forum-signin-cell {
+  padding: 48px 16px 52px !important;
+}
+
+.routility-forum-signin-row:hover td {
+  background: transparent;
+}
+
+.routility-forum-signin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.routility-forum-signin-marks {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.routility-forum-signin-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--color-surface-300, rgba(127, 127, 127, 0.12));
+  border: 1px solid var(--color-stroke-muted, rgba(127, 127, 127, 0.16));
+}
+
+.routility-forum-signin-tile img {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+}
+
+.routility-forum-signin-link {
+  width: 18px;
+  height: 18px;
+  background-color: var(--color-content-muted, #999);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M13.4 18.6a1 1 0 0 1 0-1.4l3.8-3.8a1 1 0 1 1 1.4 1.4l-3.8 3.8a1 1 0 0 1-1.4 0z' fill='black'/%3E%3Cpath d='M17 7.5a5 5 0 0 1 7.5 7.1l-2.3 2.3a1 1 0 1 1-1.4-1.4l2.3-2.3a3 3 0 0 0-4.3-4.3L16.5 11.2a1 1 0 0 1-1.4-1.4L17 7.5zM10.9 15.1a1 1 0 0 1 0 1.4l-2.3 2.3a3 3 0 0 0 4.3 4.3l2.3-2.3a1 1 0 1 1 1.4 1.4l-2.3 2.3a5 5 0 0 1-7.1-7.1l2.3-2.3a1 1 0 0 1 1.4 0z' fill='black'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M13.4 18.6a1 1 0 0 1 0-1.4l3.8-3.8a1 1 0 1 1 1.4 1.4l-3.8 3.8a1 1 0 0 1-1.4 0z' fill='black'/%3E%3Cpath d='M17 7.5a5 5 0 0 1 7.5 7.1l-2.3 2.3a1 1 0 1 1-1.4-1.4l2.3-2.3a3 3 0 0 0-4.3-4.3L16.5 11.2a1 1 0 0 1-1.4-1.4L17 7.5zM10.9 15.1a1 1 0 0 1 0 1.4l-2.3 2.3a3 3 0 0 0 4.3 4.3l2.3-2.3a1 1 0 1 1 1.4 1.4l-2.3 2.3a5 5 0 0 1-7.1-7.1l2.3-2.3a1 1 0 0 1 1.4 0z' fill='black'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.routility-forum-rlogo {
+  display: inline-block !important;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background-size: contain !important;
+  background-repeat: no-repeat;
+  background-position: center !important;
+}
+
+.routility-forum-rlogo-small {
+  width: 18px;
+  height: 18px;
+}
+
+.routility-forum-rlogo-tinted {
+  background-image: none !important;
+  background-color: currentColor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.routility-forum-signin-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.routility-forum-signin-text {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.routility-forum-signin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 280px;
+  height: 44px;
+  margin-top: 22px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--color-system-contrast, #191919);
+  color: var(--color-surface-100, #fff);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+
+.routility-forum-signin-btn:active {
+  transform: scale(0.98);
+}
+
+.routility-forum-signin-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.routility-forum-foot {
+  margin-top: 24px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.routility-forum-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 16px;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .routility-forum-col-author,
+  .routility-forum-author-col {
+    width: 112px;
+  }
+  .routility-forum-pages,
+  .routility-forum-threads .routility-forum-author-head,
+  .routility-forum-author {
+    display: none;
+  }
+  .routility-forum-index .routility-forum-cat th:nth-child(2),
+  .routility-forum-index .routility-forum-cat th:nth-child(3),
+  .routility-forum-index .routility-forum-row td:nth-child(2),
+  .routility-forum-index .routility-forum-row td:nth-child(3) {
+    display: none;
+  }
+}
+
+.routility-forum-state-card {
+  margin-top: 16px;
+  border: 1px solid var(--color-stroke-muted);
+  border-radius: 12px;
+  background: var(--color-surface-100);
+}
+
+.routility-forum-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 56px 24px;
+  text-align: center;
+}
+
+.routility-forum-state-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  color: var(--color-content-default);
+}
+
+.routility-forum-state-icon .routility-forum-ficon {
+  width: 28px;
+  height: 28px;
+  --icon-size-small: 28px;
+  --icon-size-medium: 28px;
+  --icon-size-large: 28px;
+}
+
+.routility-forum-state-title {
+  max-width: 560px;
+  overflow-wrap: anywhere;
+}
+
+.routility-forum-state-text {
+  max-width: 440px;
+}
+
+.routility-forum-state-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.routility-forum-state-row .routility-forum-message {
+  height: auto;
+  padding: 0 !important;
+}
+
+.routility-forum-avatar-system {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.routility-forum-avatar-system .routility-forum-avatar-img {
+  width: 62%;
+  height: auto;
+  object-fit: contain;
+}
+
+.routility-forum-custom {
+  position: fixed;
+  z-index: 1060;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 340px;
+  max-width: calc(100vw - 16px);
+  padding: 16px;
+}
+
+.routility-forum-custom-title {
+  margin-bottom: 8px;
+}
+
+.routility-forum-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.routility-forum-choices > span {
+  display: contents;
+}
+
+.routility-forum-hide-joined .routility-forum-stat-joined,
+.routility-forum-hide-posts .routility-forum-stat-posts,
+.routility-forum-hide-rap .routility-forum-stat-rap,
+.routility-forum-hide-value .routility-forum-stat-value,
+.routility-forum-hide-group .routility-forum-stat-group,
+.routility-forum-avatars-off .routility-forum-avatar {
+  display: none !important;
+}
+
+.routility-forum-avatars-headshot .routility-forum-avatar {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.routility-forum-avatars-headshot .routility-forum-avatar-img {
+  width: 100%;
+  height: 100%;
+}
+
+.routility-forum-compact .routility-forum-table th,
+.routility-forum-compact .routility-forum-table td {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.routility-forum-compact .routility-forum-cat th,
+.routility-forum-compact .routility-forum-postbar td {
+  height: 36px;
+}
+
+.routility-forum-compact .routility-forum-post-body {
+  min-height: 60px;
+}
+
+.routility-forum-compact .routility-forum-author-col {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.routility-forum-compact.routility-forum-avatars-headshot .routility-forum-avatar {
+  width: 56px;
+  height: 56px;
+}
+
+.routility-forum.routility-forum-classic {
+  font-family: "Source Sans Pro", "Source Sans 3", "Segoe UI", Arial, sans-serif;
+}
+
+.routility-forum-classic .routility-forum-table {
+  border: 0;
+  border-radius: 0;
+}
+
+.routility-forum-classic .routility-forum-cat th,
+.routility-forum-classic .routility-forum-postbar td {
+  background: #2b5293;
+  color: #ffffff;
+  border-bottom: 0;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.routility-forum-classic .routility-forum-cat th + th {
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.routility-forum-classic .routility-forum-postbar .routility-forum-threadnav {
+  background: transparent;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.routility-forum-classic .routility-forum-title,
+.routility-forum-classic .routility-forum-subject-link {
+  font-weight: 600;
+}
+
+.routility-forum-classic .routility-forum-desc {
+  font-weight: 400;
+}
+
+.routility-forum-classic .routility-forum-thread-title {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 40px;
+}
+
+.routility-forum-classic .routility-forum-poster-name {
+  font-weight: 600;
+}
+
+.routility-forum-classic .routility-forum-crumbs a,
+.routility-forum-classic .routility-forum-poster-name,
+.routility-forum-classic .routility-forum-group a {
+  color: #4f9bf0;
+}
+
+.routility-forum-classic .routility-forum-pg-current {
+  background: #2b5293;
+  border-color: #2b5293;
+  color: #ffffff;
+}
+
+.light-theme .routility-forum.routility-forum-classic {
+  --color-surface-0: #ffffff;
+  --color-surface-100: #f6f6f6;
+  --color-surface-300: #e6e6e6;
+  --color-content-emphasis: #333333;
+  --color-content-default: #333333;
+  --color-content-muted: #757575;
+  --color-stroke-muted: #dedede;
+  --color-stroke-default: #c8c8c8;
+  --color-state-hover: rgba(0, 0, 0, 0.035);
+  --routility-sk: rgba(0, 0, 0, 0.08);
+  color: #333333;
+}
+
+.light-theme .routility-forum-classic .routility-forum-table,
+.light-theme .routility-forum-classic .routility-forum-post td {
+  background: #f6f6f6;
+}
+
+.light-theme .routility-forum-classic .routility-forum-row td {
+  border-color: #dedede;
+}
+
+.light-theme .routility-forum-classic .routility-forum-title,
+.light-theme .routility-forum-classic .routility-forum-subject-link,
+.light-theme .routility-forum-classic .routility-forum-thread-title {
+  color: #343434;
+}
+
+.light-theme .routility-forum-classic .routility-forum-crumbs a,
+.light-theme .routility-forum-classic .routility-forum-poster-name,
+.light-theme .routility-forum-classic .routility-forum-group a {
+  color: #0b6bc2;
+}
+
+.light-theme .routility-forum-classic .foundation-web-button.bg-action-standard {
+  border: 1px solid #a7a7a7;
+  border-radius: 2px;
+  background: linear-gradient(#ffffff, #e3e3e3);
+  color: #333333;
+}
+
+.routility-forum-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.routility-forum-pills .routility-value-pill,
+.routility-forum-pills .routility-rap-pill {
+  height: 20px;
+  padding: 0 7px;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.routility-forum-pills .routility-value-pill .padding-y-xsmall,
+.routility-forum-pills .routility-rap-pill .padding-y-xsmall {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.routility-forum-pills .routility-value-logo {
+  width: 11px;
+  height: 11px;
+}
+
+.routility-forum-pills .routility-rap-icon {
+  margin: -2px;
+  transform: scale(0.75);
+}
+
+.routility-forum-pills:empty {
+  display: none;
+}
+
+.routility-forum-pill-sk {
+  display: block;
+  width: 70px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--routility-sk, rgba(127, 127, 127, 0.18));
+  animation: routility-sk-pulse 1.2s ease-in-out infinite;
+}
+
+.routility-forum-pill-sk-rap {
+  width: 84px;
+}
+
+.routility-forum-classic .routility-forum-post-body,
+.routility-forum-classic .routility-forum-meta,
+.routility-forum-classic .routility-forum-desc,
+.routility-forum-classic .routility-forum-post-date {
+  font-weight: 400;
+}
+
+.routility-forum-classic .routility-forum-meta b {
+  font-weight: 700;
+}

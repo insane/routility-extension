@@ -1,0 +1,230 @@
+.routility-cr-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-content-muted, #bcbec8);
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.routility-cr-icon:hover,
+.routility-cr-icon:focus-visible {
+  background: var(--color-state-hover, rgba(208, 217, 251, 0.08));
+  color: var(--color-content-emphasis, #f7f7f8);
+}
+
+.routility-cr-icon.routility-cr-copied {
+  color: #39c582;
+}
+
+.routility-cr-icon.routility-cr-failed {
+  color: #df281f;
+}
+
+.routility-cr-icon.routility-cr-busy {
+  position: relative;
+  cursor: progress;
+}
+
+.routility-cr-icon.routility-cr-busy svg {
+  opacity: 0;
+}
+
+.routility-cr-icon.routility-cr-busy::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border: 2px solid currentColor;
+  border-color: currentColor transparent currentColor transparent;
+  border-radius: 50%;
+  animation: routility-cr-spin 0.8s linear infinite;
+}
+
+@keyframes routility-cr-spin {
+  to { transform: rotate(360deg); }
+}
+
+.routility-cr-fail {
+  margin-left: 6px;
+  color: #ff8a82;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.routility-cr-actions:has(.routility-cr-fail),
+.routility-cr-actions:has(.routility-cr-busy) {
+  opacity: 1;
+}
+
+.routility-cr-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.routility-cr-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: rgba(127, 127, 127, 0.2);
+}
+
+.routility-cr-card[data-done] .routility-cr-progress {
+  display: none;
+}
+
+.routility-cr-progress-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--color-system-emphasis, #335fff);
+  transition: width 0.2s ease;
+}
+
+.routility-cr-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 10px;
+  vertical-align: middle;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+tr:hover .routility-cr-actions,
+.routility-cr-actions:focus-within {
+  opacity: 1;
+}
+
+.routility-cr-ids .routility-cr-icon {
+  width: 24px;
+  height: 24px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.routility-cr-idval {
+  color: var(--color-content-emphasis, #f7f7f8);
+  font-variant-numeric: tabular-nums;
+  user-select: all;
+}
+
+.routility-cr-usd {
+  margin-left: 6px;
+  color: var(--color-content-muted, #bcbec8);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+@keyframes routility-cr-shimmer {
+  0% { opacity: 0.45; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.45; }
+}
+
+.routility-cr-hidden {
+  display: none !important;
+}
+
+.routility-cr-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 14px;
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  color: var(--color-content-emphasis, #f7f7f8);
+}
+
+.routility-cr-body {
+  display: flex;
+  flex: 1 1 260px;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.routility-cr-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.routility-cr-sub {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-content-muted, #bcbec8);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.routility-cr-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.routility-cr-chip-high {
+  background: rgba(223, 40, 31, 0.2);
+  color: #ff8a82;
+}
+
+.routility-cr-chip-medium {
+  background: rgba(242, 186, 42, 0.18);
+  color: #f6cb5c;
+}
+
+.routility-cr-chip-ok {
+  background: rgba(57, 197, 130, 0.18);
+  color: #6fd8a4;
+}
+
+.routility-cr-view {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.routility-cr-sk {
+  display: inline-block;
+  border-radius: 6px;
+  background: rgba(127, 127, 127, 0.25);
+  animation: routility-cr-shimmer 1.2s ease-in-out infinite;
+}
+
+.routility-cr-sk-title {
+  width: 96px;
+  height: 14px;
+  margin: 3px 0;
+}
+
+.routility-cr-sk-sub {
+  width: 200px;
+  height: 12px;
+  margin: 4px 0;
+}
+
+.routility-cr-explorer-icon {
+  width: 24px;
+  height: 24px;
+  fill: none !important;
+  stroke: currentColor;
+}
