@@ -9258,6 +9258,10 @@ html.routility-nav-collapsed .left-nav .routility-quick {
   display: none !important;
 }
 
+html.routility-nav-collapsed .left-nav nav > ul > :is(li, div):not(:has(> a, > button)) {
+  display: none !important;
+}
+
 html.routility-nav-collapsed .left-nav nav > ul > li > :is(a, button) > [class*="size-1000"] {
   margin: 0 auto;
 }

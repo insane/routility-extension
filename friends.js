@@ -292,7 +292,7 @@
       } else if (h2 && !h2.textContent.includes(wanted)) {
         h2.insertBefore(document.createTextNode(' ' + wanted), h2.querySelector('.tooltip-container') || null);
       }
-      if (!native.querySelector('.routility-hidden-source')) {
+      if (s.friends && !native.querySelector('.routility-hidden-source')) {
         const anchor = native.querySelector('.tooltip-container') || h2;
         anchor?.after(window.RoUtilityUI.hiddenNote());
       }
@@ -301,13 +301,14 @@
         input.dataset.routility = '1';
         input.addEventListener('input', () => search(input.value));
       }
-    } else if (!ours) {
+    } else {
+      let head = ours;
       const top = pane.querySelector('.container-header');
-      if (top) {
-        const head = header(shown, list);
-        head.querySelector('h2').after(window.RoUtilityUI.hiddenNote());
+      if (!head && top) {
+        head = header(shown, list);
         top.appendChild(head);
       }
+      if (head && s.friends && !head.querySelector('.routility-hidden-source')) head.querySelector('h2')?.after(window.RoUtilityUI.hiddenNote());
     }
   }
 

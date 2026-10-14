@@ -179,6 +179,10 @@ html.routility-skeleton.routility-sk-wait-list .friends-subtitle h2::after {
   animation: routility-sk-pulse 1.2s ease-in-out infinite;
 }
 
+html.routility-skeleton.routility-sk-wait-list .friends-subtitle .routility-hidden-source {
+  visibility: hidden;
+}
+
 html.routility-skeleton.routility-sk-wait-list .friends-subtitle h2::after {
   top: 6px;
   width: 120px;

@@ -314,7 +314,8 @@
   }
 
 
-  const FIXED = /Animation$|^(Head|DynamicHead|Torso|LeftArm|RightArm|LeftLeg|RightLeg|Face)$/;
+  const FIXED = /Animation$|^Face$/;
+  const BODY_PART = /^(Head|DynamicHead|Torso|LeftArm|RightArm|LeftLeg|RightLeg)$/;
   const HIDDEN_TYPES = /Animation$/;
   const WRITE = /avatar\.roblox\.com\/v\d+\/avatar$|avatar\.roblox\.com\/v\d+\/outfits\/\d+\/wear|set-wearing|avatar\.roblox\.com\/v\d+\/avatar\/(set|remove|wear)/;
   const LOGO_URL = chrome.runtime.getURL('icons/logo.png');
@@ -650,13 +651,26 @@
     BackAccessory: ['heading.accessories-dropdown', 'Back'],
     WaistAccessory: ['heading.accessories-dropdown', 'Waist'],
     HairAccessory: ['heading.body-dropdown', 'Hair'],
+    Head: ['heading.body-dropdown', 'Heads'],
+    DynamicHead: ['heading.body-dropdown', 'Heads'],
+    Torso: ['heading.body-dropdown', 'Torso'],
+    LeftArm: ['heading.body-dropdown', 'Left Arms'],
+    RightArm: ['heading.body-dropdown', 'Right Arms'],
+    LeftLeg: ['heading.body-dropdown', 'Left Legs'],
+    RightLeg: ['heading.body-dropdown', 'Right Legs'],
   };
 
   function searchBox() {
     return [...document.querySelectorAll('#avatar-web-app .right-panel input[type="search"]')].find(i => !i.closest('.routility-av-snapshot')) || null;
   }
 
-  async function findCard(id, name) {
+  function equippedCard() {
+    const list = document.querySelector('#avatar-web-app .tab-pane.active .avatar-item-list');
+    const hit = list && [...list.querySelectorAll('li.item-card')].find(li => !li.closest('.routility-av-snapshot') && li.querySelector('.item-card-equipped'));
+    return hit || null;
+  }
+
+  async function findCard(id, name, worn) {
     let card = null;
     let search = null;
     let shown = 0;
@@ -664,14 +678,14 @@
     let still = 0;
     for (let i = 0; i < 60 && !card; i++) {
       await wait(100);
-      card = cardFor(id);
+      card = cardFor(id) || (worn && currentSection()?.sub === worn ? equippedCard() : null);
       if (card) break;
       const list = document.querySelector('#avatar-web-app .tab-pane.active .avatar-item-list');
       const cards = list ? list.querySelectorAll('li.item-card').length : 0;
       if (!cards || ++shown < 3) continue;
       if (!search && name) {
         search = searchBox();
-        if (search) setValue(search, name);
+        if (search) setValue(search, worn ? name.split(/\s+/)[0] : name);
       }
       if (cards !== count) {
         count = cards;
@@ -692,7 +706,7 @@
     const thaw = back ? freezePanel() : null;
     let found = { card: null, search: null };
     try {
-      if (await openSection(tabId, sub)) found = await findCard(id, name);
+      if (await openSection(tabId, sub)) found = await findCard(id, name, BODY_PART.test(wear?.assets?.find(a => a.id === id)?.type || '') ? sub : '');
       const target = found.card?.querySelector('.item-card-thumb-container');
       if (target && wear === w) {
         target.click();
