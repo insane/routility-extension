@@ -2179,6 +2179,20 @@ a.routility-hc-status:hover {
   background: var(--rt-m-green);
 }
 
+.rt-m-scroll {
+  display: block;
+  align-self: stretch;
+  width: 6px;
+  margin-left: 8px;
+}
+
+.rt-m-scroll > span {
+  display: block;
+  height: 55%;
+  border-radius: 3px;
+  background: var(--rt-m-ink);
+}
+
 .rt-m-sk {
   display: block;
   flex-shrink: 0;
@@ -9143,6 +9157,24 @@ html.routility-badge-fix .player-search-card-name [data-rblx-verified-badge-icon
   display: inline-flex;
   align-items: center;
   margin-left: 4px;
+}
+
+html.routility-scrollbar-fix:has(> body.dark-theme) {
+  color-scheme: dark;
+  scrollbar-color: rgba(208, 217, 251, 0.3) transparent;
+}
+
+html.routility-scrollbar-fix:has(> body.light-theme) {
+  color-scheme: light;
+  scrollbar-color: rgba(27, 37, 75, 0.3) transparent;
+}
+
+html.routility-scrollbar-fix.routility-themed:has(> body) {
+  scrollbar-color: color-mix(in srgb, var(--color-content-default) 30%, transparent) transparent;
+}
+
+html.routility-scrollbar-fix body {
+  scrollbar-color: auto;
 }
 
 .routility-calc-cash {
