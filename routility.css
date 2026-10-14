@@ -9161,20 +9161,68 @@ html.routility-badge-fix .player-search-card-name [data-rblx-verified-badge-icon
 
 html.routility-scrollbar-fix:has(> body.dark-theme) {
   color-scheme: dark;
-  scrollbar-color: rgba(208, 217, 251, 0.3) transparent;
+  --rt-scrollbar: rgba(208, 217, 251, 0.3);
+  --rt-scrollbar-active: rgba(208, 217, 251, 0.5);
 }
 
 html.routility-scrollbar-fix:has(> body.light-theme) {
   color-scheme: light;
-  scrollbar-color: rgba(27, 37, 75, 0.3) transparent;
+  --rt-scrollbar: rgba(27, 37, 75, 0.3);
+  --rt-scrollbar-active: rgba(27, 37, 75, 0.5);
 }
 
 html.routility-scrollbar-fix.routility-themed:has(> body) {
-  scrollbar-color: color-mix(in srgb, var(--color-content-default) 30%, transparent) transparent;
+  --rt-scrollbar: color-mix(in srgb, var(--color-content-default) 30%, transparent);
+  --rt-scrollbar-active: color-mix(in srgb, var(--color-content-default) 50%, transparent);
+}
+
+html.routility-scrollbar-fix {
+  scrollbar-color: var(--rt-scrollbar) transparent;
 }
 
 html.routility-scrollbar-fix body {
   scrollbar-color: auto;
+}
+
+html.routility-scrollbar-floating {
+  scrollbar-width: none;
+}
+
+#routility-scrollbar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 14px;
+  z-index: 1029;
+  pointer-events: none;
+}
+
+#routility-scrollbar[hidden] {
+  display: none;
+}
+
+#routility-scrollbar > div {
+  position: absolute;
+  top: 0;
+  right: 3px;
+  width: 6px;
+  border-radius: 6px;
+  background: var(--rt-scrollbar);
+  opacity: 0;
+  transition: opacity 0.3s, width 0.15s, right 0.15s;
+}
+
+#routility-scrollbar.routility-scrollbar-shown > div,
+#routility-scrollbar.routility-scrollbar-dragging > div {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#routility-scrollbar > div:hover,
+#routility-scrollbar.routility-scrollbar-dragging > div {
+  right: 2px;
+  width: 10px;
+  background: var(--rt-scrollbar-active);
 }
 
 .routility-calc-cash {

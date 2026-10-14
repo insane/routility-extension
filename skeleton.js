@@ -73,6 +73,7 @@
     root.classList.toggle('routility-exact-prices', (settings || {}).exactPrices !== false);
     root.classList.toggle('routility-badge-fix', (settings || {}).badgeSizeFix !== false);
     root.classList.toggle('routility-scrollbar-fix', (settings || {}).scrollbarFix !== false);
+    root.classList.toggle('routility-scrollbar-floating', (settings || {}).scrollbarFix !== false && (settings || {}).scrollbarStyle !== 'default');
     root.classList.toggle('routility-full-desc', (settings || {}).groupFullDesc !== false);
     const greetWait = /^\/home\/?$/i.test(location.pathname) && (settings || {}).homeGreeting !== false;
     root.classList.toggle('routility-greeting-wait', greetWait);
