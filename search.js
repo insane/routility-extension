@@ -87,14 +87,20 @@
     return out;
   }
 
-  async function terminated(name) {
+  async function exactUser(name) {
     if (!/^[A-Za-z0-9_]{3,20}$/.test(name)) return null;
-    const hit = await post('https://users.roblox.com/v1/usernames/users', { usernames: [name], excludeBannedUsers: false });
+    const hit = await post('https://users.roblox.com/v1/usernames/users', { usernames: [name], excludeBannedUsers: !prefs.termed });
     const u = hit && hit.data && hit.data[0];
     if (!u || !u.id) return null;
-    const full = await json(`https://users.roblox.com/v1/users/${u.id}`);
-    if (!full || !full.isBanned) return null;
-    return { id: String(full.id), name: full.name, displayName: full.displayName || full.name, verified: !!full.hasVerifiedBadge, friend: false, terminated: true };
+    const asked = String(u.requestedUsername || name);
+    const formerly = u.name && asked.toLowerCase() !== String(u.name).toLowerCase() ? asked : '';
+    let banned = false;
+    if (prefs.termed) {
+      const full = await json(`https://users.roblox.com/v1/users/${u.id}`);
+      banned = !!(full && full.isBanned);
+    }
+    if (!banned && !formerly) return null;
+    return { id: String(u.id), name: u.name, displayName: u.displayName || u.name, verified: !!u.hasVerifiedBadge, friend: false, terminated: banned, formerly };
   }
 
   async function lookup(query) {
@@ -108,14 +114,22 @@
         prefs.games ? json(`https://apis.roblox.com/search-api/omni-search?searchQuery=${q}&pageToken=&sessionId=${sid}&pageType=all`) : null,
         prefs.items ? window.RoUtilityUI.request({ type: 'searchItems', query, limit: 2 }) : [],
         prefs.friends || prefs.people ? myFriends() : [],
-        prefs.people && prefs.termed ? terminated(query.trim()) : null,
+        prefs.people ? exactUser(query.trim()) : null,
       ]);
       const friendIdSet = new Set(friends.map(f => f.id));
       const users = (((people && people.searchResults) || []).find(g => g.contentGroupType === 'User')?.contents || [])
         .filter(u => u.contentId > 0)
         .map(u => ({ id: String(u.contentId), name: u.username, displayName: u.displayName, verified: !!u.hasVerifiedBadge, friend: friendIdSet.has(String(u.contentId)) }));
       const exact = users.filter(u => u.name.toLowerCase() === query.toLowerCase());
-      if (gone && !users.some(u => u.id === gone.id)) exact.unshift(gone);
+      if (gone) {
+        const listed = users.find(u => u.id === gone.id);
+        if (listed) {
+          listed.formerly = gone.formerly;
+          if (!exact.includes(listed)) exact.unshift(listed);
+        } else {
+          exact.unshift({ ...gone, friend: friendIdSet.has(gone.id) });
+        }
+      }
       const fromFriends = prefs.friends ? friendMatches(friends, query) : [];
       const seen = new Set();
       const ranked = [];
@@ -217,7 +231,7 @@
       const p = r.presence && r.presence.get(u.id);
       const playing = p && p.userPresenceType === 2;
       const where = playing ? (p.lastLocation ? lt('Playing {game}', { game: p.lastLocation }) : lt('In an experience')) : null;
-      const sub = el('span', 'routility-search-sub' + (u.terminated ? ' routility-search-termed' : ''), u.terminated ? lt('Terminated · @{name}', { name: u.name }) : where || (u.friend ? lt('You are friends') : '@' + u.name));
+      const sub = el('span', 'routility-search-sub' + (u.terminated ? ' routility-search-termed' : ''), (u.terminated ? lt('Terminated · @{name}', { name: u.name }) : u.formerly ? '@' + u.name : where || (u.friend ? lt('You are friends') : '@' + u.name)) + (u.formerly ? ' · ' + lt('formerly {name}', { name: u.formerly }) : ''));
       const tick = u.verified ? window.RoUtilityUI.verifiedBadge() : null;
       if (tick) delete tick.dataset.rtTip;
       const extras = tick ? [tick] : [];
