@@ -950,6 +950,7 @@
           { key: 'tradeCleanup', title: LT('Clean Up Trades'), desc: LT('A button next to Trades that declines or cancels a batch of trades at once: the ones you overpay in, the ones with items someone no longer owns, or all of them. It shows the list and asks before doing anything.') },
         ] },
         { title: LT('Before You Send'), rows: [
+          { key: 'tradeSort', title: LT('Sort Trade Inventories by Price'), desc: LT('When you make or counter a trade, both inventories open with the most valuable items first, so the best items are always on page one. Big inventories take a few extra seconds to load.') },
           { key: 'tradeSendSummary', title: LT('Send Offer Summary'), desc: LT('When you press Make Offer, the confirm window shows what each side is worth (value and RAP) and the difference. If you’d overpay past your warning level, you tick “I’ve reviewed this trade” before Send works.') },
           { key: 'tradeWarning', title: LT('Overpay Warning'), desc: LT('A warning while you build or counter a trade where you give a lot more value than you get.') },
           { key: 'tradeWarnAt', parent: 'tradeWarning', title: LT('Warn When I Give'), desc: LT('How much more than the other side your offer has to be worth before the warning shows.'), options: [['10', LT('10% more')], ['15', LT('15% more')], ['25', LT('25% more')], ['50', LT('50% more')]] },

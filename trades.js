@@ -1069,6 +1069,37 @@
     return null;
   }
 
+  let sortOn = true;
+  const sortReady = new Promise((done) => {
+    try {
+      chrome.storage.local.get('routilitySettings', (st) => {
+        sortOn = (st.routilitySettings || {}).tradeSort !== false;
+        done();
+      });
+    } catch {
+      done();
+    }
+  });
+  const worthAsked = new Set();
+
+  window.addEventListener('message', async (e) => {
+    if (e.source !== window || !e.data || e.data.type !== 'routility-trade-worth') return;
+    const { id, items } = e.data;
+    if (typeof id !== 'string' || !Array.isArray(items) || worthAsked.has(id)) return;
+    worthAsked.add(id);
+    const reply = data => window.postMessage(Object.assign({ type: 'routility-trade-worth-done', id }, data), location.origin);
+    await sortReady;
+    if (!sortOn) return reply({ on: false });
+    const keys = items.map(it => (it && typeof it === 'object' ? offerPriceKey(it) : null));
+    let got = [];
+    for (let tries = 0; tries < 4; tries++) {
+      got = keys.some(Boolean) ? await prices(keys) : [];
+      if (!got.some(p => p === undefined)) break;
+      await new Promise(r => setTimeout(r, 1500));
+    }
+    reply({ on: true, worth: items.map((it, i) => (got[i] && Number.isFinite(got[i].usd) ? got[i].usd : (Number(it && it.recentAveragePrice) || 0) * robuxRate)) });
+  });
+
   let cleanOn = true;
   let robuxRate = 0.0038;
   chrome.storage.local.get('routilitySettings', (st) => {

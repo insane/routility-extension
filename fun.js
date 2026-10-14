@@ -118,7 +118,7 @@
     if (!av) return null;
     const c = ((custom && custom.avatarThumbnailCustomizations) || []).find(x => x.thumbnailType === 1) || {};
     const cam = { emote: Number(c.emoteAssetId) || 0, fov: Number(c.camera && c.camera.fieldOfViewDeg) || 30, rot: Number(c.camera && c.camera.yRotDeg) || 0, dist: Number(c.camera && c.camera.distanceScale) || -1 };
-    const sig = JSON.stringify([2, av.playerAvatarType, av.scales, av.bodyColor3s, (av.assets || []).map(a => [a.id, a.meta || null]), worn.map(x => x.id), cam, !!circular]);
+    const sig = JSON.stringify([3, av.playerAvatarType, av.scales, av.bodyColor3s, (av.assets || []).map(a => [a.id, a.meta || null]), worn.map(x => x.id), cam, !!circular]);
     const stored = await new Promise(r => chrome.storage.local.get(HEADSHOT_KEY, st => r(Array.isArray(st[HEADSHOT_KEY]) ? st[HEADSHOT_KEY] : [])));
     const hit = stored.find(x => x && x.sig === sig && typeof x.url === 'string');
     if (hit) return hit.url;

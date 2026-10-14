@@ -769,7 +769,7 @@ export async function buildAvatar(scene, opts) {
     } else if (name === 'Head' && !(headPart && opts.kind === 'R15')) {
       const special = inst.children.find(c => c.className === 'SpecialMesh');
       const meshId = inst.className === 'MeshPart' && assetIdOf((prop(inst, 'MeshId') || {}).value);
-      const [geometry, faceImg] = await Promise.all([loadMesh(meshId || MESH.head).catch(() => null), faceP]);
+      const [geometry, faceImg] = await Promise.all([loadMesh(opts.kind === 'R15' ? MESH.head : meshId || MESH.head).catch(() => null), faceP]);
       if (geometry) {
         mesh = new THREE.Mesh(geometry, material(new THREE.Color(1, 1, 1), paint(color, [faceImg], 256, 256)));
         const local = new THREE.Matrix4();

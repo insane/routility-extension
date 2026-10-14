@@ -1109,6 +1109,85 @@
     }],
   ];
 
+  const tradeSorts = new Map();
+
+  function askIso(type, payload) {
+    const id = Math.random().toString(36).slice(2) + Date.now().toString(36);
+    return new Promise((resolve) => {
+      let tries = 0;
+      let timer = 0;
+      const finish = (v) => {
+        window.removeEventListener('message', onReply);
+        clearInterval(timer);
+        resolve(v);
+      };
+      const onReply = (e) => {
+        if (e.source !== window || !e.data || e.data.type !== type + '-done' || e.data.id !== id) return;
+        finish(e.data);
+      };
+      const ask = () => {
+        if (++tries > 40) return finish(null);
+        window.postMessage(Object.assign({ type, id }, payload), ORIGIN);
+      };
+      window.addEventListener('message', onReply);
+      timer = setInterval(ask, 500);
+      ask();
+    });
+  }
+
+  async function tradablePage(url) {
+    for (let tries = 0; tries < 5; tries++) {
+      let r = null;
+      try { r = await oFetch.call(window, url, { credentials: 'include' }); } catch {}
+      if (r && r.status === 429) {
+        await new Promise(w => setTimeout(w, 1500 * (tries + 1)));
+        continue;
+      }
+      if (!r || !r.ok) return null;
+      try { return await r.json(); } catch { return null; }
+    }
+    return null;
+  }
+
+  function sortedTradable(url) {
+    const hit = tradeSorts.get(url);
+    if (hit && Date.now() - hit.at < 120000) return hit.job;
+    const job = (async () => {
+      const gate = await askIso('routility-trade-worth', { items: [] });
+      if (!gate || !gate.on) return null;
+      const items = [];
+      let cursor = '';
+      let userId = null;
+      for (let page = 0; page < 80; page++) {
+        const u = new URL(url);
+        if (cursor) u.searchParams.set('cursor', cursor);
+        const d = await tradablePage(u.href);
+        if (!d || !Array.isArray(d.items)) return null;
+        userId = d.userId;
+        items.push(...d.items);
+        cursor = d.nextPageCursor || '';
+        if (!cursor) break;
+      }
+      if (cursor) return null;
+      const res = await askIso('routility-trade-worth', { items: items.map(it => ({ itemTarget: it.itemTarget, itemName: it.itemName, recentAveragePrice: it.recentAveragePrice })) });
+      if (!res || !res.on || !Array.isArray(res.worth) || res.worth.length !== items.length) return null;
+      const order = items.map((it, i) => ({ it, i, v: Number(res.worth[i]) || 0 }));
+      order.sort((a, b) => b.v - a.v || a.i - b.i);
+      return JSON.stringify({ userId, items: order.map(x => x.it), nextPageCursor: null, previousPageCursor: null });
+    })().catch(() => null);
+    tradeSorts.set(url, { at: Date.now(), job });
+    job.then((text) => { if (!text) tradeSorts.delete(url); });
+    return job;
+  }
+
+  ROUTES.push(['GET', /^https:\/\/trades\.roblox\.com\/v2\/users\/\d+\/tradableItems\?/i, (m, req) => {
+    if (!/^\/(?:users\/\d+\/trade|trades\/\d+\/counter)\/?$/i.test(location.pathname)) return null;
+    if (new URL(req.url).searchParams.get('cursor')) return null;
+    const box = { text: null };
+    const wait = sortedTradable(req.url).then((text) => { box.text = text; });
+    return { wait, edit: t => box.text || t };
+  }]);
+
   function pick(method, url) {
     for (const [m, re, fn] of ROUTES) {
       if (m !== method) continue;
