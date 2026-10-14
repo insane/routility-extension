@@ -2427,7 +2427,7 @@
  "Your most played experiences next to the greeting, for today, 7 days, 30 days or all time, and your playtime on each experience’s page. Counts a minute whenever you’re in an experience while a Roblox tab is open in Chrome. Click Back Up to save it to your RoUtility account, so it comes back if you reinstall.": "在问候语旁显示你最常玩的体验（今天、7 天、30 天或全部时间），并在每个体验页面显示你的游戏时间。只要 Chrome 中打开着 Roblox 标签页，你在体验中每待一分钟就记一分钟。点击「备份」保存到你的 RoUtility 账户，重装后也能找回。",
  "Your name": "你的名字",
  "Your Name": "你的名字",
- "Your name in the top bar and the side menu.": "顶部栏和侧边菜单中你的名字。",
+ "Your name in the top bar, the side menu and the Home greeting.": "顶栏、侧边菜单和首页问候语中的名字。",
  "Your offer is worth {pct}% of what you’re asking. It has to be between 50% and 200%.": "你的报价价值为你所要求的 {pct}%。必须在 50% 到 200% 之间。",
  "Your outbound trade doesn’t match.": "你发出的交易不符合。",
  "Your Playtime": "你的游戏时间",

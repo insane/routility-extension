@@ -2551,7 +2551,7 @@
  "Your most played experiences next to the greeting, for today, 7 days, 30 days or all time, and your playtime on each experience’s page. Counts a minute whenever you’re in an experience while a Roblox tab is open in Chrome. Click Back Up to save it to your RoUtility account, so it comes back if you reinstall.": "Selamlamanın yanında en çok oynadığın deneyimler; bugün, 7 gün, 30 gün veya tüm zamanlar için, ayrıca her deneyimin sayfasında oyun süren. Chrome’da bir Roblox sekmesi açıkken bir deneyimde olduğun her dakikayı sayar. RoUtility hesabına kaydetmek için Yedekle’ye tıkla, yeniden kurduğunda geri gelsin.",
  "Your name": "Adın",
  "Your Name": "Adın",
- "Your name in the top bar and the side menu.": "Üst çubukta ve yan menüde adın.",
+ "Your name in the top bar, the side menu and the Home greeting.": "Üst çubukta, yan menüde ve Ana Sayfa karşılamasında görünen adın.",
  "Your offer is worth {pct}% of what you’re asking. It has to be between 50% and 200%.": "Teklifin, istediğinin %{pct} değerinde. %50 ile %200 arasında olmalı.",
  "Your outbound trade doesn’t match.": "Giden takasın eşleşmiyor.",
  "Your Playtime": "Oyun Süren",

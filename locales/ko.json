@@ -2427,7 +2427,7 @@
  "Your most played experiences next to the greeting, for today, 7 days, 30 days or all time, and your playtime on each experience’s page. Counts a minute whenever you’re in an experience while a Roblox tab is open in Chrome. Click Back Up to save it to your RoUtility account, so it comes back if you reinstall.": "인사말 옆에 가장 많이 플레이한 경험을 오늘, 7일, 30일 또는 전체 기간으로 보여주고, 각 경험 페이지에도 내 플레이 시간을 표시해요. Chrome에서 Roblox 탭이 열려 있는 동안 경험에 있으면 1분씩 기록해요. 백업을 클릭하면 RoUtility 계정에 저장되어 재설치해도 돌아와요.",
  "Your name": "내 이름",
  "Your Name": "내 이름",
- "Your name in the top bar and the side menu.": "상단 바와 사이드 메뉴의 내 이름.",
+ "Your name in the top bar, the side menu and the Home greeting.": "상단 바, 사이드 메뉴, 홈 인사말에 보이는 이름.",
  "Your offer is worth {pct}% of what you’re asking. It has to be between 50% and 200%.": "내 제안은 요청한 것의 {pct}% 가치입니다. 50%에서 200% 사이여야 합니다.",
  "Your outbound trade doesn’t match.": "보낸 거래가 일치하지 않습니다.",
  "Your Playtime": "내 플레이 시간",

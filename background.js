@@ -1051,8 +1051,8 @@ async function authJson(url) {
   }
 }
 
-async function signedInUser() {
-  if (meCache.id && Date.now() - meCache.at < 10 * 60 * 1000) return meCache.id;
+async function signedInUser(fresh) {
+  if (!fresh && meCache.id && Date.now() - meCache.at < 10 * 60 * 1000) return meCache.id;
   const r = await authJson('https://users.roblox.com/v1/users/authenticated');
   meCache = { id: r.data && r.data.id ? String(r.data.id) : null, at: Date.now() };
   return meCache.id;
@@ -1299,6 +1299,7 @@ const TRADE_TEXT = {
 };
 
 async function checkTrades(s, seen, me) {
+  const stamps = seen._at && typeof seen._at === 'object' ? seen._at : (seen._at = {});
   for (const [kind, key] of TRADE_KINDS) {
     if (!s[key]) continue;
     const r = await authJson(`https://trades.roblox.com/v1/trades/${kind}?limit=10&sortOrder=Desc`);
@@ -1308,8 +1309,10 @@ async function checkTrades(s, seen, me) {
     const ids = list.map(t => String(t.id));
     const slot = `${me}:${kind}`;
     const prev = seen[slot];
+    const stale = !stamps[slot] || Date.now() - stamps[slot] > 30 * 60 * 1000;
     seen[slot] = [...new Set([...ids, ...(prev || [])])].slice(0, 60);
-    if (!prev) continue;
+    stamps[slot] = Date.now();
+    if (!prev || stale) continue;
     const fresh = list.filter(t => !prev.includes(String(t.id)) && (kind !== 'inactive' || t.status === 'Declined')).slice(0, 3);
     for (const t of fresh) {
       const user = t.user || {};
@@ -1492,7 +1495,7 @@ function runNotifyCheck() {
     const s = await notifySettings();
     if (!Object.values(s).some(Boolean)) return;
     const seen = (await chrome.storage.local.get(NOTIFY_SEEN))[NOTIFY_SEEN] || {};
-    const me = await signedInUser();
+    const me = await signedInUser(true);
     if (me && (s.notifyInbound || s.notifyOutbound || s.notifyCompleted || s.notifyDeclined)) await checkTrades(s, seen, me);
     if (s.notifyLimiteds || s.notifyUgc) {
       if (!live || live.readyState !== WebSocket.OPEN) await catchUpLimiteds(s);

@@ -703,7 +703,7 @@
           { key: 'streamerRobux', parent: 'streamerMode', title: LT('Robux & Credit'), desc: LT('Your Robux balance and credit in the top bar.') },
           { key: 'streamerAccount', parent: 'streamerMode', title: LT('Account Info'), desc: LT('Email, phone, birthday, location, names, previous usernames, social links and the locations of your logged-in devices in Settings.') },
           { key: 'streamerPayment', parent: 'streamerMode', title: LT('Payment Info'), desc: LT('Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.') },
-          { key: 'streamerName', parent: 'streamerMode', title: LT('Your Name'), desc: LT('Your name in the top bar and the side menu.') },
+          { key: 'streamerName', parent: 'streamerMode', title: LT('Your Name'), desc: LT('Your name in the top bar, the side menu and the Home greeting.') },
           { key: 'streamerAvatar', parent: 'streamerMode', title: LT('Your Avatar'), desc: LT('Your headshot in the top bar, the side menu and the Home greeting, and your avatar on your own profile and in the avatar editor.') },
           { key: 'streamerValues', parent: 'streamerMode', title: LT('Item Values'), desc: LT('RoUtility values of your avatar in the editor and the value pills on profiles.') },
         ] },

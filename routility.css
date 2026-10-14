@@ -2710,6 +2710,15 @@ html.routility-streamer-values .routility-value-row:hover {
   filter: none;
 }
 
+html.routility-streamer-name .routility-greet-name {
+  filter: blur(0.3em);
+  transition: filter 0.15s ease;
+}
+
+html.routility-streamer-name .routility-greet-name:hover {
+  filter: none;
+}
+
 .routility-native-hidden-el {
   display: none !important;
 }

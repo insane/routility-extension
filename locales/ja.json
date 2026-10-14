@@ -2427,7 +2427,7 @@
  "Your most played experiences next to the greeting, for today, 7 days, 30 days or all time, and your playtime on each experience’s page. Counts a minute whenever you’re in an experience while a Roblox tab is open in Chrome. Click Back Up to save it to your RoUtility account, so it comes back if you reinstall.": "あいさつの横によくプレイするエクスペリエンスを表示（今日・7日間・30日間・全期間）。各エクスペリエンスのページにもあなたのプレイ時間を表示します。Chrome で Roblox のタブが開いている間、エクスペリエンスにいると1分ずつカウントします。「バックアップ」をクリックすると RoUtility アカウントに保存され、再インストールしても戻ります。",
  "Your name": "あなたの名前",
  "Your Name": "あなたの名前",
- "Your name in the top bar and the side menu.": "トップバーとサイドメニューのあなたの名前。",
+ "Your name in the top bar, the side menu and the Home greeting.": "上部バー、サイドメニュー、ホームのあいさつに表示される名前。",
  "Your offer is worth {pct}% of what you’re asking. It has to be between 50% and 200%.": "あなたのオファーは要求の{pct}%の価値です。50%から200%の間である必要があります。",
  "Your outbound trade doesn’t match.": "送信トレードが一致しません。",
  "Your Playtime": "あなたのプレイ時間",

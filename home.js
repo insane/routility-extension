@@ -1635,7 +1635,9 @@
     avatar.setAttribute('aria-label', display);
     box.appendChild(avatar);
     const text = el('div', 'routility-greet-text');
-    const title = el('div', 'routility-greet-title content-emphasis', lt('Hello, {name}!', { name: display }));
+    const title = el('div', 'routility-greet-title content-emphasis');
+    const parts = lt('Hello, {name}!').split('{name}');
+    title.append(parts[0] || '', el('span', 'routility-greet-name', display), parts.slice(1).join(display));
     title.setAttribute('role', 'heading');
     title.setAttribute('aria-level', '1');
     text.appendChild(title);
