@@ -1307,8 +1307,10 @@
     const sub = el('p', 'text-body-small content-muted margin-none', lt(def.desc));
     text.appendChild(sub);
     head.appendChild(text);
+    const refill = button(lt('Refill Robux'), () => chrome.storage.local.get('routilityFun', (st) => chrome.storage.local.set({ routilityFun: Object.assign({}, st.routilityFun || {}, { spent: 0 }) })));
+    refill.dataset.rtTip = lt('Puts your fake balance back to full and keeps everything you bought.');
     const reset = button(lt('Reset All'), () => chrome.storage.local.set({ routilityFun: { spent: 0, items: [], worn: [] } }));
-    head.appendChild(reset);
+    head.append(refill, reset);
     const list = el('div', 'routility-fun-items');
     box.append(head, list);
     const refund = (it) => chrome.storage.local.get('routilityFun', (st) => {
@@ -1327,6 +1329,7 @@
       const spent = Number(fun.spent) || 0;
       sub.textContent = items.length ? ltn(items.length, '{n} purchase · {spent} Robux spent', '{n} purchases · {spent} Robux spent', { n: items.length.toLocaleString('en-US'), spent: spent.toLocaleString('en-US') }) : lt(def.desc);
       reset.hidden = !items.length;
+      refill.hidden = !(spent > 0);
       list.textContent = '';
       if (!items.length) {
         list.appendChild(el('div', 'text-body-small content-muted routility-alert-empty', lt('Nothing yet. Turn on Fake Purchases and buy something.')));

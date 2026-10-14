@@ -10006,6 +10006,10 @@ html.routility-classic-logo #header .navbar-brand .icon-logo {
   gap: 16px;
 }
 
+.routility-fun-head > .foundation-web-button + .foundation-web-button {
+  margin-left: -8px;
+}
+
 .routility-fun-items {
   display: flex;
   flex-direction: column;
