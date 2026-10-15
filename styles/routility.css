@@ -7418,9 +7418,9 @@ html.routility-streamer-account .routility-devices-list > li:not(:first-child) .
 .routility-quick {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 2px;
   margin-top: 4px;
-  padding-top: 14px;
+  padding-top: 12px;
   border-top: 1px solid var(--color-stroke-muted, rgba(208, 217, 251, 0.12));
 }
 
@@ -7429,9 +7429,13 @@ html.routility-streamer-account .routility-devices-list > li:not(:first-child) .
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0 4px 4px;
+  padding: 0 4px 4px 12px;
   border: 0;
   background: none;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   cursor: pointer;
 }
 
@@ -7456,7 +7460,7 @@ html.routility-streamer-account .routility-devices-list > li:not(:first-child) .
 .routility-quick-body {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0;
 }
 
 .routility-quick-body[hidden] {
@@ -7469,10 +7473,12 @@ html.routility-streamer-account .routility-devices-list > li:not(:first-child) .
   justify-content: space-between;
   gap: 10px;
   min-height: 36px;
-  padding: 0 4px;
+  padding: 0 0 0 12px;
 }
 
-.routility-quick-label {
+.routility-quick-row .routility-quick-label {
+  color: var(--color-content-default);
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -7487,19 +7493,22 @@ html.routility-streamer-account .routility-devices-list > li:not(:first-child) .
   align-items: center;
   gap: 8px;
   width: auto;
-  height: 28px;
-  padding: 0 10px 0 12px;
+  height: 30px;
+  padding: 0 10px;
   border: 0;
   border-radius: calc(8px * var(--routility-round, 1)) !important;
   box-shadow: none;
-  font-weight: 600;
-  line-height: 28px;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 30px;
 }
 
 .routility-quick-row .routility-quick-dd .rbx-selection-label {
   margin: 0;
   padding: 0;
   font: inherit;
+  font-size: inherit !important;
+  font-weight: inherit !important;
   color: inherit;
 }
 
@@ -7531,12 +7540,15 @@ html.routility-streamer-account .routility-devices-list > li:not(:first-child) .
 }
 
 .routility-quick-row .routility-quick-dd .input-dropdown-btn {
-  background-color: var(--color-shift-300, rgba(127, 127, 127, 0.16)) !important;
-  color: var(--color-content-emphasis) !important;
+  background-color: transparent !important;
+  color: var(--color-content-muted) !important;
+  transition: background-color 0.12s ease, color 0.12s ease;
 }
 
-.routility-quick-row .routility-quick-dd .input-dropdown-btn:hover {
-  background-color: var(--color-shift-400, rgba(127, 127, 127, 0.26)) !important;
+.routility-quick-row .routility-quick-dd .input-dropdown-btn:hover,
+.routility-quick-row .routility-quick-dd.open .input-dropdown-btn {
+  background-color: var(--color-shift-200, rgba(127, 127, 127, 0.16)) !important;
+  color: var(--color-content-emphasis) !important;
 }
 
 .routility-req-sent {
