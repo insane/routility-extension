@@ -402,17 +402,20 @@
   const oldNav = () => {
     const on = (lastSettings || {}).oldLeftNav === true;
     root.classList.toggle('routility-old-nav', on);
-    if (!on) return;
     try {
+      const flipped = localStorage.getItem('routilityNavFlipped') === '1';
+      if (!on && !flipped) return;
       const cache = JSON.parse(localStorage.getItem('new-left-nav') || 'null');
       if (!cache || !cache.data || typeof cache.data !== 'object') return;
       let changed = false;
       for (const id of Object.keys(cache.data)) {
-        if (cache.data[id] === false) continue;
-        cache.data[id] = false;
+        if (cache.data[id] === !on) continue;
+        cache.data[id] = !on;
         changed = true;
       }
       if (changed) localStorage.setItem('new-left-nav', JSON.stringify(cache));
+      if (on && changed) localStorage.setItem('routilityNavFlipped', '1');
+      if (!on) localStorage.removeItem('routilityNavFlipped');
     } catch {}
   };
   const boot = (s) => {

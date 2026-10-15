@@ -766,7 +766,7 @@
       intro: LT('Drag the links in the menu on the left into the order you like, and hide the ones you don’t use. The real menu changes as you go.'),
       groups: [
         { title: LT('Links'), rows: [
-          { key: 'oldLeftNav', title: LT('Old Left Menu'), desc: LT('Roblox is moving accounts to a new left menu. This brings back the old one, with Trade Calculator, Trade Ads, Forum, the Collapse button, Quick Settings and your arranged order below. Menu sizes only work on the new menu. Takes effect on the next page you open.') },
+          { key: 'oldLeftNav', title: LT('Old Left Menu'), desc: LT('Roblox is moving accounts to a new left menu. This brings back the old one, with Trade Calculator, Trade Ads, Forum, the Collapse button, Quick Settings and your arranged order below. Menu sizes only work on the new menu.') },
           { custom: 'navLayout', title: LT('Arrange the Left Menu'), desc: LT('Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.') },
         ] },
         { title: LT('Size'), rows: [
@@ -3000,8 +3000,11 @@
       Object.assign(settings, patch);
       chrome.storage.local.get('routilitySettings', (st) => {
         if (chrome.runtime.lastError) return;
-        chrome.storage.local.set({ routilitySettings: { ...settings, ...(st.routilitySettings || {}), ...patch } });
+        chrome.storage.local.set({ routilitySettings: { ...settings, ...(st.routilitySettings || {}), ...patch } }, () => {
+          if ('oldLeftNav' in patch) location.reload();
+        });
       });
+      if ('oldLeftNav' in patch) return;
       if (Object.keys(patch).some(k => !/^forum(Style|Density|Avatars|Stat)/.test(k))) showApplied();
     };
 
