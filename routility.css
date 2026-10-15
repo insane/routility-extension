@@ -294,6 +294,18 @@ html.routility-settings-mode .settings-left-navigation .tab-content > .tab-pane:
   height: 30px;
 }
 
+.routility-menu-entry .menu-option-content {
+  display: flex !important;
+  align-items: center;
+}
+
+.routility-menu-entry-logo {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  flex: none;
+}
+
 .routility-copies {
   position: absolute;
   top: 8px;
@@ -5557,7 +5569,8 @@ html.routility-ff-on #friends-web-app .chip-filters-container > button[aria-pres
   font-weight: 700;
 }
 
-html.routility-settings-mode .menu-vertical .routility-menu-divider {
+html.routility-settings-mode .menu-vertical .routility-menu-divider,
+.menu-vertical .routility-menu-split {
   display: block !important;
   height: 1px;
   margin: 6px 9px;
