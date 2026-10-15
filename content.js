@@ -534,7 +534,7 @@
         try { sessionStorage.setItem('routilityTerminated', terminated); } catch {}
         currentURL = window.location.href;
         currentPath = window.location.pathname;
-        window.RoUtilityClassic.setup(terminated, { terminated: true, modern: !settings.classicProfile, reveal: true });
+        window.RoUtilityClassic.setup(terminated, { terminated: true, modern: !settings.classicProfile, reveal: true, layout: settings.classicLayout });
       });
       return;
     }
@@ -713,7 +713,7 @@
         if (invOwner) window.RoUtilityOwned.setup(invOwner, { items: settings.ownedSince !== false, badges: settings.badgeDates !== false });
       }
       if (profile && !settings.classicProfile && settings.gearFix !== false) window.RoUtilityWearing.setup(profile[1]);
-      if (profile && settings.classicProfile) window.RoUtilityClassic.setup(profile[1], { reveal: settings.revealTerminated !== false });
+      if (profile && settings.classicProfile) window.RoUtilityClassic.setup(profile[1], { reveal: settings.revealTerminated !== false, layout: settings.classicLayout });
       else document.documentElement.classList.remove('routility-classic-on');
       if (!settings.inventoryValues) return;
       if (profile) window.RoUtilityProfile.setup(profile[1], settings.classicProfile ? 'classic' : 'profile');

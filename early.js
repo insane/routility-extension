@@ -24,8 +24,46 @@
     return head;
   }
 
-  function build() {
-    const root = el('div', 'routility-classic routility-injected routility-classic-loading');
+  function people(count) {
+    const wrap = el('div', 'routility-sk-people');
+    for (let i = 0; i < count; i++) {
+      const p = el('div', 'routility-sk-person');
+      p.append(bar(90, 90, 'routility-sk-circle'), bar(64, 10, 'routility-sk-line'));
+      wrap.appendChild(p);
+    }
+    return wrap;
+  }
+
+  function panel(children) {
+    const box = el('div', 'section-content');
+    box.append(...children);
+    return box;
+  }
+
+  function columnsBody() {
+    const grid = el('div', 'routility-columns');
+    const left = el('div', 'routility-column');
+    const right = el('div', 'routility-column');
+    const about = el('div', 'section');
+    const lines = el('div', 'routility-sk-lines');
+    lines.append(bar('80%', 14), bar('60%', 14));
+    about.append(heading(70), panel([bar(180, 260, 'routility-sk-body'), lines]));
+    const badges = el('div', 'section');
+    const row = el('div', 'routility-sk-grid');
+    for (let i = 0; i < 5; i++) row.appendChild(bar(72, 72, 'routility-sk-tile'));
+    badges.append(heading(150), panel([row]));
+    left.append(about, badges);
+    const games = el('div', 'section');
+    games.append(heading(130), panel([bar('100%', 120, 'routility-sk-tile')]));
+    const friends = el('div', 'section');
+    friends.append(heading(110), people(8));
+    right.append(games, friends);
+    grid.append(left, right);
+    return grid;
+  }
+
+  function build(columns) {
+    const root = el('div', 'routility-classic routility-injected routility-classic-loading' + (columns ? ' routility-classic-columns' : ''));
     const card = el('div', 'section-content profile-header-content');
     const top = el('div', 'profile-header-top');
     top.appendChild(bar(128, 128, 'routility-sk-circle routility-sk-avatar'));
@@ -49,6 +87,10 @@
     top.appendChild(caption);
     card.appendChild(top);
     root.appendChild(card);
+    if (columns) {
+      root.appendChild(columnsBody());
+      return root;
+    }
 
     const tabs = el('div', 'rbx-tabs-horizontal');
     const nav = el('ul', 'nav nav-tabs');
@@ -83,13 +125,7 @@
     pane.appendChild(wearing);
     const friends = el('div', 'section');
     friends.appendChild(heading(130));
-    const people = el('div', 'routility-sk-people');
-    for (let i = 0; i < 9; i++) {
-      const p = el('div', 'routility-sk-person');
-      p.append(bar(90, 90, 'routility-sk-circle'), bar(64, 10, 'routility-sk-line'));
-      people.appendChild(p);
-    }
-    friends.appendChild(people);
+    friends.appendChild(people(9));
     pane.appendChild(friends);
     tabs.appendChild(pane);
     root.appendChild(tabs);
@@ -143,7 +179,7 @@
     const place = () => {
       const content = document.getElementById('content');
       if (!content) return false;
-      if (!content.querySelector(':scope > .routility-classic, :scope > .routility-modern')) content.prepend(modern ? buildModern() : build());
+      if (!content.querySelector(':scope > .routility-classic, :scope > .routility-modern')) content.prepend(modern ? buildModern() : build(settings.classicLayout === 'columns'));
       return true;
     };
     if (place()) return;

@@ -2567,5 +2567,11 @@
  "Your Robux Rate": "อัตรา Robux ของคุณ",
  "Your Settings": "การตั้งค่าของคุณ",
  "Your Slots": "ช่องของคุณ",
- "Your Status": "สถานะของคุณ"
+ "Your Status": "สถานะของคุณ",
+ "Show Avatar": "แสดงอวตาร",
+ "Show Items": "แสดงไอเทม",
+ "Tabs": "แท็บ",
+ "Tabs keeps About and Creations in two tabs. Two Columns shows About, badges and communities on the left, and experiences, friends and favorites on the right.": "แท็บจะแยกเกี่ยวกับและผลงานเป็นสองแท็บ สองคอลัมน์จะแสดงเกี่ยวกับ ป้าย และชุมชนทางซ้าย และประสบการณ์ เพื่อน และรายการโปรดทางขวา",
+ "This user has no description": "ผู้ใช้นี้ไม่มีคำอธิบาย",
+ "Two Columns": "สองคอลัมน์"
 }

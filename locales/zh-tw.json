@@ -2567,5 +2567,11 @@
  "Your Robux Rate": "你的 Robux 匯率",
  "Your Settings": "你的設定",
  "Your Slots": "你的欄位",
- "Your Status": "你的狀態"
+ "Your Status": "你的狀態",
+ "Show Avatar": "顯示虛擬人偶",
+ "Show Items": "顯示物品",
+ "Tabs": "分頁",
+ "Tabs keeps About and Creations in two tabs. Two Columns shows About, badges and communities on the left, and experiences, friends and favorites on the right.": "分頁會把「簡介」和「創作」分成兩個分頁。兩欄會在左側顯示簡介、徽章和社群，右側顯示體驗、好友和收藏。",
+ "This user has no description": "此使用者沒有簡介",
+ "Two Columns": "兩欄"
 }

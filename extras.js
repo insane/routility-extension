@@ -2549,7 +2549,7 @@
       if (settings.userOutfits === false) return;
       if (!data) {
         if (loaded || !expect || document.querySelector('.routility-outfits')) return;
-        const at = document.querySelector('.routility-classic-wearing');
+        const at = document.querySelector('.routility-columns') || document.querySelector('.routility-classic-wearing');
         if (!at) return;
         const sk = el('div', 'section routility-injected routility-outfits routility-outfits-sk routility-classic-outfits');
         const head = el('div', 'container-header');
@@ -2570,7 +2570,7 @@
       }
       const placeholder = document.querySelector('.routility-outfits-sk');
       if (document.querySelector('.routility-outfits:not(.routility-outfits-sk)')) return;
-      const classic = document.querySelector('.routility-classic-wearing');
+      const classic = document.querySelector('.routility-columns') || document.querySelector('.routility-classic-wearing');
       if (classic) {
         const sec = el('div', 'section routility-injected routility-outfits routility-classic-outfits');
         const head = el('div', 'container-header');
