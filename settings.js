@@ -783,7 +783,7 @@
           { key: 'searchPeople', parent: 'richSearch', title: LT('People'), desc: LT('Matching players with their avatar and verified badge.') },
           { key: 'searchFriends', parent: 'richSearch', title: LT('Friends First'), desc: LT('Friends whose name contains what you type, shown first.') },
           { key: 'searchGames', parent: 'richSearch', title: LT('Top Game'), desc: LT('The best matching experience with its rating and players.') },
-          { key: 'searchItems', parent: 'richSearch', title: LT('RoUtility Limiteds'), desc: LT('Matching limiteds with their USD value and RAP.') },
+          { key: 'searchItems', parent: 'richSearch', title: LT('RoUtility Limiteds'), desc: LT('Matching limiteds with their price and RAP.') },
         ] },
         { title: LT('People Search'), rows: [
           { key: 'searchTerminated', title: LT('Terminated Players'), desc: LT('Roblox leaves banned accounts out of search. When the name you search belongs to a terminated account, it shows first with a Terminated label, on the people search page and in the search box, and opens their profile.') },
@@ -791,7 +791,7 @@
       ],
     },
     menu: {
-      intro: LT('Drag the links in the menu on the left into the order you like, and hide the ones you don’t use. The real menu changes as you go.'),
+      intro: LT('The menu on the left: put its links in the order you like and hide the ones you don’t use, bring back the old menu, collapse it and add Quick Settings under it.'),
       groups: [
         { title: LT('Links'), rows: [
           { key: 'oldLeftNav', title: LT('Old Left Menu'), desc: LT('Roblox is moving accounts to a new left menu. This brings back the old one, with Trade Calculator, Trade Ads, Forum, the Collapse button, Quick Settings and your arranged order below. Menu sizes only work on the new menu.') },
@@ -929,7 +929,7 @@
           { key: 'skinWheel', title: LT('Skin Tone Color Wheel'), desc: LT('A color wheel, a brightness slider and Pick From Screen under Hex Color in Body > Skin Tone > Advanced, so you can pick any skin color, even one from your screen.') },
         ] },
         { title: LT('What You’re Wearing'), rows: [
-          { key: 'avatarWearing', title: LT('Wearing Panel'), desc: LT('What your avatar has on, under the preview, with the USD and R$ value of worn limiteds. Click an item to take it off.') },
+          { key: 'avatarWearing', title: LT('Wearing Panel'), desc: LT('What your avatar has on, under the preview, with the price and R$ value of worn limiteds. Click an item to take it off.') },
           { key: 'avatarMoreAccessories', title: LT('Wear Up to 10 Accessories'), desc: LT('Wear up to 10 accessories, like 4 hats or 2 face accessories, with a normal click instead of Roblox swapping one out.') },
         ] },
         { title: LT('Free Items'), rows: [
@@ -954,8 +954,8 @@
       groups: [
         { title: LT('Money'), rows: [
           { key: 'currency', title: LT('Currency'), desc: LT('Show every price and dollar amount RoUtility adds in this currency, like on routility.io. Prices are still in USD underneath and convert at today’s exchange rate.'), options: [['USD', LT('US Dollar')], ['EUR', LT('Euro')], ['GBP', LT('British Pound')], ['CAD', LT('Canadian Dollar')], ['AUD', LT('Australian Dollar')], ['JPY', LT('Japanese Yen')], ['CNY', LT('Chinese Yuan')], ['KRW', LT('Korean Won')], ['INR', LT('Indian Rupee')], ['BRL', LT('Brazilian Real')], ['MXN', LT('Mexican Peso')], ['TRY', LT('Turkish Lira')]] },
-          { key: 'calcRobux', title: LT('Your Robux Rate'), desc: LT('What 1,000 Robux are worth to you everywhere RoUtility turns Robux into dollars: price hovers, Transactions, Community Funds, the Creator Hub, trades and the Trade Calculator. Use the DevEx rate ($3.80 per 1,000) or your own, like the rate you sell Robux at.'), options: [['devex', LT('DevEx rate')], ['custom', LT('Custom rate')]], rateInput: 'custom' },
-          { key: 'robuxUsd', title: LT('Robux in Dollars'), desc: LT('Hover a Robux price, like a game pass or a catalog item, to see about what it’s worth in USD. Uses your Robux rate.') },
+          { key: 'calcRobux', title: LT('Your Robux Rate'), desc: LT('What 1,000 Robux are worth to you everywhere RoUtility turns Robux into money: price hovers, Transactions, Community Funds, the Creator Hub, trades and the Trade Calculator. Use the DevEx rate ($3.80 per 1,000) or your own, like the rate you sell Robux at.'), options: [['devex', LT('DevEx rate')], ['custom', LT('Custom rate')]], rateInput: 'custom' },
+          { key: 'robuxUsd', title: LT('Robux in Your Currency'), desc: LT('Hover a Robux price, like a game pass or a catalog item, to see about what it’s worth in your currency. Uses your Robux rate.') },
         ] },
         { title: LT('Exact Numbers'), rows: [
           { key: 'exactRobux', title: LT('Exact Robux Balance'), desc: LT('Your full Robux balance in the top bar, like 122,369 instead of 122K+.') },
@@ -971,10 +971,10 @@
           { key: 'transferLimits', title: LT('Transfer Limits Left'), desc: LT('On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.') },
         ] },
         { title: LT('Roblox Plus'), rows: [
-          { key: 'plusDetails', title: LT('Plus Details'), desc: LT('On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in dollars and what Plus has cost you so far.') },
+          { key: 'plusDetails', title: LT('Plus Details'), desc: LT('On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in your currency and what Plus has cost you so far.') },
         ] },
         { title: LT('Transactions'), rows: [
-          { key: 'txUsd', title: LT('Dollar Amounts'), desc: LT('About what every amount on My Transactions is worth in USD, plus a Net line under the summary showing what you made or spent overall. Uses your Robux rate.') },
+          { key: 'txUsd', title: LT('Money Amounts'), desc: LT('About what every amount on My Transactions is worth in your currency, plus a Net line under the summary showing what you made or spent overall. Uses your Robux rate.') },
           { key: 'txFilters', title: LT('Transaction Filters'), desc: LT('Filter any transaction list by amount, community or user, item or experience, and pending or completed, with the Robux total of the matches. Pick Sales and an item to see what it’s earned. Roblox only hands out 100 transactions at a time, so matches show up as RoUtility checks further back.') },
           { key: 'txExport', title: LT('Export to CSV'), desc: LT('A button on any transaction list that downloads every row of that type, not just the page you’re on, as a spreadsheet.') },
         ] },
@@ -988,12 +988,12 @@
         ] },
         { title: LT('Item Page Values'), note: LT('Pick which lines show on item pages'), rows: [
           { key: 'itemPrices', title: LT('Limited Values'), desc: LT('Values from routility.io on limited item pages. Pick the lines you want below.') },
-          { key: 'itemUsd', parent: 'itemPrices', title: LT('USD Price'), desc: LT('What the item is worth in USD, next to its Robux price. Hover it for the RoUtility Value when the item has one.') },
+          { key: 'itemUsd', parent: 'itemPrices', title: LT('RoUtility Price'), desc: LT('What the item is worth in your currency, next to its Robux price. Hover it for the RoUtility Value when the item has one.') },
           { key: 'itemDemand', parent: 'itemPrices', title: LT('Demand'), desc: LT('How much traders want it, like High or Terrible.') },
           { key: 'itemTrend', parent: 'itemPrices', title: LT('Trend'), desc: LT('Whether its value is Raising, Stable or Lowering.') },
           { key: 'itemCopies', parent: 'itemPrices', title: LT('Copies'), desc: LT('How many copies of it exist.') },
           { key: 'itemHoardStats', parent: 'itemPrices', title: LT('Premium Copies & Hoarded'), desc: LT('How many copies Premium members hold, and how much of the item is hoarded.') },
-          { key: 'itemChange', parent: 'itemPrices', title: LT('Price Change'), desc: LT('How much its USD price moved in the last 30 days, like +$120 (8%) in 30 days.') },
+          { key: 'itemChange', parent: 'itemPrices', title: LT('Price Change'), desc: LT('How much its RoUtility price moved in the last 30 days, like +$120 (8%) in 30 days.') },
           { key: 'itemOwnedRow', parent: 'itemPrices', title: LT('You Own'), desc: LT('How many copies you own, with their serial numbers.') },
         ] },
         { title: LT('Item Page Extras'), rows: [
@@ -1003,8 +1003,8 @@
           { key: 'friendsOwn', title: LT('Friends Who Own It'), desc: LT('A chip on item pages with how many of your friends own the item. Click it for the list.') },
         ] },
         { title: LT('Prices & Chart'), rows: [
-          { key: 'marketplaceValues', title: LT('Marketplace Prices'), desc: LT('USD under the price on limited items in the Marketplace.') },
-          { key: 'usdChart', title: LT('USD Price Chart'), desc: LT('Robux and USD switch on the Price Chart.') },
+          { key: 'marketplaceValues', title: LT('Marketplace Prices'), desc: LT('The RoUtility price under the Robux price on limited items in the Marketplace.') },
+          { key: 'usdChart', title: LT('Price Chart in Your Currency'), desc: LT('A switch between Robux and your currency on the Price Chart.') },
           { key: 'itemTags', title: LT('Rare & Projected Tags'), desc: LT('Flags rare items and items whose RAP is pushed up by recent sales, on item pages, trades, the Marketplace and the calculator.') },
           { key: 'itemSimilar', title: LT('Similar Price'), desc: LT('A row of limiteds worth about the same, above Recommendations on item pages.') },
         ] },
@@ -1022,7 +1022,7 @@
       intro: LT('Values, search and the real order in inventories, favorites and badges.'),
       groups: [
         { title: LT('Values'), rows: [
-          { key: 'inventoryValues', title: LT('Inventory Values'), desc: LT('USD prices on inventory and profile items, and a value pill on profiles.') },
+          { key: 'inventoryValues', title: LT('Inventory Values'), desc: LT('RoUtility prices on inventory and profile items, and a value pill on profiles.') },
           { key: 'ownedSince', title: LT('How Long They’ve Owned It'), desc: LT('How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.') },
         ] },
         { title: LT('Finding Things'), rows: [
@@ -1035,7 +1035,7 @@
       intro: LT('Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.'),
       groups: [
         { title: LT('Values'), rows: [
-          { key: 'tradeValues', title: LT('Trade Values'), desc: LT('USD on trade items, totals for each side, the RAP and value difference pills between the two sides, and RAP and USD pills on the trade list.') },
+          { key: 'tradeValues', title: LT('Trade Values'), desc: LT('Prices on trade items, totals for each side, the RAP and value difference pills between the two sides, and RAP and price pills on the trade list.') },
           { key: 'tradeOwnership', title: LT('Ownership Check'), desc: LT('Warns when someone in a trade no longer owns an item they put in it, and marks that item.') },
           { key: 'tradeItemCard', title: LT('Item Cards'), desc: LT('Hover over an item in a trade to see its value, a 30-day chart, RAP, demand, trend and copies.') },
           { key: 'itemCardEverywhere', parent: 'tradeItemCard', title: LT('Item Cards Everywhere'), desc: LT('The same hover card on limited items in the Marketplace, inventories and profiles, not just trades.') },
@@ -1063,7 +1063,7 @@
       intro: LT('A Trade Calculator page to build and compare any trade, plus how it works.'),
       groups: [
         { title: LT('Calculator'), rows: [
-          { key: 'tradeCalculator', title: LT('Trade Calculator'), desc: LT('A Trade Calculator page: build both sides from every limited or a player’s inventory, add Robux or USD, and compare RAP, price and the verdict.') },
+          { key: 'tradeCalculator', title: LT('Trade Calculator'), desc: LT('A Trade Calculator page: build both sides from every limited or a player’s inventory, add Robux or cash, and compare RAP, price and the verdict.') },
           { key: 'calcLinks', parent: 'tradeCalculator', title: LT('Item Page Link'), desc: LT('A “Value it in the Trade Calculator” link on limited item pages.') },
           { key: 'calcRemember', parent: 'tradeCalculator', title: LT('Remember Last Trade'), desc: LT('Your last trade is still there when you come back. Off, the calculator starts empty every time.') },
         ] },
@@ -1074,7 +1074,7 @@
           { key: 'calcEven', parent: 'tradeCalculator', title: LT('Even It Out'), desc: LT('Suggests items that would close the gap when one side is worth more.') },
         ] },
         { title: LT('Layout'), note: LT('Needs Trade Calculator'), rows: [
-          { key: 'calcSort', parent: 'tradeCalculator', title: LT('Sort Items By'), desc: LT('How the item browser is sorted when you open the calculator.'), options: [['usd-desc', LT('USD (High)')], ['usd-asc', LT('USD (Low)')], ['rap-desc', LT('RAP (High)')], ['rap-asc', LT('RAP (Low)')], ['name-asc', LT('Name (A-Z)')]] },
+          { key: 'calcSort', parent: 'tradeCalculator', title: LT('Sort Items By'), desc: LT('How the item browser is sorted when you open the calculator.'), options: [['usd-desc', LT('Price (High)')], ['usd-asc', LT('Price (Low)')], ['rap-desc', LT('RAP (High)')], ['rap-asc', LT('RAP (Low)')], ['name-asc', LT('Name (A-Z)')]] },
           { key: 'calcSlots', parent: 'tradeCalculator', title: LT('Starting Slots'), desc: LT('How many slots each side starts with. You can still add or remove slots.'), options: [['4', LT('4 slots')], ['8', LT('8 slots')], ['12', LT('12 slots')]] },
           { key: 'calcShot', parent: 'tradeCalculator', title: LT('Screenshot Button'), desc: LT('Show a preview with Copy and Download, or copy the image straight away.'), options: [['preview', LT('Show preview')], ['copy', LT('Copy straight away')]] },
         ] },
@@ -1095,7 +1095,7 @@
         { title: LT('Poster Stats'), rows: [
           { key: 'forumStatJoined', parent: 'forum', title: LT('Joined'), desc: LT('When the poster made their Roblox account.') },
           { key: 'forumStatPosts', parent: 'forum', title: LT('Total Posts'), desc: LT('How many posts they’ve made on the forum.') },
-          { key: 'forumStatValue', parent: 'forum', title: LT('Value'), desc: LT('Their limiteds’ value in USD, the same blue pill as on profiles.') },
+          { key: 'forumStatValue', parent: 'forum', title: LT('Value'), desc: LT('Their limiteds’ price, the same blue pill as on profiles.') },
           { key: 'forumStatRap', parent: 'forum', title: LT('RAP'), desc: LT('Their limiteds’ total RAP, the same green pill as on profiles.') },
           { key: 'forumStatGroup', parent: 'forum', title: LT('Community'), desc: LT('Their primary community under their stats.') },
         ] },
@@ -1106,7 +1106,7 @@
       groups: [
         { title: LT('Community Pages'), rows: [
           { key: 'groupFriends', title: LT('Friends in Community'), desc: LT('A Friends pill next to the member count with your friends who are in it. Your friends\u2019 communities are checked once and saved for a day, so it\u2019s instant after the first time.') },
-          { key: 'groupDetails', title: LT('Exact Numbers'), desc: LT('The exact member count instead of 570.2K+, your rank number on your role, and on communities you run, Community Funds with the USD value.') },
+          { key: 'groupDetails', title: LT('Exact Numbers'), desc: LT('The exact member count instead of 570.2K+, your rank number on your role, and on communities you run, Community Funds with what they’re worth in your currency.') },
           { key: 'groupFind', title: LT('Find a Member'), desc: LT('A search box in the Members list. Type a username to see if they’re in the community and what their role is, even in communities with millions of members.') },
           { key: 'groupCreated', title: LT('Created Date'), desc: LT('When the community was made, as a pill under its name. Handy for spotting brand new copycat or scam communities.') },
           { key: 'groupHiddenGames', title: LT('Hidden Experiences'), desc: LT('Experiences a community owns that aren’t listed on its page, like test places and old games, in their own section under Experiences.') },
@@ -1115,7 +1115,7 @@
         { title: LT('Your Communities'), rows: [
           { key: 'groupManage', title: LT('Manage My Communities'), desc: LT('A Manage link next to See All: search, sort by rank or size, filter Owned or Staff, and leave several at once with a confirm step.') },
           { key: 'groupCount', title: LT('Community Count'), desc: LT('How many communities you’re in out of how many you can join, under Communities in the side list.') },
-          { key: 'groupAdmin', title: LT('Admin Tools'), desc: LT('On Configure: USD next to Community Funds and Revenue, and Export CSV on the Audit Log.') },
+          { key: 'groupAdmin', title: LT('Admin Tools'), desc: LT('On Configure: what Community Funds and Revenue are worth in your currency, and Export CSV on the Audit Log.') },
         ] },
       ],
     },
@@ -1151,7 +1151,7 @@
           { key: 'createIds', title: LT('Experience IDs'), desc: LT('Universe ID and Place ID with one-click copy on every experience overview, plus a Servers button.') },
           { key: 'createSafety', title: LT('Restriction Tags'), desc: LT('Tags on your experiences in Creations when Roblox restricts them, like Hidden from discovery or Updates blocked, so you know why a game isn’t showing up.') },
           { key: 'createDevItems', title: LT('Development Item Tools'), desc: LT('Hover a row in Development items to copy its rbxassetid://, open it in the Explorer, download the file or open it in the Store.') },
-          { key: 'createUsd', title: LT('Robux in USD'), desc: LT('About what Robux amounts are worth in dollars, at your Robux rate, like in Transactions.') },
+          { key: 'createUsd', title: LT('Robux in Your Currency'), desc: LT('About what Robux amounts are worth in your currency, at your Robux rate, like in Transactions.') },
         ] },
       ],
     },
@@ -1180,7 +1180,7 @@
     trading: LT('Trade values, previews, warnings, trade ads'),
     calculator: LT('Build and compare any trade'),
     forum: LT('The classic Roblox forum, back'),
-    create: LT('Script scanner, IDs, downloads, Robux in USD'),
+    create: LT('Script scanner, IDs, downloads, Robux in your currency'),
     notifications: LT('Trades and new limiteds, on your desktop'),
     communities: LT('Friends inside, exact members, hidden experiences, admin tools'),
     profiles: LT('Classic layout, mutuals, saved outfits, previews'),
@@ -2547,7 +2547,7 @@
   }
 
   const PRESETS = [
-    { key: 'values', title: LT('Just Values'), desc: LT('USD and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.') },
+    { key: 'values', title: LT('Just Values'), desc: LT('Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.') },
     { key: 'recommended', title: LT('Recommended'), desc: LT('The default setup: values plus the most useful upgrades all over Roblox.') },
     { key: 'everything', title: LT('Everything'), desc: LT('Every feature on, except Fun Mode, Streamer Mode, themes and the other things you only turn on on purpose.') },
   ];

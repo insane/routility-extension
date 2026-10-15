@@ -10,7 +10,7 @@
   const LOGO = chrome.runtime.getURL('icons/logo.png');
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
   const SORTS = [
-    ['usd-desc', LT('USD (High)')], ['usd-asc', LT('USD (Low)')],
+    ['usd-desc', LT('Price (High)')], ['usd-asc', LT('Price (Low)')],
     ['rap-desc', LT('RAP (High)')], ['rap-asc', LT('RAP (Low)')],
     ['name-asc', LT('Name (A-Z)')],
   ];

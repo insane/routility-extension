@@ -5,17 +5,18 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 ## Everyone who helped
 
 - Code: [@reqonn](https://github.com/reqonn), [@awkward222](https://github.com/awkward222)
-- Bug reports and ideas: api_cats
+- Bug reports and ideas: [@reqonn](https://github.com/reqonn), api_cats
 
 ## 1.1.4 · October 15, 2026
 
-Send Robux without the app, much more customizable themes, a second classic profile layout, and updates that clean up after themselves.
+Send Robux without the app, prices in your own currency, much more customizable themes, a second classic profile layout, and updates that clean up after themselves.
 
 **New**
 
 ```diff
 + Send Robux right from the browser: pick a friend in Buy Robux > Send, or press Send Robux on a profile, choose an amount and confirm, without opening the Roblox app. (by @reqonn)
-+ Old Left Menu: bring back Roblox's old left menu, with Trade Calculator, Trade Ads and Forum added in the same style and your arranged order applied.
++ Currency: see every price RoUtility adds in USD, EUR, GBP, CAD, AUD, JPY, CNY, KRW, INR, BRL, MXN or TRY, the same currencies as routility.io. Your Robux rate can be in your currency too.
++ Old Left Menu: bring back Roblox's old left menu, with Trade Calculator, Trade Ads, Forum, the Collapse button and Quick Settings in the same style, and your arranged order applied. It switches as soon as you flip it. (thanks reqonn)
 + Custom Theme: more colors (Buttons, Play Button Text, Borders, Success, Warnings), background effects like Glow, Aurora, Grid, Dots, Flowers or your own image, blur, tint, card transparency and roundness. (by @reqonn)
 + Website Font: use your own font file. (by @reqonn)
 + Sakura, a light pink theme preset. (by @reqonn)
@@ -25,6 +26,7 @@ Send Robux without the app, much more customizable themes, a second classic prof
 **Improved**
 
 ```diff
+~ Settings are easier to find: new Classic Roblox, Account & Security and Inventory tabs, a Money section at the top of Robux & Transactions, and Trade Ads moved into Trading.
 ~ Menus, dropdowns, the category lists and the classic profile follow custom themes. (by @reqonn)
 ~ Going back to a classic profile you just saw loads instantly. (by @reqonn)
 ```

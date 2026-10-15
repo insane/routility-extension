@@ -7,14 +7,16 @@
     {
       "version": "1.1.4",
       "date": "2026-10-15",
-      "summary": "Send Robux without the app, much more customizable themes, a second classic profile layout, and updates that clean up after themselves.",
+      "summary": "Send Robux without the app, prices in your own currency, much more customizable themes, a second classic profile layout, and updates that clean up after themselves.",
       "changes": [
         { "type": "new", "text": "Send Robux right from the browser: pick a friend in Buy Robux > Send, or press Send Robux on a profile, choose an amount and confirm, without opening the Roblox app.", "by": ["reqonn"] },
-        { "type": "new", "text": "Old Left Menu: bring back Roblox's old left menu, with Trade Calculator, Trade Ads and Forum added in the same style and your arranged order applied." },
+        { "type": "new", "text": "Currency: see every price RoUtility adds in USD, EUR, GBP, CAD, AUD, JPY, CNY, KRW, INR, BRL, MXN or TRY, the same currencies as routility.io. Your Robux rate can be in your currency too." },
+        { "type": "new", "text": "Old Left Menu: bring back Roblox's old left menu, with Trade Calculator, Trade Ads, Forum, the Collapse button and Quick Settings in the same style, and your arranged order applied. It switches as soon as you flip it.", "thanks": ["reqonn"] },
         { "type": "new", "text": "Custom Theme: more colors (Buttons, Play Button Text, Borders, Success, Warnings), background effects like Glow, Aurora, Grid, Dots, Flowers or your own image, blur, tint, card transparency and roundness.", "by": ["reqonn"] },
         { "type": "new", "text": "Website Font: use your own font file.", "by": ["reqonn"] },
         { "type": "new", "text": "Sakura, a light pink theme preset.", "by": ["reqonn"] },
         { "type": "new", "text": "Classic Profile Layout: a Two Columns option, with About, badges and communities on the left and experiences, friends and favorites on the right.", "by": ["reqonn"] },
+        { "type": "improved", "text": "Settings are easier to find: new Classic Roblox, Account & Security and Inventory tabs, a Money section at the top of Robux & Transactions, and Trade Ads moved into Trading." },
         { "type": "improved", "text": "Menus, dropdowns, the category lists and the classic profile follow custom themes.", "by": ["reqonn"] },
         { "type": "improved", "text": "Going back to a classic profile you just saw loads instantly.", "by": ["reqonn"] },
         { "type": "fixed", "text": "Profile loading placeholders now sit exactly where the profile appears, instead of jumping sideways on wide screens." },
