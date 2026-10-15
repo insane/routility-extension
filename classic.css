@@ -571,7 +571,7 @@
   display: block;
   width: 100px;
   height: 100px;
-  border-radius: 8px;
+  border-radius: calc(8px * var(--routility-round, 1));
   overflow: hidden;
   background: rgba(127, 127, 127, 0.25);
 }
@@ -694,7 +694,7 @@
   width: 140px;
   height: 140px;
   margin: 0 auto;
-  border-radius: 8px;
+  border-radius: calc(8px * var(--routility-round, 1));
   background: rgba(127, 127, 127, 0.18);
 }
 
@@ -749,7 +749,7 @@
 .routility-classic-game .game-card-thumb-container {
   width: 150px;
   height: 150px;
-  border-radius: 8px;
+  border-radius: calc(8px * var(--routility-round, 1));
   overflow: hidden;
   background: rgba(127, 127, 127, 0.18);
 }
@@ -826,7 +826,7 @@
   height: 140px;
   margin: 0 auto;
   border: 0 !important;
-  border-radius: 8px;
+  border-radius: calc(8px * var(--routility-round, 1));
   overflow: hidden;
   background: rgba(127, 127, 127, 0.18);
 }
@@ -877,7 +877,7 @@
 .routility-sk {
   display: block;
   flex-shrink: 0;
-  border-radius: 6px;
+  border-radius: calc(6px * var(--routility-round, 1));
   background: rgba(127, 127, 127, 0.18);
   animation: routility-classic-pulse 1.2s ease-in-out infinite;
 }
@@ -891,11 +891,11 @@
 }
 
 .routility-sk-pill {
-  border-radius: 14px;
+  border-radius: calc(14px * var(--routility-round, 1));
 }
 
 .routility-sk-button {
-  border-radius: 8px;
+  border-radius: calc(8px * var(--routility-round, 1));
 }
 
 .routility-sk-heading {
@@ -937,7 +937,7 @@
 }
 
 .routility-sk-body {
-  border-radius: 12px;
+  border-radius: calc(12px * var(--routility-round, 1));
 }
 
 .routility-sk-people {
@@ -965,7 +965,7 @@
 .routility-sk-tile140 {
   width: 140px;
   height: 140px;
-  border-radius: 8px;
+  border-radius: calc(8px * var(--routility-round, 1));
 }
 
 .routility-sk-name140 {
@@ -978,7 +978,7 @@
   width: 64px !important;
   height: 10px;
   margin: 9px auto 0 !important;
-  border-radius: 5px;
+  border-radius: calc(5px * var(--routility-round, 1));
   background: rgba(127, 127, 127, 0.18);
   animation: routility-classic-pulse 1.2s ease-in-out infinite;
 }
@@ -1061,7 +1061,7 @@
   padding: 1px 20px !important;
   border-width: 1px;
   border-style: solid;
-  border-radius: 8px;
+  border-radius: calc(8px * var(--routility-round, 1));
   cursor: pointer;
 }
 
@@ -1144,7 +1144,7 @@
   display: block;
   width: 240px;
   height: 240px;
-  border-radius: 8px;
+  border-radius: calc(8px * var(--routility-round, 1));
   background: rgba(127, 127, 127, 0.15);
 }
 
@@ -1379,7 +1379,7 @@
   height: 22px;
   margin-left: 10px;
   padding: 0 9px;
-  border-radius: 11px;
+  border-radius: calc(11px * var(--routility-round, 1));
   background: rgba(240, 72, 72, 0.16);
   color: #f04848;
   font-size: 12px;
@@ -1643,7 +1643,7 @@
   position: relative;
   width: 152px;
   height: 152px;
-  border-radius: 8px;
+  border-radius: calc(8px * var(--routility-round, 1));
   overflow: hidden;
   background: rgba(208, 217, 251, 0.12);
 }
@@ -1697,7 +1697,7 @@
 
 .routility-modern-sk-tile {
   height: 152px;
-  border-radius: 8px;
+  border-radius: calc(8px * var(--routility-round, 1));
   background: rgba(127, 127, 127, 0.18);
   animation: routility-classic-pulse 1.2s ease-in-out infinite;
 }
@@ -1748,7 +1748,7 @@
 
 .routility-modern .routility-sk-tile,
 .routility-modern .routility-sk {
-  border-radius: 8px;
+  border-radius: calc(8px * var(--routility-round, 1));
 }
 
 .routility-modern .routility-sk-circle,

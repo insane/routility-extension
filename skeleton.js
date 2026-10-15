@@ -55,8 +55,30 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ownProfile, { once: true });
     else ownProfile();
   }
+  const FONT = /^data:font\/(ttf|otf|woff2?);base64,[A-Za-z0-9+/=]+$/;
+  let fontStyle = null;
+  let fontAsked = false;
+  let fontWanted = false;
+  const useFont = (f) => {
+    const ok = !!f && FONT.test(f.data || '');
+    if (!fontStyle) {
+      fontStyle = document.createElement('style');
+      fontStyle.id = 'routility-font';
+    }
+    fontStyle.textContent = ok ? `@font-face { font-family: "RoUtility Custom"; src: url("${f.data}"); font-display: swap; }` : '';
+    if (!fontStyle.isConnected) (document.head || root).appendChild(fontStyle);
+    root.classList.toggle('routility-font-custom', ok && fontWanted);
+  };
+  const needFont = (settings) => {
+    fontWanted = (settings || {}).siteFont === 'custom';
+    if (!fontWanted) return root.classList.remove('routility-font-custom');
+    if (fontAsked) return root.classList.toggle('routility-font-custom', !!(fontStyle && fontStyle.textContent));
+    fontAsked = true;
+    chrome.storage.local.get('routilityFont', (st) => useFont(st.routilityFont));
+  };
   let revealOn = true;
   const apply = (settings) => {
+    needFont(settings);
     revealOn = (settings || {}).revealTerminated !== false;
     if (!revealOn) document.querySelectorAll('.routility-deleted-wait').forEach(n => n.classList.remove('routility-deleted-wait'));
     root.classList.toggle(CLASS, (settings || {}).skeletonLoading !== false);
@@ -183,24 +205,67 @@
     link: ['--color-content-link'],
     accent: ['--color-system-emphasis'],
     play: ['--color-action-emphasis-background'],
+    playText: ['--color-action-emphasis-foreground'],
+    button: ['--color-action-standard-background'],
+    border: ['--color-stroke-default', '--color-stroke-muted', '--color-stroke-emphasis'],
+    success: ['--color-system-success'],
+    alert: ['--color-system-alert'],
   };
   const OVER_MEDIA = [['bg', 0], ['card', 100], ['raised', 200], ['menu', 300]];
-  const FX = {
-    glow: { glow: (c) => `radial-gradient(900px 520px at 12% -8%, color-mix(in srgb, ${c.accent} 36%, transparent), transparent 70%), radial-gradient(800px 600px at 100% 100%, color-mix(in srgb, ${c.accent} 20%, transparent), transparent 70%)` },
-    grid: { glow: (c) => `radial-gradient(1000px 620px at 50% -12%, color-mix(in srgb, ${c.accent} 32%, transparent), transparent 70%)`, grid: true },
+  const SHIFT = [['--color-shift-100', 4], ['--color-shift-200', 8], ['--color-shift-300', 12], ['--color-shift-400', 16], ['--color-state-hover', 8], ['--color-state-press', 12]];
+  const svgUrl = (svg) => `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+  const PATTERNS = {
+    flowers: (a, b) => `<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><g fill='${a}' fill-opacity='.4'><circle cx='24' cy='17' r='6'/><circle cx='31' cy='22' r='6'/><circle cx='28.5' cy='30.5' r='6'/><circle cx='19.5' cy='30.5' r='6'/><circle cx='17' cy='22' r='6'/></g><circle cx='24' cy='25' r='4' fill='${b}' fill-opacity='.65'/><g fill='${b}' fill-opacity='.32'><circle cx='72' cy='66' r='4'/><circle cx='76.5' cy='69.5' r='4'/><circle cx='75' cy='75' r='4'/><circle cx='69' cy='75' r='4'/><circle cx='67.5' cy='69.5' r='4'/></g><circle cx='72' cy='71' r='2.6' fill='${a}' fill-opacity='.6'/></svg>`,
   };
-  const fxCss = (name, colors) => {
-    const fx = FX[name];
-    if (!fx) return '';
+  const FX = {
+    glow: (c, k) => `radial-gradient(${900 * k}px ${520 * k}px at 12% -8%, color-mix(in srgb, ${c.accent} 36%, transparent), transparent 70%), radial-gradient(${800 * k}px ${600 * k}px at 100% 100%, color-mix(in srgb, ${c.accent} 20%, transparent), transparent 70%)`,
+    aurora: (c, k) => `radial-gradient(${900 * k}px ${600 * k}px at 0% 0%, color-mix(in srgb, ${c.accent} 34%, transparent), transparent 70%), radial-gradient(${800 * k}px ${560 * k}px at 100% 10%, color-mix(in srgb, ${c.link} 26%, transparent), transparent 70%), radial-gradient(${1000 * k}px ${700 * k}px at 50% 110%, color-mix(in srgb, ${c.play} 24%, transparent), transparent 70%)`,
+    grid: (c, k) => `radial-gradient(${1000 * k}px ${620 * k}px at 50% -12%, color-mix(in srgb, ${c.accent} 32%, transparent), transparent 70%)`,
+    dots: (c, k) => `radial-gradient(color-mix(in srgb, ${c.accent} 30%, transparent) ${1.2 * Math.max(k, 0.6)}px, transparent ${1.6 * Math.max(k, 0.6)}px) 0 0 / ${22 * Math.max(k, 0.5)}px ${22 * Math.max(k, 0.5)}px`,
+  };
+  for (const [name, draw] of Object.entries(PATTERNS)) FX[name] = (c, k) => `${svgUrl(draw(c.accent, c.link))} 0 0 / ${120 * Math.max(k, 0.4)}px auto repeat`;
+  const palette = (colors) => {
     const c = { accent: safeColor(colors.accent) ? colors.accent : '#335fff' };
-    let css = `html.routility-themed body::before { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: ${fx.glow(c)}; } html.routility-themed #footer-container { background: transparent !important; }`;
-    if (fx.grid) css += ` html.routility-themed body::after { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background-image: radial-gradient(color-mix(in srgb, ${c.accent} 22%, transparent) 1px, transparent 1.3px); background-size: 28px 28px; mask-image: radial-gradient(1200px 800px at 50% 30%, #000 20%, transparent 80%); -webkit-mask-image: radial-gradient(1200px 800px at 50% 30%, #000 20%, transparent 80%); }`;
+    c.link = safeColor(colors.link) ? colors.link : c.accent;
+    c.play = safeColor(colors.play) ? colors.play : c.accent;
+    c.bg = safeColor(colors.bg) ? colors.bg : '#000000';
+    return c;
+  };
+  const IMAGE = /^data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+/=]+$/;
+  let themeImage = '';
+  const clamp = (v, lo, hi, d) => (Number.isFinite(Number(v)) ? Math.min(hi, Math.max(lo, Number(v))) : d);
+  const bgCss = (colors, look) => {
+    const c = palette(colors);
+    let layer = '';
+    if (themeFx === 'image') {
+      if (!themeImage) return '';
+      const tint = clamp(look.tint, 0, 95, 70);
+      layer = `linear-gradient(color-mix(in srgb, ${c.bg} ${tint}%, transparent), color-mix(in srgb, ${c.bg} ${tint}%, transparent)), url("${themeImage}") center / cover no-repeat`;
+    } else if (FX[themeFx]) layer = FX[themeFx](c, 1);
+    else return '';
+    const blur = clamp(look.blur, 0, 20, 2);
+    let css = `html.routility-themed body::before { content: ''; position: fixed; inset: ${blur ? -blur * 2 : 0}px; z-index: -1; pointer-events: none; background: ${layer};${blur ? ` filter: blur(${blur}px);` : ''} } html.routility-themed #footer-container { background: transparent !important; }`;
+    if (themeFx === 'grid') css += ` html.routility-themed body::after { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background-image: radial-gradient(color-mix(in srgb, ${c.accent} 22%, transparent) 1px, transparent 1.3px); background-size: 28px 28px; mask-image: radial-gradient(1200px 800px at 50% 30%, #000 20%, transparent 80%); -webkit-mask-image: radial-gradient(1200px 800px at 50% 30%, #000 20%, transparent 80%); }`;
     return css;
+  };
+  window.RoUtilityBackgrounds = {
+    preview: (name, colors) => (FX[name] ? FX[name](palette(colors || {}), 0.16) : ''),
+  };
+  let imageAsked = false;
+  const needImage = () => {
+    if (!themeOn || themeFx !== 'image' || imageAsked) return;
+    imageAsked = true;
+    chrome.storage.local.get('routilityThemeImage', (st) => {
+      themeImage = IMAGE.test(st.routilityThemeImage) ? st.routilityThemeImage : '';
+      if (themeImage) applyTheme();
+    });
   };
   let themeOn = false;
   let themeColors = {};
   let themeFx = '';
+  let themeLook = {};
   let themeStyle = null;
+  let themeBgStyle = null;
   const safeColor = (v) => typeof v === 'string' && /^(#[0-9a-f]{3,8}|rgba?\(\s*[\d.]+\s*,\s*[\d.]+\s*,\s*[\d.]+\s*(,\s*[\d.]+\s*)?\))$/i.test(v.trim());
   const lightColor = (v) => {
     const s = String(v || '').trim();
@@ -224,12 +289,26 @@
         if (!safeColor(c)) continue;
         for (const v of vars) decl.push(`${v}: ${c} !important;`);
       }
+      const see = themeFx ? clamp(themeLook.see, 0, 60, 0) : 0;
+      if (see) for (const [id, v, k] of [['card', '--color-surface-100', 1], ['raised', '--color-surface-200', 0.75]]) if (safeColor(themeColors[id])) decl.push(`${v}: color-mix(in srgb, ${themeColors[id]} ${Math.round(100 - see * k)}%, transparent) !important;`);
+      const shape = Math.round(clamp(themeLook.round, 0, 2, 0));
+      const round = [[4, 8, 12, 20], [6, 12, 18, 28], [0, 0, 0, 0]][shape];
+      decl.push(`--radius-xsmall: ${round[0]}px !important; --radius-small: ${round[1]}px !important; --radius-medium: ${round[2]}px !important; --radius-large: ${round[3]}px !important; --routility-round: ${[1, 1.5, 0][shape]};`);
+      if (safeColor(themeColors.text)) for (const [v, a] of SHIFT) decl.push(`${v}: color-mix(in srgb, ${themeColors.text} ${a}%, transparent) !important;`);
       for (const [id, n] of OVER_MEDIA) if (safeColor(themeColors[id])) decl.push(`--color-over-media-${n}: color-mix(in srgb, ${themeColors[id]} 92%, transparent) !important;`);
       if (safeColor(navColor)) decl.push('--color-navigation-image: none !important; --dark-mode-navigation-image: none !important; --light-mode-navigation-image: none !important;');
       if (decl.length) {
         css = `:root, body, .dark-theme, .light-theme { ${decl.join(' ')} } body { background-color: var(--color-surface-0) !important; }`;
         if (safeColor(navColor)) css += ` #header.rbx-header, .rbx-header, .left-nav { background-image: none !important; background-color: ${navColor} !important; }`;
-        css += fxCss(themeFx, themeColors);
+        if (safeColor(navColor)) css += ` html:not(.routility-classic-logo) ${lightColor(navColor) ? '.dark-theme' : '.light-theme'} #header .navbar-brand :is(.icon-logo, .icon-logo-r) { filter: ${lightColor(navColor) ? 'brightness(0.2)' : 'brightness(0) invert(1)'} !important; }`;
+        css += ` .section-content:not(.remove-panel) { border-radius: var(--radius-large) !important; }`;
+        css += ' [data-testid="text-icon-row-text"] { color: var(--color-content-emphasis) !important; }';
+        if (safeColor(themeColors.bg)) {
+          const light = lightColor(themeColors.bg);
+          const mode = light ? '.dark-theme' : '.light-theme';
+          css += ` ${mode} [data-testid="text-icon-row"] .sdui-icon { filter: ${light ? 'brightness(0.2)' : 'brightness(0) invert(1)'} !important; }`;
+          css += ` ${mode} :is(.icon-votes-gray, .icon-playing-counts-gray) { filter: ${light ? 'brightness(0.45)' : 'brightness(0) invert(0.7)'} !important; }`;
+        }
         css += ` :is(${TILES}) { --color-common-shimmer: ${lightColor(themeColors.card || themeColors.bg) ? '#e4e5e9' : '#2b2d34'} !important; }`;
         css += ' .icon-filled-verified-backplate, .verified-badge-icon, [data-rblx-verified-badge-icon], .routility-verified, .routility-admin-badge, .icon-regular-roblox-plus, .icon-display-name-badge-plus, .routility-logo { --color-system-emphasis: #335fff !important; --color-system-contrast: #f7f7f8 !important; --color-content-emphasis: #f7f7f8 !important; }';
         css += ' :is(.icon-display-name-badge-plus, .routility-name-badges .icon-regular-roblox-plus, .avatar-name-container .icon-regular-roblox-plus, :is(.text-truncate-end, .text-no-wrap, .text-overflow) ~ .icon-regular-roblox-plus, span.inline-flex.shrink-0.gap-xxsmall > .icon-regular-roblox-plus) { color: var(--color-content-default) !important; }';
@@ -243,6 +322,14 @@
     themeStyle.textContent = css;
     if (!themeStyle.isConnected) (document.head || root).appendChild(themeStyle);
     root.classList.toggle('routility-themed', !!css);
+    const bg = css ? bgCss(themeColors, themeLook) : '';
+    if (!themeBgStyle) {
+      if (!bg) return;
+      themeBgStyle = document.createElement('style');
+      themeBgStyle.id = 'routility-theme-bg';
+    }
+    if (themeBgStyle.textContent !== bg) themeBgStyle.textContent = bg;
+    if (!themeBgStyle.isConnected) themeStyle.after(themeBgStyle);
   };
   let navCollapsed = false;
   let lastSettings = {};
@@ -311,6 +398,8 @@
     themeOn = !!lastSettings.customTheme;
     themeColors = (s.routilityTheme && s.routilityTheme.colors) || {};
     themeFx = (s.routilityTheme && typeof s.routilityTheme.fx === 'string') ? s.routilityTheme.fx : '';
+    themeLook = s.routilityTheme || {};
+    needImage();
     applyTheme();
     navCollapsed = !!s.routilityNavCollapsed;
     apply(s.routilitySettings);
@@ -325,8 +414,10 @@
   });
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area === 'local' && EARLY_KEYS.some(k => changes[k])) remember(Object.fromEntries(EARLY_KEYS.filter(k => changes[k]).map(k => [k, changes[k].newValue])));
-    if (area === 'local' && changes.routilitySettings) { lastSettings = changes.routilitySettings.newValue || {}; apply(changes.routilitySettings.newValue); applyNav(navLayout); applyCollapse(); watchRobloxOnly(); themeOn = !!lastSettings.customTheme; applyTheme(); }
-    if (area === 'local' && changes.routilityTheme) { const t = changes.routilityTheme.newValue || {}; themeColors = t.colors || {}; themeFx = typeof t.fx === 'string' ? t.fx : ''; applyTheme(); }
+    if (area === 'local' && changes.routilitySettings) { lastSettings = changes.routilitySettings.newValue || {}; apply(changes.routilitySettings.newValue); applyNav(navLayout); applyCollapse(); watchRobloxOnly(); themeOn = !!lastSettings.customTheme; needImage(); applyTheme(); }
+    if (area === 'local' && changes.routilityTheme) { const t = changes.routilityTheme.newValue || {}; themeColors = t.colors || {}; themeFx = typeof t.fx === 'string' ? t.fx : ''; themeLook = t; needImage(); applyTheme(); }
+    if (area === 'local' && changes.routilityFont) { fontAsked = true; useFont(changes.routilityFont.newValue); }
+    if (area === 'local' && changes.routilityThemeImage) { themeImage = IMAGE.test(changes.routilityThemeImage.newValue) ? changes.routilityThemeImage.newValue : ''; imageAsked = true; applyTheme(); }
     if (area === 'local' && changes.routilityNavLayout) applyNav(changes.routilityNavLayout.newValue);
     if (area === 'local' && changes.routilityNavCollapsed) { navCollapsed = !!changes.routilityNavCollapsed.newValue; applyCollapse(); }
   });

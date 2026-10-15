@@ -702,7 +702,7 @@
           { key: 'scrollbarStyle', parent: 'scrollbarFix', title: LT('Scrollbar Style'), desc: LT('Floating hides the scrollbar until you scroll, then shows a slim bar over the page that fades out when you stop. Pick Roblox default to keep the normal scrollbar.'), options: [['default', LT('Roblox default')], ['floating', LT('Floating')]] },
         ] },
         { title: LT('Font'), rows: [
-          { key: 'siteFont', title: LT('Website Font'), desc: LT('Roblox’s current font, Builder Sans (the one Roblox used before), or your computer’s own font.'), options: [['default', LT('Roblox default')], ['builder', 'Builder Sans'], ['system', LT('System font')]] },
+          { key: 'siteFont', title: LT('Website Font'), desc: LT('Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.'), options: [['default', LT('Roblox default')], ['builder', 'Builder Sans'], ['system', LT('System font')], ['custom', LT('Your Own Font')]], fontInput: 'custom' },
         ] },
         { title: LT('Classic Roblox'), rows: [
           { key: 'classicLogo', title: LT('Classic Roblox Logo'), desc: LT('The old red and white ROBLOX logo in the top left corner instead of today’s logo.') },
@@ -1215,6 +1215,44 @@
     return field;
   }
 
+  function fontField() {
+    const field = el('div', 'flex items-center gap-small wrap routility-set-font');
+    const pickFile = el('input');
+    pickFile.type = 'file';
+    pickFile.accept = '.ttf,.otf,.woff,.woff2,font/ttf,font/otf,font/woff,font/woff2';
+    pickFile.hidden = true;
+    const status = el('span', 'text-body-small content-muted');
+    const choose = button(lt('Choose Font File'), () => pickFile.click());
+    const show = () => chrome.storage.local.get('routilityFont', (st) => {
+      const f = st.routilityFont;
+      status.textContent = f && f.name ? f.name : lt('No font yet');
+    });
+    pickFile.addEventListener('change', () => {
+      const file = pickFile.files && pickFile.files[0];
+      pickFile.value = '';
+      if (!file) return;
+      const type = { ttf: 'font/ttf', otf: 'font/otf', woff: 'font/woff', woff2: 'font/woff2' }[(file.name.split('.').pop() || '').toLowerCase()];
+      if (!type) {
+        status.textContent = lt('Pick a .ttf, .otf, .woff or .woff2 file.');
+        return;
+      }
+      if (file.size > 3 * 1024 * 1024) {
+        status.textContent = lt('That font is over 3 MB. Pick a smaller one.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        const data = String(reader.result || '').replace(/^data:[^;,]*/, 'data:' + type);
+        chrome.storage.local.set({ routilityFont: { name: file.name.slice(0, 80), data } }, show);
+      };
+      reader.readAsDataURL(file);
+    });
+    field.append(choose, status, pickFile);
+    field.input = choose;
+    show();
+    return field;
+  }
+
   function robuxField(settings, save, key, label) {
     const field = el('label', 'foundation-web-input flex items-center relative clip stroke-standard bg-none height-1200 radius-medium padding-x-large gap-x-small stroke-contrast-alpha focus-within:stroke-system-emphasis routility-set-rate routility-set-robux');
     if (!label) field.appendChild(el('span', 'icon-robux-16x16'));
@@ -1437,19 +1475,26 @@
     ['raised', LT('Raised Cards'), ['--color-surface-200']],
     ['menu', LT('Menus & Popups'), ['--color-surface-300']],
     ['shimmer', LT('Loading Shimmer'), ['--color-common-shimmer']],
-    ['text', LT('Main Text'), ['--color-content-emphasis']],
-    ['body', LT('Body Text'), ['--color-content-default']],
-    ['muted', LT('Secondary Text'), ['--color-content-muted']],
+    ['text', LT('Headings'), ['--color-content-emphasis']],
+    ['body', LT('Normal Text'), ['--color-content-default']],
+    ['muted', LT('Faded Text'), ['--color-content-muted']],
     ['link', LT('Links'), ['--color-content-link']],
     ['accent', LT('Accent'), ['--color-system-emphasis']],
     ['play', LT('Play Button'), ['--color-action-emphasis-background']],
+    ['playText', LT('Play Button Text'), ['--color-action-emphasis-foreground']],
+    ['button', LT('Buttons'), ['--color-action-standard-background']],
+    ['border', LT('Borders'), ['--color-stroke-default']],
+    ['success', LT('Success'), ['--color-system-success']],
+    ['alert', LT('Warnings'), ['--color-system-alert']],
   ];
+  const THEME_GROUPS = { bg: LT('Page'), text: LT('Text'), accent: LT('Buttons & Accents') };
   const THEME_PRESETS = [
     ['RoUtility', { fx: 'grid', nav: '#0b0e12', bg: '#0b0e12', card: '#121821', raised: '#18202b', menu: '#1f2935', shimmer: 'rgba(15, 159, 255, 0.12)', text: '#f2f7fc', body: '#d3dce6', muted: '#8a94a0', link: '#4fb6ff', accent: '#0f9fff', play: '#0f8fe6' }],
     [LT('Midnight Purple'), { fx: 'glow', nav: '#140a2a', bg: '#100821', card: '#170d2c', raised: '#1f1338', menu: '#2c1b4f', shimmer: 'rgba(169, 133, 255, 0.14)', text: '#ffffff', body: '#e4dcff', muted: '#a98fe0', link: '#b18cff', accent: '#8b5cf6', play: '#6d3fd6' }],
     [LT('Ocean'), { fx: 'glow', nav: '#06111c', bg: '#07131f', card: '#0c1c2b', raised: '#122536', menu: '#1a3247', shimmer: 'rgba(120, 190, 255, 0.12)', text: '#f2f8ff', body: '#cfe0f0', muted: '#8fb0cc', link: '#5cc0ff', accent: '#0f9fff', play: '#0f8fd6' }],
     [LT('Pure Black'), { nav: '#000000', bg: '#000000', card: '#0b0b0d', raised: '#121215', menu: '#1b1c20', shimmer: 'rgba(255, 255, 255, 0.08)', text: '#ffffff', body: '#d6d6d6', muted: '#a0a0a0', link: '#6aa0ff', accent: '#3d6bff', play: '#137f1f' }],
     [LT('Crimson'), { fx: 'glow', nav: '#12050a', bg: '#140608', card: '#1e0a0e', raised: '#281015', menu: '#36161d', shimmer: 'rgba(255, 140, 150, 0.12)', text: '#fff5f5', body: '#f0d4d6', muted: '#c49499', link: '#ff7a85', accent: '#e5383b', play: '#c1121f' }],
+    [LT('Sakura'), { fx: 'aurora', nav: '#ffc9df', bg: '#ffe8f1', card: '#fffafc', raised: '#ffe4ef', menu: '#ffffff', shimmer: 'rgba(214, 61, 134, 0.16)', text: '#3d1230', body: '#562d47', muted: '#8f5878', link: '#d63d86', accent: '#f0529b', play: '#e8468f', playText: '#ffffff', button: '#ffc6dd', border: '#f3c0d6' }],
   ];
 
   function parseColor(v) {
@@ -1483,6 +1528,7 @@
     section.dataset.key = 'themeEditor';
     let colors = {};
     let fx = '';
+    let look = {};
     let writeTimer = 0;
     const live = () => {
       const probe = getComputedStyle(document.body);
@@ -1497,7 +1543,7 @@
     let roblox = null;
     const write = () => {
       clearTimeout(writeTimer);
-      writeTimer = setTimeout(() => chrome.storage.local.set({ routilityTheme: { colors, fx } }), 120);
+      writeTimer = setTimeout(() => chrome.storage.local.set({ routilityTheme: { colors, fx, ...look } }), 120);
     };
     const set = (id, c) => {
       if (c) colors = { ...colors, [id]: colorText(c) };
@@ -1508,15 +1554,124 @@
       write();
     };
     const presetBar = el('div', 'routility-theme-presets');
-    const FX_OPTIONS = [['', lt('None')], ['glow', lt('Glow')], ['grid', lt('RoUtility Grid')]];
+    const FX_OPTIONS = [['', LT('None')], ['glow', LT('Glow')], ['aurora', LT('Aurora')], ['grid', LT('RoUtility Grid')], ['dots', LT('Dots')], ['flowers', LT('Flowers')], ['image', LT('Your Image')]];
     const fxRow = el('div', 'routility-theme-fx');
-    let fxSelect = null;
+    let photo = null;
+    const withPhoto = (cb) => {
+      if (photo !== null) return cb(photo);
+      chrome.storage.local.get('routilityThemeImage', (st) => {
+        photo = /^data:image\/(png|jpeg|webp|gif);base64,/.test(st.routilityThemeImage) ? st.routilityThemeImage : '';
+        cb(photo);
+      });
+    };
+    const imageTools = () => {
+      const wrap = el('div', 'flex items-center gap-small wrap routility-theme-image');
+      const pickFile = el('input');
+      pickFile.type = 'file';
+      pickFile.accept = 'image/png,image/jpeg,image/webp,image/gif';
+      pickFile.hidden = true;
+      const status = el('span', 'text-body-small content-muted');
+      const choose = button(lt('Choose Image'), () => pickFile.click());
+      const clear = button(lt('Remove'), () => chrome.storage.local.remove('routilityThemeImage', () => { photo = null; show(); paintFx(); }));
+      const show = () => withPhoto((p) => {
+        const has = !!p;
+        status.textContent = has ? lt('Image saved in this browser') : lt('No image yet');
+        clear.style.display = has ? '' : 'none';
+      });
+      pickFile.addEventListener('change', () => {
+        const file = pickFile.files && pickFile.files[0];
+        pickFile.value = '';
+        if (!file) return;
+        status.textContent = lt('Loading…');
+        const img = new Image();
+        const url = URL.createObjectURL(file);
+        img.onload = () => {
+          const scale = Math.min(1, 1920 / Math.max(img.naturalWidth, img.naturalHeight));
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.max(1, Math.round(img.naturalWidth * scale));
+          canvas.height = Math.max(1, Math.round(img.naturalHeight * scale));
+          canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+          URL.revokeObjectURL(url);
+          chrome.storage.local.set({ routilityThemeImage: canvas.toDataURL('image/jpeg', 0.85) }, () => { photo = null; show(); paintFx(); });
+        };
+        img.onerror = () => {
+          URL.revokeObjectURL(url);
+          status.textContent = lt('That file isn’t an image RoUtility can use.');
+        };
+        img.src = url;
+      });
+      wrap.append(choose, clear, status, pickFile);
+      show();
+      return wrap;
+    };
+    const slider = (label, key, max, def, unit) => {
+      const row = el('div', 'routility-theme-look');
+      const input = el('input', 'routility-theme-alpha');
+      input.type = 'range';
+      input.min = '0';
+      input.max = String(max);
+      input.value = String(Number.isFinite(Number(look[key])) ? Number(look[key]) : def);
+      input.setAttribute('aria-label', label);
+      const val = el('span', 'text-body-small content-muted routility-theme-pct', input.value + unit);
+      input.addEventListener('input', () => {
+        look = { ...look, [key]: Number(input.value) };
+        val.textContent = input.value + unit;
+        write();
+      });
+      row.append(el('span', 'text-label-medium content-emphasis routility-theme-look-name', label), input, val);
+      return row;
+    };
+    const choices = (label, key, options, def) => {
+      const cur = look[key] == null ? def : Number(look[key]);
+      const row = el('div', 'routility-theme-look');
+      const wrap = el('div', 'flex gap-small wrap');
+      for (const [value, text] of options) {
+        const b = el('button', 'routility-theme-preset routility-theme-choice relative clip group/interactable cursor-pointer radius-medium text-label-medium content-emphasis' + (cur === value ? ' routility-theme-bg-on' : ''));
+        b.type = 'button';
+        b.appendChild(stateLayer());
+        b.appendChild(el('span', null, lt(text)));
+        b.addEventListener('click', () => {
+          look = { ...look, [key]: value };
+          write();
+          paintFx();
+        });
+        wrap.appendChild(b);
+      }
+      row.append(el('span', 'text-label-medium content-emphasis routility-theme-look-name', label), wrap);
+      return row;
+    };
     const paintFx = () => {
       fxRow.textContent = '';
       fxRow.appendChild(el('span', 'text-label-medium content-emphasis', lt('Background')));
-      fxSelect = select(lt('Background effect'), FX_OPTIONS.map(([value, label]) => ({ value, label })), fx, (v) => { fx = v; write(); });
-      fxSelect.classList.add('routility-theme-fx-select');
-      fxRow.appendChild(fxSelect);
+      const pal = { ...Object.fromEntries(Object.entries(roblox || {}).map(([k, v]) => [k, colorText(v)])), ...colors };
+      const grid = el('div', 'routility-theme-bgs');
+      for (const [value, label] of FX_OPTIONS) {
+        const tile = el('button', 'routility-theme-bg relative clip group/interactable cursor-pointer radius-medium' + (fx === value ? ' routility-theme-bg-on' : ''));
+        tile.type = 'button';
+        tile.setAttribute('aria-pressed', String(fx === value));
+        const view = el('span', 'routility-theme-bg-view radius-small');
+        const layer = value && value !== 'image' && window.RoUtilityBackgrounds ? window.RoUtilityBackgrounds.preview(value, pal) : '';
+        view.style.background = (layer ? layer + ', ' : '') + (pal.bg || '#000');
+        if (value === 'image') {
+          view.classList.add('routility-theme-bg-photo');
+          withPhoto((p) => {
+            if (p) view.style.backgroundImage = `url("${p}")`;
+          });
+        }
+        tile.append(stateLayer(), view, el('span', 'text-label-small content-emphasis', lt(label)));
+        tile.addEventListener('click', () => {
+          fx = value;
+          write();
+          paintFx();
+        });
+        grid.appendChild(tile);
+      }
+      fxRow.appendChild(grid);
+      if (fx === 'image') fxRow.appendChild(imageTools());
+      if (fx) fxRow.appendChild(slider(lt('Blur'), 'blur', 20, 2, 'px'));
+      if (fx === 'image') fxRow.appendChild(slider(lt('Tint'), 'tint', 95, 70, '%'));
+      if (fx) fxRow.appendChild(slider(lt('Card Transparency'), 'see', 60, 0, '%'));
+      fxRow.appendChild(choices(lt('Roundness'), 'round', [[2, LT('Flat')], [0, LT('Default')], [1, LT('Rounder')]], 0));
     };
     const list = el('div', 'routility-theme-list');
     const foot = el('div', 'routility-theme-foot');
@@ -1524,9 +1679,11 @@
     section.append(note, presetBar, fxRow, list, foot);
 
     const rowsById = new Map();
+    const dotsById = new Map();
     const paintRow = (id) => {
       const r = rowsById.get(id);
       const c = parseColor(colors[id]) || roblox[id];
+      if (dotsById.has(id)) dotsById.get(id).style.background = colorText(c);
       r.swatch.value = colorHex(c);
       if (document.activeElement !== r.text) r.text.value = colorText(c);
       r.alpha.value = String(Math.round(c.a * 100));
@@ -1538,7 +1695,26 @@
     };
     const paintAll = () => { for (const [id] of THEME_ROWS) paintRow(id); };
 
+    let group = [];
+    let groupDots = null;
     for (const [id, key] of THEME_ROWS) {
+      if (THEME_GROUPS[id]) {
+        const head = el('button', 'text-label-medium content-emphasis routility-theme-group');
+        head.type = 'button';
+        head.setAttribute('aria-expanded', 'false');
+        const name = el('span', 'routility-theme-group-name');
+        groupDots = el('span', 'routility-theme-dots');
+        name.append(el('span', null, lt(THEME_GROUPS[id])), groupDots);
+        head.append(name, el('span', 'routility-theme-group-chev'));
+        const rows = [];
+        head.addEventListener('click', () => {
+          const open = head.getAttribute('aria-expanded') !== 'true';
+          head.setAttribute('aria-expanded', String(open));
+          for (const r of rows) r.hidden = !open;
+        });
+        list.appendChild(head);
+        group = rows;
+      }
       const label = lt(key);
       const box = el('div', 'routility-theme-row');
       const swatch = el('input', 'routility-theme-swatch');
@@ -1581,6 +1757,13 @@
       const op = el('div', 'routility-theme-op');
       op.append(alpha, pct);
       box.append(swatch, name, text, op, reset);
+      box.hidden = true;
+      group.push(box);
+      if (groupDots && groupDots.childElementCount < 5) {
+        const dot = el('span', 'routility-theme-dot');
+        groupDots.appendChild(dot);
+        dotsById.set(id, dot);
+      }
       list.appendChild(box);
       rowsById.set(id, { box, swatch, text, alpha, pct, reset });
     }
@@ -1603,9 +1786,10 @@
       presetBar.textContent = '';
       const main = el('div', 'routility-theme-preset-row');
       const usePreset = (pal) => {
-        const { fx: f, ...rest } = pal || {};
+        const { fx: f, blur, tint, see, round, ...rest } = pal || {};
         colors = { ...rest };
         fx = f || '';
+        look = { blur, tint, see, round };
         write();
         paintAll();
         paintFx();
@@ -1628,12 +1812,12 @@
           empty.appendChild(stateLayer());
           empty.appendChild(el('span', null, lt('Save to {slot}', { slot: name })));
           empty.dataset.rtTip = lt('Saves your current colors and background here');
-          empty.addEventListener('click', () => saveSlots(Object.assign([...slots], { [i]: { colors: { ...colors }, fx, at: Date.now() } })));
+          empty.addEventListener('click', () => saveSlots(Object.assign([...slots], { [i]: { colors: { ...colors }, fx, ...look, at: Date.now() } })));
           mine.appendChild(empty);
           continue;
         }
         const wrap = el('span', 'routility-theme-slot');
-        const chip = presetChip(name, { ...slot.colors }, () => usePreset({ ...slot.colors, fx: slot.fx || '' }));
+        const chip = presetChip(name, { ...slot.colors }, () => usePreset({ ...slot.colors, fx: slot.fx || '', blur: slot.blur, tint: slot.tint, see: slot.see, round: slot.round }));
         chip.dataset.rtTip = lt('Use this theme');
         const tool = (icon, tip, onClick) => {
           const b = el('button', 'routility-theme-slot-tool relative clip group/interactable cursor-pointer radius-circle');
@@ -1645,7 +1829,7 @@
           b.addEventListener('click', onClick);
           return b;
         };
-        wrap.append(chip, tool('routility-calc-icon-download', lt('Save current theme here'), () => saveSlots(Object.assign([...slots], { [i]: { colors: { ...colors }, fx, at: Date.now() } }))), tool('routility-calc-icon-close', lt('Clear this slot'), () => saveSlots(Object.assign([...slots], { [i]: null }))));
+        wrap.append(chip, tool('routility-calc-icon-download', lt('Save current theme here'), () => saveSlots(Object.assign([...slots], { [i]: { colors: { ...colors }, fx, ...look, at: Date.now() } }))), tool('routility-calc-icon-close', lt('Clear this slot'), () => saveSlots(Object.assign([...slots], { [i]: null }))));
         mine.appendChild(wrap);
       }
       presetBar.append(main, mine);
@@ -1663,6 +1847,8 @@
       colors = { ...((st.routilityTheme && st.routilityTheme.colors) || {}) };
       fx = (st.routilityTheme && typeof st.routilityTheme.fx === 'string') ? st.routilityTheme.fx : '';
       if (!FX_OPTIONS.some(([v]) => v === fx)) fx = '';
+      const t = st.routilityTheme || {};
+      look = { blur: t.blur === undefined ? look.blur : t.blur, tint: t.tint === undefined ? look.tint : t.tint, see: t.see, round: t.round === undefined ? look.round : t.round };
       roblox = live();
       paintPresets();
       paintFx();
@@ -2260,14 +2446,16 @@
       section.appendChild(mock);
     }
     const side = el('div', 'routility-set-control');
+    let below = null;
     if (def.options) {
       const opts = def.options.map(([value, label]) => ({ value, label: def.key === 'language' && value !== 'auto' ? label : lt(label) }));
       const current = opts.some(o => o.value === settings[def.key]) ? settings[def.key] : DEFAULTS[def.key];
-      const extraFor = def.rateInput || def.robuxInput;
-      const rate = def.rateInput ? rateField(settings, save) : def.robuxInput ? robuxField(settings, save, def.amountKey, def.amountLabel) : null;
+      const extraFor = def.rateInput || def.robuxInput || def.fontInput;
+      const rate = def.rateInput ? rateField(settings, save) : def.robuxInput ? robuxField(settings, save, def.amountKey, def.amountLabel) : def.fontInput ? fontField() : null;
       if (rate) {
         rate.hidden = current !== extraFor;
-        side.appendChild(rate);
+        if (def.fontInput) below = rate;
+        else side.appendChild(rate);
       }
       side.appendChild(select(lt(def.title), opts, current, (v) => {
         save({ [def.key]: v });
@@ -2284,6 +2472,7 @@
       }));
     }
     section.appendChild(side);
+    if (below) section.appendChild(below);
     rows.push({ def, section });
     return section;
   }
@@ -2599,7 +2788,7 @@
     const PREFS = {
       routilityNavLayout: (v) => isObj(v) && (!v.order || Array.isArray(v.order)) && (!v.hidden || Array.isArray(v.hidden)),
       routilityServerLayout: (v) => isObj(v) && (!v.order || Array.isArray(v.order)) && (!v.hidden || Array.isArray(v.hidden)),
-      routilityThemeSlots: (v) => Array.isArray(v) && v.length <= 5 && v.every(x => x === null || (isObj(x) && isObj(x.colors) && Object.values(x.colors).every(c => typeof c === 'string' && c.length <= 40) && (x.fx === undefined || (typeof x.fx === 'string' && x.fx.length <= 20)))),
+      routilityThemeSlots: (v) => Array.isArray(v) && v.length <= 5 && v.every(x => x === null || (isObj(x) && isObj(x.colors) && Object.values(x.colors).every(c => typeof c === 'string' && c.length <= 40) && (x.fx === undefined || (typeof x.fx === 'string' && x.fx.length <= 20)) && ['blur', 'tint', 'see', 'round'].every(k => x[k] === undefined || Number.isFinite(x[k])))),
       routilityNavCollapsed: (v) => typeof v === 'boolean',
       routilityLayouts: isObj,
       routilityHomeLayout: (v) => isObj(v) || Array.isArray(v),
@@ -2610,7 +2799,7 @@
       routilityChartMode: shortText,
       routilityModalSort: shortText,
       routilityClassicViews: isObj,
-      routilityTheme: (v) => isObj(v) && isObj(v.colors) && Object.values(v.colors).every(c => typeof c === 'string' && c.length <= 40) && (v.fx === undefined || (typeof v.fx === 'string' && v.fx.length <= 20)),
+      routilityTheme: (v) => isObj(v) && isObj(v.colors) && Object.values(v.colors).every(c => typeof c === 'string' && c.length <= 40) && (v.fx === undefined || (typeof v.fx === 'string' && v.fx.length <= 20)) && ['blur', 'tint', 'see', 'round'].every(k => v[k] === undefined || Number.isFinite(v[k])),
       routilityFun: (v) => isObj(v) && (v.spent === undefined || Number.isFinite(v.spent)) && (v.items === undefined || (Array.isArray(v.items) && v.items.length <= 500 && v.items.every(x => isObj(x) && typeof x.kind === 'string' && Number.isFinite(x.id) && Number.isFinite(x.price) && Number.isFinite(x.at)))) && (v.worn === undefined || (Array.isArray(v.worn) && v.worn.length <= 50 && v.worn.every(Number.isFinite))),
     };
     const myId = () => document.querySelector('meta[name="user-data"]')?.getAttribute('data-userid') || '';
@@ -2625,7 +2814,7 @@
       for (const [u, id] of Object.entries(b.place || {})) if (/^\d+$/.test(u) && Number.isFinite(Number(id)) && !place[u]) place[u] = Number(id);
       return { days, place, last: (a && a.last) || 0 };
     };
-    const RESET_PREFS = ['routilityTheme', 'routilityServerLayout', 'routilityNavLayout', 'routilityNavCollapsed', 'routilityLayouts', 'routilityHomeLayout', 'routilityChatSize', 'routilityChartMode', 'routilityModalSort', 'routilityClassicViews', 'routilityFun'];
+    const RESET_PREFS = ['routilityTheme', 'routilityThemeImage', 'routilityFont', 'routilityServerLayout', 'routilityNavLayout', 'routilityNavCollapsed', 'routilityLayouts', 'routilityHomeLayout', 'routilityChatSize', 'routilityChartMode', 'routilityModalSort', 'routilityClassicViews', 'routilityFun'];
     buttons.appendChild(button(lt('Export'), () => {
       const me = myId();
       const playKey = me ? 'routilityPlaytime:' + me : null;
