@@ -7,6 +7,32 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 - Code: [@reqonn](https://github.com/reqonn), [@awkward222](https://github.com/awkward222)
 - Bug reports and ideas: api_cats
 
+## 1.1.4 · October 15, 2026
+
+Themes get a lot more customizable, the classic profile gets a second layout, and updates clean up after themselves.
+
+**New**
+
+```diff
++ Custom Theme: more colors (Buttons, Play Button Text, Borders, Success, Warnings), background effects like Glow, Aurora, Grid, Dots, Flowers or your own image, blur, tint, card transparency and roundness. (by @reqonn)
++ Website Font: use your own font file. (by @reqonn)
++ Sakura, a light pink theme preset. (by @reqonn)
++ Classic Profile Layout: a Two Columns option, with About, badges and communities on the left and experiences, friends and favorites on the right. (by @reqonn)
+```
+
+**Improved**
+
+```diff
+~ Menus, dropdowns, the category lists and the classic profile follow custom themes. (by @reqonn)
+~ Going back to a classic profile you just saw loads instantly. (by @reqonn)
+```
+
+**Fixed**
+
+```diff
+- Tabs left open during a RoUtility update no longer show errors or a leftover settings page. (by @reqonn)
+```
+
 ## 1.1.3 · October 15, 2026
 
 A big one: new tools for Roblox Plus, your account and communities, a page for games Roblox won't show you, and the first changes from people outside the team.

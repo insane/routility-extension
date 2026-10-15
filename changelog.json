@@ -5,6 +5,20 @@
   },
   "releases": [
     {
+      "version": "1.1.4",
+      "date": "2026-10-15",
+      "summary": "Themes get a lot more customizable, the classic profile gets a second layout, and updates clean up after themselves.",
+      "changes": [
+        { "type": "new", "text": "Custom Theme: more colors (Buttons, Play Button Text, Borders, Success, Warnings), background effects like Glow, Aurora, Grid, Dots, Flowers or your own image, blur, tint, card transparency and roundness.", "by": ["reqonn"] },
+        { "type": "new", "text": "Website Font: use your own font file.", "by": ["reqonn"] },
+        { "type": "new", "text": "Sakura, a light pink theme preset.", "by": ["reqonn"] },
+        { "type": "new", "text": "Classic Profile Layout: a Two Columns option, with About, badges and communities on the left and experiences, friends and favorites on the right.", "by": ["reqonn"] },
+        { "type": "improved", "text": "Menus, dropdowns, the category lists and the classic profile follow custom themes.", "by": ["reqonn"] },
+        { "type": "improved", "text": "Going back to a classic profile you just saw loads instantly.", "by": ["reqonn"] },
+        { "type": "fixed", "text": "Tabs left open during a RoUtility update no longer show errors or a leftover settings page.", "by": ["reqonn"] }
+      ]
+    },
+    {
       "version": "1.1.3",
       "date": "2026-10-15",
       "summary": "A big one: new tools for Roblox Plus, your account and communities, a page for games Roblox won't show you, and the first changes from people outside the team.",
