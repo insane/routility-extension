@@ -82,29 +82,30 @@ It works in Chrome, Edge, Brave, Opera and other Chromium browsers. There is no 
 
 If you want to build your own Roblox extension, this is a quick tour of how RoUtility is put together.
 
-**Content scripts** do almost everything. They run on roblox.com in Chrome's isolated world, watch the page with a `MutationObserver`, and add RoUtility's pieces into Roblox's own elements. The page is never replaced. New UI reuses Roblox's CSS classes, so it looks native and follows the theme automatically. `ui.js` holds the shared helpers (building elements, prices, tooltips, friend lists, inventories) and loads first.
+**Content scripts** do almost everything. They run on roblox.com in Chrome's isolated world, watch the page with a `MutationObserver`, and add RoUtility's pieces into Roblox's own elements. The page is never replaced. New UI reuses Roblox's CSS classes, so it looks native and follows the theme automatically. `src/core/ui.js` holds the shared helpers (building elements, prices, tooltips, friend lists, inventories) and loads first.
 
-**Page scripts** are the `*-main.js` files. They run in the page's own world so they can see Roblox's own network responses, for example the inventory list or the server list, and pass the useful bits back to the content scripts with `postMessage`.
+**Page scripts** are the `*-main.js` files, kept next to the feature they belong to. They run in the page's own world so they can see Roblox's own network responses, for example the inventory list or the server list, and pass the useful bits back to the content scripts with `postMessage`.
 
-**The background service worker** (`background.js`) fetches item values from routility.io, sends desktop notifications, runs scheduled jobs like the playtime counter, and answers requests from the content scripts.
+**The background service worker** (`src/background/background.js`) fetches item values from routility.io, sends desktop notifications, runs scheduled jobs like the playtime counter, and answers requests from the content scripts.
 
 **Calls to Roblox** go straight from your browser to Roblox's public web APIs, the same ones roblox.com itself uses. Your Roblox cookie and password are never read or sent anywhere.
 
-**Translations** live in `locales/` (16 languages). UI text goes through small `lt()` helpers from `i18n.js`.
+**Translations** live in `locales/` (16 languages). UI text goes through small `lt()` helpers from `src/core/i18n.js`.
 
 | Path | What's inside |
 | --- | --- |
 | `manifest.json` | Permissions, which script runs on which page, and load order |
-| `background.js` | Service worker: values, notifications, alarms, context menu |
-| `ui.js` | Shared helpers every other script uses |
-| `content.js` | Router that turns features on for the page you're on |
-| `settings.js` | The RoUtility tab inside Roblox Settings |
-| `trades.js`, `calc.js`, `tradeads.js` | Trade values, Trade Calculator, Trade Ads |
-| `profile.js`, `classic.js`, `friends.js` | Profiles, the classic profile layout, friends tools |
-| `*-main.js` | Page world scripts that read Roblox's own responses |
-| `preview/`, `lib/` | 3D try on preview (three.js and the Draco decoder) |
+| `src/background/` | Service worker: values, notifications, alarms, context menu |
+| `src/core/` | Shared pieces every script uses: `ui.js` helpers, `i18n.js`, `net.js`, and `content.js`, the router that turns features on for the page you're on |
+| `src/features/` | One folder per area (profile, trading, avatar, items, friends, games…), with any `*-main.js` page scripts it needs |
+| `src/settings/` | The RoUtility tab inside Roblox Settings |
+| `src/create/` | Creator Hub extras |
+| `src/preview/` | 3D try on preview |
+| `styles/` | Stylesheets |
+| `assets/` | Icons and flags |
+| `vendor/` | three.js and the Draco decoder |
 | `locales/`, `_locales/` | Translations |
-| `rules*.json` | Declarative network rules (one header for server regions, page redirects) |
+| `rules/` | Declarative network rules (one header for server regions, page redirects) |
 
 ## Privacy
 
