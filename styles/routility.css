@@ -11739,6 +11739,13 @@ html.routility-settings-mode .menu-vertical .routility-menu-divider.routility-me
   cursor: default;
 }
 
+.routility-menu-group-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  vertical-align: -3px;
+}
+
 html.routility-settings-mode .menu-vertical .routility-menu-foot {
   display: block !important;
   height: 1px;
