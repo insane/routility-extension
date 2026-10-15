@@ -600,7 +600,7 @@
     calcEven: () => c([muted(lt('Add to even it out')), r([thumb(A.v3000, 26, [h('span', 'rt-m-badge', '+')]), thumb(A.valk, 26, [h('span', 'rt-m-badge', '+')]), tile(26, null, 'rt-m-ghost')])]),
     exactCounts: () => c([muted(lt('Followers')), r([h('span', 'rt-m-strike', '16.7M'), h('span', 'rt-m-arrow', '→'), h('span', 'rt-m-strong rt-m-big', '16,734,201')])]),
     mutualGroups: () => c([r([muted(ltn(168, '{n} Friend', '{n} Friends')), muted(lt('{n} Following', { n: 42 }))]), h('span', 'rt-m-chip', [h('span', 'rt-m-stack', [communityIcon(GR.roblox, 16), communityIcon(GR.interns, 16), communityIcon(GR.videoStars, 16)]), ltn(3, '{n} Mutual community', '{n} Mutual communities')])]),
-    genreFilters: () => r([pill(lt('All Genres')), pill(lt('Obby & Platformer'), 'active'), pill(lt('Action'))]),
+    genreFilters: () => r([pill(lt('All Genres')), pill(lt('Obby & Platformer'), 'active'), pill(lt('Action'))], 'rt-m-chips'),
     recentlyUpdated: () => c([strong(lt('Recently Updated')), r([game(G.adoptMe, 46, [h('span', 'rt-m-tiny rt-m-muted', '• ' + ltn(2, '{n}h ago', '{n}h ago'))]), game(G.tds, 46, [h('span', 'rt-m-tiny rt-m-muted', ltn(3, '{n}d ago', '{n}d ago'))])])], 'rt-m-w190'),
     friendsPlaying: () => c([strong(lt('Friends Playing')), r([[G.adoptMe, [U.cv, U.builderman]], [G.tds, [U.linkmon]], [G.jailbreak, [U.roblox]]].map(([gid, ids]) => game(gid, 46, [h('span', 'rt-m-tile-faces', ids.map(id => face(id, 16)))])))], 'rt-m-w190'),
     notInterested: () => r([game(G.brookhaven, 46, [h('span', 'rt-m-dots', '⋯')]), h('div', 'rt-m-card', [h('span', 'rt-m-strong rt-m-hl', lt('Not interested')), muted(lt('Report'))])]),

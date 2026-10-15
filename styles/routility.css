@@ -1897,6 +1897,11 @@ a.routility-hc-status:hover {
   min-width: 0;
 }
 
+.rt-m-chips {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .rt-m-col {
   display: flex;
   flex-direction: column;
