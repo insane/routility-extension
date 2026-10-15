@@ -2596,5 +2596,15 @@
  "Flowers": "ดอกไม้",
  "Page": "หน้า",
  "Buttons & Accents": "ปุ่มและสีเน้น",
- "Normal Text": "ข้อความปกติ"
+ "Normal Text": "ข้อความปกติ",
+ "Body Text": "ข้อความเนื้อหา",
+ "Main Text": "ข้อความหลัก",
+ "Roblox’s current font, Builder Sans (the one Roblox used before), or your computer’s own font.": "ฟอนต์ปัจจุบันของ Roblox, Builder Sans (ฟอนต์ที่ Roblox ใช้ก่อนหน้านี้) หรือฟอนต์ของคอมพิวเตอร์คุณเอง",
+ "Secondary Text": "ข้อความรอง",
+ "Show Avatar": "แสดงอวตาร",
+ "Show Items": "แสดงไอเทม",
+ "Tabs": "แท็บ",
+ "Tabs keeps About and Creations in two tabs. Two Columns shows About, badges and communities on the left, and experiences, friends and favorites on the right.": "แท็บจะแยกเกี่ยวกับและผลงานเป็นสองแท็บ สองคอลัมน์จะแสดงเกี่ยวกับ ป้าย และชุมชนทางซ้าย และประสบการณ์ เพื่อน และรายการโปรดทางขวา",
+ "This user has no description": "ผู้ใช้นี้ไม่มีคำอธิบาย",
+ "Two Columns": "สองคอลัมน์"
 }

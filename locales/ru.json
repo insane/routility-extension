@@ -2971,5 +2971,15 @@
  "Flowers": "Цветы",
  "Page": "Страница",
  "Buttons & Accents": "Кнопки и акценты",
- "Normal Text": "Обычный текст"
+ "Normal Text": "Обычный текст",
+ "Body Text": "Основной текст",
+ "Main Text": "Основной текст",
+ "Roblox’s current font, Builder Sans (the one Roblox used before), or your computer’s own font.": "Текущий шрифт Roblox, Builder Sans (прежний шрифт Roblox) или шрифт твоего компьютера.",
+ "Secondary Text": "Второстепенный текст",
+ "Show Avatar": "Показать аватар",
+ "Show Items": "Показать предметы",
+ "Tabs": "Вкладки",
+ "Tabs keeps About and Creations in two tabs. Two Columns shows About, badges and communities on the left, and experiences, friends and favorites on the right.": "Вкладки разделяют «О себе» и «Творения» на две вкладки. Две колонки показывают «О себе», значки и сообщества слева, а впечатления, друзей и избранное справа.",
+ "This user has no description": "У этого пользователя нет описания",
+ "Two Columns": "Две колонки"
 }

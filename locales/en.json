@@ -2721,5 +2721,15 @@
  "Flowers": "Flowers",
  "Page": "Page",
  "Buttons & Accents": "Buttons & Accents",
- "Normal Text": "Normal Text"
+ "Normal Text": "Normal Text",
+ "Body Text": "Body Text",
+ "Main Text": "Main Text",
+ "Roblox’s current font, Builder Sans (the one Roblox used before), or your computer’s own font.": "Roblox’s current font, Builder Sans (the one Roblox used before), or your computer’s own font.",
+ "Secondary Text": "Secondary Text",
+ "Show Avatar": "Show Avatar",
+ "Show Items": "Show Items",
+ "Tabs": "Tabs",
+ "Tabs keeps About and Creations in two tabs. Two Columns shows About, badges and communities on the left, and experiences, friends and favorites on the right.": "Tabs keeps About and Creations in two tabs. Two Columns shows About, badges and communities on the left, and experiences, friends and favorites on the right.",
+ "This user has no description": "This user has no description",
+ "Two Columns": "Two Columns"
 }

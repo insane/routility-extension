@@ -2721,5 +2721,15 @@
  "Flowers": "Çiçekler",
  "Page": "Sayfa",
  "Buttons & Accents": "Düğmeler ve Vurgular",
- "Normal Text": "Normal Metin"
+ "Normal Text": "Normal Metin",
+ "Body Text": "Metin",
+ "Main Text": "Ana metin",
+ "Roblox’s current font, Builder Sans (the one Roblox used before), or your computer’s own font.": "Roblox'un şu anki yazı tipi, Builder Sans (Roblox'un önceden kullandığı) veya bilgisayarının kendi yazı tipi.",
+ "Secondary Text": "İkincil metin",
+ "Show Avatar": "Avatarı Göster",
+ "Show Items": "Eşyaları Göster",
+ "Tabs": "Sekmeler",
+ "Tabs keeps About and Creations in two tabs. Two Columns shows About, badges and communities on the left, and experiences, friends and favorites on the right.": "Sekmeler, Hakkında ve Kreasyonlar’ı iki sekmede tutar. İki Sütun; Hakkında, rozetler ve toplulukları solda, deneyimler, arkadaşlar ve favorileri sağda gösterir.",
+ "This user has no description": "Bu kullanıcının açıklaması yok",
+ "Two Columns": "İki Sütun"
 }

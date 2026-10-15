@@ -345,6 +345,8 @@
     if (state !== s) return;
     const avatar = s.root.querySelector('.profile-avatar-image');
     if (avatar) statusIcon(avatar, map.get(String(s.userId)), 'profile-avatar-status');
+    const line = s.root.querySelector('.routility-columns-presence');
+    if (line) presenceLine(line, map.get(String(s.userId)));
     s.root.querySelectorAll('.routility-classic-people .friend').forEach((li, i) => {
       const f = s.data.friends[i];
       const box = li.querySelector('.avatar-container');
@@ -715,6 +717,7 @@
     area.setSelectionRange(area.value.length, area.value.length);
     const close = (key) => {
       aboutContent(body, s.data.user.description);
+      if (s.columns) noDescription(s, body);
       editBtn.hidden = false;
       if (key) editBtn.focus();
     };
@@ -924,9 +927,11 @@
     const more = el('button', 'btn btn-control-xs load-more-button routility-load-more', lt('Load More'));
     more.type = 'button';
     let shown = 0;
+    let pages = null;
     const showMore = () => {
-      for (const it of items.slice(shown, shown + GRID_PAGE)) grid.appendChild(gridItem(it));
-      shown = Math.min(items.length, shown + GRID_PAGE);
+      for (const it of items.slice(shown, s.columns ? items.length : shown + GRID_PAGE)) grid.appendChild(gridItem(it));
+      shown = s.columns ? items.length : Math.min(items.length, shown + GRID_PAGE);
+      if (s.columns && !pages) grid.after(pages = window.RoUtilityUI.pager(grid, 2));
       more.hidden = grid.hidden || shown >= items.length;
       applyThumbs(s, grid);
     };
@@ -934,13 +939,14 @@
     const sw = switcher(kind, items);
     body.append(sw, grid, more);
     const setView = (view) => {
-      const isGrid = view === 'grid';
+      const isGrid = s.columns || view === 'grid';
       grid.hidden = !isGrid;
       sw.hidden = isGrid;
       if (isGrid && !shown) showMore();
       more.hidden = !isGrid || shown >= items.length;
+      if (pages) pages.hidden = !isGrid;
       buttons.textContent = '';
-      buttons.append(viewButton('slideshow', !isGrid, () => pick('slideshow')), viewButton('grid', isGrid, () => pick('grid')));
+      if (!s.columns) buttons.append(viewButton('slideshow', !isGrid, () => pick('slideshow')), viewButton('grid', isGrid, () => pick('grid')));
     };
     const pick = (view) => {
       setView(view);
@@ -1331,11 +1337,11 @@
     const badges = s.data.robloxBadges;
     const more = el('button', 'btn-fixed-width btn-secondary-xs btn-more see-all-link routility-see-more', lt('See More'));
     more.type = 'button';
-    sec.appendChild(header(lt('Roblox Badges'), badges.length > 6 ? more : null));
+    sec.appendChild(header(lt('Roblox Badges'), !s.columns && badges.length > 6 ? more : null));
     const list = el('ul', 'hlist badge-list');
     badges.forEach((b, i) => {
       const li = badgeTile('https://www.roblox.com/info/roblox-badges', b.name, b.imageUrl);
-      if (i >= 6) li.hidden = true;
+      if (!s.columns && i >= 6) li.hidden = true;
       list.appendChild(li);
     });
     more.addEventListener('click', () => {
@@ -1345,6 +1351,7 @@
     });
     const body = el('div', 'section-content remove-panel');
     body.appendChild(list);
+    if (s.columns) body.appendChild(window.RoUtilityUI.pager(list, 2));
     sec.appendChild(body);
     if (!badges.length) sec.hidden = true;
     return sec;
@@ -1354,9 +1361,10 @@
     const sec = el('div', 'section routility-classic-badges');
     sec.appendChild(header(lt('Badges'), seeAll(`/users/${s.userId}/inventory#!/badges`, lt('See All'))));
     const list = el('ul', 'hlist badge-list');
-    for (const b of s.data.badges.slice(0, 6)) list.appendChild(badgeTile(`/badges/${b.id}`, b.displayName || b.name, s.thumbs.get('badge:' + b.id)));
+    for (const b of s.columns ? s.data.badges : s.data.badges.slice(0, 6)) list.appendChild(badgeTile(`/badges/${b.id}`, b.displayName || b.name, s.thumbs.get('badge:' + b.id)));
     const body = el('div', 'section-content remove-panel');
     body.appendChild(list);
+    if (s.columns) body.appendChild(window.RoUtilityUI.pager(list, 2));
     sec.appendChild(body);
     if (!s.data.badges.length) sec.hidden = true;
     return sec;
@@ -1407,6 +1415,89 @@
     return { wrap, panes };
   }
 
+  function buildTabbed(s, root) {
+    const data = s.data;
+    const tabs = buildTabs(s);
+    s.panes = tabs.panes;
+    const about = tabs.panes.about;
+    about.appendChild(buildAbout(s));
+    about.appendChild(buildWearing(s));
+    about.appendChild(buildFriends(s));
+    if (!data.user.isBanned) about.appendChild(buildCollections(s));
+    about.appendChild(buildGroups(s));
+    about.appendChild(buildGames(lt('Favorites'), seeAll(`/users/${s.userId}/favorites`, lt('Favorites')), data.favorites, s.thumbs, 'favorite-games-container routility-classic-favorites'));
+    about.appendChild(buildRobloxBadges(s));
+    about.appendChild(buildBadges(s));
+    about.appendChild(buildStats(s));
+    root.appendChild(tabs.wrap);
+  }
+
+  function noDescription(s, body) {
+    if (!s.data.user.description) body.appendChild(el('p', 'text-secondary routility-columns-nodesc', lt('This user has no description')));
+  }
+
+  function buildColumnsAbout(s) {
+    const sec = buildAbout(s);
+    sec.classList.add('routility-classic-wearing');
+    const [body, footer] = sec.querySelectorAll(':scope > .section-content');
+    const panel = el('div', 'section-content routility-columns-about');
+    panel.appendChild(el('div', 'routility-columns-presence'));
+    const row = buildWearing(s).querySelector('.routility-classic-wearing-row');
+    const items = el('button', 'btn-control-sm routility-classic-items-toggle', lt('Show Items'));
+    items.type = 'button';
+    items.addEventListener('click', () => {
+      const on = row.classList.toggle('routility-show-items');
+      items.textContent = on ? lt('Show Avatar') : lt('Show Items');
+    });
+    row.appendChild(items);
+    panel.appendChild(row);
+    body.classList.remove('remove-panel');
+    body.classList.add('routility-columns-desc');
+    noDescription(s, body);
+    panel.appendChild(body);
+    panel.appendChild(buildStats(s).querySelector('.profile-stats-container'));
+    panel.appendChild(footer.firstChild);
+    footer.remove();
+    sec.appendChild(panel);
+    return sec;
+  }
+
+  function presenceLine(line, p) {
+    line.textContent = '';
+    const type = p ? p.userPresenceType : null;
+    if (type == null) return;
+    if (type === 2 && p.lastLocation) {
+      const place = p.rootPlaceId || p.placeId;
+      const a = el(place ? 'a' : 'span', 'routility-columns-presence-game', `[ ${p.lastLocation} ]`);
+      if (place) a.href = `/games/${place}`;
+      line.appendChild(a);
+      return;
+    }
+    const label = { 0: LT('Offline'), 1: LT('Online'), 2: LT('Playing'), 3: LT('In Studio') }[type];
+    if (label) line.appendChild(el('span', `routility-columns-presence-${type}`, `[ ${lt(label)} ]`));
+  }
+
+  function buildColumns(s, root) {
+    const data = s.data;
+    root.classList.add('routility-classic-columns');
+    const grid = el('div', 'routility-columns');
+    const left = el('div', 'routility-column routility-column-left');
+    const right = el('div', 'routility-column routility-column-right');
+    s.panes = { creations: el('div', 'routility-column-creations') };
+    left.append(buildRobloxBadges(s), buildBadges(s), buildGroups(s));
+    const favorites = buildGames(lt('Favorites'), seeAll(`/users/${s.userId}/favorites`, lt('Favorites')), data.favorites, s.thumbs, 'section favorite-games-container routility-classic-favorites');
+    const cards = favorites.querySelector('.game-cards');
+    const panel = el('div', 'section-content');
+    cards.replaceWith(panel);
+    panel.appendChild(cards);
+    panel.appendChild(window.RoUtilityUI.pager(cards, 2));
+    right.append(buildFriends(s), favorites);
+    grid.append(buildColumnsAbout(s), s.panes.creations, left, right);
+    root.appendChild(grid);
+    if (!data.user.isBanned) root.appendChild(buildCollections(s));
+    loadCreations(s);
+  }
+
   async function gameDetails(list) {
     const ids = list.map(g => g.universeId);
     if (!ids.length) return list;
@@ -1442,7 +1533,7 @@
     const pane = s.panes.creations;
     pane.appendChild(el('span', 'spinner spinner-default routility-classic-spinner'));
     const base = (s.data.games || []).map(x => ({ universeId: x.id, placeId: x.rootPlace?.id, name: x.name, description: x.description || '', visits: Number(x.placeVisits) || 0 }));
-    const [games, models, items] = await Promise.all([gameDetails(base), creatorModels(s.userId), creatorItems(s.userId)]);
+    const [games, models, items] = await Promise.all([gameDetails(base), s.columns ? [] : creatorModels(s.userId), s.columns ? [] : creatorItems(s.userId)]);
     const reqs = [];
     for (const g of games) {
       reqs.push({ requestId: 'gameicon:' + g.universeId, targetId: g.universeId, type: 'GameIcon', size: '512x512' });
@@ -1462,9 +1553,12 @@
       game: g,
     }));
     pane.appendChild(showcase(s, { key: 'games', title: lt('Experiences'), kind: 'games', items: slides, gridItem: it => gameCard(it.game, s.thumbs.get('game:' + it.game.universeId)), extraClass: 'profile-game routility-classic-creations' }));
-    pane.appendChild(assetSection(lt('Models'), seeAll(`https://create.roblox.com/store/models?keyword=${encodeURIComponent(s.data.user.name)}`, lt('See All')), models, 'routility-classic-models'));
-    pane.appendChild(assetSection(lt('Clothing'), seeAll(`/catalog?CreatorName=${encodeURIComponent(s.data.user.name)}&CreatorType=User`, lt('See All')), items, 'routility-classic-clothing'));
-    if (!games.length && !models.length && !items.length) pane.appendChild(el('p', 'section-content-off routility-classic-empty', lt('No creations yet.')));
+    if (!s.columns) {
+      pane.appendChild(assetSection(lt('Models'), seeAll(`https://create.roblox.com/store/models?keyword=${encodeURIComponent(s.data.user.name)}`, lt('See All')), models, 'routility-classic-models'));
+      pane.appendChild(assetSection(lt('Clothing'), seeAll(`/catalog?CreatorName=${encodeURIComponent(s.data.user.name)}&CreatorType=User`, lt('See All')), items, 'routility-classic-clothing'));
+    }
+    if (s.columns) s.root.querySelector('.routility-columns')?.classList.toggle('routility-columns-games', games.length > 0);
+    else if (!games.length && !models.length && !items.length) pane.appendChild(el('p', 'section-content-off routility-classic-empty', lt('No creations yet.')));
     applyThumbs(s, pane);
   }
 
@@ -1476,7 +1570,37 @@
     return Number.isSafeInteger(posts) && posts >= 0 ? posts : null;
   }
 
-  async function loadData(userId) {
+  const PROFILE_CACHE = 'routilityProfileCache';
+
+  function cachedData(key) {
+    try {
+      const hit = JSON.parse(sessionStorage.getItem(PROFILE_CACHE) || '{}')[key];
+      return hit && Date.now() - hit.at < 120000 ? hit.data : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function keepData(key, data) {
+    try {
+      const all = JSON.parse(sessionStorage.getItem(PROFILE_CACHE) || '{}');
+      all[key] = { at: Date.now(), data };
+      const keys = Object.keys(all).sort((a, b) => all[b].at - all[a].at);
+      for (const k of keys.slice(3)) delete all[k];
+      sessionStorage.setItem(PROFILE_CACHE, JSON.stringify(all));
+    } catch {}
+  }
+
+  async function profileData(userId, columns) {
+    const key = userId + (columns ? ':columns' : '');
+    const hit = cachedData(key);
+    if (hit) return hit;
+    const data = await loadData(userId, columns);
+    if (data) keepData(key, data);
+    return data;
+  }
+
+  async function loadData(userId, columns) {
     const base = 'https://';
     const [forum, user, history, friendsCount, followers, followings, premium, wearing, robloxBadges, badges, favs, games, find, groups, socials] = await Promise.all([
       forumPosts(userId).catch(() => null),
@@ -1488,8 +1612,8 @@
       quick(`${base}premiumfeatures.roblox.com/v1/users/${userId}/validate-membership`),
       quick(`${base}avatar.roblox.com/v1/users/${userId}/currently-wearing`),
       quick(`${base}accountinformation.roblox.com/v1/users/${userId}/roblox-badges`),
-      quick(`${base}badges.roblox.com/v1/users/${userId}/badges?limit=10&sortOrder=Desc`),
-      quick(`${base}games.roblox.com/v2/users/${userId}/favorite/games?limit=10&sortOrder=Desc`),
+      quick(`${base}badges.roblox.com/v1/users/${userId}/badges?limit=${columns ? 50 : 10}&sortOrder=Desc`),
+      quick(`${base}games.roblox.com/v2/users/${userId}/favorite/games?limit=${columns ? 50 : 10}&sortOrder=Desc`),
       quick(`${base}games.roblox.com/v2/users/${userId}/games?accessFilter=Public&limit=50&sortOrder=Asc`),
       jsonStatus(`${base}friends.roblox.com/v1/users/${userId}/friends/find?limit=9`, 3),
       quick(`${base}groups.roblox.com/v1/users/${userId}/groups/roles?includeLocked=true`),
@@ -1499,7 +1623,7 @@
     const friendIds = ((find.body && find.body.PageItems) || []).map(f => Number(f.id)).filter(id => Number.isSafeInteger(id) && id > 0).slice(0, 9);
     const friendsHidden = find.status === 403 && (friendsCount?.count || 0) > 0;
     const hiddenSlots = Math.max(0, Math.min(9 - friendIds.length, ((find.body && find.body.PageItems) || []).filter(f => !(Number(f.id) > 0)).length));
-    const favorites = ((favs && favs.data) || []).slice(0, 6).map(x => ({ universeId: x.id, placeId: x.rootPlace?.id, name: x.name }));
+    const favorites = ((favs && favs.data) || []).slice(0, columns ? 50 : 6).map(x => ({ universeId: x.id, placeId: x.rootPlace?.id, name: x.name }));
     return {
       user,
       history: (history && history.data) || [],
@@ -1587,12 +1711,12 @@
     });
   }
 
-  function skeleton(modern) {
+  function skeleton(modern, columns) {
     const early = document.querySelector('#content > .routility-classic-loading');
-    if (early && early.classList.contains('routility-modern') === modern) return early;
+    if (early && early.classList.contains('routility-modern') === modern && early.classList.contains('routility-classic-columns') === columns) return early;
     early?.remove();
     if (modern) return window.RoUtilityModernSkeleton ? window.RoUtilityModernSkeleton() : el('div', 'routility-modern routility-injected routility-classic-loading');
-    return window.RoUtilityClassicSkeleton ? window.RoUtilityClassicSkeleton() : el('div', 'routility-classic routility-injected routility-classic-loading');
+    return window.RoUtilityClassicSkeleton ? window.RoUtilityClassicSkeleton(columns) : el('div', 'routility-classic routility-injected routility-classic-loading');
   }
 
   function mount(root) {
@@ -1634,19 +1758,8 @@
     }
     const root = el('div', 'routility-classic routility-injected routility-classic-reveal');
     root.appendChild(buildHeader(s));
-    const tabs = buildTabs(s);
-    s.panes = tabs.panes;
-    const about = tabs.panes.about;
-    about.appendChild(buildAbout(s));
-    about.appendChild(buildWearing(s));
-    about.appendChild(buildFriends(s));
-    if (!data.user.isBanned) about.appendChild(buildCollections(s));
-    about.appendChild(buildGroups(s));
-    about.appendChild(buildGames(lt('Favorites'), seeAll(`/users/${s.userId}/favorites`, lt('Favorites')), data.favorites, s.thumbs, 'favorite-games-container routility-classic-favorites'));
-    about.appendChild(buildRobloxBadges(s));
-    about.appendChild(buildBadges(s));
-    about.appendChild(buildStats(s));
-    root.appendChild(tabs.wrap);
+    if (s.columns) buildColumns(s, root);
+    else buildTabbed(s, root);
     s.root.replaceWith(root);
     s.root = root;
     renderWearPage(s, 0);
@@ -1664,7 +1777,7 @@
   async function setup(userId, opts = {}) {
     if (state && state.userId === userId) return;
     teardown();
-    const s = { userId, thumbs: new Map(), wearPage: 0, terminated: !!opts.terminated, modern: !!opts.modern, reveal: opts.reveal !== false, root: skeleton(!!opts.modern) };
+    const s = { userId, thumbs: new Map(), wearPage: 0, terminated: !!opts.terminated, modern: !!opts.modern, columns: !opts.modern && opts.layout === 'columns', reveal: opts.reveal !== false, root: skeleton(!!opts.modern, !opts.modern && opts.layout === 'columns') };
     state = s;
     document.documentElement.classList.add(ON_CLASS);
     const placeRoot = () => { if (state === s && !s.root.isConnected) mount(s.root); };
@@ -1674,7 +1787,7 @@
     s.onDoc = (e) => { if (!e.target.closest?.('.routility-classic-more-wrap')) closeMenu(); };
     document.addEventListener('click', s.onDoc);
 
-    const data = await loadData(userId);
+    const data = await Promise.race([profileData(userId, s.columns), new Promise(r => setTimeout(() => r(null), 20000))]);
     if (state !== s) return;
     if (!data) {
       teardown();
@@ -1685,7 +1798,7 @@
     for (const id of data.wearing) reqs.push({ requestId: 'asset:' + id, targetId: id, type: 'Asset', size: '420x420' });
     for (const f of data.friends) reqs.push({ requestId: 'head:' + f.id, targetId: f.id, type: 'AvatarHeadShot', size: '150x150' });
     for (const g of data.favorites) reqs.push({ requestId: 'game:' + g.universeId, targetId: g.universeId, type: 'GameIcon', size: '256x256' });
-    for (const b of data.badges.slice(0, 6)) {
+    for (const b of s.columns ? data.badges : data.badges.slice(0, 6)) {
       const img = Number(b.displayIconImageId || b.iconImageId);
       reqs.push(img > 0 ? { requestId: 'badge:' + b.id, targetId: img, type: 'Asset', size: '420x420' } : { requestId: 'badge:' + b.id, targetId: b.id, type: 'BadgeIcon', size: '150x150' });
     }
@@ -1773,6 +1886,15 @@
     state = null;
     document.documentElement.classList.remove(ON_CLASS, PROXY_CLASS);
   }
+
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== 'local' || !changes.routilitySettings || !state || state.modern) return;
+    const layout = (changes.routilitySettings.newValue || {}).classicLayout;
+    if ((layout === 'columns') === !!state.columns) return;
+    const { userId, terminated, reveal } = state;
+    teardown();
+    setup(userId, { terminated, reveal, layout });
+  });
 
   window.RoUtilityClassic = { setup, teardown };
 })();

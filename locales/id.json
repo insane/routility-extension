@@ -2596,5 +2596,15 @@
  "Flowers": "Bunga",
  "Page": "Halaman",
  "Buttons & Accents": "Tombol & Aksen",
- "Normal Text": "Teks Biasa"
+ "Normal Text": "Teks Biasa",
+ "Body Text": "Teks Isi",
+ "Main Text": "Teks Utama",
+ "Roblox’s current font, Builder Sans (the one Roblox used before), or your computer’s own font.": "Font Roblox saat ini, Builder Sans (yang dipakai Roblox sebelumnya), atau font komputermu sendiri.",
+ "Secondary Text": "Teks Sekunder",
+ "Show Avatar": "Tampilkan Avatar",
+ "Show Items": "Tampilkan Item",
+ "Tabs": "Tab",
+ "Tabs keeps About and Creations in two tabs. Two Columns shows About, badges and communities on the left, and experiences, friends and favorites on the right.": "Tab menyimpan Tentang dan Kreasi dalam dua tab. Dua Kolom menampilkan Tentang, lencana, dan komunitas di kiri, serta pengalaman, teman, dan favorit di kanan.",
+ "This user has no description": "Pengguna ini tidak punya deskripsi",
+ "Two Columns": "Dua Kolom"
 }

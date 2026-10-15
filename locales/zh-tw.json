@@ -2596,5 +2596,15 @@
  "Flowers": "花朵",
  "Page": "頁面",
  "Buttons & Accents": "按鈕與強調色",
- "Normal Text": "一般文字"
+ "Normal Text": "一般文字",
+ "Body Text": "內文",
+ "Main Text": "主要文字",
+ "Roblox’s current font, Builder Sans (the one Roblox used before), or your computer’s own font.": "Roblox 目前的字型、Builder Sans（Roblox 之前使用的字型），或你電腦內建的字型。",
+ "Secondary Text": "次要文字",
+ "Show Avatar": "顯示虛擬人偶",
+ "Show Items": "顯示物品",
+ "Tabs": "分頁",
+ "Tabs keeps About and Creations in two tabs. Two Columns shows About, badges and communities on the left, and experiences, friends and favorites on the right.": "分頁會把「簡介」和「創作」分成兩個分頁。兩欄會在左側顯示簡介、徽章和社群，右側顯示體驗、好友和收藏。",
+ "This user has no description": "此使用者沒有簡介",
+ "Two Columns": "兩欄"
 }

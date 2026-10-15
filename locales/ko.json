@@ -2596,5 +2596,15 @@
  "Flowers": "꽃",
  "Page": "페이지",
  "Buttons & Accents": "버튼 및 강조색",
- "Normal Text": "일반 텍스트"
+ "Normal Text": "일반 텍스트",
+ "Body Text": "본문",
+ "Main Text": "기본 텍스트",
+ "Roblox’s current font, Builder Sans (the one Roblox used before), or your computer’s own font.": "Roblox의 현재 글꼴, Builder Sans(Roblox가 예전에 쓰던 글꼴), 또는 내 컴퓨터의 글꼴.",
+ "Secondary Text": "보조 텍스트",
+ "Show Avatar": "아바타 보기",
+ "Show Items": "아이템 보기",
+ "Tabs": "탭",
+ "Tabs keeps About and Creations in two tabs. Two Columns shows About, badges and communities on the left, and experiences, friends and favorites on the right.": "탭은 정보와 창작물을 두 개의 탭으로 나눕니다. 두 열은 왼쪽에 정보, 배지, 커뮤니티를, 오른쪽에 경험, 친구, 즐겨찾기를 표시합니다.",
+ "This user has no description": "이 사용자는 설명이 없습니다",
+ "Two Columns": "두 열"
 }

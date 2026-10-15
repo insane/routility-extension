@@ -2721,5 +2721,15 @@
  "Flowers": "Fleurs",
  "Page": "Page",
  "Buttons & Accents": "Boutons et accents",
- "Normal Text": "Texte normal"
+ "Normal Text": "Texte normal",
+ "Body Text": "Texte du corps",
+ "Main Text": "Texte principal",
+ "Roblox’s current font, Builder Sans (the one Roblox used before), or your computer’s own font.": "La police actuelle de Roblox, Builder Sans (celle que Roblox utilisait avant), ou la police de ton ordinateur.",
+ "Secondary Text": "Texte secondaire",
+ "Show Avatar": "Afficher l’avatar",
+ "Show Items": "Afficher les objets",
+ "Tabs": "Onglets",
+ "Tabs keeps About and Creations in two tabs. Two Columns shows About, badges and communities on the left, and experiences, friends and favorites on the right.": "Onglets garde À propos et Créations dans deux onglets. Deux colonnes affiche À propos, les badges et les communautés à gauche, et les expériences, les amis et les favoris à droite.",
+ "This user has no description": "Cet utilisateur n’a pas de description",
+ "Two Columns": "Deux colonnes"
 }

@@ -2596,5 +2596,15 @@
  "Flowers": "Hoa",
  "Page": "Trang",
  "Buttons & Accents": "Nút & màu nhấn",
- "Normal Text": "Văn bản thường"
+ "Normal Text": "Văn bản thường",
+ "Body Text": "Văn bản nội dung",
+ "Main Text": "Văn bản chính",
+ "Roblox’s current font, Builder Sans (the one Roblox used before), or your computer’s own font.": "Phông chữ hiện tại của Roblox, Builder Sans (phông Roblox dùng trước đây), hoặc phông của máy tính bạn.",
+ "Secondary Text": "Văn bản phụ",
+ "Show Avatar": "Hiện avatar",
+ "Show Items": "Hiện vật phẩm",
+ "Tabs": "Thẻ",
+ "Tabs keeps About and Creations in two tabs. Two Columns shows About, badges and communities on the left, and experiences, friends and favorites on the right.": "Thẻ giữ Giới thiệu và Sáng tạo trong hai thẻ. Hai cột hiển thị Giới thiệu, huy hiệu và cộng đồng bên trái, còn trải nghiệm, bạn bè và mục yêu thích bên phải.",
+ "This user has no description": "Người dùng này chưa có mô tả",
+ "Two Columns": "Hai cột"
 }
