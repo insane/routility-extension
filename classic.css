@@ -440,14 +440,18 @@
   width: 0;
   height: 0;
   border-style: solid;
-  border-color: transparent;
+  border-color: transparent transparent var(--color-surface-300);
   border-width: 0 5px 5px;
 }
 
 .routility-classic .routility-pastnames-tip .tooltip-inner {
   min-width: 150px;
   max-width: 250px;
-  padding: 6px;
+  padding: 6px 10px;
+  border-radius: var(--radius-small, 4px);
+  background-color: var(--color-surface-300);
+  color: var(--color-content-default);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.3em;
@@ -1885,4 +1889,45 @@
 
 .routility-classic .routility-about-error {
   margin: 0;
+}
+
+html.routility-themed .routility-classic .section-content:not(.remove-panel),
+html.routility-themed .routility-classic .layer,
+html.routility-themed .routility-classic .routility-classic-wearing-row,
+html.routility-themed .routility-classic .switcher.slide-switcher,
+html.routility-themed .routility-classic .rbx-tabs-horizontal .nav-tabs {
+  background-color: var(--color-surface-100) !important;
+  border-radius: var(--radius-large, 12px) !important;
+}
+
+html.routility-themed .routility-classic .rbx-tab-heading {
+  background-color: transparent !important;
+}
+
+html.routility-themed .routility-classic .routility-see-all,
+html.routility-themed .routility-classic .routility-see-more {
+  color: var(--color-content-emphasis) !important;
+}
+
+html.routility-themed .routility-classic :is(.asset-thumb-container, .game-card-thumb-container, .thumbnail-2d-container, .routility-classic-thumb, .routility-classic-friend-avatar, .routility-classic-friend-avatar img, .avatar-card-link, .slide-item-image) {
+  background-color: var(--color-shift-200) !important;
+}
+
+html.routility-themed .routility-classic .profile-avatar-left .thumbnail-2d-container {
+  background-color: transparent !important;
+}
+
+html.routility-themed .routility-classic .rbx-tabs-horizontal .nav-tabs,
+html.routility-themed .routility-classic .routility-classic-wearing-row {
+  overflow: hidden;
+}
+
+html.routility-themed .routility-classic .switcher-items {
+  overflow: hidden;
+  border-radius: var(--radius-large, 12px);
+}
+
+html.routility-themed .routility-classic .routility-classic-wearing-row > *,
+html.routility-themed .routility-classic .slide-item-container > * {
+  border-radius: 0 !important;
 }

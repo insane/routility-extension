@@ -232,6 +232,7 @@
         css += fxCss(themeFx, themeColors);
         css += ` :is(${TILES}) { --color-common-shimmer: ${lightColor(themeColors.card || themeColors.bg) ? '#e4e5e9' : '#2b2d34'} !important; }`;
         css += ' .icon-filled-verified-backplate, .verified-badge-icon, [data-rblx-verified-badge-icon], .routility-verified, .routility-admin-badge, .icon-regular-roblox-plus, .icon-display-name-badge-plus, .routility-logo { --color-system-emphasis: #335fff !important; --color-system-contrast: #f7f7f8 !important; --color-content-emphasis: #f7f7f8 !important; }';
+        css += ' :is(.icon-display-name-badge-plus, .routility-name-badges .icon-regular-roblox-plus, .avatar-name-container .icon-regular-roblox-plus, :is(.text-truncate-end, .text-no-wrap, .text-overflow) ~ .icon-regular-roblox-plus, span.inline-flex.shrink-0.gap-xxsmall > .icon-regular-roblox-plus) { color: var(--color-content-default) !important; }';
       }
     }
     if (!css && !themeStyle) return;

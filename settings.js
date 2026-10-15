@@ -3046,7 +3046,14 @@
 
   function ensureMenu(menu) {
     if (menu.querySelector('.routility-menu-item')) return;
-    menu.appendChild(menuLink('routility-menu-entry', 'RoUtility', TABS[0].hash, () => goTo(TABS[0].hash)));
+    const split = el('li', 'routility-injected routility-menu-split');
+    split.setAttribute('role', 'separator');
+    const entry = menuLink('routility-menu-entry', 'RoUtility', TABS[0].hash, () => goTo(TABS[0].hash));
+    const logo = el('img', 'routility-menu-entry-logo');
+    logo.src = chrome.runtime.getURL('icons/logo.png');
+    logo.alt = '';
+    entry.querySelector('.font-caption-header').before(logo);
+    menu.append(split, entry);
     menu.appendChild(menuLink('routility-sub routility-menu-back', lt('‹ Roblox Settings'), lastNativeHash, () => {
       location.hash = lastNativeHash;
     }));
