@@ -5645,10 +5645,10 @@ html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertica
 }
 
 html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertical) > .menu-option.active {
-  background-color: var(--color-shift-200);
+  background-color: var(--color-shift-300, rgba(127, 127, 127, 0.22));
 }
 
-html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertical) > .menu-option.active::before {
+html.routility-themed.routility-menu-bar .menu-vertical:not(.settings-left-navigation .menu-vertical) > .menu-option.active::before {
   content: "";
   position: absolute;
   top: 9px;

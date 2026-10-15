@@ -3610,12 +3610,6 @@
     }
   }
 
-  const menuStyle = (settings) => document.documentElement.classList.toggle('routility-menu-bar', (settings || {}).menuHighlight === 'bar');
-  chrome.storage.local.get('routilitySettings', (st) => menuStyle(st.routilitySettings));
-  chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === 'local' && changes.routilitySettings && chrome.runtime?.id) menuStyle(changes.routilitySettings.newValue);
-  });
-
   if (booting) setTimeout(() => { if (booting) settleSoon(); }, 8000);
   const boot = () => window.RoUtilityI18n.ready.then(() => {
     langReady = true;
