@@ -2671,5 +2671,9 @@
  "Your Robux Rate": "Sua taxa de Robux",
  "Your Settings": "Suas configurações",
  "Your Slots": "Seus espaços",
- "Your Status": "Seu status"
+ "Your Status": "Seu status",
+ "Extra Requests": "Pedidos extras",
+ "Fake Friend Requests": "Pedidos de amizade falsos",
+ "How many requests to add to your real ones.": "Quantos pedidos somar aos reais.",
+ "More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.": "Mais pedidos de amizade no selo de Amigos do menu e no bloco Adicionar amigos da Página inicial. Seus pedidos reais são somados, então um novo ainda conta mais um. Como no Roblox, o menu mostra 500+ e a Página inicial 99+ depois desses números."
 }

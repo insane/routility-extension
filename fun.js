@@ -66,8 +66,14 @@
 
   const buying = () => !!settings && settings.fakeBuy === true;
 
+  function requests() {
+    const pick = settings.fakeRequestsAdd === undefined ? 'amount' : String(settings.fakeRequestsAdd);
+    const n = Number(pick === 'amount' ? String(settings.fakeRequestsAmount === undefined ? '500' : settings.fakeRequestsAmount).replace(/[^\d]/g, '') : pick);
+    return settings.fakeRequests === true && Number.isFinite(n) ? Math.min(Math.max(Math.floor(n), 0), 1e9) : 0;
+  }
+
   function config() {
-    return { robux: settings.fakeRobux === true, amount: amount(), mult: multiplier(), buy: buying(), spent: state.spent, items: state.items, worn: state.worn };
+    return { robux: settings.fakeRobux === true, amount: amount(), mult: multiplier(), buy: buying(), spent: state.spent, items: state.items, worn: state.worn, requests: requests() };
   }
 
   function post() {

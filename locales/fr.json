@@ -2671,5 +2671,9 @@
  "Your Robux Rate": "Ton taux Robux",
  "Your Settings": "Tes paramètres",
  "Your Slots": "Tes emplacements",
- "Your Status": "Ton statut"
+ "Your Status": "Ton statut",
+ "Extra Requests": "Demandes en plus",
+ "Fake Friend Requests": "Fausses demandes d’ami",
+ "How many requests to add to your real ones.": "Combien de demandes ajouter à tes vraies demandes.",
+ "More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.": "Plus de demandes d’ami sur le badge Amis du menu et sur la vignette Ajouter des amis de l’accueil. Tes vraies demandes s’ajoutent, donc une nouvelle compte toujours pour un. Comme sur Roblox, le menu affiche 500+ et l’accueil 99+ au-delà."
 }

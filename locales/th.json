@@ -2546,5 +2546,9 @@
  "Your Robux Rate": "อัตรา Robux ของคุณ",
  "Your Settings": "การตั้งค่าของคุณ",
  "Your Slots": "ช่องของคุณ",
- "Your Status": "สถานะของคุณ"
+ "Your Status": "สถานะของคุณ",
+ "Extra Requests": "คำขอเพิ่มเติม",
+ "Fake Friend Requests": "คำขอเป็นเพื่อนปลอม",
+ "How many requests to add to your real ones.": "จำนวนคำขอที่จะบวกเพิ่มจากคำขอจริง",
+ "More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.": "เพิ่มจำนวนคำขอเป็นเพื่อนบนป้ายเพื่อนในเมนูและไทล์เพิ่มเพื่อนในหน้าแรก คำขอจริงของคุณจะถูกบวกเพิ่ม คำขอใหม่จึงยังนับเพิ่มทีละหนึ่ง เหมือน Roblox เมนูจะแสดง 500+ และหน้าแรกจะแสดง 99+ เมื่อเกินจำนวนนั้น"
 }

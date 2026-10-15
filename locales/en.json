@@ -2671,5 +2671,9 @@
  "Your Robux Rate": "Your Robux Rate",
  "Your Settings": "Your Settings",
  "Your Slots": "Your Slots",
- "Your Status": "Your Status"
+ "Your Status": "Your Status",
+ "Extra Requests": "Extra Requests",
+ "Fake Friend Requests": "Fake Friend Requests",
+ "How many requests to add to your real ones.": "How many requests to add to your real ones.",
+ "More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.": "More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them."
 }

@@ -2546,5 +2546,9 @@
  "Your Robux Rate": "你的 Robux 汇率",
  "Your Settings": "你的设置",
  "Your Slots": "你的槽位",
- "Your Status": "你的状态"
+ "Your Status": "你的状态",
+ "Extra Requests": "额外请求",
+ "Fake Friend Requests": "虚假好友请求",
+ "How many requests to add to your real ones.": "在真实请求之上增加多少个请求。",
+ "More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.": "让菜单中的好友徽章和首页的“添加好友”卡片显示更多好友请求。你的真实请求会叠加上去，所以新请求仍会加一。和 Roblox 一样，超过后菜单显示 500+，首页显示 99+。"
 }

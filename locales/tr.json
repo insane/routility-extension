@@ -2671,5 +2671,9 @@
  "Your Robux Rate": "Robux Kurun",
  "Your Settings": "Ayarların",
  "Your Slots": "Yuvaların",
- "Your Status": "Durumun"
+ "Your Status": "Durumun",
+ "Extra Requests": "Ek İstekler",
+ "Fake Friend Requests": "Sahte Arkadaşlık İstekleri",
+ "How many requests to add to your real ones.": "Gerçek isteklerine kaç istek ekleneceği.",
+ "More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.": "Menüdeki Arkadaşlar rozetinde ve Ana Sayfa’daki Arkadaş Ekle kutucuğunda daha fazla arkadaşlık isteği. Gerçek isteklerin üstüne eklenir, yani yeni bir istek yine bir artırır. Roblox’taki gibi menü 500’ü geçince 500+, Ana Sayfa 99’u geçince 99+ gösterir."
 }

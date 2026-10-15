@@ -2671,5 +2671,9 @@
  "Your Robux Rate": "Dein Robux-Kurs",
  "Your Settings": "Deine Einstellungen",
  "Your Slots": "Deine Plätze",
- "Your Status": "Dein Status"
+ "Your Status": "Dein Status",
+ "Extra Requests": "Zusätzliche Anfragen",
+ "Fake Friend Requests": "Falsche Freundschaftsanfragen",
+ "How many requests to add to your real ones.": "Wie viele Anfragen zu deinen echten hinzukommen.",
+ "More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.": "Mehr Freundschaftsanfragen am Freunde-Abzeichen im Menü und an der Kachel „Freunde hinzufügen“ auf der Startseite. Deine echten Anfragen kommen dazu, eine neue zählt also weiterhin um eins hoch. Wie bei Roblox zeigt das Menü ab 500 „500+“ und die Startseite ab 99 „99+“."
 }
