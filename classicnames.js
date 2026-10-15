@@ -103,7 +103,12 @@
     let queued = false;
     const flush = () => {
       queued = false;
-      for (const n of pending) if (n.isConnected) renameIn(n);
+      for (const n of pending) {
+        if (!n.isConnected) continue;
+        let p = n.parentNode;
+        while (p && !pending.has(p)) p = p.parentNode;
+        if (!p) renameIn(n);
+      }
       pending.clear();
     };
     namesObserver = new MutationObserver((list) => {
