@@ -10097,6 +10097,10 @@ html.routility-classic-premium :is(.icon-display-name-badge-plus, .routility-nam
   --svg: var(--routility-premium-svg);
 }
 
+html.routility-classic-premium .icon-regular-roblox-plus:has(+ :is(h1, h2, h3, h4)) {
+  --svg: var(--routility-premium-svg);
+}
+
 .rt-m-premium {
   width: 18px;
   height: 18px;
