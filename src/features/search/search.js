@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el } = window.RoUtilityUI;
+  const { el, json } = window.RoUtilityUI;
   const { lt } = window.RoUtilityI18n;
   const DEBOUNCE = 180;
   const cache = new Map();
@@ -17,15 +17,6 @@
   let token = 0;
   let friendIds = null;
   let current = { query: '', rows: null };
-
-  async function json(url, opts) {
-    try {
-      const res = await fetch(url, { credentials: 'include', ...opts });
-      return res.ok ? await res.json() : null;
-    } catch {
-      return null;
-    }
-  }
 
   function post(url, body) {
     return json(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });

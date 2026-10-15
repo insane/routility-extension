@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, formatNumber, onFrame } = window.RoUtilityUI;
+  const { el, formatNumber, onFrame, pause } = window.RoUtilityUI;
   const { lt, LT } = window.RoUtilityI18n;
   const ON_CLASS = 'routility-classic-on';
   const PROXY_CLASS = 'routility-menu-proxy';
@@ -30,7 +30,6 @@
     else lanesBusy--;
   }
 
-  const pause = ms => new Promise(r => setTimeout(r, ms));
   let csrf = '';
 
   async function fetchRetry(url, opts, tries = 6) {

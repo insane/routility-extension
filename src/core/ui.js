@@ -918,7 +918,18 @@
     }).observe(document.body, { childList: true });
   }
 
-  window.RoUtilityUI = { rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
+  const pause = ms => new Promise(r => setTimeout(r, ms));
+
+  async function json(url, init) {
+    try {
+      const res = await fetch(url, { credentials: 'include', ...init });
+      return res.ok ? await res.json() : null;
+    } catch {
+      return null;
+    }
+  }
+
+  window.RoUtilityUI = { json, pause, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
 })();
 
 (function () {

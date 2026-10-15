@@ -1,17 +1,9 @@
 (function () {
   'use strict';
 
+  const { json } = window.RoUtilityUI;
   const { lt } = window.RoUtilityI18n;
   let st = null;
-
-  async function json(url) {
-    try {
-      const res = await fetch(url, { credentials: 'include' });
-      return res.ok ? await res.json() : null;
-    } catch {
-      return null;
-    }
-  }
 
   function section() {
     const h = [...document.querySelectorAll('h2')].find(x => x.textContent.trim() === 'Currently Wearing');

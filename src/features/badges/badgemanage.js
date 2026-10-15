@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, onFrame, dropdown, formatNumber } = window.RoUtilityUI;
+  const { el, onFrame, dropdown, formatNumber, pause } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
   const FILTERS = [['all', LT('All')], ['common', LT('Common')], ['rare', LT('Rare')]];
@@ -11,7 +11,6 @@
   let state = null;
   let csrf = '';
 
-  const pause = ms => new Promise(r => setTimeout(r, ms));
 
   function rarity(rate) {
     const pct = rate * 100;

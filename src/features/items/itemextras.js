@@ -1,21 +1,12 @@
 (function () {
   'use strict';
 
-  const { el, onFrame, formatNumber, verifiedBadge } = window.RoUtilityUI;
+  const { el, onFrame, formatNumber, verifiedBadge, json } = window.RoUtilityUI;
   const { lt, ltn } = window.RoUtilityI18n;
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)]';
   const DAY = 24 * 60 * 60 * 1000;
   const CACHE_MS = 15 * 60 * 1000;
   let st = null;
-
-  async function json(url) {
-    try {
-      const res = await fetch(url, { credentials: 'include' });
-      return res.ok ? await res.json() : null;
-    } catch {
-      return null;
-    }
-  }
 
   function cached(key) {
     try {

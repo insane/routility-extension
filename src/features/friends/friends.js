@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, onFrame, formatNumber } = window.RoUtilityUI;
+  const { el, onFrame, formatNumber, pause } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const LABELS = { 0: LT('Offline'), 1: LT('Online'), 2: LT('In Experience'), 3: LT('In Studio'), 4: LT('Offline') };
   const ICONS = { 1: 'icon-online', 2: 'icon-game', 3: 'icon-studio' };
@@ -1436,7 +1436,6 @@
   }
 
   let fmCsrf = '';
-  const pause = ms => new Promise(r => setTimeout(r, ms));
 
   async function byMe(id) {
     try {

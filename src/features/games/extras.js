@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, formatNumber, verifiedBadge } = window.RoUtilityUI;
+  const { el, formatNumber, verifiedBadge, json } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
   let settings = {};
@@ -48,15 +48,6 @@
       else if (child.classList.contains('routility-server-regions')) kind = 'regions';
       else if (!child.classList.contains('sg-system-feedback') && child.textContent.trim() && (!friends || child.compareDocumentPosition(friends) & Node.DOCUMENT_POSITION_FOLLOWING)) kind = 'private';
       if (kind && child.dataset.routilitySv !== kind) child.dataset.routilitySv = kind;
-    }
-  }
-
-  async function json(url, init) {
-    try {
-      const res = await fetch(url, { credentials: 'include', ...init });
-      return res.ok ? await res.json() : null;
-    } catch {
-      return null;
     }
   }
 

@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, formatNumber, verifiedBadge, request } = window.RoUtilityUI;
+  const { el, formatNumber, verifiedBadge, request, json } = window.RoUtilityUI;
   const { lt, ltn } = window.RoUtilityI18n;
   const SKIP = '.routility-hovercard, #header, .rbx-header, #navigation, .rbx-left-col, .friends-carousel-container, .friend-carousel-container, .navbar-search, [role="dialog"], .modal, .routility-search-menu';
   const OPEN_DELAY = 450;
@@ -20,15 +20,6 @@
     on = (changes.routilitySettings.newValue || {}).profilePreviews !== false;
     if (!on) close();
   });
-
-  async function json(url, opts) {
-    try {
-      const res = await fetch(url, { credentials: 'include', ...opts });
-      return res.ok ? await res.json() : null;
-    } catch {
-      return null;
-    }
-  }
 
   let insightCsrf = '';
 

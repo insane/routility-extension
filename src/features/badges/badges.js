@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, onFrame, formatNumber, dropdown } = window.RoUtilityUI;
+  const { el, onFrame, formatNumber, dropdown, json } = window.RoUtilityUI;
   const { lt, LT } = window.RoUtilityI18n;
   const TTL = 10 * 60 * 1000;
   const PAGE = 25;
@@ -20,15 +20,6 @@
   ];
   const DIFFICULTY = [[90, LT('Freebie')], [80, LT('Cakewalk')], [50, LT('Easy')], [30, LT('Moderate')], [20, LT('Challenging')], [10, LT('Hard')], [5, LT('Extreme')], [1, LT('Insane')], [0, LT('Impossible')]];
   let state = null;
-
-  async function json(url) {
-    try {
-      const res = await fetch(url, { credentials: 'include' });
-      return res.ok ? await res.json() : null;
-    } catch {
-      return null;
-    }
-  }
 
   function cacheKey(universeId, me) {
     return `routilityBadges2:${me}:${universeId}`;

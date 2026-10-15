@@ -33,6 +33,7 @@
   let writes = [];
   let writeTimer = 0;
   let dbp = null;
+  let csrf = '';
 
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const abortError = s => (s && s.reason) || new DOMException('The operation was aborted.', 'AbortError');
@@ -358,6 +359,25 @@
     return new Response(JSON.stringify({ data }), { status: 200, headers: { 'content-type': 'application/json' } });
   }
 
+  function ownToken(h) {
+    return !!h && Object.keys(h).some(k => k.toLowerCase() === 'x-csrf-token');
+  }
+
+  function resendable(body) {
+    return body == null || typeof body === 'string' || body instanceof URLSearchParams || body instanceof FormData || body instanceof Blob;
+  }
+
+  async function signed(run, opts) {
+    if (!plainHeaders(opts.headers) || ownToken(opts.headers) || !resendable(opts.body)) return run(opts);
+    const go = () => run(csrf ? { ...opts, headers: { ...opts.headers, 'x-csrf-token': csrf } } : opts);
+    const sent = csrf;
+    const res = await go();
+    const next = res.headers.get('x-csrf-token');
+    if (res.status !== 403 || !next || res.headers.get('rblx-challenge-id') || next === sent) return res;
+    csrf = next;
+    return go();
+  }
+
   function withSignal(p, signal) {
     if (!signal) return p;
     if (signal.aborted) return Promise.reject(abortError(signal));
@@ -385,8 +405,9 @@
       if (method === 'POST' && READ_POST.test(url) && (opts.body == null || typeof opts.body === 'string')) {
         const t = /^https:\/\/thumbnails\.roblox\.com\/v1\/batch/i.test(url) && plainHeaders(opts.headers) && thumbBatch(opts.body);
         if (t) return withSignal(thumbs(t, true), opts.signal);
-        return managed(url, opts, opts.signal || null);
+        return signed(o => managed(url, o, o.signal || null), opts);
       }
+      if (method === 'POST' || method === 'PATCH' || method === 'PUT' || method === 'DELETE') return signed(o => nativeFetch(input, o), opts);
     } catch {}
     return nativeFetch(input, init);
   };
