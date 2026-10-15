@@ -704,6 +704,9 @@
           { key: 'adminBadge', title: LT('Admin Badge'), desc: LT('Roblox’s admin logo next to friends and players in search who are Roblox admins, after the verified and Plus badges, like on their profile.') },
           { key: 'badgeSizeFix', title: LT('Fix Verified Badge Size'), desc: LT('Roblox shows the verified badge too big next to names in player search. This shrinks it to match the name, like everywhere else.') },
         ] },
+        { title: LT('Your Status'), rows: [
+          { key: 'studioStatus', title: LT('Appear In Studio'), desc: LT('Everyone sees your status as In Studio instead of Online or the game you’re in, while a Roblox tab is open. When you turn it off, your normal status comes back within a minute or two.') },
+        ] },
         { title: LT('Shortcuts'), rows: [
           { key: 'menuLink', title: LT('Settings Menu Link'), desc: LT('A RoUtility item above Settings in the gear menu at the top right, straight to this page.') },
           { key: 'contextCopy', title: LT('Copy IDs on Right-Click'), desc: LT('Right-click a profile, item, model, bundle, experience, community or badge (or an empty spot on its page) for Copy User ID, Copy Asset ID and so on, with a quick confirmation.') },
@@ -935,7 +938,7 @@
       ],
     },
     account: {
-      intro: LT('Extra details on your Roblox Settings pages, and how others see your status.'),
+      intro: LT('Extra details on your Roblox Settings pages: your devices, backup codes and voice chat.'),
       groups: [
         { title: LT('Security'), rows: [
           { key: 'sessionIps', title: LT('Device IP Addresses'), desc: LT('Under each device on Settings > Security, the IP address it last used, so a login you don’t recognize is easier to spot. Streamer Mode blurs it with the rest of the list.') },
@@ -943,9 +946,6 @@
         ] },
         { title: LT('Voice Chat'), rows: [
           { key: 'voiceStatus', title: LT('Voice Chat Suspension'), desc: LT('If your voice chat is suspended, Settings > Privacy says so and until when, instead of you finding out in a game.') },
-        ] },
-        { title: LT('Your Status'), rows: [
-          { key: 'studioStatus', title: LT('Appear In Studio'), desc: LT('Everyone sees your status as In Studio instead of Online or the game you’re in, while a Roblox tab is open. When you turn it off, your normal status comes back within a minute or two.') },
         ] },
       ],
     },
@@ -1193,7 +1193,7 @@
     browsing: LT('Loading, status banner, name badges, right-click copy'),
     themes: LT('Your colors, presets and font'),
     classic: LT('Old logo, old names, classic faces'),
-    account: LT('Device IPs, backup codes, voice chat, your status'),
+    account: LT('Device IPs, backup codes, voice chat'),
     chat: LT('RoUtility Bot, resizable chat, message tools'),
     streamer: LT('Blur your Robux, name and values on stream'),
     badges: LT('Badge stats, progress and earned dates'),
