@@ -17,7 +17,7 @@
     return document.querySelector('meta[name="user-data"]')?.dataset.userid || '';
   }
 
-  async function getJson(url, tries = 4) {
+  async function getJson(url, tries = 2) {
     for (let i = 0; i < tries; i++) {
       try {
         const r = await fetch(url, { credentials: 'include' });
@@ -800,7 +800,7 @@
     if (!Object.values(settings).some(Boolean)) return;
     const tick = onFrame(route);
     new MutationObserver(tick).observe(document.body || document.documentElement, { childList: true, subtree: true });
-    setInterval(() => { if (location.pathname + location.search !== lastUrl || /^\/communities/i.test(location.pathname)) tick(); }, 600);
+    setInterval(() => { if (!document.hidden && (location.pathname + location.search !== lastUrl || /^\/communities/i.test(location.pathname))) tick(); }, 600);
     tick();
   });
 })();

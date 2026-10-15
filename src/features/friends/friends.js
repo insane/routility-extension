@@ -1792,7 +1792,7 @@
         const res = await fetch(`https://friends.roblox.com/v1/users/${w.me}/friends/count`, { credentials: 'include', cache: 'no-store' });
         if (res.ok) count = Number((await res.json()).count);
       } catch {}
-      if (!force && count !== null && count === st.count && now - (st.full || 0) < 180000) return;
+      if (count !== null && count === st.count && now - (st.full || 0) < (force ? 300000 : 900000)) return;
       const r = await ufScan(w.me, ff && ff.friends);
       await chrome.storage.local.set({ [key]: { at: now, full: now, count: r ? (count !== null ? count : r.count) : st.count } });
       if (!r || ufWatch !== w) return;

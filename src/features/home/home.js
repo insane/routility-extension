@@ -318,7 +318,7 @@
     const expect = Math.min(6, Number(lastRows().fp) || 0);
 
     const load = async () => {
-      if (document.visibilityState !== 'visible' && games.length) return;
+      if (document.visibilityState !== 'visible' && loaded) return;
       const data = await json(`https://friends.roblox.com/v1/users/${me}/friends/online`);
       if (p !== page) return;
       if (!data) {

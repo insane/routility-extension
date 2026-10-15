@@ -11,40 +11,17 @@
   const PRESENCE = { 1: ['online', 'icon-online'], 2: ['game', 'icon-game'], 3: ['studio', 'icon-studio'] };
   let state = null;
 
-  const LANES = 4;
-  let lanesBusy = 0;
-  const laneQueue = [];
-  let coolUntil = 0;
-
-  function lane() {
-    if (lanesBusy < LANES) {
-      lanesBusy++;
-      return Promise.resolve();
-    }
-    return new Promise(r => laneQueue.push(r));
-  }
-
-  function release() {
-    const next = laneQueue.shift();
-    if (next) next();
-    else lanesBusy--;
-  }
-
   let csrf = '';
 
-  async function fetchRetry(url, opts, tries = 6) {
+  async function fetchRetry(url, opts, tries = 2) {
     let last = { status: 0, body: null };
     let renewed = false;
     for (let attempt = 0; attempt < tries; attempt++) {
-      const wait = coolUntil - Date.now();
-      if (wait > 0) await pause(wait);
-      await lane();
       let res = null;
       const sent = opts && opts.method === 'POST' ? csrf : '';
       try {
         res = await fetch(url, { credentials: 'include', ...opts, headers: sent ? { ...opts.headers, 'x-csrf-token': sent } : opts && opts.headers });
       } catch {}
-      release();
       const token = res && res.status === 403 && opts && opts.method === 'POST' && res.headers.get('x-csrf-token');
       if (token && !renewed) {
         renewed = true;
@@ -63,7 +40,6 @@
       if ((res && res.status !== 429 && res.status < 500) || attempt === tries - 1) return last;
       const after = res && Number(res.headers.get('retry-after'));
       const delay = Number.isFinite(after) && after > 0 ? Math.min(after * 1000, 10000) : Math.min(700 * 2 ** attempt, 8000) + Math.random() * 400;
-      if (res && res.status === 429) coolUntil = Math.max(coolUntil, Date.now() + Math.min(delay, 3000));
       await pause(delay);
     }
     return last;
@@ -78,7 +54,7 @@
   }
 
   async function quick(url) {
-    return (await fetchRetry(url, undefined, 3)).body;
+    return (await fetchRetry(url, undefined, 1)).body;
   }
 
   function post(url, body) {

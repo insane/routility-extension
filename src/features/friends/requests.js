@@ -39,7 +39,7 @@
     return /^#!\/friend-requests\b/.test(location.hash || '');
   }
 
-  async function getJson(url, tries = 6) {
+  async function getJson(url, tries = 2) {
     for (let i = 0; i < tries; i++) {
       try {
         const r = await fetch(url, { credentials: 'include' });
