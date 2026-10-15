@@ -9521,7 +9521,8 @@ html.routility-nav-collapsed .left-nav nav > ul > li > button {
 
 html.routility-nav-collapsed .left-nav nav > ul > li > a > :not([role="presentation"]):not(.icon):not([class*="size-1000"]):not(.routility-nav-badge-keep),
 html.routility-nav-collapsed .left-nav nav > ul > li > button > :not([role="presentation"]):not(.icon):not([class*="size-1000"]),
-html.routility-nav-collapsed .left-nav .routility-quick {
+html.routility-nav-collapsed .left-nav .routility-quick,
+html.routility-nav-collapsed .rbx-left-col .routility-quick {
   display: none !important;
 }
 
@@ -11613,5 +11614,16 @@ body:has(.routility-ug) #game-details-unavailable-container, .routility-ug-nativ
 .routility-log-credit a { font-weight: 600; }
 .routility-sk-stats { justify-content: space-around; width: 100%; }
 .routility-oldnav-hidden { display: none !important; }
-.left-col-list .routility-oldnav-icon { display: inline-block; width: 28px; height: 28px; vertical-align: middle; color: var(--color-content-default, #bdbebe); -webkit-mask-size: 26px !important; mask-size: 26px !important; }
+.left-col-list .routility-oldnav-icon { display: inline-block; width: 28px; height: 28px; vertical-align: middle; color: #bdbebe; -webkit-mask-size: 26px !important; mask-size: 26px !important; }
+.light-theme .left-col-list .routility-oldnav-icon, .light-theme .left-col-list .routility-nav-collapse-icon { color: #393b3d; }
+.left-col-list .routility-nav-collapse-btn { width: 100%; padding: 0; border: 0; background: none; text-align: left; }
+.left-col-list .routility-nav-collapse-icon { display: inline-block; width: 28px; height: 28px; vertical-align: middle; color: #bdbebe; -webkit-mask-size: 22px; mask-size: 22px; }
+.rbx-left-col .routility-quick { margin: 4px 10px 12px; }
+.rbx-left-col .routility-quick-row { gap: 6px; }
+.rbx-left-col .routility-quick-row .routility-quick-dd .input-dropdown-btn { gap: 6px; padding: 0 8px; }
+html.routility-nav-collapsed .rbx-left-col { width: 60px !important; overflow: hidden; }
+html.routility-nav-collapsed .left-col-list > li > :is(a, button) { width: 40px !important; box-sizing: border-box; overflow: hidden; }
+html.routility-nav-collapsed .left-col-list > li [class*="notification"] { display: none !important; }
+html.routility-nav-collapsed .rbx-left-col > ul:not(.left-col-list) .dynamic-ellipsis-item { display: none !important; }
+html.routility-nav-collapsed .left-col-list > li > :is(a, button) > :not(div), html.routility-nav-collapsed .left-col-list > li.rbx-upgrade-now { display: none !important; }
 .routility-nav-old-icon > span { display: inline-block; flex-shrink: 0; }

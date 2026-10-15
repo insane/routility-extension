@@ -166,11 +166,35 @@
 
   let collapseObserver = null;
 
+  function toggleCollapse() {
+    const next = !document.documentElement.classList.contains('routility-nav-collapsed');
+    document.documentElement.classList.toggle('routility-nav-collapsed', next);
+    chrome.storage.local.set({ routilityNavCollapsed: next });
+    placeCollapse();
+  }
+
+  function oldCollapseItem() {
+    const li = el('li', 'routility-injected routility-nav-collapse');
+    const b = el('button', 'dynamic-overflow-container text-nav routility-nav-collapse-btn');
+    b.type = 'button';
+    const holder = el('div');
+    const icon = el('span', 'routility-nav-collapse-icon');
+    icon.setAttribute('aria-hidden', 'true');
+    holder.appendChild(icon);
+    b.append(holder, el('span', 'font-header-2 dynamic-ellipsis-item routility-nav-collapse-text'));
+    b.addEventListener('click', toggleCollapse);
+    li.appendChild(b);
+    return li;
+  }
+
   function placeCollapse() {
-    const list = document.querySelector('.left-nav nav > ul');
+    const fresh = document.querySelector('.left-nav nav > ul');
+    const old = !fresh && document.querySelector('ul.left-col-list');
+    const list = fresh || old;
     if (!list) return;
     const collapsed = document.documentElement.classList.contains('routility-nav-collapsed');
     let li = list.querySelector(':scope > li.routility-nav-collapse');
+    if (!li && old) li = oldCollapseItem();
     if (!li) {
       const model = list.querySelector(':scope > li > a[href$="/home"]') || [...list.querySelectorAll(':scope > li > a')].find(a => a.querySelector(':scope > span > .icon'));
       if (!model) return;
@@ -182,15 +206,14 @@
       icon.setAttribute('aria-hidden', 'true');
       box.appendChild(icon);
       b.append(box, el('span', 'min-width-0 text-truncate-end text-no-wrap routility-nav-collapse-text'));
-      b.addEventListener('click', () => {
-        const next = !document.documentElement.classList.contains('routility-nav-collapsed');
-        document.documentElement.classList.toggle('routility-nav-collapsed', next);
-        chrome.storage.local.set({ routilityNavCollapsed: next });
-        placeCollapse();
-      });
+      b.addEventListener('click', toggleCollapse);
       li.appendChild(b);
     }
-    if (list.lastElementChild !== li) list.appendChild(li);
+    if (old) {
+      const last = [...list.children].reverse().find(n => n !== li);
+      const before = last && last.classList.contains('rbx-upgrade-now') ? last : null;
+      if (before ? li.nextElementSibling !== before : list.lastElementChild !== li) list.insertBefore(li, before);
+    } else if (list.lastElementChild !== li) list.appendChild(li);
     const b = li.firstElementChild;
     const label = collapsed ? lt('Expand Menu') : lt('Collapse Menu');
     if (b.getAttribute('aria-label') !== label) {
@@ -200,7 +223,7 @@
       li.querySelector('.routility-nav-collapse-icon').classList.toggle('routility-nav-collapse-flip', collapsed);
     }
     for (const a of list.querySelectorAll(':scope > li > a, :scope > li > button:not(.routility-nav-collapse-btn)')) {
-      const name = (a.querySelector('.text-truncate-end, .text-title-large span:last-child') || a).textContent.trim().split(/\r?\n/)[0];
+      const name = (a.querySelector('.text-truncate-end, .text-title-large span:last-child, .dynamic-ellipsis-item') || a).textContent.trim().split(/\r?\n/)[0];
       if (collapsed && name) { if (a.dataset.rtTip !== name) { a.dataset.rtTip = name; a.dataset.routilityNavTip = '1'; } }
       else if (a.dataset.routilityNavTip) { delete a.dataset.rtTip; delete a.dataset.routilityNavTip; }
     }
@@ -209,8 +232,8 @@
   function stopCollapse() {
     collapseObserver?.disconnect();
     collapseObserver = null;
-    document.querySelectorAll('.left-nav li.routility-nav-collapse').forEach(n => n.remove());
-    document.querySelectorAll('.left-nav [data-routility-nav-tip]').forEach(a => { delete a.dataset.rtTip; delete a.dataset.routilityNavTip; });
+    document.querySelectorAll('.left-nav li.routility-nav-collapse, .left-col-list li.routility-nav-collapse').forEach(n => n.remove());
+    document.querySelectorAll('.left-nav [data-routility-nav-tip], .left-col-list [data-routility-nav-tip]').forEach(a => { delete a.dataset.rtTip; delete a.dataset.routilityNavTip; });
   }
 
   function startCollapse() {
@@ -221,7 +244,7 @@
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
     const watch = () => {
       if (collapseObserver !== obs) return;
-      const nav = document.querySelector('.left-nav');
+      const nav = document.querySelector('.left-nav') || document.querySelector('ul.left-col-list');
       if (!nav) { setTimeout(watch, 500); return; }
       obs.observe(nav, { childList: true, subtree: true });
       run();
@@ -797,7 +820,7 @@
   function qsPlace() {
     if (settings.quickSettings === false) return;
     const nav = [...document.querySelectorAll('.left-nav nav')].find(n => n.querySelector('a[href$="/my/avatar"]'));
-    const host = nav?.parentElement;
+    const host = nav ? nav.parentElement : document.querySelector('ul.left-col-list')?.parentElement;
     if (!host || host.querySelector('.routility-quick')) return;
     const wantPrivacy = QS_ROWS.some(([, , k]) => settings[k] !== false);
     if (wantPrivacy && !qsData && !qsTried) {

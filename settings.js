@@ -766,7 +766,7 @@
       intro: LT('Drag the links in the menu on the left into the order you like, and hide the ones you don’t use. The real menu changes as you go.'),
       groups: [
         { title: LT('Links'), rows: [
-          { key: 'oldLeftNav', title: LT('Old Left Menu'), desc: LT('Roblox is moving accounts to a new left menu. This brings back the old one, with Trade Calculator, Trade Ads and Forum added and your arranged order below. The Collapse button and menu sizes only work on the new menu. Takes effect on the next page you open.') },
+          { key: 'oldLeftNav', title: LT('Old Left Menu'), desc: LT('Roblox is moving accounts to a new left menu. This brings back the old one, with Trade Calculator, Trade Ads, Forum, the Collapse button, Quick Settings and your arranged order below. Menu sizes only work on the new menu. Takes effect on the next page you open.') },
           { custom: 'navLayout', title: LT('Arrange the Left Menu'), desc: LT('Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.') },
         ] },
         { title: LT('Size'), rows: [
@@ -1897,7 +1897,7 @@
       render();
     };
 
-    const arranged = () => ENTRIES.map(([key, name], i) => {
+    const arranged = () => ENTRIES.filter(([key]) => !(key === 'plus' && settings.oldLeftNav === true)).map(([key, name], i) => {
       const at = lay.order.indexOf(key);
       return { key, name, rank: at >= 0 ? at : 1000 + i };
     }).sort((a, b) => a.rank - b.rank);
