@@ -929,7 +929,51 @@
     }
   }
 
-  window.RoUtilityUI = { json, pause, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
+  const PRESENCE_TTL = 15000;
+  const presenceSeen = new Map();
+  const presenceLive = new Map();
+  let presenceQueue = null;
+
+  function presenceFlush() {
+    const q = presenceQueue;
+    presenceQueue = null;
+    const ids = [...q.ids];
+    for (const id of ids) presenceLive.set(id, q.wait);
+    const parts = [];
+    for (let i = 0; i < ids.length; i += 100) parts.push(ids.slice(i, i + 100));
+    Promise.all(parts.map(part => json('https://presence.roblox.com/v1/presence/users', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ userIds: part.map(Number) }) }))).then((all) => {
+      const at = Date.now();
+      for (const res of all) for (const p of (res && res.userPresences) || []) presenceSeen.set(String(p.userId), { at, p });
+      if (presenceSeen.size > 3000) for (const [id, v] of presenceSeen) if (at - v.at > PRESENCE_TTL) presenceSeen.delete(id);
+      for (const id of ids) if (presenceLive.get(id) === q.wait) presenceLive.delete(id);
+      q.done();
+    });
+  }
+
+  function presence(ids, fresh) {
+    const want = [...new Set(ids.map(String))].filter(id => /^\d+$/.test(id));
+    const now = Date.now();
+    const pick = () => new Map(want.filter(id => presenceSeen.has(id)).map(id => [id, presenceSeen.get(id).p]));
+    const waits = new Set();
+    const missing = [];
+    for (const id of want) {
+      if (!fresh && now - (presenceSeen.get(id)?.at || 0) < PRESENCE_TTL) continue;
+      if (!fresh && presenceLive.has(id)) waits.add(presenceLive.get(id));
+      else missing.push(id);
+    }
+    if (missing.length) {
+      if (!presenceQueue) {
+        let done;
+        presenceQueue = { ids: new Set(), wait: new Promise(r => { done = r; }), done };
+        setTimeout(presenceFlush, 0);
+      }
+      for (const id of missing) presenceQueue.ids.add(id);
+      waits.add(presenceQueue.wait);
+    }
+    return waits.size ? Promise.all(waits).then(pick) : Promise.resolve(pick());
+  }
+
+  window.RoUtilityUI = { json, pause, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
 })();
 
 (function () {

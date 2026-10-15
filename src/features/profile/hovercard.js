@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, formatNumber, verifiedBadge, request, json } = window.RoUtilityUI;
+  const { el, formatNumber, verifiedBadge, request, json, presence } = window.RoUtilityUI;
   const { lt, ltn } = window.RoUtilityI18n;
   const SKIP = '.routility-hovercard, #header, .rbx-header, #navigation, .rbx-left-col, .friends-carousel-container, .friend-carousel-container, .navbar-search, [role="dialog"], .modal, .routility-search-menu';
   const OPEN_DELAY = 450;
@@ -59,7 +59,7 @@
       const [user, heads, pres, friends, followers, mine] = await Promise.all([
         json(`https://users.roblox.com/v1/users/${id}`),
         request({ type: 'getHeadshots', ids: [id] }),
-        json('https://presence.roblox.com/v1/presence/users', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ userIds: [Number(id)] }) }),
+        presence([id]),
         json(`https://friends.roblox.com/v1/users/${id}/friends/count`),
         json(`https://friends.roblox.com/v1/users/${id}/followers/count`),
         window.RoUtilitySearch?.myFriends ? window.RoUtilitySearch.myFriends().catch(() => []) : [],
@@ -71,7 +71,7 @@
         since,
         user,
         head: (heads || {})[id] || '',
-        presence: ((pres && pres.userPresences) || [])[0] || null,
+        presence: pres.get(String(id)) || null,
         friends: friends && typeof friends.count === 'number' ? friends.count : null,
         followers: followers && typeof followers.count === 'number' ? followers.count : null,
         friend: (mine || []).some(f => String(f.id) === String(id)),

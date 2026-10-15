@@ -127,12 +127,8 @@
   }
 
   async function presence(ids) {
-    const out = new Map();
-    for (let i = 0; i < ids.length; i += 100) {
-      const res = await post('https://presence.roblox.com/v1/presence/users', { userIds: ids.slice(i, i + 100) });
-      for (const p of (res && res.userPresences) || []) out.set(Number(p.userId), p);
-    }
-    return out;
+    const live = await window.RoUtilityUI.presence(ids);
+    return new Map([...live].map(([id, p]) => [Number(id), p]));
   }
 
   function card(f, thumb, p) {

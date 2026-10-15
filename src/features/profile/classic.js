@@ -320,9 +320,8 @@
     s.root.querySelector('.routility-classic-more')?.toggleAttribute('hidden', !nativeMore());
   }
 
-  async function presence(ids) {
-    const res = await post('https://presence.roblox.com/v1/presence/users', { userIds: ids });
-    return new Map(((res && res.userPresences) || []).map(p => [String(p.userId), p]));
+  function presence(ids) {
+    return window.RoUtilityUI.presence(ids);
   }
 
   function statusIcon(host, p, extra) {

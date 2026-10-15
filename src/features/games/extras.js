@@ -901,18 +901,6 @@
 
   const clientWatches = new WeakMap();
 
-  async function myPresence() {
-    const me = Number(document.querySelector('meta[name="user-data"]')?.dataset.userid);
-    if (!me) return null;
-    try {
-      const res = await fetch('https://presence.roblox.com/v1/presence/users', { method: 'POST', credentials: 'include', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ userIds: [me] }) });
-      const d = res.ok ? await res.json() : null;
-      return (d && d.userPresences && d.userPresences[0]) || null;
-    } catch {
-      return null;
-    }
-  }
-
   function watchClient(dialog) {
     if (clientWatches.has(dialog)) return;
     const w = { misses: 0, tries: 0, done: false, started: Date.now(), baseline: myPresence() };
@@ -1198,22 +1186,11 @@
     }
   }
 
-  let presenceCsrf = '';
   let joinWatch = null;
 
   async function myPresence(me) {
-    const send = () => fetch('https://presence.roblox.com/v1/presence/users', { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json', ...(presenceCsrf ? { 'x-csrf-token': presenceCsrf } : {}) }, body: JSON.stringify({ userIds: [Number(me)] }) });
-    try {
-      let res = await send();
-      if (res.status === 403 && res.headers.get('x-csrf-token')) {
-        presenceCsrf = res.headers.get('x-csrf-token');
-        res = await send();
-      }
-      const d = res.ok ? await res.json() : null;
-      return d && d.userPresences && d.userPresences[0];
-    } catch {
-      return null;
-    }
+    const id = String(me || document.querySelector('meta[name="user-data"]')?.dataset.userid || '');
+    return id ? (await window.RoUtilityUI.presence([id], true)).get(id) || null : null;
   }
 
   async function followJoin(dialog, target) {

@@ -209,9 +209,8 @@
     return out;
   }
 
-  async function presences(ids) {
-    const res = await robloxJson('https://presence.roblox.com/v1/presence/users', { userIds: ids.map(Number) });
-    return new Map(((res && res.userPresences) || []).map(p => [String(p.userId), p]));
+  function presences(ids) {
+    return window.RoUtilityUI.presence(ids);
   }
 
   function primaryGroup(id) {
