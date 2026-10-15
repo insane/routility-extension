@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ Paramètres Roblox",
+ "Roblox Settings": "Paramètres Roblox",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "« Bonjour, ton nom ! » avec ton avatar en haut de l’accueil, comme Roblox le faisait avant pour t’accueillir.",
  "(new posts)": "(nouveaux messages)",
  "(no new posts)": "(aucun nouveau message)",
@@ -2788,5 +2788,9 @@
  "Your Slots": "Tes emplacements",
  "Your Status": "Ton statut",
  "Classic Verified Badge": "Badge vérifié classique",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "Le badge vérifié d’origine à côté des noms, avec des coins nets et le bleu plus vif."
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "Le badge vérifié d’origine à côté des noms, avec des coins nets et le bleu plus vif.",
+ "Browsing": "Navigation",
+ "Appearance": "Apparence",
+ "Social": "Social",
+ "Account": "Compte"
 }

@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ การตั้งค่า Roblox",
+ "Roblox Settings": "การตั้งค่า Roblox",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "“สวัสดี ชื่อของคุณ!” พร้อมอวาตาร์ของคุณที่ด้านบนของหน้าแรก เหมือนที่ Roblox เคยต้อนรับคุณกลับมา",
  "(new posts)": "(มีโพสต์ใหม่)",
  "(no new posts)": "(ไม่มีโพสต์ใหม่)",
@@ -2660,5 +2660,9 @@
  "Your Slots": "ช่องของคุณ",
  "Your Status": "สถานะของคุณ",
  "Classic Verified Badge": "ตรายืนยันแบบคลาสสิก",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "ตรายืนยันแบบดั้งเดิมข้างชื่อ มุมเหลี่ยมและสีน้ำเงินสดกว่า"
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "ตรายืนยันแบบดั้งเดิมข้างชื่อ มุมเหลี่ยมและสีน้ำเงินสดกว่า",
+ "Browsing": "การท่องเว็บ",
+ "Appearance": "รูปลักษณ์",
+ "Social": "โซเชียล",
+ "Account": "บัญชี"
 }

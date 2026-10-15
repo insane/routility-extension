@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ Roblox 설정",
+ "Roblox Settings": "Roblox 설정",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "홈 상단에 아바타와 함께 “안녕하세요, 이름님!”을 표시합니다. 예전 Roblox가 반겨 주던 방식 그대로입니다.",
  "(new posts)": "(새 게시물 있음)",
  "(no new posts)": "(새 게시물 없음)",
@@ -2660,5 +2660,9 @@
  "Your Slots": "내 슬롯",
  "Your Status": "내 상태",
  "Classic Verified Badge": "클래식 인증 배지",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "이름 옆에 모서리가 각지고 더 선명한 파란색의 원래 인증 배지를 표시해요."
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "이름 옆에 모서리가 각지고 더 선명한 파란색의 원래 인증 배지를 표시해요.",
+ "Browsing": "탐색",
+ "Appearance": "모양",
+ "Social": "소셜",
+ "Account": "계정"
 }
