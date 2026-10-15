@@ -2601,5 +2601,36 @@
  "Your Robux Rate": "あなたの Robux レート",
  "Your Settings": "あなたの設定",
  "Your Slots": "あなたのスロット",
- "Your Status": "あなたのステータス"
+ "Your Status": "あなたのステータス",
+ "Amount of Robux": "Robuxの金額",
+ "Edit": "編集",
+ "Joined in {year}": "{year}年に参加",
+ "Not connected": "つながっていません",
+ "OK": "OK",
+ "Roblox couldn’t send it. Check your balance before you try again.": "Robloxが送信できませんでした。もう一度試す前に残高を確認してください。",
+ "Roblox didn’t answer. Check your balance before you try again.": "Robloxから応答がありませんでした。もう一度試す前に残高を確認してください。",
+ "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Robloxが本人確認を求めています。この送金はRobloxアプリから行ってください。",
+ "Roblox won’t let you send Robux to this person right now.": "今はこの人にRobuxを送れません。",
+ "Robux are sent instantly with no fees": "Robuxは手数料なしですぐに届きます",
+ "Send": "送る",
+ "Send Robux": "Robuxを送る",
+ "Send Robux in the Browser": "ブラウザでRobuxを送る",
+ "Send Robux to a friend from their profile, or from the friends list on the Buy Robux page, without opening the Roblox app. Pick an amount, check who it’s going to, then send. Roblox still decides who you can send to and how much.": "Robloxアプリを開かずに、フレンドのプロフィールやRobux購入ページのフレンド一覧からRobuxを送れます。金額を選び、送り先を確認してから送信します。送れる相手と金額は引き続きRobloxが決めます。",
+ "The minimum is {n} Robux": "最低 {n} Robux",
+ "The recipient will get {n} Robux.": "相手は {n} Robux を受け取ります。",
+ "This needs a parent’s permission. Send it from the Roblox app to ask them.": "保護者の許可が必要です。許可を求めるにはRobloxアプリから送ってください。",
+ "You can send up to {n} Robux right now": "今は最大 {n} Robux まで送れます",
+ "You only have {n} Robux": "{n} Robuxしか持っていません",
+ "You sent {n} Robux": "{n} Robuxを送りました",
+ "Connected {n} days": {
+  "other": "つながって{n}日"
+ },
+ "Connected {n} months": {
+  "other": "つながって{n}か月"
+ },
+ "Connected {n} years": {
+  "other": "つながって{n}年"
+ },
+ "You need an age check or parental consent to send Robux. Once you send, you cannot cancel.": "Robuxを送るには年齢確認または保護者の同意が必要です。送信後はキャンセルできません。",
+ "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "このアカウントはまだRobuxを送れません。先に年齢確認か保護者の許可が必要です。Robloxアプリで行えます。"
 }

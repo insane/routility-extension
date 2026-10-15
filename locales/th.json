@@ -2601,5 +2601,36 @@
  "Your Robux Rate": "อัตรา Robux ของคุณ",
  "Your Settings": "การตั้งค่าของคุณ",
  "Your Slots": "ช่องของคุณ",
- "Your Status": "สถานะของคุณ"
+ "Your Status": "สถานะของคุณ",
+ "Amount of Robux": "จำนวน Robux",
+ "Edit": "แก้ไข",
+ "Joined in {year}": "เข้าร่วมเมื่อปี {year}",
+ "Not connected": "ไม่ได้เชื่อมต่อ",
+ "OK": "ตกลง",
+ "Roblox couldn’t send it. Check your balance before you try again.": "Roblox ส่งไม่สำเร็จ ตรวจสอบยอดคงเหลือก่อนลองอีกครั้ง",
+ "Roblox didn’t answer. Check your balance before you try again.": "Roblox ไม่ตอบกลับ ตรวจสอบยอดคงเหลือก่อนลองอีกครั้ง",
+ "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox ต้องการยืนยันว่าเป็นคุณก่อน ส่งรายการนี้จากแอป Roblox",
+ "Roblox won’t let you send Robux to this person right now.": "ตอนนี้ Roblox ไม่อนุญาตให้คุณส่ง Robux ให้คนนี้",
+ "Robux are sent instantly with no fees": "Robux ส่งถึงทันทีโดยไม่มีค่าธรรมเนียม",
+ "Send": "ส่ง",
+ "Send Robux": "ส่ง Robux",
+ "Send Robux in the Browser": "ส่ง Robux ในเบราว์เซอร์",
+ "Send Robux to a friend from their profile, or from the friends list on the Buy Robux page, without opening the Roblox app. Pick an amount, check who it’s going to, then send. Roblox still decides who you can send to and how much.": "ส่ง Robux ให้เพื่อนจากโปรไฟล์ของเขา หรือจากรายชื่อเพื่อนในหน้าซื้อ Robux โดยไม่ต้องเปิดแอป Roblox เลือกจำนวน ตรวจดูผู้รับ แล้วส่ง Roblox ยังเป็นผู้กำหนดว่าคุณส่งให้ใครและได้เท่าไร",
+ "The minimum is {n} Robux": "ขั้นต่ำ {n} Robux",
+ "The recipient will get {n} Robux.": "ผู้รับจะได้รับ {n} Robux",
+ "This needs a parent’s permission. Send it from the Roblox app to ask them.": "ต้องได้รับอนุญาตจากผู้ปกครอง ส่งจากแอป Roblox เพื่อขออนุญาต",
+ "You can send up to {n} Robux right now": "ตอนนี้ส่งได้สูงสุด {n} Robux",
+ "You only have {n} Robux": "คุณมีแค่ {n} Robux",
+ "You sent {n} Robux": "คุณส่ง {n} Robux แล้ว",
+ "Connected {n} days": {
+  "other": "เชื่อมต่อมา {n} วัน"
+ },
+ "Connected {n} months": {
+  "other": "เชื่อมต่อมา {n} เดือน"
+ },
+ "Connected {n} years": {
+  "other": "เชื่อมต่อมา {n} ปี"
+ },
+ "You need an age check or parental consent to send Robux. Once you send, you cannot cancel.": "คุณต้องผ่านการตรวจสอบอายุหรือได้รับความยินยอมจากผู้ปกครองจึงจะส่ง Robux ได้ เมื่อส่งแล้วจะยกเลิกไม่ได้",
+ "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "บัญชีของคุณยังส่ง Robux ไม่ได้ ต้องยืนยันอายุหรือได้รับอนุญาตจากผู้ปกครองก่อน ซึ่งทำได้ในแอป Roblox"
 }

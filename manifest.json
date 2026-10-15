@@ -77,6 +77,7 @@
         "hovercard.js",
         "misc.js",
         "plus.js",
+        "sendrobux.js",
         "account.js",
         "unavailable.js",
         "calc.js",
@@ -137,6 +138,16 @@
         "fun-main.js"
       ],
       "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://www.roblox.com/*"
+      ],
+      "js": [
+        "send-main.js"
+      ],
+      "run_at": "document_idle",
       "world": "MAIN"
     },
     {

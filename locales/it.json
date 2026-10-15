@@ -2726,5 +2726,39 @@
  "Your Robux Rate": "Il tuo tasso Robux",
  "Your Settings": "Le tue impostazioni",
  "Your Slots": "I tuoi slot",
- "Your Status": "Il tuo stato"
+ "Your Status": "Il tuo stato",
+ "Amount of Robux": "Importo in Robux",
+ "Edit": "Modifica",
+ "Joined in {year}": "Iscritto nel {year}",
+ "Not connected": "Non collegati",
+ "OK": "OK",
+ "Roblox couldn’t send it. Check your balance before you try again.": "Roblox non è riuscito a inviarlo. Controlla il saldo prima di riprovare.",
+ "Roblox didn’t answer. Check your balance before you try again.": "Roblox non ha risposto. Controlla il saldo prima di riprovare.",
+ "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox vuole prima verificare che sei tu. Invia questo dall’app di Roblox.",
+ "Roblox won’t let you send Robux to this person right now.": "Roblox non ti lascia inviare Robux a questa persona in questo momento.",
+ "Robux are sent instantly with no fees": "I Robux arrivano subito e senza commissioni",
+ "Send": "Invia",
+ "Send Robux": "Invia Robux",
+ "Send Robux in the Browser": "Invia Robux dal browser",
+ "Send Robux to a friend from their profile, or from the friends list on the Buy Robux page, without opening the Roblox app. Pick an amount, check who it’s going to, then send. Roblox still decides who you can send to and how much.": "Invia Robux a un amico dal suo profilo o dall’elenco amici della pagina Acquista Robux, senza aprire l’app di Roblox. Scegli un importo, controlla a chi va e invia. Roblox decide comunque a chi puoi inviare e quanto.",
+ "The minimum is {n} Robux": "Il minimo è {n} Robux",
+ "The recipient will get {n} Robux.": "Il destinatario riceverà {n} Robux.",
+ "This needs a parent’s permission. Send it from the Roblox app to ask them.": "Serve il permesso di un genitore. Invialo dall’app di Roblox per chiederlo.",
+ "You can send up to {n} Robux right now": "Puoi inviare fino a {n} Robux in questo momento",
+ "You only have {n} Robux": "Hai solo {n} Robux",
+ "You sent {n} Robux": "Hai inviato {n} Robux",
+ "Connected {n} days": {
+  "one": "Collegati da {n} giorno",
+  "other": "Collegati da {n} giorni"
+ },
+ "Connected {n} months": {
+  "one": "Collegati da {n} mese",
+  "other": "Collegati da {n} mesi"
+ },
+ "Connected {n} years": {
+  "one": "Collegati da {n} anno",
+  "other": "Collegati da {n} anni"
+ },
+ "You need an age check or parental consent to send Robux. Once you send, you cannot cancel.": "Per inviare Robux serve una verifica dell’età o il consenso di un genitore. Una volta inviato, non puoi annullare.",
+ "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "Il tuo account non può ancora inviare Robux. Serve prima una verifica dell’età o il permesso di un genitore, che puoi fare nell’app Roblox."
 }

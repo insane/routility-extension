@@ -2601,5 +2601,36 @@
  "Your Robux Rate": "Kurs Robux Kamu",
  "Your Settings": "Pengaturanmu",
  "Your Slots": "Slot-mu",
- "Your Status": "Statusmu"
+ "Your Status": "Statusmu",
+ "Amount of Robux": "Jumlah Robux",
+ "Edit": "Ubah",
+ "Joined in {year}": "Bergabung tahun {year}",
+ "Not connected": "Tidak terhubung",
+ "OK": "OK",
+ "Roblox couldn’t send it. Check your balance before you try again.": "Roblox tidak bisa mengirimnya. Periksa saldomu sebelum mencoba lagi.",
+ "Roblox didn’t answer. Check your balance before you try again.": "Roblox tidak menjawab. Periksa saldomu sebelum mencoba lagi.",
+ "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox ingin memastikan ini kamu dulu. Kirim yang ini dari aplikasi Roblox.",
+ "Roblox won’t let you send Robux to this person right now.": "Roblox tidak mengizinkanmu mengirim Robux ke orang ini sekarang.",
+ "Robux are sent instantly with no fees": "Robux terkirim seketika tanpa biaya",
+ "Send": "Kirim",
+ "Send Robux": "Kirim Robux",
+ "Send Robux in the Browser": "Kirim Robux di Browser",
+ "Send Robux to a friend from their profile, or from the friends list on the Buy Robux page, without opening the Roblox app. Pick an amount, check who it’s going to, then send. Roblox still decides who you can send to and how much.": "Kirim Robux ke teman dari profilnya atau dari daftar teman di halaman Beli Robux, tanpa membuka aplikasi Roblox. Pilih jumlah, periksa penerimanya, lalu kirim. Roblox tetap menentukan kepada siapa dan berapa banyak yang bisa kamu kirim.",
+ "The minimum is {n} Robux": "Minimal {n} Robux",
+ "The recipient will get {n} Robux.": "Penerima akan mendapat {n} Robux.",
+ "This needs a parent’s permission. Send it from the Roblox app to ask them.": "Ini butuh izin orang tua. Kirim dari aplikasi Roblox untuk meminta izin.",
+ "You can send up to {n} Robux right now": "Kamu bisa mengirim hingga {n} Robux sekarang",
+ "You only have {n} Robux": "Kamu hanya punya {n} Robux",
+ "You sent {n} Robux": "Kamu mengirim {n} Robux",
+ "Connected {n} days": {
+  "other": "Terhubung {n} hari"
+ },
+ "Connected {n} months": {
+  "other": "Terhubung {n} bulan"
+ },
+ "Connected {n} years": {
+  "other": "Terhubung {n} tahun"
+ },
+ "You need an age check or parental consent to send Robux. Once you send, you cannot cancel.": "Kamu perlu pemeriksaan usia atau izin orang tua untuk mengirim Robux. Setelah dikirim, kamu tidak bisa membatalkannya.",
+ "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "Akunmu belum bisa mengirim Robux. Perlu verifikasi usia atau izin orang tua dulu, yang bisa kamu lakukan di aplikasi Roblox."
 }
