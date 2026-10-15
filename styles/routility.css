@@ -11733,29 +11733,39 @@ html.routility-settings-mode .menu-vertical .routility-menu-divider.routility-me
   line-height: 18px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   cursor: default;
 }
 
-.routility-menu-group-icon {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-  vertical-align: -3px;
+html.routility-settings-mode .menu-vertical .routility-menu-group-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-html.routility-settings-mode .menu-vertical .routility-menu-foot {
+.routility-menu-group-icon {
+  flex: none;
+  width: 20px !important;
+  height: 20px !important;
+  color: var(--color-content-default);
+}
+
+html.routility-settings-mode .menu-vertical .routility-menu-foot,
+.settings-left-navigation .menu-vertical .routility-menu-split {
   display: block !important;
   height: 1px;
-  margin: 10px 9px 6px;
+  margin: 12px 12px 8px;
   padding: 0;
   list-style: none;
-  background: var(--color-stroke-muted, rgba(255, 255, 255, 0.08));
+  border-radius: 1px;
+  background: var(--color-stroke-default, rgba(127, 127, 127, 0.24));
 }
 
-html.routility-settings-mode .menu-vertical .routility-menu-off {
+html.routility-settings-mode .menu-vertical .routility-menu-off,
+html.routility-settings-mode .menu-vertical .routility-menu-group.routility-menu-off {
   display: none !important;
 }
 

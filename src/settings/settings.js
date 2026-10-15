@@ -301,7 +301,7 @@
     fun: '<svg viewBox="0 0 24 24"><path d="M10 4.2Q11.2 11.8 18.8 13Q11.2 14.2 10 21.8Q8.8 14.2 1.2 13Q8.8 11.8 10 4.2Z" fill="currentColor"/><path d="M18.6 1.8Q19.2 4.8 22.2 5.4Q19.2 6 18.6 9Q18 6 15 5.4Q18 4.8 18.6 1.8Z" fill="currentColor" opacity="0.6"/><circle cx="4.6" cy="5" r="1.4" fill="currentColor" opacity="0.6"/></svg>',
   };
 
-  const GROUP_ICONS = { Browsing: 'globe', Appearance: 'sparkle', Social: 'people', Games: 'game', Marketplace: 'tag', Account: 'person' };
+  const GROUP_ICONS = { Browsing: 'magnifying-glass', Appearance: 'paint-brush', Social: 'two-people', Games: 'controller', Marketplace: 'building-store', Account: 'shield-check' };
 
   function icon(name, cls) {
     const s = el('span', 'routility-set-svg ' + (cls || ''));
@@ -3364,10 +3364,13 @@
       if (tab.section && tab.section !== lastSection) {
         lastSection = tab.section;
         const many = TABS.filter(t => t.section === tab.section).length > 1;
-        const line = el('li', 'routility-injected routility-sub routility-menu-divider' + (many ? ' routility-menu-group' : ''), many ? lt(tab.section) : null);
+        const line = el('li', 'routility-injected routility-sub routility-menu-divider' + (many ? ' routility-menu-group' : ''));
         line.setAttribute('role', 'separator');
         line.dataset.section = tab.section;
-        if (many && GROUP_ICONS[tab.section]) line.prepend(icon(GROUP_ICONS[tab.section], 'routility-menu-group-icon'));
+        if (many) {
+          if (GROUP_ICONS[tab.section]) line.appendChild(el('span', 'icon icon-regular-' + GROUP_ICONS[tab.section] + ' routility-menu-group-icon'));
+          line.appendChild(el('span', 'routility-menu-group-name', lt(tab.section)));
+        }
         menu.appendChild(line);
       }
       const li = menuLink('routility-sub routility-menu-item', lt(tab.label), tab.hash, () => goTo(tab.hash));
