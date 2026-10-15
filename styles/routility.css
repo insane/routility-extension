@@ -8200,8 +8200,6 @@ html.routility-ads-page:not(.routility-ads-ready) #content::after {
 .routility-ads-tile-name { height: 2.6em; max-height: 2.6em; }
 .routility-ads-tile .routility-ads-tile-name { display: -webkit-box !important; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-height: 18px !important; height: 36px; max-height: 36px; min-height: 36px; overflow: hidden; }
 .routility-ads-tile-sk .routility-ads-sk-name2 { margin-bottom: 11px; }
-.routility-set-subs { margin: -4px 0 16px 18px; border-radius: 10px 0 0 10px; }
-.routility-set-subs > .routility-set-row { padding: 12px 18px 12px 16px; }
 .routility-classic-wear-empty { list-style: none; padding: 12px 4px; }
 .routility-menu-link .foundation-web-menu-item-title { display: inline-flex; align-items: center; gap: 8px; }
 .routility-menu-logo { width: 18px; height: 18px; flex: 0 0 auto; object-fit: contain; }
