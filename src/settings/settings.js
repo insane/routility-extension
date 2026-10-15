@@ -729,10 +729,10 @@
         ] },
         { title: LT('Scrollbar'), rows: [
           { key: 'scrollbarFix', title: LT('Match Scrollbar to Theme'), desc: LT('Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.') },
-          { key: 'scrollbarStyle', parent: 'scrollbarFix', title: LT('Scrollbar Style'), desc: LT('Floating hides the scrollbar until you scroll, then shows a slim bar over the page that fades out when you stop. Pick Roblox default to keep the normal scrollbar.'), options: [['default', LT('Roblox default')], ['floating', LT('Floating')]] },
+          { key: 'scrollbarStyle', parent: 'scrollbarFix', title: LT('Scrollbar Style'), desc: LT('Floating hides the scrollbar until you scroll, then shows a slim bar over the page that fades out when you stop. Pick Roblox default to keep the normal scrollbar.'), options: [['floating', LT('Floating')], ['default', LT('Roblox default')]] },
         ] },
         { title: LT('Settings Menu'), rows: [
-          { key: 'menuHighlight', title: LT('Selected Tab'), desc: LT('How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.'), options: [['bar', LT('Bar and highlight')], ['fill', LT('Highlight only')]] },
+          { key: 'menuHighlight', title: LT('Selected Tab'), desc: LT('How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.'), options: [['fill', LT('Highlight only')], ['bar', LT('Bar and highlight')]] },
         ] },
       ],
     },
