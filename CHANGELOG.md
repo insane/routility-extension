@@ -9,11 +9,12 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 
 ## 1.1.4 · October 15, 2026
 
-Themes get a lot more customizable, the classic profile gets a second layout, and updates clean up after themselves.
+Send Robux without the app, much more customizable themes, a second classic profile layout, and updates that clean up after themselves.
 
 **New**
 
 ```diff
++ Send Robux right from the browser: pick a friend in Buy Robux > Send, or press Send Robux on a profile, choose an amount and confirm, without opening the Roblox app. (by @reqonn)
 + Custom Theme: more colors (Buttons, Play Button Text, Borders, Success, Warnings), background effects like Glow, Aurora, Grid, Dots, Flowers or your own image, blur, tint, card transparency and roundness. (by @reqonn)
 + Website Font: use your own font file. (by @reqonn)
 + Sakura, a light pink theme preset. (by @reqonn)

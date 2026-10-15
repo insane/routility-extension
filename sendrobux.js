@@ -181,7 +181,7 @@
       fit();
       check();
     });
-    input.addEventListener('focus', () => { if (input.value === '0') input.select(); });
+    input.addEventListener('focus', () => { const end = input.value.length; requestAnimationFrame(() => input.setSelectionRange(end, end)); });
     input.addEventListener('blur', () => { if (!input.value) input.value = '0'; fit(); });
     input.addEventListener('keydown', (e) => { if (e.key === 'Enter') next.click(); });
     s.recheck = check;
