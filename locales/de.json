@@ -1526,7 +1526,7 @@
  "Moderate": "Mittel",
  "moderator": "Moderator",
  "Modern": "Modern",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "Modern oder Klassisch 2017: die blauen Kopfleisten des alten Forums, große helle Titel und Source Sans, in den Farben deines Roblox-Themes. Auch unter „Anpassen“ im Forum.",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "Modern oder Klassisch 2017: die blauen Kopfleisten des alten Forums, große helle Titel und Source Sans, in den Farben deines Roblox-Themes. Auch unter „Anpassen“ im Forum.",
  "Money": "Geld",
  "Money Amounts": "Geldbeträge",
  "more": "mehr",
@@ -1560,7 +1560,7 @@
  "Name Badges": "Namensabzeichen",
  "Named like a known virus (“{name}”)": "Benannt wie ein bekannter Virus („{name}“)",
  "Neck Accessory": "Hals-Accessoire",
- "Needs Rich search results": "Benötigt erweiterte Suchergebnisse",
+ "Needs Rich Search Results": "Benötigt erweiterte Suchergebnisse",
  "Needs Trade Calculator": "Benötigt Trade-Rechner",
  "Net": "Netto",
  "Never published": "Nie veröffentlicht",
@@ -2792,5 +2792,9 @@
  "Browsing": "Surfen",
  "Appearance": "Aussehen",
  "Social": "Soziales",
- "Account": "Konto"
+ "Account": "Konto",
+ "Selected Tab": "Ausgewählter Tab",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "Wie der geöffnete Tab im Einstellungsmenü aussieht: eine Hervorhebung mit einem farbigen Balken links wie bei Roblox oder nur die Hervorhebung.",
+ "Bar and highlight": "Balken und Hervorhebung",
+ "Highlight only": "Nur Hervorhebung"
 }

@@ -1527,7 +1527,7 @@
  "Moderate": "Moderate",
  "moderator": "moderator",
  "Modern": "Modern",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.",
  "Money": "Money",
  "Money Amounts": "Money Amounts",
  "more": "more",
@@ -1561,7 +1561,7 @@
  "Name Badges": "Name Badges",
  "Named like a known virus (“{name}”)": "Named like a known virus (“{name}”)",
  "Neck Accessory": "Neck Accessory",
- "Needs Rich search results": "Needs Rich search results",
+ "Needs Rich Search Results": "Needs Rich Search Results",
  "Needs Trade Calculator": "Needs Trade Calculator",
  "Net": "Net",
  "Never published": "Never published",
@@ -2792,5 +2792,9 @@
  "Browsing": "Browsing",
  "Appearance": "Appearance",
  "Social": "Social",
- "Account": "Account"
+ "Account": "Account",
+ "Selected Tab": "Selected Tab",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.",
+ "Bar and highlight": "Bar and highlight",
+ "Highlight only": "Highlight only"
 }

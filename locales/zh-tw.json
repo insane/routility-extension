@@ -1411,7 +1411,7 @@
  "Moderate": "中等",
  "moderator": "版主",
  "Modern": "現代",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "現代，或經典 2017：舊論壇的藍色標題列、大號淺色標題和 Source Sans 字型，使用你 Roblox 主題的顏色。也可以在論壇的「自訂」中設定。",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "現代，或經典 2017：舊論壇的藍色標題列、大號淺色標題和 Source Sans 字型，使用你 Roblox 主題的顏色。也可以在論壇的「自訂」中設定。",
  "Money": "金額",
  "Money Amounts": "金額換算",
  "more": "更多",
@@ -1445,7 +1445,7 @@
  "Name Badges": "名字徽章",
  "Named like a known virus (“{name}”)": "名稱與已知病毒相同（「{name}」）",
  "Neck Accessory": "頸部飾品",
- "Needs Rich search results": "需要「豐富搜尋結果」",
+ "Needs Rich Search Results": "需要「豐富搜尋結果」",
  "Needs Trade Calculator": "需要「交易計算機」",
  "Net": "淨額",
  "Never published": "從未發布",
@@ -2664,5 +2664,9 @@
  "Browsing": "瀏覽",
  "Appearance": "外觀",
  "Social": "社交",
- "Account": "帳號"
+ "Account": "帳號",
+ "Selected Tab": "選取的分頁",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "設定選單中目前分頁的樣式：像 Roblox 一樣帶左側彩色長條的醒目提示，或只有醒目提示。",
+ "Bar and highlight": "長條和醒目提示",
+ "Highlight only": "僅醒目提示"
 }

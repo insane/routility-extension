@@ -724,8 +724,8 @@
           { key: 'customTheme', title: LT('Custom Theme'), desc: LT('Pick your own colors for Roblox: backgrounds, cards, text, links and the Play button. Start from a preset or set each color yourself.') },
           { custom: 'themeEditor', parent: 'customTheme', title: LT('Theme Editor'), desc: LT('Your colors, the theme presets and your saved themes.'), keywords: 'theme themes color colors colour palette preset presets background dark light' },
           { key: 'scrollbarFix', title: LT('Match Scrollbar to Theme'), desc: LT('Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.') },
-          { key: 'menuHighlight', title: LT('Selected Tab'), desc: LT('How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.'), options: [['bar', LT('Bar and highlight')], ['fill', LT('Highlight only')]] },
           { key: 'scrollbarStyle', parent: 'scrollbarFix', title: LT('Scrollbar Style'), desc: LT('Floating hides the scrollbar until you scroll, then shows a slim bar over the page that fades out when you stop. Pick Roblox default to keep the normal scrollbar.'), options: [['default', LT('Roblox default')], ['floating', LT('Floating')]] },
+          { key: 'menuHighlight', title: LT('Selected Tab'), desc: LT('How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.'), options: [['bar', LT('Bar and highlight')], ['fill', LT('Highlight only')]] },
         ] },
         { title: LT('Font'), rows: [
           { key: 'siteFont', title: LT('Website Font'), desc: LT('Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.'), options: [['default', LT('Roblox default')], ['builder', 'Builder Sans'], ['system', LT('System font')], ['custom', LT('Your Own Font')]], fontInput: 'custom' },
@@ -785,7 +785,7 @@
           { key: 'richSearch', title: LT('Rich Search Results'), desc: LT('Extra results at the top of the Roblox search box.') },
           { key: 'searchSlash', title: LT('Press / to Search'), desc: LT('Jump to the search box from anywhere on Roblox. Use the arrow keys to move through results.') },
         ] },
-        { title: LT('What Shows Up'), note: LT('Needs Rich search results'), rows: [
+        { title: LT('What Shows Up'), note: LT('Needs Rich Search Results'), rows: [
           { key: 'searchPeople', parent: 'richSearch', title: LT('People'), desc: LT('Matching players with their avatar and verified badge.') },
           { key: 'searchFriends', parent: 'richSearch', title: LT('Friends First'), desc: LT('Friends whose name contains what you type, shown first.') },
           { key: 'searchGames', parent: 'richSearch', title: LT('Top Game'), desc: LT('The best matching experience with its rating and players.') },
@@ -1094,7 +1094,7 @@
           { key: 'forumTopLink', parent: 'forum', title: LT('Forum in the Top Bar'), desc: LT('Forum back in the top bar where it belongs, taking Robux’s spot.') },
         ] },
         { title: LT('Look'), rows: [
-          { key: 'forumStyle', parent: 'forum', title: LT('Style'), desc: LT('Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.'), options: [['modern', LT('Modern')], ['classic', LT('Classic 2017')]] },
+          { key: 'forumStyle', parent: 'forum', title: LT('Style'), desc: LT('Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.'), options: [['modern', LT('Modern')], ['classic', LT('Classic 2017')]] },
           { key: 'forumDensity', parent: 'forum', title: LT('Density'), desc: LT('How much room rows and posts get.'), options: [['comfortable', LT('Comfortable')], ['compact', LT('Compact')]] },
           { key: 'forumAvatars', parent: 'forum', title: LT('Avatars'), desc: LT('Full-body avatars like the old forum, round headshots, or none.'), options: [['full', LT('Full Body')], ['headshot', LT('Headshot')], ['off', LT('Off')]] },
         ] },
