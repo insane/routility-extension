@@ -76,6 +76,8 @@
         "hovercard.js",
         "misc.js",
         "plus.js",
+        "account.js",
+        "unavailable.js",
         "calc.js",
         "tradeads.js",
         "itemcard.js",

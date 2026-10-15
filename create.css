@@ -228,3 +228,11 @@ tr:hover .routility-cr-actions,
   fill: none !important;
   stroke: currentColor;
 }
+.routility-cr-safety { display: flex; flex-wrap: wrap; gap: 4px; padding-top: 4px; }
+.routility-cr-safety-badge { background: color-mix(in srgb, var(--color-system-alert, #e5484d) 18%, transparent); color: var(--color-system-alert, #e5484d); }
+.routility-tip { position: fixed !important; z-index: 2147483000 !important; display: block !important; margin: 0 !important; padding: 5px 0 !important; pointer-events: none; }
+.routility-tip .tooltip-arrow { position: absolute; top: 0; width: 0; height: 0; border-style: solid; border-color: transparent; border-width: 0 5px 5px; border-bottom-color: #393b3d; }
+.routility-tip .tooltip-inner { max-width: 260px; padding: 6px 10px; border-radius: 6px; background: #393b3d; color: #fff; font-size: 12px; line-height: 1.4em; text-align: center; white-space: pre-line; word-break: break-word; }
+.routility-tip .tooltip-inner.routility-tip-long { width: 240px; text-align: left; }
+.routility-tip.routility-tip-top { padding: 0 0 5px !important; }
+.routility-tip.routility-tip-top .tooltip-arrow { top: auto; bottom: 0; border-width: 5px 5px 0; border-bottom-color: transparent; border-top-color: #393b3d; }

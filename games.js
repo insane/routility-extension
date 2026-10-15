@@ -2,7 +2,7 @@
   'use strict';
 
   const { onFrame, formatNumber, el } = window.RoUtilityUI;
-  const { lt, ltn } = window.RoUtilityI18n;
+  const { lt, ltn, LT } = window.RoUtilityI18n;
   let state = null;
 
   function ago(iso) {
@@ -33,10 +33,33 @@
     return null;
   }
 
+  const AVATAR = { MorphToR6: 'R6', MorphToR15: 'R15', PlayerChoice: LT('R6 or R15') };
+
+  function avatarRow(g) {
+    const text = AVATAR[g.universeAvatarType];
+    const list = document.querySelector('.game-stat-container');
+    if (!text || !list) return;
+    let li = list.querySelector(':scope > .routility-avatar-stat');
+    if (!li) {
+      li = el('li', 'game-stat routility-injected routility-avatar-stat');
+      li.append(el('p', 'text-label text-overflow font-caption-header', lt('Avatar Type')), el('p', 'text-lead font-caption-body'));
+      const size = [...list.children].find(n => n.querySelector('.text-label')?.textContent.trim() === 'Server Size');
+      if (size) size.after(li);
+      else list.appendChild(li);
+    }
+    const lead = li.querySelector('.text-lead');
+    const shown = lt(text);
+    if (lead.textContent !== shown) lead.textContent = shown;
+    const tip = g.universeAvatarType === 'PlayerChoice' ? lt('Players join with their own avatar type') : lt('Everyone joins as {type}, whatever their avatar is set to', { type: text });
+    if (li.dataset.rtTip !== tip) li.dataset.rtTip = tip;
+  }
+
   function apply() {
     const s = state;
     if (!s || !s.game) return;
     const g = s.game;
+    if (s.opts.avatar) avatarRow(g);
+    if (!s.opts.stats) return;
     const visits = document.querySelector('#game-visits-count') || stat('Visits');
     if (visits && g.visits > 0 && visits.dataset.routilityExact !== String(g.visits)) {
       visits.dataset.routilityExact = String(g.visits);
@@ -75,11 +98,11 @@
     }
   }
 
-  async function setup(universeId) {
+  async function setup(universeId, opts) {
     if (!universeId) return;
     if (state && state.universeId === String(universeId)) return;
     resetStats();
-    const s = { universeId: String(universeId), game: null };
+    const s = { universeId: String(universeId), game: null, opts: Object.assign({ stats: true, avatar: true }, opts || {}) };
     state = s;
     s.observer = new MutationObserver(onFrame(apply));
     s.observer.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true });
@@ -151,6 +174,7 @@
       delete n.dataset.routilityVote;
     });
     document.querySelector('.users-vote .vote-container')?.removeAttribute('data-rt-tip');
+    document.querySelectorAll('.routility-avatar-stat').forEach(n => n.remove());
     document.querySelectorAll('[data-routility-when]').forEach(n => {
       n.textContent = n.dataset.routilityWhen;
       delete n.dataset.routilityWhen;

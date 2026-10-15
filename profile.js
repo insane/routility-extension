@@ -447,6 +447,13 @@
     return followers ? followers.parentElement : null;
   }
 
+  function adoptRovalra(wrap) {
+    const box = [...document.querySelectorAll('.rovalra-profile-button-container')].find(n => !wrap.contains(n));
+    if (!box) return;
+    box.classList.add('routility-rovalra-box');
+    wrap.appendChild(box);
+  }
+
   function ensureInjected() {
     const s = state;
     if (!s || s.failed) return;
@@ -454,7 +461,11 @@
     if (!row) return;
     const want = s.summary ? 'ready' : 'loading';
     const next = row.nextElementSibling;
-    if (next && next.classList.contains('routility-value-row') && next.dataset.state === want) return;
+    if (next && next.classList.contains('routility-value-row') && next.dataset.state === want) {
+      adoptRovalra(next);
+      return;
+    }
+    document.querySelectorAll('.routility-value-row .rovalra-profile-button-container').forEach(n => row.after(n));
     document.querySelectorAll('.routility-value-row').forEach(n => n.remove());
     const modeClass = { inventory: 'flex-nowrap gap-small flex routility-inventory-pills', classic: 'flex-nowrap gap-small flex routility-classic-pills' }[s.mode];
     const wrap = el('div', (modeClass || row.className) + ' routility-injected routility-value-row');
@@ -467,6 +478,7 @@
       wrap.append(...skeletonPills());
     }
     row.after(wrap);
+    adoptRovalra(wrap);
   }
 
   let trade = null;

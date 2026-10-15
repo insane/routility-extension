@@ -6,7 +6,7 @@
   const DAY = 86400000;
   const FG_KEY = 'routilityFriendGroups';
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
-  const settings = { groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, groupFind: true, groupHiddenGames: true };
+  const settings = { groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, groupFind: true, groupHiddenGames: true, groupCreated: true, groupCount: true };
   let lastUrl = '';
   let page = null;
   let csrf = '';
@@ -159,7 +159,7 @@
   }
 
   function communityPage(gid) {
-    const s = { gid, info: null, role: null, friends: null, pics: {}, funds: null, asked: false };
+    const s = { gid, info: null, role: null, friends: null, pics: {}, funds: null, created: null, asked: false };
     s.run = () => {
       const row = document.querySelector('.profile-insights-container');
       if (!row) return;
@@ -178,6 +178,10 @@
             rank.textContent = lt('{role} · Rank {rank}', { role: s.role.name, rank: s.role.rank });
           }
         }
+      }
+      if (settings.groupCreated && s.created && !row.querySelector('.routility-cm-created')) {
+        const pill = el('span', pillClass().replace(/cursor-pointer/g, '') + ' routility-injected routility-cm-created', lt('Created {date}', { date: s.created }));
+        row.insertBefore(pill, row.querySelector('.routility-cm-funds, .routility-cm-friends'));
       }
       if (settings.groupDetails && s.funds !== null && !row.querySelector('.routility-cm-funds')) {
         const pill = el('a', pillClass() + ' routility-injected routility-cm-funds');
@@ -215,6 +219,18 @@
 
   async function start(s) {
     const tasks = [];
+    if (settings.groupCreated) {
+      tasks.push(getJson(`https://groups.roblox.com/v2/groups?groupIds=${s.gid}`).then((d) => {
+        const at = d && d.data && d.data[0] && new Date(d.data[0].created);
+        if (!at || isNaN(at) || page !== s) return;
+        try {
+          s.created = at.toLocaleDateString(window.RoUtilityI18n.locale(), { month: 'short', day: 'numeric', year: 'numeric' });
+        } catch {
+          s.created = at.toDateString();
+        }
+        s.run();
+      }));
+    }
     if (settings.groupDetails) {
       tasks.push(getJson(`https://groups.roblox.com/v1/groups/${s.gid}`).then(d => { if (d && page === s) { s.info = d; s.run(); } }));
       tasks.push(getJson(`https://groups.roblox.com/v2/users/${me()}/groups/roles`).then(d => {
@@ -244,7 +260,21 @@
     await Promise.all(tasks);
   }
 
+  let countJob = null;
+
+  async function groupCount() {
+    const head = document.querySelector('.groups-list-heading');
+    if (!head || document.querySelector('.routility-cm-count')) return;
+    if (!countJob) countJob = getJson('https://groups.roblox.com/v1/groups/metadata');
+    const d = await countJob;
+    if (!d || !(d.groupLimit > 0) || !Number.isFinite(d.currentGroupCount) || !head.isConnected || document.querySelector('.routility-cm-count')) return;
+    const bar = head.parentElement;
+    if (!bar || bar.parentElement.querySelector(':scope > .routility-cm-count')) return;
+    bar.after(el('div', 'text-caption-medium content-muted routility-injected routility-cm-count', lt('{n} of {max} communities joined', { n: formatNumber(d.currentGroupCount), max: formatNumber(d.groupLimit) })));
+  }
+
   function sidebar() {
+    if (settings.groupCount) groupCount();
     if (!settings.groupManage) return;
     const head = document.querySelector('.groups-list-heading');
     const bar = head && head.parentElement;
@@ -752,7 +782,7 @@
     if (key !== lastUrl) {
       lastUrl = key;
       closePop();
-      document.querySelectorAll('.routility-cm-friends, .routility-cm-funds').forEach(n => n.remove());
+      document.querySelectorAll('.routility-cm-friends, .routility-cm-funds, .routility-cm-created').forEach(n => n.remove());
       const gid = groupId();
       if (/^\/communities\/configure/i.test(location.pathname) && gid) page = configurePage(gid);
       else if (gid && /^\/communities\/\d+/i.test(location.pathname)) page = communityPage(gid);

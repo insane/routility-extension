@@ -5,7 +5,7 @@
   const { lt, ltn, LT } = window.RoUtilityI18n;
   let langReady = false;
 
-  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, calcRate: '3.80', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, itemExplorer: true, gearFix: true, avatarPreview: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, badgeSizeFix: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true };
+  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, sessionIps: true, backupCodeDate: true, voiceStatus: true, groupCreated: true, groupCount: true, gameAvatarType: true, createSafety: true, gameUnavailable: true, calcRate: '3.80', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, itemExplorer: true, gearFix: true, avatarPreview: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, badgeSizeFix: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true };
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
 
   const TABS = [
@@ -332,6 +332,18 @@
   }
 
   const sumOf = (ids, field, data) => ids.split(',').reduce((n, id) => n + ((data[id] || KNOWN[id] || {})[field] || 0), 0);
+  const poster = (focus) => {
+    const stat = {
+      joined: () => h('div', null, [h('b', null, lt('Joined:') + ' '), '06 May 2022']),
+      posts: () => h('div', null, [h('b', null, lt('Total Posts:') + ' '), '1,284']),
+      value: () => h('span', 'rt-m-poster-pill rt-m-poster-usd', [logoImg(), '$12,400']),
+      rap: () => h('span', 'rt-m-poster-pill rt-m-poster-rap', [el('span', 'icon-robux-16x16 rt-m-robux'), '30,749,100']),
+      group: () => h('div', 'rt-m-poster-link', 'Limited Traders'),
+    }[focus]();
+    const who = h('div', 'rt-m-poster-who', [h('span', 'rt-m-poster-online'), h('span', 'rt-m-poster-name', 'Builderman')]);
+    return h('div', 'rt-m-poster', [who, stat]);
+  };
+
   const face = (id, size) => {
     const n = circle(size);
     n.dataset.rtUser = id;
@@ -475,11 +487,11 @@
     notifyLimiteds: () => notice(lt('New Roblox Limited'), lt('R$ {price} · {copies} copies', { price: '1,000', copies: '5,000' }), thumb(A.fedora, 18)),
     notifyUgc: () => notice(lt('New UGC Limited'), lt('R$ {price} · {copies} copies', { price: '250', copies: '100' }), thumb(A.stv, 18)),
     priceAlerts: () => c([r([thumb(A.valk, 24), c([strong('Valkyrie Helm'), muted(lt('Alert at R$ {price}', { price: '250,000' }))])]), r([h('span', 'rt-m-tiny rt-m-strong rt-m-hl', lt('Price Alert'))])], 'rt-m-w190'),
-    forumStatJoined: () => r([muted(lt('Joined')), strong('Mar 11, 2014')]),
-    forumStatPosts: () => r([muted(lt('Total Posts')), strong('1,284')]),
-    forumStatValue: () => r([pill('$12,400', 'usd')]),
-    forumStatRap: () => r([rb('30,749,100')]),
-    forumStatGroup: () => r([circle(20), strong('Builders Club')]),
+    forumStatJoined: () => poster('joined'),
+    forumStatPosts: () => poster('posts'),
+    forumStatValue: () => poster('value'),
+    forumStatRap: () => poster('rap'),
+    forumStatGroup: () => poster('group'),
     fakeRobux: () => r([h('span', 'rt-m-strike', '1,250'), h('span', 'rt-m-arrow', '→'), rb('1,000,000', 'rt-m-big')]),
     fakeBuy: () => h('div', 'rt-m-card rt-m-buy', [
       r([h('span', 'rt-m-tiny rt-m-strong', lt('Purchase Completed')), rb('998,800', 'rt-m-tiny')], 'rt-m-spread'),
@@ -655,6 +667,11 @@
         { title: LT('Your Status'), rows: [
           { key: 'studioStatus', title: LT('Appear In Studio'), desc: LT('Everyone sees your status as In Studio instead of Online or the game you’re in, while a Roblox tab is open. When you turn it off, your normal status comes back within a minute or two.') },
         ] },
+        { title: LT('Account Settings'), rows: [
+          { key: 'sessionIps', title: LT('Device IP Addresses'), desc: LT('Under each device on Settings > Security, the IP address it last used, so a login you don’t recognize is easier to spot. Streamer Mode blurs it with the rest of the list.') },
+          { key: 'backupCodeDate', title: LT('Backup Code Date'), desc: LT('When your 2-Step Verification backup codes were made, next to how many you have left.') },
+          { key: 'voiceStatus', title: LT('Voice Chat Suspension'), desc: LT('If your voice chat is suspended, Settings > Privacy says so and until when, instead of you finding out in a game.') },
+        ] },
         { title: LT('Shortcuts'), rows: [
           { key: 'menuLink', title: LT('Settings Menu Link'), desc: LT('A RoUtility item above Settings in the gear menu at the top right, straight to this page.') },
           { key: 'contextCopy', title: LT('Copy IDs on Right-Click'), desc: LT('Right-click a profile, item, model, bundle, experience, community or badge (or an empty spot on its page) for Copy User ID, Copy Asset ID and so on, with a quick confirmation.') },
@@ -811,6 +828,8 @@
       groups: [
         { title: LT('Game Pages'), rows: [
           { key: 'gameStats', title: LT('Exact Live Stats'), desc: LT('Full visit counts instead of 44.9B+, live player and visit counts that update every 30 seconds, and how long ago the game was updated.') },
+          { key: 'gameUnavailable', title: LT('Unavailable Game Details'), desc: LT('When Roblox says an experience is not accessible, like a private or taken down game, RoUtility shows what it can still find: name, creator, why it’s unavailable, favorites, likes, description, badges and passes.') },
+          { key: 'gameAvatarType', title: LT('Avatar Type'), desc: LT('An Avatar Type row next to Server Size: whether the game makes everyone R6, R15, or lets players pick. Roblox doesn’t show it on the page.') },
           { key: 'stopTrailers', title: LT('Stop Trailer Autoplay'), desc: LT('Game trailers at the top of experience pages stay paused until you press play.') },
           { key: 'storeTotal', title: LT('Store Total'), desc: LT('What every pass in a game’s Store costs together, next to Passes.') },
           { key: 'devProducts', title: LT('Developer Products'), desc: LT('A Developer Products row in a game’s Store with everything it sells inside the experience, like coins and boosts, and their prices.') },
@@ -1023,11 +1042,13 @@
           { key: 'groupFriends', title: LT('Friends in Community'), desc: LT('A Friends pill next to the member count with your friends who are in it. Your friends\u2019 communities are checked once and saved for a day, so it\u2019s instant after the first time.') },
           { key: 'groupDetails', title: LT('Exact Numbers'), desc: LT('The exact member count instead of 570.2K+, your rank number on your role, and on communities you run, Community Funds with the USD value.') },
           { key: 'groupFind', title: LT('Find a Member'), desc: LT('A search box in the Members list. Type a username to see if they’re in the community and what their role is, even in communities with millions of members.') },
+          { key: 'groupCreated', title: LT('Created Date'), desc: LT('When the community was made, as a pill under its name. Handy for spotting brand new copycat or scam communities.') },
           { key: 'groupHiddenGames', title: LT('Hidden Experiences'), desc: LT('Experiences a community owns that aren’t listed on its page, like test places and old games, in their own section under Experiences.') },
           { key: 'groupFullDesc', title: LT('Full Descriptions'), desc: LT('Shows a community’s whole description on its page, instead of three lines and a More button.') },
         ] },
         { title: LT('Your Communities'), rows: [
           { key: 'groupManage', title: LT('Manage My Communities'), desc: LT('A Manage link next to See All: search, sort by rank or size, filter Owned or Staff, and leave several at once with a confirm step.') },
+          { key: 'groupCount', title: LT('Community Count'), desc: LT('How many communities you’re in out of how many you can join, under Communities in the side list.') },
           { key: 'groupAdmin', title: LT('Admin Tools'), desc: LT('On Configure: USD next to Community Funds and Revenue, and Export CSV on the Audit Log.') },
         ] },
       ],
@@ -1062,6 +1083,7 @@
         ] },
         { title: LT('Dashboard'), rows: [
           { key: 'createIds', title: LT('Experience IDs'), desc: LT('Universe ID and Place ID with one-click copy on every experience overview, plus a Servers button.') },
+          { key: 'createSafety', title: LT('Restriction Tags'), desc: LT('Tags on your experiences in Creations when Roblox restricts them, like Hidden from discovery or Updates blocked, so you know why a game isn’t showing up.') },
           { key: 'createDevItems', title: LT('Development Item Tools'), desc: LT('Hover a row in Development items to copy its rbxassetid://, open it in the Explorer, download the file or open it in the Store.') },
           { key: 'createUsd', title: LT('Robux in USD'), desc: LT('About what Robux amounts are worth in dollars, at your Robux rate, like in Transactions.') },
         ] },

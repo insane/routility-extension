@@ -2,9 +2,9 @@
   'use strict';
 
   const { el, onFrame, formatUSD, formatNumber, robuxRate } = window.RoUtilityUI;
-  const { lt, ltn } = window.RoUtilityI18n;
+  const { lt, ltn, LT } = window.RoUtilityI18n;
   const NS = 'http://www.w3.org/2000/svg';
-  const settings = { createScanner: true, createIds: true, createDevItems: true, createUsd: true };
+  const settings = { createScanner: true, createIds: true, createDevItems: true, createUsd: true, createSafety: true };
   let lastUrl = '';
   let page = null;
 
@@ -323,6 +323,87 @@
     }
   }
 
+  const SAFETY = [
+    ['discoveryBlocked', LT('Hidden from discovery'), LT('Roblox keeps this experience out of Charts, search and recommendations.')],
+    ['updatingBlocked', LT('Updates blocked'), LT('New versions of this experience can’t be published right now.')],
+    ['universeActivationBlocked', LT('Can’t go public'), LT('This experience can’t be made public right now.')],
+    ['purchasingBlocked', LT('Purchases blocked'), LT('Players can’t buy passes or products in this experience right now.')],
+    ['publicIndexingBlocked', LT('Hidden from search engines'), LT('Google and other search engines won’t list this experience.')],
+    ['userPlaceUploadRestrictions', LT('Uploads restricted'), LT('Roblox limits who can upload to this place.')],
+    ['userPlayabilityRestrictions', LT('Play restricted'), LT('Roblox limits who can play this place.')],
+  ];
+  const rootPlaces = new Map();
+  const safetyCache = new Map();
+
+  function restricted(v) {
+    if (v === null || v === undefined || v === false || v === '') return false;
+    if (typeof v === 'string') return !/^(unrestricted|none|false)$/i.test(v);
+    if (typeof v === 'object') return Object.values(v).some(restricted);
+    return true;
+  }
+
+  async function placeFor(ids) {
+    const missing = ids.filter(id => !rootPlaces.has(id));
+    if (missing.length) {
+      for (const id of missing) rootPlaces.set(id, null);
+      try {
+        const res = await fetch(`https://games.roblox.com/v1/games?universeIds=${missing.join(',')}`, { credentials: 'include' });
+        const d = res.ok ? await res.json() : null;
+        for (const g of (d && d.data) || []) rootPlaces.set(String(g.id), g.rootPlaceId ? String(g.rootPlaceId) : null);
+      } catch {}
+      const still = missing.filter(id => !rootPlaces.get(id));
+      for (let i = 0; i < still.length; i += 50) {
+        try {
+          const res = await fetch(`https://develop.roblox.com/v1/universes/multiget?${still.slice(i, i + 50).map(id => 'ids=' + id).join('&')}`, { credentials: 'include' });
+          const d = res.ok ? await res.json() : null;
+          for (const u of (d && d.data) || []) if (u.rootPlaceId) rootPlaces.set(String(u.id), String(u.rootPlaceId));
+        } catch {}
+      }
+    }
+    return ids.map(id => rootPlaces.get(id));
+  }
+
+  function safety(placeId) {
+    if (!safetyCache.has(placeId)) {
+      safetyCache.set(placeId, fetch(`https://apis.roblox.com/content-safety/v1/places/${placeId}/safety-status`, { credentials: 'include' })
+        .then(r => (r.ok ? r.json() : null)).then(d => (d && d.placeSafetyStatus) || null).catch(() => null));
+    }
+    return safetyCache.get(placeId);
+  }
+
+  let safetyBusy = false;
+
+  async function safetyPass() {
+    if (safetyBusy) return;
+    const links = [...document.querySelectorAll('a[href*="/dashboard/creations/experiences/"]')].filter(a => !a.dataset.rtSafety && a.querySelector('.foundation-web-badge'));
+    if (!links.length) return;
+    safetyBusy = true;
+    try {
+      const ids = links.map(a => (a.getAttribute('href').match(/experiences\/(\d+)/) || [])[1]).map(String);
+      const places = await placeFor(ids.filter(Boolean));
+      const byId = new Map(ids.filter(Boolean).map((id, i) => [id, places[i]]));
+      await Promise.all(links.map(async (a, i) => {
+        const place = byId.get(ids[i]);
+        if (!place) return;
+        const st = await safety(place);
+        a.dataset.rtSafety = '1';
+        const hits = st ? SAFETY.filter(([key]) => restricted(st[key])) : [];
+        if (!hits.length || a.querySelector('.routility-cr-safety')) return;
+        const slot = a.querySelector('.foundation-web-badge').parentElement;
+        const row = el('span', 'routility-injected routility-cr-safety');
+        for (const [, label, tip] of hits) {
+          const badge = el('div', 'foundation-web-badge flex items-center select-none radius-circle height-600 width-[fit-content] padding-x-small stroke-none routility-cr-safety-badge');
+          badge.appendChild(el('span', 'text-no-wrap text-truncate-split text-label-small padding-y-xsmall', lt(label)));
+          badge.dataset.rtTip = lt(tip);
+          row.appendChild(badge);
+        }
+        slot.after(row);
+      }));
+    } finally {
+      safetyBusy = false;
+    }
+  }
+
   function route() {
     const url = location.href;
     if (url !== lastUrl) {
@@ -338,6 +419,7 @@
     }
     if (page) page.run();
     usdPass();
+    if (settings.createSafety && /^\/dashboard\/creations\/?$/.test(location.pathname)) safetyPass();
   }
 
   chrome.storage.local.get('routilitySettings', (st) => {
