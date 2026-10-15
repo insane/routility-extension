@@ -11,30 +11,30 @@
   const TABS = [
     { key: 'info', hash: '#!/routility', label: LT('About'), title: 'RoUtility' },
     { key: 'whatsnew', hash: '#!/routility/whatsnew', label: LT('What’s New'), title: LT('What’s New') },
-    { key: 'browsing', hash: '#!/routility/browsing', label: LT('General'), title: LT('General'), section: 'Browsing' },
-    { key: 'search', hash: '#!/routility/search', label: LT('Search'), title: LT('Search'), section: 'Browsing' },
-    { key: 'notifications', hash: '#!/routility/notifications', label: LT('Notifications'), title: LT('Notifications'), section: 'Browsing' },
-    { key: 'chat', hash: '#!/routility/chat', label: LT('Chat & Messages'), title: LT('Chat & Messages'), section: 'Browsing' },
-    { key: 'streamer', hash: '#!/routility/streamer', label: LT('Streamer Mode'), title: LT('Streamer Mode'), section: 'Browsing' },
-    { key: 'themes', hash: '#!/routility/themes', label: LT('Themes'), title: LT('Themes'), section: 'Appearance' },
-    { key: 'classic', hash: '#!/routility/classic', label: LT('Classic Roblox'), title: LT('Classic Roblox'), section: 'Appearance' },
-    { key: 'menu', hash: '#!/routility/menu', label: LT('Sidebar'), title: LT('Sidebar'), section: 'Appearance' },
-    { key: 'fun', hash: '#!/routility/fun', label: LT('Fun'), title: LT('Fun'), section: 'Appearance' },
-    { key: 'profiles', hash: '#!/routility/profiles', label: LT('Profiles'), title: LT('Profiles'), section: 'Social' },
-    { key: 'friends', hash: '#!/routility/friends', label: LT('Friends'), title: LT('Friends'), section: 'Social' },
-    { key: 'communities', hash: '#!/routility/communities', label: LT('Communities'), title: LT('Communities'), section: 'Social' },
-    { key: 'forum', hash: '#!/routility/forum', label: LT('Forum'), title: LT('Forum'), section: 'Social' },
-    { key: 'home', hash: '#!/routility/home', label: LT('Home & Charts'), title: LT('Home & Charts'), section: 'Games' },
-    { key: 'games', hash: '#!/routility/games', label: LT('Games & Servers'), title: LT('Games & Servers'), section: 'Games' },
-    { key: 'badges', hash: '#!/routility/badges', label: LT('Badges'), title: LT('Badges'), section: 'Games' },
-    { key: 'create', hash: '#!/routility/create', label: LT('Creator Hub'), title: LT('Creator Hub'), section: 'Games' },
-    { key: 'items', hash: '#!/routility/items', label: LT('Items'), title: LT('Items'), section: 'Marketplace' },
-    { key: 'inventory', hash: '#!/routility/inventory', label: LT('Inventory'), title: LT('Inventory'), section: 'Marketplace' },
-    { key: 'avatar', hash: '#!/routility/avatar', label: LT('Avatar Editor'), title: LT('Avatar Editor'), section: 'Marketplace' },
-    { key: 'trading', hash: '#!/routility/trading', label: LT('Trading'), title: LT('Trading'), section: 'Marketplace' },
-    { key: 'calculator', hash: '#!/routility/calculator', label: LT('Trade Calculator'), title: LT('Trade Calculator'), section: 'Marketplace' },
-    { key: 'account', hash: '#!/routility/account', label: LT('Account & Security'), title: LT('Account & Security'), section: 'Account' },
-    { key: 'robux', hash: '#!/routility/robux', label: LT('Robux & Transactions'), title: LT('Robux & Transactions'), section: 'Account' },
+    { key: 'browsing', hash: '#!/routility/browsing', label: LT('General'), title: LT('General'), section: LT('Browsing') },
+    { key: 'search', hash: '#!/routility/search', label: LT('Search'), title: LT('Search'), section: LT('Browsing') },
+    { key: 'notifications', hash: '#!/routility/notifications', label: LT('Notifications'), title: LT('Notifications'), section: LT('Browsing') },
+    { key: 'chat', hash: '#!/routility/chat', label: LT('Chat & Messages'), title: LT('Chat & Messages'), section: LT('Browsing') },
+    { key: 'streamer', hash: '#!/routility/streamer', label: LT('Streamer Mode'), title: LT('Streamer Mode'), section: LT('Browsing') },
+    { key: 'themes', hash: '#!/routility/themes', label: LT('Themes'), title: LT('Themes'), section: LT('Appearance') },
+    { key: 'classic', hash: '#!/routility/classic', label: LT('Classic Roblox'), title: LT('Classic Roblox'), section: LT('Appearance') },
+    { key: 'menu', hash: '#!/routility/menu', label: LT('Sidebar'), title: LT('Sidebar'), section: LT('Appearance') },
+    { key: 'fun', hash: '#!/routility/fun', label: LT('Fun'), title: LT('Fun'), section: LT('Appearance') },
+    { key: 'profiles', hash: '#!/routility/profiles', label: LT('Profiles'), title: LT('Profiles'), section: LT('Social') },
+    { key: 'friends', hash: '#!/routility/friends', label: LT('Friends'), title: LT('Friends'), section: LT('Social') },
+    { key: 'communities', hash: '#!/routility/communities', label: LT('Communities'), title: LT('Communities'), section: LT('Social') },
+    { key: 'forum', hash: '#!/routility/forum', label: LT('Forum'), title: LT('Forum'), section: LT('Social') },
+    { key: 'home', hash: '#!/routility/home', label: LT('Home & Charts'), title: LT('Home & Charts'), section: LT('Games') },
+    { key: 'games', hash: '#!/routility/games', label: LT('Games & Servers'), title: LT('Games & Servers'), section: LT('Games') },
+    { key: 'badges', hash: '#!/routility/badges', label: LT('Badges'), title: LT('Badges'), section: LT('Games') },
+    { key: 'create', hash: '#!/routility/create', label: LT('Creator Hub'), title: LT('Creator Hub'), section: LT('Games') },
+    { key: 'items', hash: '#!/routility/items', label: LT('Items'), title: LT('Items'), section: LT('Marketplace') },
+    { key: 'inventory', hash: '#!/routility/inventory', label: LT('Inventory'), title: LT('Inventory'), section: LT('Marketplace') },
+    { key: 'avatar', hash: '#!/routility/avatar', label: LT('Avatar Editor'), title: LT('Avatar Editor'), section: LT('Marketplace') },
+    { key: 'trading', hash: '#!/routility/trading', label: LT('Trading'), title: LT('Trading'), section: LT('Marketplace') },
+    { key: 'calculator', hash: '#!/routility/calculator', label: LT('Trade Calculator'), title: LT('Trade Calculator'), section: LT('Marketplace') },
+    { key: 'account', hash: '#!/routility/account', label: LT('Account & Security'), title: LT('Account & Security'), section: LT('Account') },
+    { key: 'robux', hash: '#!/routility/robux', label: LT('Robux & Transactions'), title: LT('Robux & Transactions'), section: LT('Account') },
   ];
   const isOurs = (hash) => TABS.some(t => t.hash === hash);
   let open = isOurs(location.hash) ? location.hash : null;
@@ -3453,20 +3453,29 @@
       if (searchQuery && open !== TABS[0].hash) goTo(TABS[0].hash);
       else liveFinder?.search(searchQuery);
     };
-    const reveal = () => {
+    const reveal = (tries = 0) => {
       const list = words();
       if (!list.length) return;
-      const pane = document.querySelector('.routility-pane');
-      const target = pane && [...pane.querySelectorAll('.routility-set-row')].find(r => matches(r.textContent.toLowerCase(), list));
+      const pane = document.querySelector(`.routility-pane[data-tab="${CSS.escape(open || '')}"]`);
+      if (!pane) {
+        if (tries < 12) setTimeout(() => reveal(tries + 1), 150);
+        return;
+      }
+      const target = [...pane.querySelectorAll('.routility-set-row')].find(r => matches(r.textContent.toLowerCase(), list));
       if (!target) return;
       target.scrollIntoView({ block: 'center', behavior: 'smooth' });
       target.classList.remove('routility-set-flash');
       void target.offsetWidth;
       target.classList.add('routility-set-flash');
     };
-    input.addEventListener('input', filter);
+    let typing = 0;
+    input.addEventListener('input', () => {
+      clearTimeout(typing);
+      typing = setTimeout(filter, 120);
+    });
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
+        clearTimeout(typing);
         input.value = '';
         filter();
       } else if (e.key === 'Enter') {
@@ -3475,7 +3484,7 @@
       }
     });
     menu.addEventListener('click', (e) => {
-      if (words().length && e.target.closest('.routility-menu-item')) setTimeout(reveal, 450);
+      if (words().length && e.target.closest('.routility-menu-item')) setTimeout(reveal, 200);
     }, true);
     return li;
   }
@@ -3505,7 +3514,6 @@
           a.removeAttribute('aria-current');
         }
       }
-      // Roblox's page stays up until ours is built, so opening a tab never shows a blank page.
       if ((pane || leaving) && !content.classList.contains('routility-open')) content.classList.add('routility-open');
       if (pane && pane.parentElement !== content) content.appendChild(pane);
     } else {
@@ -3548,8 +3556,6 @@
           building = null;
           pane?.remove();
           pane = buildPane(tab, stored, cache || {});
-          // Only the page fades in, never the menu beside it: fading the whole
-          // page made the menu blink on every switch to or from Roblox's settings.
           pane.classList.add('routility-pane-in');
           leaving?.remove();
           leaving = null;

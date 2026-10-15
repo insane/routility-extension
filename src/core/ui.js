@@ -967,7 +967,8 @@
   function presence(ids, fresh) {
     const want = [...new Set(ids.map(String))].filter(id => /^\d+$/.test(id));
     const now = Date.now();
-    const pick = () => new Map(want.filter(id => presenceSeen.has(id)).map(id => [id, presenceSeen.get(id).p]));
+    const since = fresh ? now : now - PRESENCE_TTL;
+    const pick = () => new Map(want.filter(id => (presenceSeen.get(id)?.at || 0) >= since).map(id => [id, presenceSeen.get(id).p]));
     const waits = new Set();
     const missing = [];
     for (const id of want) {

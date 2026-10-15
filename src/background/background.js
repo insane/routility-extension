@@ -39,7 +39,8 @@ async function robloxAdmins(ids) {
   const now = Date.now();
   const todo = ids.filter(id => !store[id] || now - store[id][1] > ADMIN_TTL);
   if (todo.length) {
-    const res = await Promise.all(todo.map(robloxAdmin));
+    const res = [];
+    for (let i = 0; i < todo.length; i += 4) res.push(...await Promise.all(todo.slice(i, i + 4).map(robloxAdmin)));
     todo.forEach((id, k) => { if (res[k] !== null) store[id] = [res[k] ? 1 : 0, now]; });
     const keys = Object.keys(store);
     if (keys.length > 5000) keys.sort((a, b) => store[a][1] - store[b][1]).slice(0, keys.length - 5000).forEach(k => delete store[k]);
@@ -421,7 +422,7 @@ let botFeatureMemo = null;
 let settingsText = null;
 
 function settingsSource() {
-  if (!settingsText) settingsText = fetch(chrome.runtime.getURL('src/settings/settings.js')).then(r => r.text());
+  if (!settingsText) settingsText = fetch(chrome.runtime.getURL('src/settings/settings.js')).then(r => r.text()).catch((e) => { settingsText = null; throw e; });
   return settingsText;
 }
 
