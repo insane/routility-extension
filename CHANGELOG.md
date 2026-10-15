@@ -21,6 +21,7 @@ Send Robux without the app, prices in your own currency, much more customizable 
 + Website Font: use your own font file. (by @reqonn)
 + Sakura, a light pink theme preset. (by @reqonn)
 + Classic Verified Badge: the original verified badge from 2022, with sharp corners and the brighter blue. (by @reqonn)
++ Selected Tab: pick how the open tab looks in side menus, just the highlight or a colored bar with it like Roblox. (by @reqonn)
 + Classic Profile Layout: a Two Columns option, with About, badges and communities on the left and experiences, friends and favorites on the right. (by @reqonn)
 ```
 
@@ -28,6 +29,8 @@ Send Robux without the app, prices in your own currency, much more customizable 
 
 ```diff
 ~ Settings are easier to find: new Classic Roblox, Account & Security and Inventory tabs, a Money section at the top of Robux & Transactions, and Trade Ads moved into Trading.
+~ The settings menu is grouped into Browsing, Appearance, Social, Games, Marketplace and Account, with a search at the top that shows every matching setting, and it matches Roblox's own settings menu. (by @reqonn)
+~ Faster pages: requests that don't depend on each other go out together, repeated lookups are shared, and classic profiles load in about a second. (by @reqonn)
 ~ Menus, dropdowns, the category lists and the classic profile follow custom themes. (by @reqonn)
 ~ Going back to a classic profile you just saw loads instantly. (by @reqonn)
 ```
@@ -36,6 +39,8 @@ Send Robux without the app, prices in your own currency, much more customizable 
 
 ```diff
 - Profile loading placeholders now sit exactly where the profile appears, instead of jumping sideways on wide screens.
+- The launch window now notices when you've joined a game. (by @reqonn)
+- Fewer rare glitches: notifications showing twice, Cancel Request acting on the previous profile, unavailable game pages retrying in a loop, and a failed Explorer download needing a reload. (by @reqonn)
 - Tabs left open during a RoUtility update no longer show errors or a leftover settings page. (by @reqonn)
 ```
 
