@@ -932,7 +932,7 @@
   }
 
   function qsRotator(body) {
-    if (!body || !body.isConnected) return;
+    if (!body || !body.isConnected || !chrome.runtime?.id) return;
     chrome.storage.local.get('routilityRotator', (st) => {
       if (chrome.runtime.lastError || !body.isConnected) return;
       const r = st.routilityRotator || {};

@@ -2804,7 +2804,7 @@
       if (Object.keys(patch).some(k => !/^forum(Style|Density|Avatars|Stat)/.test(k))) showApplied();
     };
 
-    const root = el('div', 'tab-pane active routility-pane');
+    const root = el('div', 'tab-pane active routility-pane routility-injected');
     root.dataset.tab = tab.hash;
     const section = el('section', 'settings-container-v2 flex flex-col gap-xlarge padding-bottom-large routility-set');
     const page = PAGES[tab.key];
