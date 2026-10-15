@@ -5569,6 +5569,79 @@ html.routility-ff-on #friends-web-app .chip-filters-container > button[aria-pres
   font-weight: 700;
 }
 
+.settings-left-navigation .menu-vertical .menu-option:not(.active) > .menu-option-content:not(.active):is(:hover, :focus-visible) {
+  background-color: var(--color-shift-100, rgba(127, 127, 127, 0.08)) !important;
+  color: var(--color-content-emphasis);
+}
+
+html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertical) {
+  padding: 6px;
+  border-radius: var(--radius-large, 12px);
+  background-color: var(--color-surface-100);
+}
+
+html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertical) > .menu-option {
+  position: relative;
+  border-radius: var(--radius-medium, 8px);
+  box-shadow: none !important;
+}
+
+html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertical) > .menu-option > .menu-option-content {
+  padding-left: 16px;
+  border-radius: inherit;
+  box-shadow: none !important;
+  outline: none;
+}
+
+html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertical) .menu-secondary-container {
+  left: 100% !important;
+  padding-left: 12px !important;
+}
+
+html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertical) .menu-secondary {
+  padding: 6px !important;
+  overflow: hidden;
+  width: 172px !important;
+  border-radius: var(--radius-large, 12px);
+  background-color: var(--color-surface-300);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertical) .menu-secondary-option {
+  border-radius: var(--radius-medium, 8px);
+  width: auto !important;
+  background-color: transparent;
+  color: var(--color-content-default);
+}
+
+html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertical) .menu-secondary-option:hover {
+  background-color: var(--color-shift-100);
+}
+
+html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertical) .menu-secondary-option.active {
+  background-color: var(--color-shift-200);
+  color: var(--color-content-emphasis);
+}
+
+html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertical) > .menu-option:hover {
+  background-color: var(--color-shift-100);
+}
+
+html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertical) > .menu-option.active {
+  background-color: var(--color-shift-200);
+}
+
+html.routility-themed .menu-vertical:not(.settings-left-navigation .menu-vertical) > .menu-option.active::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  bottom: 9px;
+  left: 4px;
+  width: 4px;
+  border-radius: calc(2px * var(--routility-round, 1));
+  background: var(--color-system-emphasis);
+}
+
 html.routility-settings-mode .menu-vertical .routility-menu-divider,
 .menu-vertical .routility-menu-split {
   display: block !important;
