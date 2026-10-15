@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, onFrame, formatNumber } = window.RoUtilityUI;
+  const { el, onFrame, formatNumber, chunks } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const PAGE = 18;
   const DAY = 86400000;
@@ -103,15 +103,18 @@
   }
 
   async function loadProfiles(s, ids) {
-    const need = ids.filter(id => !s.users.has(id));
-    for (let i = 0; i < need.length; i += 100) {
-      const chunk = need.slice(i, i + 100);
+    const tryPost = async (url, body, times) => {
       let res = null;
-      for (let tries = 0; tries < 5 && !res; tries++) {
+      for (let tries = 0; tries < times && !res; tries++) {
         if (tries) await wait(1500 * 2 ** (tries - 1));
-        res = await F().robloxPost('https://apis.roblox.com/user-profile-api/v1/user/profiles/get-profiles', { userIds: chunk, fields: ['names.combinedName', 'names.username', 'isVerified', 'isDeleted', 'hasRobloxSubscription'] });
+        res = await F().robloxPost(url, body);
       }
-      if (rf !== s) return;
+      return res;
+    };
+    const need = ids.filter(id => !s.users.has(id));
+    const profiles = await Promise.all(chunks(need, 100).map(chunk => tryPost('https://apis.roblox.com/user-profile-api/v1/user/profiles/get-profiles', { userIds: chunk, fields: ['names.combinedName', 'names.username', 'isVerified', 'isDeleted', 'hasRobloxSubscription'] }, 5)));
+    if (rf !== s) return;
+    for (const res of profiles) {
       for (const p of (res && res.profileDetails) || []) {
         const id = Number(p.userId);
         const n = p.names || {};
@@ -121,15 +124,9 @@
       }
     }
     const banned = ids.filter(id => !s.users.has(id));
-    for (let i = 0; i < banned.length; i += 100) {
-      let res = null;
-      for (let tries = 0; tries < 4 && !res; tries++) {
-        if (tries) await wait(1500 * 2 ** (tries - 1));
-        res = await F().robloxPost('https://users.roblox.com/v1/users', { userIds: banned.slice(i, i + 100), excludeBannedUsers: false });
-      }
-      if (rf !== s) return;
-      for (const u of (res && res.data) || []) s.users.set(Number(u.id), { name: u.name || '', displayName: u.displayName || u.name || '', hasVerifiedBadge: !!u.hasVerifiedBadge, deleted: true });
-    }
+    const gone = await Promise.all(chunks(banned, 100).map(chunk => tryPost('https://users.roblox.com/v1/users', { userIds: chunk, excludeBannedUsers: false }, 4)));
+    if (rf !== s) return;
+    for (const res of gone) for (const u of (res && res.data) || []) s.users.set(Number(u.id), { name: u.name || '', displayName: u.displayName || u.name || '', hasVerifiedBadge: !!u.hasVerifiedBadge, deleted: true });
   }
 
   function nameHit(u, q) {

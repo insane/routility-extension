@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, json } = window.RoUtilityUI;
+  const { el, json, chunks } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const HIDDEN_KEY = 'routilityHiddenGames';
   const HIDDEN_NAMES = 'routilityHiddenNames';
@@ -617,8 +617,8 @@
         if (p !== page) return;
         const ids = [...new Set([...((fav && fav.data) || []).map(g => String(g.id)), ...continueIds()])].slice(0, 150);
         const list = [];
-        for (let i = 0; i < ids.length; i += 50) {
-          const d = await json(`https://games.roblox.com/v1/games?universeIds=${ids.slice(i, i + 50).join(',')}`);
+        const pages = await Promise.all(chunks(ids, 50).map(part => json(`https://games.roblox.com/v1/games?universeIds=${part.join(',')}`)));
+        for (const d of pages) {
           for (const g of (d && d.data) || []) {
             const at = Date.parse(g.updated);
             if (at) list.push({ universeId: String(g.id), placeId: String(g.rootPlaceId), name: g.name || '', updated: at });
@@ -780,13 +780,14 @@
       const need = [...new Set(tiles().map(a => a.id))].filter(id => !known[id]);
       if (!need.length) return;
       loading = true;
-      for (let i = 0; i < need.length && p === page; i += 50) {
-        const d = await json(`https://games.roblox.com/v1/games?universeIds=${need.slice(i, i + 50).join(',')}`);
+      await Promise.all(chunks(need, 50).map(async (part) => {
+        const d = await json(`https://games.roblox.com/v1/games?universeIds=${part.join(',')}`);
+        if (p !== page) return;
         const now = Date.now();
         for (const g of (d && d.data) || []) known[String(g.id)] = [g.genre_l1 || '', g.genre_l2 || '', now];
-        for (const id of need.slice(i, i + 50)) if (!known[id]) known[id] = ['', '', now];
+        for (const id of part) if (!known[id]) known[id] = ['', '', now];
         apply();
-      }
+      }));
       loading = false;
       clearTimeout(saveTimer);
       saveTimer = setTimeout(() => {

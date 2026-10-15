@@ -445,12 +445,9 @@
       const prev = counts.get(key);
       counts.set(key, { need: (prev ? prev.need : 0) + 1, name: it.itemName || '', type: t.itemType, id: String(t.targetId) });
     }
-    const out = [];
-    for (const { need, name, type, id } of counts.values()) {
-      const have = await ownedCount(offer.user.id, id, type);
-      if (typeof have === 'number' && have < need) out.push({ assetId: id, bundle: type === 'Bundle', name });
-    }
-    return out;
+    const wanted = [...counts.values()];
+    const owned = await Promise.all(wanted.map(({ id, type }) => ownedCount(offer.user.id, id, type)));
+    return wanted.filter((w, k) => typeof owned[k] === 'number' && owned[k] < w.need).map(({ name, type, id }) => ({ assetId: id, bundle: type === 'Bundle', name }));
   }
 
   function renderOwnership(node, label, missing) {

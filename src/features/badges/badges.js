@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, onFrame, formatNumber, dropdown, json } = window.RoUtilityUI;
+  const { el, onFrame, formatNumber, dropdown, json, chunks } = window.RoUtilityUI;
   const { lt, LT } = window.RoUtilityI18n;
   const TTL = 10 * 60 * 1000;
   const PAGE = 25;
@@ -46,11 +46,9 @@
       if (!cursor) break;
     }
     const earned = {};
-    for (let i = 0; i < ids.length; i += 100) {
-      const data = await json(`https://badges.roblox.com/v1/users/${me}/badges/awarded-dates?badgeIds=${ids.slice(i, i + 100).join(',')}`);
-      if (!data) return null;
-      for (const a of data.data || []) earned[String(a.badgeId)] = a.awardedDate;
-    }
+    const pages = await Promise.all(chunks(ids, 100).map(part => json(`https://badges.roblox.com/v1/users/${me}/badges/awarded-dates?badgeIds=${part.join(',')}`)));
+    if (pages.some(data => !data)) return null;
+    for (const data of pages) for (const a of data.data || []) earned[String(a.badgeId)] = a.awardedDate;
     const result = { at: Date.now(), total: ids.length, earned, list };
     try { sessionStorage.setItem(cacheKey(universeId, me), JSON.stringify(result)); } catch {}
     return result;

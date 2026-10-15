@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, formatNumber, onFrame, pause } = window.RoUtilityUI;
+  const { el, formatNumber, onFrame, pause, chunks } = window.RoUtilityUI;
   const { lt, LT } = window.RoUtilityI18n;
   const ON_CLASS = 'routility-classic-on';
   const PROXY_CLASS = 'routility-menu-proxy';
@@ -115,15 +115,15 @@
     for (let attempt = 0; attempt < 3 && pending.length; attempt++) {
       if (attempt) await new Promise(r => setTimeout(r, 1500));
       const retry = [];
-      for (let i = 0; i < pending.length; i += 100) {
-        const chunk = pending.slice(i, i + 100);
-        const res = await post('https://thumbnails.roblox.com/v1/batch', chunk.map(r => ({ format: 'Webp', isCircular: false, ...r })));
+      const parts = chunks(pending, 100);
+      const batches = await Promise.all(parts.map(chunk => post('https://thumbnails.roblox.com/v1/batch', chunk.map(r => ({ format: 'Webp', isCircular: false, ...r })))));
+      batches.forEach((res, k) => {
         for (const t of (res && res.data) || []) {
           if (t.state === 'Completed' && t.imageUrl) out.set(t.requestId, t.imageUrl);
           else if (t.state === 'Blocked') out.set(t.requestId, window.RoUtilityUI.blockedThumb(t));
-          else if (t.state === 'Pending') retry.push(chunk.find(r => r.requestId === t.requestId));
+          else if (t.state === 'Pending') retry.push(parts[k].find(r => r.requestId === t.requestId));
         }
-      }
+      });
       pending = retry.filter(Boolean);
     }
     return out;

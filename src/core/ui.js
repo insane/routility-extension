@@ -920,6 +920,12 @@
 
   const pause = ms => new Promise(r => setTimeout(r, ms));
 
+  function chunks(list, size) {
+    const out = [];
+    for (let i = 0; i < list.length; i += size) out.push(list.slice(i, i + size));
+    return out;
+  }
+
   async function json(url, init) {
     try {
       const res = await fetch(url, { credentials: 'include', ...init });
@@ -973,7 +979,7 @@
     return waits.size ? Promise.all(waits).then(pick) : Promise.resolve(pick());
   }
 
-  window.RoUtilityUI = { json, pause, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
+  window.RoUtilityUI = { json, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
 })();
 
 (function () {

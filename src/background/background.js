@@ -38,14 +38,13 @@ async function robloxAdmins(ids) {
   const store = await new Promise(r => chrome.storage.local.get(ADMIN_KEY, s => r(s[ADMIN_KEY] || {})));
   const now = Date.now();
   const todo = ids.filter(id => !store[id] || now - store[id][1] > ADMIN_TTL);
-  for (let i = 0; i < todo.length; i += 4) {
-    const chunk = todo.slice(i, i + 4);
-    const res = await Promise.all(chunk.map(robloxAdmin));
-    chunk.forEach((id, k) => { if (res[k] !== null) store[id] = [res[k] ? 1 : 0, now]; });
+  if (todo.length) {
+    const res = await Promise.all(todo.map(robloxAdmin));
+    todo.forEach((id, k) => { if (res[k] !== null) store[id] = [res[k] ? 1 : 0, now]; });
+    const keys = Object.keys(store);
+    if (keys.length > 5000) keys.sort((a, b) => store[a][1] - store[b][1]).slice(0, keys.length - 5000).forEach(k => delete store[k]);
+    await new Promise(r => chrome.storage.local.set({ [ADMIN_KEY]: store }, r));
   }
-  const keys = Object.keys(store);
-  if (keys.length > 5000) keys.sort((a, b) => store[a][1] - store[b][1]).slice(0, keys.length - 5000).forEach(k => delete store[k]);
-  await new Promise(r => chrome.storage.local.set({ [ADMIN_KEY]: store }, r));
   return ids.filter(id => store[id] && store[id][0] === 1);
 }
 
@@ -224,15 +223,18 @@ async function kvSet(key, value) {
 }
 
 async function downloadAllItems() {
-  const allItems = [];
-  let page = 0;
-  let pages = 1;
-  while (page < pages) {
+  const itemsPage = async (page) => {
     const data = await getJson(`${API_BASE}/items?limit=200&page=${page}&sort=usd&dir=desc`);
     if (!data || !Array.isArray(data.items)) throw new Error('items page ' + page);
-    allItems.push(...data.items);
-    pages = data.pages;
-    page++;
+    return data;
+  };
+  const first = await itemsPage(0);
+  const allItems = [...first.items];
+  const rest = [];
+  for (let page = 1; page < first.pages; page++) rest.push(page);
+  while (rest.length) {
+    const wave = await Promise.all(rest.splice(0, 4).map(itemsPage));
+    for (const data of wave) allItems.push(...data.items);
   }
   const itemMap = {};
   for (const item of allItems) itemMap[item.id] = item;
@@ -268,8 +270,9 @@ async function getItems() {
   }
   const fresh = itemsMemo.routilityItems && Date.now() - itemsMemo.routilityLastFetch < REFRESH_INTERVAL;
   if (fresh || Date.now() - lastFailure < RETRY_AFTER_FAILURE) return itemsMemo.routilityItems || {};
-  const updated = await fetchAllItems();
-  return updated || itemsMemo.routilityItems || {};
+  const updated = fetchAllItems();
+  if (itemsMemo.routilityItems && itemsMemo.routilityItemCount > 0) return itemsMemo.routilityItems;
+  return (await updated) || itemsMemo.routilityItems || {};
 }
 
 async function getHistory(id) {
