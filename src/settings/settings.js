@@ -2775,36 +2775,38 @@
     language.card.appendChild(featureRow(LANGUAGE_ROW, settings, saveLanguage, [], false));
     section.appendChild(language);
 
-    const cats = group(lt('Categories'));
-    cats.card.classList.add('routility-set-card-plain');
-    const grid = el('div', 'routility-set-cats');
-    for (const tab of TABS.filter(t => PAGES[t.key])) {
-      const keys = keysOf(PAGES[tab.key]);
-      const count = keys.filter(k => settings[k]).length;
-      const card = el('a', 'routility-set-cat');
-      card.href = tab.hash;
-      card.addEventListener('click', (e) => {
-        e.preventDefault();
-        goTo(tab.hash);
-      });
-      const catIcon = el('span', 'routility-set-svg routility-set-cat-icon');
-      catIcon.innerHTML = CAT_SVG[tab.key] || SVG[ICONS[tab.key]];
-      catIcon.setAttribute('aria-hidden', 'true');
-      card.appendChild(catIcon);
-      const t = el('div', 'routility-set-cat-text');
-      t.appendChild(el('span', 'text-title-medium content-emphasis', lt(tab.label)));
-      t.appendChild(el('span', 'text-body-small content-muted', lt(BLURBS[tab.key])));
-      card.appendChild(t);
-      if (tab.key === 'menu') {
-        const navHidden = (Array.isArray(stored.routilityNavLayout && stored.routilityNavLayout.hidden) ? stored.routilityNavLayout.hidden.length : 0) + (settings.calcNav === false ? 1 : 0) + (settings.forumNav === false ? 1 : 0) + (settings.tradeAdsNav === false ? 1 : 0);
-        card.appendChild(el('span', 'routility-set-cat-count', navHidden ? ltn(navHidden, '{n} hidden', '{n} hidden') : lt('All shown')));
-      } else {
-        card.appendChild(el('span', 'routility-set-cat-count' + (count ? '' : ' routility-set-cat-none'), lt('{on}/{total} on', { on: count, total: keys.length })));
+    for (const name of [...new Set(TABS.filter(t => PAGES[t.key]).map(t => t.section))]) {
+      const cats = group(lt(name));
+      cats.card.classList.add('routility-set-card-plain');
+      const grid = el('div', 'routility-set-cats');
+      for (const tab of TABS.filter(t => PAGES[t.key] && t.section === name)) {
+        const keys = keysOf(PAGES[tab.key]);
+        const count = keys.filter(k => settings[k]).length;
+        const card = el('a', 'routility-set-cat');
+        card.href = tab.hash;
+        card.addEventListener('click', (e) => {
+          e.preventDefault();
+          goTo(tab.hash);
+        });
+        const catIcon = el('span', 'routility-set-svg routility-set-cat-icon');
+        catIcon.innerHTML = CAT_SVG[tab.key] || SVG[ICONS[tab.key]];
+        catIcon.setAttribute('aria-hidden', 'true');
+        card.appendChild(catIcon);
+        const t = el('div', 'routility-set-cat-text');
+        t.appendChild(el('span', 'text-title-medium content-emphasis', lt(tab.label)));
+        t.appendChild(el('span', 'text-body-small content-muted', lt(BLURBS[tab.key])));
+        card.appendChild(t);
+        if (tab.key === 'menu') {
+          const navHidden = (Array.isArray(stored.routilityNavLayout && stored.routilityNavLayout.hidden) ? stored.routilityNavLayout.hidden.length : 0) + (settings.calcNav === false ? 1 : 0) + (settings.forumNav === false ? 1 : 0) + (settings.tradeAdsNav === false ? 1 : 0);
+          card.appendChild(el('span', 'routility-set-cat-count', navHidden ? ltn(navHidden, '{n} hidden', '{n} hidden') : lt('All shown')));
+        } else {
+          card.appendChild(el('span', 'routility-set-cat-count' + (count ? '' : ' routility-set-cat-none'), lt('{on}/{total} on', { on: count, total: keys.length })));
+        }
+        grid.appendChild(card);
       }
-      grid.appendChild(card);
+      cats.card.appendChild(grid);
+      section.appendChild(cats);
     }
-    cats.card.appendChild(grid);
-    section.appendChild(cats);
 
     const others = group(lt('Other Extensions'), lt('Seen on Roblox pages recently'));
     others.hidden = true;
@@ -3008,7 +3010,7 @@
             return def.title && words.every(w => hay.includes(w) || (w.length > 3 && /s$/.test(w) && hay.includes(w.slice(0, -1))));
           });
           if (!hits.length) continue;
-          const wrap = group(`${lt(tab.label)} • ${lt(g.title)}`);
+          const wrap = group(lt(g.title) === lt(tab.label) ? lt(tab.label) : `${lt(tab.label)} • ${lt(g.title)}`);
           for (const def of hits) {
             found++;
             if (def.custom) {
@@ -3048,7 +3050,15 @@
         render();
       }
     });
-    return { field, results, hideWhileSearching: (n) => hidden.push(n) };
+    return {
+      field,
+      results,
+      hideWhileSearching: (n) => hidden.push(n),
+      search: (query) => {
+        input.value = query;
+        render();
+      },
+    };
   }
 
   function buildPane(tab, stored, cache) {
@@ -3106,11 +3116,12 @@
 
     if (tab.key === 'info') {
       const finder = settingsSearch(settings, save, stored, cache);
-      section.appendChild(finder.field);
       section.appendChild(finder.results);
+      liveFinder = finder;
       const before = section.children.length;
       infoPane(section, cache, settings, stored || {});
       [...section.children].slice(before).forEach(n => finder.hideWhileSearching(n));
+      if (searchQuery) finder.search(searchQuery);
     }
 
     if (tab.key === 'whatsnew') whatsNewPane(section);
@@ -3434,6 +3445,9 @@
       }
       for (const line of menu.querySelectorAll('.routility-menu-divider')) line.classList.toggle('routility-menu-off', !!list.length && !shown.has(line.dataset.section));
       menu.classList.toggle('routility-menu-searching', !!list.length);
+      searchQuery = input.value.trim();
+      if (searchQuery && open !== TABS[0].hash) goTo(TABS[0].hash);
+      else liveFinder?.search(searchQuery);
     };
     const reveal = () => {
       const list = words();
@@ -3504,6 +3518,8 @@
 
   let building = null;
   let leaving = null;
+  let liveFinder = null;
+  let searchQuery = '';
 
   function setOpen(hash) {
     const next = isOurs(hash) ? hash : null;

@@ -11811,7 +11811,15 @@ html.routility-settings-mode .menu-vertical .routility-menu-group.routility-menu
   opacity: 0.6;
 }
 
+.menu-vertical .routility-menu-item .menu-option-content:has(.routility-menu-count) .font-caption-header {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .routility-menu-count {
+  flex: none;
   margin-left: auto;
   padding: 0 6px;
   border-radius: 999px;
