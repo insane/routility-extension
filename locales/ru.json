@@ -2942,5 +2942,45 @@
  "Your Robux Rate": "Твой курс Robux",
  "Your Settings": "Твои настройки",
  "Your Slots": "Твои слоты",
- "Your Status": "Твой статус"
+ "Your Status": "Твой статус",
+ "Amount of Robux": "Сумма Robux",
+ "Edit": "Изменить",
+ "Joined in {year}": "На Roblox с {year}",
+ "Not connected": "Не в друзьях",
+ "OK": "ОК",
+ "Roblox couldn’t send it. Check your balance before you try again.": "Roblox не смог отправить. Проверь баланс, прежде чем пробовать снова.",
+ "Roblox didn’t answer. Check your balance before you try again.": "Roblox не ответил. Проверь баланс, прежде чем пробовать снова.",
+ "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox хочет сначала убедиться, что это ты. Отправь этот перевод из приложения Roblox.",
+ "Roblox won’t let you send Robux to this person right now.": "Roblox сейчас не даёт отправить Robux этому человеку.",
+ "Robux are sent instantly with no fees": "Robux приходят сразу и без комиссии",
+ "Send": "Отправить",
+ "Send Robux": "Отправить Robux",
+ "Send Robux in the Browser": "Отправка Robux в браузере",
+ "Send Robux to a friend from their profile, or from the friends list on the Buy Robux page, without opening the Roblox app. Pick an amount, check who it’s going to, then send. Roblox still decides who you can send to and how much.": "Отправляй Robux другу из его профиля или из списка друзей на странице покупки Robux, не открывая приложение Roblox. Выбери сумму, проверь получателя и отправь. Кому и сколько можно отправить, по-прежнему решает Roblox.",
+ "The minimum is {n} Robux": "Минимум {n} Robux",
+ "The recipient will get {n} Robux.": "Получатель получит {n} Robux.",
+ "This needs a parent’s permission. Send it from the Roblox app to ask them.": "Нужно разрешение родителя. Отправь из приложения Roblox, чтобы его попросить.",
+ "You can send up to {n} Robux right now": "Сейчас можно отправить до {n} Robux",
+ "You only have {n} Robux": "У тебя только {n} Robux",
+ "You sent {n} Robux": "Ты отправил {n} Robux",
+ "Connected {n} days": {
+  "one": "Связаны {n} день",
+  "few": "Связаны {n} дня",
+  "many": "Связаны {n} дней",
+  "other": "Связаны {n} дня"
+ },
+ "Connected {n} months": {
+  "one": "Связаны {n} месяц",
+  "few": "Связаны {n} месяца",
+  "many": "Связаны {n} месяцев",
+  "other": "Связаны {n} месяца"
+ },
+ "Connected {n} years": {
+  "one": "Связаны {n} год",
+  "few": "Связаны {n} года",
+  "many": "Связаны {n} лет",
+  "other": "Связаны {n} года"
+ },
+ "You need an age check or parental consent to send Robux. Once you send, you cannot cancel.": "Чтобы отправлять Robux, нужна проверка возраста или согласие родителя. После отправки отменить нельзя.",
+ "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "Ваш аккаунт пока не может отправлять Robux. Сначала нужна проверка возраста или разрешение родителя — это можно сделать в приложении Roblox."
 }

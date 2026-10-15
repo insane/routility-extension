@@ -2692,5 +2692,39 @@
  "Your Robux Rate": "Your Robux Rate",
  "Your Settings": "Your Settings",
  "Your Slots": "Your Slots",
- "Your Status": "Your Status"
+ "Your Status": "Your Status",
+ "Amount of Robux": "Amount of Robux",
+ "Edit": "Edit",
+ "Joined in {year}": "Joined in {year}",
+ "Not connected": "Not connected",
+ "OK": "OK",
+ "Roblox couldn’t send it. Check your balance before you try again.": "Roblox couldn’t send it. Check your balance before you try again.",
+ "Roblox didn’t answer. Check your balance before you try again.": "Roblox didn’t answer. Check your balance before you try again.",
+ "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox wants to check it’s you first. Send this one from the Roblox app.",
+ "Roblox won’t let you send Robux to this person right now.": "Roblox won’t let you send Robux to this person right now.",
+ "Robux are sent instantly with no fees": "Robux are sent instantly with no fees",
+ "Send": "Send",
+ "Send Robux": "Send Robux",
+ "Send Robux in the Browser": "Send Robux in the Browser",
+ "Send Robux to a friend from their profile, or from the friends list on the Buy Robux page, without opening the Roblox app. Pick an amount, check who it’s going to, then send. Roblox still decides who you can send to and how much.": "Send Robux to a friend from their profile, or from the friends list on the Buy Robux page, without opening the Roblox app. Pick an amount, check who it’s going to, then send. Roblox still decides who you can send to and how much.",
+ "The minimum is {n} Robux": "The minimum is {n} Robux",
+ "The recipient will get {n} Robux.": "The recipient will get {n} Robux.",
+ "This needs a parent’s permission. Send it from the Roblox app to ask them.": "This needs a parent’s permission. Send it from the Roblox app to ask them.",
+ "You can send up to {n} Robux right now": "You can send up to {n} Robux right now",
+ "You only have {n} Robux": "You only have {n} Robux",
+ "You sent {n} Robux": "You sent {n} Robux",
+ "Connected {n} days": {
+  "one": "Connected {n} day",
+  "other": "Connected {n} days"
+ },
+ "Connected {n} months": {
+  "one": "Connected {n} month",
+  "other": "Connected {n} months"
+ },
+ "Connected {n} years": {
+  "one": "Connected {n} year",
+  "other": "Connected {n} years"
+ },
+ "You need an age check or parental consent to send Robux. Once you send, you cannot cancel.": "You need an age check or parental consent to send Robux. Once you send, you cannot cancel.",
+ "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app."
 }

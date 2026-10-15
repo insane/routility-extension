@@ -10057,7 +10057,7 @@ html.routility-classic-logo #header .navbar-brand .icon-logo {
   --routility-premium-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath fill-rule='evenodd' d='M28 24a4 4 0 0 1-4 4H14v-4h10V4H4v24a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4Zm-7-7v4h-7v-4h3v-6h-6v17H7V7h14z'/%3E%3C/svg%3E");
 }
 
-html.routility-classic-premium :is(.icon-display-name-badge-plus, .routility-name-badges .icon-regular-roblox-plus, .avatar-name-container .icon-regular-roblox-plus, #profile-header-title-container-name ~ * .icon-regular-roblox-plus, :is(.text-truncate-end, .text-no-wrap, .text-overflow) ~ .icon-regular-roblox-plus, span.inline-flex.shrink-0.gap-xxsmall > .icon-regular-roblox-plus),
+html.routility-classic-premium :is(.icon-display-name-badge-plus, .routility-name-badges .icon-regular-roblox-plus, .avatar-name-container .icon-regular-roblox-plus, #profile-header-title-container-name ~ * .icon-regular-roblox-plus, :is(.text-truncate-end, .text-no-wrap, .text-overflow) ~ .icon-regular-roblox-plus, span.inline-flex.shrink-0.gap-xxsmall > .icon-regular-roblox-plus, .routility-gift-sheet .icon-regular-roblox-plus, [role="dialog"]:has([data-testid="send-robux-search-row"]) .icon-regular-roblox-plus),
 .rt-m-premium {
   --svg: var(--routility-premium-svg);
 }
@@ -11384,6 +11384,21 @@ html.routility-greeting-wait:not(.routility-greeting-on) :is(#HomeContainer, .ho
 .routility-transfer-bar { height: 4px; border-radius: 999px; background: var(--color-shift-300); overflow: hidden; }
 .routility-transfer-fill { height: 100%; border-radius: inherit; background: var(--color-content-emphasis); transition: width .4s ease; }
 .routility-transfer-fill.routility-transfer-out { background: var(--color-system-alert); }
+.routility-gift { box-sizing: border-box; width: 100%; }
+.routility-gift-avatar { display: block; flex-shrink: 0; }
+.routility-gift-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.routility-gift-name { max-width: 100%; min-height: 1.4em; }
+.routility-gift-amount { font-size: 40px !important; font-weight: 700 !important; line-height: 1.1 !important; }
+.routility-gift-amount input { min-width: 1ch; max-width: 11ch; padding: 0; border: 0; outline: 0; background: none; font: inherit !important; color: inherit; text-align: center; }
+.routility-gift-amount input::placeholder { color: inherit; font: inherit !important; opacity: 1; }
+.routility-gift-amount input::selection { background: var(--color-shift-300, rgba(127, 127, 127, 0.3)); color: inherit; }
+.routility-gift-icon { width: 36px; height: 36px; }
+.routility-gift-error[hidden] { display: none; }
+.routility-gift-back { align-self: flex-start; margin: -8px 0 -16px -8px; }
+[data-testid="send-robux-search-row"]:has(~ .routility-gift),
+[data-testid="send-robux-search-row"] ~ .routility-gift ~ * { display: none !important; }
+.routility-gift-balance[hidden] { display: none; }
+.routility-gift-sheet { width: 480px; max-width: 100%; --color-action-emphasis-background: var(--color-system-emphasis); --color-action-emphasis-foreground: var(--color-system-contrast, #fff); }
 .routility-voice-ban { cursor: default; }
 .routility-voice-ban .routility-voice-ban-value { color: var(--color-system-alert); white-space: nowrap; }
 .routility-voice-ban-icon { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }

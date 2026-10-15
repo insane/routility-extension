@@ -2567,5 +2567,36 @@
  "Your Robux Rate": "Tỷ giá Robux của bạn",
  "Your Settings": "Cài đặt của bạn",
  "Your Slots": "Ô của bạn",
- "Your Status": "Trạng thái của bạn"
+ "Your Status": "Trạng thái của bạn",
+ "Amount of Robux": "Số Robux",
+ "Edit": "Sửa",
+ "Joined in {year}": "Tham gia năm {year}",
+ "Not connected": "Chưa kết nối",
+ "OK": "OK",
+ "Roblox couldn’t send it. Check your balance before you try again.": "Roblox không gửi được. Hãy kiểm tra số dư trước khi thử lại.",
+ "Roblox didn’t answer. Check your balance before you try again.": "Roblox không phản hồi. Hãy kiểm tra số dư trước khi thử lại.",
+ "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox muốn xác minh đó là bạn trước. Hãy gửi khoản này từ ứng dụng Roblox.",
+ "Roblox won’t let you send Robux to this person right now.": "Hiện Roblox không cho bạn gửi Robux cho người này.",
+ "Robux are sent instantly with no fees": "Robux được gửi ngay lập tức, không mất phí",
+ "Send": "Gửi",
+ "Send Robux": "Gửi Robux",
+ "Send Robux in the Browser": "Gửi Robux trên trình duyệt",
+ "Send Robux to a friend from their profile, or from the friends list on the Buy Robux page, without opening the Roblox app. Pick an amount, check who it’s going to, then send. Roblox still decides who you can send to and how much.": "Gửi Robux cho bạn bè từ hồ sơ của họ hoặc từ danh sách bạn bè trên trang Mua Robux, không cần mở ứng dụng Roblox. Chọn số lượng, kiểm tra người nhận rồi gửi. Roblox vẫn quyết định bạn có thể gửi cho ai và bao nhiêu.",
+ "The minimum is {n} Robux": "Tối thiểu {n} Robux",
+ "The recipient will get {n} Robux.": "Người nhận sẽ nhận được {n} Robux.",
+ "This needs a parent’s permission. Send it from the Roblox app to ask them.": "Việc này cần sự cho phép của phụ huynh. Hãy gửi từ ứng dụng Roblox để xin phép.",
+ "You can send up to {n} Robux right now": "Hiện bạn có thể gửi tối đa {n} Robux",
+ "You only have {n} Robux": "Bạn chỉ có {n} Robux",
+ "You sent {n} Robux": "Bạn đã gửi {n} Robux",
+ "Connected {n} days": {
+  "other": "Đã kết nối {n} ngày"
+ },
+ "Connected {n} months": {
+  "other": "Đã kết nối {n} tháng"
+ },
+ "Connected {n} years": {
+  "other": "Đã kết nối {n} năm"
+ },
+ "You need an age check or parental consent to send Robux. Once you send, you cannot cancel.": "Bạn cần xác minh tuổi hoặc có sự đồng ý của phụ huynh để gửi Robux. Đã gửi thì không thể hủy.",
+ "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "Tài khoản của bạn chưa thể gửi Robux. Trước tiên cần xác minh tuổi hoặc sự cho phép của phụ huynh, bạn có thể làm trong ứng dụng Roblox."
 }

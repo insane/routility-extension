@@ -2567,5 +2567,36 @@
  "Your Robux Rate": "你的 Robux 汇率",
  "Your Settings": "你的设置",
  "Your Slots": "你的槽位",
- "Your Status": "你的状态"
+ "Your Status": "你的状态",
+ "Amount of Robux": "Robux 数量",
+ "Edit": "编辑",
+ "Joined in {year}": "{year} 年加入",
+ "Not connected": "未连接",
+ "OK": "确定",
+ "Roblox couldn’t send it. Check your balance before you try again.": "Roblox 未能发送。请先检查余额再重试。",
+ "Roblox didn’t answer. Check your balance before you try again.": "Roblox 没有回应。请先检查余额再重试。",
+ "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox 想先确认是你本人。请在 Roblox 应用中发送这笔。",
+ "Roblox won’t let you send Robux to this person right now.": "Roblox 目前不允许你向此人发送 Robux。",
+ "Robux are sent instantly with no fees": "Robux 即时到账，无手续费",
+ "Send": "发送",
+ "Send Robux": "发送 Robux",
+ "Send Robux in the Browser": "在浏览器中发送 Robux",
+ "Send Robux to a friend from their profile, or from the friends list on the Buy Robux page, without opening the Roblox app. Pick an amount, check who it’s going to, then send. Roblox still decides who you can send to and how much.": "无需打开 Roblox 应用，即可从好友的个人资料或“购买 Robux”页面的好友列表发送 Robux。选择数量、确认收款人，然后发送。能发给谁、能发多少仍由 Roblox 决定。",
+ "The minimum is {n} Robux": "最少 {n} Robux",
+ "The recipient will get {n} Robux.": "对方将收到 {n} Robux。",
+ "This needs a parent’s permission. Send it from the Roblox app to ask them.": "这需要家长的许可。请在 Roblox 应用中发送以请求许可。",
+ "You can send up to {n} Robux right now": "你目前最多可以发送 {n} Robux",
+ "You only have {n} Robux": "你只有 {n} Robux",
+ "You sent {n} Robux": "你已发送 {n} Robux",
+ "Connected {n} days": {
+  "other": "已连接 {n} 天"
+ },
+ "Connected {n} months": {
+  "other": "已连接 {n} 个月"
+ },
+ "Connected {n} years": {
+  "other": "已连接 {n} 年"
+ },
+ "You need an age check or parental consent to send Robux. Once you send, you cannot cancel.": "发送 Robux 需要完成年龄验证或获得家长同意。发送后无法取消。",
+ "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "你的账户暂时无法发送 Robux。需要先完成年龄验证或获得家长许可，可以在 Roblox 应用中进行。"
 }

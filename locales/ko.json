@@ -2567,5 +2567,36 @@
  "Your Robux Rate": "내 Robux 환율",
  "Your Settings": "내 설정",
  "Your Slots": "내 슬롯",
- "Your Status": "내 상태"
+ "Your Status": "내 상태",
+ "Amount of Robux": "Robux 금액",
+ "Edit": "수정",
+ "Joined in {year}": "{year}년 가입",
+ "Not connected": "연결되지 않음",
+ "OK": "확인",
+ "Roblox couldn’t send it. Check your balance before you try again.": "Roblox가 보내지 못했어요. 다시 시도하기 전에 잔액을 확인하세요.",
+ "Roblox didn’t answer. Check your balance before you try again.": "Roblox가 응답하지 않았어요. 다시 시도하기 전에 잔액을 확인하세요.",
+ "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox가 먼저 본인 확인을 원해요. 이 송금은 Roblox 앱에서 보내세요.",
+ "Roblox won’t let you send Robux to this person right now.": "지금은 이 사람에게 Robux를 보낼 수 없어요.",
+ "Robux are sent instantly with no fees": "Robux는 수수료 없이 바로 전송돼요",
+ "Send": "보내기",
+ "Send Robux": "Robux 보내기",
+ "Send Robux in the Browser": "브라우저에서 Robux 보내기",
+ "Send Robux to a friend from their profile, or from the friends list on the Buy Robux page, without opening the Roblox app. Pick an amount, check who it’s going to, then send. Roblox still decides who you can send to and how much.": "Roblox 앱을 열지 않고 친구의 프로필이나 Robux 구매 페이지의 친구 목록에서 Robux를 보내요. 금액을 고르고 받는 사람을 확인한 뒤 보내면 돼요. 누구에게 얼마나 보낼 수 있는지는 여전히 Roblox가 정해요.",
+ "The minimum is {n} Robux": "최소 {n} Robux",
+ "The recipient will get {n} Robux.": "받는 사람은 {n} Robux를 받아요.",
+ "This needs a parent’s permission. Send it from the Roblox app to ask them.": "보호자의 허락이 필요해요. 허락을 요청하려면 Roblox 앱에서 보내세요.",
+ "You can send up to {n} Robux right now": "지금은 최대 {n} Robux까지 보낼 수 있어요",
+ "You only have {n} Robux": "{n} Robux만 있어요",
+ "You sent {n} Robux": "{n} Robux를 보냈어요",
+ "Connected {n} days": {
+  "other": "연결된 지 {n}일"
+ },
+ "Connected {n} months": {
+  "other": "연결된 지 {n}개월"
+ },
+ "Connected {n} years": {
+  "other": "연결된 지 {n}년"
+ },
+ "You need an age check or parental consent to send Robux. Once you send, you cannot cancel.": "Robux를 보내려면 연령 확인이나 보호자 동의가 필요해요. 보낸 뒤에는 취소할 수 없어요.",
+ "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "이 계정은 아직 Robux를 보낼 수 없어요. 먼저 연령 확인이나 보호자 동의가 필요하며, Roblox 앱에서 할 수 있어요."
 }

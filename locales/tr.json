@@ -2692,5 +2692,39 @@
  "Your Robux Rate": "Robux Kurun",
  "Your Settings": "Ayarların",
  "Your Slots": "Yuvaların",
- "Your Status": "Durumun"
+ "Your Status": "Durumun",
+ "Amount of Robux": "Robux miktarı",
+ "Edit": "Düzenle",
+ "Joined in {year}": "{year} yılında katıldı",
+ "Not connected": "Bağlantı yok",
+ "OK": "Tamam",
+ "Roblox couldn’t send it. Check your balance before you try again.": "Roblox gönderemedi. Tekrar denemeden önce bakiyeni kontrol et.",
+ "Roblox didn’t answer. Check your balance before you try again.": "Roblox yanıt vermedi. Tekrar denemeden önce bakiyeni kontrol et.",
+ "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox önce sen olduğunu doğrulamak istiyor. Bunu Roblox uygulamasından gönder.",
+ "Roblox won’t let you send Robux to this person right now.": "Roblox şu an bu kişiye Robux göndermene izin vermiyor.",
+ "Robux are sent instantly with no fees": "Robux anında ve ücretsiz gönderilir",
+ "Send": "Gönder",
+ "Send Robux": "Robux Gönder",
+ "Send Robux in the Browser": "Tarayıcıda Robux Gönder",
+ "Send Robux to a friend from their profile, or from the friends list on the Buy Robux page, without opening the Roblox app. Pick an amount, check who it’s going to, then send. Roblox still decides who you can send to and how much.": "Roblox uygulamasını açmadan bir arkadaşına profilinden ya da Robux Satın Al sayfasındaki arkadaş listesinden Robux gönder. Bir tutar seç, kime gittiğini kontrol et ve gönder. Kime ve ne kadar gönderebileceğine yine Roblox karar verir.",
+ "The minimum is {n} Robux": "En az {n} Robux",
+ "The recipient will get {n} Robux.": "Alıcı {n} Robux alacak.",
+ "This needs a parent’s permission. Send it from the Roblox app to ask them.": "Bunun için ebeveyn izni gerekiyor. İzin istemek için Roblox uygulamasından gönder.",
+ "You can send up to {n} Robux right now": "Şu an en fazla {n} Robux gönderebilirsin",
+ "You only have {n} Robux": "Sadece {n} Robux’un var",
+ "You sent {n} Robux": "{n} Robux gönderdin",
+ "Connected {n} days": {
+  "one": "{n} gündür bağlı",
+  "other": "{n} gündür bağlı"
+ },
+ "Connected {n} months": {
+  "one": "{n} aydır bağlı",
+  "other": "{n} aydır bağlı"
+ },
+ "Connected {n} years": {
+  "one": "{n} yıldır bağlı",
+  "other": "{n} yıldır bağlı"
+ },
+ "You need an age check or parental consent to send Robux. Once you send, you cannot cancel.": "Robux göndermek için yaş kontrolü ya da ebeveyn onayı gerekir. Gönderdikten sonra iptal edemezsin.",
+ "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "Hesabın henüz Robux gönderemiyor. Önce yaş doğrulaması veya ebeveyn izni gerekiyor, bunu Roblox uygulamasından yapabilirsin."
 }
