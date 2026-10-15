@@ -5480,6 +5480,45 @@ html.routility-ff-on #friends-web-app .chip-filters-container > button[aria-pres
   text-align: center;
 }
 
+.settings-left-navigation .menu-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px;
+  border-radius: var(--radius-large, 12px);
+  background-color: var(--color-surface-100);
+}
+
+.settings-left-navigation .menu-vertical > .menu-option {
+  box-shadow: none;
+}
+
+.settings-left-navigation .menu-vertical .menu-option .menu-option-content {
+  align-items: center;
+  min-height: 36px;
+  padding: 8px 12px;
+  border-radius: var(--radius-medium, 8px);
+  box-shadow: none !important;
+  background-color: transparent;
+  color: var(--color-content-default);
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.settings-left-navigation .menu-vertical .menu-option .menu-option-content:hover,
+.settings-left-navigation .menu-vertical .menu-option .menu-option-content:focus-visible {
+  background-color: var(--color-shift-100);
+  color: var(--color-content-emphasis);
+}
+
+.settings-left-navigation .menu-vertical .menu-option .menu-option-content.active {
+  background-color: var(--color-shift-200);
+  color: var(--color-content-emphasis);
+}
+
+.settings-left-navigation .menu-vertical .menu-option .menu-option-content.active .font-caption-header {
+  font-weight: 700;
+}
+
 html.routility-settings-mode .menu-vertical .routility-menu-divider {
   display: block !important;
   height: 1px;
