@@ -2788,5 +2788,11 @@
  "Your Slots": "Tes emplacements",
  "Your Status": "Ton statut",
  "Classic Verified Badge": "Badge vérifié classique",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "Le badge vérifié d’origine à côté des noms, avec des coins nets et le bleu plus vif."
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "Le badge vérifié d’origine à côté des noms, avec des coins nets et le bleu plus vif.",
+ "Quick Settings Style": "Style des Paramètres rapides",
+ "List": "Liste",
+ "Tiles": "Tuiles",
+ "Online: {value}": "En ligne : {value}",
+ "Joins: {value}": "Rejoindre : {value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "Liste affiche chaque réglage sur sa propre ligne, Tuiles les affiche en petites cartes côte à côte, et Compacte affiche une ligne avec ton statut qui ouvre les réglages quand tu cliques dessus."
 }

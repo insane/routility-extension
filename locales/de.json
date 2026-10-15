@@ -2788,5 +2788,11 @@
  "Your Slots": "Deine Plätze",
  "Your Status": "Dein Status",
  "Classic Verified Badge": "Klassisches Verifiziert-Abzeichen",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "Das ursprüngliche Verifiziert-Abzeichen neben Namen, mit scharfen Ecken und dem kräftigeren Blau."
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "Das ursprüngliche Verifiziert-Abzeichen neben Namen, mit scharfen Ecken und dem kräftigeren Blau.",
+ "Quick Settings Style": "Stil der Schnelleinstellungen",
+ "List": "Liste",
+ "Tiles": "Kacheln",
+ "Online: {value}": "Online: {value}",
+ "Joins: {value}": "Beitreten: {value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "Liste zeigt jede Einstellung in einer eigenen Zeile, Kacheln zeigt sie als kleine Karten nebeneinander, und Kompakt zeigt eine Zeile mit deinem Status, die beim Klicken die Einstellungen öffnet."
 }

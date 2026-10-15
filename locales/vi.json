@@ -2660,5 +2660,11 @@
  "Your Slots": "Ô của bạn",
  "Your Status": "Trạng thái của bạn",
  "Classic Verified Badge": "Huy hiệu xác minh cổ điển",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "Huy hiệu xác minh gốc bên cạnh tên, với góc vuông và màu xanh tươi hơn."
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "Huy hiệu xác minh gốc bên cạnh tên, với góc vuông và màu xanh tươi hơn.",
+ "Quick Settings Style": "Kiểu Cài đặt nhanh",
+ "List": "Danh sách",
+ "Tiles": "Ô thẻ",
+ "Online: {value}": "Trực tuyến: {value}",
+ "Joins: {value}": "Tham gia: {value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "Danh sách hiển thị mỗi cài đặt trên một dòng, Ô thẻ hiển thị chúng thành thẻ nhỏ cạnh nhau, còn Gọn hiển thị một dòng trạng thái và mở cài đặt khi bạn nhấp vào."
 }

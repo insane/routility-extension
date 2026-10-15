@@ -2788,5 +2788,11 @@
  "Your Robux Rate": "Your Robux Rate",
  "Your Settings": "Your Settings",
  "Your Slots": "Your Slots",
- "Your Status": "Your Status"
+ "Your Status": "Your Status",
+ "Quick Settings Style": "Quick Settings Style",
+ "List": "List",
+ "Tiles": "Tiles",
+ "Online: {value}": "Online: {value}",
+ "Joins: {value}": "Joins: {value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it."
 }

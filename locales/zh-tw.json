@@ -2660,5 +2660,11 @@
  "Your Slots": "你的欄位",
  "Your Status": "你的狀態",
  "Classic Verified Badge": "經典認證徽章",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "在名稱旁顯示最初的認證徽章，直角邊、更鮮豔的藍色。"
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "在名稱旁顯示最初的認證徽章，直角邊、更鮮豔的藍色。",
+ "Quick Settings Style": "快速設定樣式",
+ "List": "清單",
+ "Tiles": "卡片",
+ "Online: {value}": "線上：{value}",
+ "Joins: {value}": "加入：{value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "清單將每個設定單獨一行顯示，卡片將它們顯示為並排的小卡片，緊湊則用一行顯示你的狀態，點擊後開啟設定。"
 }

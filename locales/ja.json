@@ -2660,5 +2660,11 @@
  "Your Slots": "あなたのスロット",
  "Your Status": "あなたのステータス",
  "Classic Verified Badge": "クラシック認証バッジ",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "名前の横に、角がとがった明るい青の初代認証バッジを表示します。"
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "名前の横に、角がとがった明るい青の初代認証バッジを表示します。",
+ "Quick Settings Style": "クイック設定のスタイル",
+ "List": "リスト",
+ "Tiles": "タイル",
+ "Online: {value}": "オンライン：{value}",
+ "Joins: {value}": "参加：{value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "リストは設定を1行ずつ、タイルは小さなカードで横並びに表示します。コンパクトは状態を1行で表示し、クリックすると設定が開きます。"
 }

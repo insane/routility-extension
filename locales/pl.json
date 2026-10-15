@@ -3044,5 +3044,11 @@
  "Your Slots": "Twoje miejsca",
  "Your Status": "Twój status",
  "Classic Verified Badge": "Klasyczna odznaka weryfikacji",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "Oryginalna odznaka weryfikacji przy nazwach, z ostrymi rogami i jaśniejszym niebieskim."
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "Oryginalna odznaka weryfikacji przy nazwach, z ostrymi rogami i jaśniejszym niebieskim.",
+ "Quick Settings Style": "Styl Szybkich ustawień",
+ "List": "Lista",
+ "Tiles": "Kafelki",
+ "Online: {value}": "Online: {value}",
+ "Joins: {value}": "Dołączanie: {value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "Lista pokazuje każde ustawienie w osobnym wierszu, Kafelki jako małe karty obok siebie, a Kompaktowy jedną linię z twoim statusem, która po kliknięciu otwiera ustawienia."
 }

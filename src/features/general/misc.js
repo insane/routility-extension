@@ -649,7 +649,7 @@
     if (area !== 'local' || !changes.routilitySettings) return;
     const before = settings;
     settings = changes.routilitySettings.newValue || {};
-    if (QS_KEYS.some(k => before[k] !== settings[k])) qsRefresh(QS_ROWS.some(([, , k]) => before[k] !== settings[k]) || before.quickSettings !== settings.quickSettings);
+    if (QS_KEYS.some(k => before[k] !== settings[k])) qsRefresh(QS_ROWS.some(([, , k]) => before[k] !== settings[k]) || before.quickSettings !== settings.quickSettings || before.qsStyle !== settings.qsStyle);
     if (location.hostname === 'www.roblox.com') startStudioStatus();
     if (location.hostname === 'www.roblox.com' && before.navCollapse !== settings.navCollapse) startCollapse();
     placeBadges();
@@ -761,7 +761,8 @@
 
   const QS_URL = 'https://apis.roblox.com/user-settings-api/v1/user-settings';
   const QS_ROWS = [['whoCanJoinMeInExperiences', LT('Joins'), 'qsJoins'], ['whoCanSeeMyOnlineStatus', LT('Online Status'), 'qsOnline']];
-  const QS_KEYS = ['quickSettings', 'qsJoins', 'qsOnline', 'qsRotator', 'qsStreamer', 'outfitRotator', 'streamerMode'];
+  const QS_KEYS = ['quickSettings', 'qsJoins', 'qsOnline', 'qsRotator', 'qsStreamer', 'outfitRotator', 'streamerMode', 'qsStyle'];
+  const QS_ICONS = { whoCanJoinMeInExperiences: 'person-plus', whoCanSeeMyOnlineStatus: 'two-people' };
   let qsTried = false;
   const QS_LABELS = { All: LT('Everyone'), AllUsers: LT('Everyone'), Followers: LT('Followers'), Following: LT('People I Follow'), Friends: LT('Friends'), TrustedFriends: LT('Trusted Friends'), FriendsAndFollowing: LT('Friends & Following'), FriendsFollowingAndFollowers: LT('Friends & Follows'), NoOne: LT('No One') };
   const QS_JOIN_FOR = { AllUsers: 'All', FriendsFollowingAndFollowers: 'Followers', FriendsAndFollowing: 'Following', Friends: 'Friends', TrustedFriends: 'TrustedFriends', NoOne: 'NoOne' };
@@ -782,6 +783,10 @@
     box.appendChild(el('span', null, text));
     document.body.appendChild(box);
     qsToastTimer = setTimeout(() => box.remove(), 5000);
+  }
+
+  function qsIcon(name) {
+    return el('span', 'icon icon-regular-' + name + ' routility-quick-icon');
   }
 
   function qsLabel(v) {
@@ -827,7 +832,8 @@
       return;
     }
     const rows = QS_ROWS.filter(([, , k]) => settings[k] !== false).map(([key, label]) => [key, label, qsData && qsData[key]]).filter(([, , d]) => d && d.currentValue);
-    const box = el('div', 'routility-injected routility-quick');
+    const compact = settings.qsStyle === 'compact';
+    const box = el('div', 'routility-injected routility-quick' + (compact ? ' routility-quick-compact' : settings.qsStyle === 'tiles' ? ' routility-quick-tiles' : ''));
     box.hidden = true;
     const top = el('div', 'routility-quick-top');
     const head = el('button', 'routility-quick-head text-label-medium content-muted');
@@ -841,8 +847,9 @@
     gear.appendChild(el('span', 'icon icon-regular-gear size-[var(--icon-size-small)]'));
     top.append(head, gear);
     const body = el('div', 'routility-quick-body');
-    body.hidden = !qsOpen();
+    body.hidden = !compact && !qsOpen();
     head.addEventListener('click', () => {
+      if (compact) return;
       body.hidden = !body.hidden;
       head.setAttribute('aria-expanded', String(!body.hidden));
       try { localStorage.setItem('routilityQuickOpen', body.hidden ? '0' : '1'); } catch {}
@@ -853,6 +860,35 @@
       return allowed.map(v => ({ value: v, label: qsLabel(v) }));
     };
     const controls = [];
+    const sum = el('button', 'routility-quick-sum');
+    sum.type = 'button';
+    sum.setAttribute('aria-expanded', 'false');
+    const dot = el('span', 'routility-quick-dot');
+    const sumText = el('span', 'routility-quick-sum-text');
+    const sumSub = el('span', 'routility-quick-sum-sub');
+    const sumTitle = el('span', 'routility-quick-sum-title', lt('Quick Settings'));
+    sumText.append(sumTitle, sumSub);
+    sum.append(dot, sumText, el('span', 'routility-quick-chev'));
+    const showPop = (on) => {
+      box.classList.toggle('routility-quick-open', on);
+      sum.setAttribute('aria-expanded', String(on));
+    };
+    sum.addEventListener('click', () => showPop(!box.classList.contains('routility-quick-open')));
+    if (compact) {
+      document.addEventListener('mousedown', (e) => {
+        if (box.isConnected && !box.contains(e.target)) showPop(false);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && box.isConnected) showPop(false);
+      });
+    }
+    const paintSum = () => {
+      const online = controls.find(c => c.key === 'whoCanSeeMyOnlineStatus');
+      const joins = controls.find(c => c.key === 'whoCanJoinMeInExperiences');
+      sumTitle.textContent = online ? lt('Online: {value}', { value: qsLabel(online.saved) }) : lt('Quick Settings');
+      sumSub.textContent = joins ? lt('Joins: {value}', { value: qsLabel(joins.saved) }) : '';
+      dot.classList.toggle('routility-quick-dot-off', !!online && online.saved === 'NoOne');
+    };
     const resync = async () => {
       const fresh = await fetch(QS_URL + '/settings-and-options', { credentials: 'include' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
       if (!fresh) return;
@@ -864,6 +900,7 @@
         c.dd.setOptions(optionsFor(d));
         c.dd.setValue(d.currentValue);
       }
+      paintSum();
     };
     for (const [key, label, d] of rows) {
       const row = el('div', 'routility-quick-row');
@@ -907,14 +944,22 @@
           qsToast(lt('Couldn’t save {setting}. Roblox didn’t accept the change, try again.', { setting: lt(label) }), true);
         }
         row.classList.remove('routility-quick-busy');
+        paintSum();
       }, 'routility-quick-dd');
       control.dd = dd;
       controls.push(control);
       dd.querySelector('.input-dropdown-btn').classList.add('bg-shift-300', 'content-emphasis', 'text-label-small');
-      row.append(el('span', 'text-body-medium content-emphasis routility-quick-label', lt(label)), dd);
+      row.append(qsIcon(QS_ICONS[key]), el('span', 'text-body-medium content-emphasis routility-quick-label', lt(label)), dd);
       body.appendChild(row);
     }
-    box.append(top, body);
+    paintSum();
+    if (compact) {
+      const pop = el('div', 'routility-quick-pop');
+      pop.append(top, body);
+      box.append(sum, pop);
+    } else {
+      box.append(top, body);
+    }
     host.appendChild(box);
     qsFit(body);
     qsRotator(body);
@@ -944,7 +989,7 @@
       }, 'routility-quick-dd');
       dd.querySelector('.input-dropdown-btn').classList.add('bg-shift-300', 'content-emphasis', 'text-label-small');
       row.dd = dd;
-      row.append(el('span', 'text-body-medium content-emphasis routility-quick-label', lt('Streamer Mode')), dd);
+      row.append(qsIcon('lock-closed'), el('span', 'text-body-medium content-emphasis routility-quick-label', lt('Streamer Mode')), dd);
       const rot = body.querySelector('.routility-quick-rot');
       if (rot) rot.before(row);
       else body.appendChild(row);
@@ -991,7 +1036,7 @@
         }, 'routility-quick-dd');
         dd.querySelector('.input-dropdown-btn').classList.add('bg-shift-300', 'content-emphasis', 'text-label-small');
         row.dd = dd;
-        row.append(el('span', 'text-body-medium content-emphasis routility-quick-label', lt('Outfit Rotator')), dd);
+        row.append(qsIcon('clock'), el('span', 'text-body-medium content-emphasis routility-quick-label', lt('Outfit Rotator')), dd);
         body.appendChild(row);
       }
       row.dd.setValue(live ? 'on' : 'off');
