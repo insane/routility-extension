@@ -1979,8 +1979,13 @@ a.routility-hc-status:hover {
 }
 
 .rt-m-pill.rt-m-badge {
+  position: static;
+  padding: 2px 7px;
+  border-radius: 999px;
   background: var(--rt-m-red);
   color: #fff;
+  font-size: 10px;
+  line-height: normal;
 }
 
 .rt-m-pill.rt-m-active {
