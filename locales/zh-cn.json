@@ -1373,7 +1373,7 @@
  "Lowest RAP": "最低 RAP",
  "Luau, Studio and building games: share what you made, ask how something works, help each other out.": "Luau、Studio 和游戏制作：分享你的作品、询问某样东西如何运作、互相帮助。",
  "Made {date}": "创建于 {date}",
- "Make Roblox look the way you like: your own colors and another font.": "让 Roblox 变成你喜欢的样子：你自己的颜色和另一种字体。",
+ "Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.": "让 Roblox 变成你喜欢的样子：你自己的颜色、另一种字体和相配的滚动条。",
  "Makeup": "化妆",
  "Manage": "管理",
  "Manage Badges": "管理徽章",
@@ -2667,5 +2667,7 @@
  "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "设置菜单中当前标签的样式：像 Roblox 一样带左侧彩色竖条的高亮，或只有高亮。",
  "Bar and highlight": "竖条和高亮",
  "Highlight only": "仅高亮",
- "Presets": "预设"
+ "Presets": "预设",
+ "Scrollbar": "滚动条",
+ "Settings Menu": "设置菜单"
 }

@@ -718,17 +718,21 @@
       ],
     },
     themes: {
-      intro: LT('Make Roblox look the way you like: your own colors and another font.'),
+      intro: LT('Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.'),
       groups: [
         { title: LT('Theme'), rows: [
           { key: 'customTheme', title: LT('Custom Theme'), desc: LT('Pick your own colors for Roblox: backgrounds, cards, text, links and the Play button. Start from a preset or set each color yourself.') },
           { custom: 'themeEditor', parent: 'customTheme', title: LT('Theme Editor'), desc: LT('Your colors, the theme presets and your saved themes.'), keywords: 'theme themes color colors colour palette preset presets background dark light' },
-          { key: 'scrollbarFix', title: LT('Match Scrollbar to Theme'), desc: LT('Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.') },
-          { key: 'scrollbarStyle', parent: 'scrollbarFix', title: LT('Scrollbar Style'), desc: LT('Floating hides the scrollbar until you scroll, then shows a slim bar over the page that fades out when you stop. Pick Roblox default to keep the normal scrollbar.'), options: [['default', LT('Roblox default')], ['floating', LT('Floating')]] },
-          { key: 'menuHighlight', title: LT('Selected Tab'), desc: LT('How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.'), options: [['bar', LT('Bar and highlight')], ['fill', LT('Highlight only')]] },
         ] },
         { title: LT('Font'), rows: [
           { key: 'siteFont', title: LT('Website Font'), desc: LT('Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.'), options: [['default', LT('Roblox default')], ['builder', 'Builder Sans'], ['system', LT('System font')], ['custom', LT('Your Own Font')]], fontInput: 'custom' },
+        ] },
+        { title: LT('Scrollbar'), rows: [
+          { key: 'scrollbarFix', title: LT('Match Scrollbar to Theme'), desc: LT('Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.') },
+          { key: 'scrollbarStyle', parent: 'scrollbarFix', title: LT('Scrollbar Style'), desc: LT('Floating hides the scrollbar until you scroll, then shows a slim bar over the page that fades out when you stop. Pick Roblox default to keep the normal scrollbar.'), options: [['default', LT('Roblox default')], ['floating', LT('Floating')]] },
+        ] },
+        { title: LT('Settings Menu'), rows: [
+          { key: 'menuHighlight', title: LT('Selected Tab'), desc: LT('How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.'), options: [['bar', LT('Bar and highlight')], ['fill', LT('Highlight only')]] },
         ] },
       ],
     },

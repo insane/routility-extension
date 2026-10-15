@@ -1373,7 +1373,7 @@
  "Lowest RAP": "RAP ต่ำสุด",
  "Luau, Studio and building games: share what you made, ask how something works, help each other out.": "Luau, Studio และการสร้างเกม: แชร์สิ่งที่คุณสร้าง ถามว่าบางอย่างทำงานอย่างไร และช่วยเหลือกัน",
  "Made {date}": "สร้างเมื่อ {date}",
- "Make Roblox look the way you like: your own colors and another font.": "ปรับ Roblox ให้เป็นแบบที่คุณชอบ: สีของคุณเองและฟอนต์อื่น",
+ "Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.": "ปรับ Roblox ให้เป็นแบบที่คุณชอบ: สีของคุณเอง ฟอนต์อื่น และแถบเลื่อนที่เข้ากัน",
  "Makeup": "เมคอัพ",
  "Manage": "จัดการ",
  "Manage Badges": "จัดการตรา",
@@ -2667,5 +2667,7 @@
  "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "ลักษณะของแท็บที่เปิดอยู่ในเมนูการตั้งค่า: ไฮไลต์พร้อมแถบสีทางซ้ายแบบ Roblox หรือมีแค่ไฮไลต์",
  "Bar and highlight": "แถบและไฮไลต์",
  "Highlight only": "ไฮไลต์อย่างเดียว",
- "Presets": "พรีเซ็ต"
+ "Presets": "พรีเซ็ต",
+ "Scrollbar": "แถบเลื่อน",
+ "Settings Menu": "เมนูการตั้งค่า"
 }

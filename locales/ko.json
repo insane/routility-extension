@@ -1373,7 +1373,7 @@
  "Lowest RAP": "RAP 낮은 순",
  "Luau, Studio and building games: share what you made, ask how something works, help each other out.": "Luau, Studio, 게임 제작: 만든 것을 공유하고, 작동 방식을 묻고, 서로 도와주세요.",
  "Made {date}": "{date}에 생성",
- "Make Roblox look the way you like: your own colors and another font.": "Roblox를 원하는 모습으로: 나만의 색상과 다른 글꼴.",
+ "Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.": "Roblox를 원하는 모습으로: 나만의 색상, 다른 글꼴, 그리고 어울리는 스크롤바.",
  "Makeup": "메이크업",
  "Manage": "관리",
  "Manage Badges": "배지 관리",
@@ -2667,5 +2667,7 @@
  "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "설정 메뉴에서 열린 탭의 모양: Roblox처럼 왼쪽에 색 막대가 있는 강조 표시, 또는 강조 표시만.",
  "Bar and highlight": "막대와 강조 표시",
  "Highlight only": "강조 표시만",
- "Presets": "프리셋"
+ "Presets": "프리셋",
+ "Scrollbar": "스크롤바",
+ "Settings Menu": "설정 메뉴"
 }

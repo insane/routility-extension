@@ -1373,7 +1373,7 @@
  "Lowest RAP": "RAP Terendah",
  "Luau, Studio and building games: share what you made, ask how something works, help each other out.": "Luau, Studio, dan membuat game: bagikan karyamu, tanyakan cara kerja sesuatu, saling bantu.",
  "Made {date}": "Dibuat {date}",
- "Make Roblox look the way you like: your own colors and another font.": "Buat Roblox terlihat sesuai keinginanmu: warnamu sendiri dan font lain.",
+ "Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.": "Buat Roblox terlihat sesuai keinginanmu: warnamu sendiri, font lain, dan scrollbar yang serasi.",
  "Makeup": "Makeup",
  "Manage": "Kelola",
  "Manage Badges": "Kelola Lencana",
@@ -2667,5 +2667,7 @@
  "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "Tampilan tab yang terbuka di menu Pengaturan: sorotan dengan garis berwarna di kiri seperti Roblox, atau hanya sorotannya.",
  "Bar and highlight": "Garis dan sorotan",
  "Highlight only": "Hanya sorotan",
- "Presets": "Preset"
+ "Presets": "Preset",
+ "Scrollbar": "Scrollbar",
+ "Settings Menu": "Menu Pengaturan"
 }

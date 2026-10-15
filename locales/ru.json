@@ -1718,7 +1718,7 @@
  "Lowest RAP": "Наименьший RAP",
  "Luau, Studio and building games: share what you made, ask how something works, help each other out.": "Luau, Studio и создание игр: делись тем, что сделал, спрашивай, как что-то работает, помогайте друг другу.",
  "Made {date}": "Созданы {date}",
- "Make Roblox look the way you like: your own colors and another font.": "Сделай Roblox таким, как тебе нравится: свои цвета и другой шрифт.",
+ "Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.": "Сделай Roblox таким, как тебе нравится: свои цвета, другой шрифт и подходящая полоса прокрутки.",
  "Makeup": "Макияж",
  "Manage": "Управление",
  "Manage Badges": "Управлять Значками",
@@ -3051,5 +3051,7 @@
  "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "Как выглядит открытая вкладка в меню настроек: подсветка с цветной полосой слева, как в Roblox, или только подсветка.",
  "Bar and highlight": "Полоса и подсветка",
  "Highlight only": "Только подсветка",
- "Presets": "Пресеты"
+ "Presets": "Пресеты",
+ "Scrollbar": "Полоса прокрутки",
+ "Settings Menu": "Меню настроек"
 }

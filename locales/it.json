@@ -1488,7 +1488,7 @@
  "Lowest RAP": "RAP più basso",
  "Luau, Studio and building games: share what you made, ask how something works, help each other out.": "Luau, Studio e creazione di giochi: condividi ciò che hai creato, chiedi come funziona qualcosa, aiutatevi a vicenda.",
  "Made {date}": "Creati il {date}",
- "Make Roblox look the way you like: your own colors and another font.": "Fai sembrare Roblox come vuoi tu: i tuoi colori e un altro font.",
+ "Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.": "Fai sembrare Roblox come vuoi tu: i tuoi colori, un altro font e una barra di scorrimento abbinata.",
  "Makeup": "Trucco",
  "Manage": "Gestisci",
  "Manage Badges": "Gestisci Medaglie",
@@ -2795,5 +2795,7 @@
  "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "Come appare la scheda aperta nel menu Impostazioni: un’evidenziazione con una barra colorata a sinistra come su Roblox, oppure solo l’evidenziazione.",
  "Bar and highlight": "Barra ed evidenziazione",
  "Highlight only": "Solo evidenziazione",
- "Presets": "Preset"
+ "Presets": "Preset",
+ "Scrollbar": "Barra di scorrimento",
+ "Settings Menu": "Menu Impostazioni"
 }

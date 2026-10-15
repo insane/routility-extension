@@ -1373,7 +1373,7 @@
  "Lowest RAP": "RAP が低い順",
  "Luau, Studio and building games: share what you made, ask how something works, help each other out.": "Luau、Studio、ゲーム制作:作ったものを共有したり、仕組みを質問したり、助け合いましょう。",
  "Made {date}": "{date} に作成",
- "Make Roblox look the way you like: your own colors and another font.": "Roblox を好きな見た目に：自分の色と別のフォント。",
+ "Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.": "Roblox を好きな見た目に：自分の色、別のフォント、それに合うスクロールバー。",
  "Makeup": "メイク",
  "Manage": "管理",
  "Manage Badges": "バッジを管理",
@@ -2667,5 +2667,7 @@
  "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "設定メニューで開いているタブの見た目：Robloxのように左に色付きのバーがあるハイライト、またはハイライトのみ。",
  "Bar and highlight": "バーとハイライト",
  "Highlight only": "ハイライトのみ",
- "Presets": "プリセット"
+ "Presets": "プリセット",
+ "Scrollbar": "スクロールバー",
+ "Settings Menu": "設定メニュー"
 }

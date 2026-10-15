@@ -1488,7 +1488,7 @@
  "Lowest RAP": "En düşük RAP",
  "Luau, Studio and building games: share what you made, ask how something works, help each other out.": "Luau, Studio ve oyun yapımı: yaptığını paylaş, bir şeyin nasıl çalıştığını sor, birbirinize yardım edin.",
  "Made {date}": "{date} tarihinde oluşturuldu",
- "Make Roblox look the way you like: your own colors and another font.": "Roblox’u istediğin gibi görünür yap: kendi renklerin ve başka bir yazı tipi.",
+ "Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.": "Roblox’u istediğin gibi görünür yap: kendi renklerin, başka bir yazı tipi ve uyumlu bir kaydırma çubuğu.",
  "Makeup": "Makyaj",
  "Manage": "Yönet",
  "Manage Badges": "Rozetleri Yönet",
@@ -2795,5 +2795,7 @@
  "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "Ayarlar menüsünde açık sekmenin görünümü: Roblox’taki gibi solda renkli bir çubukla vurgu ya da yalnızca vurgu.",
  "Bar and highlight": "Çubuk ve vurgu",
  "Highlight only": "Yalnızca vurgu",
- "Presets": "Hazır ayarlar"
+ "Presets": "Hazır ayarlar",
+ "Scrollbar": "Kaydırma çubuğu",
+ "Settings Menu": "Ayarlar menüsü"
 }

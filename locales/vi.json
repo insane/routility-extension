@@ -1373,7 +1373,7 @@
  "Lowest RAP": "RAP thấp nhất",
  "Luau, Studio and building games: share what you made, ask how something works, help each other out.": "Luau, Studio và làm game: chia sẻ thứ bạn làm, hỏi cách một thứ hoạt động, giúp đỡ lẫn nhau.",
  "Made {date}": "Tạo lúc {date}",
- "Make Roblox look the way you like: your own colors and another font.": "Làm Roblox trông theo ý bạn: màu sắc của riêng bạn và một phông chữ khác.",
+ "Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.": "Làm Roblox trông theo ý bạn: màu sắc của riêng bạn, một phông chữ khác và thanh cuộn phù hợp.",
  "Makeup": "Trang điểm",
  "Manage": "Quản lý",
  "Manage Badges": "Quản Lý Huy Hiệu",
@@ -2667,5 +2667,7 @@
  "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "Giao diện của tab đang mở trong menu Cài đặt: phần tô sáng có thanh màu bên trái như Roblox, hoặc chỉ phần tô sáng.",
  "Bar and highlight": "Thanh và tô sáng",
  "Highlight only": "Chỉ tô sáng",
- "Presets": "Mẫu có sẵn"
+ "Presets": "Mẫu có sẵn",
+ "Scrollbar": "Thanh cuộn",
+ "Settings Menu": "Menu Cài đặt"
 }

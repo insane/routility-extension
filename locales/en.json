@@ -1489,7 +1489,7 @@
  "Lowest RAP": "Lowest RAP",
  "Luau, Studio and building games: share what you made, ask how something works, help each other out.": "Luau, Studio and building games: share what you made, ask how something works, help each other out.",
  "Made {date}": "Made {date}",
- "Make Roblox look the way you like: your own colors and another font.": "Make Roblox look the way you like: your own colors and another font.",
+ "Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.": "Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.",
  "Makeup": "Makeup",
  "Manage": "Manage",
  "Manage Badges": "Manage Badges",
@@ -2795,5 +2795,7 @@
  "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.",
  "Bar and highlight": "Bar and highlight",
  "Highlight only": "Highlight only",
- "Presets": "Presets"
+ "Presets": "Presets",
+ "Scrollbar": "Scrollbar",
+ "Settings Menu": "Settings Menu"
 }
