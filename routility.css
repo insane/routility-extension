@@ -7382,14 +7382,14 @@ html.routility-streamer-account .routility-devices-list > li:not(:first-child) .
 .routility-quick-row .routility-quick-dd .input-dropdown-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   width: auto;
   height: 28px;
   padding: 0 10px 0 12px;
   border: 0;
-  border-radius: 999px;
+  border-radius: calc(8px * var(--routility-round, 1)) !important;
   box-shadow: none;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 28px;
 }
 
@@ -7402,8 +7402,14 @@ html.routility-streamer-account .routility-devices-list > li:not(:first-child) .
 
 .routility-quick-row .routility-quick-dd .icon-down-16x16 {
   position: static;
-  margin: 0;
-  transform: scale(0.8);
+  width: 6px;
+  height: 6px;
+  margin: -4px 1px 0 0 !important;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  background: none !important;
+  transform: rotate(45deg);
+  opacity: 0.7;
 }
 
 .routility-quick-row .routility-quick-dd .dropdown-menu {
@@ -7423,6 +7429,7 @@ html.routility-streamer-account .routility-devices-list > li:not(:first-child) .
 
 .routility-quick-row .routility-quick-dd .input-dropdown-btn {
   background-color: var(--color-shift-300, rgba(127, 127, 127, 0.16)) !important;
+  color: var(--color-content-emphasis) !important;
 }
 
 .routility-quick-row .routility-quick-dd .input-dropdown-btn:hover {
@@ -10998,6 +11005,21 @@ html.routility-skeleton .friend-carousel-container:not(:has(.react-friends-carou
   top: auto !important;
   bottom: 100% !important;
   margin: 0 0 4px !important;
+}
+
+.routility-dropdown > .dropdown-menu {
+  padding: 4px !important;
+  border-radius: var(--radius-medium, 8px) !important;
+  overflow: hidden;
+}
+
+.routility-dropdown > .dropdown-menu > li > button {
+  border-radius: var(--radius-small, 4px);
+  outline: none !important;
+}
+
+.routility-dropdown > .dropdown-menu > li > button:focus-visible {
+  background-color: var(--color-state-hover, rgba(127, 127, 127, 0.16));
 }
 
 html.routility-greeting-wait:not(.routility-greeting-on) :is(#HomeContainer, .home-container) .container-header:has(> h1) {
