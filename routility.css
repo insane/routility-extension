@@ -11417,3 +11417,19 @@ body:has(.routility-ug) #game-details-unavailable-container, .routility-ug-nativ
 .routility-ug .routility-ug-play { height: 60px !important; padding-top: 0 !important; padding-bottom: 0 !important; background: var(--color-shift-300, #393b3d) !important; color: var(--color-content-default, #bbb) !important; cursor: not-allowed; opacity: 0.7; }
 .routility-ug .routility-ug-play-wrap { position: relative; }
 .routility-ug .routility-ug-play-wrap .play-button-contextual-message { position: absolute; left: 0; right: 0; bottom: 100%; margin: 0 0 8px; text-align: center; }
+.routility-set-chip-link { color: inherit; text-decoration: none; cursor: pointer; }
+.routility-set-chip-link:hover { background: rgba(127, 127, 127, 0.26); text-decoration: none; }
+.routility-log-group .routility-set-group-head { justify-content: flex-start; align-items: baseline; gap: 10px; }
+.routility-log-current { margin-left: auto; }
+.routility-log-card { display: flex; flex-direction: column; gap: 16px; padding: 18px 20px; }
+.routility-log-summary { line-height: 1.5; }
+.routility-log-list { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.routility-log-kind { text-transform: uppercase; letter-spacing: 0.04em; }
+.routility-log-row { display: flex; align-items: flex-start; gap: 12px; }
+.routility-log-mark { flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px; font: 700 15px/22px ui-monospace, SFMono-Regular, Menlo, monospace; text-align: center; }
+.routility-log-new { background: rgba(47, 179, 94, 0.16); color: #2fb35e; }
+.routility-log-improved { background: rgba(61, 139, 255, 0.16); color: #3d8bff; }
+.routility-log-fixed { background: rgba(229, 72, 77, 0.16); color: #e5484d; }
+.routility-log-text { min-width: 0; padding-top: 1px; }
+.routility-log-people { display: flex; flex-direction: column; gap: 6px; padding: 16px 20px; }
+.routility-log-credit a { font-weight: 600; }

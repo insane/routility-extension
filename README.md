@@ -110,6 +110,10 @@ If you want to build your own Roblox extension, this is a quick tour of how RoUt
 
 RoUtility only talks to Roblox and to routility.io, which serves item values, server regions, the forum and trade ads. Nothing is sold and there are no ads or trackers. Most settings and history never leave your browser. The full policy is on [routility.io](https://routility.io).
 
+## What's new
+
+See [CHANGELOG.md](CHANGELOG.md) for every update, what changed and who helped. The same log is inside the extension under Settings > RoUtility > What's New.
+
 ## Contributing
 
 Found a bug or have an idea? Open an issue. Pull requests are welcome too. Please keep changes in the same style as the code around them, and test them on a few real pages first.

@@ -555,6 +555,10 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     rotatorSave(msg).then(sendResponse, () => sendResponse(null));
     return true;
   }
+  if (msg.type === 'changelog') {
+    fetch(chrome.runtime.getURL('changelog.json')).then(r => r.json()).then(sendResponse, () => sendResponse(null));
+    return true;
+  }
   if (msg.type === 'presetState') {
     presetState().then(sendResponse, () => sendResponse(null));
     return true;

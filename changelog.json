@@ -1,0 +1,64 @@
+{
+  "contributors": {
+    "reqonn": { "github": "reqonn" },
+    "awkward222": { "github": "awkward222" }
+  },
+  "releases": [
+    {
+      "version": "1.1.3",
+      "date": "2026-10-15",
+      "summary": "A big one: new tools for Roblox Plus, your account and communities, a page for games Roblox won't show you, and the first changes from people outside the team.",
+      "changes": [
+        { "type": "new", "text": "Unavailable game page: private and hidden games show their name, creator, why they're unavailable, favorites, likes, description, badges and passes instead of \"Content not accessible\"." },
+        { "type": "new", "text": "Your Robux Rate: set your own dollars per 1,000 Robux and every USD number uses it, including Community Funds and the Creator Hub." },
+        { "type": "new", "text": "Roblox Plus page: when Plus renews, where you're billed, your savings in dollars, what Plus has cost you and when your next discount unlocks." },
+        { "type": "new", "text": "Transfer limits: how much you've sent and how much you can still send today and this month, plus the per transfer limit." },
+        { "type": "new", "text": "Settings > Security shows the IP address of each logged in device and when your backup codes were made." },
+        { "type": "new", "text": "Settings > Privacy tells you if your voice chat is suspended and until when." },
+        { "type": "new", "text": "Community pages show when the community was created, and the side list shows how many communities you're in out of the limit." },
+        { "type": "new", "text": "Avatar Type row on experience pages: R6, R15 or player's choice." },
+        { "type": "new", "text": "Creator Hub tags on restricted experiences, like Hidden from discovery or Purchases blocked." },
+        { "type": "new", "text": "Friends Since: the date two people became friends, under every card on any Friends list.", "by": ["reqonn"] },
+        { "type": "new", "text": "Sort Trade Inventories by Price: the most valuable items come first when you make or counter a trade.", "thanks": ["api_cats"] },
+        { "type": "new", "text": "Remove heads and body parts one by one from the avatar editor's Wearing panel." },
+        { "type": "new", "text": "Searching an old username finds the person and shows \"formerly\" with their old name." },
+        { "type": "new", "text": "Theme matched scrollbars, with an optional floating style.", "by": ["awkward222"] },
+        { "type": "new", "text": "Classic Premium Icon: bring back the old Premium icon next to names.", "by": ["reqonn"] },
+        { "type": "new", "text": "Fun: Refill Robux keeps your fake items and fills your fake balance back up." },
+        { "type": "new", "text": "Fun: Fake Friend Requests.", "by": ["reqonn"] },
+        { "type": "improved", "text": "Mutual friends and friend lists load a lot faster." },
+        { "type": "improved", "text": "Friends Own This uses Roblox's own data, so it's instant." },
+        { "type": "improved", "text": "Inventory search and sort use cards that look like Roblox's own." },
+        { "type": "improved", "text": "Menu settings apply right away, classic names no longer flash in, and profiles use less memory.", "by": ["reqonn"] },
+        { "type": "improved", "text": "The settings menu is rounded and follows your theme.", "by": ["reqonn"] },
+        { "type": "improved", "text": "RoValra's Rolimons value pill sits on the same line as RoUtility's value pills." },
+        { "type": "improved", "text": "Streamer Mode blurs your name in the Home greeting and device IP addresses." },
+        { "type": "improved", "text": "Your primary community comes first on classic profiles." },
+        { "type": "fixed", "text": "Turning off Trade Values no longer hides Search Trades by Item and the other trade tools.", "thanks": ["api_cats"] },
+        { "type": "fixed", "text": "Switching accounts no longer floods you with Trade Completed notifications." },
+        { "type": "fixed", "text": "Faces on R15 avatars without a head item drew in the wrong place in previews." },
+        { "type": "fixed", "text": "The collapsed left menu squeezed Roblox's news feed into one letter per line." },
+        { "type": "fixed", "text": "The \"Shown via RoUtility\" badge on hidden friends floated over the loading skeleton." }
+      ]
+    },
+    {
+      "version": "1.1.2",
+      "date": "2026-10-14",
+      "summary": "A round of fixes from friends' bug reports, and faster loading.",
+      "changes": [
+        { "type": "improved", "text": "RoUtility's scripts are bundled and minified, so pages load faster." },
+        { "type": "fixed", "text": "Sixteen bugs reported by friends, across trades, profiles, the calculator and settings." }
+      ]
+    },
+    {
+      "version": "1.1.1",
+      "date": "2026-10-14",
+      "summary": "RoUtility speaks your language.",
+      "changes": [
+        { "type": "new", "text": "RoUtility in 16 languages, following your Roblox language by default." },
+        { "type": "new", "text": "Quick Setup: pick Just Values, Recommended or Everything in one click." },
+        { "type": "new", "text": "Outfit Rotator, Manage Badges with auto delete, and more Quick Settings rows." }
+      ]
+    }
+  ]
+}

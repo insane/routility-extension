@@ -10,6 +10,7 @@
 
   const TABS = [
     { key: 'info', hash: '#!/routility', label: LT('Info'), title: 'RoUtility' },
+    { key: 'whatsnew', hash: '#!/routility/whatsnew', label: LT('What’s New'), title: LT('What’s New') },
     { key: 'browsing', hash: '#!/routility/browsing', label: LT('General'), title: LT('General'), section: 'Everywhere' },
     { key: 'themes', hash: '#!/routility/themes', label: LT('Themes'), title: LT('Themes'), section: 'Everywhere' },
     { key: 'chat', hash: '#!/routility/chat', label: LT('Chat & Messages'), title: LT('Chat & Messages'), section: 'Everywhere' },
@@ -2295,6 +2296,95 @@
 
   const LANGUAGE_ROW = { key: 'language', title: LT('Language'), desc: LT('The language RoUtility uses. Same as Roblox follows the language picked in your Roblox settings.'), options: [['auto', LT('Same as Roblox')], ['en', 'English'], ['es', 'Español'], ['pt', 'Português (Brasil)'], ['fr', 'Français'], ['de', 'Deutsch'], ['it', 'Italiano'], ['ja', '日本語'], ['ko', '한국어'], ['zh-cn', '简体中文'], ['zh-tw', '繁體中文'], ['id', 'Bahasa Indonesia'], ['th', 'ไทย'], ['vi', 'Tiếng Việt'], ['tr', 'Türkçe'], ['ru', 'Русский'], ['pl', 'Polski']] };
 
+  const LOG_MARK = { new: '+', improved: '~', fixed: '−' };
+  const LOG_NAME = { new: LT('New'), improved: LT('Improved'), fixed: LT('Fixed') };
+
+  function logDate(iso) {
+    const d = new Date(iso + 'T12:00:00');
+    if (isNaN(d)) return iso;
+    try {
+      return d.toLocaleDateString(window.RoUtilityI18n.locale(), { month: 'short', day: 'numeric', year: 'numeric' });
+    } catch {
+      return d.toDateString();
+    }
+  }
+
+  function logPeople(names, people, prefix) {
+    const line = el('span', 'text-body-small content-muted routility-log-credit');
+    line.appendChild(document.createTextNode(prefix + ' '));
+    names.forEach((name, i) => {
+      if (i) line.appendChild(document.createTextNode(', '));
+      const gh = people[name] && people[name].github;
+      if (gh) {
+        const a = el('a', 'text-link', '@' + name);
+        a.href = 'https://github.com/' + encodeURIComponent(gh);
+        a.target = '_blank';
+        a.rel = 'noreferrer';
+        line.appendChild(a);
+      } else {
+        line.appendChild(el('span', 'content-default', name));
+      }
+    });
+    return line;
+  }
+
+  function whatsNewPane(section) {
+    const intro = el('p', 'text-body-medium content-default margin-none', lt('Every update, what changed and who helped make it.'));
+    section.appendChild(intro);
+    const holder = el('div', 'flex flex-col gap-xlarge');
+    section.appendChild(holder);
+    chrome.runtime.sendMessage({ type: 'changelog' }, (log) => {
+      void chrome.runtime.lastError;
+      if (!log || !Array.isArray(log.releases) || !holder.isConnected) {
+        holder.appendChild(el('p', 'text-body-medium content-muted margin-none', lt('Couldn’t load the update log.')));
+        return;
+      }
+      const people = log.contributors || {};
+      const builders = new Set();
+      const reporters = new Set();
+      for (const r of log.releases) for (const c of r.changes || []) {
+        (c.by || []).forEach(n => builders.add(n));
+        (c.thanks || []).forEach(n => reporters.add(n));
+      }
+      if (builders.size || reporters.size) {
+        const thanks = group(lt('Everyone Who Helped'));
+        const body = el('div', 'routility-log-people');
+        if (builders.size) body.appendChild(logPeople([...builders], people, lt('Code:')));
+        if (reporters.size) body.appendChild(logPeople([...reporters], people, lt('Bug reports and ideas:')));
+        thanks.card.appendChild(body);
+        holder.appendChild(thanks);
+      }
+      const current = chrome.runtime.getManifest().version;
+      for (const r of log.releases) {
+        const wrap = group(lt('Version {version}', { version: r.version }), logDate(r.date));
+        wrap.classList.add('routility-log-group');
+        if (r.version === current) wrap.querySelector('.routility-set-group-head').appendChild(el('span', 'routility-set-chip routility-log-current', lt('Installed')));
+        const card = wrap.card;
+        card.classList.add('routility-log-card');
+        if (r.summary) card.appendChild(el('p', 'text-body-medium content-emphasis margin-none routility-log-summary', r.summary));
+        for (const type of ['new', 'improved', 'fixed']) {
+          const items = (r.changes || []).filter(c => c.type === type);
+          if (!items.length) continue;
+          const list = el('ul', 'routility-log-list');
+          list.dataset.type = type;
+          list.appendChild(el('li', 'text-label-medium content-muted routility-log-kind', lt(LOG_NAME[type])));
+          for (const c of items) {
+            const li = el('li', 'routility-log-row');
+            li.appendChild(el('span', 'routility-log-mark routility-log-' + type, LOG_MARK[type]));
+            const text = el('div', 'flex flex-col gap-xxsmall routility-log-text');
+            text.appendChild(el('span', 'text-body-medium content-default', c.text));
+            if (c.by && c.by.length) text.appendChild(logPeople(c.by, people, lt('By')));
+            if (c.thanks && c.thanks.length) text.appendChild(logPeople(c.thanks, people, lt('Thanks to')));
+            li.appendChild(text);
+            list.appendChild(li);
+          }
+          card.appendChild(list);
+        }
+        holder.appendChild(wrap);
+      }
+    });
+  }
+
   function infoPane(section, cache, settings, stored) {
     const total = Object.values(PAGES).reduce((n, p) => n + keysOf(p).length, 0);
     const on = Object.values(PAGES).reduce((n, p) => n + keysOf(p).filter(k => settings[k]).length, 0);
@@ -2313,7 +2403,10 @@
     words.appendChild(about);
     const chips = el('div', 'routility-set-hero-chips');
     chips.appendChild(el('span', 'routility-set-chip', lt('{on} of {total} features on', { on, total })));
-    chips.appendChild(el('span', 'routility-set-chip', lt('Version {version}', { version: chrome.runtime.getManifest().version })));
+    const version = el('a', 'routility-set-chip routility-set-chip-link', lt('Version {version}', { version: chrome.runtime.getManifest().version }));
+    version.href = '#!/routility/whatsnew';
+    version.dataset.rtTip = lt('See what’s new');
+    chips.appendChild(version);
     words.appendChild(chips);
     hero.appendChild(words);
     section.appendChild(hero);
@@ -2726,6 +2819,8 @@
       infoPane(section, cache, settings, stored || {});
       [...section.children].slice(before).forEach(n => finder.hideWhileSearching(n));
     }
+
+    if (tab.key === 'whatsnew') whatsNewPane(section);
 
     if (page) {
       const rows = [];
