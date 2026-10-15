@@ -11817,8 +11817,6 @@ html.routility-settings-mode .menu-vertical .routility-menu-off {
 }
 
 .routility-pane .routility-set-mock {
-  flex-basis: 200px;
-  height: 76px;
   background: var(--color-shift-100, rgba(127, 127, 127, 0.06));
 }
 

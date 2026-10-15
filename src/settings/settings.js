@@ -68,7 +68,7 @@
 
   function row(title, description, control, compact) {
     const section = el('section', 'flex items-center gap-large');
-    const text = el('div', 'fill basis-0 flex flex-col gap-xsmall');
+    const text = el('div', 'routility-set-text fill basis-0 flex flex-col gap-xsmall');
     text.appendChild(el('h3', 'text-title-large content-emphasis padding-none', title));
     const p = el('p', 'text-body-small content-muted margin-none', description);
     text.appendChild(p);
