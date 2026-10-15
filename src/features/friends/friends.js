@@ -1988,15 +1988,26 @@
 
   function startCancelRequests() {
     const m = location.pathname.match(/^\/users\/(\d+)\/profile\/?$/i);
-    if (!m || reqWatch || m[1] === myId()) return;
+    if (!m || m[1] === myId() || (reqWatch && reqWatch.target === m[1])) return;
+    if (reqWatch) reqWatch.obs.disconnect();
+    document.querySelector('.routility-cancel-req')?.remove();
     const target = m[1];
-    reqWatch = { target, status: undefined, done: false };
-    friendStatus(target).then(st => { reqWatch.status = st; placeCancel(); });
-    new MutationObserver(onFrame(placeCancel)).observe(document.querySelector('#content') || document.body, { childList: true, subtree: true, characterData: true });
+    const w = reqWatch = { target, status: undefined, done: false, obs: new MutationObserver(onFrame(placeCancel)) };
+    friendStatus(target).then((st) => {
+      if (reqWatch !== w) return;
+      w.status = st;
+      placeCancel();
+    });
+    w.obs.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true, characterData: true });
   }
 
   function placeCancel() {
     const w = reqWatch;
+    if (w && !location.pathname.startsWith(`/users/${w.target}/`)) {
+      document.querySelector('.routility-cancel-req')?.remove();
+      startCancelRequests();
+      return;
+    }
     if (!w || w.status !== 'RequestSent') return;
     const head = document.querySelector('#content > .profile-platform-container .user-profile-header-info') || document.querySelector('#content .user-profile-header-info');
     if (!head) return;

@@ -37,6 +37,7 @@
   const PLAY_BTN = 'foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-large height-1200 padding-x-medium bg-shift-300 content-default btn-full-width btn-common-play-game-lg routility-ug-play';
   const settings = { gameUnavailable: true };
   let busy = false;
+  let failed = '';
 
   async function getJson(url) {
     try {
@@ -222,17 +223,15 @@
   function run() {
     const m = location.pathname.match(/^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?games\/(\d+)/i);
     const native = document.getElementById('game-details-unavailable-container');
-    if (busy || !m || !native || native.classList.contains('routility-ug-native') || document.querySelector('.routility-ug:not(.routility-ug-loading)')) return;
+    if (busy || !m || m[1] === failed || !native || native.classList.contains('routility-ug-native') || document.querySelector('.routility-ug:not(.routility-ug-loading)')) return;
     busy = true;
     if (!document.querySelector('.routility-ug-loading')) native.after(skeleton());
-    render(m[1], native).then((ok) => {
-      if (ok) return;
+    const fail = () => {
+      failed = m[1];
       document.querySelectorAll('.routility-ug-loading').forEach(n => n.remove());
       document.documentElement.classList.add('routility-ug-failed');
-    }).catch(() => {
-      document.querySelectorAll('.routility-ug-loading').forEach(n => n.remove());
-      document.documentElement.classList.add('routility-ug-failed');
-    }).finally(() => { busy = false; });
+    };
+    render(m[1], native).then((ok) => { if (!ok) fail(); }, fail).finally(() => { busy = false; });
   }
 
   chrome.storage.local.get('routilitySettings', (st) => {

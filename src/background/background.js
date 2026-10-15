@@ -1360,6 +1360,7 @@ async function checkTrades(s, seen, me) {
     stamps[slot] = Date.now();
     if (!prev || stale) continue;
     const fresh = list.filter(t => !prev.includes(String(t.id)) && (kind !== 'inactive' || t.status === 'Declined')).slice(0, 3);
+    if (fresh.length) await chrome.storage.local.set({ [NOTIFY_SEEN]: seen });
     for (const t of fresh) {
       const user = t.user || {};
       const name = user.displayName && user.displayName !== user.name ? `${user.displayName} (@${user.name})` : (user.name || lt('someone'));
@@ -1521,6 +1522,8 @@ async function checkPriceAlerts() {
     if (a.lastListing === listing) continue;
     a.lastListing = listing;
     changed = true;
+    const saved = (await chrome.storage.local.get(ALERTS_KEY))[ALERTS_KEY] || {};
+    if (saved[id]) await chrome.storage.local.set({ [ALERTS_KEY]: { ...saved, [id]: { ...saved[id], cid: a.cid, lastListing: listing } } });
     const icon = await thumbData('asset', id);
     const seller = top.seller && top.seller.name ? ` · ${lt('by {creator}', { creator: top.seller.name })}` : '';
     const serial = top.serialNumber ? ` · #${Number(top.serialNumber).toLocaleString('en-US')}` : '';
@@ -1542,13 +1545,16 @@ function runNotifyCheck() {
     if (!Object.values(s).some(Boolean)) return;
     const seen = (await chrome.storage.local.get(NOTIFY_SEEN))[NOTIFY_SEEN] || {};
     const me = await signedInUser(true);
-    if (me && (s.notifyInbound || s.notifyOutbound || s.notifyCompleted || s.notifyDeclined)) await checkTrades(s, seen, me);
+    try {
+      if (me && (s.notifyInbound || s.notifyOutbound || s.notifyCompleted || s.notifyDeclined)) await checkTrades(s, seen, me);
+    } finally {
+      await chrome.storage.local.set({ [NOTIFY_SEEN]: seen });
+    }
     if (s.notifyLimiteds || s.notifyUgc) {
       if (!live || live.readyState !== WebSocket.OPEN) await catchUpLimiteds(s);
       ensureLive();
     }
     if (s.priceAlerts) await checkPriceAlerts();
-    await chrome.storage.local.set({ [NOTIFY_SEEN]: seen });
   })().catch(() => {}).finally(() => { notifyRunning = null; });
   return notifyRunning;
 }

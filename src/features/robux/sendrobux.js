@@ -410,7 +410,7 @@
     if (e.data.type !== 'routility-send-pick' || settings.sendRobux === false) return;
     const id = Number(e.data.id);
     const sheet = sheetOf();
-    if (!(id > 0) || !sheet) return;
+    if (!(id > 0) || !sheet || (s && s.busy)) return;
     open({ id, name: String(e.data.name || ''), thumb: /^https:\/\/([\w-]+\.)*rbxcdn\.com\//.test(e.data.thumb) ? e.data.thumb : '' }, inSheet(sheet));
   });
   document.addEventListener('click', profileClick, true);

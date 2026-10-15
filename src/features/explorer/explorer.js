@@ -137,7 +137,8 @@
     if (!v.job) {
       v.job = (async () => {
         const res = await request({ type: 'assetFile', id: v.id || s.itemId, format: v.format });
-        if (!res || res.status !== 200) return { error: res && (res.status === 409 || res.status === 403) ? LT('Roblox doesn’t share this item’s file.') : LT('Couldn’t load the file right now.') };
+        if (res && (res.status === 409 || res.status === 403)) return { error: LT('Roblox doesn’t share this item’s file.') };
+        if (!res || res.status !== 200) return { error: LT('Couldn’t load the file right now.'), retry: true };
         let buf;
         try {
           const r = await fetch(res.location);
@@ -162,7 +163,7 @@
             buf = await r.arrayBuffer();
           }
         } catch {
-          return { error: LT('Couldn’t download the file right now.') };
+          return { error: LT('Couldn’t download the file right now.'), retry: true };
         }
         try {
           return { model: window.RoUtilityRbxm.parse(buf), bytes: buf };
@@ -171,8 +172,10 @@
         }
       })();
     }
-    v.result = await v.job;
-    return v.result;
+    const result = await v.job;
+    if (result.retry) v.job = null;
+    else v.result = result;
+    return result;
   }
 
   function assetId(text) {

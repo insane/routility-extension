@@ -1457,6 +1457,7 @@
     const trade = document.querySelector('.left-nav nav a[href$="/trades"]') || [...document.querySelectorAll('nav a[href$="/trades"]')].find(a => /Trade/.test(a.textContent));
     if (!trade) return;
     const li = trade.closest('li');
+    if (!li || !li.parentElement) return;
     let mine = li.parentElement.querySelector(':scope > .routility-calc-nav');
     const here = PATH.test(location.pathname);
     if (!mine) {

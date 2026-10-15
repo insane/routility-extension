@@ -210,7 +210,7 @@
   async function robloxJson(url) {
     if (Date.now() < robloxCooldown) return null;
     try {
-      const res = await Promise.race([fetch(url, { credentials: 'include' }), new Promise((_, no) => setTimeout(() => no(new Error('timeout')), 15000))]);
+      const res = await Promise.race([fetch(url, { credentials: 'include' }), new Promise((_, no) => setTimeout(() => no(new Error('timeout')), 30000))]);
       if (res.status === 429) {
         const wait = Number(res.headers.get('Retry-After'));
         const ms = Number.isFinite(wait) && wait > 0 ? wait * 1000 : 30000;
