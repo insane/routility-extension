@@ -273,7 +273,9 @@
   async function setupBadgePage(badgeId) {
     const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
     if (!me || !badgeId) return;
+    const startPath = location.pathname;
     const data = await json(`https://badges.roblox.com/v1/users/${me}/badges/awarded-dates?badgeIds=${badgeId}`);
+    if (location.pathname !== startPath) return;
     const when = data && (data.data || [])[0]?.awardedDate;
     if (!when) return;
     const d = date(when);

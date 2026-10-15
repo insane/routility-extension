@@ -306,6 +306,8 @@
       if (!points || points.length < 2) return;
       if (location.pathname !== startPath) return;
       chrome.storage.local.get('routilityChartMode', (stored) => {
+        if (location.pathname !== startPath) return;
+        teardown();
         state = {
           itemId,
           points: points.slice().sort((a, b) => a.ts - b.ts),
