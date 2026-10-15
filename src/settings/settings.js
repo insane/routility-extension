@@ -1523,7 +1523,16 @@
       }
     });
     draw();
-    chrome.storage.onChanged.addListener((changes, area) => { if (area === 'local' && changes.routilityFun && box.isConnected) draw(); });
+    let onFunSeen = false;
+    const onFun = (changes, area) => {
+      if (!box.isConnected) {
+        if (onFunSeen) chrome.storage.onChanged.removeListener(onFun);
+        return;
+      }
+      onFunSeen = true;
+      if (area === 'local' && changes.routilityFun) draw();
+    };
+    chrome.storage.onChanged.addListener(onFun);
     return box;
   }
 
@@ -1916,10 +1925,16 @@
       paintFx();
       paintAll();
     });
-    chrome.storage.onChanged.addListener((ch, area) => {
-      if (area !== 'local' || !section.isConnected) return;
-      if (ch.routilitySettings) syncOn(ch.routilitySettings.newValue);
-    });
+    let onSettingsSeen = false;
+    const onSettings = (ch, area) => {
+      if (!section.isConnected) {
+        if (onSettingsSeen) chrome.storage.onChanged.removeListener(onSettings);
+        return;
+      }
+      onSettingsSeen = true;
+      if (area === 'local' && ch.routilitySettings) syncOn(ch.routilitySettings.newValue);
+    };
+    chrome.storage.onChanged.addListener(onSettings);
     return section;
   }
 
@@ -3220,7 +3235,16 @@
               });
             });
             draw();
-            chrome.storage.onChanged.addListener((changes, area) => { if (area === 'local' && changes.routilityPriceAlerts && box.isConnected) draw(); });
+            let onAlertsSeen = false;
+            const onAlerts = (changes, area) => {
+              if (!box.isConnected) {
+                if (onAlertsSeen) chrome.storage.onChanged.removeListener(onAlerts);
+                return;
+              }
+              onAlertsSeen = true;
+              if (area === 'local' && changes.routilityPriceAlerts) draw();
+            };
+            chrome.storage.onChanged.addListener(onAlerts);
             wrap.card.appendChild(box);
             continue;
           }

@@ -1050,7 +1050,10 @@
       }
       if (done) continue;
       const near = !rect || (rect.bottom > view.top - 300 && rect.top < view.bottom + 600);
-      if (near) annotateRow(row, entry);
+      if (near && row.dataset.rtPending !== entry.id) {
+        row.dataset.rtPending = entry.id;
+        annotateRow(row, entry).finally(() => { if (row.dataset.rtPending === entry.id) delete row.dataset.rtPending; });
+      }
     }
   }
 

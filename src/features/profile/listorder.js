@@ -13,7 +13,19 @@
 
   const idOf = (x) => x && (x.rootPlace?.id ?? x.asset?.id ?? x.assetId ?? x.id);
 
+  const latest = new Map();
+  const note = (name) => {
+    for (const re of SOURCES) {
+      const m = re.exec(name);
+      if (m) latest.set(m[1], name);
+    }
+  };
+  try {
+    new PerformanceObserver(list => list.getEntries().forEach(e => note(e.name))).observe({ type: 'resource', buffered: true });
+  } catch {}
+
   function source(owner) {
+    if (latest.has(owner)) return latest.get(owner);
     const list = performance.getEntriesByType('resource');
     for (let i = list.length - 1; i >= 0; i--) {
       const name = list[i].name;

@@ -441,6 +441,7 @@
       document.addEventListener('keydown', onSlash);
       document.addEventListener('mouseover', onHover, true);
       document.addEventListener('focusout', (e) => { if (e.target?.id === 'navbar-search-input') { sel = -1; paint(); } }, true);
+      document.addEventListener('focusin', (e) => { if (e.target?.id === 'navbar-search-input' && (prefs.friends || prefs.people)) myFriends(); }, true);
       observer = new MutationObserver(window.RoUtilityUI.onFrame(place));
       const target = input()?.closest('.navbar-search') || document.body;
       observer.observe(target, { childList: true, subtree: true });
