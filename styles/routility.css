@@ -1089,7 +1089,7 @@ html.routility-av-searching #avatar-items-container .foundation-web-progress-cir
 }
 
 .routility-av-wearing {
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .routility-av-wearing-head {
@@ -9684,7 +9684,7 @@ html.routility-nav-collapsed .left-nav nav > ul > li {
 .routility-tc-open,
 .routility-aa-open {
   width: 100%;
-  margin: 12px 0 0;
+  margin: 0;
 }
 
 .routility-tc-open + .routility-aa-open {
