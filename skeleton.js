@@ -100,6 +100,7 @@
     root.classList.toggle('routility-hide-chat', !!(settings || {}).hideChat);
     root.classList.toggle('routility-classic-logo', !!(settings || {}).classicLogo);
     root.classList.toggle('routility-classic-premium', !!(settings || {}).classicPremium);
+    root.classList.toggle('routility-classic-verified', !!(settings || {}).classicVerified);
     root.classList.toggle('routility-exact-prices', (settings || {}).exactPrices !== false);
     root.classList.toggle('routility-badge-fix', (settings || {}).badgeSizeFix !== false);
     root.classList.toggle('routility-scrollbar-fix', (settings || {}).scrollbarFix !== false);
