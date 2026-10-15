@@ -747,6 +747,7 @@
  "Classic Profile Layout": "Classic Profile Layout",
  "Classic Roblox": "Classic Roblox",
  "Classic Roblox Logo": "Classic Roblox Logo",
+ "Classic Verified Badge": "Classic Verified Badge",
  "Clean placeholders while Roblox pages load, instead of spinners and loading stripes.": "Clean placeholders while Roblox pages load, instead of spinners and loading stripes.",
  "Clean Up Trades": "Clean Up Trades",
  "Clear": "Clear",
@@ -2379,6 +2380,7 @@
  "The old Premium icon next to names instead of the Roblox Plus icon.": "The old Premium icon next to names instead of the Roblox Plus icon.",
  "The old red and white ROBLOX logo in the top left corner instead of today’s logo.": "The old red and white ROBLOX logo in the top left corner instead of today’s logo.",
  "The old Roblox names in the menus, headings and tab titles. Pick which ones below.": "The old Roblox names in the menus, headings and tab titles. Pick which ones below.",
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "The original verified badge next to names, with sharp corners and the brighter blue.",
  "The outfits a player has saved, in a section under Currently Wearing. Click one to see everything in it.": "The outfits a player has saved, in a section under Currently Wearing. Click one to see everything in it.",
  "The recipient will get {n} Robux.": "The recipient will get {n} Robux.",
  "The RoUtility Forum is run by RoUtility and isn’t affiliated with Roblox.": "The RoUtility Forum is run by RoUtility and isn’t affiliated with Roblox.",
@@ -2786,7 +2788,5 @@
  "Your Robux Rate": "Your Robux Rate",
  "Your Settings": "Your Settings",
  "Your Slots": "Your Slots",
- "Your Status": "Your Status",
- "Classic Verified Badge": "Classic Verified Badge",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "The original verified badge next to names, with sharp corners and the brighter blue."
+ "Your Status": "Your Status"
 }

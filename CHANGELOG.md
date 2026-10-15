@@ -20,6 +20,7 @@ Send Robux without the app, prices in your own currency, much more customizable 
 + Custom Theme: more colors (Buttons, Play Button Text, Borders, Success, Warnings), background effects like Glow, Aurora, Grid, Dots, Flowers or your own image, blur, tint, card transparency and roundness. (by @reqonn)
 + Website Font: use your own font file. (by @reqonn)
 + Sakura, a light pink theme preset. (by @reqonn)
++ Classic Verified Badge: the original verified badge from 2022, with sharp corners and the brighter blue. (by @reqonn)
 + Classic Profile Layout: a Two Columns option, with About, badges and communities on the left and experiences, friends and favorites on the right. (by @reqonn)
 ```
 

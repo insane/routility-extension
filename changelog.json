@@ -15,6 +15,7 @@
         { "type": "new", "text": "Custom Theme: more colors (Buttons, Play Button Text, Borders, Success, Warnings), background effects like Glow, Aurora, Grid, Dots, Flowers or your own image, blur, tint, card transparency and roundness.", "by": ["reqonn"] },
         { "type": "new", "text": "Website Font: use your own font file.", "by": ["reqonn"] },
         { "type": "new", "text": "Sakura, a light pink theme preset.", "by": ["reqonn"] },
+        { "type": "new", "text": "Classic Verified Badge: the original verified badge from 2022, with sharp corners and the brighter blue.", "by": ["reqonn"] },
         { "type": "new", "text": "Classic Profile Layout: a Two Columns option, with About, badges and communities on the left and experiences, friends and favorites on the right.", "by": ["reqonn"] },
         { "type": "improved", "text": "Settings are easier to find: new Classic Roblox, Account & Security and Inventory tabs, a Money section at the top of Robux & Transactions, and Trade Ads moved into Trading." },
         { "type": "improved", "text": "Menus, dropdowns, the category lists and the classic profile follow custom themes.", "by": ["reqonn"] },
