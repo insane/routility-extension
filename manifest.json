@@ -28,7 +28,7 @@
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "src/background/background.js"
   },
   "content_scripts": [
     {
@@ -36,12 +36,12 @@
         "https://www.roblox.com/*"
       ],
       "js": [
-        "net.js",
-        "life.js",
-        "i18n.js",
-        "skeleton.js",
-        "classicnames.js",
-        "fun.js"
+        "src/core/net.js",
+        "src/core/life.js",
+        "src/core/i18n.js",
+        "src/core/skeleton.js",
+        "src/features/classic-roblox/classicnames.js",
+        "src/features/fun/fun.js"
       ],
       "run_at": "document_start"
     },
@@ -50,64 +50,64 @@
         "https://www.roblox.com/*"
       ],
       "js": [
-        "ui.js",
-        "chart.js",
-        "owners.js",
-        "profile.js",
-        "inventory.js",
-        "trades.js",
-        "friends.js",
-        "requests.js",
-        "transactions.js",
-        "early.js",
-        "classic.js",
-        "search.js",
-        "communities.js",
-        "avatar.js",
-        "thumbcam.js",
-        "accadjust.js",
-        "rotator.js",
-        "skintone.js",
-        "mutual.js",
-        "badges.js",
-        "badgemanage.js",
-        "invsearch.js",
-        "listorder.js",
-        "games.js",
-        "hovercard.js",
-        "misc.js",
-        "plus.js",
-        "sendrobux.js",
-        "account.js",
-        "unavailable.js",
-        "oldnav.js",
-        "calc.js",
-        "tradeads.js",
-        "itemcard.js",
-        "home.js",
-        "extras.js",
-        "forum.js",
-        "owned.js",
-        "itemextras.js",
-        "rbxm.js",
-        "scan.js",
-        "explorer.js",
-        "wearing.js",
-        "tryon.js",
-        "pricealert.js",
-        "purchaselock.js",
-        "bot.js",
-        "chatsize.js",
-        "scrollbar.js",
-        "compat.js",
-        "content.js"
+        "src/core/ui.js",
+        "src/features/items/chart.js",
+        "src/features/items/owners.js",
+        "src/features/profile/profile.js",
+        "src/features/inventory/inventory.js",
+        "src/features/trading/trades.js",
+        "src/features/friends/friends.js",
+        "src/features/friends/requests.js",
+        "src/features/robux/transactions.js",
+        "src/features/profile/early.js",
+        "src/features/profile/classic.js",
+        "src/features/search/search.js",
+        "src/features/communities/communities.js",
+        "src/features/avatar/avatar.js",
+        "src/features/avatar/thumbcam.js",
+        "src/features/avatar/accadjust.js",
+        "src/features/avatar/rotator.js",
+        "src/features/avatar/skintone.js",
+        "src/features/profile/mutual.js",
+        "src/features/badges/badges.js",
+        "src/features/badges/badgemanage.js",
+        "src/features/inventory/invsearch.js",
+        "src/features/profile/listorder.js",
+        "src/features/games/games.js",
+        "src/features/profile/hovercard.js",
+        "src/features/general/misc.js",
+        "src/features/robux/plus.js",
+        "src/features/robux/sendrobux.js",
+        "src/features/account/account.js",
+        "src/features/games/unavailable.js",
+        "src/features/nav/oldnav.js",
+        "src/features/trading/calc.js",
+        "src/features/trading/tradeads.js",
+        "src/features/items/itemcard.js",
+        "src/features/home/home.js",
+        "src/features/games/extras.js",
+        "src/features/forum/forum.js",
+        "src/features/items/owned.js",
+        "src/features/items/itemextras.js",
+        "src/features/explorer/rbxm.js",
+        "src/features/explorer/scan.js",
+        "src/features/explorer/explorer.js",
+        "src/features/profile/wearing.js",
+        "src/features/avatar/tryon.js",
+        "src/features/items/pricealert.js",
+        "src/features/items/purchaselock.js",
+        "src/features/chat/bot.js",
+        "src/features/chat/chatsize.js",
+        "src/features/themes/scrollbar.js",
+        "src/core/compat.js",
+        "src/core/content.js"
       ],
       "css": [
-        "routility.css",
-        "explorer.css",
-        "classic.css",
-        "skeleton.css",
-        "forum.css"
+        "styles/routility.css",
+        "styles/explorer.css",
+        "styles/classic.css",
+        "styles/skeleton.css",
+        "styles/forum.css"
       ],
       "run_at": "document_idle"
     },
@@ -116,8 +116,8 @@
         "https://www.roblox.com/my/account*"
       ],
       "js": [
-        "freeitems.js",
-        "settings.js"
+        "src/settings/freeitems.js",
+        "src/settings/settings.js"
       ],
       "run_at": "document_start"
     },
@@ -127,7 +127,7 @@
         "https://www.roblox.com/request-error*"
       ],
       "js": [
-        "early.js"
+        "src/features/profile/early.js"
       ],
       "run_at": "document_start"
     },
@@ -136,7 +136,7 @@
         "https://www.roblox.com/*"
       ],
       "js": [
-        "fun-main.js"
+        "src/features/fun/fun-main.js"
       ],
       "run_at": "document_start",
       "world": "MAIN"
@@ -146,7 +146,7 @@
         "https://www.roblox.com/*"
       ],
       "js": [
-        "send-main.js"
+        "src/features/robux/send-main.js"
       ],
       "run_at": "document_idle",
       "world": "MAIN"
@@ -156,7 +156,7 @@
         "https://www.roblox.com/my/avatar*"
       ],
       "js": [
-        "avatar-main.js"
+        "src/features/avatar/avatar-main.js"
       ],
       "run_at": "document_start",
       "world": "MAIN"
@@ -166,7 +166,7 @@
         "https://www.roblox.com/users/*/profile*"
       ],
       "js": [
-        "profile-main.js"
+        "src/features/profile/profile-main.js"
       ],
       "run_at": "document_idle",
       "world": "MAIN"
@@ -176,7 +176,7 @@
         "https://www.roblox.com/transactions*"
       ],
       "js": [
-        "transactions-main.js"
+        "src/features/robux/transactions-main.js"
       ],
       "run_at": "document_start",
       "world": "MAIN"
@@ -186,7 +186,7 @@
         "https://www.roblox.com/games/*"
       ],
       "js": [
-        "servers-main.js"
+        "src/features/games/servers-main.js"
       ],
       "run_at": "document_start",
       "world": "MAIN"
@@ -197,7 +197,7 @@
         "https://www.roblox.com/users/inventory*"
       ],
       "js": [
-        "inventory-main.js"
+        "src/features/inventory/inventory-main.js"
       ],
       "run_at": "document_start",
       "world": "MAIN"
@@ -207,18 +207,18 @@
         "https://create.roblox.com/*"
       ],
       "js": [
-        "net.js",
-        "life.js",
-        "i18n.js",
-        "ui.js",
-        "rbxm.js",
-        "scan.js",
-        "explorer.js",
-        "create.js"
+        "src/core/net.js",
+        "src/core/life.js",
+        "src/core/i18n.js",
+        "src/core/ui.js",
+        "src/features/explorer/rbxm.js",
+        "src/features/explorer/scan.js",
+        "src/features/explorer/explorer.js",
+        "src/create/create.js"
       ],
       "css": [
-        "explorer.css",
-        "create.css"
+        "styles/explorer.css",
+        "styles/create.css"
       ],
       "run_at": "document_idle"
     }
@@ -226,18 +226,18 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "icons/logo.png",
-        "icons/social.svg",
-        "flags/*",
-        "icons/forum/*",
-        "lib/*",
-        "preview/*",
-        "mesh.js",
-        "icons/tags/*",
-        "icons/calc/*",
-        "icons/icon48.png",
-        "icons/icon128.png",
-        "icons/bot.png"
+        "assets/icons/logo.png",
+        "assets/icons/social.svg",
+        "assets/flags/*",
+        "assets/icons/forum/*",
+        "vendor/*",
+        "src/preview/*",
+        "src/preview/mesh.js",
+        "assets/icons/tags/*",
+        "assets/icons/calc/*",
+        "assets/icons/icon48.png",
+        "assets/icons/icon128.png",
+        "assets/icons/bot.png"
       ],
       "matches": [
         "https://www.roblox.com/*"
@@ -245,7 +245,7 @@
     },
     {
       "resources": [
-        "icons/logo.png"
+        "assets/icons/logo.png"
       ],
       "matches": [
         "https://create.roblox.com/*"
@@ -253,16 +253,16 @@
     }
   ],
   "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
   },
   "action": {
     "default_title": "RoUtility",
     "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
+      "16": "assets/icons/icon16.png",
+      "48": "assets/icons/icon48.png",
+      "128": "assets/icons/icon128.png"
     }
   },
   "declarative_net_request": {
@@ -270,22 +270,22 @@
       {
         "id": "gamejoin",
         "enabled": true,
-        "path": "rules.json"
+        "path": "rules/rules.json"
       },
       {
         "id": "studio",
         "enabled": false,
-        "path": "rules-studio.json"
+        "path": "rules/rules-studio.json"
       },
       {
         "id": "fun",
         "enabled": false,
-        "path": "rules-fun.json"
+        "path": "rules/rules-fun.json"
       },
       {
         "id": "pages",
         "enabled": true,
-        "path": "rules-pages.json"
+        "path": "rules/rules-pages.json"
       }
     ]
   },
