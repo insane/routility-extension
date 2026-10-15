@@ -2551,5 +2551,9 @@
  "The old Premium icon next to names instead of the Roblox Plus icon.": "이름 옆의 Roblox Plus 아이콘 대신 예전 프리미엄 아이콘을 표시합니다.",
  "Friends Since": "친구가 된 날",
  "Friends since {date}": "{date}부터 친구",
- "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "내 목록이든 다른 사람의 목록이든 모든 친구 목록의 카드 아래에 두 사람이 친구가 된 날짜를 표시합니다. 마우스를 올리면 얼마나 지났는지 보여줍니다. Roblox는 팔로우 날짜를 저장하지 않아서 팔로우에는 날짜가 없습니다."
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "내 목록이든 다른 사람의 목록이든 모든 친구 목록의 카드 아래에 두 사람이 친구가 된 날짜를 표시합니다. 마우스를 올리면 얼마나 지났는지 보여줍니다. Roblox는 팔로우 날짜를 저장하지 않아서 팔로우에는 날짜가 없습니다.",
+ "Extra Requests": "추가 요청 수",
+ "Fake Friend Requests": "가짜 친구 요청",
+ "How many requests to add to your real ones.": "실제 요청에 더할 요청 수입니다.",
+ "More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.": "메뉴의 친구 배지와 홈의 친구 추가 타일에 친구 요청을 더 표시합니다. 실제 요청이 더해지므로 새 요청이 오면 하나씩 늘어납니다. Roblox처럼 메뉴는 500을 넘으면 500+, 홈은 99를 넘으면 99+로 표시됩니다."
 }

@@ -2551,5 +2551,9 @@
  "The old Premium icon next to names instead of the Roblox Plus icon.": "在名稱旁顯示舊版 Premium 圖示，而不是 Roblox Plus 圖示。",
  "Friends Since": "成為好友時間",
  "Friends since {date}": "自 {date} 起成為好友",
- "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "在任何好友清單（你的或別人的）中每張卡片下方顯示兩人成為好友的日期。滑過即可查看已經多久。Roblox 不記錄追蹤的日期，所以追蹤沒有日期。"
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "在任何好友清單（你的或別人的）中每張卡片下方顯示兩人成為好友的日期。滑過即可查看已經多久。Roblox 不記錄追蹤的日期，所以追蹤沒有日期。",
+ "Extra Requests": "額外邀請",
+ "Fake Friend Requests": "假好友邀請",
+ "How many requests to add to your real ones.": "在真實邀請之上增加多少個邀請。",
+ "More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.": "讓選單中的好友徽章和首頁的「新增好友」方塊顯示更多好友邀請。你的真實邀請會疊加上去，所以新邀請仍會加一。和 Roblox 一樣，超過後選單顯示 500+，首頁顯示 99+。"
 }

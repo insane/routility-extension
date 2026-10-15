@@ -2926,5 +2926,9 @@
  "The old Premium icon next to names instead of the Roblox Plus icon.": "Старый значок Premium рядом с именами вместо значка Roblox Plus.",
  "Friends Since": "Друзья с",
  "Friends since {date}": "Друзья с {date}",
- "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "Дата под каждой карточкой в любом списке друзей, твоём или чужом, когда эти двое стали друзьями. Наведи курсор, чтобы увидеть, как давно это было. Roblox не хранит дату подписки, поэтому для подписок её нет."
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "Дата под каждой карточкой в любом списке друзей, твоём или чужом, когда эти двое стали друзьями. Наведи курсор, чтобы увидеть, как давно это было. Roblox не хранит дату подписки, поэтому для подписок её нет.",
+ "Extra Requests": "Дополнительные заявки",
+ "Fake Friend Requests": "Фальшивые заявки в друзья",
+ "How many requests to add to your real ones.": "Сколько заявок добавить к настоящим.",
+ "More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.": "Больше заявок в друзья на значке «Друзья» в меню и на плитке «Добавить друзей» на главной. Настоящие заявки добавляются сверху, поэтому новая по-прежнему прибавляет один. Как в Roblox, меню показывает 500+, а главная 99+, если число больше."
 }

@@ -2926,5 +2926,9 @@
  "The old Premium icon next to names instead of the Roblox Plus icon.": "Stara ikona Premium obok nazw zamiast ikony Roblox Plus.",
  "Friends Since": "Znajomi od",
  "Friends since {date}": "Znajomi od {date}",
- "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "Data pod każdą kartą na dowolnej liście znajomych, twojej lub kogoś innego, pokazująca, kiedy te osoby zostały znajomymi. Najedź, aby zobaczyć, jak dawno to było. Roblox nie zapisuje daty obserwowania, więc dla obserwowanych jej nie ma."
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "Data pod każdą kartą na dowolnej liście znajomych, twojej lub kogoś innego, pokazująca, kiedy te osoby zostały znajomymi. Najedź, aby zobaczyć, jak dawno to było. Roblox nie zapisuje daty obserwowania, więc dla obserwowanych jej nie ma.",
+ "Extra Requests": "Dodatkowe zaproszenia",
+ "Fake Friend Requests": "Fałszywe zaproszenia do znajomych",
+ "How many requests to add to your real ones.": "Ile zaproszeń dodać do prawdziwych.",
+ "More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.": "Więcej zaproszeń na plakietce Znajomi w menu i na kafelku Dodaj znajomych na stronie głównej. Twoje prawdziwe zaproszenia są doliczane, więc nowe nadal zwiększa licznik o jeden. Jak w Roblox, menu pokazuje 500+, a strona główna 99+ po ich przekroczeniu."
 }

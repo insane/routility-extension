@@ -2676,5 +2676,9 @@
  "The old Premium icon next to names instead of the Roblox Plus icon.": "El antiguo icono de Premium junto a los nombres en lugar del icono de Roblox Plus.",
  "Friends Since": "Amigos desde",
  "Friends since {date}": "Amigos desde {date}",
- "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "La fecha debajo de cada tarjeta en cualquier lista de amigos, tuya o de otra persona, que muestra cuándo se hicieron amigos. Pasa el cursor para ver cuánto tiempo hace. Roblox no guarda una fecha para los seguimientos, así que no hay una para eso."
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "La fecha debajo de cada tarjeta en cualquier lista de amigos, tuya o de otra persona, que muestra cuándo se hicieron amigos. Pasa el cursor para ver cuánto tiempo hace. Roblox no guarda una fecha para los seguimientos, así que no hay una para eso.",
+ "Extra Requests": "Solicitudes extra",
+ "Fake Friend Requests": "Solicitudes de amistad falsas",
+ "How many requests to add to your real ones.": "Cuántas solicitudes sumar a las reales.",
+ "More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.": "Más solicitudes de amistad en la insignia de Amigos del menú y en el mosaico Añadir amigos de Inicio. Tus solicitudes reales se suman, así que una nueva sigue contando uno más. Como en Roblox, el menú muestra 500+ e Inicio muestra 99+ al pasar esas cifras."
 }

@@ -19,6 +19,7 @@
       spent: n(o.spent),
       items: Array.isArray(o.items) ? o.items.filter(x => x && typeof x.kind === 'string' && Number.isFinite(x.id)) : [],
       worn: Array.isArray(o.worn) ? o.worn.filter(v => Number.isFinite(v)) : [],
+      requests: n(o.requests),
     };
   }
 
@@ -600,6 +601,15 @@
   }
 
   const ROUTES = [
+    ['GET', /^https:\/\/friends\.roblox\.com\/v1\/(?:user\/friend-requests|my\/new-friend-requests)\/count(?:[?#]|$)/, () => {
+      if (!cfg.requests) return null;
+      return { edit: (t) => {
+        const d = parse(t);
+        if (!d || typeof d.count !== 'number') return t;
+        d.count += cfg.requests;
+        return JSON.stringify(d);
+      } };
+    }],
     ['GET', /^https:\/\/economy\.roblox\.com\/v1\/users\/(\d+)\/currency(?:[?#]|$)/, (m) => {
       if (Number(m[1]) !== me() || !(cfg.robux || cfg.buy)) return null;
       return { edit: (t) => {

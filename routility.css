@@ -1978,6 +1978,11 @@ a.routility-hc-status:hover {
   white-space: nowrap;
 }
 
+.rt-m-pill.rt-m-badge {
+  background: var(--rt-m-red);
+  color: #fff;
+}
+
 .rt-m-pill.rt-m-active {
   background: var(--rt-m-blue);
   color: #fff;

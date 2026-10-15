@@ -442,7 +442,7 @@ function botFeatures() {
 
 const PRESET_VALUES = new Set(['itemPrices', 'itemUsd', 'itemDemand', 'itemTrend', 'itemCopies', 'itemChange', 'itemOwnedRow', 'itemTags', 'usdChart', 'owners', 'resellerDeals', 'inventoryValues', 'tradeValues', 'tradeOwnership', 'tradeItemCard', 'marketplaceValues', 'robuxUsd', 'exactPrices', 'txUsd', 'tradeCalculator', 'calcNav', 'calcLinks', 'calcRemember', 'calcEven', 'calcPercents', 'calcRobuxRap', 'tradeWarning', 'tradeSendSummary', 'purchaseLock', 'buyBalance', 'menuLink', 'hoverTips']);
 const PRESET_INERT = /^(streamer(?!Mode$)|classic(Games|Catalog|Develop|Groups|Packages)$|forumStat)/;
-const PRESET_NEVER = new Set(['badgeAutoDelete', 'streamerMode', 'hideChat', 'customTheme', 'classicNames', 'classicLogo', 'classicPremium', 'studioStatus', 'fakeRobux', 'fakeBuy', 'catalogRobloxOnly', 'skipR6Warning', 'keepR6', 'avoidFriends', 'notifyUgc']);
+const PRESET_NEVER = new Set(['badgeAutoDelete', 'streamerMode', 'hideChat', 'customTheme', 'classicNames', 'classicLogo', 'classicPremium', 'studioStatus', 'fakeRobux', 'fakeBuy', 'catalogRobloxOnly', 'skipR6Warning', 'keepR6', 'avoidFriends', 'notifyUgc', 'fakeRequests']);
 let defaultsMemo = null;
 
 function settingsDefaults() {
