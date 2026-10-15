@@ -222,6 +222,16 @@
     return btn;
   }
 
+  function twin(btn, other) {
+    const outer = btn.querySelector(':scope > span.flex');
+    if (!outer) return btn;
+    const ghost = el('span', 'padding-y-xsmall text-no-wrap routility-twin-ghost', other);
+    ghost.setAttribute('aria-hidden', 'true');
+    outer.classList.add('routility-twin');
+    outer.appendChild(ghost);
+    return btn;
+  }
+
   function header(text, intro) {
     const head = el('div', 'settings-v2-header routility-set-head');
     head.appendChild(el('h2', 'text-heading-medium content-emphasis margin-none', text));
@@ -1813,7 +1823,7 @@
         const ctl = el('div', 'routility-viz-ctl flex items-center gap-small');
         ctl.appendChild(iconButton(lt('Move {name} up', { name: s.name }), true, i === 0, () => reorder(list, i, i - 1)));
         ctl.appendChild(iconButton(lt('Move {name} down', { name: s.name }), false, i === list.length - 1, () => reorder(list, i, i + 1)));
-        const vis = mini(off ? lt('Show') : lt('Hide'), () => toggle(s.key));
+        const vis = twin(mini(off ? lt('Show') : lt('Hide'), () => toggle(s.key)), off ? lt('Hide') : lt('Show'));
         vis.disabled = stuck;
         ctl.appendChild(vis);
         li.appendChild(ctl);
@@ -1926,7 +1936,7 @@
         const ctl = el('div', 'routility-viz-ctl flex items-center gap-small');
         ctl.appendChild(iconButton(lt('Move {name} up', { name: s.name }), true, i === 0, () => reorder(list, i, i - 1)));
         ctl.appendChild(iconButton(lt('Move {name} down', { name: s.name }), false, i === list.length - 1, () => reorder(list, i, i + 1)));
-        const vis = mini(off ? lt('Show') : lt('Hide'), () => store({ ...lay, hidden: off ? lay.hidden.filter(k => k !== s.key) : [...lay.hidden, s.key] }));
+        const vis = twin(mini(off ? lt('Show') : lt('Hide'), () => store({ ...lay, hidden: off ? lay.hidden.filter(k => k !== s.key) : [...lay.hidden, s.key] })), off ? lt('Hide') : lt('Show'));
         vis.disabled = stuck;
         ctl.appendChild(vis);
         li.appendChild(ctl);
@@ -2126,10 +2136,10 @@
         const ctl = el('div', 'routility-viz-ctl flex items-center gap-small');
         ctl.appendChild(iconButton(lt('Move {name} up', { name: s.title }), true, i === 0, () => reorder(kind, list, i, i - 1)));
         ctl.appendChild(iconButton(lt('Move {name} down', { name: s.title }), false, i === list.length - 1, () => reorder(kind, list, i, i + 1)));
-        ctl.appendChild(mini(isHidden ? lt('Show') : lt('Hide'), () => {
+        ctl.appendChild(twin(mini(isHidden ? lt('Show') : lt('Hide'), () => {
           const hiddenKeys = isHidden ? layouts[kind].hidden.filter(k => k !== s.key) : [...layouts[kind].hidden, s.key];
           save(kind, { order: list.map(x => x.key), hidden: hiddenKeys });
-        }));
+        }), isHidden ? lt('Hide') : lt('Show')));
         li.appendChild(ctl);
         li.addEventListener('dragstart', (e) => {
           drag = { kind, from: i };
