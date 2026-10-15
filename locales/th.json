@@ -151,6 +151,7 @@
  "{n} keypoints": {
   "other": "{n} คีย์พอยต์"
  },
+ "{n} left": "เหลือ {n}",
  "{n} limiteds": {
   "other": "{n} ลิมิเต็ด"
  },
@@ -199,6 +200,9 @@
  "{n} Outfits": {
   "other": "{n} ชุด"
  },
+ "{n} payments of {price}": {
+  "other": "ชำระ {n} ครั้ง ครั้งละ {price}"
+ },
  "{n} people are no longer your friends": {
   "other": "{n} คนไม่ได้เป็นเพื่อนของคุณแล้ว"
  },
@@ -228,6 +232,8 @@
   "other": "ชุดที่บันทึกไว้ {n} ชุด"
  },
  "{n} selected": "เลือกแล้ว {n}",
+ "{n} sent in the past day": "ส่งไป {n} ในวันที่ผ่านมา",
+ "{n} sent in the past month": "ส่งไป {n} ในเดือนที่ผ่านมา",
  "{n} servers": {
   "other": "{n} เซิร์ฟเวอร์"
  },
@@ -322,13 +328,19 @@
  "{pct}% over RAP": "สูงกว่า RAP {pct}%",
  "{pct}% rating": "คะแนน {pct}%",
  "{pct}% under RAP": "ต่ำกว่า RAP {pct}%",
+ "{percent}% off unlocks {date}": "ลด {percent}% ปลดล็อก {date}",
  "{place} • {n} servers • {players} playing": {
   "other": "{place} • {n} เซิร์ฟเวอร์ • {players} คนกำลังเล่น"
  },
  "{playing} of {max} people max": "{playing} จากสูงสุด {max} คน",
+ "{price} a month": "{price} ต่อเดือน",
+ "{price} a week": "{price} ต่อสัปดาห์",
+ "{price} a year": "{price} ต่อปี",
  "{rating} • {n} playing": "{rating} • {n} คนกำลังเล่น",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} ไม่อยู่ในรายการภูมิภาคแล้ว กำลังเข้าร่วมเซิร์ฟเวอร์ใดก็ได้…",
  "{results} (first 2,000 items)": "{results} (2,000 ไอเทมแรก)",
+ "{robux} Robux at the DevEx rate": "{robux} Robux ตามอัตรา DevEx",
+ "{robux} Robux at your rate (${rate}/1k)": "{robux} Robux ตามอัตราของคุณ (${rate}/1k)",
  "{role} · Rank {rank}": "{role} · ระดับ {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} สตัด",
@@ -399,6 +411,7 @@
  "A trade you sent, including ones sent from your phone.": "การแลกเปลี่ยนที่คุณส่ง รวมถึงที่ส่งจากโทรศัพท์",
  "A warning while you build or counter a trade where you give a lot more value than you get.": "คำเตือนขณะที่คุณจัดหรือยื่นข้อเสนอโต้กลับในการแลกเปลี่ยนที่คุณให้มูลค่ามากกว่าที่ได้รับมาก",
  "About": "เกี่ยวกับ",
+ "About {x}× what Plus has cost you": "ประมาณ {x} เท่าของค่า Plus ที่คุณจ่าย",
  "About Even": "เกี่ยวกับ “เท่ากัน”",
  "About what every amount on My Transactions is worth in USD, plus a Net line under the summary showing what you made or spent overall. Uses your Robux rate.": "มูลค่าโดยประมาณเป็น USD ของทุกจำนวนในธุรกรรมของฉัน พร้อมบรรทัดสุทธิใต้สรุปที่แสดงว่าคุณได้หรือใช้ไปเท่าไรโดยรวม ใช้อัตรา Robux ของคุณ",
  "About what Robux amounts are worth in dollars, at your Robux rate, like in Transactions.": "มูลค่าโดยประมาณเป็นดอลลาร์ของจำนวน Robux ตามอัตรา Robux ของคุณ เหมือนในธุรกรรม",
@@ -533,6 +546,7 @@
  "Before You Send": "ก่อนที่คุณจะส่ง",
  "Best price now: R$ {price}": "ราคาดีที่สุดตอนนี้: R$ {price}",
  "Big purchases need you to hold the Buy button for a second, so a misclick can’t spend your Robux.": "การซื้อราคาสูงต้องกดปุ่มซื้อค้างไว้หนึ่งวินาที เพื่อไม่ให้การคลิกพลาดทำให้เสีย Robux",
+ "Billed through {store}": "เรียกเก็บผ่าน {store}",
  "Binary data": "ข้อมูลไบนารี",
  "Binary data ({size} bytes)": {
   "other": "ข้อมูลไบนารี ({size} ไบต์)"
@@ -842,6 +856,7 @@
  "Emote": "อีโมต",
  "Emotes": "อีโมต",
  "Empty slot": "ช่องว่าง",
+ "Ends {date}": "สิ้นสุด {date}",
  "Enter a price in Robux.": "ใส่ราคาเป็น Robux",
  "Enum value {value}": "ค่า Enum {value}",
  "Equip dynamic heads and faces without the editor switching you to R15, and keep R6 in Avatar Preview. Off by default: some experiences show dynamic heads differently on R6.": "สวมหัวและหน้าแบบไดนามิกได้โดยไม่ให้ตัวแก้ไขเปลี่ยนคุณเป็น R15 และคง R6 ไว้ในดูตัวอย่างอวาตาร์ ปิดเป็นค่าเริ่มต้น: บางประสบการณ์แสดงหัวไดนามิกบน R6 ต่างออกไป",
@@ -1481,6 +1496,8 @@
  "on every search": "ในทุกการค้นหา",
  "On hold, can’t be traded yet": "ถูกพักไว้ ยังแลกเปลี่ยนไม่ได้",
  "On model and plugin pages, RoUtility opens the file and checks every script for backdoor signs: require() by asset id, loadstring, getfenv, hidden text, web requests. The result shows in Roblox’s “contains scripts” bar as High Risk or to Review, and the Explorer button shows every script with the risky lines marked.": "บนหน้าโมเดลและปลั๊กอิน RoUtility จะเปิดไฟล์และตรวจทุกสคริปต์หาสัญญาณของแบ็กดอร์: require() ด้วย asset id, loadstring, getfenv, ข้อความที่ซ่อนอยู่, การร้องขอเว็บ ผลลัพธ์จะแสดงในแถบ “มีสคริปต์” ของ Roblox เป็นเสี่ยงสูงหรือรอตรวจสอบ และปุ่ม Explorer จะแสดงทุกสคริปต์พร้อมทำเครื่องหมายบรรทัดที่เสี่ยง",
+ "On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.": "ในการตั้งค่า > Robux แสดงจำนวน Robux ที่คุณส่งในวันและเดือนที่ผ่านมา จำนวนที่ยังส่งได้ และขีดจำกัดต่อการโอนหนึ่งครั้ง",
+ "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in dollars and what Plus has cost you so far.": "ในหน้า Roblox Plus แสดงวันต่ออายุ Plus ราคาและช่องทางเรียกเก็บเงิน วันที่ส่วนลดถัดไปปลดล็อก มูลค่าเงินที่ประหยัดด้วย Plus เป็นดอลลาร์ และค่า Plus ที่จ่ายไปแล้ว",
  "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.": "เปิดอยู่ ตราที่ได้รับหลังจากนี้จะถูกลบภายในประมาณ 5 นาทีขณะเปิดแท็บ Roblox ตราที่มีอยู่แล้วยังอยู่",
  "Online": "ออนไลน์",
  "Online {time}": "ออนไลน์ {time}",
@@ -1539,6 +1556,7 @@
  "Page {page} of {pages}": "หน้า {page} จาก {pages}",
  "Page Background": "พื้นหลังหน้า",
  "Pages": "หน้า",
+ "Paid for Plus so far": "จ่ายค่า Plus ไปแล้ว",
  "Pants": "กางเกง",
  "Part {n}": "ส่วนที่ {n}",
  "Partial Disruption": "ขัดข้องบางส่วน",
@@ -1560,6 +1578,7 @@
  "People I Follow": "คนที่ฉันติดตาม",
  "People Search": "ค้นหาผู้คน",
  "per 1k": "ต่อ 1k",
+ "Per transfer limit": "ขีดจำกัดต่อการโอน",
  "Percentages": "เปอร์เซ็นต์",
  "Performance": "ประสิทธิภาพ",
  "Personal info": "ข้อมูลส่วนตัว",
@@ -1589,6 +1608,7 @@
  "Playing": "กำลังเล่น",
  "Playing {game}": "กำลังเล่น {game}",
  "Playtime Tracker": "ตัวติดตามเวลาเล่น",
+ "Plus Details": "รายละเอียด Plus",
  "Plus Promo Banner": "แบนเนอร์โปรโมต Plus",
  "Plus/Premium": "Plus/Premium",
  "Popular thread": "กระทู้ยอดนิยม",
@@ -1654,6 +1674,7 @@
  "Projecteds": "ไอเทมถูกปั่น",
  "Prompts purchases": "แสดงหน้าต่างการซื้อ",
  "Properties": "พร็อพเพอร์ตี้",
+ "Publishing unlocks {date}": "ปลดล็อกการเผยแพร่ {date}",
  "Purchase": "การซื้อ",
  "Purchase Completed": "ซื้อสำเร็จ",
  "Purchase Safety Lock": "ล็อกความปลอดภัยการซื้อ",
@@ -1722,6 +1743,7 @@
  "Removes badges you earn from now on, a few minutes after you get them. Badges you already have stay.": "ลบตราที่ได้รับหลังจากนี้ ไม่กี่นาทีหลังได้รับ ตราที่มีอยู่แล้วยังอยู่",
  "Removes the Chat bar from the bottom right corner of the website.": "ลบแถบแชตออกจากมุมขวาล่างของเว็บไซต์",
  "Removes the Makeup tab so the other tabs fit without scrolling.": "ลบแท็บเมคอัพออกเพื่อให้แท็บอื่นพอดีโดยไม่ต้องเลื่อน",
+ "Renews {date}": "ต่ออายุ {date}",
  "Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.": "เรียงใหม่หรือซ่อนหน้าแรก ข้อความ ห้องข่าว ร้านค้าทางการ เครื่องคำนวณการแลกเปลี่ยน ฟอรัม และอื่นๆ",
  "Reorder or hide its links": "เรียงใหม่หรือซ่อนลิงก์",
  "Reorder or hide Your Private Servers, Server Regions, Servers My Friends Are In and Other Servers.": "เรียงใหม่หรือซ่อนเซิร์ฟเวอร์ส่วนตัวของคุณ ภูมิภาคเซิร์ฟเวอร์ เซิร์ฟเวอร์ที่เพื่อนของฉันอยู่ และเซิร์ฟเวอร์อื่น",
@@ -1862,6 +1884,7 @@
  "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.": "บัตรที่บันทึกไว้ PayPal อีเมลและที่อยู่สำหรับเรียกเก็บเงิน Roblox Credit และรายละเอียดบัตรของขวัญในหน้าการชำระเงิน",
  "Saved Outfits": "ชุดที่บันทึกไว้",
  "Saved Payment Method": "วิธีการชำระเงินที่บันทึกไว้",
+ "Saved, in dollars": "ประหยัดได้ (ดอลลาร์)",
  "Saved.": "บันทึกแล้ว",
  "Saved. Roblox is drawing your new thumbnail.": "บันทึกแล้ว Roblox กำลังวาดภาพขนาดย่อใหม่ของคุณ",
  "Saved. Roblox pages you already have open pick this up when they reload.": "บันทึกแล้ว หน้า Roblox ที่คุณเปิดอยู่จะได้รับการเปลี่ยนแปลงนี้เมื่อโหลดใหม่",
@@ -2182,6 +2205,7 @@
  "Transaction Filters": "ตัวกรองธุรกรรม",
  "transactions": "ธุรกรรม",
  "Transactions": "ธุรกรรม",
+ "Transfer Limits Left": "ขีดจำกัดการโอนที่เหลือ",
  "Trend": "แนวโน้ม",
  "Trend: {trend}": "แนวโน้ม: {trend}",
  "Trusted": "เชื่อถือได้",

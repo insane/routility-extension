@@ -151,6 +151,7 @@
  "{n} keypoints": {
   "other": "{n} 個關鍵點"
  },
+ "{n} left": "剩餘 {n}",
  "{n} limiteds": {
   "other": "{n} 個限量物品"
  },
@@ -199,6 +200,9 @@
  "{n} Outfits": {
   "other": "{n} 套服裝"
  },
+ "{n} payments of {price}": {
+  "other": "{n} 次付款，每次 {price}"
+ },
  "{n} people are no longer your friends": {
   "other": "{n} 人已不再是你的好友"
  },
@@ -228,6 +232,8 @@
   "other": "{n} 套已儲存的服裝"
  },
  "{n} selected": "已選取 {n} 個",
+ "{n} sent in the past day": "過去一天已傳送 {n}",
+ "{n} sent in the past month": "過去一個月已傳送 {n}",
  "{n} servers": {
   "other": "{n} 個伺服器"
  },
@@ -322,13 +328,19 @@
  "{pct}% over RAP": "高於 RAP {pct}%",
  "{pct}% rating": "{pct}% 好評率",
  "{pct}% under RAP": "低於 RAP {pct}%",
+ "{percent}% off unlocks {date}": "{date} 解鎖 {percent}% 折扣",
  "{place} • {n} servers • {players} playing": {
   "other": "{place} • {n} 個伺服器 • {players} 人在玩"
  },
  "{playing} of {max} people max": "{playing}/{max} 人（上限）",
+ "{price} a month": "每月 {price}",
+ "{price} a week": "每週 {price}",
+ "{price} a year": "每年 {price}",
  "{rating} • {n} playing": "{rating} • {n} 人在玩",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} 已不在地區清單中。正在加入任意伺服器…",
  "{results} (first 2,000 items)": "{results}（前 2,000 個物品）",
+ "{robux} Robux at the DevEx rate": "按 DevEx 匯率計 {robux} Robux",
+ "{robux} Robux at your rate (${rate}/1k)": "按你的匯率計 {robux} Robux（${rate}/1k）",
  "{role} · Rank {rank}": "{role} · 等級 {rank}",
  "{side}: {items}": "{side}：{items}",
  "{size} studs": "{size} 格",
@@ -399,6 +411,7 @@
  "A trade you sent, including ones sent from your phone.": "你送出的交易，包括從手機送出的。",
  "A warning while you build or counter a trade where you give a lot more value than you get.": "當你組合或還價的交易中，你付出的價值遠多於你得到的價值時，顯示警告。",
  "About": "關於",
+ "About {x}× what Plus has cost you": "約為 Plus 花費的 {x} 倍",
  "About Even": "大致持平",
  "About what every amount on My Transactions is worth in USD, plus a Net line under the summary showing what you made or spent overall. Uses your Robux rate.": "「我的交易」中每筆金額約值多少 USD，並在摘要下方加入「淨額」一行，顯示你總共賺了或花了多少。使用你的 Robux 匯率。",
  "About what Robux amounts are worth in dollars, at your Robux rate, like in Transactions.": "按你的 Robux 匯率顯示 Robux 金額約值多少美元，和交易紀錄中一樣。",
@@ -533,6 +546,7 @@
  "Before You Send": "送出前",
  "Best price now: R$ {price}": "目前最低價格：R$ {price}",
  "Big purchases need you to hold the Buy button for a second, so a misclick can’t spend your Robux.": "大額購買需要按住「購買」按鈕一秒鐘，這樣誤按就不會花掉你的 Robux。",
+ "Billed through {store}": "透過 {store} 扣款",
  "Binary data": "二進位資料",
  "Binary data ({size} bytes)": {
   "other": "二進位資料（{size} 位元組）"
@@ -842,6 +856,7 @@
  "Emote": "表情動作",
  "Emotes": "表情動作",
  "Empty slot": "空欄位",
+ "Ends {date}": "{date} 結束",
  "Enter a price in Robux.": "請輸入以 Robux 計的價格。",
  "Enum value {value}": "列舉值 {value}",
  "Equip dynamic heads and faces without the editor switching you to R15, and keep R6 in Avatar Preview. Off by default: some experiences show dynamic heads differently on R6.": "穿戴動態頭部和臉部時，編輯器不會把你切換到 R15，並在虛擬人偶預覽中保持 R6。預設關閉：某些體驗在 R6 上顯示動態頭部的方式不同。",
@@ -1481,6 +1496,8 @@
  "on every search": "每次搜尋時",
  "On hold, can’t be traded yet": "保留中，還不能交易",
  "On model and plugin pages, RoUtility opens the file and checks every script for backdoor signs: require() by asset id, loadstring, getfenv, hidden text, web requests. The result shows in Roblox’s “contains scripts” bar as High Risk or to Review, and the Explorer button shows every script with the risky lines marked.": "在模型和外掛程式頁面上，RoUtility 會開啟檔案並檢查每個腳本是否有後門跡象：透過資產 ID 呼叫 require()、loadstring、getfenv、隱藏文字、網路請求。結果會以「高風險」或「待審查」顯示在 Roblox 的「包含腳本」列中，Explorer 按鈕會顯示每個腳本，並標示出有風險的行。",
+ "On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.": "在 設定 > Robux 中顯示過去一天和一個月你傳送的 Robux、還能傳送多少，以及單次轉帳上限。",
+ "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in dollars and what Plus has cost you so far.": "在 Roblox Plus 頁面顯示 Plus 的續訂日期、價格和扣款管道、下一個折扣的解鎖日期、Plus 節省金額折合多少美元，以及到目前為止 Plus 花了你多少錢。",
  "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.": "已開啟。之後獲得的徽章會在開啟 Roblox 分頁時約 5 分鐘內刪除。已有的徽章會保留。",
  "Online": "線上",
  "Online {time}": "{time}在線上",
@@ -1539,6 +1556,7 @@
  "Page {page} of {pages}": "第 {page}/{pages} 頁",
  "Page Background": "頁面背景",
  "Pages": "頁面",
+ "Paid for Plus so far": "目前已為 Plus 支付",
  "Pants": "褲子",
  "Part {n}": "部分 {n}",
  "Partial Disruption": "部分中斷",
@@ -1560,6 +1578,7 @@
  "People I Follow": "我追蹤的人",
  "People Search": "使用者搜尋",
  "per 1k": "每 1k",
+ "Per transfer limit": "單次轉帳上限",
  "Percentages": "百分比",
  "Performance": "效能",
  "Personal info": "個人資料",
@@ -1589,6 +1608,7 @@
  "Playing": "正在玩",
  "Playing {game}": "正在玩 {game}",
  "Playtime Tracker": "遊戲時間追蹤",
+ "Plus Details": "Plus 詳情",
  "Plus Promo Banner": "Plus 推廣橫幅",
  "Plus/Premium": "Plus/Premium",
  "Popular thread": "熱門討論串",
@@ -1654,6 +1674,7 @@
  "Projecteds": "預測物品",
  "Prompts purchases": "跳出購買提示",
  "Properties": "屬性",
+ "Publishing unlocks {date}": "{date} 解鎖發布",
  "Purchase": "購買",
  "Purchase Completed": "購買完成",
  "Purchase Safety Lock": "購買安全鎖",
@@ -1722,6 +1743,7 @@
  "Removes badges you earn from now on, a few minutes after you get them. Badges you already have stay.": "刪除你之後獲得的徽章，在獲得幾分鐘後進行。已有的徽章會保留。",
  "Removes the Chat bar from the bottom right corner of the website.": "移除網站右下角的聊天列。",
  "Removes the Makeup tab so the other tabs fit without scrolling.": "移除化妝分頁，讓其他分頁不必捲動就能放得下。",
+ "Renews {date}": "{date} 續訂",
  "Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.": "重新排序或隱藏首頁、訊息、新聞中心、官方商店、交易計算機、論壇等。",
  "Reorder or hide its links": "重新排序或隱藏其連結",
  "Reorder or hide Your Private Servers, Server Regions, Servers My Friends Are In and Other Servers.": "重新排序或隱藏「你的私人伺服器」、「伺服器地區」、「我的好友所在的伺服器」和「其他伺服器」。",
@@ -1862,6 +1884,7 @@
  "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.": "付款頁面上已儲存的信用卡、PayPal、帳單電子郵件和地址、Roblox 點數以及禮物卡詳細資料。",
  "Saved Outfits": "已儲存的服裝",
  "Saved Payment Method": "已儲存的付款方式",
+ "Saved, in dollars": "節省金額（美元）",
  "Saved.": "已儲存。",
  "Saved. Roblox is drawing your new thumbnail.": "已儲存。Roblox 正在產生你的新縮圖。",
  "Saved. Roblox pages you already have open pick this up when they reload.": "已儲存。你已經開啟的 Roblox 頁面會在重新載入時套用此設定。",
@@ -2182,6 +2205,7 @@
  "Transaction Filters": "交易紀錄篩選",
  "transactions": "交易紀錄",
  "Transactions": "交易紀錄",
+ "Transfer Limits Left": "剩餘轉帳額度",
  "Trend": "趨勢",
  "Trend: {trend}": "趨勢：{trend}",
  "Trusted": "受信任",

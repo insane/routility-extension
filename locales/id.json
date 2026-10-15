@@ -151,6 +151,7 @@
  "{n} keypoints": {
   "other": "{n} keypoint"
  },
+ "{n} left": "Sisa {n}",
  "{n} limiteds": {
   "other": "{n} limited"
  },
@@ -199,6 +200,9 @@
  "{n} Outfits": {
   "other": "{n} Outfit"
  },
+ "{n} payments of {price}": {
+  "other": "{n} pembayaran {price}"
+ },
  "{n} people are no longer your friends": {
   "other": "{n} orang sudah bukan temanmu lagi"
  },
@@ -228,6 +232,8 @@
   "other": "{n} outfit tersimpan"
  },
  "{n} selected": "{n} dipilih",
+ "{n} sent in the past day": "{n} dikirim dalam sehari terakhir",
+ "{n} sent in the past month": "{n} dikirim dalam sebulan terakhir",
  "{n} servers": {
   "other": "{n} server"
  },
@@ -322,13 +328,19 @@
  "{pct}% over RAP": "{pct}% di atas RAP",
  "{pct}% rating": "Rating {pct}%",
  "{pct}% under RAP": "{pct}% di bawah RAP",
+ "{percent}% off unlocks {date}": "Diskon {percent}% terbuka {date}",
  "{place} • {n} servers • {players} playing": {
   "other": "{place} • {n} server • {players} bermain"
  },
  "{playing} of {max} people max": "Maks. {playing} dari {max} orang",
+ "{price} a month": "{price} per bulan",
+ "{price} a week": "{price} per minggu",
+ "{price} a year": "{price} per tahun",
  "{rating} • {n} playing": "{rating} • {n} bermain",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} sudah tidak ada di daftar wilayah. Bergabung ke server mana saja…",
  "{results} (first 2,000 items)": "{results} (2.000 item pertama)",
+ "{robux} Robux at the DevEx rate": "{robux} Robux dengan kurs DevEx",
+ "{robux} Robux at your rate (${rate}/1k)": "{robux} Robux dengan kursmu (${rate}/1k)",
  "{role} · Rank {rank}": "{role} · Peringkat {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} stud",
@@ -399,6 +411,7 @@
  "A trade you sent, including ones sent from your phone.": "Perdagangan yang kamu kirim, termasuk yang dikirim dari HP-mu.",
  "A warning while you build or counter a trade where you give a lot more value than you get.": "Peringatan saat kamu menyusun atau membalas perdagangan di mana kamu memberi nilai jauh lebih besar daripada yang kamu dapat.",
  "About": "Tentang",
+ "About {x}× what Plus has cost you": "Sekitar {x}× biaya Plus-mu",
  "About Even": "Tentang Even",
  "About what every amount on My Transactions is worth in USD, plus a Net line under the summary showing what you made or spent overall. Uses your Robux rate.": "Kira-kira berapa nilai setiap jumlah di Transaksi Saya dalam USD, plus baris Bersih di bawah ringkasan yang menunjukkan total keuntungan atau pengeluaranmu. Menggunakan kurs Robux kamu.",
  "About what Robux amounts are worth in dollars, at your Robux rate, like in Transactions.": "Kira-kira berapa nilai jumlah Robux dalam dolar, dengan kurs Robux kamu, seperti di Transaksi.",
@@ -533,6 +546,7 @@
  "Before You Send": "Sebelum Kamu Kirim",
  "Best price now: R$ {price}": "Harga terbaik sekarang: R$ {price}",
  "Big purchases need you to hold the Buy button for a second, so a misclick can’t spend your Robux.": "Pembelian besar mengharuskanmu menahan tombol Beli selama sedetik, jadi salah klik tidak bisa menghabiskan Robux-mu.",
+ "Billed through {store}": "Ditagih lewat {store}",
  "Binary data": "Data biner",
  "Binary data ({size} bytes)": {
   "other": "Data biner ({size} byte)"
@@ -842,6 +856,7 @@
  "Emote": "Emote",
  "Emotes": "Emote",
  "Empty slot": "Slot kosong",
+ "Ends {date}": "Berakhir {date}",
  "Enter a price in Robux.": "Masukkan harga dalam Robux.",
  "Enum value {value}": "Nilai enum {value}",
  "Equip dynamic heads and faces without the editor switching you to R15, and keep R6 in Avatar Preview. Off by default: some experiences show dynamic heads differently on R6.": "Pakai kepala dan wajah dinamis tanpa editor mengubahmu ke R15, dan tetap R6 di Pratinjau Avatar. Nonaktif secara bawaan: beberapa pengalaman menampilkan kepala dinamis secara berbeda di R6.",
@@ -1481,6 +1496,8 @@
  "on every search": "di setiap pencarian",
  "On hold, can’t be traded yet": "Ditahan, belum bisa diperdagangkan",
  "On model and plugin pages, RoUtility opens the file and checks every script for backdoor signs: require() by asset id, loadstring, getfenv, hidden text, web requests. The result shows in Roblox’s “contains scripts” bar as High Risk or to Review, and the Explorer button shows every script with the risky lines marked.": "Di halaman model dan plugin, RoUtility membuka file dan memeriksa setiap skrip untuk tanda backdoor: require() dengan ID aset, loadstring, getfenv, teks tersembunyi, permintaan web. Hasilnya muncul di bilah “berisi skrip” Roblox sebagai Risiko Tinggi atau untuk Ditinjau, dan tombol Explorer menampilkan setiap skrip dengan baris berisiko yang ditandai.",
+ "On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.": "Di Pengaturan > Robux: berapa Robux yang kamu kirim dalam sehari dan sebulan terakhir, berapa yang masih bisa dikirim, dan batas per transfer.",
+ "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in dollars and what Plus has cost you so far.": "Di halaman Roblox Plus: kapan Plus diperpanjang, harga dan tempat penagihannya, kapan diskon berikutnya terbuka, berapa nilai hematan Plus dalam dolar, dan berapa biaya Plus sejauh ini.",
  "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.": "Aktif. Lencana yang kamu dapat mulai sekarang dihapus dalam sekitar 5 menit selama tab Roblox terbuka. Lencana yang sudah ada tetap.",
  "Online": "Online",
  "Online {time}": "Online {time}",
@@ -1539,6 +1556,7 @@
  "Page {page} of {pages}": "Halaman {page} dari {pages}",
  "Page Background": "Latar Halaman",
  "Pages": "Halaman",
+ "Paid for Plus so far": "Sudah dibayar untuk Plus",
  "Pants": "Celana",
  "Part {n}": "Bagian {n}",
  "Partial Disruption": "Gangguan Sebagian",
@@ -1560,6 +1578,7 @@
  "People I Follow": "Orang yang Kuikuti",
  "People Search": "Pencarian Orang",
  "per 1k": "per 1rb",
+ "Per transfer limit": "Batas per transfer",
  "Percentages": "Persentase",
  "Performance": "Performa",
  "Personal info": "Info pribadi",
@@ -1589,6 +1608,7 @@
  "Playing": "Sedang Bermain",
  "Playing {game}": "Bermain {game}",
  "Playtime Tracker": "Pelacak Waktu Bermain",
+ "Plus Details": "Detail Plus",
  "Plus Promo Banner": "Banner Promo Plus",
  "Plus/Premium": "Plus/Premium",
  "Popular thread": "Thread populer",
@@ -1654,6 +1674,7 @@
  "Projecteds": "Projected",
  "Prompts purchases": "Memunculkan pembelian",
  "Properties": "Properti",
+ "Publishing unlocks {date}": "Publikasi terbuka {date}",
  "Purchase": "Pembelian",
  "Purchase Completed": "Pembelian Selesai",
  "Purchase Safety Lock": "Kunci Pengaman Pembelian",
@@ -1722,6 +1743,7 @@
  "Removes badges you earn from now on, a few minutes after you get them. Badges you already have stay.": "Menghapus lencana yang kamu dapat mulai sekarang, beberapa menit setelahnya. Lencana yang sudah ada tetap.",
  "Removes the Chat bar from the bottom right corner of the website.": "Menghapus bilah Chat dari pojok kanan bawah situs.",
  "Removes the Makeup tab so the other tabs fit without scrolling.": "Menghapus tab Makeup supaya tab lain muat tanpa scroll.",
+ "Renews {date}": "Diperpanjang {date}",
  "Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.": "Ubah urutan atau sembunyikan Beranda, Pesan, Ruang Berita, Toko Resmi, Kalkulator Perdagangan, Forum, dan lainnya.",
  "Reorder or hide its links": "Ubah urutan atau sembunyikan tautannya",
  "Reorder or hide Your Private Servers, Server Regions, Servers My Friends Are In and Other Servers.": "Ubah urutan atau sembunyikan Server Pribadimu, Wilayah Server, Server Tempat Temanku Berada, dan Server Lain.",
@@ -1862,6 +1884,7 @@
  "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.": "Kartu tersimpan, PayPal, email dan alamat penagihan, Kredit Roblox, dan detail kartu hadiah di halaman Pembayaran.",
  "Saved Outfits": "Outfit Tersimpan",
  "Saved Payment Method": "Metode Pembayaran Tersimpan",
+ "Saved, in dollars": "Hemat, dalam dolar",
  "Saved.": "Tersimpan.",
  "Saved. Roblox is drawing your new thumbnail.": "Tersimpan. Roblox sedang menggambar thumbnail barumu.",
  "Saved. Roblox pages you already have open pick this up when they reload.": "Tersimpan. Halaman Roblox yang sudah terbuka akan menerapkannya saat dimuat ulang.",
@@ -2182,6 +2205,7 @@
  "Transaction Filters": "Filter Transaksi",
  "transactions": "transaksi",
  "Transactions": "Transaksi",
+ "Transfer Limits Left": "Sisa Batas Transfer",
  "Trend": "Tren",
  "Trend: {trend}": "Tren: {trend}",
  "Trusted": "Tepercaya",

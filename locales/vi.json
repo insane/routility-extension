@@ -151,6 +151,7 @@
  "{n} keypoints": {
   "other": "{n} keypoint"
  },
+ "{n} left": "Còn {n}",
  "{n} limiteds": {
   "other": "{n} limited"
  },
@@ -199,6 +200,9 @@
  "{n} Outfits": {
   "other": "{n} Trang phục"
  },
+ "{n} payments of {price}": {
+  "other": "{n} lần thanh toán {price}"
+ },
  "{n} people are no longer your friends": {
   "other": "{n} người không còn là bạn bè của bạn"
  },
@@ -228,6 +232,8 @@
   "other": "{n} trang phục đã lưu"
  },
  "{n} selected": "Đã chọn {n}",
+ "{n} sent in the past day": "Đã gửi {n} trong ngày qua",
+ "{n} sent in the past month": "Đã gửi {n} trong tháng qua",
  "{n} servers": {
   "other": "{n} máy chủ"
  },
@@ -322,13 +328,19 @@
  "{pct}% over RAP": "Cao hơn RAP {pct}%",
  "{pct}% rating": "Đánh giá {pct}%",
  "{pct}% under RAP": "Thấp hơn RAP {pct}%",
+ "{percent}% off unlocks {date}": "Giảm {percent}% mở khóa vào {date}",
  "{place} • {n} servers • {players} playing": {
   "other": "{place} • {n} máy chủ • {players} đang chơi"
  },
  "{playing} of {max} people max": "{playing}/{max} người tối đa",
+ "{price} a month": "{price} mỗi tháng",
+ "{price} a week": "{price} mỗi tuần",
+ "{price} a year": "{price} mỗi năm",
  "{rating} • {n} playing": "{rating} • {n} đang chơi",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} không còn trong danh sách khu vực. Đang tham gia máy chủ bất kỳ…",
  "{results} (first 2,000 items)": "{results} (2.000 vật phẩm đầu tiên)",
+ "{robux} Robux at the DevEx rate": "{robux} Robux theo tỷ giá DevEx",
+ "{robux} Robux at your rate (${rate}/1k)": "{robux} Robux theo tỷ giá của bạn (${rate}/1k)",
  "{role} · Rank {rank}": "{role} · Hạng {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} stud",
@@ -399,6 +411,7 @@
  "A trade you sent, including ones sent from your phone.": "Giao dịch bạn đã gửi, kể cả những giao dịch gửi từ điện thoại.",
  "A warning while you build or counter a trade where you give a lot more value than you get.": "Cảnh báo khi bạn tạo hoặc trả giá một giao dịch mà bạn cho đi giá trị nhiều hơn hẳn so với nhận về.",
  "About": "Giới thiệu",
+ "About {x}× what Plus has cost you": "Khoảng {x}× số tiền Plus đã tốn của bạn",
  "About Even": "Về Even",
  "About what every amount on My Transactions is worth in USD, plus a Net line under the summary showing what you made or spent overall. Uses your Robux rate.": "Giá trị USD ước tính của mọi khoản trong Giao dịch của tôi, cùng dòng Ròng dưới phần tóm tắt cho biết tổng số bạn đã kiếm hoặc đã chi. Dùng tỷ giá Robux của bạn.",
  "About what Robux amounts are worth in dollars, at your Robux rate, like in Transactions.": "Giá trị ước tính bằng đô la của các khoản Robux, theo tỷ giá Robux của bạn, giống như trong Giao dịch.",
@@ -533,6 +546,7 @@
  "Before You Send": "Trước khi gửi",
  "Best price now: R$ {price}": "Giá tốt nhất hiện tại: R$ {price}",
  "Big purchases need you to hold the Buy button for a second, so a misclick can’t spend your Robux.": "Các giao dịch mua lớn cần bạn giữ nút Mua một giây, để bấm nhầm không làm mất Robux của bạn.",
+ "Billed through {store}": "Thanh toán qua {store}",
  "Binary data": "Dữ liệu nhị phân",
  "Binary data ({size} bytes)": {
   "other": "Dữ liệu nhị phân ({size} byte)"
@@ -842,6 +856,7 @@
  "Emote": "Emote",
  "Emotes": "Emote",
  "Empty slot": "Ô trống",
+ "Ends {date}": "Kết thúc vào {date}",
  "Enter a price in Robux.": "Nhập giá bằng Robux.",
  "Enum value {value}": "Giá trị enum {value}",
  "Equip dynamic heads and faces without the editor switching you to R15, and keep R6 in Avatar Preview. Off by default: some experiences show dynamic heads differently on R6.": "Mặc đầu và mặt động mà trình chỉnh sửa không chuyển bạn sang R15, và giữ R6 trong Xem trước hình đại diện. Mặc định tắt: một số trải nghiệm hiển thị đầu động khác đi trên R6.",
@@ -1481,6 +1496,8 @@
  "on every search": "cho mọi lượt tìm kiếm",
  "On hold, can’t be traded yet": "Đang bị giữ, chưa giao dịch được",
  "On model and plugin pages, RoUtility opens the file and checks every script for backdoor signs: require() by asset id, loadstring, getfenv, hidden text, web requests. The result shows in Roblox’s “contains scripts” bar as High Risk or to Review, and the Explorer button shows every script with the risky lines marked.": "Trên trang mô hình và plugin, RoUtility mở tệp và kiểm tra mọi script để tìm dấu hiệu backdoor: require() theo ID tài sản, loadstring, getfenv, văn bản ẩn, yêu cầu web. Kết quả hiện trên thanh “chứa script” của Roblox dưới dạng Rủi ro cao hoặc Cần xem xét, và nút Explorer hiện mọi script với các dòng rủi ro được đánh dấu.",
+ "On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.": "Trong Cài đặt > Robux: số Robux bạn đã gửi trong ngày và tháng qua, số còn có thể gửi và giới hạn cho mỗi lần chuyển.",
+ "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in dollars and what Plus has cost you so far.": "Trên trang Roblox Plus: khi nào Plus gia hạn, giá và nơi thanh toán, khi nào mở khóa mức giảm giá tiếp theo, số tiền tiết kiệm với Plus quy ra đô la và số tiền Plus đã tốn đến nay.",
  "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.": "Đang bật. Huy hiệu bạn nhận từ giờ sẽ bị xóa trong khoảng 5 phút khi có tab Roblox đang mở. Huy hiệu bạn đã có vẫn giữ.",
  "Online": "Trực tuyến",
  "Online {time}": "Trực tuyến {time}",
@@ -1539,6 +1556,7 @@
  "Page {page} of {pages}": "Trang {page}/{pages}",
  "Page Background": "Nền trang",
  "Pages": "Trang",
+ "Paid for Plus so far": "Đã trả cho Plus đến nay",
  "Pants": "Quần",
  "Part {n}": "Phần {n}",
  "Partial Disruption": "Gián đoạn một phần",
@@ -1560,6 +1578,7 @@
  "People I Follow": "Người tôi theo dõi",
  "People Search": "Tìm người",
  "per 1k": "mỗi 1k",
+ "Per transfer limit": "Giới hạn mỗi lần chuyển",
  "Percentages": "Phần trăm",
  "Performance": "Hiệu suất",
  "Personal info": "Thông tin cá nhân",
@@ -1589,6 +1608,7 @@
  "Playing": "Đang chơi",
  "Playing {game}": "Đang chơi {game}",
  "Playtime Tracker": "Theo dõi thời gian chơi",
+ "Plus Details": "Chi tiết Plus",
  "Plus Promo Banner": "Biểu ngữ quảng bá Plus",
  "Plus/Premium": "Plus/Premium",
  "Popular thread": "Chủ đề nổi bật",
@@ -1654,6 +1674,7 @@
  "Projecteds": "Bị đẩy giá",
  "Prompts purchases": "Hiện lời nhắc mua hàng",
  "Properties": "Thuộc tính",
+ "Publishing unlocks {date}": "Mở khóa xuất bản vào {date}",
  "Purchase": "Mua hàng",
  "Purchase Completed": "Mua hàng hoàn tất",
  "Purchase Safety Lock": "Khóa an toàn khi mua",
@@ -1722,6 +1743,7 @@
  "Removes badges you earn from now on, a few minutes after you get them. Badges you already have stay.": "Xóa huy hiệu bạn nhận từ giờ, vài phút sau khi nhận. Huy hiệu bạn đã có vẫn giữ.",
  "Removes the Chat bar from the bottom right corner of the website.": "Bỏ thanh Trò chuyện ở góc dưới bên phải của trang web.",
  "Removes the Makeup tab so the other tabs fit without scrolling.": "Bỏ tab Trang điểm để các tab khác vừa mà không cần cuộn.",
+ "Renews {date}": "Gia hạn vào {date}",
  "Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.": "Sắp xếp lại hoặc ẩn Trang chủ, Tin nhắn, Tin tức, Cửa hàng chính thức, Máy tính giao dịch, Diễn đàn và các mục khác.",
  "Reorder or hide its links": "Sắp xếp lại hoặc ẩn các liên kết",
  "Reorder or hide Your Private Servers, Server Regions, Servers My Friends Are In and Other Servers.": "Sắp xếp lại hoặc ẩn Máy chủ riêng của bạn, Khu vực máy chủ, Máy chủ có bạn bè tôi và Máy chủ khác.",
@@ -1862,6 +1884,7 @@
  "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.": "Thẻ đã lưu, PayPal, email và địa chỉ thanh toán, Tín dụng Roblox và chi tiết thẻ quà tặng trên trang Thanh toán.",
  "Saved Outfits": "Trang phục đã lưu",
  "Saved Payment Method": "Phương thức thanh toán đã lưu",
+ "Saved, in dollars": "Đã tiết kiệm, bằng đô la",
  "Saved.": "Đã lưu.",
  "Saved. Roblox is drawing your new thumbnail.": "Đã lưu. Roblox đang vẽ ảnh thu nhỏ mới của bạn.",
  "Saved. Roblox pages you already have open pick this up when they reload.": "Đã lưu. Các trang Roblox bạn đang mở sẽ áp dụng khi tải lại.",
@@ -2182,6 +2205,7 @@
  "Transaction Filters": "Bộ lọc giao dịch",
  "transactions": "giao dịch",
  "Transactions": "Giao dịch",
+ "Transfer Limits Left": "Giới hạn chuyển còn lại",
  "Trend": "Xu hướng",
  "Trend: {trend}": "Xu hướng: {trend}",
  "Trusted": "Tin cậy",

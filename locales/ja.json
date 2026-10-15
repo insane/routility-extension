@@ -151,6 +151,7 @@
  "{n} keypoints": {
   "other": "{n}個のキーポイント"
  },
+ "{n} left": "残り {n}",
  "{n} limiteds": {
   "other": "{n}個のリミテッド"
  },
@@ -199,6 +200,9 @@
  "{n} Outfits": {
   "other": "{n}個のコーデ"
  },
+ "{n} payments of {price}": {
+  "other": "{price} × {n} 回の支払い"
+ },
  "{n} people are no longer your friends": {
   "other": "{n}人がフレンドではなくなりました"
  },
@@ -228,6 +232,8 @@
   "other": "{n}個の保存済みコーデ"
  },
  "{n} selected": "{n}件選択中",
+ "{n} sent in the past day": "過去1日に {n} 送信",
+ "{n} sent in the past month": "過去1か月に {n} 送信",
  "{n} servers": {
   "other": "{n}台のサーバー"
  },
@@ -322,13 +328,19 @@
  "{pct}% over RAP": "RAP より{pct}%高い",
  "{pct}% rating": "評価 {pct}%",
  "{pct}% under RAP": "RAP より{pct}%低い",
+ "{percent}% off unlocks {date}": "{date} に {percent}% オフが解放",
  "{place} • {n} servers • {players} playing": {
   "other": "{place} • {n}台のサーバー • {players}人がプレイ中"
  },
  "{playing} of {max} people max": "{playing} / 最大{max}人",
+ "{price} a month": "月額 {price}",
+ "{price} a week": "週額 {price}",
+ "{price} a year": "年額 {price}",
  "{rating} • {n} playing": "{rating} • {n}人がプレイ中",
  "{region} isn’t in the region list anymore. Joining any server…": "{region}は地域リストにありません。任意のサーバーに参加します…",
  "{results} (first 2,000 items)": "{results}(最初の2,000アイテム)",
+ "{robux} Robux at the DevEx rate": "DevEx レートで {robux} Robux",
+ "{robux} Robux at your rate (${rate}/1k)": "あなたのレートで {robux} Robux（${rate}/1k）",
  "{role} · Rank {rank}": "{role} · ランク {rank}",
  "{side}: {items}": "{side}:{items}",
  "{size} studs": "{size} スタッド",
@@ -399,6 +411,7 @@
  "A trade you sent, including ones sent from your phone.": "送信したトレード(スマホから送ったものも含む)。",
  "A warning while you build or counter a trade where you give a lot more value than you get.": "トレードの作成中や逆提案中に、受け取る価値より渡す価値がかなり多いと警告します。",
  "About": "概要",
+ "About {x}× what Plus has cost you": "Plus にかかった費用の約 {x} 倍",
  "About Even": "ほぼ互角",
  "About what every amount on My Transactions is worth in USD, plus a Net line under the summary showing what you made or spent overall. Uses your Robux rate.": "マイ取引のすべての金額のおおよその USD 換算と、概要の下に全体の収支を示す「純額」行を表示します。あなたの Robux レートを使用します。",
  "About what Robux amounts are worth in dollars, at your Robux rate, like in Transactions.": "Robux の金額のおおよそのドル換算を、あなたの Robux レートで表示します（取引履歴と同じ）。",
@@ -533,6 +546,7 @@
  "Before You Send": "送信する前に",
  "Best price now: R$ {price}": "現在の最安値:R$ {price}",
  "Big purchases need you to hold the Buy button for a second, so a misclick can’t spend your Robux.": "高額な購入では「購入」ボタンを1秒間長押しする必要があるので、誤クリックで Robux を使ってしまうことはありません。",
+ "Billed through {store}": "{store} で請求",
  "Binary data": "バイナリデータ",
  "Binary data ({size} bytes)": {
   "other": "バイナリデータ({size} バイト)"
@@ -842,6 +856,7 @@
  "Emote": "エモート",
  "Emotes": "エモート",
  "Empty slot": "空きスロット",
+ "Ends {date}": "{date} に終了",
  "Enter a price in Robux.": "Robux で価格を入力してください。",
  "Enum value {value}": "列挙値 {value}",
  "Equip dynamic heads and faces without the editor switching you to R15, and keep R6 in Avatar Preview. Off by default: some experiences show dynamic heads differently on R6.": "エディターで R15 に切り替えられることなく、ダイナミックヘッドや顔を装備でき、アバタープレビューでも R6 のままにできます。デフォルトはオフ:一部のエクスペリエンスでは R6 のダイナミックヘッドの表示が異なります。",
@@ -1481,6 +1496,8 @@
  "on every search": "すべての検索で",
  "On hold, can’t be traded yet": "保留中、まだトレードできません",
  "On model and plugin pages, RoUtility opens the file and checks every script for backdoor signs: require() by asset id, loadstring, getfenv, hidden text, web requests. The result shows in Roblox’s “contains scripts” bar as High Risk or to Review, and the Explorer button shows every script with the risky lines marked.": "モデルやプラグインのページで、RoUtility がファイルを開き、すべてのスクリプトにバックドアの兆候(アセット ID による require()、loadstring、getfenv、隠しテキスト、ウェブリクエスト)がないか確認します。結果は Roblox の「スクリプトを含む」バーに「高リスク」または「要確認」として表示され、エクスプローラーボタンでは危険な行に印が付いたすべてのスクリプトを確認できます。",
+ "On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.": "設定 > Robux に、過去1日と過去1か月に送った Robux、あと送れる量、1回あたりの送金上限を表示します。",
+ "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in dollars and what Plus has cost you so far.": "Roblox Plus ページに、Plus の更新日、料金と請求先、次の割引が解放される日、Plus で節約した額のドル換算、これまでに Plus にかかった費用を表示します。",
  "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.": "オン。これから獲得するバッジは、Roblox のタブが開いている間、約5分以内に削除されます。今あるバッジはそのままです。",
  "Online": "オンライン",
  "Online {time}": "{time}にオンライン",
@@ -1539,6 +1556,7 @@
  "Page {page} of {pages}": "{page} / {pages} ページ",
  "Page Background": "ページの背景",
  "Pages": "ページ",
+ "Paid for Plus so far": "これまでの Plus 支払額",
  "Pants": "パンツ",
  "Part {n}": "パーツ {n}",
  "Partial Disruption": "一部障害",
@@ -1560,6 +1578,7 @@
  "People I Follow": "フォロー中の人",
  "People Search": "ユーザー検索",
  "per 1k": "1k あたり",
+ "Per transfer limit": "1回あたりの送金上限",
  "Percentages": "パーセンテージ",
  "Performance": "パフォーマンス",
  "Personal info": "個人情報",
@@ -1589,6 +1608,7 @@
  "Playing": "プレイ中",
  "Playing {game}": "{game}をプレイ中",
  "Playtime Tracker": "プレイ時間トラッカー",
+ "Plus Details": "Plus の詳細",
  "Plus Promo Banner": "Plus のプロモバナー",
  "Plus/Premium": "Plus/Premium",
  "Popular thread": "人気のスレッド",
@@ -1654,6 +1674,7 @@
  "Projecteds": "釣り上げ品",
  "Prompts purchases": "購入を促す",
  "Properties": "プロパティ",
+ "Publishing unlocks {date}": "{date} に公開が解放",
  "Purchase": "購入",
  "Purchase Completed": "購入完了",
  "Purchase Safety Lock": "購入セーフティロック",
@@ -1722,6 +1743,7 @@
  "Removes badges you earn from now on, a few minutes after you get them. Badges you already have stay.": "これから獲得するバッジを、獲得から数分後に削除します。今あるバッジはそのままです。",
  "Removes the Chat bar from the bottom right corner of the website.": "ウェブサイト右下のチャットバーを非表示にします。",
  "Removes the Makeup tab so the other tabs fit without scrolling.": "メイクタブを非表示にして、ほかのタブがスクロールなしで収まるようにします。",
+ "Renews {date}": "{date} に更新",
  "Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.": "ホーム、メッセージ、ニュースルーム、公式ストア、トレード計算機、フォーラムなどを並べ替えたり非表示にしたりします。",
  "Reorder or hide its links": "リンクを並べ替えたり非表示にしたりします",
  "Reorder or hide Your Private Servers, Server Regions, Servers My Friends Are In and Other Servers.": "あなたのプライベートサーバー、サーバー地域、フレンドがいるサーバー、その他のサーバーを並べ替えたり非表示にしたりします。",
@@ -1862,6 +1884,7 @@
  "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.": "支払いページの保存済みカード、PayPal、請求先メールアドレスと住所、Roblox クレジット、ギフトカードの詳細。",
  "Saved Outfits": "保存済みコーデ",
  "Saved Payment Method": "保存済みの支払い方法",
+ "Saved, in dollars": "節約額（ドル）",
  "Saved.": "保存しました。",
  "Saved. Roblox is drawing your new thumbnail.": "保存しました。Roblox が新しいサムネイルを作成中です。",
  "Saved. Roblox pages you already have open pick this up when they reload.": "保存しました。すでに開いている Roblox のページは、再読み込みすると反映されます。",
@@ -2182,6 +2205,7 @@
  "Transaction Filters": "取引フィルター",
  "transactions": "取引",
  "Transactions": "取引",
+ "Transfer Limits Left": "残りの送金上限",
  "Trend": "トレンド",
  "Trend: {trend}": "トレンド:{trend}",
  "Trusted": "信頼済み",

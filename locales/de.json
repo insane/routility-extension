@@ -187,6 +187,7 @@
   "one": "{n} Keypoint",
   "other": "{n} Keypoints"
  },
+ "{n} left": "{n} übrig",
  "{n} limiteds": {
   "one": "{n} Limited",
   "other": "{n} Limiteds"
@@ -249,6 +250,10 @@
   "one": "{n} Outfit",
   "other": "{n} Outfits"
  },
+ "{n} payments of {price}": {
+  "one": "{n} Zahlung von {price}",
+  "other": "{n} Zahlungen von {price}"
+ },
  "{n} people are no longer your friends": {
   "one": "{n} Person ist nicht mehr dein Freund",
   "other": "{n} Personen sind nicht mehr deine Freunde"
@@ -287,6 +292,8 @@
   "other": "{n} gespeicherte Outfits"
  },
  "{n} selected": "{n} ausgewählt",
+ "{n} sent in the past day": "{n} am letzten Tag gesendet",
+ "{n} sent in the past month": "{n} im letzten Monat gesendet",
  "{n} servers": {
   "one": "{n} Server",
   "other": "{n} Server"
@@ -401,14 +408,20 @@
  "{pct}% over RAP": "{pct}% über RAP",
  "{pct}% rating": "{pct}% Bewertung",
  "{pct}% under RAP": "{pct}% unter RAP",
+ "{percent}% off unlocks {date}": "{percent} % Rabatt ab {date}",
  "{place} • {n} servers • {players} playing": {
   "one": "{place} • {n} Server • {players} spielen",
   "other": "{place} • {n} Server • {players} spielen"
  },
  "{playing} of {max} people max": "{playing} von max. {max} Personen",
+ "{price} a month": "{price} pro Monat",
+ "{price} a week": "{price} pro Woche",
+ "{price} a year": "{price} pro Jahr",
  "{rating} • {n} playing": "{rating} • {n} spielen",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} ist nicht mehr in der Regionsliste. Trete einem beliebigen Server bei…",
  "{results} (first 2,000 items)": "{results} (erste 2.000 Items)",
+ "{robux} Robux at the DevEx rate": "{robux} Robux zum DevEx-Kurs",
+ "{robux} Robux at your rate (${rate}/1k)": "{robux} Robux zu deinem Kurs (${rate}/1k)",
  "{role} · Rank {rank}": "{role} · Rang {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} Studs",
@@ -479,6 +492,7 @@
  "A trade you sent, including ones sent from your phone.": "Ein Trade, den du gesendet hast, auch vom Handy aus.",
  "A warning while you build or counter a trade where you give a lot more value than you get.": "Eine Warnung, wenn du einen Trade baust oder ein Gegenangebot machst, bei dem du viel mehr Wert gibst, als du bekommst.",
  "About": "Info",
+ "About {x}× what Plus has cost you": "Etwa {x}× so viel, wie Plus dich gekostet hat",
  "About Even": "Über „Ausgeglichen“",
  "About what every amount on My Transactions is worth in USD, plus a Net line under the summary showing what you made or spent overall. Uses your Robux rate.": "Ungefähr, was jeder Betrag unter „Meine Transaktionen“ in USD wert ist, plus eine Netto-Zeile unter der Übersicht, die zeigt, was du insgesamt verdient oder ausgegeben hast. Nutzt deinen Robux-Kurs.",
  "About what Robux amounts are worth in dollars, at your Robux rate, like in Transactions.": "Ungefähr, was Robux-Beträge in Dollar wert sind, zu deinem Robux-Kurs, wie bei den Transaktionen.",
@@ -614,6 +628,7 @@
  "Before You Send": "Vor dem Senden",
  "Best price now: R$ {price}": "Bester Preis jetzt: R$ {price}",
  "Big purchases need you to hold the Buy button for a second, so a misclick can’t spend your Robux.": "Bei großen Käufen musst du den Kaufen-Button eine Sekunde halten, damit ein Fehlklick keine Robux ausgibt.",
+ "Billed through {store}": "Abgerechnet über {store}",
  "Binary data": "Binärdaten",
  "Binary data ({size} bytes)": {
   "one": "Binärdaten ({size} Byte)",
@@ -932,6 +947,7 @@
  "Emote": "Emote",
  "Emotes": "Emotes",
  "Empty slot": "Leerer Platz",
+ "Ends {date}": "Endet am {date}",
  "Enter a price in Robux.": "Gib einen Preis in Robux ein.",
  "Enum value {value}": "Enum-Wert {value}",
  "Equip dynamic heads and faces without the editor switching you to R15, and keep R6 in Avatar Preview. Off by default: some experiences show dynamic heads differently on R6.": "Rüste dynamische Köpfe und Gesichter aus, ohne dass der Editor dich auf R15 umstellt, und behalte R6 in der Avatar-Vorschau. Standardmäßig aus: Manche Erlebnisse zeigen dynamische Köpfe bei R6 anders an.",
@@ -1595,6 +1611,8 @@
  "on every search": "bei jeder Suche",
  "On hold, can’t be traded yet": "Gesperrt, noch nicht handelbar",
  "On model and plugin pages, RoUtility opens the file and checks every script for backdoor signs: require() by asset id, loadstring, getfenv, hidden text, web requests. The result shows in Roblox’s “contains scripts” bar as High Risk or to Review, and the Explorer button shows every script with the risky lines marked.": "Auf Modell- und Plugin-Seiten öffnet RoUtility die Datei und prüft jedes Skript auf Backdoor-Anzeichen: require() per Asset-ID, loadstring, getfenv, versteckter Text, Webanfragen. Das Ergebnis erscheint in Roblox’ Leiste „enthält Skripte“ als hohes Risiko oder zu prüfen, und der Explorer-Button zeigt jedes Skript mit markierten riskanten Zeilen.",
+ "On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.": "Unter Einstellungen > Robux: wie viele Robux du am letzten Tag und im letzten Monat gesendet hast und wie viele du noch senden kannst, plus das Limit pro Überweisung.",
+ "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in dollars and what Plus has cost you so far.": "Auf der Roblox-Plus-Seite: wann Plus verlängert wird, der Preis und worüber abgerechnet wird, wann dein nächster Rabatt freigeschaltet wird, was deine Plus-Ersparnis in Dollar wert ist und was Plus dich bisher gekostet hat.",
  "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.": "An. Abzeichen, die du ab jetzt bekommst, werden nach etwa 5 Minuten entfernt, solange ein Roblox-Tab offen ist. Deine bisherigen bleiben.",
  "Online": "Online",
  "Online {time}": "Online {time}",
@@ -1653,6 +1671,7 @@
  "Page {page} of {pages}": "Seite {page} von {pages}",
  "Page Background": "Seitenhintergrund",
  "Pages": "Seiten",
+ "Paid for Plus so far": "Bisher für Plus bezahlt",
  "Pants": "Hose",
  "Part {n}": "Teil {n}",
  "Partial Disruption": "Teilweise Störung",
@@ -1674,6 +1693,7 @@
  "People I Follow": "Personen, denen ich folge",
  "People Search": "Personensuche",
  "per 1k": "pro 1k",
+ "Per transfer limit": "Limit pro Überweisung",
  "Percentages": "Prozente",
  "Performance": "Leistung",
  "Personal info": "Persönliche Daten",
@@ -1703,6 +1723,7 @@
  "Playing": "Spielt",
  "Playing {game}": "Spielt {game}",
  "Playtime Tracker": "Spielzeit-Tracker",
+ "Plus Details": "Plus-Details",
  "Plus Promo Banner": "Plus-Werbebanner",
  "Plus/Premium": "Plus/Premium",
  "Popular thread": "Beliebter Thread",
@@ -1769,6 +1790,7 @@
  "Projecteds": "Projecteds",
  "Prompts purchases": "Löst Käufe aus",
  "Properties": "Eigenschaften",
+ "Publishing unlocks {date}": "Veröffentlichen ab {date}",
  "Purchase": "Kauf",
  "Purchase Completed": "Kauf abgeschlossen",
  "Purchase Safety Lock": "Kauf-Sicherheitssperre",
@@ -1838,6 +1860,7 @@
  "Removes badges you earn from now on, a few minutes after you get them. Badges you already have stay.": "Entfernt Abzeichen, die du ab jetzt bekommst, ein paar Minuten danach. Deine bisherigen bleiben.",
  "Removes the Chat bar from the bottom right corner of the website.": "Entfernt die Chatleiste unten rechts auf der Website.",
  "Removes the Makeup tab so the other tabs fit without scrolling.": "Entfernt den Make-up-Tab, damit die anderen Tabs ohne Scrollen passen.",
+ "Renews {date}": "Verlängert am {date}",
  "Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.": "Ordne Startseite, Nachrichten, Newsroom, Offizieller Store, Trade-Rechner, Forum und den Rest neu an oder blende sie aus.",
  "Reorder or hide its links": "Links neu ordnen oder ausblenden",
  "Reorder or hide Your Private Servers, Server Regions, Servers My Friends Are In and Other Servers.": "Ordne Deine privaten Server, Serverregionen, Server mit meinen Freunden und Andere Server neu an oder blende sie aus.",
@@ -1979,6 +2002,7 @@
  "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.": "Gespeicherte Karten, PayPal, Rechnungs-E-Mail und -Adresse, Roblox-Guthaben und Geschenkkarten-Details auf der Zahlungsseite.",
  "Saved Outfits": "Gespeicherte Outfits",
  "Saved Payment Method": "Gespeicherte Zahlungsmethode",
+ "Saved, in dollars": "Gespart, in Dollar",
  "Saved.": "Gespeichert.",
  "Saved. Roblox is drawing your new thumbnail.": "Gespeichert. Roblox zeichnet dein neues Thumbnail.",
  "Saved. Roblox pages you already have open pick this up when they reload.": "Gespeichert. Bereits offene Roblox-Seiten übernehmen das beim Neuladen.",
@@ -2301,6 +2325,7 @@
  "Transaction Filters": "Transaktionsfilter",
  "transactions": "Transaktionen",
  "Transactions": "Transaktionen",
+ "Transfer Limits Left": "Verbleibende Überweisungslimits",
  "Trend": "Trend",
  "Trend: {trend}": "Trend: {trend}",
  "Trusted": "Vertraut",

@@ -187,6 +187,7 @@
   "one": "{n} anahtar nokta",
   "other": "{n} anahtar nokta"
  },
+ "{n} left": "{n} kaldı",
  "{n} limiteds": {
   "one": "{n} limited",
   "other": "{n} limited"
@@ -249,6 +250,10 @@
   "one": "{n} kıyafet",
   "other": "{n} kıyafet"
  },
+ "{n} payments of {price}": {
+  "one": "{n} ödeme, her biri {price}",
+  "other": "{n} ödeme, her biri {price}"
+ },
  "{n} people are no longer your friends": {
   "one": "{n} kişi artık arkadaşın değil",
   "other": "{n} kişi artık arkadaşın değil"
@@ -287,6 +292,8 @@
   "other": "{n} kayıtlı kıyafet"
  },
  "{n} selected": "{n} seçildi",
+ "{n} sent in the past day": "Son bir günde {n} gönderildi",
+ "{n} sent in the past month": "Son bir ayda {n} gönderildi",
  "{n} servers": {
   "one": "{n} sunucu",
   "other": "{n} sunucu"
@@ -401,14 +408,20 @@
  "{pct}% over RAP": "RAP'in %{pct} üstünde",
  "{pct}% rating": "%{pct} değerlendirme",
  "{pct}% under RAP": "RAP'in %{pct} altında",
+ "{percent}% off unlocks {date}": "{date} tarihinde %{percent} indirim açılır",
  "{place} • {n} servers • {players} playing": {
   "one": "{place} • {n} sunucu • {players} oynuyor",
   "other": "{place} • {n} sunucu • {players} oynuyor"
  },
  "{playing} of {max} people max": "{playing}/{max} kişi maks.",
+ "{price} a month": "Aylık {price}",
+ "{price} a week": "Haftalık {price}",
+ "{price} a year": "Yıllık {price}",
  "{rating} • {n} playing": "{rating} • {n} oynuyor",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} artık bölge listesinde değil. Herhangi bir sunucuya katılınıyor…",
  "{results} (first 2,000 items)": "{results} (ilk 2.000 eşya)",
+ "{robux} Robux at the DevEx rate": "DevEx kuruyla {robux} Robux",
+ "{robux} Robux at your rate (${rate}/1k)": "Senin kurunla {robux} Robux (${rate}/1k)",
  "{role} · Rank {rank}": "{role} · Rütbe {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} stud",
@@ -479,6 +492,7 @@
  "A trade you sent, including ones sent from your phone.": "Gönderdiğin bir takas, telefonundan gönderdiklerin dahil.",
  "A warning while you build or counter a trade where you give a lot more value than you get.": "Bir takası kurarken veya karşı teklif verirken aldığından çok daha fazla değer veriyorsan bir uyarı.",
  "About": "Hakkında",
+ "About {x}× what Plus has cost you": "Plus’ın sana maliyetinin yaklaşık {x} katı",
  "About Even": "Yaklaşık eşit",
  "About what every amount on My Transactions is worth in USD, plus a Net line under the summary showing what you made or spent overall. Uses your Robux rate.": "İşlemlerim'deki her tutarın yaklaşık USD karşılığı, ayrıca özetin altında toplamda ne kazandığını veya harcadığını gösteren bir Net satırı. Senin Robux kurunu kullanır.",
  "About what Robux amounts are worth in dollars, at your Robux rate, like in Transactions.": "Robux tutarlarının yaklaşık dolar karşılığı, senin Robux kurunla, İşlemler’deki gibi.",
@@ -614,6 +628,7 @@
  "Before You Send": "Göndermeden önce",
  "Best price now: R$ {price}": "Şu anki en iyi fiyat: R$ {price}",
  "Big purchases need you to hold the Buy button for a second, so a misclick can’t spend your Robux.": "Büyük satın alımlarda Satın al düğmesini bir saniye basılı tutman gerekir, böylece yanlış bir tık Robux'unu harcayamaz.",
+ "Billed through {store}": "{store} üzerinden faturalandırılır",
  "Binary data": "İkili veri",
  "Binary data ({size} bytes)": {
   "one": "İkili veri ({size} bayt)",
@@ -932,6 +947,7 @@
  "Emote": "Emote",
  "Emotes": "Emote'lar",
  "Empty slot": "Boş yuva",
+ "Ends {date}": "{date} tarihinde biter",
  "Enter a price in Robux.": "Robux cinsinden bir fiyat gir.",
  "Enum value {value}": "Enum değeri {value}",
  "Equip dynamic heads and faces without the editor switching you to R15, and keep R6 in Avatar Preview. Off by default: some experiences show dynamic heads differently on R6.": "Düzenleyici seni R15'e geçirmeden dinamik kafa ve yüzleri kuşan ve Avatar önizlemesinde R6'yı koru. Varsayılan olarak kapalı: bazı deneyimler dinamik kafaları R6'da farklı gösterir.",
@@ -1595,6 +1611,8 @@
  "on every search": "her aramada",
  "On hold, can’t be traded yet": "Beklemede, henüz takas edilemez",
  "On model and plugin pages, RoUtility opens the file and checks every script for backdoor signs: require() by asset id, loadstring, getfenv, hidden text, web requests. The result shows in Roblox’s “contains scripts” bar as High Risk or to Review, and the Explorer button shows every script with the risky lines marked.": "Model ve eklenti sayfalarında RoUtility dosyayı açar ve her script'i arka kapı belirtileri için kontrol eder: varlık ID'siyle require(), loadstring, getfenv, gizli metin, web istekleri. Sonuç, Roblox'un “script içerir” çubuğunda Yüksek risk veya İncelenecek olarak görünür ve Explorer düğmesi riskli satırları işaretlenmiş şekilde tüm script'leri gösterir.",
+ "On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.": "Ayarlar > Robux’ta son bir gün ve ayda gönderdiğin Robux, daha ne kadar gönderebileceğin ve tek transfer limiti.",
+ "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in dollars and what Plus has cost you so far.": "Roblox Plus sayfasında: Plus’ın ne zaman yenileneceği, fiyatı ve nereden faturalandırıldığı, sonraki indirimin ne zaman açılacağı, Plus tasarrufunun dolar değeri ve Plus’ın şimdiye kadarki maliyeti.",
  "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.": "Açık. Bundan sonra kazandığın rozetler, bir Roblox sekmesi açıkken yaklaşık 5 dakika içinde silinir. Var olan rozetlerin kalır.",
  "Online": "Çevrimiçi",
  "Online {time}": "Çevrimiçi {time}",
@@ -1653,6 +1671,7 @@
  "Page {page} of {pages}": "Sayfa {page}/{pages}",
  "Page Background": "Sayfa arka planı",
  "Pages": "Sayfalar",
+ "Paid for Plus so far": "Şimdiye kadar Plus için ödenen",
  "Pants": "Pantolon",
  "Part {n}": "Parça {n}",
  "Partial Disruption": "Kısmi kesinti",
@@ -1674,6 +1693,7 @@
  "People I Follow": "Takip ettiklerim",
  "People Search": "Kişi araması",
  "per 1k": "1k başına",
+ "Per transfer limit": "Tek transfer limiti",
  "Percentages": "Yüzdeler",
  "Performance": "Performans",
  "Personal info": "Kişisel bilgiler",
@@ -1703,6 +1723,7 @@
  "Playing": "Oynuyor",
  "Playing {game}": "{game} oynuyor",
  "Playtime Tracker": "Oyun süresi takibi",
+ "Plus Details": "Plus Ayrıntıları",
  "Plus Promo Banner": "Plus tanıtım afişi",
  "Plus/Premium": "Plus/Premium",
  "Popular thread": "Popüler konu",
@@ -1769,6 +1790,7 @@
  "Projecteds": "Şişirilmişler",
  "Prompts purchases": "Satın alma istemi açar",
  "Properties": "Özellikler",
+ "Publishing unlocks {date}": "Yayınlama {date} tarihinde açılır",
  "Purchase": "Satın alma",
  "Purchase Completed": "Satın alma tamamlandı",
  "Purchase Safety Lock": "Satın alma güvenlik kilidi",
@@ -1838,6 +1860,7 @@
  "Removes badges you earn from now on, a few minutes after you get them. Badges you already have stay.": "Bundan sonra kazandığın rozetleri, kazandıktan birkaç dakika sonra siler. Var olan rozetlerin kalır.",
  "Removes the Chat bar from the bottom right corner of the website.": "Web sitesinin sağ alt köşesindeki Sohbet çubuğunu kaldırır.",
  "Removes the Makeup tab so the other tabs fit without scrolling.": "Makyaj sekmesini kaldırır, böylece diğer sekmeler kaydırmadan sığar.",
+ "Renews {date}": "{date} tarihinde yenilenir",
  "Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.": "Ana sayfa, Mesajlar, Haber odası, Resmi Mağaza, Takas hesaplayıcısı, Forum ve diğerlerini yeniden sırala veya gizle.",
  "Reorder or hide its links": "Bağlantılarını yeniden sırala veya gizle",
  "Reorder or hide Your Private Servers, Server Regions, Servers My Friends Are In and Other Servers.": "Özel sunucuların, Sunucu bölgeleri, Arkadaşlarımın olduğu sunucular ve Diğer sunucular'ı yeniden sırala veya gizle.",
@@ -1979,6 +2002,7 @@
  "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.": "Ödemeler sayfasında kayıtlı kartlar, PayPal, fatura e-postası ve adresi, Roblox kredisi ve hediye kartı bilgileri.",
  "Saved Outfits": "Kayıtlı kıyafetler",
  "Saved Payment Method": "Kayıtlı ödeme yöntemi",
+ "Saved, in dollars": "Tasarruf, dolar olarak",
  "Saved.": "Kaydedildi.",
  "Saved. Roblox is drawing your new thumbnail.": "Kaydedildi. Roblox yeni küçük resmini çiziyor.",
  "Saved. Roblox pages you already have open pick this up when they reload.": "Kaydedildi. Zaten açık olan Roblox sayfaları yenilendiğinde bunu alır.",
@@ -2301,6 +2325,7 @@
  "Transaction Filters": "İşlem filtreleri",
  "transactions": "işlemler",
  "Transactions": "İşlemler",
+ "Transfer Limits Left": "Kalan Transfer Limitleri",
  "Trend": "Trend",
  "Trend: {trend}": "Trend: {trend}",
  "Trusted": "Güvenilir",

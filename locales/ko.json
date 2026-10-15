@@ -151,6 +151,7 @@
  "{n} keypoints": {
   "other": "키포인트 {n}개"
  },
+ "{n} left": "{n} 남음",
  "{n} limiteds": {
   "other": "한정판 {n}개"
  },
@@ -199,6 +200,9 @@
  "{n} Outfits": {
   "other": "의상 {n}개"
  },
+ "{n} payments of {price}": {
+  "other": "{price} 결제 {n}회"
+ },
  "{n} people are no longer your friends": {
   "other": "{n}명이 더 이상 친구가 아닙니다"
  },
@@ -228,6 +232,8 @@
   "other": "저장된 의상 {n}개"
  },
  "{n} selected": "{n}개 선택됨",
+ "{n} sent in the past day": "지난 하루 동안 {n} 보냄",
+ "{n} sent in the past month": "지난 한 달 동안 {n} 보냄",
  "{n} servers": {
   "other": "서버 {n}개"
  },
@@ -322,13 +328,19 @@
  "{pct}% over RAP": "RAP보다 {pct}% 높음",
  "{pct}% rating": "평점 {pct}%",
  "{pct}% under RAP": "RAP보다 {pct}% 낮음",
+ "{percent}% off unlocks {date}": "{date}에 {percent}% 할인 해제",
  "{place} • {n} servers • {players} playing": {
   "other": "{place} • 서버 {n}개 • {players}명 플레이 중"
  },
  "{playing} of {max} people max": "{playing} / 최대 {max}명",
+ "{price} a month": "월 {price}",
+ "{price} a week": "주 {price}",
+ "{price} a year": "연 {price}",
  "{rating} • {n} playing": "{rating} • {n}명 플레이 중",
  "{region} isn’t in the region list anymore. Joining any server…": "{region}은(는) 더 이상 지역 목록에 없습니다. 아무 서버에나 참여하는 중…",
  "{results} (first 2,000 items)": "{results} (처음 2,000개 아이템)",
+ "{robux} Robux at the DevEx rate": "DevEx 환율로 {robux} Robux",
+ "{robux} Robux at your rate (${rate}/1k)": "내 환율로 {robux} Robux (${rate}/1k)",
  "{role} · Rank {rank}": "{role} · 랭크 {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} 스터드",
@@ -399,6 +411,7 @@
  "A trade you sent, including ones sent from your phone.": "내가 보낸 거래 (휴대폰에서 보낸 것 포함).",
  "A warning while you build or counter a trade where you give a lot more value than you get.": "거래를 구성하거나 역제안할 때 받는 가치보다 주는 가치가 훨씬 많으면 경고합니다.",
  "About": "정보",
+ "About {x}× what Plus has cost you": "Plus에 쓴 비용의 약 {x}배",
  "About Even": "거의 비슷함",
  "About what every amount on My Transactions is worth in USD, plus a Net line under the summary showing what you made or spent overall. Uses your Robux rate.": "내 거래 내역의 모든 금액이 USD로 대략 얼마인지 표시하고, 요약 아래에 전체적으로 벌거나 쓴 금액을 보여 주는 순액 줄을 추가합니다. 내 Robux 환율을 사용합니다.",
  "About what Robux amounts are worth in dollars, at your Robux rate, like in Transactions.": "Robux 금액이 달러로 대략 얼마인지 내 Robux 환율로 보여 줘요. 거래 내역과 같아요.",
@@ -533,6 +546,7 @@
  "Before You Send": "보내기 전에",
  "Best price now: R$ {price}": "현재 최저가: R$ {price}",
  "Big purchases need you to hold the Buy button for a second, so a misclick can’t spend your Robux.": "큰 금액을 구매할 때는 구매 버튼을 1초간 길게 눌러야 하므로 실수로 클릭해 Robux를 쓰는 일이 없습니다.",
+ "Billed through {store}": "{store}에서 결제",
  "Binary data": "바이너리 데이터",
  "Binary data ({size} bytes)": {
   "other": "바이너리 데이터 ({size}바이트)"
@@ -842,6 +856,7 @@
  "Emote": "이모트",
  "Emotes": "이모트",
  "Empty slot": "빈 칸",
+ "Ends {date}": "{date}에 종료",
  "Enter a price in Robux.": "Robux 가격을 입력하세요.",
  "Enum value {value}": "열거형 값 {value}",
  "Equip dynamic heads and faces without the editor switching you to R15, and keep R6 in Avatar Preview. Off by default: some experiences show dynamic heads differently on R6.": "편집기가 R15로 바꾸지 않고 다이내믹 헤드와 얼굴을 착용할 수 있으며, 아바타 미리 보기에서도 R6를 유지합니다. 기본값은 꺼짐: 일부 경험에서는 R6의 다이내믹 헤드가 다르게 보입니다.",
@@ -1481,6 +1496,8 @@
  "on every search": "모든 검색에서",
  "On hold, can’t be traded yet": "보류 중, 아직 거래 불가",
  "On model and plugin pages, RoUtility opens the file and checks every script for backdoor signs: require() by asset id, loadstring, getfenv, hidden text, web requests. The result shows in Roblox’s “contains scripts” bar as High Risk or to Review, and the Explorer button shows every script with the risky lines marked.": "모델과 플러그인 페이지에서 RoUtility가 파일을 열어 모든 스크립트에 백도어 징후(에셋 ID로 require(), loadstring, getfenv, 숨겨진 텍스트, 웹 요청)가 있는지 확인합니다. 결과는 Roblox의 “스크립트 포함” 바에 고위험 또는 검토 필요로 표시되며, 탐색기 버튼으로 위험한 줄이 표시된 모든 스크립트를 볼 수 있습니다.",
+ "On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.": "설정 > Robux에서 지난 하루와 한 달 동안 보낸 Robux, 아직 보낼 수 있는 양, 1회 송금 한도를 보여 줘요.",
+ "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in dollars and what Plus has cost you so far.": "Roblox Plus 페이지에서 Plus 갱신일, 가격과 결제처, 다음 할인이 열리는 날, Plus로 아낀 금액의 달러 가치, 지금까지 Plus에 쓴 비용을 보여 줘요.",
  "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.": "켜짐. 이제부터 받는 배지는 Roblox 탭이 열려 있는 동안 약 5분 안에 삭제돼요. 이미 가진 배지는 그대로예요.",
  "Online": "온라인",
  "Online {time}": "{time} 온라인",
@@ -1539,6 +1556,7 @@
  "Page {page} of {pages}": "{page} / {pages} 페이지",
  "Page Background": "페이지 배경",
  "Pages": "페이지",
+ "Paid for Plus so far": "지금까지 Plus에 낸 금액",
  "Pants": "바지",
  "Part {n}": "파트 {n}",
  "Partial Disruption": "일부 장애",
@@ -1560,6 +1578,7 @@
  "People I Follow": "내가 팔로우하는 사람",
  "People Search": "사용자 검색",
  "per 1k": "1k당",
+ "Per transfer limit": "1회 송금 한도",
  "Percentages": "백분율",
  "Performance": "성능",
  "Personal info": "개인 정보",
@@ -1589,6 +1608,7 @@
  "Playing": "플레이 중",
  "Playing {game}": "{game} 플레이 중",
  "Playtime Tracker": "플레이 시간 기록",
+ "Plus Details": "Plus 상세 정보",
  "Plus Promo Banner": "Plus 홍보 배너",
  "Plus/Premium": "Plus/Premium",
  "Popular thread": "인기 스레드",
@@ -1654,6 +1674,7 @@
  "Projecteds": "부풀려진 아이템",
  "Prompts purchases": "구매 유도",
  "Properties": "속성",
+ "Publishing unlocks {date}": "{date}에 게시 해제",
  "Purchase": "구매",
  "Purchase Completed": "구매 완료",
  "Purchase Safety Lock": "구매 안전 잠금",
@@ -1722,6 +1743,7 @@
  "Removes badges you earn from now on, a few minutes after you get them. Badges you already have stay.": "이제부터 받는 배지를 받은 지 몇 분 후에 삭제해요. 이미 가진 배지는 그대로예요.",
  "Removes the Chat bar from the bottom right corner of the website.": "웹사이트 오른쪽 아래의 채팅 바를 없앱니다.",
  "Removes the Makeup tab so the other tabs fit without scrolling.": "메이크업 탭을 없애 다른 탭이 스크롤 없이 들어가게 합니다.",
+ "Renews {date}": "{date}에 갱신",
  "Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.": "홈, 메시지, 뉴스룸, 공식 스토어, 거래 계산기, 포럼 등을 재정렬하거나 숨깁니다.",
  "Reorder or hide its links": "링크 재정렬 또는 숨기기",
  "Reorder or hide Your Private Servers, Server Regions, Servers My Friends Are In and Other Servers.": "내 비공개 서버, 서버 지역, 친구가 있는 서버, 기타 서버를 재정렬하거나 숨깁니다.",
@@ -1862,6 +1884,7 @@
  "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.": "결제 페이지의 저장된 카드, PayPal, 청구 이메일 및 주소, Roblox 크레딧, 기프트 카드 정보.",
  "Saved Outfits": "저장된 의상",
  "Saved Payment Method": "저장된 결제 수단",
+ "Saved, in dollars": "아낀 금액 (달러)",
  "Saved.": "저장됨.",
  "Saved. Roblox is drawing your new thumbnail.": "저장했습니다. Roblox가 새 썸네일을 그리는 중입니다.",
  "Saved. Roblox pages you already have open pick this up when they reload.": "저장했습니다. 이미 열려 있는 Roblox 페이지는 새로고침하면 반영됩니다.",
@@ -2182,6 +2205,7 @@
  "Transaction Filters": "거래 내역 필터",
  "transactions": "거래 내역",
  "Transactions": "거래 내역",
+ "Transfer Limits Left": "남은 송금 한도",
  "Trend": "추세",
  "Trend: {trend}": "추세: {trend}",
  "Trusted": "신뢰하는 친구",

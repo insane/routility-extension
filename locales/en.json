@@ -187,6 +187,7 @@
   "one": "{n} keypoint",
   "other": "{n} keypoints"
  },
+ "{n} left": "{n} left",
  "{n} limiteds": {
   "one": "{n} limited",
   "other": "{n} limiteds"
@@ -249,6 +250,10 @@
   "one": "{n} Outfit",
   "other": "{n} Outfits"
  },
+ "{n} payments of {price}": {
+  "one": "{n} payment of {price}",
+  "other": "{n} payments of {price}"
+ },
  "{n} people are no longer your friends": {
   "one": "{n} person is no longer your friend",
   "other": "{n} people are no longer your friends"
@@ -287,6 +292,8 @@
   "other": "{n} saved outfits"
  },
  "{n} selected": "{n} selected",
+ "{n} sent in the past day": "{n} sent in the past day",
+ "{n} sent in the past month": "{n} sent in the past month",
  "{n} servers": {
   "one": "{n} server",
   "other": "{n} servers"
@@ -401,14 +408,20 @@
  "{pct}% over RAP": "{pct}% over RAP",
  "{pct}% rating": "{pct}% rating",
  "{pct}% under RAP": "{pct}% under RAP",
+ "{percent}% off unlocks {date}": "{percent}% off unlocks {date}",
  "{place} • {n} servers • {players} playing": {
   "one": "{place} • {n} server • {players} playing",
   "other": "{place} • {n} servers • {players} playing"
  },
  "{playing} of {max} people max": "{playing} of {max} people max",
+ "{price} a month": "{price} a month",
+ "{price} a week": "{price} a week",
+ "{price} a year": "{price} a year",
  "{rating} • {n} playing": "{rating} • {n} playing",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} isn’t in the region list anymore. Joining any server…",
  "{results} (first 2,000 items)": "{results} (first 2,000 items)",
+ "{robux} Robux at the DevEx rate": "{robux} Robux at the DevEx rate",
+ "{robux} Robux at your rate (${rate}/1k)": "{robux} Robux at your rate (${rate}/1k)",
  "{role} · Rank {rank}": "{role} · Rank {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} studs",
@@ -479,6 +492,7 @@
  "A trade you sent, including ones sent from your phone.": "A trade you sent, including ones sent from your phone.",
  "A warning while you build or counter a trade where you give a lot more value than you get.": "A warning while you build or counter a trade where you give a lot more value than you get.",
  "About": "About",
+ "About {x}× what Plus has cost you": "About {x}× what Plus has cost you",
  "About Even": "About Even",
  "About what every amount on My Transactions is worth in USD, plus a Net line under the summary showing what you made or spent overall. Uses your Robux rate.": "About what every amount on My Transactions is worth in USD, plus a Net line under the summary showing what you made or spent overall. Uses your Robux rate.",
  "About what Robux amounts are worth in dollars, at your Robux rate, like in Transactions.": "About what Robux amounts are worth in dollars, at your Robux rate, like in Transactions.",
@@ -614,6 +628,7 @@
  "Before You Send": "Before You Send",
  "Best price now: R$ {price}": "Best price now: R$ {price}",
  "Big purchases need you to hold the Buy button for a second, so a misclick can’t spend your Robux.": "Big purchases need you to hold the Buy button for a second, so a misclick can’t spend your Robux.",
+ "Billed through {store}": "Billed through {store}",
  "Binary data": "Binary data",
  "Binary data ({size} bytes)": {
   "one": "Binary data ({size} byte)",
@@ -932,6 +947,7 @@
  "Emote": "Emote",
  "Emotes": "Emotes",
  "Empty slot": "Empty slot",
+ "Ends {date}": "Ends {date}",
  "Enter a price in Robux.": "Enter a price in Robux.",
  "Enum value {value}": "Enum value {value}",
  "Equip dynamic heads and faces without the editor switching you to R15, and keep R6 in Avatar Preview. Off by default: some experiences show dynamic heads differently on R6.": "Equip dynamic heads and faces without the editor switching you to R15, and keep R6 in Avatar Preview. Off by default: some experiences show dynamic heads differently on R6.",
@@ -1595,6 +1611,8 @@
  "on every search": "on every search",
  "On hold, can’t be traded yet": "On hold, can’t be traded yet",
  "On model and plugin pages, RoUtility opens the file and checks every script for backdoor signs: require() by asset id, loadstring, getfenv, hidden text, web requests. The result shows in Roblox’s “contains scripts” bar as High Risk or to Review, and the Explorer button shows every script with the risky lines marked.": "On model and plugin pages, RoUtility opens the file and checks every script for backdoor signs: require() by asset id, loadstring, getfenv, hidden text, web requests. The result shows in Roblox’s “contains scripts” bar as High Risk or to Review, and the Explorer button shows every script with the risky lines marked.",
+ "On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.": "On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.",
+ "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in dollars and what Plus has cost you so far.": "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in dollars and what Plus has cost you so far.",
  "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.": "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.",
  "Online": "Online",
  "Online {time}": "Online {time}",
@@ -1653,6 +1671,7 @@
  "Page {page} of {pages}": "Page {page} of {pages}",
  "Page Background": "Page Background",
  "Pages": "Pages",
+ "Paid for Plus so far": "Paid for Plus so far",
  "Pants": "Pants",
  "Part {n}": "Part {n}",
  "Partial Disruption": "Partial Disruption",
@@ -1674,6 +1693,7 @@
  "People I Follow": "People I Follow",
  "People Search": "People Search",
  "per 1k": "per 1k",
+ "Per transfer limit": "Per transfer limit",
  "Percentages": "Percentages",
  "Performance": "Performance",
  "Personal info": "Personal info",
@@ -1703,6 +1723,7 @@
  "Playing": "Playing",
  "Playing {game}": "Playing {game}",
  "Playtime Tracker": "Playtime Tracker",
+ "Plus Details": "Plus Details",
  "Plus Promo Banner": "Plus Promo Banner",
  "Plus/Premium": "Plus/Premium",
  "Popular thread": "Popular thread",
@@ -1769,6 +1790,7 @@
  "Projecteds": "Projecteds",
  "Prompts purchases": "Prompts purchases",
  "Properties": "Properties",
+ "Publishing unlocks {date}": "Publishing unlocks {date}",
  "Purchase": "Purchase",
  "Purchase Completed": "Purchase Completed",
  "Purchase Safety Lock": "Purchase Safety Lock",
@@ -1838,6 +1860,7 @@
  "Removes badges you earn from now on, a few minutes after you get them. Badges you already have stay.": "Removes badges you earn from now on, a few minutes after you get them. Badges you already have stay.",
  "Removes the Chat bar from the bottom right corner of the website.": "Removes the Chat bar from the bottom right corner of the website.",
  "Removes the Makeup tab so the other tabs fit without scrolling.": "Removes the Makeup tab so the other tabs fit without scrolling.",
+ "Renews {date}": "Renews {date}",
  "Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.": "Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.",
  "Reorder or hide its links": "Reorder or hide its links",
  "Reorder or hide Your Private Servers, Server Regions, Servers My Friends Are In and Other Servers.": "Reorder or hide Your Private Servers, Server Regions, Servers My Friends Are In and Other Servers.",
@@ -1979,6 +2002,7 @@
  "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.": "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.",
  "Saved Outfits": "Saved Outfits",
  "Saved Payment Method": "Saved Payment Method",
+ "Saved, in dollars": "Saved, in dollars",
  "Saved.": "Saved.",
  "Saved. Roblox is drawing your new thumbnail.": "Saved. Roblox is drawing your new thumbnail.",
  "Saved. Roblox pages you already have open pick this up when they reload.": "Saved. Roblox pages you already have open pick this up when they reload.",
@@ -2301,6 +2325,7 @@
  "Transaction Filters": "Transaction Filters",
  "transactions": "transactions",
  "Transactions": "Transactions",
+ "Transfer Limits Left": "Transfer Limits Left",
  "Trend": "Trend",
  "Trend: {trend}": "Trend: {trend}",
  "Trusted": "Trusted",
