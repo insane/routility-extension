@@ -3709,6 +3709,19 @@ html.routility-layout-editing [data-routility-dragging="1"] {
   gap: 12px;
 }
 
+.routility-twin {
+  display: grid !important;
+}
+
+.routility-twin > * {
+  grid-area: 1 / 1;
+  text-align: center;
+}
+
+.routility-twin-ghost {
+  visibility: hidden;
+}
+
 .routility-viz-panel {
   display: flex;
   flex-direction: column;

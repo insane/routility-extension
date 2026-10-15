@@ -222,6 +222,16 @@
     return btn;
   }
 
+  function twin(btn, other) {
+    const outer = btn.querySelector(':scope > span.flex');
+    if (!outer) return btn;
+    const ghost = el('span', 'padding-y-xsmall text-no-wrap routility-twin-ghost', other);
+    ghost.setAttribute('aria-hidden', 'true');
+    outer.classList.add('routility-twin');
+    outer.appendChild(ghost);
+    return btn;
+  }
+
   function header(text, intro) {
     const head = el('div', 'settings-v2-header routility-set-head');
     head.appendChild(el('h2', 'text-heading-medium content-emphasis margin-none', text));
@@ -1698,24 +1708,39 @@
     const isHidden = (key) => flag(key) ? settings[flag(key)] === false : lay.hidden.includes(key);
     const blocked = (key) => !!owner(key) && settings[owner(key)] === false;
 
+    const OWN_ICONS = { calc: 'routility-calc-nav-icon', ads: 'routility-ads-nav-icon', forum: 'routility-forum-nav-icon' };
     const fillIcon = (box) => {
+      if (box.firstChild) return true;
       const li = document.querySelector(`.left-nav nav ul > ${rules.get(box.dataset.nav)}`);
       const src = li && li.querySelector(':scope > a > span, :scope > button > span');
-      if (src && !box.firstChild) box.appendChild(src.cloneNode(true));
+      if (src) box.appendChild(src.cloneNode(true));
+      else if (OWN_ICONS[box.dataset.nav]) {
+        const wrap = el('span', 'size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center');
+        wrap.appendChild(el('span', `grow-0 shrink-0 basis-auto icon ${OWN_ICONS[box.dataset.nav]} size-[var(--icon-size-large)]`));
+        box.appendChild(wrap);
+      }
       return !!box.firstChild;
     };
     let iconWatch = null;
     const watchIcons = () => {
       if (iconWatch) return;
       const started = Date.now();
+      let queued = false;
+      const stop = () => {
+        iconWatch?.disconnect();
+        iconWatch = null;
+      };
       iconWatch = new MutationObserver(() => {
-        const left = [...section.querySelectorAll('.routility-nav-icon')].filter(b => !fillIcon(b));
-        if (!left.length || Date.now() - started > 20000) {
-          iconWatch.disconnect();
-          iconWatch = null;
-        }
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => {
+          queued = false;
+          const left = [...section.querySelectorAll('.routility-nav-icon')].filter(b => !fillIcon(b));
+          if (!left.length || Date.now() - started > 20000) stop();
+        });
       });
       iconWatch.observe(document.body, { childList: true, subtree: true });
+      setTimeout(stop, 20000);
     };
     const iconOf = (key) => {
       const box = el('span', 'routility-nav-icon');
@@ -1798,7 +1823,7 @@
         const ctl = el('div', 'routility-viz-ctl flex items-center gap-small');
         ctl.appendChild(iconButton(lt('Move {name} up', { name: s.name }), true, i === 0, () => reorder(list, i, i - 1)));
         ctl.appendChild(iconButton(lt('Move {name} down', { name: s.name }), false, i === list.length - 1, () => reorder(list, i, i + 1)));
-        const vis = mini(off ? lt('Show') : lt('Hide'), () => toggle(s.key));
+        const vis = twin(mini(off ? lt('Show') : lt('Hide'), () => toggle(s.key)), off ? lt('Hide') : lt('Show'));
         vis.disabled = stuck;
         ctl.appendChild(vis);
         li.appendChild(ctl);
@@ -1911,7 +1936,7 @@
         const ctl = el('div', 'routility-viz-ctl flex items-center gap-small');
         ctl.appendChild(iconButton(lt('Move {name} up', { name: s.name }), true, i === 0, () => reorder(list, i, i - 1)));
         ctl.appendChild(iconButton(lt('Move {name} down', { name: s.name }), false, i === list.length - 1, () => reorder(list, i, i + 1)));
-        const vis = mini(off ? lt('Show') : lt('Hide'), () => store({ ...lay, hidden: off ? lay.hidden.filter(k => k !== s.key) : [...lay.hidden, s.key] }));
+        const vis = twin(mini(off ? lt('Show') : lt('Hide'), () => store({ ...lay, hidden: off ? lay.hidden.filter(k => k !== s.key) : [...lay.hidden, s.key] })), off ? lt('Hide') : lt('Show'));
         vis.disabled = stuck;
         ctl.appendChild(vis);
         li.appendChild(ctl);
@@ -2111,10 +2136,10 @@
         const ctl = el('div', 'routility-viz-ctl flex items-center gap-small');
         ctl.appendChild(iconButton(lt('Move {name} up', { name: s.title }), true, i === 0, () => reorder(kind, list, i, i - 1)));
         ctl.appendChild(iconButton(lt('Move {name} down', { name: s.title }), false, i === list.length - 1, () => reorder(kind, list, i, i + 1)));
-        ctl.appendChild(mini(isHidden ? lt('Show') : lt('Hide'), () => {
+        ctl.appendChild(twin(mini(isHidden ? lt('Show') : lt('Hide'), () => {
           const hiddenKeys = isHidden ? layouts[kind].hidden.filter(k => k !== s.key) : [...layouts[kind].hidden, s.key];
           save(kind, { order: list.map(x => x.key), hidden: hiddenKeys });
-        }));
+        }), isHidden ? lt('Hide') : lt('Show')));
         li.appendChild(ctl);
         li.addEventListener('dragstart', (e) => {
           drag = { kind, from: i };
@@ -3046,12 +3071,18 @@
 
   function start() {
     const root = document.querySelector('#user-account') || document.body;
+    let queued = false;
     const watcher = new MutationObserver(() => {
       if (!chrome.runtime?.id) {
         watcher.disconnect();
         return;
       }
-      apply();
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        apply();
+      });
     });
     watcher.observe(root, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
     if (open) {

@@ -8,7 +8,16 @@
   root.dataset.routilityLife = token;
   let dead = false;
 
-  const guard = (fn) => (typeof fn === 'function' ? function (...args) { if (!dead) return fn.apply(this, args); } : fn);
+  const alive = () => {
+    try { return !!(chrome.runtime && chrome.runtime.id); } catch { return false; }
+  };
+  const live = () => {
+    if (dead) return false;
+    if (alive()) return true;
+    die();
+    return false;
+  };
+  const guard = (fn) => (typeof fn === 'function' ? function (...args) { if (live()) return fn.apply(this, args); } : fn);
 
   const nativeTimeout = window.setTimeout;
   const nativeInterval = window.setInterval;
@@ -43,7 +52,7 @@
     let w = wrapped.get(listener);
     if (!w) {
       w = function (e) {
-        if (dead) return;
+        if (!live()) return;
         return typeof listener === 'function' ? listener.call(this, e) : listener.handleEvent(e);
       };
       wrapped.set(listener, w);
@@ -72,11 +81,8 @@
   }
 
   const watch = nativeInterval.call(window, () => {
-    let alive = false;
-    try { alive = !!(chrome.runtime && chrome.runtime.id); } catch {}
-    if (alive) return;
+    if (live()) return;
     nativeClearInterval.call(window, watch);
-    die();
   }, 1000);
 
   chrome.runtime.onMessage.addListener((msg, sender, reply) => {

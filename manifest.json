@@ -40,6 +40,7 @@
         "life.js",
         "i18n.js",
         "skeleton.js",
+        "classicnames.js",
         "fun.js"
       ],
       "run_at": "document_start"

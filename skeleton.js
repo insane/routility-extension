@@ -139,11 +139,15 @@
     ['giftcards', 'li:has(> a[href*="/giftcards"])'],
   ];
   const NAV_FOLLOW = { newsroom: ':is(li, div):has(a[href*="blog.roblox.com"]):not(:has(> a[href*="blog.roblox.com"]))' };
+  const NAV_FLAGS = { calc: ['tradeCalculator', 'calcNav'], ads: ['tradeAds', 'tradeAdsNav'], forum: ['forum', 'forumNav'] };
   let navStyle = null;
+  let navLayout = null;
   const applyNav = (v) => {
+    navLayout = v;
     if (!v) v = { order: [], hidden: ['promo', 'store', 'newsroom', 'giftcards'] };
     const order = Array.isArray(v && v.order) ? v.order.map(String) : [];
     const hidden = Array.isArray(v && v.hidden) ? v.hidden.map(String) : [];
+    for (const [k, keys] of Object.entries(NAV_FLAGS)) if (keys.some(f => (lastSettings || {})[f] === false)) hidden.push(k);
     const rules = new Map(NAV);
     let css = '';
     if (order.length) {
@@ -157,6 +161,7 @@
       if (rules.has(k)) css += `.left-nav nav ul > ${rules.get(k)} { display: none !important; }`;
       if (NAV_FOLLOW[k]) css += `.left-nav nav ul > ${NAV_FOLLOW[k]} { display: none !important; }`;
     }
+    if ((lastSettings || {}).navCollapse === false) css += '.left-nav nav ul > li.routility-nav-collapse { display: none !important; }';
     if (!navStyle) {
       navStyle = document.createElement('style');
       navStyle.id = 'routility-nav-layout';
@@ -263,8 +268,42 @@
     }
     robloxOnly();
   };
+  let forumWatch = null;
+  const forumLink = () => {
+    if (location.hostname !== 'www.roblox.com' || !root.classList.contains('routility-forum-topbar')) return;
+    const place = () => {
+      if (document.querySelector('.routility-forum-toplink')) return true;
+      const robux = document.getElementById('navigation-robux-container');
+      if (!robux) return false;
+      const li = document.createElement('li');
+      li.className = 'routility-injected routility-forum-toplink';
+      const a = document.createElement('a');
+      a.className = 'font-header-2 nav-menu-title text-header';
+      a.href = 'https://www.roblox.com/forum';
+      a.textContent = lt('Forum');
+      li.appendChild(a);
+      robux.after(li);
+      return true;
+    };
+    if (place() || forumWatch) return;
+    forumWatch = new MutationObserver(() => {
+      if (!place()) return;
+      forumWatch.disconnect();
+      forumWatch = null;
+    });
+    forumWatch.observe(root, { childList: true, subtree: true });
+    document.addEventListener('DOMContentLoaded', () => { forumWatch?.disconnect(); forumWatch = null; }, { once: true });
+  };
   const applyCollapse = () => root.classList.toggle('routility-nav-collapsed', navCollapsed && (lastSettings || {}).navCollapse !== false);
-  chrome.storage.local.get(['routilitySettings', 'routilityNavLayout', 'routilityNavCollapsed', 'routilityTheme'], (s) => {
+  const EARLY = 'routilityEarly';
+  const EARLY_KEYS = ['routilitySettings', 'routilityNavLayout', 'routilityNavCollapsed', 'routilityTheme'];
+  let early = null;
+  try { early = JSON.parse(localStorage.getItem(EARLY)); } catch {}
+  const remember = (patch) => {
+    early = Object.assign({}, early, patch);
+    try { localStorage.setItem(EARLY, JSON.stringify(early)); } catch {}
+  };
+  const boot = (s) => {
     lastSettings = s.routilitySettings || {};
     watchRobloxOnly();
     themeOn = !!lastSettings.customTheme;
@@ -275,9 +314,16 @@
     apply(s.routilitySettings);
     applyNav(s.routilityNavLayout);
     applyCollapse();
+    forumLink();
+  };
+  if (early && typeof early === 'object') boot(early);
+  chrome.storage.local.get(EARLY_KEYS, (s) => {
+    remember(Object.fromEntries(EARLY_KEYS.map(k => [k, s[k]])));
+    boot(s);
   });
   chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === 'local' && changes.routilitySettings) { lastSettings = changes.routilitySettings.newValue || {}; apply(changes.routilitySettings.newValue); applyCollapse(); watchRobloxOnly(); themeOn = !!lastSettings.customTheme; applyTheme(); }
+    if (area === 'local' && EARLY_KEYS.some(k => changes[k])) remember(Object.fromEntries(EARLY_KEYS.filter(k => changes[k]).map(k => [k, changes[k].newValue])));
+    if (area === 'local' && changes.routilitySettings) { lastSettings = changes.routilitySettings.newValue || {}; apply(changes.routilitySettings.newValue); applyNav(navLayout); applyCollapse(); watchRobloxOnly(); themeOn = !!lastSettings.customTheme; applyTheme(); }
     if (area === 'local' && changes.routilityTheme) { const t = changes.routilityTheme.newValue || {}; themeColors = t.colors || {}; themeFx = typeof t.fx === 'string' ? t.fx : ''; applyTheme(); }
     if (area === 'local' && changes.routilityNavLayout) applyNav(changes.routilityNavLayout.newValue);
     if (area === 'local' && changes.routilityNavCollapsed) { navCollapsed = !!changes.routilityNavCollapsed.newValue; applyCollapse(); }

@@ -230,6 +230,14 @@
   line-height: 17px;
 }
 
+.routility-classic .details-info .routility-mutual-count {
+  align-items: baseline;
+}
+
+.routility-classic .details-info .routility-mutual-stack {
+  align-self: center;
+}
+
 .routility-classic .routility-classic-pill-slot {
   display: none;
 }
