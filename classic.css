@@ -2297,7 +2297,7 @@ html .routility-classic :is(.routility-classic-items-toggle, .routility-classic-
   }
 }
 
-.routility-classic-columns.routility-classic-loading .section-content {
+.routility-classic-columns.routility-classic-loading .section-content:not(.profile-header-content) {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2307,6 +2307,8 @@ html .routility-classic :is(.routility-classic-items-toggle, .routility-classic-
 
 .routility-classic-columns.routility-classic-loading .routility-sk-people {
   flex-wrap: wrap;
+  height: auto;
+  row-gap: 8px;
 }
 
 .routility-classic-columns > .routility-outfits > .section-content {

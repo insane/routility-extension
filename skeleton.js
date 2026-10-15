@@ -5,9 +5,16 @@
   const CLASS = 'routility-skeleton';
   const root = document.documentElement;
   if (location.hostname === 'www.roblox.com') {
-    root.classList.add('routility-nav-reserve');
+    const pushKey = 'routilityNavPush:' + ((location.pathname.split('/')[1] || 'home').toLowerCase().replace(/^\d+$/, 'id')) + ':' + Math.round(window.innerWidth / 100);
+    let pushed = null;
+    try { pushed = localStorage.getItem(pushKey); } catch {}
+    if (pushed !== '0') root.classList.add('routility-nav-reserve');
+    else if (/^\/users\/\d+\/profile/i.test(location.pathname)) root.classList.add('routility-nav-hold');
     const settle = () => setTimeout(() => {
-      if (!document.querySelector('#wrap.left-nav-new-width')) root.classList.remove('routility-nav-reserve');
+      const push = !!document.querySelector('#wrap.left-nav-new-width');
+      try { localStorage.setItem(pushKey, push ? '1' : '0'); } catch {}
+      root.classList.remove('routility-nav-hold');
+      if (!push) root.classList.remove('routility-nav-reserve');
     }, 3000);
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', settle, { once: true });
     else settle();

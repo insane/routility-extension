@@ -31,6 +31,7 @@ Send Robux without the app, much more customizable themes, a second classic prof
 **Fixed**
 
 ```diff
+- Profile loading placeholders now sit exactly where the profile appears, instead of jumping sideways on wide screens.
 - Tabs left open during a RoUtility update no longer show errors or a leftover settings page. (by @reqonn)
 ```
 

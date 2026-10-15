@@ -40,25 +40,39 @@
     return box;
   }
 
-  function columnsBody() {
-    const grid = el('div', 'routility-columns');
-    const left = el('div', 'routility-column');
-    const right = el('div', 'routility-column');
-    const about = el('div', 'section');
-    const lines = el('div', 'routility-sk-lines');
-    lines.append(bar('80%', 14), bar('60%', 14));
-    about.append(heading(70), panel([bar(180, 260, 'routility-sk-body'), lines]));
-    const badges = el('div', 'section');
+  function tiles(count, size) {
     const row = el('div', 'routility-sk-grid');
-    for (let i = 0; i < 5; i++) row.appendChild(bar(72, 72, 'routility-sk-tile'));
-    badges.append(heading(150), panel([row]));
-    left.append(about, badges);
+    for (let i = 0; i < count; i++) row.appendChild(bar(size, size, 'routility-sk-tile'));
+    return row;
+  }
+
+  function columnsBody() {
+    const grid = el('div', 'routility-columns routility-columns-games');
+    const about = el('div', 'section profile-about');
+    const lines = el('div', 'routility-sk-lines');
+    lines.append(bar('70%', 14), bar('50%', 14));
+    const stats = el('div', 'routility-sk-row');
+    stats.classList.add('routility-sk-stats');
+    stats.append(bar(90, 34), bar(90, 34), bar(90, 34));
+    about.append(heading(70), panel([bar(180, 242, 'routility-sk-body'), lines, stats]));
+    const creations = el('div', 'routility-column-creations');
     const games = el('div', 'section');
-    games.append(heading(130), panel([bar('100%', 120, 'routility-sk-tile')]));
+    games.append(heading(130), panel([bar('100%', 440, 'routility-sk-tile')]));
+    games.lastChild.classList.add('profile-slide-container');
+    creations.appendChild(games);
+    const left = el('div', 'routility-column routility-column-left');
+    const robloxBadges = el('div', 'section');
+    robloxBadges.append(heading(150), panel([tiles(5, 72)]));
+    const badges = el('div', 'section');
+    badges.append(heading(90), panel([tiles(10, 72)]));
+    left.append(robloxBadges, badges);
+    const right = el('div', 'routility-column routility-column-right');
     const friends = el('div', 'section');
     friends.append(heading(110), people(8));
-    right.append(games, friends);
-    grid.append(left, right);
+    const favorites = el('div', 'section');
+    favorites.append(heading(100), panel([tiles(6, 110)]));
+    right.append(friends, favorites);
+    grid.append(about, creations, left, right);
     return grid;
   }
 
