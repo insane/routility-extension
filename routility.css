@@ -9991,6 +9991,20 @@ html.routility-classic-logo #header .navbar-brand .icon-logo {
   background-repeat: no-repeat !important;
 }
 
+:root {
+  --routility-premium-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath fill-rule='evenodd' d='M28 24a4 4 0 0 1-4 4H14v-4h10V4H4v24a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4Zm-7-7v4h-7v-4h3v-6h-6v17H7V7h14z'/%3E%3C/svg%3E");
+}
+
+html.routility-classic-premium :is(.icon-display-name-badge-plus, .routility-name-badges .icon-regular-roblox-plus, .avatar-name-container .icon-regular-roblox-plus, #profile-header-title-container-name ~ * .icon-regular-roblox-plus, :is(.text-truncate-end, .text-no-wrap, .text-overflow) ~ .icon-regular-roblox-plus, span.inline-flex.shrink-0.gap-xxsmall > .icon-regular-roblox-plus),
+.rt-m-premium {
+  --svg: var(--routility-premium-svg);
+}
+
+.rt-m-premium {
+  width: 18px;
+  height: 18px;
+}
+
 .rt-m-classic-logo {
   display: block;
   height: 28px;
