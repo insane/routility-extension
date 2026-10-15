@@ -399,8 +399,25 @@
     early = Object.assign({}, early, patch);
     try { localStorage.setItem(EARLY, JSON.stringify(early)); } catch {}
   };
+  const oldNav = () => {
+    const on = (lastSettings || {}).oldLeftNav === true;
+    root.classList.toggle('routility-old-nav', on);
+    if (!on) return;
+    try {
+      const cache = JSON.parse(localStorage.getItem('new-left-nav') || 'null');
+      if (!cache || !cache.data || typeof cache.data !== 'object') return;
+      let changed = false;
+      for (const id of Object.keys(cache.data)) {
+        if (cache.data[id] === false) continue;
+        cache.data[id] = false;
+        changed = true;
+      }
+      if (changed) localStorage.setItem('new-left-nav', JSON.stringify(cache));
+    } catch {}
+  };
   const boot = (s) => {
     lastSettings = s.routilitySettings || {};
+    oldNav();
     watchRobloxOnly();
     themeOn = !!lastSettings.customTheme;
     themeColors = (s.routilityTheme && s.routilityTheme.colors) || {};
@@ -421,7 +438,7 @@
   });
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area === 'local' && EARLY_KEYS.some(k => changes[k])) remember(Object.fromEntries(EARLY_KEYS.filter(k => changes[k]).map(k => [k, changes[k].newValue])));
-    if (area === 'local' && changes.routilitySettings) { lastSettings = changes.routilitySettings.newValue || {}; apply(changes.routilitySettings.newValue); applyNav(navLayout); applyCollapse(); watchRobloxOnly(); themeOn = !!lastSettings.customTheme; needImage(); applyTheme(); }
+    if (area === 'local' && changes.routilitySettings) { lastSettings = changes.routilitySettings.newValue || {}; oldNav(); apply(changes.routilitySettings.newValue); applyNav(navLayout); applyCollapse(); watchRobloxOnly(); themeOn = !!lastSettings.customTheme; needImage(); applyTheme(); }
     if (area === 'local' && changes.routilityTheme) { const t = changes.routilityTheme.newValue || {}; themeColors = t.colors || {}; themeFx = typeof t.fx === 'string' ? t.fx : ''; themeLook = t; needImage(); applyTheme(); }
     if (area === 'local' && changes.routilityFont) { fontAsked = true; useFont(changes.routilityFont.newValue); }
     if (area === 'local' && changes.routilityThemeImage) { themeImage = IMAGE.test(changes.routilityThemeImage.newValue) ? changes.routilityThemeImage.newValue : ''; imageAsked = true; applyTheme(); }

@@ -1198,6 +1198,24 @@
     return { wait, edit: t => box.text || t };
   }]);
 
+  ROUTES.push(['POST', /^https:\/\/apis\.roblox\.com\/product-experimentation-platform\/v1\/projects\/1\/values/i, (m, req, body) => {
+    if (!document.documentElement.classList.contains('routility-old-nav')) return null;
+    if (!body || !body.layers || !body.layers['Website.Navigation']) return null;
+    return {
+      edit: (text) => {
+        try {
+          const d = JSON.parse(text);
+          const p = d && d.layers && d.layers['Website.Navigation'] && d.layers['Website.Navigation'].parameters;
+          if (!p || p.IsNewLeftNavEnabled !== true) return text;
+          p.IsNewLeftNavEnabled = false;
+          return JSON.stringify(d);
+        } catch {
+          return text;
+        }
+      },
+    };
+  }]);
+
   function pick(method, url) {
     for (const [m, re, fn] of ROUTES) {
       if (m !== method) continue;

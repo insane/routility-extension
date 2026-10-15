@@ -11612,3 +11612,6 @@ body:has(.routility-ug) #game-details-unavailable-container, .routility-ug-nativ
 .routility-log-people { display: flex; flex-direction: column; gap: 6px; padding: 16px 20px; }
 .routility-log-credit a { font-weight: 600; }
 .routility-sk-stats { justify-content: space-around; width: 100%; }
+.routility-oldnav-hidden { display: none !important; }
+.left-col-list .routility-oldnav-icon { display: inline-block; width: 28px; height: 28px; vertical-align: middle; color: var(--color-content-default, #bdbebe); -webkit-mask-size: 26px !important; mask-size: 26px !important; }
+.routility-nav-old-icon > span { display: inline-block; flex-shrink: 0; }

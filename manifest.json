@@ -80,6 +80,7 @@
         "sendrobux.js",
         "account.js",
         "unavailable.js",
+        "oldnav.js",
         "calc.js",
         "tradeads.js",
         "itemcard.js",
