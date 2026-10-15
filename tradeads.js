@@ -122,7 +122,7 @@
   }
 
   function usd(v) {
-    return v > 0 ? formatUSD(v) : '$0';
+    return window.RoUtilityUI.formatCash(v);
   }
 
   function thumbImg(src, size) {
@@ -139,8 +139,10 @@
   }
 
   function shortUsd(v) {
-    if (v >= 1000) return '$' + compact(v);
-    return '$' + (Number.isInteger(v) ? formatNumber(v) : v.toFixed(2));
+    const { symbol } = window.RoUtilityUI.cash();
+    const n = window.RoUtilityUI.toCash(v);
+    if (n >= 1000) return symbol + compact(n);
+    return symbol + (Number.isInteger(n) ? formatNumber(n) : n.toFixed(2));
   }
 
   function priceLabel(x) {
@@ -550,16 +552,17 @@
       const slots = el('div', 'routility-ads-slots');
       const amountRow = el('div', 'routility-ads-amount');
       const unit = el('div', 'routility-ads-unit radius-circle bg-shift-200');
-      const uUsd = el('button', 'routility-ads-unit-btn radius-circle', '$');
+      const money = window.RoUtilityUI.cash();
+      const uUsd = el('button', 'routility-ads-unit-btn radius-circle', money.symbol);
       uUsd.type = 'button';
-      uUsd.setAttribute('aria-label', 'USD');
+      uUsd.setAttribute('aria-label', money.code);
       const uRbx = el('button', 'routility-ads-unit-btn radius-circle');
       uRbx.type = 'button';
       uRbx.setAttribute('aria-label', 'Robux');
       uRbx.appendChild(robuxIcon());
       unit.append(uUsd, uRbx);
-      const amount = finput(lt('USD amount'), { inputmode: 'decimal', max: 12 });
-      const add = fbutton(lt('Add USD'), 'bg-action-standard content-action-standard');
+      const amount = finput(lt('{currency} amount', { currency: money.code }), { inputmode: 'decimal', max: 12 });
+      const add = fbutton(lt('Add {currency}', { currency: money.code }), 'bg-action-standard content-action-standard');
       amountRow.append(unit, amount, add);
       const tags = key === 'look' ? el('div', 'routility-ads-tagpick') : null;
       const search = finput(key === 'off' ? lt('Search your inventory') : lt('Search all limiteds'));
@@ -572,9 +575,9 @@
         st.unit[key] = u;
         uUsd.classList.toggle('routility-ads-unit-on', u === 'usd');
         uRbx.classList.toggle('routility-ads-unit-on', u === 'robux');
-        amount.input.placeholder = u === 'usd' ? lt('USD amount') : lt('Robux amount');
+        amount.input.placeholder = u === 'usd' ? lt('{currency} amount', { currency: money.code }) : lt('Robux amount');
         amount.input.setAttribute('aria-label', amount.input.placeholder);
-        add.label.textContent = u === 'usd' ? lt('Add USD') : lt('Add Robux');
+        add.label.textContent = u === 'usd' ? lt('Add {currency}', { currency: money.code }) : lt('Add Robux');
       };
       uUsd.addEventListener('click', () => setUnit('usd'));
       uRbx.addEventListener('click', () => setUnit('robux'));
@@ -584,7 +587,7 @@
       });
       const addAmount = () => {
         const u = st.unit[key];
-        const v = u === 'usd' ? Math.round(Number(amount.input.value) * 100) / 100 : Math.floor(Number(amount.input.value));
+        const v = u === 'usd' ? Math.round(window.RoUtilityUI.fromCash(Number(amount.input.value)) * 100) / 100 : Math.floor(Number(amount.input.value));
         if (!(v > 0)) return;
         if (u === 'usd' && st.user && !st.user.discord) return hint(lt('Link your Discord on routility.io to add USD to an ad.'), true);
         const list = st[key];

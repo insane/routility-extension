@@ -123,15 +123,86 @@
   const WHOLE = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
   const CENTS = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
+  const FIAT = {
+    USD: ['$', LT('US Dollar')], EUR: ['€', LT('Euro')], GBP: ['£', LT('British Pound')], CAD: ['C$', LT('Canadian Dollar')],
+    AUD: ['A$', LT('Australian Dollar')], JPY: ['¥', LT('Japanese Yen')], CNY: ['¥', LT('Chinese Yuan')], KRW: ['₩', LT('Korean Won')],
+    INR: ['₹', LT('Indian Rupee')], BRL: ['R$', LT('Brazilian Real')], MXN: ['MX$', LT('Mexican Peso')], TRY: ['₺', LT('Turkish Lira')],
+  };
+  const FIAT_WHOLE = new Set(['JPY', 'KRW']);
+  const FIAT_STALE = 12 * 3600e3;
+  let fiat = { code: 'USD', symbol: '$', rate: 1, rates: null };
+  let fiatAsked = false;
+
+  function setFiat(s, store) {
+    const rates = (store && store.rates) || null;
+    const want = s && FIAT[s.currency] ? s.currency : 'USD';
+    const rate = want === 'USD' ? 1 : Number(rates && rates[want]);
+    const code = rate > 0 ? want : 'USD';
+    fiat = { code, symbol: FIAT[code][0], rate: rate > 0 ? rate : 1, rates };
+    const stale = !store || !(Date.now() - Number(store.ts) < FIAT_STALE);
+    const need = want !== 'USD' || (s && s.calcRobux === 'custom' && s.calcRateCurrency && s.calcRateCurrency !== 'USD');
+    if (need && stale && !fiatAsked) {
+      fiatAsked = true;
+      try { chrome.runtime.sendMessage({ type: 'fiatRates' }, () => void chrome.runtime.lastError); } catch {}
+    }
+  }
+
+  try {
+    const early = JSON.parse(localStorage.getItem('routilityEarly')) || {};
+    setFiat(early.routilitySettings, early.routilityFiatRates);
+  } catch {}
+  let fiatSettings = null;
+  let fiatStore = null;
+  chrome.storage.local.get(['routilitySettings', 'routilityFiatRates'], (st) => {
+    fiatSettings = st.routilitySettings || {};
+    fiatStore = st.routilityFiatRates || null;
+    setFiat(fiatSettings, fiatStore);
+  });
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== 'local' || !(changes.routilitySettings || changes.routilityFiatRates)) return;
+    if (changes.routilitySettings) fiatSettings = changes.routilitySettings.newValue || {};
+    if (changes.routilityFiatRates) fiatStore = changes.routilityFiatRates.newValue || null;
+    setFiat(fiatSettings, fiatStore);
+  });
+
+  function fxOf(code) {
+    if (!code || code === 'USD') return 1;
+    return Number(fiat.rates && fiat.rates[code]) || 0;
+  }
+
   function robuxRate(s) {
     const custom = Number(s && s.calcRate);
-    return s && s.calcRobux === 'custom' && custom > 0 ? custom / 1000 : 0.0038;
+    if (!(s && s.calcRobux === 'custom' && custom > 0)) return 0.0038;
+    const fx = fxOf(s.calcRateCurrency);
+    return custom / (fx > 0 ? fx : 1) / 1000;
+  }
+
+  function cash() {
+    return { code: fiat.code, symbol: fiat.symbol, rate: fiat.rate, name: lt(FIAT[fiat.code][1]) };
+  }
+
+  function toCash(usd) {
+    return Number(usd) * fiat.rate;
+  }
+
+  function fromCash(amount) {
+    return Number(amount) / fiat.rate;
   }
 
   function formatUSD(value) {
-    const n = Number(value);
+    const n = Number(value) * fiat.rate;
     if (!Number.isFinite(n) || n <= 0) return 'N/A';
-    return '$' + (n < 100 ? CENTS : WHOLE).format(n);
+    return fiat.symbol + (n < 100 && !FIAT_WHOLE.has(fiat.code) ? CENTS : WHOLE).format(n);
+  }
+
+  function formatCash(value) {
+    return Number(value) > 0 ? formatUSD(value) : fiat.symbol + '0';
+  }
+
+  function shortUSD(value) {
+    const n = Number(value) * fiat.rate;
+    if (!(n > 0)) return fiat.symbol + '0';
+    return n >= 1000 ? fiat.symbol + compactCash(n) : formatUSD(value);
   }
 
   let tipEl = null;
@@ -561,9 +632,9 @@
     art.alt = '';
     art.src = chrome.runtime.getURL(`icons/calc/cash-${robux ? 'robux' : 'usd'}.webp`);
     const label = el('span', 'routility-calc-cash-amt');
-    const exact = robux ? formatNumber(amount) : (amount > 0 ? formatUSD(amount) : '$0');
+    const exact = robux ? formatNumber(amount) : formatCash(amount);
     if (robux) label.append(el('span', 'icon-robux-16x16 routility-calc-cash-robux-icon'), el('span', null, amount >= 100000 ? compactCash(amount) : exact));
-    else label.textContent = amount >= 100000 ? '$' + compactCash(amount) : exact;
+    else label.textContent = toCash(amount) >= 100000 ? fiat.symbol + compactCash(toCash(amount)) : exact;
     box.dataset.rtTip = robux ? 'R$ ' + exact : exact;
     box.append(art, label);
     return box;
@@ -847,7 +918,7 @@
     }).observe(document.body, { childList: true });
   }
 
-  window.RoUtilityUI = { rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
+  window.RoUtilityUI = { rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
 })();
 
 (function () {

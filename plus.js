@@ -149,10 +149,10 @@
     const usd = robux * rate;
     const paid = paidSoFar(sub);
     const custom = settings.calcRobux === 'custom' && Number(settings.calcRate) > 0;
-    let tip = custom ? lt('{robux} Robux at your rate (${rate}/1k)', { robux: formatNumber(robux), rate: Number(settings.calcRate) }) : lt('{robux} Robux at the DevEx rate', { robux: formatNumber(robux) });
+    let tip = custom ? lt('{robux} Robux at your rate ({rate}/1k)', { robux: formatNumber(robux), rate: formatUSD(rate * 1000) }) : lt('{robux} Robux at the DevEx rate', { robux: formatNumber(robux) });
     if (paid && paid.currency === 'USD' && usd > paid.amount) tip += ' · ' + lt('About {x}× what Plus has cost you', { x: formatNumber(Math.floor(usd / paid.amount)) });
     const row = el('div', 'gap-x-small flex routility-injected routility-plus-money');
-    row.appendChild(statCard(lt('Saved, in dollars'), usd > 0 ? '≈ ' + formatUSD(usd) : '$0', tip));
+    row.appendChild(statCard(lt('Saved, in {currency}', { currency: window.RoUtilityUI.cash().code }), usd > 0 ? '≈ ' + formatUSD(usd) : window.RoUtilityUI.formatCash(0), tip));
     if (paid) {
       const shown = money({ units: Math.floor(paid.amount), nanos: Math.round((paid.amount % 1) * 1e9), currencyCode: paid.currency });
       row.appendChild(statCard(lt('Paid for Plus so far'), '≈ ' + shown, ltn(paid.periods, '{n} payment of {price}', '{n} payments of {price}', { n: paid.periods, price: money(sub.displayPrice || sub.productInfo?.localizedPrice) })));

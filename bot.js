@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, onFrame, formatUSD, formatNumber } = window.RoUtilityUI;
+  const { el, onFrame, formatUSD, shortUSD, formatNumber } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const KEY = 'routilityBot';
   const NAME = 'RoUtility';
@@ -25,9 +25,7 @@
   }
 
   function robuxRate() {
-    const custom = Number(settings.calcRate);
-    if (settings.calcRobux === 'custom' && custom > 0) return custom / 1000;
-    return 0.0038;
+    return window.RoUtilityUI.robuxRate(settings);
   }
 
   async function loadItems() {
@@ -693,7 +691,7 @@
       for (const i of picks) {
         const b = el('button', 'routility-bot-suggest-item');
         b.type = 'button';
-        b.append(thumb(i, 20), el('span', 'text-caption-medium content-emphasis text-truncate-end', i.name), el('span', 'text-caption-small content-muted', i.usd ? (i.usd >= 1e6 ? '$' + short(i.usd) : formatUSD(i.usd)) : ''));
+        b.append(thumb(i, 20), el('span', 'text-caption-medium content-emphasis text-truncate-end', i.name), el('span', 'text-caption-small content-muted', i.usd ? shortUSD(i.usd) : ''));
         b.addEventListener('mousedown', (e) => { e.preventDefault(); accept(i); });
         sug.appendChild(b);
       }
@@ -818,7 +816,7 @@
       top.append(thumb(i, 40), names);
       const stats = el('div', 'routility-bot-stats');
       const stat = (label, value) => { const s = el('div', 'routility-bot-stat'); s.append(el('span', 'text-caption-small content-muted', label), el('span', 'text-label-medium content-emphasis', value)); return s; };
-      stats.append(stat(lt('Price'), i.usd ? (i.usd >= 1e6 ? '$' + short(i.usd) : formatUSD(i.usd)) : '—'), ...(window.RoUtilityUI.shows('Bot').value && Number(i.value) > 0 ? [stat(lt('Value'), 'R$ ' + (i.value >= 1e5 ? short(i.value) : formatNumber(i.value)))] : []), stat('RAP', i.rap ? 'R$ ' + (i.rap >= 1e5 ? short(i.rap) : formatNumber(i.rap)) : '—'));
+      stats.append(stat(lt('Price'), i.usd ? shortUSD(i.usd) : '—'), ...(window.RoUtilityUI.shows('Bot').value && Number(i.value) > 0 ? [stat(lt('Value'), 'R$ ' + (i.value >= 1e5 ? short(i.value) : formatNumber(i.value)))] : []), stat('RAP', i.rap ? 'R$ ' + (i.rap >= 1e5 ? short(i.rap) : formatNumber(i.rap)) : '—'));
       a.append(top, stats);
       if (i.usd) a.appendChild(spark(i.id));
       return a;
@@ -838,7 +836,7 @@
       if (c.known && !c.hidden) {
         const stats = el('div', 'routility-bot-stats routility-bot-stats-3');
         const stat = (label, value) => { const s = el('div', 'routility-bot-stat'); s.append(el('span', 'text-caption-small content-muted', label), el('span', 'text-label-medium content-emphasis', value)); return s; };
-        stats.append(stat(lt('Price'), c.usd >= 1e5 ? '$' + short(c.usd) : '$' + formatNumber(Math.round(c.usd))), stat('RAP', 'R$ ' + (c.rap >= 1e4 ? short(c.rap) : formatNumber(c.rap))), stat(lt('Limiteds'), formatNumber(c.count)));
+        stats.append(stat(lt('Price'), shortUSD(c.usd)), stat('RAP', 'R$ ' + (c.rap >= 1e4 ? short(c.rap) : formatNumber(c.rap))), stat(lt('Limiteds'), formatNumber(c.count)));
         a.appendChild(stats);
       }
       return a;
@@ -849,7 +847,7 @@
         const row = el('a', 'routility-bot-rank');
         row.href = `/catalog/${i.id}`;
         const name = el('span', 'routility-bot-rank-name');
-        name.append(el('span', 'text-label-medium content-emphasis text-truncate-end', i.name), el('span', 'text-caption-small content-muted', i.usd ? (i.usd >= 1e6 ? '$' + short(i.usd) : formatUSD(i.usd)) : 'R$ ' + formatNumber(i.rap)));
+        name.append(el('span', 'text-label-medium content-emphasis text-truncate-end', i.name), el('span', 'text-caption-small content-muted', i.usd ? shortUSD(i.usd) : 'R$ ' + formatNumber(i.rap)));
         row.append(el('span', 'text-caption-medium content-muted routility-bot-rank-n', String(n + 1)), thumb(i, 30), name);
         box.appendChild(row);
       });

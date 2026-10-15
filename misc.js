@@ -10,9 +10,8 @@
   const ROBUX_TEXT = '.text-robux, .text-robux-lg, .text-robux-tile, .text-robux-sm';
 
   function robuxRate() {
-    const custom = Number(settings.calcRate);
-    if (settings.calcRobux === 'custom' && custom > 0) return { rate: custom / 1000, custom };
-    return { rate: 0.0038, custom: 0 };
+    const rate = window.RoUtilityUI.robuxRate(settings);
+    return { rate, custom: settings.calcRobux === 'custom' && Number(settings.calcRate) > 0 };
   }
 
   function robuxTip(e) {
@@ -37,7 +36,7 @@
     if (!(robux > 0)) return;
     const { rate, custom } = robuxRate();
     const usd = window.RoUtilityUI.formatUSD(robux * rate);
-    node.dataset.rtTip = custom ? lt('≈ {usd} at your rate (${rate}/1k)', { usd, rate: custom }) : lt('≈ {usd} at the DevEx rate', { usd });
+    node.dataset.rtTip = custom ? lt('≈ {usd} at your rate ({rate}/1k)', { usd, rate: window.RoUtilityUI.formatUSD(rate * 1000) }) : lt('≈ {usd} at the DevEx rate', { usd });
     node.dataset.routilityRobux = text;
   }
 

@@ -1,11 +1,10 @@
 (function () {
   'use strict';
 
-  const { el, pageTitle, formatUSD, formatNumber, request, itemValue, valueTag, shows } = window.RoUtilityUI;
+  const { el, pageTitle, formatUSD, formatCash, cash, fromCash, formatNumber, request, itemValue, valueTag, shows } = window.RoUtilityUI;
   const showing = shows('Calc');
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const PATH = /^\/trades\/calculator\/?$/i;
-  const RATE = 0.0038;
   const PER_PAGE = 30;
   const MAX_SLOTS = 12;
   const LOGO = chrome.runtime.getURL('icons/logo.png');
@@ -88,7 +87,7 @@
   }
 
   function usdText(v) {
-    return v > 0 ? formatUSD(v) : '$0';
+    return formatCash(v);
   }
 
   function entryUsd(e) {
@@ -229,13 +228,13 @@
   }
 
   function currencyRow(side, kind) {
-    const lead = kind === 'robux' ? el('span', 'icon-robux-16x16') : el('span', 'text-label-medium content-system-success routility-calc-dollar', '$');
-    const field = finput(kind === 'robux' ? lt('Add Robux') : lt('Add USD'), { lead, inputmode: 'decimal' });
+    const lead = kind === 'robux' ? el('span', 'icon-robux-16x16') : el('span', 'text-label-medium content-system-success routility-calc-dollar', cash().symbol);
+    const field = finput(kind === 'robux' ? lt('Add Robux') : lt('Add {currency}', { currency: cash().code }), { lead, inputmode: 'decimal' });
     const row = el('div', 'flex items-center gap-small routility-calc-currency');
     const add = fbutton(lt('Add'), 'bg-action-standard content-action-standard', null, 'shrink-0');
     const go = () => {
-      const raw = field.input.value.replace(/[$,\s]/g, '');
-      const n = kind === 'robux' ? Math.floor(Number(raw)) : Math.round(Number(raw) * 100) / 100;
+      const raw = field.input.value.replace(/[^\d.]/g, '');
+      const n = kind === 'robux' ? Math.floor(Number(raw)) : Math.round(fromCash(Number(raw)) * 10000) / 10000;
       if (!(n > 0)) {
         if (!field.input.value.trim()) return;
         field.classList.add('stroke-system-alert', 'routility-calc-invalid');
@@ -326,8 +325,7 @@
 
   function robuxRate() {
     if (settings.calcRobuxRap === false || (settings.calcRobuxRap === undefined && settings.calcRobux === 'none')) return 0;
-    const custom = Number(settings.calcRate);
-    return settings.calcRobux === 'custom' && custom > 0 ? custom / 1000 : RATE;
+    return window.RoUtilityUI.robuxRate(settings);
   }
 
   function byRap() {
@@ -337,7 +335,7 @@
   function verdictFor(give, get) {
     if (!give.count || !get.count) return { text: lt('Add items to both sides'), tone: 'content-muted' };
     const d = byRap() ? get.rap - give.rap : get.usd - give.usd;
-    const unit = byRap() ? 'RAP' : 'USD';
+    const unit = byRap() ? 'RAP' : cash().code;
     if (Math.abs(d) < (byRap() ? 0.5 : 0.005)) return { text: lt('Even trade'), tone: 'content-emphasis' };
     return d > 0 ? { text: lt('You gain {unit}', { unit }), tone: 'content-system-success' } : { text: lt('You lose {unit}', { unit }), tone: 'content-system-alert' };
   }
@@ -468,7 +466,7 @@
 
   function summaryText() {
     const line = (side) => {
-      const list = filled(side).map(e => (e.kind === 'item' ? `${e.name}${e.serial ? ' #' + e.serial : ''} (${usdText(e.usd)})` : e.kind === 'robux' ? lt('{amount} Robux', { amount: formatNumber(e.amount) }) : `${usdText(e.amount)} USD`));
+      const list = filled(side).map(e => (e.kind === 'item' ? `${e.name}${e.serial ? ' #' + e.serial : ''} (${usdText(e.usd)})` : e.kind === 'robux' ? lt('{amount} Robux', { amount: formatNumber(e.amount) }) : `${usdText(e.amount)} ${cash().code}`));
       return lt('{side}: {items}', { side: lt(SIDES[side]), items: list.length ? list.join(', ') : lt('nothing') });
     };
     const give = totals('give');
@@ -1194,7 +1192,7 @@
           robux(tx + 27, ty + 18, 18, T.text);
           type(formatNumber(e.amount), tx + 36, ty + 54, 9, T.text, 700, 'center');
         } else {
-          type('$', tx + 36, ty + 32, 16, T.green, 800, 'center');
+          type(cash().symbol, tx + 36, ty + 32, 16, T.green, 800, 'center');
           type(usdText(e.amount), tx + 36, ty + 48, 9, T.green, 700, 'center');
         }
       }

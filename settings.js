@@ -5,7 +5,7 @@
   const { lt, ltn, LT } = window.RoUtilityI18n;
   let langReady = false;
 
-  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, classicLayout: 'tabs', hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, sessionIps: true, backupCodeDate: true, voiceStatus: true, groupCreated: true, groupCount: true, gameAvatarType: true, createSafety: true, gameUnavailable: true, oldLeftNav: false, calcRate: '3.80', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, itemExplorer: true, gearFix: true, avatarPreview: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, badgeSizeFix: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, classicPremium: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true, friendsSince: true, fakeRequests: false, fakeRequestsAdd: 'amount', fakeRequestsAmount: '500', sendRobux: true };
+  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, classicLayout: 'tabs', hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, sessionIps: true, backupCodeDate: true, voiceStatus: true, groupCreated: true, groupCount: true, gameAvatarType: true, createSafety: true, gameUnavailable: true, oldLeftNav: false, calcRate: '3.80', currency: 'USD', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, itemExplorer: true, gearFix: true, avatarPreview: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, badgeSizeFix: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, classicPremium: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true, friendsSince: true, fakeRequests: false, fakeRequestsAdd: 'amount', fakeRequestsAmount: '500', sendRobux: true };
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
 
   const TABS = [
@@ -338,8 +338,30 @@
     [A.v3000]: { usd: 32.2, rap: 13417 },
   };
 
+  const FIAT_SYMBOLS = { USD: '$', EUR: '€', GBP: '£', CAD: 'C$', AUD: 'A$', JPY: '¥', CNY: '¥', KRW: '₩', INR: '₹', BRL: 'R$', MXN: 'MX$', TRY: '₺' };
+  const fiat = { settings: null, rates: null };
+  try {
+    const early = JSON.parse(localStorage.getItem('routilityEarly')) || {};
+    fiat.settings = early.routilitySettings || null;
+    fiat.rates = (early.routilityFiatRates || {}).rates || null;
+  } catch {}
+
+  function fxOf(code) {
+    return !code || code === 'USD' ? 1 : Number(fiat.rates && fiat.rates[code]) || 0;
+  }
+
+  function cashNow() {
+    const want = fiat.settings && FIAT_SYMBOLS[fiat.settings.currency] ? fiat.settings.currency : 'USD';
+    const rate = fxOf(want);
+    return rate > 0 ? { code: want, symbol: FIAT_SYMBOLS[want], rate } : { code: 'USD', symbol: '$', rate: 1 };
+  }
+
   function money(v) {
-    return '$' + Number(v).toLocaleString('en-US', v < 100 ? { minimumFractionDigits: 2, maximumFractionDigits: 2 } : { maximumFractionDigits: 0 });
+    const c = cashNow();
+    const n = Number(v) * c.rate;
+    if (!(n > 0)) return c.symbol + '0';
+    const cents = n < 100 && c.code !== 'JPY' && c.code !== 'KRW';
+    return c.symbol + n.toLocaleString('en-US', cents ? { minimumFractionDigits: 2, maximumFractionDigits: 2 } : { maximumFractionDigits: 0 });
   }
 
   const sumOf = (ids, field, data) => ids.split(',').reduce((n, id) => n + ((data[id] || KNOWN[id] || {})[field] || 0), 0);
@@ -347,7 +369,7 @@
     const stat = {
       joined: () => h('div', null, [h('b', null, lt('Joined:') + ' '), '06 May 2022']),
       posts: () => h('div', null, [h('b', null, lt('Total Posts:') + ' '), '1,284']),
-      value: () => h('span', 'rt-m-poster-pill rt-m-poster-usd', [logoImg(), '$12,400']),
+      value: () => h('span', 'rt-m-poster-pill rt-m-poster-usd', [logoImg(), money(12400)]),
       rap: () => h('span', 'rt-m-poster-pill rt-m-poster-rap', [el('span', 'icon-robux-16x16 rt-m-robux'), '30,749,100']),
       group: () => h('div', 'rt-m-poster-link', 'Limited Traders'),
     }[focus]();
@@ -402,7 +424,7 @@
     itemPrices: () => r([thumb(A.fedora, 46), c([strong('Sparkle Time Fedora'), r([liveRap(A.fedora), liveUsd(A.fedora)]), r([pill(lt('High demand'), 'up'), pill(lt('Raising'))])])]),
     marketplaceValues: () => g([A.empyreus, A.fedora, A.valk].map(id => cell([thumb(id, 36), liveUsd(id, 'rt-m-tiny')])), 3, 'rt-m-full'),
     usdChart: () => {
-      const box = c([r([pill('Robux'), pill('USD', 'active')])]);
+      const box = c([r([pill('Robux'), pill(cashNow().code, 'active')])]);
       const chart = h('span', 'rt-m-chart');
       chart.innerHTML = '<svg viewBox="0 0 180 34" preserveAspectRatio="none"><path d="M0 28 L20 24 L40 26 L60 18 L80 20 L100 12 L120 15 L140 8 L160 10 L180 4" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
       box.appendChild(chart);
@@ -428,7 +450,7 @@
     quickSettings: () => c([muted(lt('Quick Settings')), r([h('span', 'rt-m-tiny rt-m-strong', lt('Joins')), pill(lt('Friends'), 'active')], 'rt-m-spread'), r([h('span', 'rt-m-tiny rt-m-strong', lt('Online Status')), pill(lt('No One'))], 'rt-m-spread')], 'rt-m-w190 rt-m-gap2'),
     contextCopy: () => c([h('span', 'rt-m-pill', lt('Open link in new tab')), r([h('img', 'rt-m-logo-sm', null, { width: '14px', height: '14px' }), strong(lt('Copy User ID'))]), h('span', 'rt-m-tiny rt-m-muted', lt('Copied User ID {id}', { id: 156 }))], 'rt-m-w190 rt-m-gap2'),
     menuLink: () => h('div', 'rt-m-card', [strong(lt('Settings')), h('span', 'rt-m-strong rt-m-hl', 'RoUtility'), muted(lt('Quick Sign In')), muted(lt('Help & Safety'))]),
-    streamerMode: () => r([rb('122,369', 'rt-m-big rt-m-blur'), h('span', 'rt-m-big rt-m-blur', '$38.54')]),
+    streamerMode: () => r([rb('122,369', 'rt-m-big rt-m-blur'), h('span', 'rt-m-big rt-m-blur', money(38.54))]),
     exactPrices: () => r([thumb(A.empyreus, 40), c([h('span', 'rt-m-strike', '13M+'), r([h('span', 'rt-m-arrow', '\u2192'), rb('13,577,229', 'rt-m-strong')])])]),
     placeVisits: () => r([c([muted(lt('Followers')), strong('16,734,201')]), c([muted(lt('Place Visits')), strong('2,481,930,117')])], 'rt-m-spread rt-m-w190'),
     stopTrailers: () => c([game(G.adoptMe, 40, [h('span', 'rt-m-playbtn')], 'rt-m-video'), muted(lt('Paused until you press play'))], 'rt-m-center'),
@@ -440,7 +462,7 @@
     itemTags: () => r([thumb(A.fedora, 40), c([strong('Sparkle Time Fedora'), r([h('span', 'rt-m-pill rt-m-down', lt('Projected')), pill(lt('Rare'))])])]),
     calcLinks: () => c([r([muted(lt('Trade')), h('span', 'rt-m-strong rt-m-blue-text', lt('Value it in the Trade Calculator'))], 'rt-m-spread')], 'rt-m-w190'),
     tradeItemCard: () => { const box = h('div', 'rt-m-card', [r([thumb(A.valk, 22), c([strong('Valkyrie Helm'), liveUsd(A.valk, 'rt-m-tiny')])]), h('span', 'rt-m-chart rt-m-chart-sm')]); box.querySelector('.rt-m-chart').innerHTML = '<svg viewBox="0 0 180 34" preserveAspectRatio="none"><path d="M0 26 L30 24 L60 27 L90 18 L120 20 L150 10 L180 8" fill="none" stroke="currentColor" stroke-width="2"/></svg>'; return box; },
-    tradePreview: () => h('div', 'rt-m-card', [r([c([muted(lt('You give')), r([thumb(A.valk, 22), thumb(A.v3000, 22)]), strong('$896')]), c([muted(lt('You receive')), r([thumb(A.stv, 22)]), strong('$25,000')])], 'rt-m-spread')]),
+    tradePreview: () => h('div', 'rt-m-card', [r([c([muted(lt('You give')), r([thumb(A.valk, 22), thumb(A.v3000, 22)]), strong(money(896))]), c([muted(lt('You receive')), r([thumb(A.stv, 22)]), strong(money(25000))])], 'rt-m-spread')]),
     tradeSendSummary: () => c([r([h('div', 'rt-m-send-side', [muted(lt('You give')), liveUsd(A.stv, 'rt-m-tiny')]), h('div', 'rt-m-send-side', [muted(lt('You receive')), liveUsd(A.v3000, 'rt-m-tiny')])]), h('div', 'rt-m-alert', [h('span', 'rt-m-alert-dot'), lt('You’re giving more')]), r([h('span', 'rt-m-check'), h('span', 'rt-m-tiny rt-m-strong', lt('I’ve reviewed this trade'))])], 'rt-m-w190 rt-m-gap2'),
     tradeWarning: () => h('div', 'rt-m-alert', [h('span', 'rt-m-alert-dot'), lt('You’re giving {pct} more value', { pct: '45%' })]),
     tradeFilter: () => c([field('dominus', true), r([face(U.linkmon, 20), strong('Linkmon99'), muted('• ' + ltn(2, '{n} day ago', '{n} days ago'))]), muted(ltn(3, '{n} trade with "{query}"', '{n} trades with "{query}"', { query: 'dominus' }))], 'rt-m-w190'),
@@ -460,11 +482,11 @@
     groupFullDesc: () => c([h('span', 'rt-m-line', null, { width: '150px' }), h('span', 'rt-m-line', null, { width: '130px' }), h('span', 'rt-m-line', null, { width: '160px' }), h('span', 'rt-m-line', null, { width: '90px' })]),
     classicFaceThumbs: () => r([thumb('494291269', 56), c([strong('Super Super Happy Face'), muted(lt('Face, like it used to look'))])]),
     itemSize: () => r([muted(lt('Size')), strong(lt('{size} studs', { size: '1.6 × 0.6 × 1.6' }))], 'rt-m-spread rt-m-w190'),
-    itemUsd: () => r([rb('254,169'), usd('$864', 'rt-m-strong')]),
+    itemUsd: () => r([rb('254,169'), usd(money(864), 'rt-m-strong')]),
     itemDemand: () => r([muted(lt('Demand')), strong(lt('High'))], 'rt-m-spread rt-m-w190'),
     itemTrend: () => r([muted(lt('Trend')), strong(lt('Raising'))], 'rt-m-spread rt-m-w190'),
     itemCopies: () => r([muted(lt('Copies')), strong('10,647')], 'rt-m-spread rt-m-w190'),
-    itemChange: () => r([muted(lt('Price Change')), h('span', 'rt-m-green', '+$120 (8%)')], 'rt-m-spread rt-m-w190'),
+    itemChange: () => r([muted(lt('Price Change')), h('span', 'rt-m-green', '+' + money(120) + ' (8%)')], 'rt-m-spread rt-m-w190'),
     itemOwnedRow: () => r([muted(lt('You own')), strong(ltn(2, '{n} copy • {serials}', '{n} copies • {serials}', { serials: '#48, #1,204' }))], 'rt-m-spread rt-m-w190'),
     lastOnSale: () => r([muted(lt('Last On Sale')), h('span', null, [strong(lt('{date} for', { date: 'Jun 05, 2024' }) + ' '), rb('250')])], 'rt-m-spread rt-m-w190'),
     itemAcquired: () => c([r([muted(lt('Created')), strong('Jan 3, 2013')], 'rt-m-spread'), r([muted(lt('Acquired')), h('span', null, [strong('Oct 1, 2026'), muted(' · ' + ltn(9, '{n} day ago', '{n} days ago'))])], 'rt-m-spread')], 'rt-m-w190'),
@@ -551,7 +573,7 @@
     createScanner: () => c([r([strong(lt('Scripts')), h('span', 'rt-m-pill rt-m-down', lt('{n} High Risk', { n: 1 }))]), r([muted('require(4815162342)'), pill(lt('Line {n}', { n: 12 }))])]),
     createIds: () => c([r([muted(lt('Universe ID')), strong('10032450273'), pill(lt('Copy'))]), r([muted(lt('Place ID')), strong('9539954854'), pill(lt('Copy'))])]),
     createDevItems: () => r([strong('78680392428952'), pill(lt('Copy')), pill(lt('Download'))]),
-    createUsd: () => r([rb('5,000', 'rt-m-strong'), muted('\u2248 $19.00')]),
+    createUsd: () => r([rb('5,000', 'rt-m-strong'), muted('\u2248 ' + money(19))]),
     friendFilters: () => c([r([pill(lt('All')), pill(lt('Trusted')), pill(lt('Verified'))]), r([pill('Roblox Plus', 'active'), pill(lt('Admin')), pill(lt('Online'))])]),
     requestFilters: () => c([r([strong(lt('Requests')), pill(lt('Filter ({n})', { n: 2 }), 'active')]), r([pill(lt('Verified: Only')), pill(lt('Mutual Friends: {n}+', { n: 1 }))])]),
     adminBadge: () => r([face(U.builderman, 28), strong('Builderman'), verified(), h('span', 'icon icon-filled-tilt rt-m-admin')]),
@@ -568,7 +590,7 @@
     forumTopLink: () => r([muted(lt('Charts')), muted(lt('Marketplace')), muted(lt('Create')), h('span', 'rt-m-strong rt-m-hl', lt('Forum'))]),
     forumNav: () => h('div', 'rt-m-card', [muted(lt('Communities')), h('span', 'rt-m-strong rt-m-hl', lt('Forum')), muted(lt('Newsroom'))]),
     calcRemember: () => r([pill(lt('Last trade'), 'active'), thumb(A.valk, 26), h('span', 'rt-m-arrow', '⇄'), thumb(A.stv, 26)]),
-    calcPercents: () => r([h('span', 'rt-m-strong rt-m-green', '+$24,104'), pill('+2,690%', 'up')]),
+    calcPercents: () => r([h('span', 'rt-m-strong rt-m-green', '+' + money(24104)), pill('+2,690%', 'up')]),
     calcEven: () => c([muted(lt('Add to even it out')), r([thumb(A.v3000, 26, [h('span', 'rt-m-badge', '+')]), thumb(A.valk, 26, [h('span', 'rt-m-badge', '+')]), tile(26, null, 'rt-m-ghost')])]),
     exactCounts: () => c([muted(lt('Followers')), r([h('span', 'rt-m-strike', '16.7M'), h('span', 'rt-m-arrow', '→'), h('span', 'rt-m-strong rt-m-big', '16,734,201')])]),
     mutualGroups: () => c([r([muted(ltn(168, '{n} Friend', '{n} Friends')), muted(lt('{n} Following', { n: 42 }))]), h('span', 'rt-m-chip', [h('span', 'rt-m-stack', [communityIcon(GR.roblox, 16), communityIcon(GR.interns, 16), communityIcon(GR.videoStars, 16)]), ltn(3, '{n} Mutual community', '{n} Mutual communities')])]),
@@ -596,11 +618,11 @@
     classicPremium: () => r([strong('Linkmon99'), h('span', 'icon rt-m-premium')]),
     classicNames: () => r([strong(lt('Games')), strong(lt('Catalog')), strong(lt('Develop')), strong(lt('Groups'))], 'rt-m-spread'),
     navVerified: () => r([face(U.roblox, 24), strong('Roblox'), verified()]),
-    robuxUsd: () => r([rb('400', 'rt-m-big'), h('span', 'rt-m-tip', '≈ $1.52')]),
-    txUsd: () => c([r([muted(lt('Purchases')), rb('8,000'), muted('≈ $30.40')], 'rt-m-spread'), r([strong(lt('Net')), rb('+1,250'), muted('≈ $4.75')], 'rt-m-spread')], 'rt-m-w190'),
+    robuxUsd: () => r([rb('400', 'rt-m-big'), h('span', 'rt-m-tip', '≈ ' + money(1.52))]),
+    txUsd: () => c([r([muted(lt('Purchases')), rb('8,000'), muted('≈ ' + money(30.40))], 'rt-m-spread'), r([strong(lt('Net')), rb('+1,250'), muted('≈ ' + money(4.75))], 'rt-m-spread')], 'rt-m-w190'),
     txFilters: () => r([pill(lt('Item: {name}', { name: 'Dominus' })), pill(lt('Pending')), pill(lt('Apply'), 'active')]),
     txExport: () => r([pill(lt('Export CSV')), muted(ltn(1240, '{n} row exported', '{n} rows exported', { n: '1,240' }))]),
-    streamerRobux: () => r([rb('122,369', 'rt-m-blur'), h('span', 'rt-m-blur', '$38.54')]),
+    streamerRobux: () => r([rb('122,369', 'rt-m-blur'), h('span', 'rt-m-blur', money(38.54))]),
     streamerAccount: () => c([muted(lt('Email')), h('span', 'rt-m-strong rt-m-blur', 'name@example.com')]),
     streamerPayment: () => c([muted(lt('Saved Payment Method')), h('span', 'rt-m-strong rt-m-blur', 'Visa •••• 4242  Exp 08/29')]),
     streamerName: () => r([face(U.roblox, 22), h('span', 'rt-m-strong rt-m-blur', 'masonbuilds')]),
@@ -921,6 +943,7 @@
           { key: 'exactRobux', title: LT('Exact Robux Balance'), desc: LT('Your full Robux balance in the top bar, like 122,369 instead of 122K+.') },
           { key: 'exactPrices', title: LT('Exact Robux Prices'), desc: LT('Full prices on inventory items, like 3,333,333 instead of 3M+.') },
           { key: 'robuxUsd', title: LT('Robux in Dollars'), desc: LT('Hover a Robux price, like a game pass or a catalog item, to see about what it’s worth in USD. Uses your Robux rate.') },
+          { key: 'currency', title: LT('Currency'), desc: LT('Show every price and dollar amount RoUtility adds in this currency, like on routility.io. Prices are still in USD underneath and convert at today’s exchange rate.'), options: [['USD', LT('US Dollar')], ['EUR', LT('Euro')], ['GBP', LT('British Pound')], ['CAD', LT('Canadian Dollar')], ['AUD', LT('Australian Dollar')], ['JPY', LT('Japanese Yen')], ['CNY', LT('Chinese Yuan')], ['KRW', LT('Korean Won')], ['INR', LT('Indian Rupee')], ['BRL', LT('Brazilian Real')], ['MXN', LT('Mexican Peso')], ['TRY', LT('Turkish Lira')]] },
           { key: 'calcRobux', title: LT('Your Robux Rate'), desc: LT('What 1,000 Robux are worth to you everywhere RoUtility turns Robux into dollars: price hovers, Transactions, Community Funds, the Creator Hub, trades and the Trade Calculator. Use the DevEx rate ($3.80 per 1,000) or your own, like the rate you sell Robux at.'), options: [['devex', LT('DevEx rate')], ['custom', LT('Custom rate')]], rateInput: 'custom' },
           { key: 'transferLimits', title: LT('Transfer Limits Left'), desc: LT('On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.') },
           { key: 'sendRobux', title: LT('Send Robux in the Browser'), desc: LT('Send Robux to a friend from their profile, or from the friends list on the Buy Robux page, without opening the Roblox app. Pick an amount, check who it’s going to, then send. Roblox still decides who you can send to and how much.') },
@@ -1188,29 +1211,37 @@
 
   function rateField(settings, save) {
     const field = el('label', 'foundation-web-input flex items-center relative clip stroke-standard bg-none height-1200 radius-medium padding-x-large gap-x-small stroke-contrast-alpha focus-within:stroke-system-emphasis routility-set-rate');
-    field.appendChild(el('span', 'text-body-large content-muted', '$'));
+    const cash = cashNow();
+    const fx = cash.rate;
+    field.appendChild(el('span', 'text-body-large content-muted', cash.symbol));
     const input = el('input', 'width-full min-width-0 padding-none bg-none stroke-none outline-none content-emphasis text-body-large');
     input.type = 'text';
     input.inputMode = 'decimal';
     input.autocomplete = 'off';
     input.spellcheck = false;
-    input.setAttribute('aria-label', lt('Dollars per 1,000 Robux'));
-    const valid = (v) => {
+    input.setAttribute('aria-label', lt('{currency} per 1,000 Robux', { currency: cash.code }));
+    const valid = (v, max) => {
       const n = Number(String(v).replace(/[^0-9.]/g, ''));
-      return n > 0 && n <= 1000 ? n : null;
+      return n > 0 && n <= max ? n : null;
     };
     const shown = (n) => (Math.abs(Math.round(n * 100) - n * 100) < 1e-9 ? n.toFixed(2) : String(n));
-    input.value = shown(valid(settings.calcRate) || 3.8);
+    const current = () => {
+      const from = fxOf(settings.calcRateCurrency || 'USD');
+      const n = valid(settings.calcRate, 1000 * (from || 1));
+      if (!n) return Math.round(3.8 * fx * 100) / 100;
+      return (settings.calcRateCurrency || 'USD') === cash.code || !from ? n : Math.round(n / from * fx * 100) / 100;
+    };
+    input.value = shown(current());
     input.addEventListener('input', () => {
       const clean = input.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
       if (clean !== input.value) input.value = clean;
-      const n = valid(clean);
+      const n = valid(clean, 1000 * fx);
       field.classList.toggle('stroke-system-alert', !n && clean !== '');
-      if (n) save({ calcRate: String(n) });
+      if (n) save({ calcRate: String(n), calcRateCurrency: cash.code });
     });
     input.addEventListener('blur', () => {
       field.classList.remove('stroke-system-alert');
-      input.value = shown(valid(settings.calcRate) || 3.8);
+      input.value = shown(current());
     });
     field.appendChild(input);
     field.appendChild(el('span', 'text-body-small content-muted text-no-wrap', lt('per 1k')));
@@ -2460,7 +2491,7 @@
     const side = el('div', 'routility-set-control');
     let below = null;
     if (def.options) {
-      const opts = def.options.map(([value, label]) => ({ value, label: def.key === 'language' && value !== 'auto' ? label : lt(label) }));
+      const opts = def.options.map(([value, label]) => ({ value, label: def.key === 'language' && value !== 'auto' ? label : def.key === 'currency' ? value + ' · ' + lt(label) : lt(label) }));
       const current = opts.some(o => o.value === settings[def.key]) ? settings[def.key] : DEFAULTS[def.key];
       const extraFor = def.rateInput || def.robuxInput || def.fontInput;
       const rate = def.rateInput ? rateField(settings, save) : def.robuxInput ? robuxField(settings, save, def.amountKey, def.amountLabel) : def.fontInput ? fontField() : null;
@@ -2977,6 +3008,8 @@
 
   function buildPane(tab, stored, cache) {
     const settings = { ...DEFAULTS, ...(stored.routilitySettings || {}) };
+    fiat.settings = settings;
+    if (stored.routilityFiatRates) fiat.rates = stored.routilityFiatRates.rates || null;
     let applied = null;
     const showApplied = () => {
       if (applied && applied.isConnected) return;
@@ -3002,9 +3035,10 @@
         if (chrome.runtime.lastError) return;
         chrome.storage.local.set({ routilitySettings: { ...settings, ...(st.routilitySettings || {}), ...patch } }, () => {
           if ('oldLeftNav' in patch) location.reload();
+          if ('currency' in patch) chrome.runtime.sendMessage({ type: 'fiatRates' }, () => { void chrome.runtime.lastError; location.reload(); });
         });
       });
-      if ('oldLeftNav' in patch) return;
+      if ('oldLeftNav' in patch || 'currency' in patch) return;
       if (Object.keys(patch).some(k => !/^forum(Style|Density|Avatars|Stat)/.test(k))) showApplied();
     };
 
@@ -3327,7 +3361,7 @@
     building = next;
     if (next) {
       const tab = TABS.find(t => t.hash === next);
-      window.RoUtilityI18n.ready.then(() => chrome.storage.local.get(['routilitySettings', 'routilityChartMode', 'routilityHiddenGames', 'routilityHiddenNames', 'routilityLayouts', 'routilityLayoutSeen', 'routilityHomeLayout', 'routilityNavLayout', 'routilityServerLayout'], (stored) => {
+      window.RoUtilityI18n.ready.then(() => chrome.storage.local.get(['routilitySettings', 'routilityFiatRates', 'routilityChartMode', 'routilityHiddenGames', 'routilityHiddenNames', 'routilityLayouts', 'routilityLayoutSeen', 'routilityHomeLayout', 'routilityNavLayout', 'routilityServerLayout'], (stored) => {
         chrome.runtime.sendMessage({ type: 'getCacheStatus' }, (cache) => {
           void chrome.runtime.lastError;
           if (open !== next || building !== next) return;

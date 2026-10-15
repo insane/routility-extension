@@ -22,10 +22,11 @@
   const { lt } = window.RoUtilityI18n;
 
   function axisUSD(v) {
-    if (v === 0) return '$0';
-    if (v >= 1_000_000) return '$' + +(v / 1_000_000).toFixed(1) + 'M';
-    if (v >= 1_000) return '$' + +(v / 1_000).toFixed(1) + 'k';
-    return '$' + +v.toFixed(2);
+    const sym = window.RoUtilityUI.cash().symbol;
+    if (v === 0) return sym + '0';
+    if (v >= 1_000_000) return sym + +(v / 1_000_000).toFixed(1) + 'M';
+    if (v >= 1_000) return sym + +(v / 1_000).toFixed(1) + 'k';
+    return sym + +v.toFixed(2);
   }
 
 
@@ -82,12 +83,14 @@
 
     const plotW = width - PAD.left - PAD.right;
     const plotH = HEIGHT - PAD.top - PAD.bottom;
-    const maxUsd = Math.max(...pts.map(p => p.usd)) || 1;
+    const k = window.RoUtilityUI.toCash(1);
+    const maxUsd = Math.max(...pts.map(p => p.usd * k)) || 1;
     const step = niceStep(maxUsd / 3);
     const yMax = step * 3;
     const t0 = Math.min(minT, pts[0].ts);
     const x = t => PAD.left + ((t - t0) / (last - t0 || 1)) * plotW;
-    const y = v => PAD.top + plotH - (v / yMax) * plotH;
+    const yc = v => PAD.top + plotH - (v / yMax) * plotH;
+    const y = v => yc(v * k);
 
     const frame = el('div', 'highcharts-container');
     frame.style.cssText = `position: relative; overflow: hidden; width: ${width}px; height: ${HEIGHT}px; text-align: left; line-height: normal; z-index: 0;`;
@@ -105,7 +108,7 @@
     const grid = svg('g', { class: 'highcharts-grid highcharts-yaxis-grid' }, root);
     const yLabels = svg('g', { class: 'highcharts-axis-labels highcharts-yaxis-labels' });
     for (let i = 0; i <= 3; i++) {
-      const gy = Math.round(y(step * i)) + 0.5;
+      const gy = Math.round(yc(step * i)) + 0.5;
       svg('path', { fill: 'none', stroke: '#e6e6e6', 'stroke-width': 1, class: 'highcharts-grid-line', d: `M ${PAD.left} ${gy} L ${width - PAD.right} ${gy}` }, grid);
       const label = svg('text', { x: 35, y: Math.round(gy + 3.5), 'text-anchor': 'end', style: AXIS_LABEL_STYLE }, yLabels);
       svg('tspan', {}, label).textContent = axisUSD(step * i);
@@ -241,7 +244,7 @@
     const range = container.querySelector('.price-chart-range-dropdown');
 
     const dropdown = window.RoUtilityUI.dropdown(
-      [{ value: 'robux', label: 'Robux' }, { value: 'usd', label: 'USD' }],
+      [{ value: 'robux', label: 'Robux' }, { value: 'usd', label: window.RoUtilityUI.cash().code }],
       state.mode,
       (mode) => {
         state.mode = mode;
@@ -263,7 +266,7 @@
 
     const legend = el('div', 'price-chart-legend routility-legend routility-injected');
     legend.appendChild(el('div', 'line'));
-    legend.appendChild(el('div', 'text-pastname legend-text', lt('RoUtility USD Price')));
+    legend.appendChild(el('div', 'text-pastname legend-text', lt('RoUtility {currency} Price', { currency: window.RoUtilityUI.cash().code })));
     const nativeLegend = container.querySelector('.price-chart-legend:not(.routility-legend)');
     if (nativeLegend) nativeLegend.after(legend);
     else dropdown.after(legend);

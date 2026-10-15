@@ -861,7 +861,7 @@
         const logo = el('img', 'routility-logo');
         logo.src = LOGO_URL;
         logo.alt = '';
-        stats.appendChild(box(lt('Price'), lt('RoUtility USD price of the limiteds you’re wearing'), logo, formatUSD(usd), usd >= 1000 ? '$' + short(usd) : formatUSD(usd)));
+        stats.appendChild(box(lt('Price'), lt('RoUtility USD price of the limiteds you’re wearing'), logo, formatUSD(usd), window.RoUtilityUI.shortUSD(usd)));
         stats.appendChild(box(lt('R$ value'), lt('Recent average price of the limiteds you’re wearing'), el('span', 'icon-robux-16x16'), formatNumber(Math.round(rap)), short(rap)));
         panel.appendChild(stats);
       }

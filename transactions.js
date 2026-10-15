@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, onFrame, formatUSD, formatNumber } = window.RoUtilityUI;
+  const { el, onFrame, formatUSD, formatNumber, toCash, cash } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const COLUMNS = ['Date', 'Time', 'Type', 'Pending', 'Source', 'Source Type', 'Source ID', 'Item', 'Item Type', 'Item ID', 'Experience', 'Place ID', 'Robux', 'USD'];
   const VERBS = { Sale: LT('Sold {item}'), Purchase: LT('Purchased {item}') };
@@ -16,9 +16,7 @@
   const pad = n => String(n).padStart(2, '0');
 
   function robuxRate(settings) {
-    const custom = Number(settings.calcRate);
-    if (settings.calcRobux === 'custom' && custom > 0) return custom / 1000;
-    return 0.0038;
+    return window.RoUtilityUI.robuxRate(settings);
   }
 
   function amountOf(td) {
@@ -295,7 +293,7 @@
         cell(place.name),
         place.placeId || '',
         robux == null ? '' : robux,
-        robux == null ? '' : (robux * rate).toFixed(2),
+        robux == null ? '' : toCash(robux * rate).toFixed(2),
       ].join(','));
     }
     return '﻿' + lines.join('\r\n');

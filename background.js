@@ -555,6 +555,10 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     rotatorSave(msg).then(sendResponse, () => sendResponse(null));
     return true;
   }
+  if (msg.type === 'fiatRates') {
+    fiatRates().then(sendResponse, () => sendResponse(null));
+    return true;
+  }
   if (msg.type === 'changelog') {
     fetch(chrome.runtime.getURL('changelog.json')).then(r => r.json()).then(sendResponse, () => sendResponse(null));
     return true;
@@ -1087,8 +1091,44 @@ async function thumbData(kind, id) {
   return (img && await dataUrl(img)) || chrome.runtime.getURL('icons/icon128.png');
 }
 
+const FIAT_SYMBOLS = { USD: '$', EUR: '€', GBP: '£', CAD: 'C$', AUD: 'A$', JPY: '¥', CNY: '¥', KRW: '₩', INR: '₹', BRL: 'R$', MXN: 'MX$', TRY: '₺' };
+let fiatBg = { symbol: '$', rate: 1 };
+let fiatFetching = null;
+let fiatTried = 0;
+
+function fiatSync(s, store) {
+  const want = s && FIAT_SYMBOLS[s.currency] ? s.currency : 'USD';
+  const rate = want === 'USD' ? 1 : Number(store && store.rates && store.rates[want]);
+  fiatBg = rate > 0 ? { symbol: FIAT_SYMBOLS[want], rate } : { symbol: '$', rate: 1 };
+}
+
+chrome.storage.local.get(['routilitySettings', 'routilityFiatRates'], (st) => fiatSync(st.routilitySettings, st.routilityFiatRates));
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area !== 'local' || !(changes.routilitySettings || changes.routilityFiatRates)) return;
+  chrome.storage.local.get(['routilitySettings', 'routilityFiatRates'], (st) => fiatSync(st.routilitySettings, st.routilityFiatRates));
+});
+
+function fiatRates() {
+  if (fiatFetching) return fiatFetching;
+  fiatFetching = (async () => {
+    const { routilityFiatRates: have } = await chrome.storage.local.get('routilityFiatRates');
+    if (have && Date.now() - Number(have.ts) < 12 * 3600e3) return have;
+    if (Date.now() - fiatTried < 10 * 60e3) return have || null;
+    fiatTried = Date.now();
+    const r = await fetch('https://open.er-api.com/v6/latest/USD', { credentials: 'omit' });
+    const d = r.ok ? await r.json() : null;
+    if (!d || !d.rates) return have || null;
+    const rates = {};
+    for (const code of Object.keys(FIAT_SYMBOLS)) if (Number(d.rates[code]) > 0) rates[code] = Number(d.rates[code]);
+    const next = { rates, ts: Date.now() };
+    await chrome.storage.local.set({ routilityFiatRates: next });
+    return next;
+  })().catch(() => null).finally(() => { fiatFetching = null; });
+  return fiatFetching;
+}
+
 function wholeUsd(n) {
-  return '$' + Math.round(n).toLocaleString('en-US');
+  return fiatBg.symbol + Math.round(n * fiatBg.rate).toLocaleString('en-US');
 }
 
 const serialJobs = new Map();

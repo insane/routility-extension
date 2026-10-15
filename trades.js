@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, formatUSD, formatNumber, cardKey, prices, itemValue, valueTag, shows } = window.RoUtilityUI;
+  const { el, formatUSD, formatCash, formatNumber, cardKey, prices, itemValue, valueTag, shows } = window.RoUtilityUI;
   const showing = shows('Trades');
   const show = { get value() { return showing.value; }, get price() { return showing.usd; }, get worth() { return showing.value; }, get rap() { return showing.rap; } };
   const { lt, ltn, LT } = window.RoUtilityI18n;
@@ -155,7 +155,7 @@
         return;
       }
       const t = totals[i];
-      const text = t.priced ? formatUSD(t.usd) + (t.missing ? '+' : '') : (t.missing ? lt('N/A') : '$0');
+      const text = t.priced ? formatUSD(t.usd) + (t.missing ? '+' : '') : (t.missing ? lt('N/A') : formatCash(0));
       if (show.price) summaryRow(offer, 'routility-trade-usd', lt('Price:'), text, { withLogo: true, title: t.missing ? ltn(t.missing, '{n} unpriced', '{n} unpriced') : '' });
       else offer.querySelector('.routility-trade-usd')?.remove();
       if (show.value && totals.some(x => x.valued > 0)) summaryRow(offer, 'routility-trade-val', lt('RoUtility Value:'), String(t.value), { node: valueTag(t.value, { textClass: 'text-robux-lg robux-line-value', tip: false }), title: lt('Only items with a RoUtility value are counted') });
@@ -320,7 +320,7 @@
   }
 
   function usdAmount(v) {
-    return v > 0 ? formatUSD(v) : '$0';
+    return formatCash(v);
   }
 
   function pill(iconNode, give, get, format, title) {
@@ -895,7 +895,7 @@
       banner?.remove();
       return;
     }
-    const vars = { pct: Math.round(over * 100) > 999 ? '999+' : Math.round(over * 100), give: formatUSD(give), get: get > 0 ? formatUSD(get) : '$0' };
+    const vars = { pct: Math.round(over * 100) > 999 ? '999+' : Math.round(over * 100), give: formatUSD(give), get: formatCash(get) };
     const text = get > 0 ? lt('You\'re giving {pct}% more value ({give} vs {get})', vars) : lt('You\'re giving value for nothing back ({give} vs {get})', vars);
     if (banner && banner.dataset.text === text) return;
     if (!banner) {
@@ -945,7 +945,7 @@
       const logoIcon = el('img', 'routility-send-icon');
       logoIcon.src = LOGO_URL;
       logoIcon.alt = '';
-      card.appendChild(line(logoIcon, lt('Price'), totals[i].priced ? formatUSD(totals[i].usd) + (totals[i].missing ? '+' : '') : (totals[i].missing ? lt('Unpriced') : '$0')));
+      card.appendChild(line(logoIcon, lt('Price'), totals[i].priced ? formatUSD(totals[i].usd) + (totals[i].missing ? '+' : '') : (totals[i].missing ? lt('Unpriced') : formatCash(0))));
       if (anyValued) {
         const valIcon = el('span', 'routility-val-icon routility-send-icon routility-send-val-icon');
         valIcon.setAttribute('aria-hidden', 'true');
@@ -1105,7 +1105,7 @@
   chrome.storage.local.get('routilitySettings', (st) => {
     const s = st.routilitySettings || {};
     cleanOn = s.tradeCleanup !== false;
-    if (s.calcRobux === 'custom' && Number(s.calcRate) > 0) robuxRate = Number(s.calcRate) / 1000;
+    robuxRate = window.RoUtilityUI.robuxRate(s);
   });
 
   const BROOM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 3.5 13 10"/><path d="M11.2 9.3l3.5 3.5c.6.6.6 1.4 0 2l-.9.9-5.5-5.5.9-.9c.6-.6 1.4-.6 2 0z"/><path d="M8.3 10.2 4 14.5c1.4 3.2 3.4 5.2 6.5 6.5l4.3-4.3"/><path d="M7.5 17.5l2-2"/></svg>';

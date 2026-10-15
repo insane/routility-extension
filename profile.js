@@ -139,7 +139,8 @@
 
   function pillText(summary) {
     if (summary.private) return lt('Private');
-    return '$' + formatNumber(summary.usd) + (summary.complete ? '' : '+');
+    const { symbol } = window.RoUtilityUI.cash();
+    return symbol + formatNumber(Math.round(window.RoUtilityUI.toCash(summary.usd))) + (summary.complete ? '' : '+');
   }
 
   function makePill(userId, summary, name) {

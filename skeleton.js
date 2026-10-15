@@ -392,7 +392,7 @@
   };
   const applyCollapse = () => root.classList.toggle('routility-nav-collapsed', navCollapsed && (lastSettings || {}).navCollapse !== false);
   const EARLY = 'routilityEarly';
-  const EARLY_KEYS = ['routilitySettings', 'routilityNavLayout', 'routilityNavCollapsed', 'routilityTheme'];
+  const EARLY_KEYS = ['routilitySettings', 'routilityNavLayout', 'routilityNavCollapsed', 'routilityTheme', 'routilityFiatRates'];
   let early = null;
   try { early = JSON.parse(localStorage.getItem(EARLY)); } catch {}
   const remember = (patch) => {
