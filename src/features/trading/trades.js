@@ -210,7 +210,7 @@
   async function robloxJson(url) {
     if (Date.now() < robloxCooldown) return null;
     try {
-      const res = await Promise.race([fetch(url, { credentials: 'include' }), new Promise((_, no) => setTimeout(() => no(new Error('timeout')), 15000))]);
+      const res = await Promise.race([fetch(url, { credentials: 'include' }), new Promise((_, no) => setTimeout(() => no(new Error('timeout')), 30000))]);
       if (res.status === 429) {
         const wait = Number(res.headers.get('Retry-After'));
         const ms = Number.isFinite(wait) && wait > 0 ? wait * 1000 : 30000;
@@ -280,7 +280,7 @@
     while (active < 4 && queue.length) {
       const { id, done } = queue.shift();
       active++;
-      robloxJson(`https://trades.roblox.com/v2/trades/${id}`).then(detail => {
+      rawDetail(id).then(detail => {
         const a = detail && detail.participantAOffer;
         const b = detail && detail.participantBOffer;
         if (a && b) {
@@ -445,12 +445,9 @@
       const prev = counts.get(key);
       counts.set(key, { need: (prev ? prev.need : 0) + 1, name: it.itemName || '', type: t.itemType, id: String(t.targetId) });
     }
-    const out = [];
-    for (const { need, name, type, id } of counts.values()) {
-      const have = await ownedCount(offer.user.id, id, type);
-      if (typeof have === 'number' && have < need) out.push({ assetId: id, bundle: type === 'Bundle', name });
-    }
-    return out;
+    const wanted = [...counts.values()];
+    const owned = await Promise.all(wanted.map(({ id, type }) => ownedCount(offer.user.id, id, type)));
+    return wanted.filter((w, k) => typeof owned[k] === 'number' && owned[k] < w.need).map(({ name, type, id }) => ({ assetId: id, bundle: type === 'Bundle', name }));
   }
 
   function renderOwnership(node, label, missing) {
@@ -570,7 +567,8 @@
 
   function itemNames() {
     if (!names) {
-      names = window.RoUtilityUI.request({ type: 'calcItems' }, r => Array.isArray(r)).then(list => new Map((list || []).map(i => ['id:' + i.id, i.name.toLowerCase()])));
+      names = catalogItems().then(list => new Map((list || []).map(i => ['id:' + i.id, i.name.toLowerCase()])));
+      names.then((map) => { if (!map.size) names = null; });
     }
     return names;
   }
@@ -752,12 +750,25 @@
   let previewTimer = null;
   let previewRow = null;
 
+  let catalogList = null;
+
+  function catalogItems() {
+    if (!catalogList) {
+      catalogList = window.RoUtilityUI.request({ type: 'calcItems' }, r => Array.isArray(r));
+      catalogList.then((list) => { if (!Array.isArray(list) || !list.length) catalogList = null; });
+    }
+    return catalogList;
+  }
+
   function catalogMap() {
-    if (!catalog) catalog = window.RoUtilityUI.request({ type: 'calcItems' }, r => Array.isArray(r)).then((list) => {
-      const map = new Map((list || []).map(i => [i.id, i]));
-      map.lookup = window.RoUtilityUI.catalogFor(list || []);
-      return map;
-    });
+    if (!catalog) {
+      catalog = catalogItems().then((list) => {
+        const map = new Map((list || []).map(i => [i.id, i]));
+        map.lookup = window.RoUtilityUI.catalogFor(list || []);
+        return map;
+      });
+      catalog.then((map) => { if (!map.size) catalog = null; });
+    }
     return catalog;
   }
 
@@ -1039,7 +1050,10 @@
       }
       if (done) continue;
       const near = !rect || (rect.bottom > view.top - 300 && rect.top < view.bottom + 600);
-      if (near) annotateRow(row, entry);
+      if (near && row.dataset.rtPending !== entry.id) {
+        row.dataset.rtPending = entry.id;
+        annotateRow(row, entry).finally(() => { if (row.dataset.rtPending === entry.id) delete row.dataset.rtPending; });
+      }
     }
   }
 

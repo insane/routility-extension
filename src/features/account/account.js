@@ -46,7 +46,7 @@
         }
         return all;
       })();
-      sessionsJob.then(list => { if (!list.length) sessionsJob = null; });
+      sessionsJob.then(list => { if (!list.length) setTimeout(() => { sessionsJob = null; }, 30000); });
     }
     return sessionsJob;
   }

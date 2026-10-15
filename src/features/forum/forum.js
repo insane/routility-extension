@@ -181,7 +181,7 @@
   }
 
   async function robloxJson(url, body) {
-    for (let attempt = 0; attempt < 4; attempt++) {
+    for (let attempt = 0; attempt < 2; attempt++) {
       if (attempt) await new Promise(r => setTimeout(r, 800 * 2 ** attempt + Math.random() * 300));
       try {
         const res = await fetch(url, body ? { method: 'POST', credentials: 'include', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) } : { credentials: 'include' });

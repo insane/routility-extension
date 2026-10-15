@@ -730,17 +730,25 @@
     return [valueTip(price), price.demand && lt('Demand: {demand}', { demand: price.demand }), price.trend && lt('Trend: {trend}', { trend: price.trend })].filter(Boolean).join(' • ');
   }
 
+  let priceWait = 0;
+  let priceBackoff = 0;
+
   function loadPrices(keys) {
     const missing = [...new Set(keys.filter(k => k && !priceCache.has(k)))];
     if (!missing.length) return Promise.resolve();
+    const left = priceWait - Date.now();
+    if (left > 0) return new Promise(r => setTimeout(r, left));
     const ids = missing.filter(k => k.startsWith('id:')).map(k => k.slice(3));
     const names = missing.filter(k => k.startsWith('name:')).map(k => k.slice(5));
     const bundles = missing.filter(k => k.startsWith('bundle:')).map(k => k.slice(7));
     const pending = request({ type: 'getPrices', ids, names, bundles }, r => !!(r && r.ready)).then(result => {
       if (!result || !result.ready) {
         for (const k of missing) priceCache.delete(k);
+        priceBackoff = Math.min(60000, priceBackoff ? priceBackoff * 2 : 3000);
+        priceWait = Date.now() + priceBackoff;
         return;
       }
+      priceBackoff = 0;
       for (const id of ids) priceCache.set('id:' + id, result.ids[id] || null);
       for (const n of names) priceCache.set('name:' + n, result.names[n] || null);
       for (const b of bundles) priceCache.set('bundle:' + b, (result.bundles || {})[b] || null);
@@ -920,6 +928,12 @@
 
   const pause = ms => new Promise(r => setTimeout(r, ms));
 
+  function chunks(list, size) {
+    const out = [];
+    for (let i = 0; i < list.length; i += size) out.push(list.slice(i, i + size));
+    return out;
+  }
+
   async function json(url, init) {
     try {
       const res = await fetch(url, { credentials: 'include', ...init });
@@ -973,7 +987,7 @@
     return waits.size ? Promise.all(waits).then(pick) : Promise.resolve(pick());
   }
 
-  window.RoUtilityUI = { json, pause, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
+  window.RoUtilityUI = { json, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
 })();
 
 (function () {

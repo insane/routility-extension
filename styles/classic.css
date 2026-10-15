@@ -2099,8 +2099,7 @@ html.routility-themed .routility-classic-columns .routility-columns .routility-c
 .routility-classic-columns .routility-classic-accoutrements {
   justify-content: center;
   width: 100%;
-  height: auto;
-  max-height: 240px;
+  height: 232px;
   margin: 0 !important;
 }
 

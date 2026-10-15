@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, onFrame, formatNumber, pause } = window.RoUtilityUI;
+  const { el, onFrame, formatNumber, pause, chunks } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const LABELS = { 0: LT('Offline'), 1: LT('Online'), 2: LT('In Experience'), 3: LT('In Studio'), 4: LT('Offline') };
   const ICONS = { 1: 'icon-online', 2: 'icon-game', 3: 'icon-studio' };
@@ -66,20 +66,28 @@
     const ids = await localIds(userId);
     if (!ids) return null;
     const byId = new Map();
-    for (let i = 0; i < ids.length; i += 100) {
-      const named = await usersBatch(ids.slice(i, i + 100), true);
-      if (!named) return null;
-      for (const u of named) byId.set(Number(u.id), { id: Number(u.id), name: u.name || '', displayName: u.displayName || u.name || '', hasVerifiedBadge: !!u.hasVerifiedBadge, deleted: false });
-    }
+    const active = await Promise.all(chunks(ids, 100).map(part => usersBatch(part, true)));
+    if (active.some(named => !named)) return null;
+    for (const u of active.flat()) byId.set(Number(u.id), { id: Number(u.id), name: u.name || '', displayName: u.displayName || u.name || '', hasVerifiedBadge: !!u.hasVerifiedBadge, deleted: false });
     const banned = ids.filter(id => !byId.has(id));
-    for (let i = 0; i < banned.length; i += 100) {
-      const named = await usersBatch(banned.slice(i, i + 100), false);
-      for (const u of named || []) byId.set(Number(u.id), { id: Number(u.id), name: u.name || '', displayName: u.displayName || u.name || '', hasVerifiedBadge: !!u.hasVerifiedBadge, deleted: true });
-    }
+    const gone = await Promise.all(chunks(banned, 100).map(part => usersBatch(part, false)));
+    for (const u of gone.flat().filter(Boolean)) byId.set(Number(u.id), { id: Number(u.id), name: u.name || '', displayName: u.displayName || u.name || '', hasVerifiedBadge: !!u.hasVerifiedBadge, deleted: true });
     return ids.map(id => byId.get(id) || { id, name: '', displayName: '', hasVerifiedBadge: false, deleted: true });
   }
 
-  async function load(userId) {
+  const loads = new Map();
+
+  function load(userId) {
+    const key = String(userId);
+    const hit = loads.get(key);
+    if (hit && Date.now() - hit.at < 60000) return hit.job;
+    const job = loadFriends(userId);
+    loads.set(key, { at: Date.now(), job });
+    job.then((list) => { if (!list) loads.delete(key); }, () => loads.delete(key));
+    return job;
+  }
+
+  async function loadFriends(userId) {
     const local = await localList(userId);
     if (local) return local;
     const res = await window.RoUtilityUI.request({ type: 'getFriends', userId: String(userId) });
@@ -87,10 +95,8 @@
     let friends = parse(res);
     const byId = new Map();
     const ids = friends.map(f => f.id);
-    for (let i = 0; i < ids.length; i += 100) {
-      const named = await post('https://users.roblox.com/v1/users', { userIds: ids.slice(i, i + 100), excludeBannedUsers: false });
-      for (const u of (named && named.data) || []) byId.set(u.id, u);
-    }
+    const batches = await Promise.all(chunks(ids, 100).map(part => post('https://users.roblox.com/v1/users', { userIds: part, excludeBannedUsers: false })));
+    for (const named of batches) for (const u of (named && named.data) || []) byId.set(u.id, u);
     const placeholder = (v) => !v || v === 'Account Deleted';
     friends = friends.map((f) => {
       const u = byId.get(f.id);
@@ -113,8 +119,8 @@
     for (let attempt = 0; attempt < 4 && pending.length; attempt++) {
       if (attempt) await new Promise(r => setTimeout(r, 1200));
       const retry = [];
-      for (let i = 0; i < pending.length; i += 100) {
-        const res = await post('https://thumbnails.roblox.com/v1/batch', pending.slice(i, i + 100).map(id => ({ requestId: String(id), targetId: id, type: 'AvatarHeadShot', size: '150x150', format: 'Webp', isCircular: false })));
+      const batches = await Promise.all(chunks(pending, 100).map(part => post('https://thumbnails.roblox.com/v1/batch', part.map(id => ({ requestId: String(id), targetId: id, type: 'AvatarHeadShot', size: '150x150', format: 'Webp', isCircular: false })))));
+      for (const res of batches) {
         for (const t of (res && res.data) || []) {
           if (t.state === 'Completed' && t.imageUrl) out.set(Number(t.requestId), t.imageUrl);
           else if (t.state === 'Blocked') out.set(Number(t.requestId), window.RoUtilityUI.blockedThumb(t));
@@ -442,6 +448,7 @@
         delete link.dataset.rtState;
         if (document.getElementById('avatar-card-dropdown-menu')?.getClientRects().length) btn.click();
         hideGone(id);
+        loads.clear();
         if (ff && ff.friends) ff.friends = ff.friends.filter(x => x.id !== id);
         menuCard = null;
         return;
@@ -820,6 +827,7 @@
 
   function forget(id) {
     hideGone(id);
+    loads.clear();
     if (ff && ff.friends) ff.friends = ff.friends.filter(x => x.id !== id);
   }
 
@@ -1784,7 +1792,7 @@
         const res = await fetch(`https://friends.roblox.com/v1/users/${w.me}/friends/count`, { credentials: 'include', cache: 'no-store' });
         if (res.ok) count = Number((await res.json()).count);
       } catch {}
-      if (!force && count !== null && count === st.count && now - (st.full || 0) < 180000) return;
+      if (count !== null && count === st.count && now - (st.full || 0) < (force ? 300000 : 900000)) return;
       const r = await ufScan(w.me, ff && ff.friends);
       await chrome.storage.local.set({ [key]: { at: now, full: now, count: r ? (count !== null ? count : r.count) : st.count } });
       if (!r || ufWatch !== w) return;
@@ -1988,15 +1996,26 @@
 
   function startCancelRequests() {
     const m = location.pathname.match(/^\/users\/(\d+)\/profile\/?$/i);
-    if (!m || reqWatch || m[1] === myId()) return;
+    if (!m || m[1] === myId() || (reqWatch && reqWatch.target === m[1])) return;
+    if (reqWatch) reqWatch.obs.disconnect();
+    document.querySelector('.routility-cancel-req')?.remove();
     const target = m[1];
-    reqWatch = { target, status: undefined, done: false };
-    friendStatus(target).then(st => { reqWatch.status = st; placeCancel(); });
-    new MutationObserver(onFrame(placeCancel)).observe(document.querySelector('#content') || document.body, { childList: true, subtree: true, characterData: true });
+    const w = reqWatch = { target, status: undefined, done: false, obs: new MutationObserver(onFrame(placeCancel)) };
+    friendStatus(target).then((st) => {
+      if (reqWatch !== w) return;
+      w.status = st;
+      placeCancel();
+    });
+    w.obs.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true, characterData: true });
   }
 
   function placeCancel() {
     const w = reqWatch;
+    if (w && !location.pathname.startsWith(`/users/${w.target}/`)) {
+      document.querySelector('.routility-cancel-req')?.remove();
+      startCancelRequests();
+      return;
+    }
     if (!w || w.status !== 'RequestSent') return;
     const head = document.querySelector('#content > .profile-platform-container .user-profile-header-info') || document.querySelector('#content .user-profile-header-info');
     if (!head) return;

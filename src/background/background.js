@@ -38,14 +38,13 @@ async function robloxAdmins(ids) {
   const store = await new Promise(r => chrome.storage.local.get(ADMIN_KEY, s => r(s[ADMIN_KEY] || {})));
   const now = Date.now();
   const todo = ids.filter(id => !store[id] || now - store[id][1] > ADMIN_TTL);
-  for (let i = 0; i < todo.length; i += 4) {
-    const chunk = todo.slice(i, i + 4);
-    const res = await Promise.all(chunk.map(robloxAdmin));
-    chunk.forEach((id, k) => { if (res[k] !== null) store[id] = [res[k] ? 1 : 0, now]; });
+  if (todo.length) {
+    const res = await Promise.all(todo.map(robloxAdmin));
+    todo.forEach((id, k) => { if (res[k] !== null) store[id] = [res[k] ? 1 : 0, now]; });
+    const keys = Object.keys(store);
+    if (keys.length > 5000) keys.sort((a, b) => store[a][1] - store[b][1]).slice(0, keys.length - 5000).forEach(k => delete store[k]);
+    await new Promise(r => chrome.storage.local.set({ [ADMIN_KEY]: store }, r));
   }
-  const keys = Object.keys(store);
-  if (keys.length > 5000) keys.sort((a, b) => store[a][1] - store[b][1]).slice(0, keys.length - 5000).forEach(k => delete store[k]);
-  await new Promise(r => chrome.storage.local.set({ [ADMIN_KEY]: store }, r));
   return ids.filter(id => store[id] && store[id][0] === 1);
 }
 
@@ -224,15 +223,18 @@ async function kvSet(key, value) {
 }
 
 async function downloadAllItems() {
-  const allItems = [];
-  let page = 0;
-  let pages = 1;
-  while (page < pages) {
+  const itemsPage = async (page) => {
     const data = await getJson(`${API_BASE}/items?limit=200&page=${page}&sort=usd&dir=desc`);
     if (!data || !Array.isArray(data.items)) throw new Error('items page ' + page);
-    allItems.push(...data.items);
-    pages = data.pages;
-    page++;
+    return data;
+  };
+  const first = await itemsPage(0);
+  const allItems = [...first.items];
+  const rest = [];
+  for (let page = 1; page < first.pages; page++) rest.push(page);
+  while (rest.length) {
+    const wave = await Promise.all(rest.splice(0, 4).map(itemsPage));
+    for (const data of wave) allItems.push(...data.items);
   }
   const itemMap = {};
   for (const item of allItems) itemMap[item.id] = item;
@@ -268,8 +270,9 @@ async function getItems() {
   }
   const fresh = itemsMemo.routilityItems && Date.now() - itemsMemo.routilityLastFetch < REFRESH_INTERVAL;
   if (fresh || Date.now() - lastFailure < RETRY_AFTER_FAILURE) return itemsMemo.routilityItems || {};
-  const updated = await fetchAllItems();
-  return updated || itemsMemo.routilityItems || {};
+  const updated = fetchAllItems();
+  if (itemsMemo.routilityItems && itemsMemo.routilityItemCount > 0) return itemsMemo.routilityItems;
+  return (await updated) || itemsMemo.routilityItems || {};
 }
 
 async function getHistory(id) {
@@ -327,6 +330,7 @@ async function getOwners(id, filter, page) {
   const data = await getJson(url);
   if (!data || !Array.isArray(data.uaids)) return null;
   ownersCache.set(url, { data, at: Date.now() });
+  if (ownersCache.size > 200) ownersCache.delete(ownersCache.keys().next().value);
   return data;
 }
 
@@ -414,9 +418,16 @@ async function robloxStatus() {
 }
 
 let botFeatureMemo = null;
+let settingsText = null;
+
+function settingsSource() {
+  if (!settingsText) settingsText = fetch(chrome.runtime.getURL('src/settings/settings.js')).then(r => r.text());
+  return settingsText;
+}
+
 function botFeatures() {
   if (!botFeatureMemo) {
-    botFeatureMemo = fetch(chrome.runtime.getURL('src/settings/settings.js')).then(r => r.text()).then((src) => {
+    botFeatureMemo = settingsSource().then((src) => {
       const str = (s) => { try { return JSON.parse('"' + s.replace(/\\'/g, "'").replace(/"/g, '\\"') + '"'); } catch { return s; } };
       const defaults = {};
       const dm = src.match(/const DEFAULTS = \{([^}]*)\}/);
@@ -447,7 +458,7 @@ let defaultsMemo = null;
 
 function settingsDefaults() {
   if (!defaultsMemo) {
-    defaultsMemo = fetch(chrome.runtime.getURL('src/settings/settings.js')).then(r => r.text()).then((src) => {
+    defaultsMemo = settingsSource().then((src) => {
       const out = {};
       const dm = src.match(/const DEFAULTS = \{([^}]*)\}/);
       if (dm) for (const m of dm[1].matchAll(/(\w+):\s*(true|false)\b/g)) out[m[1]] = m[2] === 'true';
@@ -774,7 +785,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if (!/^\d{1,20}$/.test(id)) { sendResponse({ status: 400 }); return; }
     const tryFetch = async (attempt) => {
       const res = await fetch(`https://assetdelivery.roblox.com/v2/asset/?id=${id}`, { credentials: 'include', headers: format ? { 'Roblox-AssetFormat': format } : {} });
-      if ((res.status === 429 || res.status >= 500) && attempt < 3) {
+      if ((res.status === 429 || res.status >= 500) && attempt < 1) {
         await new Promise(r => setTimeout(r, 700 * Math.pow(2, attempt) + Math.random() * 300));
         return tryFetch(attempt + 1);
       }
@@ -1360,6 +1371,7 @@ async function checkTrades(s, seen, me) {
     stamps[slot] = Date.now();
     if (!prev || stale) continue;
     const fresh = list.filter(t => !prev.includes(String(t.id)) && (kind !== 'inactive' || t.status === 'Declined')).slice(0, 3);
+    if (fresh.length) await chrome.storage.local.set({ [NOTIFY_SEEN]: seen });
     for (const t of fresh) {
       const user = t.user || {};
       const name = user.displayName && user.displayName !== user.name ? `${user.displayName} (@${user.name})` : (user.name || lt('someone'));
@@ -1521,6 +1533,8 @@ async function checkPriceAlerts() {
     if (a.lastListing === listing) continue;
     a.lastListing = listing;
     changed = true;
+    const saved = (await chrome.storage.local.get(ALERTS_KEY))[ALERTS_KEY] || {};
+    if (saved[id]) await chrome.storage.local.set({ [ALERTS_KEY]: { ...saved, [id]: { ...saved[id], cid: a.cid, lastListing: listing } } });
     const icon = await thumbData('asset', id);
     const seller = top.seller && top.seller.name ? ` · ${lt('by {creator}', { creator: top.seller.name })}` : '';
     const serial = top.serialNumber ? ` · #${Number(top.serialNumber).toLocaleString('en-US')}` : '';
@@ -1542,13 +1556,16 @@ function runNotifyCheck() {
     if (!Object.values(s).some(Boolean)) return;
     const seen = (await chrome.storage.local.get(NOTIFY_SEEN))[NOTIFY_SEEN] || {};
     const me = await signedInUser(true);
-    if (me && (s.notifyInbound || s.notifyOutbound || s.notifyCompleted || s.notifyDeclined)) await checkTrades(s, seen, me);
+    try {
+      if (me && (s.notifyInbound || s.notifyOutbound || s.notifyCompleted || s.notifyDeclined)) await checkTrades(s, seen, me);
+    } finally {
+      await chrome.storage.local.set({ [NOTIFY_SEEN]: seen });
+    }
     if (s.notifyLimiteds || s.notifyUgc) {
       if (!live || live.readyState !== WebSocket.OPEN) await catchUpLimiteds(s);
       ensureLive();
     }
     if (s.priceAlerts) await checkPriceAlerts();
-    await chrome.storage.local.set({ [NOTIFY_SEEN]: seen });
   })().catch(() => {}).finally(() => { notifyRunning = null; });
   return notifyRunning;
 }

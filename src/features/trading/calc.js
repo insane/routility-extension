@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, pageTitle, formatUSD, formatCash, cash, fromCash, formatNumber, request, itemValue, valueTag, shows } = window.RoUtilityUI;
+  const { el, pageTitle, formatUSD, formatCash, cash, fromCash, formatNumber, request, itemValue, valueTag, shows, chunks } = window.RoUtilityUI;
   const showing = shows('Calc');
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const PATH = /^\/trades\/calculator\/?$/i;
@@ -968,10 +968,8 @@
       });
     }
     const missing = out.filter(i => !i.thumb).map(i => i.id);
-    for (let i = 0; i < missing.length; i += 100) {
-      const map = (await request({ type: 'getAssetThumbs', ids: missing.slice(i, i + 100), size: '420x420' })) || {};
-      for (const it of out) if (!it.thumb && map[it.id]) it.thumb = map[it.id];
-    }
+    const maps = await Promise.all(chunks(missing, 100).map(part => request({ type: 'getAssetThumbs', ids: part, size: '420x420' })));
+    for (const map of maps) for (const it of out) if (!it.thumb && map && map[it.id]) it.thumb = map[it.id];
     if (s.player !== p) return;
     Object.assign(p, { loading: false, items: out, name, error: out.length ? '' : lt('{name} has no limiteds.', { name }) });
     renderGrid();
@@ -1457,6 +1455,7 @@
     const trade = document.querySelector('.left-nav nav a[href$="/trades"]') || [...document.querySelectorAll('nav a[href$="/trades"]')].find(a => /Trade/.test(a.textContent));
     if (!trade) return;
     const li = trade.closest('li');
+    if (!li || !li.parentElement) return;
     let mine = li.parentElement.querySelector(':scope > .routility-calc-nav');
     const here = PATH.test(location.pathname);
     if (!mine) {

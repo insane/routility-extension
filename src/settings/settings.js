@@ -1265,7 +1265,7 @@
       if (clean !== input.value) input.value = clean;
       const n = valid(clean, 1000 * fx);
       field.classList.toggle('stroke-system-alert', !n && clean !== '');
-      if (n) save({ calcRate: String(n), calcRateCurrency: cash.code });
+      if (n) save({ calcRate: String(n), calcRateCurrency: cash.code }, true);
     });
     input.addEventListener('blur', () => {
       field.classList.remove('stroke-system-alert');
@@ -1341,7 +1341,7 @@
       let pos = 0;
       for (let seen = 0; pos < input.value.length && seen < before; pos++) if (/[0-9]/.test(input.value[pos])) seen++;
       input.setSelectionRange(pos, pos);
-      if (n != null) save({ [key]: String(n) });
+      if (n != null) save({ [key]: String(n) }, true);
     });
     input.addEventListener('blur', () => { input.value = current().toLocaleString('en-US'); });
     field.appendChild(input);
@@ -1523,7 +1523,16 @@
       }
     });
     draw();
-    chrome.storage.onChanged.addListener((changes, area) => { if (area === 'local' && changes.routilityFun && box.isConnected) draw(); });
+    let onFunSeen = false;
+    const onFun = (changes, area) => {
+      if (!box.isConnected) {
+        if (onFunSeen) chrome.storage.onChanged.removeListener(onFun);
+        return;
+      }
+      onFunSeen = true;
+      if (area === 'local' && changes.routilityFun) draw();
+    };
+    chrome.storage.onChanged.addListener(onFun);
     return box;
   }
 
@@ -1916,10 +1925,16 @@
       paintFx();
       paintAll();
     });
-    chrome.storage.onChanged.addListener((ch, area) => {
-      if (area !== 'local' || !section.isConnected) return;
-      if (ch.routilitySettings) syncOn(ch.routilitySettings.newValue);
-    });
+    let onSettingsSeen = false;
+    const onSettings = (ch, area) => {
+      if (!section.isConnected) {
+        if (onSettingsSeen) chrome.storage.onChanged.removeListener(onSettings);
+        return;
+      }
+      onSettingsSeen = true;
+      if (area === 'local' && ch.routilitySettings) syncOn(ch.routilitySettings.newValue);
+    };
+    chrome.storage.onChanged.addListener(onSettings);
     return section;
   }
 
@@ -3057,15 +3072,25 @@
       if (head) head.after(applied);
       else section.prepend(applied);
     };
-    const save = (patch) => {
-      Object.assign(settings, patch);
-      chrome.storage.local.get('routilitySettings', (st) => {
-        if (chrome.runtime.lastError) return;
-        chrome.storage.local.set({ routilitySettings: { ...settings, ...(st.routilitySettings || {}), ...patch } }, () => {
-          if ('oldLeftNav' in patch) location.reload();
-          if ('currency' in patch) chrome.runtime.sendMessage({ type: 'fiatRates' }, () => { void chrome.runtime.lastError; location.reload(); });
-        });
+    let typed = null;
+    let typedTimer = 0;
+    const write = (patch) => chrome.storage.local.get('routilitySettings', (st) => {
+      if (chrome.runtime.lastError) return;
+      chrome.storage.local.set({ routilitySettings: { ...settings, ...(st.routilitySettings || {}), ...patch } }, () => {
+        if ('oldLeftNav' in patch) location.reload();
+        if ('currency' in patch) chrome.runtime.sendMessage({ type: 'fiatRates' }, () => { void chrome.runtime.lastError; location.reload(); });
       });
+    });
+    const save = (patch, typing) => {
+      Object.assign(settings, patch);
+      clearTimeout(typedTimer);
+      if (typing) {
+        typed = { ...typed, ...patch };
+        typedTimer = setTimeout(() => { const p = typed; typed = null; write(p); }, 300);
+      } else {
+        write({ ...typed, ...patch });
+        typed = null;
+      }
       if ('oldLeftNav' in patch || 'currency' in patch) return;
       if (Object.keys(patch).some(k => !/^forum(Style|Density|Avatars|Stat)/.test(k))) showApplied();
     };
@@ -3210,7 +3235,16 @@
               });
             });
             draw();
-            chrome.storage.onChanged.addListener((changes, area) => { if (area === 'local' && changes.routilityPriceAlerts && box.isConnected) draw(); });
+            let onAlertsSeen = false;
+            const onAlerts = (changes, area) => {
+              if (!box.isConnected) {
+                if (onAlertsSeen) chrome.storage.onChanged.removeListener(onAlerts);
+                return;
+              }
+              onAlertsSeen = true;
+              if (area === 'local' && changes.routilityPriceAlerts) draw();
+            };
+            chrome.storage.onChanged.addListener(onAlerts);
             wrap.card.appendChild(box);
             continue;
           }

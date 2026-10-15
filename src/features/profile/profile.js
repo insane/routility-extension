@@ -19,13 +19,19 @@
   const STORE_KEY = 'routilityProfileValues4';
   const TTL = 10 * 60 * 1000;
 
+  let writes = Promise.resolve();
+
+  function update(key, change) {
+    writes = writes.then(() => new Promise(done => chrome.storage.local.get(key, (s) => {
+      chrome.storage.local.set({ [key]: change(s[key] || {}) }, done);
+    })));
+  }
+
   function remember(userId, summary) {
     cache.set(userId, { summary, at: Date.now() });
-    chrome.storage.local.get(STORE_KEY, (s) => {
-      const all = s[STORE_KEY] || {};
+    update(STORE_KEY, (all) => {
       all[userId] = { summary, at: Date.now() };
-      const fresh = Object.entries(all).filter(([, v]) => Date.now() - v.at < TTL).slice(-200);
-      chrome.storage.local.set({ [STORE_KEY]: Object.fromEntries(fresh) });
+      return Object.fromEntries(Object.entries(all).filter(([, v]) => Date.now() - v.at < TTL).slice(-200));
     });
     return summary;
   }
@@ -48,11 +54,9 @@
 
   function storeScan(userId, assets, complete) {
     const packed = assets.map(a => [a.assetId, a.name, Number(a.recentAveragePrice) || 0, a.serialNumber ?? null]);
-    chrome.storage.local.get(SCAN_KEY, (st) => {
-      const all = st[SCAN_KEY] || {};
+    update(SCAN_KEY, (all) => {
       all[userId] = { at: Date.now(), complete, packed };
-      const fresh = Object.entries(all).filter(([, v]) => Date.now() - v.at < TTL).sort((a, b) => a[1].at - b[1].at).slice(-8);
-      chrome.storage.local.set({ [SCAN_KEY]: Object.fromEntries(fresh) });
+      return Object.fromEntries(Object.entries(all).filter(([, v]) => Date.now() - v.at < TTL).sort((a, b) => a[1].at - b[1].at).slice(-8));
     });
   }
 

@@ -139,17 +139,18 @@
   }
 
   function get(url, opts) {
-    if (opts.signal || !plainHeaders(opts.headers)) return managed(url, opts, opts.signal || null);
-    const key = [opts.method || 'GET', url, opts.credentials || '', opts.cache || '', opts.headers ? JSON.stringify(opts.headers) : ''].join('|');
+    if (!plainHeaders(opts.headers)) return managed(url, opts, opts.signal || null);
+    const { signal, ...rest } = opts;
+    const key = [rest.method || 'GET', url, rest.credentials || '', rest.cache || '', rest.headers ? JSON.stringify(rest.headers) : ''].join('|');
     let p = inflight.get(key);
     if (p) stats.deduped++;
     else {
-      p = managed(url, opts, null);
+      p = managed(url, rest, null);
       inflight.set(key, p);
       const clear = () => { if (inflight.get(key) === p) inflight.delete(key); };
       p.then(clear, clear);
     }
-    return p.then(r => r.clone());
+    return withSignal(p.then(r => r.clone()), signal);
   }
 
   function thumbGet(url) {

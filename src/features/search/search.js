@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, json, presence } = window.RoUtilityUI;
+  const { el, json, presence, chunks } = window.RoUtilityUI;
   const { lt } = window.RoUtilityI18n;
   const DEBOUNCE = 180;
   const cache = new Map();
@@ -32,12 +32,9 @@
     const res = !!all;
     const ids = (all || []).filter(id => id > 0);
     const list = [];
-    let named = true;
-    for (let i = 0; i < ids.length; i += 100) {
-      const batch = await post('https://users.roblox.com/v1/users', { userIds: ids.slice(i, i + 100), excludeBannedUsers: false });
-      if (!batch) named = false;
-      for (const u of (batch && batch.data) || []) list.push({ id: String(u.id), name: u.name, displayName: u.displayName, verified: !!u.hasVerifiedBadge });
-    }
+    const batches = await Promise.all(chunks(ids, 100).map(part => post('https://users.roblox.com/v1/users', { userIds: part, excludeBannedUsers: false })));
+    const named = batches.every(Boolean);
+    for (const batch of batches) for (const u of (batch && batch.data) || []) list.push({ id: String(u.id), name: u.name, displayName: u.displayName, verified: !!u.hasVerifiedBadge });
     if (res && named) chrome.storage.local.set({ [FRIENDS_KEY]: { me, at: Date.now(), list } });
     else list.partial = true;
     return list;
@@ -444,6 +441,7 @@
       document.addEventListener('keydown', onSlash);
       document.addEventListener('mouseover', onHover, true);
       document.addEventListener('focusout', (e) => { if (e.target?.id === 'navbar-search-input') { sel = -1; paint(); } }, true);
+      document.addEventListener('focusin', (e) => { if (e.target?.id === 'navbar-search-input' && (prefs.friends || prefs.people)) myFriends(); }, true);
       observer = new MutationObserver(window.RoUtilityUI.onFrame(place));
       const target = input()?.closest('.navbar-search') || document.body;
       observer.observe(target, { childList: true, subtree: true });

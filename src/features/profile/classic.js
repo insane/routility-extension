@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, formatNumber, onFrame, pause } = window.RoUtilityUI;
+  const { el, formatNumber, onFrame, pause, chunks } = window.RoUtilityUI;
   const { lt, LT } = window.RoUtilityI18n;
   const ON_CLASS = 'routility-classic-on';
   const PROXY_CLASS = 'routility-menu-proxy';
@@ -11,40 +11,17 @@
   const PRESENCE = { 1: ['online', 'icon-online'], 2: ['game', 'icon-game'], 3: ['studio', 'icon-studio'] };
   let state = null;
 
-  const LANES = 4;
-  let lanesBusy = 0;
-  const laneQueue = [];
-  let coolUntil = 0;
-
-  function lane() {
-    if (lanesBusy < LANES) {
-      lanesBusy++;
-      return Promise.resolve();
-    }
-    return new Promise(r => laneQueue.push(r));
-  }
-
-  function release() {
-    const next = laneQueue.shift();
-    if (next) next();
-    else lanesBusy--;
-  }
-
   let csrf = '';
 
-  async function fetchRetry(url, opts, tries = 6) {
+  async function fetchRetry(url, opts, tries = 2) {
     let last = { status: 0, body: null };
     let renewed = false;
     for (let attempt = 0; attempt < tries; attempt++) {
-      const wait = coolUntil - Date.now();
-      if (wait > 0) await pause(wait);
-      await lane();
       let res = null;
       const sent = opts && opts.method === 'POST' ? csrf : '';
       try {
         res = await fetch(url, { credentials: 'include', ...opts, headers: sent ? { ...opts.headers, 'x-csrf-token': sent } : opts && opts.headers });
       } catch {}
-      release();
       const token = res && res.status === 403 && opts && opts.method === 'POST' && res.headers.get('x-csrf-token');
       if (token && !renewed) {
         renewed = true;
@@ -63,7 +40,6 @@
       if ((res && res.status !== 429 && res.status < 500) || attempt === tries - 1) return last;
       const after = res && Number(res.headers.get('retry-after'));
       const delay = Number.isFinite(after) && after > 0 ? Math.min(after * 1000, 10000) : Math.min(700 * 2 ** attempt, 8000) + Math.random() * 400;
-      if (res && res.status === 429) coolUntil = Math.max(coolUntil, Date.now() + Math.min(delay, 3000));
       await pause(delay);
     }
     return last;
@@ -78,7 +54,7 @@
   }
 
   async function quick(url) {
-    return (await fetchRetry(url, undefined, 3)).body;
+    return (await fetchRetry(url, undefined, 1)).body;
   }
 
   function post(url, body) {
@@ -115,15 +91,15 @@
     for (let attempt = 0; attempt < 3 && pending.length; attempt++) {
       if (attempt) await new Promise(r => setTimeout(r, 1500));
       const retry = [];
-      for (let i = 0; i < pending.length; i += 100) {
-        const chunk = pending.slice(i, i + 100);
-        const res = await post('https://thumbnails.roblox.com/v1/batch', chunk.map(r => ({ format: 'Webp', isCircular: false, ...r })));
+      const parts = chunks(pending, 100);
+      const batches = await Promise.all(parts.map(chunk => post('https://thumbnails.roblox.com/v1/batch', chunk.map(r => ({ format: 'Webp', isCircular: false, ...r })))));
+      batches.forEach((res, k) => {
         for (const t of (res && res.data) || []) {
           if (t.state === 'Completed' && t.imageUrl) out.set(t.requestId, t.imageUrl);
           else if (t.state === 'Blocked') out.set(t.requestId, window.RoUtilityUI.blockedThumb(t));
-          else if (t.state === 'Pending') retry.push(chunk.find(r => r.requestId === t.requestId));
+          else if (t.state === 'Pending') retry.push(parts[k].find(r => r.requestId === t.requestId));
         }
-      }
+      });
       pending = retry.filter(Boolean);
     }
     return out;

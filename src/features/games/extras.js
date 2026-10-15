@@ -2606,9 +2606,9 @@
         if (p !== page) return;
         const universeId = document.querySelector('#game-detail-meta-data')?.dataset.universeId;
         if (universeId) {
-          storeTotal(p, universeId);
-          devProducts(p, universeId);
-          creatorItems(p, universeId);
+          if (settings.storeTotal !== false) storeTotal(p, universeId);
+          if (settings.devProducts !== false) devProducts(p, universeId);
+          if (settings.creatorItems !== false) creatorItems(p, universeId);
         }
         else setTimeout(waitUniverse, 500);
       };
@@ -2616,9 +2616,9 @@
     }
     if (profile) {
       exactCounts(p, profile[1]);
-      mutualGroups(p, profile[1]);
-      placeVisits(p, profile[1]);
-      userOutfits(p, profile[1]);
+      if (settings.mutualGroups !== false) mutualGroups(p, profile[1]);
+      if (settings.placeVisits !== false) placeVisits(p, profile[1]);
+      if (settings.userOutfits !== false) userOutfits(p, profile[1]);
     }
     p.clock = setInterval(() => { if (p === page) p.tick(); }, 30000);
     p.observer = new MutationObserver(p.tick);
