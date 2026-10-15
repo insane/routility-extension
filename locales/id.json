@@ -2546,5 +2546,8 @@
  "Your Robux Rate": "Kurs Robux Kamu",
  "Your Settings": "Pengaturanmu",
  "Your Slots": "Slot-mu",
- "Your Status": "Statusmu"
+ "Your Status": "Statusmu",
+ "Friends Since": "Berteman Sejak",
+ "Friends since {date}": "Berteman sejak {date}",
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "Tanggal di bawah setiap kartu di daftar Teman mana pun, milikmu atau milik orang lain, yang menunjukkan kapan mereka mulai berteman. Arahkan kursor untuk melihat sudah berapa lama. Roblox tidak menyimpan tanggal untuk mengikuti, jadi tidak ada tanggal untuk itu."
 }

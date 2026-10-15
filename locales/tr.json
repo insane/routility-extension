@@ -2671,5 +2671,8 @@
  "Your Robux Rate": "Robux Kurun",
  "Your Settings": "Ayarların",
  "Your Slots": "Yuvaların",
- "Your Status": "Durumun"
+ "Your Status": "Durumun",
+ "Friends Since": "Arkadaşlık Tarihi",
+ "Friends since {date}": "{date} tarihinden beri arkadaş",
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "Seninki ya da başkasınınki, her Arkadaşlar listesindeki her kartın altında o ikisinin ne zaman arkadaş olduğunu gösteren tarih. Ne kadar önce olduğunu görmek için üzerine gel. Roblox takip etme tarihini tutmaz, bu yüzden takipler için tarih yok."
 }

@@ -2671,5 +2671,8 @@
  "Your Robux Rate": "Tu tasa de Robux",
  "Your Settings": "Tu configuración",
  "Your Slots": "Tus espacios",
- "Your Status": "Tu estado"
+ "Your Status": "Tu estado",
+ "Friends Since": "Amigos desde",
+ "Friends since {date}": "Amigos desde {date}",
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "La fecha debajo de cada tarjeta en cualquier lista de amigos, tuya o de otra persona, que muestra cuándo se hicieron amigos. Pasa el cursor para ver cuánto tiempo hace. Roblox no guarda una fecha para los seguimientos, así que no hay una para eso."
 }

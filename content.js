@@ -461,6 +461,7 @@
     window.RoUtilityBadgeManage.teardown();
     window.RoUtilitySkinTone.teardown();
     window.RoUtilityMutual.teardown();
+    window.RoUtilityFriends.stopFriendDates();
     window.RoUtilityBadges.teardown();
     window.RoUtilityInvSearch.teardown();
     window.RoUtilityListOrder.teardown();
@@ -625,6 +626,8 @@
       chrome.storage.local.get('routilitySettings', (stored) => {
         const settings = { hiddenFriends: true, revealTerminated: true, friendCardMenu: true, adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, requestFilters: true, ...(stored.routilitySettings || {}) };
         if (window.location.pathname !== path) return;
+        const owner = friendsPage[1] || document.querySelector('meta[name="user-data"]')?.dataset.userid;
+        if (settings.friendsSince !== false && owner) window.RoUtilityFriends.friendDates(owner);
         if (settings.adminBadge) window.RoUtilityFriends.adminBadges();
         if (settings.friendFilters || settings.friendManage || settings.unfriendDetector) window.RoUtilityFriends.friendFilters(friendsPage[1], { filters: settings.friendFilters, manage: settings.friendManage, unfriends: settings.unfriendDetector });
         if (settings.requestFilters && !friendsPage[1]) window.RoUtilityRequests.setup();

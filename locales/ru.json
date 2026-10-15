@@ -2921,5 +2921,8 @@
  "Your Robux Rate": "Твой курс Robux",
  "Your Settings": "Твои настройки",
  "Your Slots": "Твои слоты",
- "Your Status": "Твой статус"
+ "Your Status": "Твой статус",
+ "Friends Since": "Друзья с",
+ "Friends since {date}": "Друзья с {date}",
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "Дата под каждой карточкой в любом списке друзей, твоём или чужом, когда эти двое стали друзьями. Наведи курсор, чтобы увидеть, как давно это было. Roblox не хранит дату подписки, поэтому для подписок её нет."
 }

@@ -2671,5 +2671,8 @@
  "Your Robux Rate": "Your Robux Rate",
  "Your Settings": "Your Settings",
  "Your Slots": "Your Slots",
- "Your Status": "Your Status"
+ "Your Status": "Your Status",
+ "Friends Since": "Friends Since",
+ "Friends since {date}": "Friends since {date}",
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those."
 }

@@ -279,5 +279,5 @@
   window.addEventListener('scroll', () => { if (card) close(); }, true);
   window.addEventListener('popstate', close);
 
-  window.RoUtilityHoverCard = { close };
+  window.RoUtilityHoverCard = { close, age };
 })();

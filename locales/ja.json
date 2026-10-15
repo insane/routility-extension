@@ -2546,5 +2546,8 @@
  "Your Robux Rate": "あなたの Robux レート",
  "Your Settings": "あなたの設定",
  "Your Slots": "あなたのスロット",
- "Your Status": "あなたのステータス"
+ "Your Status": "あなたのステータス",
+ "Friends Since": "フレンドになった日",
+ "Friends since {date}": "{date}からのフレンド",
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "自分や他の人のフレンドリストの各カードの下に、2人がフレンドになった日を表示します。カーソルを合わせると何日前かがわかります。Robloxはフォローの日付を保存していないため、フォローには表示されません。"
 }

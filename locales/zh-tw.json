@@ -2546,5 +2546,8 @@
  "Your Robux Rate": "你的 Robux 匯率",
  "Your Settings": "你的設定",
  "Your Slots": "你的欄位",
- "Your Status": "你的狀態"
+ "Your Status": "你的狀態",
+ "Friends Since": "成為好友時間",
+ "Friends since {date}": "自 {date} 起成為好友",
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "在任何好友清單（你的或別人的）中每張卡片下方顯示兩人成為好友的日期。滑過即可查看已經多久。Roblox 不記錄追蹤的日期，所以追蹤沒有日期。"
 }
