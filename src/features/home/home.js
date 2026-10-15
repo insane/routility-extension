@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el } = window.RoUtilityUI;
+  const { el, json } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const HIDDEN_KEY = 'routilityHiddenGames';
   const HIDDEN_NAMES = 'routilityHiddenNames';
@@ -219,15 +219,6 @@
     overlay.querySelector('.modal-header .close')?.click();
   }
   document.addEventListener('mousedown', closeNativeOnBackdrop, true);
-
-  async function json(url, init) {
-    try {
-      const res = await fetch(url, { credentials: 'include', ...init });
-      return res.ok ? await res.json() : null;
-    } catch {
-      return null;
-    }
-  }
 
   function carousel(scroller) {
     scroller.classList.add('new-scroll-arrows');

@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el } = window.RoUtilityUI;
+  const { el, json, presence } = window.RoUtilityUI;
   const { lt } = window.RoUtilityI18n;
   const DEBOUNCE = 180;
   const cache = new Map();
@@ -17,15 +17,6 @@
   let token = 0;
   let friendIds = null;
   let current = { query: '', rows: null };
-
-  async function json(url, opts) {
-    try {
-      const res = await fetch(url, { credentials: 'include', ...opts });
-      return res.ok ? await res.json() : null;
-    } catch {
-      return null;
-    }
-  }
 
   function post(url, body) {
     return json(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
@@ -147,11 +138,10 @@
       ];
       const [pics, pres] = await Promise.all([
         thumbs(reqs),
-        ranked.length ? post('https://presence.roblox.com/v1/presence/users', { userIds: ranked.map(u => Number(u.id)) }) : null,
+        presence(ranked.map(u => u.id)),
       ]);
-      const presence = new Map(((pres && pres.userPresences) || []).map(p => [String(p.userId), p]));
       const failed = (prefs.people && !people) || (prefs.games && !all);
-      return { query, users: ranked, game, items: limiteds, pics, presence, failed };
+      return { query, users: ranked, game, items: limiteds, pics, presence: pres, failed };
     })();
     cache.set(key, job);
     job.then((r) => { if (!r || r.failed) cache.delete(key); }, () => cache.delete(key));

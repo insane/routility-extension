@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, onFrame, formatNumber } = window.RoUtilityUI;
+  const { el, onFrame, formatNumber, pause } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const LABELS = { 0: LT('Offline'), 1: LT('Online'), 2: LT('In Experience'), 3: LT('In Studio'), 4: LT('Offline') };
   const ICONS = { 1: 'icon-online', 2: 'icon-game', 3: 'icon-studio' };
@@ -127,12 +127,8 @@
   }
 
   async function presence(ids) {
-    const out = new Map();
-    for (let i = 0; i < ids.length; i += 100) {
-      const res = await post('https://presence.roblox.com/v1/presence/users', { userIds: ids.slice(i, i + 100) });
-      for (const p of (res && res.userPresences) || []) out.set(Number(p.userId), p);
-    }
-    return out;
+    const live = await window.RoUtilityUI.presence(ids);
+    return new Map([...live].map(([id, p]) => [Number(id), p]));
   }
 
   function card(f, thumb, p) {
@@ -1436,7 +1432,6 @@
   }
 
   let fmCsrf = '';
-  const pause = ms => new Promise(r => setTimeout(r, ms));
 
   async function byMe(id) {
     try {

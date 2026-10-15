@@ -4,6 +4,7 @@
   const LOGO_URL = chrome.runtime.getURL('assets/icons/logo.png');
 
   const formatUSD = window.RoUtilityUI.formatUSD;
+  const el = window.RoUtilityUI.el;
   const { lt, ltn } = window.RoUtilityI18n;
 
   const bundleAssets = new Map();
@@ -13,13 +14,6 @@
     if (match) return match[1];
     const bundle = url.match(/\/bundles\/(\d+)/);
     return (bundle && bundleAssets.get(bundle[1])) || null;
-  }
-
-  function el(tag, className, text) {
-    const node = document.createElement(tag);
-    if (className) node.className = className;
-    if (text != null) node.textContent = text;
-    return node;
   }
 
   function nativeRow(label, valueNode) {
