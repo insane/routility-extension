@@ -797,13 +797,11 @@
       ],
     },
     menu: {
-      intro: LT('The menu on the left: put its links in the order you like and hide the ones you don’t use, bring back the old menu, collapse it and add Quick Settings under it.'),
+      intro: LT('The sidebar on the left: put its links in the order you like and hide the ones you don’t use, bring back the old one, collapse it and add Quick Settings under it.'),
       groups: [
-        { title: LT('Links'), rows: [
-          { key: 'oldLeftNav', title: LT('Old Left Menu'), desc: LT('Roblox is moving accounts to a new left menu. This brings back the old one, with Trade Calculator, Trade Ads, Forum, the Collapse button, Quick Settings and your arranged order below. Menu sizes only work on the new menu.') },
-          { custom: 'navLayout', title: LT('Arrange the Left Menu'), desc: LT('Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.') },
-        ] },
-        { title: LT('Size'), rows: [
+        { title: LT('Layout'), rows: [
+          { key: 'oldLeftNav', title: LT('Old Sidebar'), desc: LT('Roblox is moving accounts to a new left menu. This brings back the old one, with Trade Calculator, Trade Ads, Forum, the Collapse button, Quick Settings and your arranged order below. Menu sizes only work on the new menu.') },
+          { custom: 'navLayout', title: LT('Arrange the Sidebar'), desc: LT('Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.') },
           { key: 'navCollapse', title: LT('Collapse Button'), desc: LT('A Collapse button at the bottom of the menu that shrinks it to just its icons, giving pages more room. Hover an icon for its name. Click it again to expand.') },
         ] },
         { title: LT('Under the Menu'), rows: [
@@ -825,7 +823,7 @@
           { key: 'recentlyUpdated', title: LT('Recently Updated'), desc: LT('A Home row with your favorite and recently played experiences, newest update first. A dot marks the ones that changed since you last opened them.') },
           { key: 'genreFilters', title: LT('Genre Filters'), desc: LT('Genre chips under the Charts title. Pick one, like Obby & Platformer, to only see those experiences in every chart, then narrow it down with its subgenres.') },
           { key: 'notInterested', title: LT('Not Interested'), desc: LT('Roblox’s ⋯ tile menu with “Not interested” on every experience in Home and Charts, not just the big tiles. Undo right after, or bring them back below.') },
-          { key: 'hideSponsored', title: LT('Hide Sponsored'), desc: LT('Hides sponsored experiences on the home page and in game lists.') },
+          { key: 'hideSponsored', title: LT('Hide Sponsored'), desc: LT('Hides sponsored experiences on Home and in game lists.') },
         ] },
         { title: LT('Charts'), rows: [
           { key: 'randomGame', title: LT('Random Experience'), desc: LT('A button on Charts that opens a random experience from the page, for when you can’t decide.') },
@@ -861,7 +859,7 @@
         { title: LT('Friends List'), rows: [
           { key: 'friendFilters', title: LT('Friend Filters'), desc: LT('More chips next to All and Trusted on your friends list: Verified, Roblox Plus, Admin and Online, across all your friends, not just one page.') },
           { key: 'friendManage', title: LT('Manage Friends'), desc: LT('A Manage button on your friends list: search, filter by Online, Offline, Verified or Terminated, and unfriend several at once with a confirm step. Requests go one at a time.') },
-          { key: 'hiddenFriends', title: LT('Hidden Friend Lists'), desc: LT('When Roblox hides someone’s friends, load them from RoUtility. Sends that profile’s id to RoUtility.') },
+          { key: 'hiddenFriends', title: LT('Hidden Friend Lists'), desc: LT('When Roblox hides someone’s friends, load them from RoUtility. Sends that profile’s ID to RoUtility.') },
           { key: 'revealTerminated', title: LT('Reveal Terminated Accounts'), desc: LT('Show the real name behind Account Deleted friends and open their profile.') },
           { key: 'friendsSince', title: LT('Friends Since'), desc: LT('The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.') },
           { key: 'friendCardMenu', title: LT('Friend Card Menu'), desc: LT('The three-dot menu Roblox only shows on terminated friends, on every card on your friends list, with Unfriend and Block. Block asks first.') },
@@ -992,7 +990,7 @@
         { title: LT('Marketplace Search'), rows: [
           { key: 'catalogRobloxOnly', title: LT('Only Roblox Items'), desc: LT('Every Marketplace search starts with the Creator filter set to Roblox, so you see Roblox’s own items and none of the UGC. Switch the filter to All Creators to see everything for that search.') },
         ] },
-        { title: LT('Item Page Values'), note: LT('Pick which lines show on item pages'), rows: [
+        { title: LT('Item Page Values'), rows: [
           { key: 'itemPrices', title: LT('Limited Values'), desc: LT('Values from routility.io on limited item pages. Pick the lines you want below.') },
           { key: 'itemUsd', parent: 'itemPrices', title: LT('RoUtility Price'), desc: LT('What the item is worth in your currency, next to its Robux price. Hover it for the RoUtility Value when the item has one.') },
           { key: 'itemDemand', parent: 'itemPrices', title: LT('Demand'), desc: LT('How much traders want it, like High or Terrible.') },
