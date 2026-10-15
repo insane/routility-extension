@@ -1870,7 +1870,7 @@
       main.appendChild(presetChip(lt('Roblox Default'), null, () => usePreset(null)));
       for (const [label, pal] of THEME_PRESETS) main.appendChild(presetChip(lt(label), pal, () => usePreset(pal)));
       const mine = el('div', 'routility-theme-preset-row routility-theme-slots');
-      mine.appendChild(el('span', 'text-label-medium content-muted routility-theme-slots-label', lt('Your Slots')));
+      mine.appendChild(el('span', 'text-label-medium content-emphasis routility-theme-slots-label', lt('Your Slots')));
       const saveSlots = (next) => {
         slots = next;
         chrome.storage.local.set({ routilityThemeSlots: slots });
@@ -1905,7 +1905,7 @@
         wrap.append(chip, tool('routility-calc-icon-download', lt('Save current theme here'), () => saveSlots(Object.assign([...slots], { [i]: { colors: { ...colors }, fx, ...look, at: Date.now() } }))), tool('routility-calc-icon-close', lt('Clear this slot'), () => saveSlots(Object.assign([...slots], { [i]: null }))));
         mine.appendChild(wrap);
       }
-      presetBar.append(main, mine);
+      presetBar.append(el('span', 'text-label-medium content-emphasis', lt('Presets')), main, mine);
     };
 
     const SLOT_COUNT = 5;
