@@ -637,6 +637,7 @@
         cached = { at: Date.now(), me, games: list };
         try { sessionStorage.setItem(RU_CACHE, JSON.stringify(cached)); } catch {}
       }
+      if (!chrome.runtime?.id) return;
       seen = await new Promise(r => chrome.storage.local.get(GAME_SEEN, st => r(st[GAME_SEEN] || {})));
       const cutoff = Date.now() - RU_DAYS * 86400000;
       games = cached.games.filter(g => g.updated >= cutoff).sort((a, b) => b.updated - a.updated).slice(0, 30);
