@@ -11703,6 +11703,7 @@ html.routility-classic-verified :has(> .icon-filled-verified-backplate) {
 html.routility-menu-bar .settings-left-navigation .menu-vertical .menu-option .menu-option-content.active::before,
 html.routility-menu-bar .settings-left-navigation .menu-vertical .menu-option.active > .menu-option-content::before {
   display: block !important;
+  background-color: var(--color-content-emphasis, currentColor) !important;
 }
 
 .routility-menu-back-logo {
@@ -11726,7 +11727,7 @@ html.routility-settings-mode .menu-vertical .routility-menu-divider.routility-me
   margin: 16px 12px 4px;
   padding: 0;
   background: none;
-  color: var(--color-system-emphasis);
+  color: var(--color-content-muted, rgba(127, 127, 127, 0.9));
   font-size: 12px;
   font-weight: 800;
   line-height: 18px;
@@ -11769,7 +11770,7 @@ html.routility-settings-mode .menu-vertical .routility-menu-off {
 }
 
 .routility-menu-search-box:focus-within {
-  border-color: var(--color-system-emphasis);
+  border-color: var(--color-content-muted, rgba(127, 127, 127, 0.9));
 }
 
 .routility-menu-search-box input {
@@ -11806,7 +11807,7 @@ html.routility-settings-mode .menu-vertical .routility-menu-off {
 }
 
 @keyframes routility-set-flash {
-  0%, 30% { box-shadow: inset 0 0 0 2px var(--color-system-emphasis); }
+  0%, 30% { box-shadow: inset 0 0 0 2px var(--color-content-muted, rgba(127, 127, 127, 0.9)); }
   100% { box-shadow: inset 0 0 0 2px transparent; }
 }
 
@@ -11878,7 +11879,7 @@ html.routility-settings-mode .routility-pane .routility-set-row .routility-set-t
   left: 3px;
   width: 3px;
   border-radius: 2px;
-  background: var(--color-system-emphasis);
+  background: var(--color-content-emphasis, currentColor);
 }
 
 html.routility-menu-bar .rt-m-tab-on::before {
@@ -11889,23 +11890,13 @@ html.routility-menu-bar .rt-m-tab-on::before {
   animation: routility-pane-in 0.18s ease-out;
 }
 
-#react-user-account-base.routility-fade-in {
-  animation: routility-fade-in 0.18s ease-out;
-}
-
-@keyframes routility-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 @keyframes routility-pane-in {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .routility-pane.routility-pane-in,
-  #react-user-account-base.routility-fade-in {
+  .routility-pane.routility-pane-in {
     animation: none;
   }
 }

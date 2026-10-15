@@ -3468,9 +3468,7 @@
     const modeOn = !!open;
     if (document.documentElement.classList.contains('routility-settings-mode') !== modeOn) {
       document.documentElement.classList.toggle('routility-settings-mode', modeOn);
-      if (shown) fadeIn(document.querySelector('#react-user-account-base'));
     }
-    shown = true;
     const ours = [...menu.querySelectorAll('.routility-menu-item > .menu-option-content')];
     for (const stale of document.querySelectorAll('.routility-pane')) if (stale !== pane && stale !== leaving) stale.remove();
 
@@ -3485,7 +3483,8 @@
           a.removeAttribute('aria-current');
         }
       }
-      if (!content.classList.contains('routility-open')) content.classList.add('routility-open');
+      // Roblox's page stays up until ours is built, so opening a tab never shows a blank page.
+      if ((pane || leaving) && !content.classList.contains('routility-open')) content.classList.add('routility-open');
       if (pane && pane.parentElement !== content) content.appendChild(pane);
     } else {
       for (const a of ours) {
@@ -3501,14 +3500,6 @@
 
   let building = null;
   let leaving = null;
-  let shown = false;
-
-  function fadeIn(node) {
-    if (!node) return;
-    node.classList.remove('routility-fade-in');
-    void node.offsetWidth;
-    node.classList.add('routility-fade-in');
-  }
 
   function setOpen(hash) {
     const next = isOurs(hash) ? hash : null;
@@ -3533,7 +3524,9 @@
           building = null;
           pane?.remove();
           pane = buildPane(tab, stored, cache || {});
-          if (leaving) pane.classList.add('routility-pane-in');
+          // Only the page fades in, never the menu beside it: fading the whole
+          // page made the menu blink on every switch to or from Roblox's settings.
+          pane.classList.add('routility-pane-in');
           leaving?.remove();
           leaving = null;
           apply();
