@@ -1500,8 +1500,9 @@
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== 'local' || !changes.routilitySettings) return;
     settings = changes.routilitySettings.newValue || {};
-    if (settings.tradeCalculator === false) return;
     ensureNav();
+    if (settings.tradeCalculator === false) return;
+    startNav();
     if (s && s.root && s.root.isConnected && s.items.length) {
       renderSides();
       renderSummary();

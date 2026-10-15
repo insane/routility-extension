@@ -775,7 +775,7 @@
   function route() {
     if (!/^\/communities/i.test(location.pathname)) {
       if (page) { closePop(); page = null; }
-      lastUrl = location.href;
+      lastUrl = location.pathname + location.search;
       return;
     }
     const key = location.pathname + location.search;

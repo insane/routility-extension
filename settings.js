@@ -1698,24 +1698,39 @@
     const isHidden = (key) => flag(key) ? settings[flag(key)] === false : lay.hidden.includes(key);
     const blocked = (key) => !!owner(key) && settings[owner(key)] === false;
 
+    const OWN_ICONS = { calc: 'routility-calc-nav-icon', ads: 'routility-ads-nav-icon', forum: 'routility-forum-nav-icon' };
     const fillIcon = (box) => {
+      if (box.firstChild) return true;
       const li = document.querySelector(`.left-nav nav ul > ${rules.get(box.dataset.nav)}`);
       const src = li && li.querySelector(':scope > a > span, :scope > button > span');
-      if (src && !box.firstChild) box.appendChild(src.cloneNode(true));
+      if (src) box.appendChild(src.cloneNode(true));
+      else if (OWN_ICONS[box.dataset.nav]) {
+        const wrap = el('span', 'size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center');
+        wrap.appendChild(el('span', `grow-0 shrink-0 basis-auto icon ${OWN_ICONS[box.dataset.nav]} size-[var(--icon-size-large)]`));
+        box.appendChild(wrap);
+      }
       return !!box.firstChild;
     };
     let iconWatch = null;
     const watchIcons = () => {
       if (iconWatch) return;
       const started = Date.now();
+      let queued = false;
+      const stop = () => {
+        iconWatch?.disconnect();
+        iconWatch = null;
+      };
       iconWatch = new MutationObserver(() => {
-        const left = [...section.querySelectorAll('.routility-nav-icon')].filter(b => !fillIcon(b));
-        if (!left.length || Date.now() - started > 20000) {
-          iconWatch.disconnect();
-          iconWatch = null;
-        }
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => {
+          queued = false;
+          const left = [...section.querySelectorAll('.routility-nav-icon')].filter(b => !fillIcon(b));
+          if (!left.length || Date.now() - started > 20000) stop();
+        });
       });
       iconWatch.observe(document.body, { childList: true, subtree: true });
+      setTimeout(stop, 20000);
     };
     const iconOf = (key) => {
       const box = el('span', 'routility-nav-icon');
@@ -3046,12 +3061,18 @@
 
   function start() {
     const root = document.querySelector('#user-account') || document.body;
+    let queued = false;
     const watcher = new MutationObserver(() => {
       if (!chrome.runtime?.id) {
         watcher.disconnect();
         return;
       }
-      apply();
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        apply();
+      });
     });
     watcher.observe(root, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
     if (open) {

@@ -206,15 +206,24 @@
     }
   }
 
+  function stopCollapse() {
+    collapseObserver?.disconnect();
+    collapseObserver = null;
+    document.querySelectorAll('.left-nav li.routility-nav-collapse').forEach(n => n.remove());
+    document.querySelectorAll('.left-nav [data-routility-nav-tip]').forEach(a => { delete a.dataset.rtTip; delete a.dataset.routilityNavTip; });
+  }
+
   function startCollapse() {
-    if (collapseObserver || settings.navCollapse === false) return;
+    if (settings.navCollapse === false) return stopCollapse();
+    if (collapseObserver) return;
     const run = onFrame(placeCollapse);
-    collapseObserver = new MutationObserver(run);
-    collapseObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    const obs = collapseObserver = new MutationObserver(run);
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
     const watch = () => {
+      if (collapseObserver !== obs) return;
       const nav = document.querySelector('.left-nav');
       if (!nav) { setTimeout(watch, 500); return; }
-      new MutationObserver(run).observe(nav, { childList: true, subtree: true });
+      obs.observe(nav, { childList: true, subtree: true });
       run();
     };
     watch();
@@ -619,8 +628,8 @@
     const before = settings;
     settings = changes.routilitySettings.newValue || {};
     if (QS_KEYS.some(k => before[k] !== settings[k])) qsRefresh(QS_ROWS.some(([, , k]) => before[k] !== settings[k]) || before.quickSettings !== settings.quickSettings);
-    if (location.hostname === 'www.roblox.com') startClassicNames();
     if (location.hostname === 'www.roblox.com') startStudioStatus();
+    if (location.hostname === 'www.roblox.com' && before.navCollapse !== settings.navCollapse) startCollapse();
     placeBadges();
     checkStatus();
     document.querySelectorAll('[data-routility-robux]').forEach(n => {
@@ -1254,132 +1263,6 @@
     pulseTimer = setInterval(studioPulse, 30000);
   }
 
-  const CLASSIC_SETS = {
-    classicGames: { words: { experiences: 'Games', experience: 'Game', charts: 'Games' }, title: [/^\/charts(\/|$)/i, LT('Games')] },
-    classicCatalog: { words: { marketplace: 'Catalog' }, title: [/^\/catalog\/?$/i, LT('Catalog')] },
-    classicGroups: { words: { communities: 'Groups', community: 'Group' }, title: [/^\/communities\/?$/i, LT('Groups')] },
-    classicPackages: { words: { bundles: 'Packages', bundle: 'Package' }, title: [/^\/bundles\/?$/i, LT('Packages')] },
-  };
-  const renamed = new Map();
-  let namesObserver = null;
-  let titleObserver = null;
-  let titleWas = null;
-  let classic = { words: {}, re: null, titles: [], develop: false, key: '' };
-
-  function classicConfig() {
-    const words = {};
-    const titles = [];
-    for (const [key, set] of Object.entries(CLASSIC_SETS)) {
-      if (settings[key] === false) continue;
-      Object.assign(words, set.words);
-      titles.push(set.title);
-    }
-    const names = Object.keys(words);
-    const develop = settings.classicDevelop !== false;
-    return {
-      words,
-      titles,
-      develop,
-      re: names.length ? new RegExp('^((?:my|search|search my|join|leave|create|hidden|your|all|favorite|recent|popular|recommended|featured|related|similar|other|more|top|new) )?(' + names.join('|') + ')( \\([\\d,.]+[kmb+]*\\))?$', 'i') : null,
-      key: names.join(',') + '|' + develop,
-    };
-  }
-
-  const swapWord = (w) => {
-    const to = classic.words[w.toLowerCase()];
-    if (w === w.toLowerCase()) return to.toLowerCase();
-    if (w === w.toUpperCase()) return to.toUpperCase();
-    return to;
-  };
-
-  function classicText(t, el) {
-    if (t === 'Create' && classic.develop && el && el.matches('a.nav-menu-title')) return 'Develop';
-    if (!classic.re || !classic.re.test(t)) return null;
-    return t.replace(classic.re, (m, pre, word, count) => (pre || '') + swapWord(word) + (count || ''));
-  }
-
-  function remember(target, from, to) {
-    if (renamed.size > 400) for (const x of renamed.keys()) if (!(x.isConnected || x.ownerElement?.isConnected)) renamed.delete(x);
-    if (!renamed.has(target)) renamed.set(target, { from, to });
-    else renamed.get(target).to = to;
-  }
-
-  function renameText(n) {
-    const p = n.parentElement;
-    if (!p || p.closest('textarea, [contenteditable="true"], .rt-m-strike')) return;
-    const t = n.nodeValue.trim();
-    const to = t && classicText(t, p);
-    if (!to || to === t) return;
-    const next = n.nodeValue.replace(t, to);
-    remember(n, n.nodeValue, next);
-    n.nodeValue = next;
-  }
-
-  function renamePlaceholder(input) {
-    const t = (input.getAttribute('placeholder') || '').trim();
-    const to = t && classicText(t, null);
-    if (!to || to === t) return;
-    remember(input.getAttributeNode('placeholder'), t, to);
-    input.setAttribute('placeholder', to);
-  }
-
-  function renameIn(root) {
-    if (root.nodeType === 3) return renameText(root);
-    if (root.nodeType !== 1) return;
-    const walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-    for (let n = walk.nextNode(); n; n = walk.nextNode()) renameText(n);
-    if (root.matches('input[placeholder]')) renamePlaceholder(root);
-    root.querySelectorAll('input[placeholder]').forEach(renamePlaceholder);
-  }
-
-  function classicTitle() {
-    const hit = classic.titles.find(([re]) => re.test(location.pathname));
-    if (!hit) return;
-    const now = document.title;
-    const want = (now.match(/^\(\d+\+?\) /) || [''])[0] + lt('{page} - Roblox', { page: lt(hit[1]) });
-    if (now === want) return;
-    if (titleWas === null) titleWas = now;
-    document.title = want;
-  }
-
-  function startClassicNames() {
-    if (settings.classicNames !== true) return stopClassicNames();
-    const next = classicConfig();
-    if (namesObserver && next.key === classic.key) return;
-    stopClassicNames();
-    classic = next;
-    namesObserver = new MutationObserver((list) => {
-      for (const m of list) {
-        if (m.type === 'characterData') renameText(m.target);
-        else if (m.type === 'attributes') renamePlaceholder(m.target);
-        else for (const n of m.addedNodes) renameIn(n);
-      }
-    });
-    namesObserver.observe(document.body, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['placeholder'] });
-    renameIn(document.body);
-    titleObserver = new MutationObserver(classicTitle);
-    titleObserver.observe(document.head, { subtree: true, childList: true, characterData: true });
-    classicTitle();
-  }
-
-  function stopClassicNames() {
-    if (!namesObserver) return;
-    namesObserver.disconnect();
-    namesObserver = null;
-    titleObserver?.disconnect();
-    titleObserver = null;
-    for (const [node, { from, to }] of renamed) {
-      if (node.nodeType === 2) {
-        if (node.ownerElement && node.ownerElement.getAttribute('placeholder') === to) node.ownerElement.setAttribute('placeholder', from);
-      } else if (node.nodeValue === to) node.nodeValue = from;
-    }
-    renamed.clear();
-    if (titleWas !== null) {
-      document.title = titleWas;
-      titleWas = null;
-    }
-  }
-
   const OWN_LINK = /^((?:https:\/\/www\.roblox\.com)?\/users)\/(profile|inventory)\/?$/;
 
   function ownLinks() {
@@ -1408,7 +1291,6 @@
     if (location.hostname === 'www.roblox.com') startQuick();
     if (location.hostname === 'www.roblox.com') startMessages();
     if (location.hostname === 'www.roblox.com') startCollapse();
-    if (location.hostname === 'www.roblox.com') startClassicNames();
     if (location.hostname === 'www.roblox.com') startStudioStatus();
     if (location.hostname === 'www.roblox.com') startR6Skip();
   });

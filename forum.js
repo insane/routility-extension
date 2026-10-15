@@ -1840,6 +1840,8 @@
       a.href = 'https://www.roblox.com/forum';
       mine.appendChild(a);
     }
+    const a = mine.querySelector('a');
+    if (a && a.textContent !== lt('Forum')) a.textContent = lt('Forum');
     if (robux.nextElementSibling !== mine) robux.after(mine);
   }
 

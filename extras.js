@@ -1403,7 +1403,7 @@
         top.after(launchPanel(join, dialog));
       }, 1200);
     };
-    new MutationObserver(() => setTimeout(check, 0)).observe(document.body, { childList: true, subtree: true });
+    new MutationObserver(window.RoUtilityUI.onFrame(check)).observe(document.body, { childList: true, subtree: true });
   }
 
   function playToast(text) {

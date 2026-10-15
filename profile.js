@@ -328,7 +328,8 @@
 
     const ticker = setInterval(() => {
       const n = progress.get(userId);
-      if (n) note.textContent = ltn(n, '{count} item found', '{count} items found', { count: formatNumber(n) });
+      const text = n && ltn(n, '{count} item found', '{count} items found', { count: formatNumber(n) });
+      if (text && note.textContent !== text) note.textContent = text;
     }, 150);
     const s = await scan(userId);
     clearInterval(ticker);
