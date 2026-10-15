@@ -1045,7 +1045,7 @@
   async function placeDates() {
     const s = fd;
     if (!s || (location.hash && !/^#!\/friends\b/.test(location.hash))) return;
-    const cards = [...document.querySelectorAll('li.avatar-card:not(.routility-friend-card-loading)')].filter(c => /^\d+$/.test(c.id));
+    const cards = [...document.querySelectorAll('li.avatar-card:not(.routility-friend-card-loading)')].filter(c => /^\d+$/.test(c.id) && !c.closest('.tab-pane:not(.active)'));
     cards.forEach(sinceLabel);
     if (s.busy) return;
     const need = cards.map(c => c.id).filter(id => !s.dates.has(id));
