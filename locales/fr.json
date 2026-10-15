@@ -2673,5 +2673,8 @@
  "Your Slots": "Tes emplacements",
  "Your Status": "Ton statut",
  "Classic Premium Icon": "Icône Premium classique",
- "The old Premium icon next to names instead of the Roblox Plus icon.": "L’ancienne icône Premium à côté des noms au lieu de l’icône Roblox Plus."
+ "The old Premium icon next to names instead of the Roblox Plus icon.": "L’ancienne icône Premium à côté des noms au lieu de l’icône Roblox Plus.",
+ "Friends Since": "Amis depuis",
+ "Friends since {date}": "Amis depuis le {date}",
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "La date sous chaque carte de n’importe quelle liste d’amis, la tienne ou celle de quelqu’un d’autre, qui montre quand ils sont devenus amis. Survole-la pour voir il y a combien de temps. Roblox ne garde pas de date pour les abonnements, donc il n’y en a pas pour ceux-là."
 }

@@ -992,6 +992,99 @@
     }
   }
 
+  const TICKS_EPOCH = -62135596800000;
+  let fd = null;
+
+  function cursorTime(cursor) {
+    const ticks = String(cursor || '').split(':')[1];
+    return /^\d+$/.test(ticks || '') ? new Date(Number(BigInt(ticks) / 10000n) + TICKS_EPOCH).toISOString() : null;
+  }
+
+  async function createdPage(owner, cursor, limit) {
+    try {
+      const res = await fetch(`https://friends.roblox.com/v1/users/${owner}/friends/find?userSort=Created&limit=${limit}${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ''}`, { credentials: 'include' });
+      const d = res.ok ? await res.json() : null;
+      return d && Array.isArray(d.PageItems) ? d : null;
+    } catch {
+      return null;
+    }
+  }
+
+  async function locate(s, want) {
+    while (!s.done && want.some(id => !s.spots.has(id))) {
+      const page = await createdPage(s.owner, s.cursor, 50);
+      if (!page) return;
+      page.PageItems.forEach((f, i) => s.spots.set(String(f.id), { cursor: s.cursor, index: i }));
+      const last = page.PageItems[page.PageItems.length - 1];
+      if (last && page.NextCursor) s.dates.set(String(last.id), cursorTime(page.NextCursor));
+      s.cursor = page.NextCursor;
+      if (!s.cursor || !page.PageItems.length || ++s.pages >= 40) s.done = true;
+    }
+  }
+
+  async function dateOf(s, id) {
+    const spot = s.spots.get(id);
+    if (!spot) return null;
+    const page = await createdPage(s.owner, spot.cursor, spot.index + 1);
+    const last = page && page.PageItems[page.PageItems.length - 1];
+    return last && String(last.id) === id ? cursorTime(page.NextCursor) : null;
+  }
+
+  function sinceLabel(card) {
+    const iso = fd.dates.get(card.id);
+    if (!iso || card.querySelector('.routility-since-label')) return;
+    const labels = card.querySelectorAll('.avatar-card-label');
+    const last = labels[labels.length - 1];
+    if (!last) return;
+    const date = new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    const label = el('div', 'avatar-card-label routility-injected routility-since-label', lt('Friends since {date}', { date }));
+    label.dataset.rtTip = window.RoUtilityHoverCard?.age(iso) || '';
+    last.after(label);
+  }
+
+  async function placeDates() {
+    const s = fd;
+    if (!s || (location.hash && !/^#!\/friends\b/.test(location.hash))) return;
+    const cards = [...document.querySelectorAll('li.avatar-card:not(.routility-friend-card-loading)')].filter(c => /^\d+$/.test(c.id));
+    cards.forEach(sinceLabel);
+    if (s.busy) return;
+    const need = cards.map(c => c.id).filter(id => !s.dates.has(id));
+    if (!need.length) return;
+    s.busy = true;
+    await locate(s, need);
+    const queue = need.filter(id => !s.dates.has(id));
+    const worker = async () => {
+      while (queue.length && fd === s) {
+        const id = queue.shift();
+        s.dates.set(id, await dateOf(s, id));
+        document.querySelectorAll(`li.avatar-card[id="${id}"]`).forEach(sinceLabel);
+      }
+    };
+    await Promise.all([worker(), worker(), worker()]);
+    s.busy = false;
+    if (fd === s) placeDates();
+  }
+
+  function friendDates(owner) {
+    if (fd && fd.owner === String(owner)) return;
+    stopFriendDates();
+    fd = { owner: String(owner), dates: new Map(), spots: new Map(), cursor: null, pages: 0, done: false, busy: false };
+    const again = onFrame(placeDates);
+    fd.observer = new MutationObserver(again);
+    fd.observer.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true });
+    fd.onHash = again;
+    window.addEventListener('hashchange', fd.onHash);
+    placeDates();
+  }
+
+  function stopFriendDates() {
+    if (!fd) return;
+    fd.observer.disconnect();
+    window.removeEventListener('hashchange', fd.onHash);
+    fd = null;
+    document.querySelectorAll('.routility-since-label').forEach(n => n.remove());
+  }
+
   function cardMenus() {
     if (cm) return;
     cm = { pop: null, btn: null };
@@ -1973,5 +2066,5 @@
     });
   }
 
-  window.RoUtilityFriends = { cardMenus, termedSearch, searchCardLinks, friendFilters, stopFriendFilters, adminBadges, stopAdminBadges, setup, teardown, load, hidden, revealDeleted, missing, hiddenBadge, fillUnavailable, headshots, plusSet, adminSet, robloxPost, plusIcon, skeletonCard, pagerButton };
+  window.RoUtilityFriends = { friendDates, stopFriendDates, cardMenus, termedSearch, searchCardLinks, friendFilters, stopFriendFilters, adminBadges, stopAdminBadges, setup, teardown, load, hidden, revealDeleted, missing, hiddenBadge, fillUnavailable, headshots, plusSet, adminSet, robloxPost, plusIcon, skeletonCard, pagerButton };
 })();

@@ -2673,5 +2673,8 @@
  "Your Slots": "Your Slots",
  "Your Status": "Your Status",
  "Classic Premium Icon": "Classic Premium Icon",
- "The old Premium icon next to names instead of the Roblox Plus icon.": "The old Premium icon next to names instead of the Roblox Plus icon."
+ "The old Premium icon next to names instead of the Roblox Plus icon.": "The old Premium icon next to names instead of the Roblox Plus icon.",
+ "Friends Since": "Friends Since",
+ "Friends since {date}": "Friends since {date}",
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those."
 }

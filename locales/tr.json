@@ -2673,5 +2673,8 @@
  "Your Slots": "Yuvaların",
  "Your Status": "Durumun",
  "Classic Premium Icon": "Klasik Premium Simgesi",
- "The old Premium icon next to names instead of the Roblox Plus icon.": "Adların yanında Roblox Plus simgesi yerine eski Premium simgesi."
+ "The old Premium icon next to names instead of the Roblox Plus icon.": "Adların yanında Roblox Plus simgesi yerine eski Premium simgesi.",
+ "Friends Since": "Arkadaşlık Tarihi",
+ "Friends since {date}": "{date} tarihinden beri arkadaş",
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "Seninki ya da başkasınınki, her Arkadaşlar listesindeki her kartın altında o ikisinin ne zaman arkadaş olduğunu gösteren tarih. Ne kadar önce olduğunu görmek için üzerine gel. Roblox takip etme tarihini tutmaz, bu yüzden takipler için tarih yok."
 }

@@ -2548,5 +2548,8 @@
  "Your Slots": "你的槽位",
  "Your Status": "你的状态",
  "Classic Premium Icon": "经典 Premium 图标",
- "The old Premium icon next to names instead of the Roblox Plus icon.": "在名字旁显示旧版 Premium 图标，而不是 Roblox Plus 图标。"
+ "The old Premium icon next to names instead of the Roblox Plus icon.": "在名字旁显示旧版 Premium 图标，而不是 Roblox Plus 图标。",
+ "Friends Since": "成为好友时间",
+ "Friends since {date}": "自 {date} 起成为好友",
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "在任何好友列表（你的或别人的）中每张卡片下方显示两人成为好友的日期。悬停可查看已经多久。Roblox 不记录关注的日期，所以关注没有日期。"
 }

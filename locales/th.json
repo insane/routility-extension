@@ -2548,5 +2548,8 @@
  "Your Slots": "ช่องของคุณ",
  "Your Status": "สถานะของคุณ",
  "Classic Premium Icon": "ไอคอน Premium แบบคลาสสิก",
- "The old Premium icon next to names instead of the Roblox Plus icon.": "ไอคอน Premium แบบเก่าข้างชื่อแทนไอคอน Roblox Plus"
+ "The old Premium icon next to names instead of the Roblox Plus icon.": "ไอคอน Premium แบบเก่าข้างชื่อแทนไอคอน Roblox Plus",
+ "Friends Since": "เป็นเพื่อนตั้งแต่",
+ "Friends since {date}": "เป็นเพื่อนตั้งแต่ {date}",
+ "The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.": "วันที่ใต้การ์ดทุกใบในรายชื่อเพื่อนใดก็ได้ ทั้งของคุณและของคนอื่น ที่บอกว่าทั้งสองเป็นเพื่อนกันเมื่อไหร่ วางเมาส์เพื่อดูว่านานแค่ไหนแล้ว Roblox ไม่ได้เก็บวันที่ของการติดตาม จึงไม่มีวันที่สำหรับส่วนนั้น"
 }
