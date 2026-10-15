@@ -24,6 +24,7 @@
   const LOCALE_KEY = 'routilityLocale';
   const CACHE_KEY = 'routilityI18nDict';
   const VERSION = chrome.runtime.getManifest().version;
+  const PACKED = !!chrome.runtime.getManifest().update_url;
 
   let lang = 'en';
   let dict = null;
@@ -57,6 +58,8 @@
       if (cached && cached.lang !== 'en') chrome.storage.local.set({ [CACHE_KEY]: { lang: 'en', ver: VERSION, data: null } });
       return null;
     }
+    const cached = (await storageGet(CACHE_KEY))[CACHE_KEY];
+    if (PACKED && cached && cached.lang === next && cached.ver === VERSION && cached.data) return cached.data;
     const fresh = await new Promise(r => {
       try {
         chrome.runtime.sendMessage({ type: 'i18nDict', lang: next }, (res) => {
@@ -67,7 +70,6 @@
         r(null);
       }
     });
-    const cached = (await storageGet(CACHE_KEY))[CACHE_KEY];
     if (!fresh) return cached && cached.lang === next && cached.data ? cached.data : null;
     if (!cached || cached.lang !== next || cached.ver !== VERSION || JSON.stringify(cached.data).length !== JSON.stringify(fresh).length) chrome.storage.local.set({ [CACHE_KEY]: { lang: next, ver: VERSION, data: fresh } });
     return fresh;

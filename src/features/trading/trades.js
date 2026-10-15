@@ -280,7 +280,7 @@
     while (active < 4 && queue.length) {
       const { id, done } = queue.shift();
       active++;
-      robloxJson(`https://trades.roblox.com/v2/trades/${id}`).then(detail => {
+      rawDetail(id).then(detail => {
         const a = detail && detail.participantAOffer;
         const b = detail && detail.participantBOffer;
         if (a && b) {
@@ -567,7 +567,8 @@
 
   function itemNames() {
     if (!names) {
-      names = window.RoUtilityUI.request({ type: 'calcItems' }, r => Array.isArray(r)).then(list => new Map((list || []).map(i => ['id:' + i.id, i.name.toLowerCase()])));
+      names = catalogItems().then(list => new Map((list || []).map(i => ['id:' + i.id, i.name.toLowerCase()])));
+      names.then((map) => { if (!map.size) names = null; });
     }
     return names;
   }
@@ -749,12 +750,25 @@
   let previewTimer = null;
   let previewRow = null;
 
+  let catalogList = null;
+
+  function catalogItems() {
+    if (!catalogList) {
+      catalogList = window.RoUtilityUI.request({ type: 'calcItems' }, r => Array.isArray(r));
+      catalogList.then((list) => { if (!Array.isArray(list) || !list.length) catalogList = null; });
+    }
+    return catalogList;
+  }
+
   function catalogMap() {
-    if (!catalog) catalog = window.RoUtilityUI.request({ type: 'calcItems' }, r => Array.isArray(r)).then((list) => {
-      const map = new Map((list || []).map(i => [i.id, i]));
-      map.lookup = window.RoUtilityUI.catalogFor(list || []);
-      return map;
-    });
+    if (!catalog) {
+      catalog = catalogItems().then((list) => {
+        const map = new Map((list || []).map(i => [i.id, i]));
+        map.lookup = window.RoUtilityUI.catalogFor(list || []);
+        return map;
+      });
+      catalog.then((map) => { if (!map.size) catalog = null; });
+    }
     return catalog;
   }
 

@@ -198,7 +198,7 @@
       navStyle.id = 'routility-nav-layout';
       (document.head || root).appendChild(navStyle);
     }
-    navStyle.textContent = css;
+    if (navStyle.textContent !== css) navStyle.textContent = css;
   };
   const THEME_VARS = {
     bg: ['--color-surface-0', '--color-common-navigation-bar'],
@@ -327,7 +327,7 @@
       themeStyle = document.createElement('style');
       themeStyle.id = 'routility-theme';
     }
-    themeStyle.textContent = css;
+    if (themeStyle.textContent !== css) themeStyle.textContent = css;
     if (!themeStyle.isConnected) (document.head || root).appendChild(themeStyle);
     root.classList.toggle('routility-themed', !!css);
     const bg = css ? bgCss(themeColors, themeLook) : '';

@@ -330,6 +330,7 @@ async function getOwners(id, filter, page) {
   const data = await getJson(url);
   if (!data || !Array.isArray(data.uaids)) return null;
   ownersCache.set(url, { data, at: Date.now() });
+  if (ownersCache.size > 200) ownersCache.delete(ownersCache.keys().next().value);
   return data;
 }
 
@@ -417,9 +418,16 @@ async function robloxStatus() {
 }
 
 let botFeatureMemo = null;
+let settingsText = null;
+
+function settingsSource() {
+  if (!settingsText) settingsText = fetch(chrome.runtime.getURL('src/settings/settings.js')).then(r => r.text());
+  return settingsText;
+}
+
 function botFeatures() {
   if (!botFeatureMemo) {
-    botFeatureMemo = fetch(chrome.runtime.getURL('src/settings/settings.js')).then(r => r.text()).then((src) => {
+    botFeatureMemo = settingsSource().then((src) => {
       const str = (s) => { try { return JSON.parse('"' + s.replace(/\\'/g, "'").replace(/"/g, '\\"') + '"'); } catch { return s; } };
       const defaults = {};
       const dm = src.match(/const DEFAULTS = \{([^}]*)\}/);
@@ -450,7 +458,7 @@ let defaultsMemo = null;
 
 function settingsDefaults() {
   if (!defaultsMemo) {
-    defaultsMemo = fetch(chrome.runtime.getURL('src/settings/settings.js')).then(r => r.text()).then((src) => {
+    defaultsMemo = settingsSource().then((src) => {
       const out = {};
       const dm = src.match(/const DEFAULTS = \{([^}]*)\}/);
       if (dm) for (const m of dm[1].matchAll(/(\w+):\s*(true|false)\b/g)) out[m[1]] = m[2] === 'true';
@@ -777,7 +785,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if (!/^\d{1,20}$/.test(id)) { sendResponse({ status: 400 }); return; }
     const tryFetch = async (attempt) => {
       const res = await fetch(`https://assetdelivery.roblox.com/v2/asset/?id=${id}`, { credentials: 'include', headers: format ? { 'Roblox-AssetFormat': format } : {} });
-      if ((res.status === 429 || res.status >= 500) && attempt < 3) {
+      if ((res.status === 429 || res.status >= 500) && attempt < 1) {
         await new Promise(r => setTimeout(r, 700 * Math.pow(2, attempt) + Math.random() * 300));
         return tryFetch(attempt + 1);
       }
