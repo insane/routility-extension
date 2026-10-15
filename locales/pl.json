@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ Ustawienia Roblox",
+ "Roblox Settings": "Ustawienia Roblox",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "„Cześć, twoja nazwa!” z twoim awatarem na górze strony głównej, tak jak Roblox witał cię kiedyś.",
  "(new posts)": "(nowe posty)",
  "(no new posts)": "(brak nowych postów)",
@@ -1756,7 +1756,7 @@
  "Moderate": "Umiarkowane",
  "moderator": "moderator",
  "Modern": "Nowoczesny",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "Nowoczesny lub Klasyczny 2017: niebieskie paski nagłówków starego forum, duże jasne tytuły i Source Sans, w kolorach twojego motywu Roblox. Także w „Dostosuj” na forum.",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "Nowoczesny lub Klasyczny 2017: niebieskie paski nagłówków starego forum, duże jasne tytuły i Source Sans, w kolorach twojego motywu Roblox. Także w „Dostosuj” na forum.",
  "Money": "Pieniądze",
  "Money Amounts": "Kwoty pieniężne",
  "more": "więcej",
@@ -1790,7 +1790,7 @@
  "Name Badges": "Odznaki przy nazwie",
  "Named like a known virus (“{name}”)": "Nazwa jak znany wirus („{name}”)",
  "Neck Accessory": "Akcesorium na szyję",
- "Needs Rich search results": "Wymaga rozszerzonych wyników wyszukiwania",
+ "Needs Rich Search Results": "Wymaga rozszerzonych wyników wyszukiwania",
  "Needs Trade Calculator": "Wymaga kalkulatora wymian",
  "Net": "Netto",
  "Never published": "Nigdy nie opublikowano",
@@ -3044,5 +3044,13 @@
  "Your Slots": "Twoje miejsca",
  "Your Status": "Twój status",
  "Classic Verified Badge": "Klasyczna odznaka weryfikacji",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "Oryginalna odznaka weryfikacji przy nazwach, z ostrymi rogami i jaśniejszym niebieskim."
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "Oryginalna odznaka weryfikacji przy nazwach, z ostrymi rogami i jaśniejszym niebieskim.",
+ "Browsing": "Przeglądanie",
+ "Appearance": "Wygląd",
+ "Social": "Społeczność",
+ "Account": "Konto",
+ "Selected Tab": "Wybrana karta",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "Jak wygląda otwarta karta w menu ustawień: podświetlenie z kolorowym paskiem po lewej jak w Roblox albo samo podświetlenie.",
+ "Bar and highlight": "Pasek i podświetlenie",
+ "Highlight only": "Tylko podświetlenie"
 }

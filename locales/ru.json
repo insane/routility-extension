@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ Настройки Roblox",
+ "Roblox Settings": "Настройки Roblox",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "«Привет, твоё имя!» с твоим аватаром вверху Главной — так Roblox раньше встречал тебя.",
  "(new posts)": "(новые посты)",
  "(no new posts)": "(нет новых постов)",
@@ -1756,7 +1756,7 @@
  "Moderate": "Средне",
  "moderator": "модератор",
  "Modern": "Современный",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "Современный или «Классика 2017»: синие полосы заголовков старого форума, крупные светлые заголовки и Source Sans в цветах твоей темы Roblox. Также в «Настроить» на форуме.",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "Современный или «Классика 2017»: синие полосы заголовков старого форума, крупные светлые заголовки и Source Sans в цветах твоей темы Roblox. Также в «Настроить» на форуме.",
  "Money": "Деньги",
  "Money Amounts": "Денежные суммы",
  "more": "ещё",
@@ -1790,7 +1790,7 @@
  "Name Badges": "Значки у имени",
  "Named like a known virus (“{name}”)": "Название как у известного вируса («{name}»)",
  "Neck Accessory": "Аксессуар на шею",
- "Needs Rich search results": "Нужны «Расширенные результаты поиска»",
+ "Needs Rich Search Results": "Нужны «Расширенные результаты поиска»",
  "Needs Trade Calculator": "Нужен «Калькулятор обменов»",
  "Net": "Итого",
  "Never published": "Никогда не публиковался",
@@ -3044,5 +3044,13 @@
  "Your Slots": "Твои слоты",
  "Your Status": "Твой статус",
  "Classic Verified Badge": "Классический значок верификации",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "Оригинальный значок верификации рядом с именами — с острыми углами и более ярким синим."
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "Оригинальный значок верификации рядом с именами — с острыми углами и более ярким синим.",
+ "Browsing": "Просмотр",
+ "Appearance": "Внешний вид",
+ "Social": "Общение",
+ "Account": "Аккаунт",
+ "Selected Tab": "Выбранная вкладка",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "Как выглядит открытая вкладка в меню настроек: подсветка с цветной полосой слева, как в Roblox, или только подсветка.",
+ "Bar and highlight": "Полоса и подсветка",
+ "Highlight only": "Только подсветка"
 }

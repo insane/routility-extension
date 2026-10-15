@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ Pengaturan Roblox",
+ "Roblox Settings": "Pengaturan Roblox",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "“Halo, namamu!” dengan avatarmu di atas Beranda, seperti cara Roblox dulu menyambutmu kembali.",
  "(new posts)": "(postingan baru)",
  "(no new posts)": "(tidak ada postingan baru)",
@@ -1411,7 +1411,7 @@
  "Moderate": "Sedang",
  "moderator": "moderator",
  "Modern": "Modern",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "Modern, atau Klasik 2017: bilah header biru forum lama, judul besar yang tipis, dan Source Sans, dalam warna tema Roblox-mu. Juga ada di Sesuaikan di forum.",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "Modern, atau Klasik 2017: bilah header biru forum lama, judul besar yang tipis, dan Source Sans, dalam warna tema Roblox-mu. Juga ada di Sesuaikan di forum.",
  "Money": "Uang",
  "Money Amounts": "Nominal Uang",
  "more": "selengkapnya",
@@ -1445,7 +1445,7 @@
  "Name Badges": "Lencana Nama",
  "Named like a known virus (“{name}”)": "Bernama seperti virus yang dikenal (“{name}”)",
  "Neck Accessory": "Aksesori Leher",
- "Needs Rich search results": "Butuh Hasil Pencarian Lengkap",
+ "Needs Rich Search Results": "Butuh Hasil Pencarian Lengkap",
  "Needs Trade Calculator": "Butuh Kalkulator Perdagangan",
  "Net": "Bersih",
  "Never published": "Belum pernah dipublikasikan",
@@ -2660,5 +2660,13 @@
  "Your Slots": "Slot-mu",
  "Your Status": "Statusmu",
  "Classic Verified Badge": "Lencana Terverifikasi Klasik",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "Lencana terverifikasi asli di samping nama, dengan sudut tajam dan biru yang lebih cerah."
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "Lencana terverifikasi asli di samping nama, dengan sudut tajam dan biru yang lebih cerah.",
+ "Browsing": "Menjelajah",
+ "Appearance": "Tampilan",
+ "Social": "Sosial",
+ "Account": "Akun",
+ "Selected Tab": "Tab yang Dipilih",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "Tampilan tab yang terbuka di menu Pengaturan: sorotan dengan garis berwarna di kiri seperti Roblox, atau hanya sorotannya.",
+ "Bar and highlight": "Garis dan sorotan",
+ "Highlight only": "Hanya sorotan"
 }

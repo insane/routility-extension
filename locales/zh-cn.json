@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ Roblox 设置",
+ "Roblox Settings": "Roblox 设置",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "在主页顶部显示带有你的虚拟形象的“你好，你的名字！”，就像 Roblox 以前欢迎你回来那样。",
  "(new posts)": "（有新帖子）",
  "(no new posts)": "（没有新帖子）",
@@ -1411,7 +1411,7 @@
  "Moderate": "中等",
  "moderator": "版主",
  "Modern": "现代",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "现代，或经典 2017：旧论坛的蓝色标题栏、大号浅色标题和 Source Sans 字体，使用你 Roblox 主题的颜色。也可以在论坛的“自定义”中设置。",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "现代，或经典 2017：旧论坛的蓝色标题栏、大号浅色标题和 Source Sans 字体，使用你 Roblox 主题的颜色。也可以在论坛的“自定义”中设置。",
  "Money": "金额",
  "Money Amounts": "金额换算",
  "more": "更多",
@@ -1445,7 +1445,7 @@
  "Name Badges": "名字徽章",
  "Named like a known virus (“{name}”)": "名称与已知病毒相同（“{name}”）",
  "Neck Accessory": "颈部配饰",
- "Needs Rich search results": "需要“丰富搜索结果”",
+ "Needs Rich Search Results": "需要“丰富搜索结果”",
  "Needs Trade Calculator": "需要“交易计算器”",
  "Net": "净额",
  "Never published": "从未发布",
@@ -2660,5 +2660,13 @@
  "Your Slots": "你的槽位",
  "Your Status": "你的状态",
  "Classic Verified Badge": "经典认证徽章",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "在名称旁显示最初的认证徽章，直角边、更鲜艳的蓝色。"
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "在名称旁显示最初的认证徽章，直角边、更鲜艳的蓝色。",
+ "Browsing": "浏览",
+ "Appearance": "外观",
+ "Social": "社交",
+ "Account": "账户",
+ "Selected Tab": "选中的标签",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "设置菜单中当前标签的样式：像 Roblox 一样带左侧彩色竖条的高亮，或只有高亮。",
+ "Bar and highlight": "竖条和高亮",
+ "Highlight only": "仅高亮"
 }

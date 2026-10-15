@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ การตั้งค่า Roblox",
+ "Roblox Settings": "การตั้งค่า Roblox",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "“สวัสดี ชื่อของคุณ!” พร้อมอวาตาร์ของคุณที่ด้านบนของหน้าแรก เหมือนที่ Roblox เคยต้อนรับคุณกลับมา",
  "(new posts)": "(มีโพสต์ใหม่)",
  "(no new posts)": "(ไม่มีโพสต์ใหม่)",
@@ -1411,7 +1411,7 @@
  "Moderate": "ปานกลาง",
  "moderator": "ผู้ดูแล",
  "Modern": "ทันสมัย",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "ทันสมัย หรือ คลาสสิก 2017: แถบหัวสีฟ้า หัวข้อตัวใหญ่สีอ่อน และฟอนต์ Source Sans แบบฟอรัมเก่า ในสีของธีม Roblox ของคุณ อยู่ในปรับแต่งบนฟอรัมด้วย",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "ทันสมัย หรือ คลาสสิก 2017: แถบหัวสีฟ้า หัวข้อตัวใหญ่สีอ่อน และฟอนต์ Source Sans แบบฟอรัมเก่า ในสีของธีม Roblox ของคุณ อยู่ในปรับแต่งบนฟอรัมด้วย",
  "Money": "เงิน",
  "Money Amounts": "จำนวนเงิน",
  "more": "มากกว่า",
@@ -1445,7 +1445,7 @@
  "Name Badges": "เครื่องหมายชื่อ",
  "Named like a known virus (“{name}”)": "ตั้งชื่อเหมือนไวรัสที่รู้จัก (“{name}”)",
  "Neck Accessory": "เครื่องประดับคอ",
- "Needs Rich search results": "ต้องเปิดผลการค้นหาแบบละเอียด",
+ "Needs Rich Search Results": "ต้องเปิดผลการค้นหาแบบละเอียด",
  "Needs Trade Calculator": "ต้องเปิดเครื่องคำนวณการแลกเปลี่ยน",
  "Net": "สุทธิ",
  "Never published": "ไม่เคยเผยแพร่",
@@ -2660,5 +2660,13 @@
  "Your Slots": "ช่องของคุณ",
  "Your Status": "สถานะของคุณ",
  "Classic Verified Badge": "ตรายืนยันแบบคลาสสิก",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "ตรายืนยันแบบดั้งเดิมข้างชื่อ มุมเหลี่ยมและสีน้ำเงินสดกว่า"
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "ตรายืนยันแบบดั้งเดิมข้างชื่อ มุมเหลี่ยมและสีน้ำเงินสดกว่า",
+ "Browsing": "การท่องเว็บ",
+ "Appearance": "รูปลักษณ์",
+ "Social": "โซเชียล",
+ "Account": "บัญชี",
+ "Selected Tab": "แท็บที่เลือก",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "ลักษณะของแท็บที่เปิดอยู่ในเมนูการตั้งค่า: ไฮไลต์พร้อมแถบสีทางซ้ายแบบ Roblox หรือมีแค่ไฮไลต์",
+ "Bar and highlight": "แถบและไฮไลต์",
+ "Highlight only": "ไฮไลต์อย่างเดียว"
 }

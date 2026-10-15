@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ Cài đặt Roblox",
+ "Roblox Settings": "Cài đặt Roblox",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "“Xin chào, tên bạn!” cùng hình đại diện của bạn ở đầu Trang chủ, như cách Roblox từng chào đón bạn quay lại.",
  "(new posts)": "(bài viết mới)",
  "(no new posts)": "(không có bài viết mới)",
@@ -1411,7 +1411,7 @@
  "Moderate": "Vừa phải",
  "moderator": "điều hành viên",
  "Modern": "Hiện đại",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "Hiện đại, hoặc Cổ điển 2017: thanh tiêu đề xanh của diễn đàn cũ, tiêu đề lớn nét mảnh và phông Source Sans, theo màu giao diện Roblox của bạn. Cũng có trong Tùy chỉnh trên diễn đàn.",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "Hiện đại, hoặc Cổ điển 2017: thanh tiêu đề xanh của diễn đàn cũ, tiêu đề lớn nét mảnh và phông Source Sans, theo màu giao diện Roblox của bạn. Cũng có trong Tùy chỉnh trên diễn đàn.",
  "Money": "Tiền",
  "Money Amounts": "Số tiền",
  "more": "xem thêm",
@@ -1445,7 +1445,7 @@
  "Name Badges": "Huy hiệu tên",
  "Named like a known virus (“{name}”)": "Đặt tên giống một virus đã biết (“{name}”)",
  "Neck Accessory": "Phụ kiện cổ",
- "Needs Rich search results": "Cần kết quả tìm kiếm phong phú",
+ "Needs Rich Search Results": "Cần kết quả tìm kiếm phong phú",
  "Needs Trade Calculator": "Cần Máy tính giao dịch",
  "Net": "Ròng",
  "Never published": "Chưa từng xuất bản",
@@ -2660,5 +2660,13 @@
  "Your Slots": "Ô của bạn",
  "Your Status": "Trạng thái của bạn",
  "Classic Verified Badge": "Huy hiệu xác minh cổ điển",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "Huy hiệu xác minh gốc bên cạnh tên, với góc vuông và màu xanh tươi hơn."
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "Huy hiệu xác minh gốc bên cạnh tên, với góc vuông và màu xanh tươi hơn.",
+ "Browsing": "Duyệt web",
+ "Appearance": "Giao diện",
+ "Social": "Xã hội",
+ "Account": "Tài khoản",
+ "Selected Tab": "Tab đang chọn",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "Giao diện của tab đang mở trong menu Cài đặt: phần tô sáng có thanh màu bên trái như Roblox, hoặc chỉ phần tô sáng.",
+ "Bar and highlight": "Thanh và tô sáng",
+ "Highlight only": "Chỉ tô sáng"
 }

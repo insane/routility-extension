@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ Roblox ayarları",
+ "Roblox Settings": "Roblox ayarları",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "Ana sayfanın üstünde avatarınla birlikte “Merhaba, adın!” — tıpkı Roblox'un eskiden seni karşıladığı gibi.",
  "(new posts)": "(yeni gönderiler)",
  "(no new posts)": "(yeni gönderi yok)",
@@ -1526,7 +1526,7 @@
  "Moderate": "Orta",
  "moderator": "moderatör",
  "Modern": "Modern",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "Modern veya Klasik 2017: eski forumun mavi başlık çubukları, büyük açık renkli başlıklar ve Source Sans, Roblox temanın renkleriyle. Forumdaki Özelleştir altında da var.",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "Modern veya Klasik 2017: eski forumun mavi başlık çubukları, büyük açık renkli başlıklar ve Source Sans, Roblox temanın renkleriyle. Forumdaki Özelleştir altında da var.",
  "Money": "Para",
  "Money Amounts": "Para tutarları",
  "more": "daha fazla",
@@ -1560,7 +1560,7 @@
  "Name Badges": "Ad rozetleri",
  "Named like a known virus (“{name}”)": "Bilinen bir virüs gibi adlandırılmış (“{name}”)",
  "Neck Accessory": "Boyun aksesuarı",
- "Needs Rich search results": "Zengin arama sonuçları gerekir",
+ "Needs Rich Search Results": "Zengin arama sonuçları gerekir",
  "Needs Trade Calculator": "Takas hesaplayıcısı gerekir",
  "Net": "Net",
  "Never published": "Hiç yayınlanmadı",
@@ -2788,5 +2788,13 @@
  "Your Slots": "Yuvaların",
  "Your Status": "Durumun",
  "Classic Verified Badge": "Klasik Doğrulanmış Rozeti",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "İsimlerin yanında keskin köşeli ve daha canlı mavi olan orijinal doğrulanmış rozeti."
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "İsimlerin yanında keskin köşeli ve daha canlı mavi olan orijinal doğrulanmış rozeti.",
+ "Browsing": "Gezinme",
+ "Appearance": "Görünüm",
+ "Social": "Sosyal",
+ "Account": "Hesap",
+ "Selected Tab": "Seçili Sekme",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "Ayarlar menüsünde açık sekmenin görünümü: Roblox’taki gibi solda renkli bir çubukla vurgu ya da yalnızca vurgu.",
+ "Bar and highlight": "Çubuk ve vurgu",
+ "Highlight only": "Yalnızca vurgu"
 }

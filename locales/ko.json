@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ Roblox 설정",
+ "Roblox Settings": "Roblox 설정",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "홈 상단에 아바타와 함께 “안녕하세요, 이름님!”을 표시합니다. 예전 Roblox가 반겨 주던 방식 그대로입니다.",
  "(new posts)": "(새 게시물 있음)",
  "(no new posts)": "(새 게시물 없음)",
@@ -1411,7 +1411,7 @@
  "Moderate": "보통",
  "moderator": "운영자",
  "Modern": "모던",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "모던 또는 클래식 2017: 예전 포럼의 파란 헤더 바, 크고 가는 제목, Source Sans를 Roblox 테마 색상으로. 포럼의 사용자 지정에서도 바꿀 수 있습니다.",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "모던 또는 클래식 2017: 예전 포럼의 파란 헤더 바, 크고 가는 제목, Source Sans를 Roblox 테마 색상으로. 포럼의 사용자 지정에서도 바꿀 수 있습니다.",
  "Money": "돈",
  "Money Amounts": "통화 금액",
  "more": "더 보기",
@@ -1445,7 +1445,7 @@
  "Name Badges": "이름 배지",
  "Named like a known virus (“{name}”)": "알려진 바이러스와 같은 이름 (“{name}”)",
  "Neck Accessory": "목 액세서리",
- "Needs Rich search results": "풍부한 검색 결과 필요",
+ "Needs Rich Search Results": "풍부한 검색 결과 필요",
  "Needs Trade Calculator": "거래 계산기 필요",
  "Net": "순액",
  "Never published": "게시된 적 없음",
@@ -2660,5 +2660,13 @@
  "Your Slots": "내 슬롯",
  "Your Status": "내 상태",
  "Classic Verified Badge": "클래식 인증 배지",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "이름 옆에 모서리가 각지고 더 선명한 파란색의 원래 인증 배지를 표시해요."
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "이름 옆에 모서리가 각지고 더 선명한 파란색의 원래 인증 배지를 표시해요.",
+ "Browsing": "탐색",
+ "Appearance": "모양",
+ "Social": "소셜",
+ "Account": "계정",
+ "Selected Tab": "선택한 탭",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "설정 메뉴에서 열린 탭의 모양: Roblox처럼 왼쪽에 색 막대가 있는 강조 표시, 또는 강조 표시만.",
+ "Bar and highlight": "막대와 강조 표시",
+ "Highlight only": "강조 표시만"
 }

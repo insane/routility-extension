@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ Paramètres Roblox",
+ "Roblox Settings": "Paramètres Roblox",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "« Bonjour, ton nom ! » avec ton avatar en haut de l’accueil, comme Roblox le faisait avant pour t’accueillir.",
  "(new posts)": "(nouveaux messages)",
  "(no new posts)": "(aucun nouveau message)",
@@ -1526,7 +1526,7 @@
  "Moderate": "Modéré",
  "moderator": "modérateur",
  "Modern": "Moderne",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "Moderne, ou Classique 2017 : les barres d’en-tête bleues de l’ancien forum, de grands titres fins et Source Sans, aux couleurs de ton thème Roblox. Aussi dans Personnaliser sur le forum.",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "Moderne, ou Classique 2017 : les barres d’en-tête bleues de l’ancien forum, de grands titres fins et Source Sans, aux couleurs de ton thème Roblox. Aussi dans Personnaliser sur le forum.",
  "Money": "Argent",
  "Money Amounts": "Montants en argent",
  "more": "plus",
@@ -1560,7 +1560,7 @@
  "Name Badges": "Badges de nom",
  "Named like a known virus (“{name}”)": "Nommé comme un virus connu (« {name} »)",
  "Neck Accessory": "Accessoire de cou",
- "Needs Rich search results": "Nécessite Résultats de recherche enrichis",
+ "Needs Rich Search Results": "Nécessite Résultats de recherche enrichis",
  "Needs Trade Calculator": "Nécessite Calculateur d’échange",
  "Net": "Net",
  "Never published": "Jamais publié",
@@ -2788,5 +2788,13 @@
  "Your Slots": "Tes emplacements",
  "Your Status": "Ton statut",
  "Classic Verified Badge": "Badge vérifié classique",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "Le badge vérifié d’origine à côté des noms, avec des coins nets et le bleu plus vif."
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "Le badge vérifié d’origine à côté des noms, avec des coins nets et le bleu plus vif.",
+ "Browsing": "Navigation",
+ "Appearance": "Apparence",
+ "Social": "Social",
+ "Account": "Compte",
+ "Selected Tab": "Onglet sélectionné",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "L’apparence de l’onglet ouvert dans le menu des paramètres : une surbrillance avec une barre colorée à gauche comme sur Roblox, ou seulement la surbrillance.",
+ "Bar and highlight": "Barre et surbrillance",
+ "Highlight only": "Surbrillance seule"
 }

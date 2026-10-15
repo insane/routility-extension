@@ -5,36 +5,36 @@
   const { lt, ltn, LT } = window.RoUtilityI18n;
   let langReady = false;
 
-  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, classicLayout: 'tabs', hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, sessionIps: true, backupCodeDate: true, voiceStatus: true, groupCreated: true, groupCount: true, gameAvatarType: true, createSafety: true, gameUnavailable: true, oldLeftNav: false, calcRate: '3.80', currency: 'USD', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, itemExplorer: true, gearFix: true, avatarPreview: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, badgeSizeFix: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, classicPremium: false, classicVerified: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true, friendsSince: true, fakeRequests: false, fakeRequestsAdd: 'amount', fakeRequestsAmount: '500', sendRobux: true };
+  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, classicLayout: 'tabs', hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, sessionIps: true, backupCodeDate: true, voiceStatus: true, groupCreated: true, groupCount: true, gameAvatarType: true, createSafety: true, gameUnavailable: true, oldLeftNav: false, calcRate: '3.80', currency: 'USD', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, itemExplorer: true, gearFix: true, avatarPreview: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, badgeSizeFix: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, classicPremium: false, classicVerified: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true, friendsSince: true, fakeRequests: false, fakeRequestsAdd: 'amount', fakeRequestsAmount: '500', sendRobux: true, menuHighlight: 'fill' };
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
 
   const TABS = [
-    { key: 'info', hash: '#!/routility', label: LT('Info'), title: 'RoUtility' },
+    { key: 'info', hash: '#!/routility', label: LT('About'), title: 'RoUtility' },
     { key: 'whatsnew', hash: '#!/routility/whatsnew', label: LT('What’s New'), title: LT('What’s New') },
-    { key: 'browsing', hash: '#!/routility/browsing', label: LT('General'), title: LT('General'), section: 'Everywhere' },
-    { key: 'themes', hash: '#!/routility/themes', label: LT('Themes'), title: LT('Themes'), section: 'Everywhere' },
-    { key: 'classic', hash: '#!/routility/classic', label: LT('Classic Roblox'), title: LT('Classic Roblox'), section: 'Everywhere' },
-    { key: 'chat', hash: '#!/routility/chat', label: LT('Chat & Messages'), title: LT('Chat & Messages'), section: 'Everywhere' },
-    { key: 'streamer', hash: '#!/routility/streamer', label: LT('Streamer Mode'), title: LT('Streamer Mode'), section: 'Everywhere' },
-    { key: 'search', hash: '#!/routility/search', label: LT('Search'), title: LT('Search'), section: 'Everywhere' },
-    { key: 'menu', hash: '#!/routility/menu', label: LT('Left Menu'), title: LT('Left Menu'), section: 'Everywhere' },
-    { key: 'notifications', hash: '#!/routility/notifications', label: LT('Notifications'), title: LT('Notifications'), section: 'Everywhere' },
-    { key: 'home', hash: '#!/routility/home', label: LT('Home & Charts'), title: LT('Home & Charts'), section: 'Pages' },
-    { key: 'profiles', hash: '#!/routility/profiles', label: LT('Profiles'), title: LT('Profiles'), section: 'Pages' },
-    { key: 'friends', hash: '#!/routility/friends', label: LT('Friends'), title: LT('Friends'), section: 'Pages' },
-    { key: 'games', hash: '#!/routility/games', label: LT('Games & Servers'), title: LT('Games & Servers'), section: 'Pages' },
-    { key: 'badges', hash: '#!/routility/badges', label: LT('Badges'), title: LT('Badges'), section: 'Pages' },
-    { key: 'avatar', hash: '#!/routility/avatar', label: LT('Avatar Editor'), title: LT('Avatar Editor'), section: 'Pages' },
-    { key: 'account', hash: '#!/routility/account', label: LT('Account & Security'), title: LT('Account & Security'), section: 'Pages' },
-    { key: 'robux', hash: '#!/routility/robux', label: LT('Robux & Transactions'), title: LT('Robux & Transactions'), section: 'Pages' },
-    { key: 'items', hash: '#!/routility/items', label: LT('Items'), title: LT('Items'), section: 'Limiteds & trading' },
-    { key: 'inventory', hash: '#!/routility/inventory', label: LT('Inventory'), title: LT('Inventory'), section: 'Limiteds & trading' },
-    { key: 'trading', hash: '#!/routility/trading', label: LT('Trading'), title: LT('Trading'), section: 'Limiteds & trading' },
-    { key: 'calculator', hash: '#!/routility/calculator', label: LT('Trade Calculator'), title: LT('Trade Calculator'), section: 'Limiteds & trading' },
-    { key: 'communities', hash: '#!/routility/communities', label: LT('Communities'), title: LT('Communities'), section: 'Community' },
-    { key: 'forum', hash: '#!/routility/forum', label: LT('Forum'), title: LT('Forum'), section: 'Community' },
-    { key: 'create', hash: '#!/routility/create', label: LT('Creator Hub'), title: LT('Creator Hub'), section: 'Community' },
-    { key: 'fun', hash: '#!/routility/fun', label: LT('Fun'), title: LT('Fun'), section: 'Fun' },
+    { key: 'browsing', hash: '#!/routility/browsing', label: LT('General'), title: LT('General'), section: 'Browsing' },
+    { key: 'search', hash: '#!/routility/search', label: LT('Search'), title: LT('Search'), section: 'Browsing' },
+    { key: 'notifications', hash: '#!/routility/notifications', label: LT('Notifications'), title: LT('Notifications'), section: 'Browsing' },
+    { key: 'chat', hash: '#!/routility/chat', label: LT('Chat & Messages'), title: LT('Chat & Messages'), section: 'Browsing' },
+    { key: 'streamer', hash: '#!/routility/streamer', label: LT('Streamer Mode'), title: LT('Streamer Mode'), section: 'Browsing' },
+    { key: 'themes', hash: '#!/routility/themes', label: LT('Themes'), title: LT('Themes'), section: 'Appearance' },
+    { key: 'classic', hash: '#!/routility/classic', label: LT('Classic Roblox'), title: LT('Classic Roblox'), section: 'Appearance' },
+    { key: 'menu', hash: '#!/routility/menu', label: LT('Sidebar'), title: LT('Sidebar'), section: 'Appearance' },
+    { key: 'fun', hash: '#!/routility/fun', label: LT('Fun'), title: LT('Fun'), section: 'Appearance' },
+    { key: 'profiles', hash: '#!/routility/profiles', label: LT('Profiles'), title: LT('Profiles'), section: 'Social' },
+    { key: 'friends', hash: '#!/routility/friends', label: LT('Friends'), title: LT('Friends'), section: 'Social' },
+    { key: 'communities', hash: '#!/routility/communities', label: LT('Communities'), title: LT('Communities'), section: 'Social' },
+    { key: 'forum', hash: '#!/routility/forum', label: LT('Forum'), title: LT('Forum'), section: 'Social' },
+    { key: 'home', hash: '#!/routility/home', label: LT('Home & Charts'), title: LT('Home & Charts'), section: 'Games' },
+    { key: 'games', hash: '#!/routility/games', label: LT('Games & Servers'), title: LT('Games & Servers'), section: 'Games' },
+    { key: 'badges', hash: '#!/routility/badges', label: LT('Badges'), title: LT('Badges'), section: 'Games' },
+    { key: 'create', hash: '#!/routility/create', label: LT('Creator Hub'), title: LT('Creator Hub'), section: 'Games' },
+    { key: 'avatar', hash: '#!/routility/avatar', label: LT('Avatar Editor'), title: LT('Avatar Editor'), section: 'Marketplace' },
+    { key: 'items', hash: '#!/routility/items', label: LT('Items'), title: LT('Items'), section: 'Marketplace' },
+    { key: 'inventory', hash: '#!/routility/inventory', label: LT('Inventory'), title: LT('Inventory'), section: 'Marketplace' },
+    { key: 'trading', hash: '#!/routility/trading', label: LT('Trading'), title: LT('Trading'), section: 'Marketplace' },
+    { key: 'calculator', hash: '#!/routility/calculator', label: LT('Trade Calculator'), title: LT('Trade Calculator'), section: 'Marketplace' },
+    { key: 'account', hash: '#!/routility/account', label: LT('Account & Security'), title: LT('Account & Security'), section: 'Account' },
+    { key: 'robux', hash: '#!/routility/robux', label: LT('Robux & Transactions'), title: LT('Robux & Transactions'), section: 'Account' },
   ];
   const isOurs = (hash) => TABS.some(t => t.hash === hash);
   let open = isOurs(location.hash) ? location.hash : null;
@@ -68,7 +68,7 @@
 
   function row(title, description, control, compact) {
     const section = el('section', 'flex items-center gap-large');
-    const text = el('div', 'fill basis-0 flex flex-col gap-xsmall');
+    const text = el('div', 'routility-set-text fill basis-0 flex flex-col gap-xsmall');
     text.appendChild(el('h3', 'text-title-large content-emphasis padding-none', title));
     const p = el('p', 'text-body-small content-muted margin-none', description);
     text.appendChild(p);
@@ -300,6 +300,8 @@
     create: '<svg viewBox="0 0 24 24"><path d="M12 2.8 20.4 7.4 12 12 3.6 7.4z" fill="currentColor"/><path d="M3.6 8.6 11.4 12.9v8.6L3.6 17.1z" fill="currentColor" opacity="0.72"/><path d="M20.4 8.6 12.6 12.9v8.6l7.8-4.4z" fill="currentColor" opacity="0.48"/></svg>',
     fun: '<svg viewBox="0 0 24 24"><path d="M10 4.2Q11.2 11.8 18.8 13Q11.2 14.2 10 21.8Q8.8 14.2 1.2 13Q8.8 11.8 10 4.2Z" fill="currentColor"/><path d="M18.6 1.8Q19.2 4.8 22.2 5.4Q19.2 6 18.6 9Q18 6 15 5.4Q18 4.8 18.6 1.8Z" fill="currentColor" opacity="0.6"/><circle cx="4.6" cy="5" r="1.4" fill="currentColor" opacity="0.6"/></svg>',
   };
+
+  const GROUP_ICONS = { Browsing: 'magnifying-glass', Appearance: 'paint-brush', Social: 'two-people', Games: 'controller', Marketplace: 'building-store', Account: 'shield-check' };
 
   function icon(name, cls) {
     const s = el('span', 'routility-set-svg ' + (cls || ''));
@@ -611,6 +613,7 @@
     launchDetails: () => r([h('span', 'rt-m-launch-logo', [h('span', 'routility-roblox-mark routility-spin rt-m-mark')]), c([strong('Minesweeper'), h('span', 'rt-m-tiny rt-m-muted', lt('Joining server…')), r([pill('3/5'), pill(lt('{n} ms', { n: 38 }), 'up'), pill(lt('{h}h {m}m', { h: 3, m: 44 }))], 'rt-m-launch-pills')], 'rt-m-launch-info')], 'rt-m-launch'),
     siteFont: () => r([fontCell('', 'Roblox'), fontCell('"Builder Sans", sans-serif', 'Builder'), fontCell('system-ui, sans-serif', lt('System'))], 'rt-m-spread'),
     statusBanner: () => r([h('span', 'rt-m-pill', lt('Game Join')), muted(lt('Partial Disruption'))]),
+    menuHighlight: () => c([h('span', 'rt-m-tab rt-m-tab-on', lt('General')), h('span', 'rt-m-tab', lt('Search'))], 'rt-m-tabs'),
     scrollbarFix: () => r([c([line(120, 'rt-m-dark'), line(150), line(130), line(90)]), h('span', 'rt-m-scroll', [h('span')])], 'rt-m-top'),
     hideChat: () => r([muted(lt('Bottom right')), h('span', 'rt-m-pill rt-m-gone', lt('Chat'))]),
     classicLogo: () => {
@@ -722,6 +725,7 @@
           { custom: 'themeEditor', parent: 'customTheme', title: LT('Theme Editor'), desc: LT('Your colors, the theme presets and your saved themes.'), keywords: 'theme themes color colors colour palette preset presets background dark light' },
           { key: 'scrollbarFix', title: LT('Match Scrollbar to Theme'), desc: LT('Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.') },
           { key: 'scrollbarStyle', parent: 'scrollbarFix', title: LT('Scrollbar Style'), desc: LT('Floating hides the scrollbar until you scroll, then shows a slim bar over the page that fades out when you stop. Pick Roblox default to keep the normal scrollbar.'), options: [['default', LT('Roblox default')], ['floating', LT('Floating')]] },
+          { key: 'menuHighlight', title: LT('Selected Tab'), desc: LT('How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.'), options: [['bar', LT('Bar and highlight')], ['fill', LT('Highlight only')]] },
         ] },
         { title: LT('Font'), rows: [
           { key: 'siteFont', title: LT('Website Font'), desc: LT('Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.'), options: [['default', LT('Roblox default')], ['builder', 'Builder Sans'], ['system', LT('System font')], ['custom', LT('Your Own Font')]], fontInput: 'custom' },
@@ -781,7 +785,7 @@
           { key: 'richSearch', title: LT('Rich Search Results'), desc: LT('Extra results at the top of the Roblox search box.') },
           { key: 'searchSlash', title: LT('Press / to Search'), desc: LT('Jump to the search box from anywhere on Roblox. Use the arrow keys to move through results.') },
         ] },
-        { title: LT('What Shows Up'), note: LT('Needs Rich search results'), rows: [
+        { title: LT('What Shows Up'), note: LT('Needs Rich Search Results'), rows: [
           { key: 'searchPeople', parent: 'richSearch', title: LT('People'), desc: LT('Matching players with their avatar and verified badge.') },
           { key: 'searchFriends', parent: 'richSearch', title: LT('Friends First'), desc: LT('Friends whose name contains what you type, shown first.') },
           { key: 'searchGames', parent: 'richSearch', title: LT('Top Game'), desc: LT('The best matching experience with its rating and players.') },
@@ -1090,7 +1094,7 @@
           { key: 'forumTopLink', parent: 'forum', title: LT('Forum in the Top Bar'), desc: LT('Forum back in the top bar where it belongs, taking Robux’s spot.') },
         ] },
         { title: LT('Look'), rows: [
-          { key: 'forumStyle', parent: 'forum', title: LT('Style'), desc: LT('Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.'), options: [['modern', LT('Modern')], ['classic', LT('Classic 2017')]] },
+          { key: 'forumStyle', parent: 'forum', title: LT('Style'), desc: LT('Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.'), options: [['modern', LT('Modern')], ['classic', LT('Classic 2017')]] },
           { key: 'forumDensity', parent: 'forum', title: LT('Density'), desc: LT('How much room rows and posts get.'), options: [['comfortable', LT('Comfortable')], ['compact', LT('Compact')]] },
           { key: 'forumAvatars', parent: 'forum', title: LT('Avatars'), desc: LT('Full-body avatars like the old forum, round headshots, or none.'), options: [['full', LT('Full Body')], ['headshot', LT('Headshot')], ['off', LT('Off')]] },
         ] },
@@ -3354,21 +3358,110 @@
     logo.alt = '';
     entry.querySelector('.font-caption-header').before(logo);
     menu.append(split, entry);
-    menu.appendChild(menuLink('routility-sub routility-menu-back', lt('‹ Roblox Settings'), lastNativeHash, () => {
-      location.hash = lastNativeHash;
-    }));
+    menu.appendChild(menuSearch(menu));
     let lastSection = null;
     for (const tab of TABS) {
       if (tab.section && tab.section !== lastSection) {
         lastSection = tab.section;
-        const line = el('li', 'routility-injected routility-sub routility-menu-divider');
+        const many = TABS.filter(t => t.section === tab.section).length > 1;
+        const line = el('li', 'routility-injected routility-sub routility-menu-divider' + (many ? ' routility-menu-group' : ''));
         line.setAttribute('role', 'separator');
+        line.dataset.section = tab.section;
+        if (many) {
+          if (GROUP_ICONS[tab.section]) line.appendChild(el('span', 'icon icon-regular-' + GROUP_ICONS[tab.section] + ' routility-menu-group-icon'));
+          line.appendChild(el('span', 'routility-menu-group-name', lt(tab.section)));
+        }
         menu.appendChild(line);
       }
       const li = menuLink('routility-sub routility-menu-item', lt(tab.label), tab.hash, () => goTo(tab.hash));
       li.id = 'routility-' + tab.key;
+      li.dataset.section = tab.section || '';
       menu.appendChild(li);
     }
+    const foot = el('li', 'routility-injected routility-sub routility-menu-foot');
+    foot.setAttribute('role', 'separator');
+    const back = menuLink('routility-sub routility-menu-entry routility-menu-back', lt('Roblox Settings'), lastNativeHash, () => {
+      location.hash = lastNativeHash;
+      window.scrollTo({ top: 0 });
+    });
+    back.querySelector('.font-caption-header').before(el('span', 'icon-logo-r routility-menu-entry-logo routility-menu-back-logo'));
+    menu.append(foot, back);
+  }
+
+  function tabText(tab) {
+    const page = PAGES[tab.key];
+    const parts = [tab.label, tab.title];
+    for (const g of (page && page.groups) || []) {
+      parts.push(g.title);
+      for (const def of g.rows) parts.push(def.title, def.desc, def.keywords);
+    }
+    return parts.filter(Boolean).map(s => (typeof s === 'string' ? s + ' ' + lt(s) : '')).join(' ').toLowerCase();
+  }
+
+  function rowsFor(tab) {
+    const page = PAGES[tab.key];
+    const out = [];
+    for (const g of (page && page.groups) || []) for (const def of g.rows) if (def.title) out.push({ def, text: [def.title, def.desc, def.keywords, g.title].filter(Boolean).map(s => s + ' ' + lt(s)).join(' ').toLowerCase() });
+    return out;
+  }
+
+  function menuSearch(menu) {
+    const li = el('li', 'routility-injected routility-sub routility-menu-search');
+    const box = el('label', 'routility-menu-search-box');
+    box.appendChild(icon('search', 'routility-menu-search-icon'));
+    const input = el('input');
+    input.type = 'search';
+    input.placeholder = lt('Search settings');
+    input.setAttribute('aria-label', lt('Search RoUtility settings'));
+    input.autocomplete = 'off';
+    input.spellcheck = false;
+    box.appendChild(input);
+    li.appendChild(box);
+    let index = null;
+    const words = () => input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    const matches = (text, list) => list.every(w => text.includes(w) || (w.length > 3 && /s$/.test(w) && text.includes(w.slice(0, -1))));
+    const filter = () => {
+      const list = words();
+      if (!index) index = TABS.map(tab => ({ tab, text: tabText(tab), rows: rowsFor(tab) }));
+      const shown = new Set();
+      for (const { tab, text, rows } of index) {
+        const item = menu.querySelector('#routility-' + tab.key);
+        if (!item) continue;
+        const hits = list.length ? rows.filter(r => matches(r.text, list)).length : 0;
+        const on = !list.length || hits > 0 || matches(tab.label.toLowerCase() + ' ' + lt(tab.label).toLowerCase(), list);
+        item.classList.toggle('routility-menu-off', !on);
+        item.querySelector('.routility-menu-count')?.remove();
+        if (list.length && hits) item.querySelector('.menu-option-content').appendChild(el('span', 'routility-menu-count', String(hits)));
+        if (on) shown.add(tab.section || '');
+      }
+      for (const line of menu.querySelectorAll('.routility-menu-divider')) line.classList.toggle('routility-menu-off', !!list.length && !shown.has(line.dataset.section));
+      menu.classList.toggle('routility-menu-searching', !!list.length);
+    };
+    const reveal = () => {
+      const list = words();
+      if (!list.length) return;
+      const pane = document.querySelector('.routility-pane');
+      const target = pane && [...pane.querySelectorAll('.routility-set-row')].find(r => matches(r.textContent.toLowerCase(), list));
+      if (!target) return;
+      target.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      target.classList.remove('routility-set-flash');
+      void target.offsetWidth;
+      target.classList.add('routility-set-flash');
+    };
+    input.addEventListener('input', filter);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        input.value = '';
+        filter();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        menu.querySelector('.routility-menu-item:not(.routility-menu-off) .menu-option-content')?.click();
+      }
+    });
+    menu.addEventListener('click', (e) => {
+      if (words().length && e.target.closest('.routility-menu-item')) setTimeout(reveal, 450);
+    }, true);
+    return li;
   }
 
   function apply() {
@@ -3383,7 +3476,7 @@
       document.documentElement.classList.toggle('routility-settings-mode', modeOn);
     }
     const ours = [...menu.querySelectorAll('.routility-menu-item > .menu-option-content')];
-    for (const stale of document.querySelectorAll('.routility-pane')) if (stale !== pane) stale.remove();
+    for (const stale of document.querySelectorAll('.routility-pane')) if (stale !== pane && stale !== leaving) stale.remove();
 
     if (open) {
       for (const a of menu.querySelectorAll('.menu-option-content')) {
@@ -3396,7 +3489,8 @@
           a.removeAttribute('aria-current');
         }
       }
-      if (!content.classList.contains('routility-open')) content.classList.add('routility-open');
+      // Roblox's page stays up until ours is built, so opening a tab never shows a blank page.
+      if ((pane || leaving) && !content.classList.contains('routility-open')) content.classList.add('routility-open');
       if (pane && pane.parentElement !== content) content.appendChild(pane);
     } else {
       for (const a of ours) {
@@ -3411,14 +3505,20 @@
   }
 
   let building = null;
+  let leaving = null;
 
   function setOpen(hash) {
     const next = isOurs(hash) ? hash : null;
     if (next === open && (!next || (pane && pane.dataset.tab === next) || building === next)) return apply();
     open = next;
     if (pane) {
-      pane.remove();
+      if (next && !leaving) leaving = pane;
+      else pane.remove();
       pane = null;
+    }
+    if (!next && leaving) {
+      leaving.remove();
+      leaving = null;
     }
     building = next;
     if (next) {
@@ -3430,6 +3530,11 @@
           building = null;
           pane?.remove();
           pane = buildPane(tab, stored, cache || {});
+          // Only the page fades in, never the menu beside it: fading the whole
+          // page made the menu blink on every switch to or from Roblox's settings.
+          pane.classList.add('routility-pane-in');
+          leaving?.remove();
+          leaving = null;
           apply();
         });
       }));

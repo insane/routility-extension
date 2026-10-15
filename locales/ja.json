@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ Roblox 設定",
+ "Roblox Settings": "Roblox 設定",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "ホームの上部にアバター付きで「こんにちは、あなたの名前!」と表示します。昔の Roblox のおかえりメッセージと同じです。",
  "(new posts)": "(新しい投稿あり)",
  "(no new posts)": "(新しい投稿なし)",
@@ -1411,7 +1411,7 @@
  "Moderate": "普通",
  "moderator": "モデレーター",
  "Modern": "モダン",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "モダン、またはクラシック 2017:昔のフォーラムの青いヘッダーバー、大きく細いタイトル、Source Sans を、Roblox のテーマカラーで。フォーラムの「カスタマイズ」からも変更できます。",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "モダン、またはクラシック 2017:昔のフォーラムの青いヘッダーバー、大きく細いタイトル、Source Sans を、Roblox のテーマカラーで。フォーラムの「カスタマイズ」からも変更できます。",
  "Money": "お金",
  "Money Amounts": "通貨換算",
  "more": "もっと見る",
@@ -1445,7 +1445,7 @@
  "Name Badges": "名前バッジ",
  "Named like a known virus (“{name}”)": "既知のウイルスに似た名前(「{name}」)",
  "Neck Accessory": "首のアクセサリー",
- "Needs Rich search results": "「リッチな検索結果」が必要です",
+ "Needs Rich Search Results": "「リッチな検索結果」が必要です",
  "Needs Trade Calculator": "トレード計算機が必要です",
  "Net": "純額",
  "Never published": "未公開",
@@ -2660,5 +2660,13 @@
  "Your Slots": "あなたのスロット",
  "Your Status": "あなたのステータス",
  "Classic Verified Badge": "クラシック認証バッジ",
- "The original verified badge next to names, with sharp corners and the brighter blue.": "名前の横に、角がとがった明るい青の初代認証バッジを表示します。"
+ "The original verified badge next to names, with sharp corners and the brighter blue.": "名前の横に、角がとがった明るい青の初代認証バッジを表示します。",
+ "Browsing": "ブラウジング",
+ "Appearance": "外観",
+ "Social": "ソーシャル",
+ "Account": "アカウント",
+ "Selected Tab": "選択中のタブ",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "設定メニューで開いているタブの見た目：Robloxのように左に色付きのバーがあるハイライト、またはハイライトのみ。",
+ "Bar and highlight": "バーとハイライト",
+ "Highlight only": "ハイライトのみ"
 }

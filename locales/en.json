@@ -1,5 +1,5 @@
 {
- "‹ Roblox Settings": "‹ Roblox Settings",
+ "Roblox Settings": "Roblox Settings",
  "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.": "“Hello, your name!” with your avatar at the top of Home, the way Roblox used to welcome you back.",
  "(new posts)": "(new posts)",
  "(no new posts)": "(no new posts)",
@@ -1527,7 +1527,7 @@
  "Moderate": "Moderate",
  "moderator": "moderator",
  "Modern": "Modern",
- "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.": "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colours. Also under Customize on the forum.",
+ "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.",
  "Money": "Money",
  "Money Amounts": "Money Amounts",
  "more": "more",
@@ -1561,7 +1561,7 @@
  "Name Badges": "Name Badges",
  "Named like a known virus (“{name}”)": "Named like a known virus (“{name}”)",
  "Neck Accessory": "Neck Accessory",
- "Needs Rich search results": "Needs Rich search results",
+ "Needs Rich Search Results": "Needs Rich Search Results",
  "Needs Trade Calculator": "Needs Trade Calculator",
  "Net": "Net",
  "Never published": "Never published",
@@ -2788,5 +2788,13 @@
  "Your Robux Rate": "Your Robux Rate",
  "Your Settings": "Your Settings",
  "Your Slots": "Your Slots",
- "Your Status": "Your Status"
+ "Your Status": "Your Status",
+ "Browsing": "Browsing",
+ "Appearance": "Appearance",
+ "Social": "Social",
+ "Account": "Account",
+ "Selected Tab": "Selected Tab",
+ "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.": "How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.",
+ "Bar and highlight": "Bar and highlight",
+ "Highlight only": "Highlight only"
 }
