@@ -28,9 +28,9 @@
     { key: 'games', hash: '#!/routility/games', label: LT('Games & Servers'), title: LT('Games & Servers'), section: 'Games' },
     { key: 'badges', hash: '#!/routility/badges', label: LT('Badges'), title: LT('Badges'), section: 'Games' },
     { key: 'create', hash: '#!/routility/create', label: LT('Creator Hub'), title: LT('Creator Hub'), section: 'Games' },
-    { key: 'avatar', hash: '#!/routility/avatar', label: LT('Avatar Editor'), title: LT('Avatar Editor'), section: 'Marketplace' },
     { key: 'items', hash: '#!/routility/items', label: LT('Items'), title: LT('Items'), section: 'Marketplace' },
     { key: 'inventory', hash: '#!/routility/inventory', label: LT('Inventory'), title: LT('Inventory'), section: 'Marketplace' },
+    { key: 'avatar', hash: '#!/routility/avatar', label: LT('Avatar Editor'), title: LT('Avatar Editor'), section: 'Marketplace' },
     { key: 'trading', hash: '#!/routility/trading', label: LT('Trading'), title: LT('Trading'), section: 'Marketplace' },
     { key: 'calculator', hash: '#!/routility/calculator', label: LT('Trade Calculator'), title: LT('Trade Calculator'), section: 'Marketplace' },
     { key: 'account', hash: '#!/routility/account', label: LT('Account & Security'), title: LT('Account & Security'), section: 'Account' },
@@ -600,7 +600,7 @@
     calcEven: () => c([muted(lt('Add to even it out')), r([thumb(A.v3000, 26, [h('span', 'rt-m-badge', '+')]), thumb(A.valk, 26, [h('span', 'rt-m-badge', '+')]), tile(26, null, 'rt-m-ghost')])]),
     exactCounts: () => c([muted(lt('Followers')), r([h('span', 'rt-m-strike', '16.7M'), h('span', 'rt-m-arrow', '→'), h('span', 'rt-m-strong rt-m-big', '16,734,201')])]),
     mutualGroups: () => c([r([muted(ltn(168, '{n} Friend', '{n} Friends')), muted(lt('{n} Following', { n: 42 }))]), h('span', 'rt-m-chip', [h('span', 'rt-m-stack', [communityIcon(GR.roblox, 16), communityIcon(GR.interns, 16), communityIcon(GR.videoStars, 16)]), ltn(3, '{n} Mutual community', '{n} Mutual communities')])]),
-    genreFilters: () => r([pill(lt('All Genres')), pill(lt('Obby & Platformer'), 'active'), pill(lt('Action'))]),
+    genreFilters: () => r([pill(lt('All Genres')), pill(lt('Obby & Platformer'), 'active'), pill(lt('Action'))], 'rt-m-chips'),
     recentlyUpdated: () => c([strong(lt('Recently Updated')), r([game(G.adoptMe, 46, [h('span', 'rt-m-tiny rt-m-muted', '• ' + ltn(2, '{n}h ago', '{n}h ago'))]), game(G.tds, 46, [h('span', 'rt-m-tiny rt-m-muted', ltn(3, '{n}d ago', '{n}d ago'))])])], 'rt-m-w190'),
     friendsPlaying: () => c([strong(lt('Friends Playing')), r([[G.adoptMe, [U.cv, U.builderman]], [G.tds, [U.linkmon]], [G.jailbreak, [U.roblox]]].map(([gid, ids]) => game(gid, 46, [h('span', 'rt-m-tile-faces', ids.map(id => face(id, 16)))])))], 'rt-m-w190'),
     notInterested: () => r([game(G.brookhaven, 46, [h('span', 'rt-m-dots', '⋯')]), h('div', 'rt-m-card', [h('span', 'rt-m-strong rt-m-hl', lt('Not interested')), muted(lt('Report'))])]),
@@ -718,17 +718,21 @@
       ],
     },
     themes: {
-      intro: LT('Make Roblox look the way you like: your own colors and another font.'),
+      intro: LT('Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.'),
       groups: [
         { title: LT('Theme'), rows: [
           { key: 'customTheme', title: LT('Custom Theme'), desc: LT('Pick your own colors for Roblox: backgrounds, cards, text, links and the Play button. Start from a preset or set each color yourself.') },
           { custom: 'themeEditor', parent: 'customTheme', title: LT('Theme Editor'), desc: LT('Your colors, the theme presets and your saved themes.'), keywords: 'theme themes color colors colour palette preset presets background dark light' },
-          { key: 'scrollbarFix', title: LT('Match Scrollbar to Theme'), desc: LT('Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.') },
-          { key: 'scrollbarStyle', parent: 'scrollbarFix', title: LT('Scrollbar Style'), desc: LT('Floating hides the scrollbar until you scroll, then shows a slim bar over the page that fades out when you stop. Pick Roblox default to keep the normal scrollbar.'), options: [['default', LT('Roblox default')], ['floating', LT('Floating')]] },
-          { key: 'menuHighlight', title: LT('Selected Tab'), desc: LT('How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.'), options: [['bar', LT('Bar and highlight')], ['fill', LT('Highlight only')]] },
         ] },
         { title: LT('Font'), rows: [
           { key: 'siteFont', title: LT('Website Font'), desc: LT('Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.'), options: [['default', LT('Roblox default')], ['builder', 'Builder Sans'], ['system', LT('System font')], ['custom', LT('Your Own Font')]], fontInput: 'custom' },
+        ] },
+        { title: LT('Scrollbar'), rows: [
+          { key: 'scrollbarFix', title: LT('Match Scrollbar to Theme'), desc: LT('Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.') },
+          { key: 'scrollbarStyle', parent: 'scrollbarFix', title: LT('Scrollbar Style'), desc: LT('Floating hides the scrollbar until you scroll, then shows a slim bar over the page that fades out when you stop. Pick Roblox default to keep the normal scrollbar.'), options: [['floating', LT('Floating')], ['default', LT('Roblox default')]] },
+        ] },
+        { title: LT('Settings Menu'), rows: [
+          { key: 'menuHighlight', title: LT('Selected Tab'), desc: LT('How the open tab looks in the Settings menu: a highlight with a colored bar on the left like Roblox, or just the highlight.'), options: [['fill', LT('Highlight only')], ['bar', LT('Bar and highlight')]] },
         ] },
       ],
     },
@@ -797,13 +801,11 @@
       ],
     },
     menu: {
-      intro: LT('The menu on the left: put its links in the order you like and hide the ones you don’t use, bring back the old menu, collapse it and add Quick Settings under it.'),
+      intro: LT('The sidebar on the left: put its links in the order you like and hide the ones you don’t use, bring back the old one, collapse it and add Quick Settings under it.'),
       groups: [
-        { title: LT('Links'), rows: [
-          { key: 'oldLeftNav', title: LT('Old Left Menu'), desc: LT('Roblox is moving accounts to a new left menu. This brings back the old one, with Trade Calculator, Trade Ads, Forum, the Collapse button, Quick Settings and your arranged order below. Menu sizes only work on the new menu.') },
-          { custom: 'navLayout', title: LT('Arrange the Left Menu'), desc: LT('Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.') },
-        ] },
-        { title: LT('Size'), rows: [
+        { title: LT('Layout'), rows: [
+          { key: 'oldLeftNav', title: LT('Old Sidebar'), desc: LT('Roblox is moving accounts to a new left menu. This brings back the old one, with Trade Calculator, Trade Ads, Forum, the Collapse button, Quick Settings and your arranged order below. Menu sizes only work on the new menu.') },
+          { custom: 'navLayout', title: LT('Arrange the Sidebar'), desc: LT('Reorder or hide Home, Messages, Newsroom, Official Store, Trade Calculator, Forum and the rest.') },
           { key: 'navCollapse', title: LT('Collapse Button'), desc: LT('A Collapse button at the bottom of the menu that shrinks it to just its icons, giving pages more room. Hover an icon for its name. Click it again to expand.') },
         ] },
         { title: LT('Under the Menu'), rows: [
@@ -825,7 +827,7 @@
           { key: 'recentlyUpdated', title: LT('Recently Updated'), desc: LT('A Home row with your favorite and recently played experiences, newest update first. A dot marks the ones that changed since you last opened them.') },
           { key: 'genreFilters', title: LT('Genre Filters'), desc: LT('Genre chips under the Charts title. Pick one, like Obby & Platformer, to only see those experiences in every chart, then narrow it down with its subgenres.') },
           { key: 'notInterested', title: LT('Not Interested'), desc: LT('Roblox’s ⋯ tile menu with “Not interested” on every experience in Home and Charts, not just the big tiles. Undo right after, or bring them back below.') },
-          { key: 'hideSponsored', title: LT('Hide Sponsored'), desc: LT('Hides sponsored experiences on the home page and in game lists.') },
+          { key: 'hideSponsored', title: LT('Hide Sponsored'), desc: LT('Hides sponsored experiences on Home and in game lists.') },
         ] },
         { title: LT('Charts'), rows: [
           { key: 'randomGame', title: LT('Random Experience'), desc: LT('A button on Charts that opens a random experience from the page, for when you can’t decide.') },
@@ -861,7 +863,7 @@
         { title: LT('Friends List'), rows: [
           { key: 'friendFilters', title: LT('Friend Filters'), desc: LT('More chips next to All and Trusted on your friends list: Verified, Roblox Plus, Admin and Online, across all your friends, not just one page.') },
           { key: 'friendManage', title: LT('Manage Friends'), desc: LT('A Manage button on your friends list: search, filter by Online, Offline, Verified or Terminated, and unfriend several at once with a confirm step. Requests go one at a time.') },
-          { key: 'hiddenFriends', title: LT('Hidden Friend Lists'), desc: LT('When Roblox hides someone’s friends, load them from RoUtility. Sends that profile’s id to RoUtility.') },
+          { key: 'hiddenFriends', title: LT('Hidden Friend Lists'), desc: LT('When Roblox hides someone’s friends, load them from RoUtility. Sends that profile’s ID to RoUtility.') },
           { key: 'revealTerminated', title: LT('Reveal Terminated Accounts'), desc: LT('Show the real name behind Account Deleted friends and open their profile.') },
           { key: 'friendsSince', title: LT('Friends Since'), desc: LT('The date under every card on any Friends list, yours or someone else’s, showing when those two became friends. Hover it to see how long ago that was. Roblox doesn’t keep a date for follows, so there isn’t one for those.') },
           { key: 'friendCardMenu', title: LT('Friend Card Menu'), desc: LT('The three-dot menu Roblox only shows on terminated friends, on every card on your friends list, with Unfriend and Block. Block asks first.') },
@@ -992,7 +994,7 @@
         { title: LT('Marketplace Search'), rows: [
           { key: 'catalogRobloxOnly', title: LT('Only Roblox Items'), desc: LT('Every Marketplace search starts with the Creator filter set to Roblox, so you see Roblox’s own items and none of the UGC. Switch the filter to All Creators to see everything for that search.') },
         ] },
-        { title: LT('Item Page Values'), note: LT('Pick which lines show on item pages'), rows: [
+        { title: LT('Item Page Values'), rows: [
           { key: 'itemPrices', title: LT('Limited Values'), desc: LT('Values from routility.io on limited item pages. Pick the lines you want below.') },
           { key: 'itemUsd', parent: 'itemPrices', title: LT('RoUtility Price'), desc: LT('What the item is worth in your currency, next to its Robux price. Hover it for the RoUtility Value when the item has one.') },
           { key: 'itemDemand', parent: 'itemPrices', title: LT('Demand'), desc: LT('How much traders want it, like High or Terrible.') },
@@ -1872,7 +1874,7 @@
       main.appendChild(presetChip(lt('Roblox Default'), null, () => usePreset(null)));
       for (const [label, pal] of THEME_PRESETS) main.appendChild(presetChip(lt(label), pal, () => usePreset(pal)));
       const mine = el('div', 'routility-theme-preset-row routility-theme-slots');
-      mine.appendChild(el('span', 'text-label-medium content-muted routility-theme-slots-label', lt('Your Slots')));
+      mine.appendChild(el('span', 'text-label-medium content-emphasis routility-theme-slots-label', lt('Your Slots')));
       const saveSlots = (next) => {
         slots = next;
         chrome.storage.local.set({ routilityThemeSlots: slots });
@@ -1907,7 +1909,7 @@
         wrap.append(chip, tool('routility-calc-icon-download', lt('Save current theme here'), () => saveSlots(Object.assign([...slots], { [i]: { colors: { ...colors }, fx, ...look, at: Date.now() } }))), tool('routility-calc-icon-close', lt('Clear this slot'), () => saveSlots(Object.assign([...slots], { [i]: null }))));
         mine.appendChild(wrap);
       }
-      presetBar.append(main, mine);
+      presetBar.append(el('span', 'text-label-medium content-emphasis', lt('Presets')), main, mine);
     };
 
     const SLOT_COUNT = 5;
@@ -2777,36 +2779,38 @@
     language.card.appendChild(featureRow(LANGUAGE_ROW, settings, saveLanguage, [], false));
     section.appendChild(language);
 
-    const cats = group(lt('Categories'));
-    cats.card.classList.add('routility-set-card-plain');
-    const grid = el('div', 'routility-set-cats');
-    for (const tab of TABS.filter(t => PAGES[t.key])) {
-      const keys = keysOf(PAGES[tab.key]);
-      const count = keys.filter(k => settings[k]).length;
-      const card = el('a', 'routility-set-cat');
-      card.href = tab.hash;
-      card.addEventListener('click', (e) => {
-        e.preventDefault();
-        goTo(tab.hash);
-      });
-      const catIcon = el('span', 'routility-set-svg routility-set-cat-icon');
-      catIcon.innerHTML = CAT_SVG[tab.key] || SVG[ICONS[tab.key]];
-      catIcon.setAttribute('aria-hidden', 'true');
-      card.appendChild(catIcon);
-      const t = el('div', 'routility-set-cat-text');
-      t.appendChild(el('span', 'text-title-medium content-emphasis', lt(tab.label)));
-      t.appendChild(el('span', 'text-body-small content-muted', lt(BLURBS[tab.key])));
-      card.appendChild(t);
-      if (tab.key === 'menu') {
-        const navHidden = (Array.isArray(stored.routilityNavLayout && stored.routilityNavLayout.hidden) ? stored.routilityNavLayout.hidden.length : 0) + (settings.calcNav === false ? 1 : 0) + (settings.forumNav === false ? 1 : 0) + (settings.tradeAdsNav === false ? 1 : 0);
-        card.appendChild(el('span', 'routility-set-cat-count', navHidden ? ltn(navHidden, '{n} hidden', '{n} hidden') : lt('All shown')));
-      } else {
-        card.appendChild(el('span', 'routility-set-cat-count' + (count ? '' : ' routility-set-cat-none'), lt('{on}/{total} on', { on: count, total: keys.length })));
+    for (const name of [...new Set(TABS.filter(t => PAGES[t.key]).map(t => t.section))]) {
+      const cats = group(lt(name));
+      cats.card.classList.add('routility-set-card-plain');
+      const grid = el('div', 'routility-set-cats');
+      for (const tab of TABS.filter(t => PAGES[t.key] && t.section === name)) {
+        const keys = keysOf(PAGES[tab.key]);
+        const count = keys.filter(k => settings[k]).length;
+        const card = el('a', 'routility-set-cat');
+        card.href = tab.hash;
+        card.addEventListener('click', (e) => {
+          e.preventDefault();
+          goTo(tab.hash);
+        });
+        const catIcon = el('span', 'routility-set-svg routility-set-cat-icon');
+        catIcon.innerHTML = CAT_SVG[tab.key] || SVG[ICONS[tab.key]];
+        catIcon.setAttribute('aria-hidden', 'true');
+        card.appendChild(catIcon);
+        const t = el('div', 'routility-set-cat-text');
+        t.appendChild(el('span', 'text-title-medium content-emphasis', lt(tab.label)));
+        t.appendChild(el('span', 'text-body-small content-muted', lt(BLURBS[tab.key])));
+        card.appendChild(t);
+        if (tab.key === 'menu') {
+          const navHidden = (Array.isArray(stored.routilityNavLayout && stored.routilityNavLayout.hidden) ? stored.routilityNavLayout.hidden.length : 0) + (settings.calcNav === false ? 1 : 0) + (settings.forumNav === false ? 1 : 0) + (settings.tradeAdsNav === false ? 1 : 0);
+          card.appendChild(el('span', 'routility-set-cat-count', navHidden ? ltn(navHidden, '{n} hidden', '{n} hidden') : lt('All shown')));
+        } else {
+          card.appendChild(el('span', 'routility-set-cat-count' + (count ? '' : ' routility-set-cat-none'), lt('{on}/{total} on', { on: count, total: keys.length })));
+        }
+        grid.appendChild(card);
       }
-      grid.appendChild(card);
+      cats.card.appendChild(grid);
+      section.appendChild(cats);
     }
-    cats.card.appendChild(grid);
-    section.appendChild(cats);
 
     const others = group(lt('Other Extensions'), lt('Seen on Roblox pages recently'));
     others.hidden = true;
@@ -3010,7 +3014,7 @@
             return def.title && words.every(w => hay.includes(w) || (w.length > 3 && /s$/.test(w) && hay.includes(w.slice(0, -1))));
           });
           if (!hits.length) continue;
-          const wrap = group(`${lt(tab.label)} • ${lt(g.title)}`);
+          const wrap = group(lt(g.title) === lt(tab.label) ? lt(tab.label) : `${lt(tab.label)} • ${lt(g.title)}`);
           for (const def of hits) {
             found++;
             if (def.custom) {
@@ -3050,7 +3054,15 @@
         render();
       }
     });
-    return { field, results, hideWhileSearching: (n) => hidden.push(n) };
+    return {
+      field,
+      results,
+      hideWhileSearching: (n) => hidden.push(n),
+      search: (query) => {
+        input.value = query;
+        render();
+      },
+    };
   }
 
   function buildPane(tab, stored, cache) {
@@ -3108,11 +3120,12 @@
 
     if (tab.key === 'info') {
       const finder = settingsSearch(settings, save, stored, cache);
-      section.appendChild(finder.field);
       section.appendChild(finder.results);
+      liveFinder = finder;
       const before = section.children.length;
       infoPane(section, cache, settings, stored || {});
       [...section.children].slice(before).forEach(n => finder.hideWhileSearching(n));
+      if (searchQuery) finder.search(searchQuery);
     }
 
     if (tab.key === 'whatsnew') whatsNewPane(section);
@@ -3436,6 +3449,9 @@
       }
       for (const line of menu.querySelectorAll('.routility-menu-divider')) line.classList.toggle('routility-menu-off', !!list.length && !shown.has(line.dataset.section));
       menu.classList.toggle('routility-menu-searching', !!list.length);
+      searchQuery = input.value.trim();
+      if (searchQuery && open !== TABS[0].hash) goTo(TABS[0].hash);
+      else liveFinder?.search(searchQuery);
     };
     const reveal = () => {
       const list = words();
@@ -3506,6 +3522,8 @@
 
   let building = null;
   let leaving = null;
+  let liveFinder = null;
+  let searchQuery = '';
 
   function setOpen(hash) {
     const next = isOurs(hash) ? hash : null;
