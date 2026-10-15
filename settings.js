@@ -13,6 +13,7 @@
     { key: 'whatsnew', hash: '#!/routility/whatsnew', label: LT('What’s New'), title: LT('What’s New') },
     { key: 'browsing', hash: '#!/routility/browsing', label: LT('General'), title: LT('General'), section: 'Everywhere' },
     { key: 'themes', hash: '#!/routility/themes', label: LT('Themes'), title: LT('Themes'), section: 'Everywhere' },
+    { key: 'classic', hash: '#!/routility/classic', label: LT('Classic Roblox'), title: LT('Classic Roblox'), section: 'Everywhere' },
     { key: 'chat', hash: '#!/routility/chat', label: LT('Chat & Messages'), title: LT('Chat & Messages'), section: 'Everywhere' },
     { key: 'streamer', hash: '#!/routility/streamer', label: LT('Streamer Mode'), title: LT('Streamer Mode'), section: 'Everywhere' },
     { key: 'search', hash: '#!/routility/search', label: LT('Search'), title: LT('Search'), section: 'Everywhere' },
@@ -24,11 +25,12 @@
     { key: 'games', hash: '#!/routility/games', label: LT('Games & Servers'), title: LT('Games & Servers'), section: 'Pages' },
     { key: 'badges', hash: '#!/routility/badges', label: LT('Badges'), title: LT('Badges'), section: 'Pages' },
     { key: 'avatar', hash: '#!/routility/avatar', label: LT('Avatar Editor'), title: LT('Avatar Editor'), section: 'Pages' },
+    { key: 'account', hash: '#!/routility/account', label: LT('Account & Security'), title: LT('Account & Security'), section: 'Pages' },
     { key: 'robux', hash: '#!/routility/robux', label: LT('Robux & Transactions'), title: LT('Robux & Transactions'), section: 'Pages' },
-    { key: 'items', hash: '#!/routility/items', label: LT('Items & Inventory'), title: LT('Items & Inventory'), section: 'Limiteds & trading' },
+    { key: 'items', hash: '#!/routility/items', label: LT('Items'), title: LT('Items'), section: 'Limiteds & trading' },
+    { key: 'inventory', hash: '#!/routility/inventory', label: LT('Inventory'), title: LT('Inventory'), section: 'Limiteds & trading' },
     { key: 'trading', hash: '#!/routility/trading', label: LT('Trading'), title: LT('Trading'), section: 'Limiteds & trading' },
     { key: 'calculator', hash: '#!/routility/calculator', label: LT('Trade Calculator'), title: LT('Trade Calculator'), section: 'Limiteds & trading' },
-    { key: 'tradeads', hash: '#!/routility/tradeads', label: LT('Trade Ads'), title: LT('Trade Ads'), section: 'Limiteds & trading' },
     { key: 'communities', hash: '#!/routility/communities', label: LT('Communities'), title: LT('Communities'), section: 'Community' },
     { key: 'forum', hash: '#!/routility/forum', label: LT('Forum'), title: LT('Forum'), section: 'Community' },
     { key: 'create', hash: '#!/routility/create', label: LT('Creator Hub'), title: LT('Creator Hub'), section: 'Community' },
@@ -277,8 +279,10 @@
     chat: '<svg viewBox="0 0 24 24"><path d="M5.2 3.6h13.6c1.5 0 2.6 1.1 2.6 2.6v8.4c0 1.5-1.1 2.6-2.6 2.6h-6.6l-4.6 3.6c-.6.5-1.4 0-1.4-.7v-2.9h-1c-1.5 0-2.6-1.1-2.6-2.6V6.2c0-1.5 1.1-2.6 2.6-2.6z" fill="currentColor"/><circle cx="8.2" cy="10.4" r="1.4" fill="var(--rt-cat-cut)"/><circle cx="12" cy="10.4" r="1.4" fill="var(--rt-cat-cut)"/><circle cx="15.8" cy="10.4" r="1.4" fill="var(--rt-cat-cut)"/></svg>',
     streamer: '<svg viewBox="0 0 24 24"><path d="M12 5.2c-5 0-8.6 4.2-9.8 6-.3.5-.3 1.1 0 1.6 1.2 1.8 4.8 6 9.8 6s8.6-4.2 9.8-6c.3-.5.3-1.1 0-1.6-1.2-1.8-4.8-6-9.8-6z" fill="currentColor"/><circle cx="12" cy="12" r="3.6" fill="var(--rt-cat-cut)"/><path d="M4 20.4 20.4 4" stroke="var(--rt-cat-cut)" stroke-width="4.4" stroke-linecap="round"/><path d="M4 20.4 20.4 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
     robux: '<svg viewBox="0 0 23.5 24"><path d="M19.78 4.897A4.369 4.369 0 0122 8.69v6.62a4.37 4.37 0 01-2.22 3.792l-5.812 3.311a4.487 4.487 0 01-4.437 0l-5.813-3.31A4.37 4.37 0 011.5 15.31V8.69c0-1.565.846-3.011 2.218-3.793l5.813-3.31a4.487 4.487 0 014.437 0l5.813 3.31zM10.31 3.09L4.648 6.313a2.836 2.836 0 00-1.44 2.463v6.448c0 1.015.548 1.954 1.44 2.463l5.66 3.223c.892.508 1.99.508 2.882 0l5.66-3.223a2.838 2.838 0 001.442-2.463V8.776c0-1.017-.55-1.955-1.441-2.463L13.19 3.09a2.914 2.914 0 00-2.882 0zm2.624 1.801l4.466 2.543a2.33 2.33 0 011.184 2.024v5.087a2.33 2.33 0 01-1.184 2.023l-4.466 2.544a2.394 2.394 0 01-2.367 0L6.1 16.568a2.33 2.33 0 01-1.183-2.023V9.458c0-.835.451-1.606 1.183-2.024l4.466-2.543a2.394 2.394 0 012.367 0zM9.188 14.53h5.124V9.473H9.189v5.057z" fill="currentColor" fill-rule="evenodd"/></svg>',
-    badges: '<svg viewBox="0 0 24 24"><path d="M7.4 13.6 5 21.2c-.2.6.4 1.1 1 .9l3-1.2 1.8 2.6c.4.5 1.2.4 1.4-.2l1.2-4z" fill="currentColor" opacity="0.6"/><path d="M16.6 13.6l2.4 7.6c.2.6-.4 1.1-1 .9l-3-1.2-1.8 2.6c-.4.5-1.2.4-1.4-.2l-1.2-4z" fill="currentColor" opacity="0.6"/><circle cx="12" cy="9.4" r="7" fill="currentColor"/><path d="M12 5.6l1.2 2.5 2.7.4-2 1.9.5 2.7-2.4-1.3-2.4 1.3.5-2.7-2-1.9 2.7-.4z" fill="var(--rt-cat-cut)"/></svg>',
-    tradeads: '<svg viewBox="0 0 24 24"><path d="M3.4 9.6 15.8 4.4c.8-.3 1.6.3 1.6 1.1v13c0 .8-.8 1.4-1.6 1.1L3.4 14.4c-.5-.2-.8-.7-.8-1.2v-2.4c0-.5.3-1 .8-1.2z" fill="currentColor"/><path d="M5.4 14.8 6.8 20c.2.7.9 1.1 1.6.9l1.4-.4c.7-.2 1.1-.9.9-1.6l-.9-3.2" fill="currentColor" opacity="0.6"/><path d="M19.6 9.2c.9.7 1.4 1.7 1.4 2.8s-.5 2.1-1.4 2.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+    badges: '<svg viewBox="0 0 24 24"><path d="M7.4 13.6 5 21.2c-.2.6.4 1.1 1 .9l3-1.2 1.8 2.6c.4.5 1.2.4 1.4-.2l1.2-4z" fill="currentColor" opacity="0.6"/><path d="M16.6 13.6l2.4 7.6c.2.6-.4 1.1-1 .9l-3-1.2-1.8 2.6c-.4.5-1.2.4-1.4-.2l-1.2-4z" fill="currentColor" opacity="0.6"/><circle cx="12" cy="9.4" r="7" fill="currentColor"/><path d="M12 5.6l1.2 2.5 2.7.4-2 1.9.5 2.7-2.4-1.3-2.4 1.3.5-2.7-2-1.9 2.7-.4z" fill="var(--rt-cat-cut)"/></svg>',
+    classic: '<svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.8a9.2 9.2 0 1 1 0 18.4 9.2 9.2 0 0 1 0-18.4zM11 7v5.6l4.2 2.5 1-1.6-3.2-1.9V7z" fill="currentColor"/></svg>',
+    account: '<svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.4 4.6 5.3c-.6.2-1 .8-1 1.4v4.7c0 4.6 3.2 8.6 7.8 9.9.4.1.8.1 1.2 0 4.6-1.3 7.8-5.3 7.8-9.9V6.7c0-.6-.4-1.2-1-1.4zm-1.1 12.4-3-3 1.4-1.4 1.6 1.6 4.2-4.2 1.4 1.4z" fill="currentColor"/></svg>',
+    inventory: '<svg viewBox="0 0 24 24"><path d="M9 6.8V5.2c0-1 .8-1.8 1.8-1.8h2.4c1 0 1.8.8 1.8 1.8v1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill-rule="evenodd" d="M7 6.8h10a3.4 3.4 0 0 1 3.4 3.4v8.4c0 1.3-1.1 2.4-2.4 2.4H6c-1.3 0-2.4-1.1-2.4-2.4v-8.4A3.4 3.4 0 0 1 7 6.8zm2 6.2v1.8h6V13z" fill="currentColor"/></svg>',
     browsing: '<svg viewBox="0 0 24 24"><rect x="3.5" y="6.2" width="17" height="4" rx="2" fill="currentColor" opacity="0.55"/><circle cx="15.5" cy="8.2" r="3.3" fill="currentColor"/><rect x="3.5" y="13.8" width="17" height="4" rx="2" fill="currentColor" opacity="0.55"/><circle cx="8.5" cy="15.8" r="3.3" fill="currentColor"/></svg>',
     search: '<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M15 15l4.6 4.6" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg>',
     menu: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3.2" fill="currentColor"/><rect x="10" y="7" width="8" height="2.2" rx="1.1" fill="var(--rt-cat-cut)"/><rect x="10" y="11" width="8" height="2.2" rx="1.1" fill="var(--rt-cat-cut)"/><rect x="10" y="15" width="5.5" height="2.2" rx="1.1" fill="var(--rt-cat-cut)"/><rect x="5.6" y="6.6" width="2.2" height="10.8" rx="1.1" fill="var(--rt-cat-cut)"/></svg>',
@@ -700,14 +704,6 @@
           { key: 'adminBadge', title: LT('Admin Badge'), desc: LT('Roblox’s admin logo next to friends and players in search who are Roblox admins, after the verified and Plus badges, like on their profile.') },
           { key: 'badgeSizeFix', title: LT('Fix Verified Badge Size'), desc: LT('Roblox shows the verified badge too big next to names in player search. This shrinks it to match the name, like everywhere else.') },
         ] },
-        { title: LT('Your Status'), rows: [
-          { key: 'studioStatus', title: LT('Appear In Studio'), desc: LT('Everyone sees your status as In Studio instead of Online or the game you’re in, while a Roblox tab is open. When you turn it off, your normal status comes back within a minute or two.') },
-        ] },
-        { title: LT('Account Settings'), rows: [
-          { key: 'sessionIps', title: LT('Device IP Addresses'), desc: LT('Under each device on Settings > Security, the IP address it last used, so a login you don’t recognize is easier to spot. Streamer Mode blurs it with the rest of the list.') },
-          { key: 'backupCodeDate', title: LT('Backup Code Date'), desc: LT('When your 2-Step Verification backup codes were made, next to how many you have left.') },
-          { key: 'voiceStatus', title: LT('Voice Chat Suspension'), desc: LT('If your voice chat is suspended, Settings > Privacy says so and until when, instead of you finding out in a game.') },
-        ] },
         { title: LT('Shortcuts'), rows: [
           { key: 'menuLink', title: LT('Settings Menu Link'), desc: LT('A RoUtility item above Settings in the gear menu at the top right, straight to this page.') },
           { key: 'contextCopy', title: LT('Copy IDs on Right-Click'), desc: LT('Right-click a profile, item, model, bundle, experience, community or badge (or an empty spot on its page) for Copy User ID, Copy Asset ID and so on, with a quick confirmation.') },
@@ -715,7 +711,7 @@
       ],
     },
     themes: {
-      intro: LT('Make Roblox look the way you like: your own colors, another font or the classic Roblox look.'),
+      intro: LT('Make Roblox look the way you like: your own colors and another font.'),
       groups: [
         { title: LT('Theme'), rows: [
           { key: 'customTheme', title: LT('Custom Theme'), desc: LT('Pick your own colors for Roblox: backgrounds, cards, text, links and the Play button. Start from a preset or set each color yourself.') },
@@ -726,16 +722,23 @@
         { title: LT('Font'), rows: [
           { key: 'siteFont', title: LT('Website Font'), desc: LT('Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.'), options: [['default', LT('Roblox default')], ['builder', 'Builder Sans'], ['system', LT('System font')], ['custom', LT('Your Own Font')]], fontInput: 'custom' },
         ] },
-        { title: LT('Classic Roblox'), rows: [
+      ],
+    },
+    classic: {
+      intro: LT('Bring back the old Roblox look: the old logo and icons, the old names and classic faces.'),
+      groups: [
+        { title: LT('Logo & Icons'), rows: [
           { key: 'classicLogo', title: LT('Classic Roblox Logo'), desc: LT('The old red and white ROBLOX logo in the top left corner instead of today’s logo.') },
           { key: 'classicPremium', title: LT('Classic Premium Icon'), desc: LT('The old Premium icon next to names instead of the Roblox Plus icon.') },
+          { key: 'classicFaceThumbs', title: LT('Classic Face Thumbnails'), desc: LT('Classic faces show their flat face image on item pages again, instead of the head render Roblox uses now.') },
+        ] },
+        { title: LT('Old Names'), rows: [
           { key: 'classicNames', title: LT('Classic Names'), desc: LT('The old Roblox names in the menus, headings and tab titles. Pick which ones below.') },
           { key: 'classicGames', parent: 'classicNames', title: LT('Games'), desc: LT('Charts and Experiences are called Games.') },
           { key: 'classicCatalog', parent: 'classicNames', title: LT('Catalog'), desc: LT('The Marketplace is called the Catalog.') },
           { key: 'classicDevelop', parent: 'classicNames', title: LT('Develop'), desc: LT('Create in the top bar is called Develop.') },
           { key: 'classicGroups', parent: 'classicNames', title: LT('Groups'), desc: LT('Communities are called Groups.') },
           { key: 'classicPackages', parent: 'classicNames', title: LT('Packages'), desc: LT('Bundles are called Packages.') },
-          { key: 'classicFaceThumbs', title: LT('Classic Face Thumbnails'), desc: LT('Classic faces show their flat face image on item pages again, instead of the head render Roblox uses now.') },
         ] },
       ],
     },
@@ -931,22 +934,41 @@
         ] },
       ],
     },
-    robux: {
-      intro: LT('Your Robux balance, prices in dollars and your Transactions page.'),
+    account: {
+      intro: LT('Extra details on your Roblox Settings pages, and how others see your status.'),
       groups: [
+        { title: LT('Security'), rows: [
+          { key: 'sessionIps', title: LT('Device IP Addresses'), desc: LT('Under each device on Settings > Security, the IP address it last used, so a login you don’t recognize is easier to spot. Streamer Mode blurs it with the rest of the list.') },
+          { key: 'backupCodeDate', title: LT('Backup Code Date'), desc: LT('When your 2-Step Verification backup codes were made, next to how many you have left.') },
+        ] },
+        { title: LT('Voice Chat'), rows: [
+          { key: 'voiceStatus', title: LT('Voice Chat Suspension'), desc: LT('If your voice chat is suspended, Settings > Privacy says so and until when, instead of you finding out in a game.') },
+        ] },
+        { title: LT('Your Status'), rows: [
+          { key: 'studioStatus', title: LT('Appear In Studio'), desc: LT('Everyone sees your status as In Studio instead of Online or the game you’re in, while a Roblox tab is open. When you turn it off, your normal status comes back within a minute or two.') },
+        ] },
+      ],
+    },
+    robux: {
+      intro: LT('Your currency and Robux rate, your Robux balance, safer buying and your Transactions page.'),
+      groups: [
+        { title: LT('Money'), rows: [
+          { key: 'currency', title: LT('Currency'), desc: LT('Show every price and dollar amount RoUtility adds in this currency, like on routility.io. Prices are still in USD underneath and convert at today’s exchange rate.'), options: [['USD', LT('US Dollar')], ['EUR', LT('Euro')], ['GBP', LT('British Pound')], ['CAD', LT('Canadian Dollar')], ['AUD', LT('Australian Dollar')], ['JPY', LT('Japanese Yen')], ['CNY', LT('Chinese Yuan')], ['KRW', LT('Korean Won')], ['INR', LT('Indian Rupee')], ['BRL', LT('Brazilian Real')], ['MXN', LT('Mexican Peso')], ['TRY', LT('Turkish Lira')]] },
+          { key: 'calcRobux', title: LT('Your Robux Rate'), desc: LT('What 1,000 Robux are worth to you everywhere RoUtility turns Robux into dollars: price hovers, Transactions, Community Funds, the Creator Hub, trades and the Trade Calculator. Use the DevEx rate ($3.80 per 1,000) or your own, like the rate you sell Robux at.'), options: [['devex', LT('DevEx rate')], ['custom', LT('Custom rate')]], rateInput: 'custom' },
+          { key: 'robuxUsd', title: LT('Robux in Dollars'), desc: LT('Hover a Robux price, like a game pass or a catalog item, to see about what it’s worth in USD. Uses your Robux rate.') },
+        ] },
+        { title: LT('Exact Numbers'), rows: [
+          { key: 'exactRobux', title: LT('Exact Robux Balance'), desc: LT('Your full Robux balance in the top bar, like 122,369 instead of 122K+.') },
+          { key: 'exactPrices', title: LT('Exact Robux Prices'), desc: LT('Full prices on inventory items, like 3,333,333 instead of 3M+.') },
+        ] },
         { title: LT('Buying'), rows: [
           { key: 'purchaseLock', title: LT('Purchase Safety Lock'), desc: LT('Big purchases need you to hold the Buy button for a second, so a misclick can’t spend your Robux.') },
           { key: 'purchaseLockAt', parent: 'purchaseLock', title: LT('Lock Purchases From'), desc: LT('Purchases at or above this price need the hold.'), options: [['0', LT('Every purchase')], ['100', LT('100 Robux')], ['1000', LT('1,000 Robux')], ['10000', LT('10,000 Robux')], ['100000', LT('100,000 Robux')]] },
           { key: 'buyBalance', title: LT('Balance After Purchase'), desc: LT('Roblox’s Buy window shows how many Robux you’ll have left after the purchase, right above the Buy button.') },
         ] },
-        { title: LT('Robux'), rows: [
-          { key: 'exactRobux', title: LT('Exact Robux Balance'), desc: LT('Your full Robux balance in the top bar, like 122,369 instead of 122K+.') },
-          { key: 'exactPrices', title: LT('Exact Robux Prices'), desc: LT('Full prices on inventory items, like 3,333,333 instead of 3M+.') },
-          { key: 'robuxUsd', title: LT('Robux in Dollars'), desc: LT('Hover a Robux price, like a game pass or a catalog item, to see about what it’s worth in USD. Uses your Robux rate.') },
-          { key: 'currency', title: LT('Currency'), desc: LT('Show every price and dollar amount RoUtility adds in this currency, like on routility.io. Prices are still in USD underneath and convert at today’s exchange rate.'), options: [['USD', LT('US Dollar')], ['EUR', LT('Euro')], ['GBP', LT('British Pound')], ['CAD', LT('Canadian Dollar')], ['AUD', LT('Australian Dollar')], ['JPY', LT('Japanese Yen')], ['CNY', LT('Chinese Yuan')], ['KRW', LT('Korean Won')], ['INR', LT('Indian Rupee')], ['BRL', LT('Brazilian Real')], ['MXN', LT('Mexican Peso')], ['TRY', LT('Turkish Lira')]] },
-          { key: 'calcRobux', title: LT('Your Robux Rate'), desc: LT('What 1,000 Robux are worth to you everywhere RoUtility turns Robux into dollars: price hovers, Transactions, Community Funds, the Creator Hub, trades and the Trade Calculator. Use the DevEx rate ($3.80 per 1,000) or your own, like the rate you sell Robux at.'), options: [['devex', LT('DevEx rate')], ['custom', LT('Custom rate')]], rateInput: 'custom' },
-          { key: 'transferLimits', title: LT('Transfer Limits Left'), desc: LT('On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.') },
+        { title: LT('Sending Robux'), rows: [
           { key: 'sendRobux', title: LT('Send Robux in the Browser'), desc: LT('Send Robux to a friend from their profile, or from the friends list on the Buy Robux page, without opening the Roblox app. Pick an amount, check who it’s going to, then send. Roblox still decides who you can send to and how much.') },
+          { key: 'transferLimits', title: LT('Transfer Limits Left'), desc: LT('On Settings > Robux, how many Robux you’ve sent in the past day and month and how many you can still send, plus the limit for a single transfer.') },
         ] },
         { title: LT('Roblox Plus'), rows: [
           { key: 'plusDetails', title: LT('Plus Details'), desc: LT('On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in dollars and what Plus has cost you so far.') },
@@ -959,12 +981,12 @@
       ],
     },
     items: {
-      intro: LT('Prices, tags, charts, resellers and owners on limited items, plus values and search in inventories.'),
+      intro: LT('Prices, tags, charts, resellers and owners on limited items.'),
       groups: [
         { title: LT('Marketplace Search'), rows: [
           { key: 'catalogRobloxOnly', title: LT('Only Roblox Items'), desc: LT('Every Marketplace search starts with the Creator filter set to Roblox, so you see Roblox’s own items and none of the UGC. Switch the filter to All Creators to see everything for that search.') },
         ] },
-        { title: LT('Item Page'), note: LT('Pick which lines show on item pages'), rows: [
+        { title: LT('Item Page Values'), note: LT('Pick which lines show on item pages'), rows: [
           { key: 'itemPrices', title: LT('Limited Values'), desc: LT('Values from routility.io on limited item pages. Pick the lines you want below.') },
           { key: 'itemUsd', parent: 'itemPrices', title: LT('USD Price'), desc: LT('What the item is worth in USD, next to its Robux price. Hover it for the RoUtility Value when the item has one.') },
           { key: 'itemDemand', parent: 'itemPrices', title: LT('Demand'), desc: LT('How much traders want it, like High or Terrible.') },
@@ -973,18 +995,18 @@
           { key: 'itemHoardStats', parent: 'itemPrices', title: LT('Premium Copies & Hoarded'), desc: LT('How many copies Premium members hold, and how much of the item is hoarded.') },
           { key: 'itemChange', parent: 'itemPrices', title: LT('Price Change'), desc: LT('How much its USD price moved in the last 30 days, like +$120 (8%) in 30 days.') },
           { key: 'itemOwnedRow', parent: 'itemPrices', title: LT('You Own'), desc: LT('How many copies you own, with their serial numbers.') },
+        ] },
+        { title: LT('Item Page Extras'), rows: [
           { key: 'itemSize', title: LT('Size'), desc: LT('A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.') },
           { key: 'lastOnSale', title: LT('Last On Sale'), desc: LT('A Last On Sale line on off-sale items: the last price Roblox sold it for and when its listing last changed, like Jun 5, 2024 for R$ 250.') },
           { key: 'itemAcquired', title: LT('Acquired'), desc: LT('An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.') },
           { key: 'friendsOwn', title: LT('Friends Who Own It'), desc: LT('A chip on item pages with how many of your friends own the item. Click it for the list.') },
         ] },
-        { title: LT('Prices'), rows: [
+        { title: LT('Prices & Chart'), rows: [
           { key: 'marketplaceValues', title: LT('Marketplace Prices'), desc: LT('USD under the price on limited items in the Marketplace.') },
+          { key: 'usdChart', title: LT('USD Price Chart'), desc: LT('Robux and USD switch on the Price Chart.') },
           { key: 'itemTags', title: LT('Rare & Projected Tags'), desc: LT('Flags rare items and items whose RAP is pushed up by recent sales, on item pages, trades, the Marketplace and the calculator.') },
           { key: 'itemSimilar', title: LT('Similar Price'), desc: LT('A row of limiteds worth about the same, above Recommendations on item pages.') },
-        ] },
-        { title: LT('Price Chart'), rows: [
-          { key: 'usdChart', title: LT('USD Price Chart'), desc: LT('Robux and USD switch on the Price Chart.') },
         ] },
         { title: LT('Try On & Explore'), rows: [
           { key: 'avatarPreview', title: LT('Avatar Preview'), desc: LT('A Preview button next to Try On that shows the item on your avatar in 3D. Drag to turn it, switch R6 / R15, and take your worn items on or off.') },
@@ -994,16 +1016,23 @@
           { key: 'resellerDeals', title: LT('Reseller Deals'), desc: LT('How far each reseller listing is under or over RAP.') },
           { key: 'owners', title: LT('Owners List'), desc: LT('Owners view next to Resellers, with Plus/Premium, All and Hoards filters.') },
         ] },
-        { title: LT('Inventory'), rows: [
+      ],
+    },
+    inventory: {
+      intro: LT('Values, search and the real order in inventories, favorites and badges.'),
+      groups: [
+        { title: LT('Values'), rows: [
           { key: 'inventoryValues', title: LT('Inventory Values'), desc: LT('USD prices on inventory and profile items, and a value pill on profiles.') },
+          { key: 'ownedSince', title: LT('How Long They’ve Owned It'), desc: LT('How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.') },
+        ] },
+        { title: LT('Finding Things'), rows: [
           { key: 'inventorySearch', title: LT('Inventory Search'), desc: LT('Search a whole inventory category by name or asset ID, not just the current page.') },
           { key: 'listOrder', title: LT('Fix Shuffled Order'), desc: LT('Puts favorites and badges on other people’s pages back in their real order. Roblox currently shows them shuffled.') },
-          { key: 'ownedSince', title: LT('How Long They’ve Owned It'), desc: LT('How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.') },
         ] },
       ],
     },
     trading: {
-      intro: LT('Values, previews and safety checks for every trade you send or receive.'),
+      intro: LT('Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.'),
       groups: [
         { title: LT('Values'), rows: [
           { key: 'tradeValues', title: LT('Trade Values'), desc: LT('USD on trade items, totals for each side, the RAP and value difference pills between the two sides, and RAP and USD pills on the trade list.') },
@@ -1023,6 +1052,10 @@
           { key: 'tradeSendSummary', title: LT('Send Offer Summary'), desc: LT('When you press Make Offer, the confirm window shows what each side is worth (value and RAP) and the difference. If you’d overpay past your warning level, you tick “I’ve reviewed this trade” before Send works.') },
           { key: 'tradeWarning', title: LT('Overpay Warning'), desc: LT('A warning while you build or counter a trade where you give a lot more value than you get.') },
           { key: 'tradeWarnAt', parent: 'tradeWarning', title: LT('Warn When I Give'), desc: LT('How much more than the other side your offer has to be worth before the warning shows.'), options: [['10', LT('10% more')], ['15', LT('15% more')], ['25', LT('25% more')], ['50', LT('50% more')]] },
+        ] },
+        { title: LT('Trade Ads'), rows: [
+          { key: 'tradeAds', title: LT('Trade Ads'), desc: LT('A Trade Ads page at roblox.com/trade-ads: see what people are offering and asking for, with values, and send them a trade in one click. Post your own ad from your limiteds after signing in with Roblox.') },
+          { key: 'tradeAdsNav', parent: 'tradeAds', title: LT('Trade Ads in the Menu'), desc: LT('A Trade Ads link in the left menu, under Trade.') },
         ] },
       ],
     },
@@ -1044,15 +1077,6 @@
           { key: 'calcSort', parent: 'tradeCalculator', title: LT('Sort Items By'), desc: LT('How the item browser is sorted when you open the calculator.'), options: [['usd-desc', LT('USD (High)')], ['usd-asc', LT('USD (Low)')], ['rap-desc', LT('RAP (High)')], ['rap-asc', LT('RAP (Low)')], ['name-asc', LT('Name (A-Z)')]] },
           { key: 'calcSlots', parent: 'tradeCalculator', title: LT('Starting Slots'), desc: LT('How many slots each side starts with. You can still add or remove slots.'), options: [['4', LT('4 slots')], ['8', LT('8 slots')], ['12', LT('12 slots')]] },
           { key: 'calcShot', parent: 'tradeCalculator', title: LT('Screenshot Button'), desc: LT('Show a preview with Copy and Download, or copy the image straight away.'), options: [['preview', LT('Show preview')], ['copy', LT('Copy straight away')]] },
-        ] },
-      ],
-    },
-    tradeads: {
-      intro: LT('Trade ads from routility.io, right on Roblox: browse them, post your own and send trades.'),
-      groups: [
-        { title: LT('Trade Ads'), rows: [
-          { key: 'tradeAds', title: LT('Trade Ads'), desc: LT('A Trade Ads page at roblox.com/trade-ads: see what people are offering and asking for, with values, and send them a trade in one click. Post your own ad from your limiteds after signing in with Roblox.') },
-          { key: 'tradeAdsNav', parent: 'tradeAds', title: LT('Trade Ads in the Menu'), desc: LT('A Trade Ads link in the left menu, under Trade.') },
         ] },
       ],
     },
@@ -1151,8 +1175,9 @@
   };
 
   const BLURBS = {
-    items: LT('Prices, charts, owners, inventory values'),
-    trading: LT('Trade values, previews, warnings, clean up'),
+    items: LT('Prices, charts, resellers, owners'),
+    inventory: LT('Values, search and the real order'),
+    trading: LT('Trade values, previews, warnings, trade ads'),
     calculator: LT('Build and compare any trade'),
     forum: LT('The classic Roblox forum, back'),
     create: LT('Script scanner, IDs, downloads, Robux in USD'),
@@ -1166,15 +1191,16 @@
     search: LT('Players, games and limiteds in search'),
     menu: LT('Reorder or hide its links'),
     browsing: LT('Loading, status banner, name badges, right-click copy'),
-    themes: LT('Your colors, presets, font and classic Roblox'),
+    themes: LT('Your colors, presets and font'),
+    classic: LT('Old logo, old names, classic faces'),
+    account: LT('Device IPs, backup codes, voice chat, your status'),
     chat: LT('RoUtility Bot, resizable chat, message tools'),
     streamer: LT('Blur your Robux, name and values on stream'),
     badges: LT('Badge stats, progress and earned dates'),
-    robux: LT('Exact Robux, prices in USD, safer buying, transactions'),
-    tradeads: LT('Browse and post trade ads'),
+    robux: LT('Currency, exact Robux, safer buying, transactions'),
     fun: LT('Fake Robux and fake purchases'),
   };
-  const ICONS = { notifications: 'bell', items: 'tag', trading: 'swap', calculator: 'calc', forum: 'forum', create: 'create', communities: 'people', profiles: 'person', friends: 'people', avatar: 'avatar', home: 'home', games: 'game', search: 'search', menu: 'menu', browsing: 'globe', themes: 'sparkle', chat: 'forum', streamer: 'person', badges: 'game', robux: 'tag', tradeads: 'swap', fun: 'sparkle' };
+  const ICONS = { notifications: 'bell', items: 'tag', trading: 'swap', calculator: 'calc', forum: 'forum', create: 'create', communities: 'people', profiles: 'person', friends: 'people', avatar: 'avatar', home: 'home', games: 'game', search: 'search', menu: 'menu', browsing: 'globe', themes: 'sparkle', chat: 'forum', streamer: 'person', badges: 'game', robux: 'tag', account: 'person', classic: 'sparkle', inventory: 'tag', fun: 'sparkle' };
 
   function keysOf(page) {
     return page.groups.flatMap(g => g.rows).filter(x => x.key && !x.options).map(x => x.key);
