@@ -16,7 +16,6 @@
   const SORTS = [['newest', LT('Newest')], ['rap-desc', LT('Highest RAP')], ['rap-asc', LT('Lowest RAP')]];
   const TAGS = ['any', 'demand', 'rares', 'rap', 'wishlist', 'robux', 'upgrade', 'downgrade', 'adds', 'projecteds'];
   const REASONS = [LT('Scam / bait trade'), LT('Fake items (doesn’t own)'), LT('Spam / advertising'), LT('Offensive content'), LT('Other')];
-  const RATE = 0.0038;
 
   let settings = {};
   let s = null;
@@ -466,7 +465,7 @@
   function entryUsd(e) {
     if (e.kind === 'item') return itemInfo(e.assetId).usd || 0;
     if (e.kind === 'usd') return e.amount;
-    if (e.kind === 'robux') return e.amount * RATE;
+    if (e.kind === 'robux') return e.amount * window.RoUtilityUI.robuxRate(settings);
     return 0;
   }
 

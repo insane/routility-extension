@@ -1,9 +1,8 @@
 (function () {
   'use strict';
 
-  const { el, onFrame, formatUSD, formatNumber } = window.RoUtilityUI;
+  const { el, onFrame, formatUSD, formatNumber, robuxRate } = window.RoUtilityUI;
   const { lt, ltn } = window.RoUtilityI18n;
-  const DEVEX = 0.0038;
   const NS = 'http://www.w3.org/2000/svg';
   const settings = { createScanner: true, createIds: true, createDevItems: true, createUsd: true };
   let lastUrl = '';
@@ -318,7 +317,7 @@
       if (/k/i.test(m[3])) n *= 1e3;
       if (/m/i.test(m[3])) n *= 1e6;
       if (!(n > 0)) continue;
-      const tag = el('span', 'routility-injected routility-cr-usd', '≈ ' + formatUSD(n * DEVEX));
+      const tag = el('span', 'routility-injected routility-cr-usd', '≈ ' + formatUSD(n * robuxRate(settings)));
       holder.appendChild(tag);
       holder.dataset.rtUsd = holder.textContent;
     }

@@ -325,7 +325,7 @@
   }
 
   function robuxRate() {
-    if (settings.calcRobux === 'none') return 0;
+    if (settings.calcRobuxRap === false || (settings.calcRobuxRap === undefined && settings.calcRobux === 'none')) return 0;
     const custom = Number(settings.calcRate);
     return settings.calcRobux === 'custom' && custom > 0 ? custom / 1000 : RATE;
   }

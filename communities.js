@@ -1,9 +1,8 @@
 (function () {
   'use strict';
 
-  const { el, onFrame, formatNumber, formatUSD, verifiedBadge } = window.RoUtilityUI;
+  const { el, onFrame, formatNumber, formatUSD, verifiedBadge, robuxRate } = window.RoUtilityUI;
   const { lt, ltn } = window.RoUtilityI18n;
-  const DEVEX = 0.0038;
   const DAY = 86400000;
   const FG_KEY = 'routilityFriendGroups';
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
@@ -183,7 +182,7 @@
       if (settings.groupDetails && s.funds !== null && !row.querySelector('.routility-cm-funds')) {
         const pill = el('a', pillClass() + ' routility-injected routility-cm-funds');
         pill.href = `/communities/configure?id=${gid}#!/revenue`;
-        pill.append(el('span', 'icon-robux-16x16 routility-cm-robux'), el('span', null, formatNumber(s.funds)), el('span', 'routility-cm-usd', '≈ ' + formatUSD(s.funds * DEVEX)));
+        pill.append(el('span', 'icon-robux-16x16 routility-cm-robux'), el('span', null, formatNumber(s.funds)), el('span', 'routility-cm-usd', '≈ ' + formatUSD(s.funds * robuxRate(settings))));
         row.appendChild(pill);
       }
       if (settings.groupFriends && !row.querySelector('.routility-cm-friends')) {
@@ -487,7 +486,7 @@
         if (tag && tag.dataset.key === key) continue;
         tag?.remove();
         if (!(n > 0)) continue;
-        tag = el('span', 'routility-injected routility-cm-usd', '≈ ' + formatUSD(n * DEVEX));
+        tag = el('span', 'routility-injected routility-cm-usd', '≈ ' + formatUSD(n * robuxRate(settings)));
         tag.dataset.key = key;
         holder.appendChild(tag);
       }

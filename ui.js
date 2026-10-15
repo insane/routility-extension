@@ -123,6 +123,11 @@
   const WHOLE = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
   const CENTS = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
+  function robuxRate(s) {
+    const custom = Number(s && s.calcRate);
+    return s && s.calcRobux === 'custom' && custom > 0 ? custom / 1000 : 0.0038;
+  }
+
   function formatUSD(value) {
     const n = Number(value);
     if (!Number.isFinite(n) || n <= 0) return 'N/A';
@@ -842,7 +847,7 @@
     }).observe(document.body, { childList: true });
   }
 
-  window.RoUtilityUI = { rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, formatUSD, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
+  window.RoUtilityUI = { rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
 })();
 
 (function () {
