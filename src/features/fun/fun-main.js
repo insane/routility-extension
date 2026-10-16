@@ -1166,17 +1166,25 @@
     return null;
   }
 
-  function sortedTradable(url) {
-    const hit = tradeSorts.get(url);
+  const tradeLists = new Map();
+
+  function tradableBase(url) {
+    const u = new URL(url);
+    u.searchParams.delete('search');
+    u.searchParams.delete('cursor');
+    return u.href;
+  }
+
+  function allTradable(url) {
+    const key = tradableBase(url);
+    const hit = tradeLists.get(key);
     if (hit && Date.now() - hit.at < 120000) return hit.job;
     const job = (async () => {
-      const gate = await askIso('routility-trade-worth', { items: [] });
-      if (!gate || !gate.on) return null;
       const items = [];
       let cursor = '';
       let userId = null;
       for (let page = 0; page < 80; page++) {
-        const u = new URL(url);
+        const u = new URL(key);
         if (cursor) u.searchParams.set('cursor', cursor);
         const d = await tradablePage(u.href);
         if (!d || !Array.isArray(d.items)) return null;
@@ -1185,7 +1193,23 @@
         cursor = d.nextPageCursor || '';
         if (!cursor) break;
       }
-      if (cursor) return null;
+      return cursor ? null : { userId, items };
+    })().catch(() => null);
+    tradeLists.set(key, { at: Date.now(), job });
+    job.then((v) => { if (!v) tradeLists.delete(key); });
+    return job;
+  }
+
+  function sortedTradable(url) {
+    url = tradableBase(url);
+    const hit = tradeSorts.get(url);
+    if (hit && Date.now() - hit.at < 120000) return hit.job;
+    const job = (async () => {
+      const gate = await askIso('routility-trade-worth', { items: [] });
+      if (!gate || !gate.on) return null;
+      const all = await allTradable(url);
+      if (!all) return null;
+      const { userId, items } = all;
       const res = await askIso('routility-trade-worth', { items: items.map(it => ({ itemTarget: it.itemTarget, itemName: it.itemName, recentAveragePrice: it.recentAveragePrice })) });
       if (!res || !res.on || !Array.isArray(res.worth) || res.worth.length !== items.length) return null;
       const order = items.map((it, i) => ({ it, i, v: Number(res.worth[i]) || 0 }));
@@ -1197,13 +1221,38 @@
     return job;
   }
 
+  async function searchTradable(url, q) {
+    const gate = await askIso('routility-trade-match', { q: '', items: [] });
+    if (!gate || !gate.on) return null;
+    const sorted = await sortedTradable(url);
+    const base = sorted ? JSON.parse(sorted) : await allTradable(url);
+    if (!base || !Array.isArray(base.items)) return null;
+    const res = await askIso('routility-trade-match', { q, items: base.items.map(it => ({ itemTarget: it.itemTarget, itemName: it.itemName })) });
+    if (!res || !res.on || !Array.isArray(res.keep)) return null;
+    const keep = new Set(res.keep);
+    return JSON.stringify({ userId: base.userId, items: base.items.filter((it, i) => keep.has(i)), nextPageCursor: null, previousPageCursor: null });
+  }
+
   ROUTES.push(['GET', /^https:\/\/trades\.roblox\.com\/v2\/users\/\d+\/tradableItems\?/i, (m, req) => {
     if (!/^\/(?:users\/\d+\/trade|trades\/\d+\/counter)\/?$/i.test(location.pathname)) return null;
-    if (new URL(req.url).searchParams.get('cursor')) return null;
+    const sp = new URL(req.url).searchParams;
+    if (sp.get('cursor')) return null;
     const box = { text: null };
-    const wait = sortedTradable(req.url).then((text) => { box.text = text; });
+    const q = (sp.get('search') || '').trim();
+    const wait = (q ? searchTradable(req.url, q) : sortedTradable(req.url)).then((text) => { box.text = text; }, () => {});
     return { wait, edit: t => box.text || t };
   }]);
+
+  window.addEventListener('message', (e) => {
+    if (e.source !== window || !e.data || e.data.type !== 'routility-trade-list' || typeof e.data.id !== 'string') return;
+    const id = e.data.id;
+    const userId = String(e.data.userId || '');
+    if (!/^\d+$/.test(userId)) return;
+    allTradable(`https://trades.roblox.com/v2/users/${userId}/tradableItems?sortBy=CreationTime&sortOrder=Desc&limit=50`).then((d) => {
+      const items = d ? d.items.map(it => ({ itemTarget: it.itemTarget, itemName: it.itemName })) : null;
+      window.postMessage({ type: 'routility-trade-list-done', id, items }, ORIGIN);
+    });
+  });
 
   ROUTES.push(['POST', /^https:\/\/apis\.roblox\.com\/product-experimentation-platform\/v1\/projects\/1\/values/i, (m, req, body) => {
     if (!document.documentElement.classList.contains('routility-old-nav')) return null;

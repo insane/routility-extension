@@ -14,6 +14,7 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 **New**
 
 ```diff
++ Smarter Inventory Search: when you make or counter a trade, searching an inventory also finds items by acronym, like CWS for Clockwork's Shades, and shows suggestions as you type.
 + Quick Settings Style: List, Tiles or Compact, a single line with your online status that opens the settings when you click it. Quick Settings also looks quieter and lines up with the menu. (by @reqonn)
 + Recent Servers: a game's Servers tab lists the servers you played in lately, so you can jump back into one while it's still running.
 + Proof: a Proof button on trades makes a clean picture of the trade and fills in the text for a value request on the RoUtility Discord, ready to copy. Hide prices or RAP in the picture if you want.
@@ -37,6 +38,7 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 **Fixed**
 
 ```diff
+- Robux you add to an offer now count in the overpay warning and the Send summary.
 - Avatar changes show up right away instead of after a day. (by @reqonn)
 - The device and location filters on Charts no longer drop to the bottom of the page.
 - Other Extensions forgets extensions you've uninstalled.

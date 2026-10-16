@@ -9,6 +9,8 @@
       "date": "2026-10-16",
       "summary": "Every Roblox Plus theme for free, when you joined each community, Fun Outfits, and Try On that keeps your hats.",
       "changes": [
+        { "type": "new", "text": "Smarter Inventory Search: when you make or counter a trade, searching an inventory also finds items by acronym, like CWS for Clockwork's Shades, and shows suggestions as you type." },
+        { "type": "fixed", "text": "Robux you add to an offer now count in the overpay warning and the Send summary." },
         { "type": "new", "text": "Quick Settings Style: List, Tiles or Compact, a single line with your online status that opens the settings when you click it. Quick Settings also looks quieter and lines up with the menu.", "by": ["reqonn"] },
         { "type": "improved", "text": "Classic profiles show your nicknames for friends, and avatars Roblox hasn't approved show a gray silhouette everywhere instead of a broken file icon.", "by": ["reqonn"] },
         { "type": "fixed", "text": "Avatar changes show up right away instead of after a day.", "by": ["reqonn"] },

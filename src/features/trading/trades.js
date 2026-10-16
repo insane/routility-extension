@@ -140,6 +140,12 @@
         robuxUsd[0] = (Number(mine.robux) || 0) * robuxRate;
         robuxUsd[1] = (Number(theirs.robux) || 0) * robuxRate;
       }
+    } else if (offers.length === 2) {
+      const boxes = [...document.querySelectorAll('.trade-request-window .robux-input-group input')];
+      offers.forEach((o, i) => {
+        const box = o.querySelector('.robux-input-group input') || boxes[i];
+        robuxUsd[i] = window.RoUtilityUI.parseAmount(box ? box.value : '', true) * robuxRate;
+      });
     }
 
     const totals = pricesPerOffer.map(list => ({
@@ -175,8 +181,9 @@
     });
 
     if (offers.length === 2 && offers[0].matches('.trade-request-window-offer')) {
-      tradeWarning(offers, totals);
-      lastRequest = { totals, rap: [nativeTotal(offers[0]), nativeTotal(offers[1])], items: cardsPerOffer.map(list => list.length) };
+      const withRobux = totals.map((t, i) => ({ ...t, usd: t.usd + robuxUsd[i] }));
+      tradeWarning(offers, withRobux);
+      lastRequest = { totals: withRobux, rap: [nativeTotal(offers[0]), nativeTotal(offers[1])], items: cardsPerOffer.map(list => list.length) };
     }
     if (offers.length === 2 && valuesOn) diffPills(offers, totals, robuxUsd);
   }
@@ -1098,6 +1105,201 @@
     return null;
   }
 
+  let searchOn = true;
+  const searchReady = new Promise((done) => {
+    try {
+      chrome.storage.local.get('routilitySettings', (st) => {
+        searchOn = (st.routilitySettings || {}).tradeSearch !== false;
+        done();
+      });
+    } catch {
+      done();
+    }
+  });
+
+  function initials(name) {
+    return String(name || '').toLowerCase().replace(/['’]/g, '').split(/[^a-z0-9]+/).filter(Boolean).map(w => w[0]).join('');
+  }
+
+  function tradeMatch(q, name, acr) {
+    const n = String(name || '').toLowerCase();
+    const a = String(acr || '').toLowerCase();
+    if (!q) return 0;
+    if (a && a === q) return 3;
+    if (n.startsWith(q)) return 2;
+    if (q.length >= 2 && a && a.startsWith(q)) return 2;
+    if (q.length >= 2 && initials(name).startsWith(q)) return 1;
+    return n.includes(q) ? 1 : 0;
+  }
+
+  async function matchList(q, items) {
+    const map = await catalogMap();
+    const query = String(q || '').trim().toLowerCase();
+    return items.map((it, i) => {
+      const k = offerItemKey(it || {});
+      const c = map.lookup ? map.lookup(k) : map.get(k.targetId);
+      const name = (it && it.itemName) || (c && c.name) || '';
+      return { i, name, acr: (c && c.acr) || '', usd: c && c.usd > 0 ? c.usd : 0, key: (k.bundle ? 'b' : '') + k.targetId, score: tradeMatch(query, name, c && c.acr) };
+    });
+  }
+
+  const matchAsked = new Set();
+  window.addEventListener('message', async (e) => {
+    if (e.source !== window || !e.data || e.data.type !== 'routility-trade-match') return;
+    const { id, items, q } = e.data;
+    if (typeof id !== 'string' || !Array.isArray(items) || matchAsked.has(id)) return;
+    matchAsked.add(id);
+    const reply = data => window.postMessage(Object.assign({ type: 'routility-trade-match-done', id }, data), location.origin);
+    await searchReady;
+    if (!searchOn) return reply({ on: false });
+    if (!items.length) return reply({ on: true, keep: [] });
+    const scored = await matchList(q, items);
+    reply({ on: true, keep: scored.filter(x => x.score > 0).map(x => x.i) });
+  });
+
+  const invLists = new Map();
+
+  function tradeList(userId) {
+    if (!invLists.has(userId)) {
+      invLists.set(userId, new Promise((resolve) => {
+        const id = Math.random().toString(36).slice(2) + Date.now().toString(36);
+        const done = (e) => {
+          if (e.source !== window || !e.data || e.data.type !== 'routility-trade-list-done' || e.data.id !== id) return;
+          window.removeEventListener('message', done);
+          clearTimeout(timer);
+          if (!Array.isArray(e.data.items)) invLists.delete(userId);
+          resolve(Array.isArray(e.data.items) ? e.data.items : null);
+        };
+        const timer = setTimeout(() => {
+          window.removeEventListener('message', done);
+          invLists.delete(userId);
+          resolve(null);
+        }, 30000);
+        window.addEventListener('message', done);
+        window.postMessage({ type: 'routility-trade-list', id, userId }, location.origin);
+      }));
+    }
+    return invLists.get(userId);
+  }
+
+  function panelUser(panel) {
+    const panels = [...document.querySelectorAll('.trade-request-window .trade-inventory-panel')];
+    const index = panels.indexOf(panel);
+    if (index === 0) return document.querySelector('meta[name="user-data"]')?.dataset.userid || '';
+    const path = location.pathname.match(/^\/users\/(\d+)\/trade/i);
+    if (path) return path[1];
+    const link = [...document.querySelectorAll('.trade-request-window a[href*="/users/"]')].map(a => (a.getAttribute('href') || '').match(/\/users\/(\d+)\//)).find(Boolean);
+    return link ? link[1] : '';
+  }
+
+  let suggest = null;
+
+  function closeSuggest() {
+    suggest?.pop.remove();
+    suggest = null;
+  }
+
+  function setSearch(input, value) {
+    Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(input, value);
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+
+  async function showSuggest(input) {
+    const panel = input.closest('.trade-inventory-panel');
+    const q = input.value.trim().toLowerCase();
+    if (!panel || q.length < 2) return closeSuggest();
+    const userId = panelUser(panel);
+    if (!userId) return closeSuggest();
+    const items = await tradeList(userId);
+    if (!items || input.value.trim().toLowerCase() !== q || document.activeElement !== input) return;
+    const scored = (await matchList(q, items)).filter(x => x.score > 0);
+    const seen = new Set();
+    const list = scored.sort((a, b) => b.score - a.score || b.usd - a.usd).filter((x) => {
+      if (seen.has(x.name)) return false;
+      seen.add(x.name);
+      return true;
+    }).slice(0, 6);
+    if (!list.length || (list.length === 1 && list[0].name.toLowerCase() === q)) return closeSuggest();
+    if (!suggest || suggest.input !== input) {
+      closeSuggest();
+      const pop = el('ul', 'routility-injected routility-ts-pop bg-surface-100 stroke-muted stroke-standard radius-large shadow-transient-high');
+      pop.setAttribute('role', 'listbox');
+      document.body.appendChild(pop);
+      suggest = { input, pop, rows: [], at: -1 };
+    }
+    const s = suggest;
+    s.pop.textContent = '';
+    s.rows = list;
+    s.at = -1;
+    list.forEach((x) => {
+      const li = el('li', 'routility-ts-row');
+      li.setAttribute('role', 'option');
+      const thumb = el('span', 'thumbnail-2d-container routility-ts-thumb');
+      thumb.dataset.thumbKey = x.key;
+      const text = el('span', 'routility-ts-text');
+      text.appendChild(el('span', 'text-body-medium content-emphasis text-overflow', x.name));
+      if (x.acr) text.appendChild(el('span', 'routility-ts-acr text-label-small', x.acr));
+      li.append(thumb, text);
+      if (x.usd) li.appendChild(el('span', 'text-body-small content-muted routility-ts-usd', formatUSD(x.usd)));
+      li.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        setSearch(input, x.name);
+        closeSuggest();
+      });
+      s.pop.appendChild(li);
+    });
+    const r = input.closest('.foundation-web-input').getBoundingClientRect();
+    s.pop.style.left = Math.round(r.left) + 'px';
+    s.pop.style.top = Math.round(r.bottom + 6) + 'px';
+    s.pop.style.width = Math.round(r.width) + 'px';
+    const keys = list.map(x => x.key);
+    window.RoUtilityUI.request({ type: 'getAssetThumbs', ids: keys }).then((thumbs) => {
+      if (suggest !== s || !thumbs) return;
+      s.pop.querySelectorAll('[data-thumb-key]').forEach((n) => {
+        if (!thumbs[n.dataset.thumbKey] || n.querySelector('img')) return;
+        const img = el('img');
+        img.alt = '';
+        img.src = thumbs[n.dataset.thumbKey];
+        n.appendChild(img);
+      });
+    });
+  }
+
+  let suggestTimer = 0;
+
+  function onSearchInput(e) {
+    const input = e.target;
+    if (input instanceof HTMLInputElement && input.closest('.trade-request-window .robux-input-group')) {
+      clearTimeout(suggestTimer);
+      suggestTimer = setTimeout(schedule, 250);
+      return;
+    }
+    if (!(input instanceof HTMLInputElement) || !searchOn || !input.closest('.trade-request-window .inventory-search')) return;
+    clearTimeout(suggestTimer);
+    suggestTimer = setTimeout(() => showSuggest(input), 120);
+  }
+
+  function onSearchKey(e) {
+    const s = suggest;
+    if (!s || e.target !== s.input) return;
+    const rows = [...s.pop.children];
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      s.at = (s.at + (e.key === 'ArrowDown' ? 1 : -1) + rows.length) % rows.length;
+      rows.forEach((n, i) => n.classList.toggle('routility-ts-on', i === s.at));
+    } else if (e.key === 'Enter' && s.at >= 0) {
+      e.preventDefault();
+      setSearch(s.input, s.rows[s.at].name);
+      closeSuggest();
+    } else if (e.key === 'Escape') {
+      closeSuggest();
+    }
+  }
+
+  function onSearchBlur(e) {
+    if (suggest && e.target === suggest.input) setTimeout(closeSuggest, 120);
+  }
+
   let sortOn = true;
   const sortReady = new Promise((done) => {
     try {
@@ -1883,6 +2085,10 @@
     document.addEventListener('mouseout', onRowOut);
     document.addEventListener('scroll', closePreview, true);
     document.addEventListener('click', guardSend, true);
+    document.addEventListener('input', onSearchInput, true);
+    document.addEventListener('keydown', onSearchKey, true);
+    document.addEventListener('focusout', onSearchBlur, true);
+    document.addEventListener('scroll', closeSuggest, true);
     dialogWatch = new MutationObserver(() => {
       sendSummary();
       setTimeout(sendSummary, 120);
@@ -1897,6 +2103,11 @@
     dialogWatch?.disconnect();
     dialogWatch = null;
     document.removeEventListener('click', guardSend, true);
+    document.removeEventListener('input', onSearchInput, true);
+    document.removeEventListener('keydown', onSearchKey, true);
+    document.removeEventListener('focusout', onSearchBlur, true);
+    document.removeEventListener('scroll', closeSuggest, true);
+    closeSuggest();
     document.querySelectorAll('.routility-send-summary').forEach(n => n.remove());
     document.querySelectorAll('[data-routility-locked]').forEach(n => delete n.dataset.routilityLocked);
     document.removeEventListener('scroll', onScrollRows, true);
