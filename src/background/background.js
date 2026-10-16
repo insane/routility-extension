@@ -579,6 +579,27 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     rotatorSave(msg).then(sendResponse, () => sendResponse(null));
     return true;
   }
+  if (msg.type === 'recentServers') {
+    signedInUser().then(async (me) => {
+      if (!me) return sendResponse([]);
+      const key = RECENT_KEY(me);
+      const all = (await chrome.storage.local.get(key))[key] || {};
+      sendResponse(Array.isArray(all[String(msg.universeId)]) ? all[String(msg.universeId)] : []);
+    }, () => sendResponse([]));
+    return true;
+  }
+  if (msg.type === 'forgetServer') {
+    signedInUser().then(async (me) => {
+      if (!me) return sendResponse(false);
+      const key = RECENT_KEY(me);
+      const all = (await chrome.storage.local.get(key))[key] || {};
+      const u = String(msg.universeId);
+      if (Array.isArray(all[u])) all[u] = all[u].filter(x => x.id !== String(msg.gameId));
+      await chrome.storage.local.set({ [key]: all });
+      sendResponse(true);
+    }, () => sendResponse(false));
+    return true;
+  }
   if (msg.type === 'groupJoined') {
     groupJoined(String(msg.groupId || '')).then(sendResponse, () => sendResponse(null));
     return true;
@@ -1945,10 +1966,27 @@ function playDay(ms) {
 
 async function syncPlayAlarm() {
   const s = (await chrome.storage.local.get('routilitySettings')).routilitySettings || {};
-  const on = s.playtime !== false;
+  const on = s.playtime !== false || s.recentServers !== false;
   const existing = await chrome.alarms.get(PLAY_ALARM);
   if (on && !existing) chrome.alarms.create(PLAY_ALARM, { periodInMinutes: 1, delayInMinutes: 0.2 });
   if (!on && existing) chrome.alarms.clear(PLAY_ALARM);
+}
+
+const RECENT_KEY = (me) => 'routilityRecentServers:' + me;
+
+function addRecentServer(me, p, now) {
+  return serial('recent', async () => {
+    const key = RECENT_KEY(me);
+    const all = (await chrome.storage.local.get(key))[key] || {};
+    const u = String(p.universeId);
+    const old = Array.isArray(all[u]) ? all[u] : [];
+    const prev = old.find(x => x.id === p.gameId);
+    const list = old.filter(x => x.id !== p.gameId);
+    list.unshift({ id: String(p.gameId), place: String(p.placeId || p.rootPlaceId || ''), root: String(p.rootPlaceId || p.placeId || ''), first: prev ? prev.first : now, last: now });
+    all[u] = list.slice(0, 8);
+    const keep = Object.keys(all).sort((a, b) => ((all[b][0] && all[b][0].last) || 0) - ((all[a][0] && all[a][0].last) || 0)).slice(0, 80);
+    await chrome.storage.local.set({ [key]: Object.fromEntries(keep.map(k => [k, all[k]])) });
+  });
 }
 
 function addPlaytime(me, presence, now) {
@@ -2000,6 +2038,9 @@ function playtimeTick() {
     const d = await presenceViaTab(Number(me));
     const p = d && d.userPresences && d.userPresences[0];
     const playing = !!(p && p.userPresenceType === 2 && p.universeId);
+    const s = (await chrome.storage.local.get('routilitySettings')).routilitySettings || {};
+    if (playing && s.recentServers !== false && /^[0-9a-f-]{36}$/i.test(String(p.gameId || ''))) await addRecentServer(me, p, Date.now());
+    if (s.playtime === false) return;
     if (playing) await addPlaytime(me, p, Date.now());
     playtimeSync('auto', playing).catch(() => {});
   })().catch(() => {}).finally(() => { playRunning = null; });

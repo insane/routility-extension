@@ -22,7 +22,7 @@
       const i = lay.order.indexOf(k);
       return i < 0 ? 10 + keys.indexOf(k) : i + 1;
     };
-    let css = keys.map(k => `#running-game-instances-container [data-routility-sv="${k}"] { order: ${rank(k)}; }`).join(' ');
+    let css = keys.map(k => `#running-game-instances-container [data-routility-sv="${k}"] { order: ${rank(k)}; }`).join(' ') + ` #running-game-instances-container [data-routility-sv="recent"] { order: ${rank('friends')}; }`;
     for (const k of Array.isArray(lay.hidden) ? lay.hidden : []) if (keys.includes(k)) css += ` #running-game-instances-container [data-routility-sv="${k}"] { display: none !important; }`;
     if (!serverStyle) {
       serverStyle = document.createElement('style');
@@ -46,6 +46,7 @@
       if (child.id === 'rbx-friends-running-games') kind = 'friends';
       else if (child.id === 'rbx-public-running-games') kind = 'other';
       else if (child.classList.contains('routility-server-regions')) kind = 'regions';
+      else if (child.classList.contains('routility-recent-servers')) kind = 'recent';
       else if (!child.classList.contains('sg-system-feedback') && child.textContent.trim() && (!friends || child.compareDocumentPosition(friends) & Node.DOCUMENT_POSITION_FOLLOWING)) kind = 'private';
       if (kind && child.dataset.routilitySv !== kind) child.dataset.routilitySv = kind;
     }
@@ -326,6 +327,10 @@
 
   function serverStats(p, placeId) {
     const servers = new Map();
+    p.hasServer = (id) => {
+      const parts = String(id).split('-');
+      return servers.has(`${parts[1]}-${parts[2]}`);
+    };
     const centers = new Map();
     p.centers = centers;
     const regionOf = new Map();
@@ -838,6 +843,95 @@
   }
 
   let pendingJoin = null;
+
+  function agoText(ms) {
+    const s = Math.round((Date.now() - ms) / 1000);
+    const steps = [[60, 'second', 1], [3600, 'minute', 60], [86400, 'hour', 3600], [604800, 'day', 86400], [Infinity, 'week', 604800]];
+    const [, unit, div] = steps.find(([lim]) => s < lim);
+    try {
+      return new Intl.RelativeTimeFormat(window.RoUtilityI18n.locale(), { numeric: 'auto' }).format(-Math.max(0, Math.floor(s / div)), unit);
+    } catch {
+      return '';
+    }
+  }
+
+  function recentServers(p, placeId) {
+    const st = { list: null, alive: new Map(), universe: '' };
+    const load = () => {
+      const universeId = document.querySelector('#game-detail-meta-data')?.dataset.universeId;
+      if (!universeId) return setTimeout(() => { if (p === page) load(); }, 500);
+      st.universe = universeId;
+      window.RoUtilityUI.request({ type: 'recentServers', universeId }, r => Array.isArray(r)).then((list) => {
+        if (p !== page) return;
+        st.list = (list || []).slice(0, 6);
+        p.tick();
+      });
+    };
+    load();
+    p.recent = () => {
+      const anchor = document.querySelector('#rbx-friends-running-games') || document.querySelector('#rbx-public-running-games');
+      let sec = document.querySelector('.routility-recent-servers');
+      if (!anchor || !st.list || !st.list.length || settings.recentServers === false) {
+        sec?.remove();
+        return;
+      }
+      for (const s of st.list) if (p.hasServer && p.hasServer(s.id)) st.alive.set(s.id, 'open');
+      const key = st.list.map(s => s.id + ':' + (st.alive.get(s.id) || '')).join('|');
+      if (sec && sec.dataset.key === key && sec.nextElementSibling === anchor) return;
+      if (!sec) sec = el('div', 'routility-injected stack server-list-section routility-recent-servers');
+      sec.textContent = '';
+      sec.dataset.key = key;
+      const ch = el('div', 'container-header');
+      const row = el('div', 'server-list-container-header');
+      row.appendChild(el('h2', 'server-list-header', lt('Recent Servers')));
+      row.appendChild(el('span', 'text-body-small content-muted routility-recent-note', lt('Servers you played in lately. Join one again while it’s still running.')));
+      ch.appendChild(row);
+      sec.appendChild(ch);
+      const ul = el('ul', 'card-list rbx-public-game-server-item-container routility-recent-list');
+      for (const s of st.list) {
+        const state = st.alive.get(s.id) || 'maybe';
+        const li = el('li', 'rbx-public-game-server-item routility-region-item routility-recent-item');
+        li.dataset.serverId = s.id;
+        li.__routilityServer = { id: s.id };
+        li.__routilityJoin = {};
+        const card = el('div', 'card-item card-item-public-server routility-recent-card');
+        const details = el('div', 'rbx-public-game-server-details game-server-details routility-recent-details');
+        const head = el('div', 'routility-recent-head');
+        const when = agoText(s.last);
+        head.appendChild(el('span', 'text-title-small content-emphasis text-overflow', when.charAt(0).toLocaleUpperCase() + when.slice(1)));
+        const pill = el('span', 'routility-recent-pill routility-recent-' + state);
+        pill.append(el('span', 'routility-recent-dot'), el('span', null, state === 'open' ? lt('Running') : lt('May have ended')));
+        if (state !== 'open') pill.dataset.rtTip = lt('Servers close when everyone leaves. If it’s gone, Roblox tells you when you press Join.');
+        head.appendChild(pill);
+        details.appendChild(head);
+        const mins = Math.max(1, Math.round((s.last - s.first) / 60000) + 1);
+        details.appendChild(el('div', 'text-body-small content-muted routility-recent-sub', ltn(mins, 'You played here for about {n} minute', 'You played here for about {n} minutes', { n: formatNumber(mins) })));
+        const link = `https://www.roblox.com/games/start?placeId=${s.root || placeId}&gameInstanceId=${s.id}`;
+        const actions = el('span', 'routility-region-actions');
+        const join = el('a', 'btn-full-width btn-control-xs rbx-public-game-server-join game-server-join-btn btn-primary-md btn-min-width routility-recent-join', lt('Join'));
+        join.href = link;
+        const forget = el('button', 'btn-control-xs routility-injected routility-server-share routility-recent-forget');
+        forget.type = 'button';
+        forget.setAttribute('aria-label', lt('Remove from Recent Servers'));
+        forget.dataset.rtTip = lt('Remove from Recent Servers');
+        forget.appendChild(el('span', 'icon icon-regular-x'));
+        forget.addEventListener('click', () => {
+          st.list = st.list.filter(x => x.id !== s.id);
+          window.RoUtilityUI.request({ type: 'forgetServer', universeId: st.universe, gameId: s.id });
+          p.tick();
+        });
+        actions.append(join, shareButton(link), forget);
+        details.appendChild(actions);
+        const parts = String(s.id).split('-');
+        details.appendChild(el('div', 'server-id-text text-info xsmall', lt('ID: {id}', { id: `${parts[1] || ''}-${parts[2] || ''}` })));
+        card.appendChild(details);
+        li.appendChild(card);
+        ul.appendChild(li);
+      }
+      sec.appendChild(ul);
+      if (sec.nextElementSibling !== anchor) anchor.before(sec);
+    };
+  }
 
   function launchServer(placeId, server, extra) {
     pendingJoin = { at: Date.now(), server, ...(extra || {}) };
@@ -2588,6 +2682,7 @@
         queued = false;
         if (p !== page) return;
         p.servers?.();
+        p.recent?.();
         tagServerSections();
         p.playLabel?.();
         p.counts?.();
@@ -2602,6 +2697,7 @@
     if (game) {
       serverStats(p, game[1]);
       preferredPlay(p, game[1]);
+      if (settings.recentServers !== false) recentServers(p, game[1]);
       const waitUniverse = () => {
         if (p !== page) return;
         const universeId = document.querySelector('#game-detail-meta-data')?.dataset.universeId;
@@ -2635,7 +2731,7 @@
     page.closeGroups?.();
     closeOutfitModal();
     page = null;
-    document.querySelectorAll('.routility-play-region, .routility-server-pills, .routility-server-region-line, .routility-server-meta, .routility-server-share, .routility-server-map, .routility-server-regions, .routility-groups-chip, .routility-groups-li, .routility-store-total, #routility-creator-items, .routility-outfits, .routility-outfit-backdrop').forEach(n => n.remove());
+    document.querySelectorAll('.routility-play-region, .routility-server-pills, .routility-server-region-line, .routility-server-meta, .routility-server-share, .routility-server-map, .routility-server-regions, .routility-recent-servers, .routility-groups-chip, .routility-groups-li, .routility-store-total, #routility-creator-items, .routility-outfits, .routility-outfit-backdrop').forEach(n => n.remove());
     document.querySelectorAll('[data-routility-region-hidden]').forEach(n => delete n.dataset.routilityRegionHidden);
   }
 

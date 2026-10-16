@@ -14,6 +14,7 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 **New**
 
 ```diff
++ Recent Servers: a game's Servers tab lists the servers you played in lately, so you can jump back into one while it's still running.
 + Proof: a Proof button on trades makes a clean picture of the trade and fills in the text for a value request on the RoUtility Discord, ready to copy. Hide prices or RAP in the picture if you want.
 + Roblox Plus Themes, free: all 15 of Roblox Plus's own themes, like Cosmic Dust, Polar Freeze, Lava Glow and Classic, for everyone. Pick one in Themes and every page changes color, in light and dark mode.
 + Joined Date: see when you joined a community, as a pill next to its Created date.
