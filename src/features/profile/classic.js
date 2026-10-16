@@ -333,9 +333,17 @@
   }
 
   function terminatedChip() {
-    const chip = el('span', 'routility-terminated-chip', lt('Terminated'));
+    const chip = el('span', 'routility-terminated-chip');
+    chip.append(el('span', 'routility-ban-icon'), el('span', null, lt('Banned')));
     chip.dataset.rtTip = lt('Roblox terminated this account. Shown via RoUtility.');
     return chip;
+  }
+
+  function bannedBadge(avatar) {
+    avatar.classList.add('routility-banned-avatar');
+    const badge = el('span', 'routility-banned-badge');
+    badge.appendChild(el('span', 'routility-ban-icon'));
+    avatar.appendChild(badge);
   }
 
   function compact(n) {
@@ -425,8 +433,13 @@
     const nameRow = el('div', 'routility-modern-name-row');
     nameRow.appendChild(el('span', 'routility-modern-name', d.user.displayName || d.user.name));
     if (d.user.hasVerifiedBadge) nameRow.appendChild(window.RoUtilityUI.verifiedBadge());
-    if (d.user.isBanned) nameRow.appendChild(terminatedChip());
-    names.append(nameRow, el('div', 'routility-modern-username', '@' + d.user.name));
+    const handle = el('div', 'routility-modern-handle');
+    handle.appendChild(el('div', 'routility-modern-username', '@' + d.user.name));
+    if (d.user.isBanned) {
+      handle.appendChild(terminatedChip());
+      bannedBadge(avatar);
+    }
+    names.append(nameRow, handle);
     info.append(avatar, names);
     head.appendChild(info);
     const counts = el('div', 'routility-modern-counts');
@@ -546,9 +559,14 @@
     const title = el('div', 'header-title');
     title.appendChild(el('h2', 'profile-name text-overflow', user.displayName || user.name));
     title.appendChild(el('span', 'routility-name-badges'));
-    if (user.isBanned) title.appendChild(terminatedChip());
     names.appendChild(title);
-    names.appendChild(el('div', 'profile-display-name font-caption-body text text-overflow', '@' + user.name));
+    const handle = el('div', 'routility-classic-handle');
+    handle.appendChild(el('div', 'profile-display-name font-caption-body text text-overflow', '@' + user.name));
+    if (user.isBanned) {
+      handle.appendChild(terminatedChip());
+      bannedBadge(avatar);
+    }
+    names.appendChild(handle);
     caption.appendChild(names);
     caption.appendChild(el('div', 'routility-classic-pill-slot'));
     const details = el('div', 'header-details');
