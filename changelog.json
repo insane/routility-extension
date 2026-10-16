@@ -9,6 +9,9 @@
       "date": "2026-10-16",
       "summary": "Every Roblox Plus theme for free, when you joined each community, Fun Outfits, and Try On that keeps your hats.",
       "changes": [
+        { "type": "new", "text": "Quick Settings Style: List, Tiles or Compact, a single line with your online status that opens the settings when you click it. Quick Settings also looks quieter and lines up with the menu.", "by": ["reqonn"] },
+        { "type": "improved", "text": "Classic profiles show your nicknames for friends, and avatars Roblox hasn't approved show a gray silhouette everywhere instead of a broken file icon.", "by": ["reqonn"] },
+        { "type": "fixed", "text": "Avatar changes show up right away instead of after a day.", "by": ["reqonn"] },
         { "type": "new", "text": "Recent Servers: a game's Servers tab lists the servers you played in lately, so you can jump back into one while it's still running." },
         { "type": "new", "text": "Proof: a Proof button on trades makes a clean picture of the trade and fills in the text for a value request on the RoUtility Discord, ready to copy. Hide prices or RAP in the picture if you want." },
         { "type": "new", "text": "Roblox Plus Themes, free: all 15 of Roblox Plus's own themes, like Cosmic Dust, Polar Freeze, Lava Glow and Classic, for everyone. Pick one in Themes and every page changes color, in light and dark mode." },
