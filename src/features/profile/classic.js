@@ -96,7 +96,7 @@
       batches.forEach((res, k) => {
         for (const t of (res && res.data) || []) {
           if (t.state === 'Completed' && t.imageUrl) out.set(t.requestId, t.imageUrl);
-          else if (t.state === 'Blocked') out.set(t.requestId, window.RoUtilityUI.blockedThumb(t));
+          else if (t.state === 'Blocked') out.set(t.requestId, 'blocked');
           else if (t.state === 'Pending') retry.push(parts[k].find(r => r.requestId === t.requestId));
         }
       });
@@ -1649,13 +1649,18 @@
 
   async function fillLater(s) {
     const ids = s.data.friends.map(f => f.id);
-    const [named, favorites] = await Promise.all([
+    const [named, favorites, profiles] = await Promise.all([
       ids.length ? post('https://users.roblox.com/v1/users', { userIds: ids, excludeBannedUsers: false }) : null,
       gameDetails(s.data.favorites),
+      ids.length ? post('https://apis.roblox.com/user-profile-api/v1/user/profiles/get-profiles', { userIds: ids, fields: ['names.combinedName'] }) : null,
     ]);
     if (state !== s) return;
     const byId = new Map(((named && named.data) || []).map(u => [u.id, u]));
-    s.data.friends = s.data.friends.map(f => byId.get(f.id) || f);
+    const shown = new Map(((profiles && profiles.profileDetails) || []).map(p => [p.userId, p.names && p.names.combinedName]));
+    s.data.friends = s.data.friends.map((f) => {
+      const u = byId.get(f.id) || f;
+      return shown.get(u.id) ? { ...u, displayName: shown.get(u.id) } : u;
+    });
     s.root.querySelectorAll('.routility-modern-friend').forEach((tile, i) => {
       const f = s.data.friends[i];
       const name = tile.querySelector('.friends-carousel-display-name');

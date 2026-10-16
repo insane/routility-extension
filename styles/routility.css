@@ -12358,4 +12358,30 @@ li.routility-recent-item .routility-recent-forget .icon {
 
 .routility-recent-details .server-id-text {
   margin-top: 2px;
+:is(.avatar-card-image, .avatar-container, .friends-carousel-tile, [class*="avatar-headshot"]) .icon-blocked,
+.icon-blocked:is(.avatar-card-image, [class*="avatar-headshot"]),
+:is(.avatar-card-image, .avatar-container, .friends-carousel-tile, [class*="avatar-headshot"]) .thumbnail-2d-container:has(> img[src*="UnapprovedImage"]),
+.thumbnail-2d-container:is(.avatar-card-image, [class*="avatar-headshot"]):has(> img[src*="UnapprovedImage"]) {
+  position: relative;
+  overflow: hidden;
+  background-image: none !important;
+  background-color: var(--color-shift-200, rgba(127, 127, 127, 0.18)) !important;
+}
+
+:is(.avatar-card-image, .avatar-container, .friends-carousel-tile, [class*="avatar-headshot"]) .thumbnail-2d-container > img[src*="UnapprovedImage"],
+.thumbnail-2d-container:is(.avatar-card-image, [class*="avatar-headshot"]) > img[src*="UnapprovedImage"] {
+  opacity: 0;
+}
+
+:is(.avatar-card-image, .avatar-container, .friends-carousel-tile, [class*="avatar-headshot"]) .icon-blocked::after,
+.icon-blocked:is(.avatar-card-image, [class*="avatar-headshot"])::after,
+:is(.avatar-card-image, .avatar-container, .friends-carousel-tile, [class*="avatar-headshot"]) .thumbnail-2d-container:has(> img[src*="UnapprovedImage"])::after,
+.thumbnail-2d-container:is(.avatar-card-image, [class*="avatar-headshot"]):has(> img[src*="UnapprovedImage"])::after {
+  content: "";
+  position: absolute;
+  inset: 22% 18% 0;
+  background: var(--color-content-muted, #8b8f99);
+  opacity: 0.5;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='19' r='13'/%3E%3Cpath d='M4 60c0-15 11.6-24 26-24s26 9 26 24z'/%3E%3C/svg%3E") no-repeat center bottom / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='19' r='13'/%3E%3Cpath d='M4 60c0-15 11.6-24 26-24s26 9 26 24z'/%3E%3C/svg%3E") no-repeat center bottom / contain;
 }
