@@ -602,6 +602,14 @@ html.routility-settings-mode .settings-left-navigation .tab-content > .tab-pane:
   background: rgba(208, 217, 251, 0.08);
 }
 
+.navbar-search-option.routility-search-loading,
+.navbar-search-option.routility-search-loading:hover,
+.navbar-search-option.routility-search-loading.new-selected {
+  background: transparent !important;
+  cursor: default;
+  pointer-events: none;
+}
+
 .routility-search-thumb {
   display: block;
   flex-shrink: 0;
