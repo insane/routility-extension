@@ -11648,3 +11648,31 @@ html.routility-classic-verified :has(> .icon-filled-verified-backplate) {
   height: 18px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3CclipPath id='c'%3E%3Crect width='28' height='28'/%3E%3C/clipPath%3E%3Cg clip-path='url(%23c)'%3E%3Crect x='5.88818' width='22.89' height='22.89' transform='rotate(15 5.88818 0)' fill='%230066FF'/%3E%3Cpath d='M20.543 8.7508l.006.006c.601.601.601 1.575 0 2.176l-8.732 8.732-4.367-4.368c-.6-.601-.6-1.575 0-2.175l.007-.007c.601-.601 1.574-.601 2.176 0l2.184 2.185 6.55-6.549c.601-.601 1.575-.601 2.176 0z' fill='white'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
 }
+
+:is(.avatar-card-image, .avatar-container, .friends-carousel-tile, [class*="avatar-headshot"]) .icon-blocked,
+.icon-blocked:is(.avatar-card-image, [class*="avatar-headshot"]),
+:is(.avatar-card-image, .avatar-container, .friends-carousel-tile, [class*="avatar-headshot"]) .thumbnail-2d-container:has(> img[src*="UnapprovedImage"]),
+.thumbnail-2d-container:is(.avatar-card-image, [class*="avatar-headshot"]):has(> img[src*="UnapprovedImage"]) {
+  position: relative;
+  overflow: hidden;
+  background-image: none !important;
+  background-color: var(--color-shift-200, rgba(127, 127, 127, 0.18)) !important;
+}
+
+:is(.avatar-card-image, .avatar-container, .friends-carousel-tile, [class*="avatar-headshot"]) .thumbnail-2d-container > img[src*="UnapprovedImage"],
+.thumbnail-2d-container:is(.avatar-card-image, [class*="avatar-headshot"]) > img[src*="UnapprovedImage"] {
+  opacity: 0;
+}
+
+:is(.avatar-card-image, .avatar-container, .friends-carousel-tile, [class*="avatar-headshot"]) .icon-blocked::after,
+.icon-blocked:is(.avatar-card-image, [class*="avatar-headshot"])::after,
+:is(.avatar-card-image, .avatar-container, .friends-carousel-tile, [class*="avatar-headshot"]) .thumbnail-2d-container:has(> img[src*="UnapprovedImage"])::after,
+.thumbnail-2d-container:is(.avatar-card-image, [class*="avatar-headshot"]):has(> img[src*="UnapprovedImage"])::after {
+  content: "";
+  position: absolute;
+  inset: 22% 18% 0;
+  background: var(--color-content-muted, #8b8f99);
+  opacity: 0.5;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='19' r='13'/%3E%3Cpath d='M4 60c0-15 11.6-24 26-24s26 9 26 24z'/%3E%3C/svg%3E") no-repeat center bottom / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='19' r='13'/%3E%3Cpath d='M4 60c0-15 11.6-24 26-24s26 9 26 24z'/%3E%3C/svg%3E") no-repeat center bottom / contain;
+}
