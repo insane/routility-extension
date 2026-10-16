@@ -2753,5 +2753,11 @@
  "Your Robux Rate": "อัตรา Robux ของคุณ",
  "Your Settings": "การตั้งค่าของคุณ",
  "Your Slots": "ช่องของคุณ",
- "Your Status": "สถานะของคุณ"
+ "Your Status": "สถานะของคุณ",
+ "Quick Settings Style": "รูปแบบการตั้งค่าด่วน",
+ "List": "รายการ",
+ "Tiles": "ไทล์",
+ "Online: {value}": "ออนไลน์: {value}",
+ "Joins: {value}": "การเข้าร่วม: {value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "รายการจะแสดงการตั้งค่าทีละบรรทัด ไทล์จะแสดงเป็นการ์ดเล็กเรียงกัน และกะทัดรัดจะแสดงสถานะของคุณในบรรทัดเดียวที่เปิดการตั้งค่าเมื่อคลิก"
 }

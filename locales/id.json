@@ -2753,5 +2753,11 @@
  "Your Robux Rate": "Kurs Robux Kamu",
  "Your Settings": "Pengaturanmu",
  "Your Slots": "Slot-mu",
- "Your Status": "Statusmu"
+ "Your Status": "Statusmu",
+ "Quick Settings Style": "Gaya Pengaturan Cepat",
+ "List": "Daftar",
+ "Tiles": "Kartu",
+ "Online: {value}": "Online: {value}",
+ "Joins: {value}": "Bergabung: {value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "Daftar menampilkan setiap pengaturan di barisnya sendiri, Kartu menampilkannya sebagai kartu kecil berdampingan, dan Ringkas menampilkan satu baris berisi statusmu yang membuka pengaturan saat diklik."
 }

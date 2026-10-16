@@ -2753,5 +2753,11 @@
  "Your Robux Rate": "你的 Robux 汇率",
  "Your Settings": "你的设置",
  "Your Slots": "你的槽位",
- "Your Status": "你的状态"
+ "Your Status": "你的状态",
+ "Quick Settings Style": "快捷设置样式",
+ "List": "列表",
+ "Tiles": "卡片",
+ "Online: {value}": "在线：{value}",
+ "Joins: {value}": "加入：{value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "列表将每个设置单独一行显示，卡片将它们显示为并排的小卡片，紧凑则用一行显示你的状态，点击后打开设置。"
 }

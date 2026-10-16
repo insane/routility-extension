@@ -2753,5 +2753,11 @@
  "Your Robux Rate": "あなたの Robux レート",
  "Your Settings": "あなたの設定",
  "Your Slots": "あなたのスロット",
- "Your Status": "あなたのステータス"
+ "Your Status": "あなたのステータス",
+ "Quick Settings Style": "クイック設定のスタイル",
+ "List": "リスト",
+ "Tiles": "タイル",
+ "Online: {value}": "オンライン：{value}",
+ "Joins: {value}": "参加：{value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "リストは設定を1行ずつ、タイルは小さなカードで横並びに表示します。コンパクトは状態を1行で表示し、クリックすると設定が開きます。"
 }

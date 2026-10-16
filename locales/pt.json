@@ -2885,5 +2885,11 @@
  "Your Robux Rate": "Sua taxa de Robux",
  "Your Settings": "Suas configurações",
  "Your Slots": "Seus espaços",
- "Your Status": "Seu status"
+ "Your Status": "Seu status",
+ "Quick Settings Style": "Estilo das Configurações rápidas",
+ "List": "Lista",
+ "Tiles": "Blocos",
+ "Online: {value}": "Online: {value}",
+ "Joins: {value}": "Entrar: {value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "Lista mostra cada configuração em uma linha, Blocos mostra como pequenos cartões lado a lado, e Compacto mostra uma linha com seu status que abre as configurações quando você clica."
 }

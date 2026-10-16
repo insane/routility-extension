@@ -2753,5 +2753,11 @@
  "Your Robux Rate": "내 Robux 환율",
  "Your Settings": "내 설정",
  "Your Slots": "내 슬롯",
- "Your Status": "내 상태"
+ "Your Status": "내 상태",
+ "Quick Settings Style": "빠른 설정 스타일",
+ "List": "목록",
+ "Tiles": "타일",
+ "Online: {value}": "온라인: {value}",
+ "Joins: {value}": "참가: {value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "목록은 설정을 한 줄씩, 타일은 작은 카드로 나란히 보여 줍니다. 좁게는 상태를 한 줄로 보여 주고 클릭하면 설정이 열립니다."
 }

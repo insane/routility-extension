@@ -2885,5 +2885,11 @@
  "Your Robux Rate": "Robux Kurun",
  "Your Settings": "Ayarların",
  "Your Slots": "Yuvaların",
- "Your Status": "Durumun"
+ "Your Status": "Durumun",
+ "Quick Settings Style": "Hızlı ayarlar stili",
+ "List": "Liste",
+ "Tiles": "Kutucuklar",
+ "Online: {value}": "Çevrimiçi: {value}",
+ "Joins: {value}": "Katılma: {value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "Liste her ayarı kendi satırında, Kutucuklar küçük kartlar halinde yan yana gösterir. Kompakt ise durumunu tek satırda gösterir ve tıklayınca ayarları açar."
 }

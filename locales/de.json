@@ -2885,5 +2885,11 @@
  "Your Robux Rate": "Dein Robux-Kurs",
  "Your Settings": "Deine Einstellungen",
  "Your Slots": "Deine Plätze",
- "Your Status": "Dein Status"
+ "Your Status": "Dein Status",
+ "Quick Settings Style": "Stil der Schnelleinstellungen",
+ "List": "Liste",
+ "Tiles": "Kacheln",
+ "Online: {value}": "Online: {value}",
+ "Joins: {value}": "Beitreten: {value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "Liste zeigt jede Einstellung in einer eigenen Zeile, Kacheln zeigt sie als kleine Karten nebeneinander, und Kompakt zeigt eine Zeile mit deinem Status, die beim Klicken die Einstellungen öffnet."
 }

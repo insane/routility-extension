@@ -2885,5 +2885,11 @@
  "Your Robux Rate": "Ton taux Robux",
  "Your Settings": "Tes paramètres",
  "Your Slots": "Tes emplacements",
- "Your Status": "Ton statut"
+ "Your Status": "Ton statut",
+ "Quick Settings Style": "Style des Paramètres rapides",
+ "List": "Liste",
+ "Tiles": "Tuiles",
+ "Online: {value}": "En ligne : {value}",
+ "Joins: {value}": "Rejoindre : {value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "Liste affiche chaque réglage sur sa propre ligne, Tuiles les affiche en petites cartes côte à côte, et Compacte affiche une ligne avec ton statut qui ouvre les réglages quand tu cliques dessus."
 }

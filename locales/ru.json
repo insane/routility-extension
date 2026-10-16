@@ -3149,5 +3149,11 @@
  "Your Robux Rate": "Твой курс Robux",
  "Your Settings": "Твои настройки",
  "Your Slots": "Твои слоты",
- "Your Status": "Твой статус"
+ "Your Status": "Твой статус",
+ "Quick Settings Style": "Стиль быстрых настроек",
+ "List": "Список",
+ "Tiles": "Плитки",
+ "Online: {value}": "В сети: {value}",
+ "Joins: {value}": "Присоединение: {value}",
+ "List shows each setting on its own line, Tiles shows them as small cards side by side, and Compact shows one line with your status that opens the settings when you click it.": "Список показывает каждую настройку на отдельной строке, Плитки — маленькими карточками рядом, а Компактно — одну строку с твоим статусом, которая открывает настройки по клику."
 }
