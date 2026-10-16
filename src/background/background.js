@@ -562,7 +562,20 @@ function ltn(n, one, other, vars) {
   return i18nFill(Number(n) === 1 ? one : other, all);
 }
 
+chrome.tabs.onUpdated.addListener((tabId, info) => {
+  const m = info.url && info.url.match(/^https:\/\/www\.roblox\.com\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?(catalog|bundles)\/(\d+)/i);
+  if (m) chrome.storage.session.set({ ['routilityItemNav:' + tabId]: { kind: m[1].toLowerCase(), id: m[2], t: Date.now() } }).catch(() => {});
+});
+
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  if (msg.type === 'itemNav') {
+    const key = 'routilityItemNav:' + (sender.tab && sender.tab.id);
+    chrome.storage.session.get(key).then((st) => {
+      chrome.storage.session.remove(key).catch(() => {});
+      sendResponse(st[key] || null);
+    }, () => sendResponse(null));
+    return true;
+  }
   if (msg.type === 'playtimeSyncState') {
     Promise.all([forumAuth(), chrome.storage.local.get(PLAY_SYNC_KEY)]).then(([auth, st]) => sendResponse({ signedIn: !!auth, userId: auth ? auth.userId : null, sync: st[PLAY_SYNC_KEY] || null }), () => sendResponse(null));
     return true;

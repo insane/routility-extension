@@ -5,6 +5,13 @@
   const CLASS = 'routility-skeleton';
   const root = document.documentElement;
   if (location.hostname === 'www.roblox.com' && /^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?(?:catalog|bundles)\/\d+/i.test(location.pathname)) root.classList.add('routility-hi-path');
+  if (location.hostname === 'www.roblox.com' && location.pathname === '/request-error' && !/routility-user=/.test(location.hash)) {
+    try {
+      const c = JSON.parse(localStorage.getItem('routilityLastItem') || 'null');
+      const left = JSON.parse(sessionStorage.getItem('routilityHiddenLeave') || 'null');
+      if ((c && Date.now() - c.t < 20000) || (left && Date.now() - left.t < 15000)) root.classList.add('routility-hi-path');
+    } catch {}
+  }
   if (location.hostname === 'www.roblox.com') {
     const pushKey = 'routilityNavPush:' + ((location.pathname.split('/')[1] || 'home').toLowerCase().replace(/^\d+$/, 'id')) + ':' + Math.round(window.innerWidth / 100);
     let pushed = null;

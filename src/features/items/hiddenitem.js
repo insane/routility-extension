@@ -12,8 +12,11 @@
     57: LT('Ear Accessory'), 58: LT('Eye Accessory'), 61: LT('Emote'), 62: LT('Video'), 64: LT('T-Shirt'), 65: LT('Shirt'), 66: LT('Pants'), 67: LT('Jacket'), 68: LT('Sweater'), 69: LT('Shorts'),
     70: LT('Left Shoe'), 71: LT('Right Shoe'), 72: LT('Dress Skirt'), 76: LT('Eyebrows'), 77: LT('Eyelashes'), 78: LT('Animation'), 79: LT('Head'),
   };
+  const TYPE_IDS = { Image: 1, TShirt: 2, Audio: 3, Mesh: 4, Hat: 8, Place: 9, Model: 10, Shirt: 11, Pants: 12, Decal: 13, Head: 17, Face: 18, Gear: 19, Badge: 21, Animation: 24, Torso: 27, RightArm: 28, LeftArm: 29, LeftLeg: 30, RightLeg: 31, GamePass: 34, HairAccessory: 41, FaceAccessory: 42, NeckAccessory: 43, ShoulderAccessory: 44, FrontAccessory: 45, BackAccessory: 46, WaistAccessory: 47, ClimbAnimation: 48, DeathAnimation: 49, FallAnimation: 50, IdleAnimation: 51, JumpAnimation: 52, RunAnimation: 53, SwimAnimation: 54, WalkAnimation: 55, PoseAnimation: 56, EarAccessory: 57, EyeAccessory: 58, EmoteAnimation: 61, Video: 62, TShirtAccessory: 64, ShirtAccessory: 65, PantsAccessory: 66, JacketAccessory: 67, SweaterAccessory: 68, ShortsAccessory: 69, LeftShoeAccessory: 70, RightShoeAccessory: 71, DressSkirtAccessory: 72, EyebrowAccessory: 76, EyelashAccessory: 77, MoodAnimation: 78, DynamicHead: 79 };
   const CSS_BUNDLES = /^(ItemDetails\w*|FavoritesButton)$/;
   let started = false;
+  let shown = null;
+  let leaving = false;
 
   async function getJson(url) {
     try {
@@ -82,7 +85,45 @@
     return '';
   }
 
-  async function load(id, bundle) {
+  function typeLabel(type) {
+    const n = typeof type === 'number' ? type : TYPE_IDS[String(type || '').replace(/\s+/g, '')];
+    return TYPES[n] ? lt(TYPES[n]) : '';
+  }
+
+  async function creatorOf(type, id) {
+    if (!id) return null;
+    const group = /group/i.test(String(type));
+    const d = await getJson(group ? `https://groups.roblox.com/v1/groups/${id}` : `https://users.roblox.com/v1/users/${id}`);
+    return { id, group, name: (d && d.name) || '', verified: !!(d && d.hasVerifiedBadge) };
+  }
+
+  async function fallback(id, img) {
+    const dev = await getJson(`https://develop.roblox.com/v1/assets?assetIds=${id}`);
+    const a = dev && dev.data && dev.data[0];
+    if (a && a.name) {
+      const c = a.creator || {};
+      return {
+        name: a.name,
+        description: a.description || '',
+        creator: await creatorOf(c.type, c.targetId),
+        type: typeLabel(a.typeId || a.type),
+        tradable: false,
+        created: day(a.created),
+        updated: day(a.updated),
+      };
+    }
+    let name = '';
+    try {
+      const res = await fetch(`/catalog/${id}`, { credentials: 'omit' });
+      const m = res.ok && (await res.text()).match(/<title>([\s\S]*?)<\/title>/i);
+      if (m) name = new DOMParser().parseFromString(m[1], 'text/html').documentElement.textContent.replace(/\s+-\s+Roblox[\s\S]*$/, '').trim();
+    } catch {}
+    if (!name || name === 'Roblox') return null;
+    const kind = (String(img || '').match(/\/\d+\/\d+\/([A-Za-z]+)\/Png\//) || [])[1];
+    return { name, description: '', creator: null, type: typeLabel(kind), tradable: false };
+  }
+
+  async function load(id, bundle, img) {
     if (bundle) {
       const d = await getJson(`https://catalog.roblox.com/v1/bundles/${id}/details`);
       if (!d || !d.name) return null;
@@ -96,7 +137,7 @@
       };
     }
     const d = await getJson(`https://economy.roblox.com/v2/assets/${id}/details`);
-    if (!d || !d.Name || !d.AssetId) return null;
+    if (!d || !d.Name || !d.AssetId) return fallback(id, await img);
     const c = d.Creator || {};
     const collectible = d.CollectiblesItemDetails || {};
     return {
@@ -130,11 +171,11 @@
   }
 
   function page(id, bundle, it, img, owned, favs) {
-    const c = it.creator;
-    const creatorHref = c.id ? (c.group ? `https://www.roblox.com/communities/${c.id}/${slug(c.name)}` : `https://www.roblox.com/users/${c.id}/profile`) : '#';
+    const c = it.creator && it.creator.id ? it.creator : null;
+    const creatorHref = c ? (c.group ? `https://www.roblox.com/communities/${c.id}/${slug(c.name)}` : `https://www.roblox.com/users/${c.id}/profile`) : '';
     const creator = h('div', 'item-details-creator-container', [
-      h('span', 'text-label', [lt('By') + ' ', h('a', 'text-name', c.name || '?', { href: creatorHref })]),
-      c.verified ? verifiedBadge() : null,
+      c ? h('span', 'text-label', [lt('By') + ' ', h('a', 'text-name', c.name || String(c.id), { href: creatorHref })]) : null,
+      c && c.verified ? verifiedBadge() : null,
       owned ? h('span', 'item-owned', [h('div', 'label-checkmark', h('span', 'icon-checkmark-white-bold')), h('span', null, lt('Item Owned'))]) : null,
     ]);
     const header = h('div', 'item-details-info-header border-bottom item-name-container', [
@@ -181,46 +222,119 @@
     ]);
   }
 
-  async function run(id, bundle) {
+  async function run(id, bundle, moved) {
     const content = document.getElementById('content');
     const native = content && content.querySelector(':scope > .request-error-page-content');
     if (!native) return false;
     const sk = skeleton();
     native.after(sk);
     const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+    const shot = thumb(id, bundle);
     const [it, styled, img, owned, favs] = await Promise.all([
-      load(id, bundle),
+      load(id, bundle, shot),
       itemCss(),
-      thumb(id, bundle),
+      shot,
       me ? getJson(`https://inventory.roblox.com/v1/users/${me}/items/${bundle ? 'Bundle' : 'Asset'}/${id}/is-owned`) : null,
       getJson(`https://catalog.roblox.com/v1/favorites/${bundle ? 'bundles' : 'assets'}/${id}/count`),
     ]);
     sk.remove();
     if (!it || !styled || !native.isConnected) return false;
+    if (moved) {
+      history.replaceState(history.state, '', `/${bundle ? 'bundles' : 'catalog'}/${id}/${slug(it.name)}`);
+      shown = { kind: bundle ? 'bundles' : 'catalog', id };
+    }
     native.after(page(id, bundle, it, img, owned === true, typeof favs === 'number' ? favs : null));
     native.remove();
     document.title = `${it.name} - Roblox`;
     return true;
   }
 
-  function start() {
-    const m = location.pathname.match(/^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?(catalog|bundles)\/(\d+)/i);
-    if (started || !m || !document.querySelector('#content > .request-error-page-content')) return started;
+  const ITEM_PATH = /^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?(catalog|bundles)\/(\d+)/i;
+
+  function rememberItemClick(e) {
+    const a = e.target.closest?.('a[href]');
+    if (a) leaving = true;
+    const m = a && (a.pathname || '').match(ITEM_PATH);
+    if (!m || a.origin !== location.origin) return;
+    try { localStorage.setItem('routilityLastItem', JSON.stringify({ kind: m[1].toLowerCase(), id: m[2], t: Date.now() })); } catch {}
+  }
+  document.addEventListener('click', rememberItemClick, true);
+  document.addEventListener('auxclick', rememberItemClick, true);
+  window.addEventListener('pagehide', () => {
+    if (!shown || leaving) return;
+    try { sessionStorage.setItem('routilityHiddenLeave', JSON.stringify({ ...shown, t: Date.now() })); } catch {}
+  });
+
+  if (location.pathname !== '/request-error') {
+    setTimeout(() => {
+      if (location.pathname === '/request-error') return;
+      try { localStorage.removeItem('routilityLastItem'); } catch {}
+      if (ITEM_PATH.test(location.pathname) && !shown) {
+        try { chrome.runtime.sendMessage({ type: 'itemNav' }, () => void chrome.runtime.lastError); } catch {}
+      }
+    }, 5000);
+  }
+
+  async function redirectedItem() {
+    if (location.pathname !== '/request-error' || /routility-user=/.test(location.hash)) return null;
+    const now = Date.now();
+    const picks = [];
+    try {
+      const c = JSON.parse(localStorage.getItem('routilityLastItem') || 'null');
+      if (c && now - c.t < 20000) picks.push(c);
+    } catch {}
+    const nav = await new Promise((done) => {
+      try {
+        chrome.runtime.sendMessage({ type: 'itemNav' }, (res) => { void chrome.runtime.lastError; done(res || null); });
+      } catch {
+        done(null);
+      }
+    });
+    if (nav && now - nav.t < 30000) picks.push(nav);
+    try {
+      const left = JSON.parse(sessionStorage.getItem('routilityHiddenLeave') || 'null');
+      if (left && now - left.t < 15000) picks.push(left);
+    } catch {}
+    picks.sort((a, b) => b.t - a.t);
+    try {
+      localStorage.removeItem('routilityLastItem');
+      sessionStorage.removeItem('routilityHiddenLeave');
+    } catch {}
+    if (!picks[0]) return null;
+    const last = await new Promise(done => chrome.storage.local.get('routilityLastProfile', st => done(st.routilityLastProfile)));
+    return last && last.t > picks[0].t ? null : picks[0];
+  }
+
+  function start(target) {
+    if (started || !document.querySelector('#content > .request-error-page-content')) return started;
     started = true;
+    const bundle = target.kind === 'bundles';
     const fail = () => root.classList.add('routility-hi-failed');
     const timer = setTimeout(fail, 20000);
-    run(m[2], m[1].toLowerCase() === 'bundles').then((ok) => { clearTimeout(timer); if (!ok) fail(); }, fail);
+    run(target.id, bundle, target.moved).then((ok) => { clearTimeout(timer); if (!ok) fail(); }, fail);
     return true;
   }
 
-  chrome.storage.local.get('routilitySettings', (st) => {
+  chrome.storage.local.get('routilitySettings', async (st) => {
     if ((st.routilitySettings || {}).hiddenItems === false) {
       root.classList.add('routility-hi-off');
       return;
     }
-    if (!root.classList.contains('routility-hi-path')) return;
-    if (start()) return;
-    const watch = new MutationObserver(() => { if (start()) watch.disconnect(); });
+    const m = location.pathname.match(ITEM_PATH);
+    let target = m ? { kind: m[1].toLowerCase(), id: m[2] } : null;
+    if (!target && location.pathname === '/request-error') {
+      target = await redirectedItem();
+      if (target && /^\d+$/.test(String(target.id))) {
+        target = { kind: target.kind === 'bundles' ? 'bundles' : 'catalog', id: String(target.id), moved: true };
+        root.classList.add('routility-hi-path');
+      } else {
+        target = null;
+        root.classList.remove('routility-hi-path');
+      }
+    }
+    if (!target || !root.classList.contains('routility-hi-path')) return;
+    if (start(target)) return;
+    const watch = new MutationObserver(() => { if (start(target)) watch.disconnect(); });
     watch.observe(document.documentElement, { childList: true, subtree: true });
     const stop = () => setTimeout(() => {
       watch.disconnect();
