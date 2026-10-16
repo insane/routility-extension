@@ -11,6 +11,63 @@
       const left = JSON.parse(sessionStorage.getItem('routilityHiddenLeave') || 'null');
       if ((c && Date.now() - c.t < 20000) || (left && Date.now() - left.t < 15000)) root.classList.add('routility-hi-path');
     } catch {}
+    if (!root.classList.contains('routility-hi-path')) {
+      root.classList.add('routility-hi-maybe');
+      setTimeout(() => root.classList.remove('routility-hi-maybe'), 4000);
+    }
+  }
+  function hiSkeleton() {
+    const mk = (tag, cls, kids) => {
+      const n = document.createElement(tag);
+      if (cls) n.className = cls;
+      for (const k of kids || []) n.appendChild(k);
+      return n;
+    };
+    const sk = (w, h) => {
+      const n = mk('span', 'routility-hi-sk');
+      n.style.width = w;
+      n.style.height = h;
+      return n;
+    };
+    const row = w => mk('div', 'clearfix item-info-row-container', [mk('div', 'font-header-1 text-subheader text-label text-overflow row-label', [sk('70px', '14px')]), mk('span', 'font-body text', [sk(w, '14px')])]);
+    const banner = mk('div', 'routility-hi-banner', [mk('span', 'routility-hi-banner-icon'), mk('div', 'routility-hi-banner-text', [sk('180px', '20px'), sk('90%', '14px'), sk('55%', '14px')]), sk('170px', '36px')]);
+    const thumb = mk('div', null, [mk('div', 'item-details-thumbnail-container', [mk('div', 'thumbnail-holder', [sk('100%', '100%')])])]);
+    const header = mk('div', 'item-details-info-header border-bottom item-name-container', [mk('div', 'left', [mk('div', 'item-details-name-row', [mk('h1', null, [sk('55%', '34px')])]), mk('div', 'item-details-creator-container', [sk('110px', '16px')])])]);
+    const details = mk('div', 'item-details-section', [mk('div', 'price-row-container', [mk('div', 'price-container-text', [sk('50%', '16px')])]), row('40px'), row('90px'), row('100px'), row('100px')]);
+    const info = mk('div', null, [mk('div', 'shopping-cart item-details-info-content', [header, details])]);
+    const fav = mk('div', 'routility-hi-sk-fav', [sk('76px', '28px')]);
+    return mk('div', 'routility-injected routility-hi-loading', [mk('div', 'content', [mk('div', 'page-content menu-shown', [banner, mk('div', null, [mk('div', 'clearfix', [thumb, info, fav])])])])]);
+  }
+  function hiCss() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('routilityItemCss') || 'null');
+      for (const u of (saved && Array.isArray(saved.hrefs) ? saved.hrefs : [])) {
+        if (!/^https:\/\/css\.rbxcdn\.com\//.test(u) || [...document.querySelectorAll('link[rel="stylesheet"]')].some(l => l.href === u)) continue;
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = u;
+        link.className = 'routility-injected';
+        (document.head || root).appendChild(link);
+      }
+    } catch {}
+  }
+  function hiPlace() {
+    if (!root.classList.contains('routility-hi-path')) return false;
+    const err = document.querySelector('#content > .request-error-page-content');
+    if (!err) return false;
+    if (!document.querySelector('#content > .routility-hi-loading')) {
+      hiCss();
+      err.before(hiSkeleton());
+    }
+    return true;
+  }
+  window.RoUtilityHiddenSkeleton = hiPlace;
+  if (location.hostname === 'www.roblox.com' && root.classList.contains('routility-hi-path') && !hiPlace()) {
+    const hiWatch = new MutationObserver(() => { if (hiPlace()) hiWatch.disconnect(); });
+    hiWatch.observe(root, { childList: true, subtree: true });
+    const hiStop = () => setTimeout(() => hiWatch.disconnect(), 1000);
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', hiStop, { once: true });
+    else hiStop();
   }
   if (location.hostname === 'www.roblox.com') {
     const pushKey = 'routilityNavPush:' + ((location.pathname.split('/')[1] || 'home').toLowerCase().replace(/^\d+$/, 'id')) + ':' + Math.round(window.innerWidth / 100);

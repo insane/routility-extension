@@ -97,8 +97,8 @@
     return { id, group, name: (d && d.name) || '', verified: !!(d && d.hasVerifiedBadge) };
   }
 
-  async function fallback(id, img) {
-    const dev = await getJson(`https://develop.roblox.com/v1/assets?assetIds=${id}`);
+  async function fallback(id, img, devAsk) {
+    const dev = await devAsk;
     const a = dev && dev.data && dev.data[0];
     if (a && a.name) {
       const c = a.creator || {};
@@ -136,8 +136,9 @@
         tradable: !!(d.collectibleItemDetail && d.collectibleItemDetail.collectibleItemType === 'Limited'),
       };
     }
+    const devAsk = getJson(`https://develop.roblox.com/v1/assets?assetIds=${id}`);
     const d = await getJson(`https://economy.roblox.com/v2/assets/${id}/details`);
-    if (!d || !d.Name || !d.AssetId) return fallback(id, await img);
+    if (!d || !d.Name || !d.AssetId) return fallback(id, await img, devAsk);
     const c = d.Creator || {};
     const collectible = d.CollectiblesItemDetails || {};
     return {
@@ -211,23 +212,12 @@
     ])), { id: 'item-details-container' });
   }
 
-  function skeleton() {
-    const sk = (w, hgt) => h('span', 'routility-hi-sk', null, { style: `width: ${w}; height: ${hgt};` });
-    return h('div', 'routility-injected routility-hi-loading', [
-      sk('100%', '96px'),
-      h('div', 'routility-hi-sk-main', [
-        sk('420px', '420px'),
-        h('div', 'routility-hi-sk-info', [sk('60%', '36px'), sk('30%', '18px'), sk('100%', '1px'), sk('55%', '18px'), sk('40%', '18px'), sk('45%', '18px'), sk('50%', '18px')]),
-      ]),
-    ]);
-  }
-
   async function run(id, bundle, moved) {
     const content = document.getElementById('content');
     const native = content && content.querySelector(':scope > .request-error-page-content');
     if (!native) return false;
-    const sk = skeleton();
-    native.after(sk);
+    if (window.RoUtilityHiddenSkeleton) window.RoUtilityHiddenSkeleton();
+    const sk = () => document.querySelectorAll('#content > .routility-hi-loading').forEach(n => n.remove());
     const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
     const shot = thumb(id, bundle);
     const [it, styled, img, owned, favs] = await Promise.all([
@@ -237,13 +227,21 @@
       me ? getJson(`https://inventory.roblox.com/v1/users/${me}/items/${bundle ? 'Bundle' : 'Asset'}/${id}/is-owned`) : null,
       getJson(`https://catalog.roblox.com/v1/favorites/${bundle ? 'bundles' : 'assets'}/${id}/count`),
     ]);
-    sk.remove();
-    if (!it || !styled || !native.isConnected) return false;
+    if (!it || !styled || !native.isConnected) {
+      sk();
+      return false;
+    }
+    if (img) {
+      const pre = new Image();
+      pre.src = img;
+      await Promise.race([pre.decode().catch(() => {}), new Promise(r => setTimeout(r, 1500))]);
+    }
     if (moved) {
       history.replaceState(history.state, '', `/${bundle ? 'bundles' : 'catalog'}/${id}/${slug(it.name)}`);
       shown = { kind: bundle ? 'bundles' : 'catalog', id };
     }
     native.after(page(id, bundle, it, img, owned === true, typeof favs === 'number' ? favs : null));
+    sk();
     native.remove();
     document.title = `${it.name} - Roblox`;
     return true;
@@ -318,6 +316,8 @@
   chrome.storage.local.get('routilitySettings', async (st) => {
     if ((st.routilitySettings || {}).hiddenItems === false) {
       root.classList.add('routility-hi-off');
+      root.classList.remove('routility-hi-maybe');
+      document.querySelectorAll('.routility-hi-loading').forEach(n => n.remove());
       return;
     }
     const m = location.pathname.match(ITEM_PATH);
@@ -331,6 +331,7 @@
         target = null;
         root.classList.remove('routility-hi-path');
       }
+      root.classList.remove('routility-hi-maybe');
     }
     if (!target || !root.classList.contains('routility-hi-path')) return;
     if (start(target)) return;

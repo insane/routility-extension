@@ -12803,12 +12803,19 @@ li.routility-recent-item .routility-recent-forget .icon {
   flex: none;
 }
 
-html.routility-hi-path:not(.routility-hi-off):not(.routility-hi-failed) #content > .request-error-page-content { visibility: hidden; }
-.routility-hi-loading { display: flex; flex-direction: column; gap: 24px; max-width: 970px; margin: 12px auto 0; }
+html.routility-hi-path:not(.routility-hi-off):not(.routility-hi-failed) #content > .request-error-page-content,
+html.routility-hi-maybe:not(.routility-hi-off) #content > .request-error-page-content { display: none; }
+html.routility-hi-off .routility-hi-loading, html.routility-hi-failed .routility-hi-loading { display: none; }
 .routility-hi-loading .routility-hi-sk { display: block; max-width: 100%; background: rgba(127, 127, 127, 0.18); border-radius: calc(8px * var(--routility-round, 1)); animation: routility-shimmer 1.2s ease-in-out infinite; }
-.routility-hi-sk-main { display: flex; gap: 12px; }
-.routility-hi-sk-main > .routility-hi-sk { flex: none; }
-.routility-hi-sk-info { display: flex; flex: 1 1 auto; flex-direction: column; gap: 14px; min-width: 0; }
+.routility-hi-loading .item-info-row-container .routility-hi-sk { display: inline-block; vertical-align: middle; }
+.routility-hi-loading .item-details-name-row h1 { margin: 0; padding: 10px 0 11px; }
+.routility-hi-loading .item-details-creator-container { height: 20px; display: flex; align-items: center; }
+.routility-hi-loading .price-row-container { display: flex; align-items: center; height: 32px; }
+.routility-hi-loading .price-container-text { flex: 1 1 auto; }
+.routility-hi-loading .thumbnail-holder { width: 100%; height: 100%; }
+.routility-hi-loading .routility-hi-sk-fav { clear: both; padding-top: 12px; }
+.routility-hi-loading .routility-hi-banner { min-height: 100px; box-sizing: border-box; }
+.routility-hi-loading .routility-hi-banner-text { gap: 8px; }
 .routility-hi { animation: routility-reveal 0.25s ease both; }
 .routility-hi-banner { display: flex; align-items: center; gap: 16px; margin: 12px 0 24px; padding: 16px; border-radius: calc(12px * var(--routility-round, 1)); background: var(--color-surface-200, rgba(127, 127, 127, 0.12)); }
 .routility-hi-banner-icon { display: flex; flex: none; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: calc(10px * var(--routility-round, 1)); background: var(--color-shift-300, rgba(127, 127, 127, 0.2)); color: var(--color-content-muted, #a3a6ad); }
@@ -12820,6 +12827,4 @@ html.routility-hi-path:not(.routility-hi-off):not(.routility-hi-failed) #content
 .routility-hi .routility-hi-fav { cursor: default; }
 @media (max-width: 767px) {
   .routility-hi-banner { flex-wrap: wrap; }
-  .routility-hi-sk-main { flex-direction: column; }
-  .routility-hi-sk-main > .routility-hi-sk { width: 100% !important; height: auto !important; aspect-ratio: 1; }
 }
