@@ -132,15 +132,17 @@
     let intent = 0;
     const inCarousel = (n) => n && n.closest && n.closest('#game-details-carousel-container');
     const onIntent = (e) => { if (inCarousel(e.target)) intent = Date.now(); };
+    const chosen = new WeakSet();
     const onPlay = (e) => {
       const v = e.target;
       if (!(v instanceof HTMLVideoElement) || !inCarousel(v)) return;
-      if (Date.now() - intent < 2000) return;
+      if (Date.now() - intent < 2000) chosen.add(v);
+      if (chosen.has(v)) return;
       v.pause();
     };
     const sweep = () => {
       if (Date.now() - intent < 2000) return;
-      document.querySelectorAll('#game-details-carousel-container video').forEach(v => { if (!v.paused) v.pause(); });
+      document.querySelectorAll('#game-details-carousel-container video').forEach(v => { if (!v.paused && !chosen.has(v)) v.pause(); });
     };
     document.addEventListener('pointerdown', onIntent, true);
     document.addEventListener('keydown', onIntent, true);

@@ -1743,6 +1743,9 @@
         if (still) {
           lagging = fresh.filter(id => still.has(id));
           fresh = fresh.filter(id => !still.has(id));
+        } else {
+          lagging = fresh;
+          fresh = [];
         }
       }
       const unnamed = fresh.filter(id => !(names[id] && names[id].name)).map(Number);
@@ -1755,11 +1758,14 @@
       gone = gone.filter(g => !again.has(g.id));
       gone = [...fresh.map(id => ({ id, name: (names[id] || {}).name || '', displayName: (names[id] || {}).displayName || (names[id] || {}).name || '', at, seen: false })), ...gone].slice(0, 200);
     }
-    if (trusted || !prev) {
+    const miss = trusted || !prev ? 0 : (Number(prev.miss) || 0) + 1;
+    if (trusted || !prev || miss >= 3) {
       const keep = {};
       const ids = [...live, ...lagging];
       for (const id of ids) if (names[id]) keep[id] = names[id];
       await chrome.storage.local.set({ [SNAP_KEY(me)]: { ids, names: keep, at: Date.now() }, [GONE_KEY(me)]: gone });
+    } else {
+      await chrome.storage.local.set({ [SNAP_KEY(me)]: { ...prev, miss } });
     }
     return { gone, fresh, count: live.length };
   }
@@ -1895,8 +1901,8 @@
     backdrop.appendChild(modal);
     document.body.appendChild(backdrop);
     document.documentElement.classList.add('routility-modal-open');
-    const shut = () => {
     if (!document.hidden) modal.classList.add('routility-reveal');
+    const shut = () => {
       backdrop.remove();
       document.documentElement.classList.remove('routility-modal-open');
       document.removeEventListener('keydown', onKey, true);
@@ -2011,9 +2017,11 @@
 
   function placeCancel() {
     const w = reqWatch;
-    if (w && !location.pathname.startsWith(`/users/${w.target}/`)) {
-      document.querySelector('.routility-cancel-req')?.remove();
-      startCancelRequests();
+    if (w && (w.target === null || !location.pathname.startsWith(`/users/${w.target}/`))) {
+      if (w.target !== null) document.querySelector('.routility-cancel-req')?.remove();
+      const m = location.pathname.match(/^\/users\/(\d+)\/profile\/?$/i);
+      if (m && m[1] !== myId()) startCancelRequests();
+      else w.target = null;
       return;
     }
     if (!w || w.status !== 'RequestSent') return;

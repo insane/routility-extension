@@ -936,7 +936,7 @@
       if (w.tries++ > 45) {
         w.done = true;
         window.removeEventListener('message', onLaunch);
-        closeLaunch(dialog);
+        if (dialog.dataset.routilityClient !== 'missing') closeLaunch(dialog);
         return;
       }
       let state = '';

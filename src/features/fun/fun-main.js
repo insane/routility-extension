@@ -221,6 +221,7 @@
   }
 
   const renders = new Map();
+  const renderFails = new Map();
   let renderToken = '';
 
   async function wornRender(size, type) {
@@ -240,6 +241,7 @@
     const avatarDefinition = { assets, bodyColors: (v4 && v4.avatarModel && v4.avatarModel.bodyColors) || {}, scales: v1.scales, playerAvatarType: { playerAvatarType: v1.playerAvatarType } };
     const key = type + '|' + size + '|' + JSON.stringify(avatarDefinition);
     if (renders.has(key)) return renders.get(key);
+    if (Date.now() - (renderFails.get(key) || 0) < 300000) return Promise.resolve(null);
     const job = (async () => {
       const body = JSON.stringify({ thumbnailConfig: { thumbnailId: worn[0].id, thumbnailType: type, size }, avatarDefinition });
       for (let i = 0; i < 20; i++) {
@@ -256,12 +258,17 @@
         const d = res.ok ? await res.json().catch(() => null) : null;
         if (!d) return null;
         if (d.state === 'Completed' && d.imageUrl) return d.imageUrl;
+        if (d.state && d.state !== 'Pending') return null;
         await new Promise(r => setTimeout(r, 1200));
       }
       return null;
     })();
     renders.set(key, job);
-    job.then(u => { if (!u) renders.delete(key); });
+    job.then(u => {
+      if (u) return;
+      renders.delete(key);
+      renderFails.set(key, Date.now());
+    });
     return job;
   }
 
@@ -1233,15 +1240,23 @@
     return wornJob;
   }
 
-  function keepWorn(def, worn) {
+  function keepWorn(def, worn, triedType) {
     const have = new Set(def.assets.map(a => Number(a && a.id)));
     const tried = def.assets.filter(a => !worn.some(w => Number(w.id) === Number(a.id)));
     const kept = worn.filter(w => have.has(Number(w.id)) && RIGID.has(Number(w.assetType && w.assetType.id)));
     let room = 10 - tried.length - kept.length;
+    const limit = triedType === 8 ? 3 : 1;
+    const sameWorn = triedType ? worn.filter(w => Number(w.assetType && w.assetType.id) === triedType).length : 0;
+    const stacked = sameWorn > limit;
+    let same = 1 + kept.filter(w => Number(w.assetType && w.assetType.id) === triedType).length;
     const add = [];
     for (const w of worn) {
       const type = Number(w.assetType && w.assetType.id);
       if (have.has(Number(w.id)) || !(RIGID.has(type) || LAYERED.has(type))) continue;
+      if (triedType && type === triedType && !stacked) {
+        if (same >= limit) continue;
+        same++;
+      }
       if (RIGID.has(type)) {
         if (room <= 0) continue;
         room--;
@@ -1260,7 +1275,7 @@
     const p = {};
     p.wait = Promise.all([askIso('routility-tryon-keep', {}), wornNow()]).then(([gate, worn]) => {
       if (!gate || !gate.on || !worn) return;
-      const add = keepWorn(def, worn);
+      const add = keepWorn(def, worn, Number(gate.itemType) || 0);
       if (!add.length) return;
       p.body = JSON.stringify(Object.assign({}, body, { avatarDefinition: Object.assign({}, def, { assets: def.assets.concat(add) }) }));
     });

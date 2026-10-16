@@ -422,6 +422,7 @@
       document.removeEventListener('keydown', onKey, true);
     };
     const onKey = (e) => { if (e.key === 'Escape') { e.stopPropagation(); shut(); } };
+    backdrop.routilityShut = shut;
     document.addEventListener('keydown', onKey, true);
     close.addEventListener('click', shut);
     backdrop.addEventListener('mousedown', (e) => { if (e.target === backdrop) shut(); });
@@ -607,7 +608,8 @@
     if (!st) return;
     st.observer?.disconnect();
     st = null;
-    document.querySelectorAll('.routility-rx-btn, .routility-rx-backdrop').forEach(n => n.remove());
+    document.querySelectorAll('.routility-rx-backdrop').forEach(n => (n.routilityShut ? n.routilityShut() : n.remove()));
+    document.querySelectorAll('.routility-rx-btn').forEach(n => n.remove());
     document.querySelectorAll('.routility-rx-actions').forEach(n => n.classList.remove('routility-rx-actions'));
   }
 

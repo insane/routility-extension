@@ -58,7 +58,7 @@
       style.id = 'routility-hidden-games';
       (document.head || document.documentElement).appendChild(style);
     }
-    style.textContent = hidden.map(id => `li[id="${id}"], li:has(a.game-card-link[id="${id}"]), li:has(a.game-card-link[href*="universeId=${id}&"]), li:has(a.game-card-link[href$="universeId=${id}"])`).join(',\n') + ' { display: none !important; }';
+    style.textContent = hidden.map(id => `html.routility-lists-page :is(li[id="${id}"], li:has(a.game-card-link[id="${id}"]), li:has(a.game-card-link[href*="universeId=${id}&"]), li:has(a.game-card-link[href$="universeId=${id}"]))`).join(',\n') + ' { display: none !important; }';
   }
 
   function universeOf(li) {
@@ -1667,6 +1667,7 @@
     const path = location.pathname;
     const home = /^\/home\/?$/i.test(path);
     const lists = home || /^\/(charts|discover)(\/|$)/i.test(path);
+    document.documentElement.classList.toggle('routility-lists-page', lists);
     if (!lists) return;
     const p = { timer: null, observer: null, render: null, place: null, playing: false };
     page = p;

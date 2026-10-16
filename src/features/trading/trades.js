@@ -129,6 +129,18 @@
     const pricesPerOffer = await Promise.all(keysPerOffer.map(keys => prices(keys)));
     if (pricesPerOffer.some(list => list.some(p => p === undefined))) { setTimeout(schedule, 2500); return; }
     if (token !== offersToken) return;
+    const robuxUsd = [0, 0];
+    if (offers.length === 2 && !offers[0].matches('.trade-request-window-offer')) {
+      const id = await selectedTradeId();
+      const d = id ? await rawDetail(id) : null;
+      if (token !== offersToken) return;
+      if (d && d.participantAOffer && d.participantBOffer) {
+        const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+        const [mine, theirs] = String(d.participantBOffer.user?.id) === me ? [d.participantBOffer, d.participantAOffer] : [d.participantAOffer, d.participantBOffer];
+        robuxUsd[0] = (Number(mine.robux) || 0) * robuxRate;
+        robuxUsd[1] = (Number(theirs.robux) || 0) * robuxRate;
+      }
+    }
 
     const totals = pricesPerOffer.map(list => ({
       usd: list.reduce((s, p) => s + (p ? p.usd : 0), 0),
@@ -166,16 +178,18 @@
       tradeWarning(offers, totals);
       lastRequest = { totals, rap: [nativeTotal(offers[0]), nativeTotal(offers[1])], items: cardsPerOffer.map(list => list.length) };
     }
-    if (offers.length === 2 && valuesOn) diffPills(offers, totals);
+    if (offers.length === 2 && valuesOn) diffPills(offers, totals, robuxUsd);
   }
 
-  function diffPills(offers, totals) {
+  function diffPills(offers, totals, robuxUsd = [0, 0]) {
     const host = offers[0];
     const rap = window.RoUtilityUI.formatNumber;
     const rapGive = nativeTotal(offers[0]);
     const rapGet = nativeTotal(offers[1]);
     const unsure = totals[0].missing + totals[1].missing;
-    const key = [rapGive, rapGet, totals[0].usd, totals[1].usd, unsure, totals[0].value, totals[1].value].join('|');
+    const usdGive = totals[0].usd + robuxUsd[0];
+    const usdGet = totals[1].usd + robuxUsd[1];
+    const key = [rapGive, rapGet, usdGive, usdGet, unsure, totals[0].value, totals[1].value].join('|');
     let box = host.querySelector(':scope > .routility-trade-diffs');
     if (box && box.dataset.key === key) return;
     box?.remove();
@@ -183,11 +197,11 @@
     box.dataset.key = key;
     if (show.price && (totals[0].priced || totals[1].priced)) {
       const icon = pillIcon('logo');
-      const vars = { give: usdAmount(totals[0].usd), get: usdAmount(totals[1].usd), n: rap(unsure) };
+      const vars = { give: usdAmount(usdGive), get: usdAmount(usdGet), n: rap(unsure) };
       const tip = unsure
         ? ltn(unsure, 'Price difference • you give {give}, you get {get} • {n} unpriced item not counted', 'Price difference • you give {give}, you get {get} • {n} unpriced items not counted', vars)
         : lt('Price difference • you give {give}, you get {get}', vars);
-      box.appendChild(pill(icon, totals[0].usd, totals[1].usd, usdAmount, tip));
+      box.appendChild(pill(icon, usdGive, usdGet, usdAmount, tip));
     }
     if (show.worth && (totals[0].valued || totals[1].valued)) {
       box.appendChild(worthPill(totals[0].value, totals[1].value, lt('RoUtility Value difference • you give {give}, you get {get} • only items with a value are counted', { give: rap(totals[0].value), get: rap(totals[1].value) })));
@@ -817,7 +831,7 @@
     }
     if (!items.length && !(offer.robux > 0)) row.appendChild(el('span', 'text-body-small content-muted', lt('Nothing')));
     box.appendChild(row);
-    return { node: box, usd };
+    return { node: box, usd: usd + (Number(offer.robux) || 0) * robuxRate };
   }
 
   async function openPreview(row, entry) {
@@ -971,7 +985,8 @@
     sides.appendChild(side(ltn(items[1], 'You receive • {n} item', 'You receive • {n} items'), 1));
     box.appendChild(sides);
     const diff = get - give;
-    const pct = give > 0 ? Math.round(Math.abs(diff) / give * 100) : null;
+    const base = diff < 0 ? get : give;
+    const pct = base > 0 ? Math.round(Math.abs(diff) / base * 100) : null;
     const amounts = { give: fmt(-diff), get: fmt(diff), pct: pct > 999 ? '>999' : pct };
     const over = give > 0 ? (give - get) / Math.max(get, 0.01) : 0;
     const tone = Math.abs(diff) < (usdKnown ? 0.005 : 1) ? 'even' : diff < 0 ? 'over' : 'win';

@@ -233,8 +233,8 @@
     const row = el('div', 'flex items-center gap-small routility-calc-currency');
     const add = fbutton(lt('Add'), 'bg-action-standard content-action-standard', null, 'shrink-0');
     const go = () => {
-      const raw = field.input.value.replace(/[^\d.]/g, '');
-      const n = kind === 'robux' ? Math.floor(Number(raw)) : Math.round(fromCash(Number(raw)) * 10000) / 10000;
+      const amount = window.RoUtilityUI.parseAmount(field.input.value, kind === 'robux');
+      const n = kind === 'robux' ? amount : Math.round(fromCash(amount) * 10000) / 10000;
       if (!(n > 0)) {
         if (!field.input.value.trim()) return;
         field.classList.add('stroke-system-alert', 'routility-calc-invalid');
@@ -353,7 +353,9 @@
     if (!(base > 0)) return '';
     const v = Math.abs(diff / base * 100);
     const n = v >= 100 ? Math.round(v) : v >= 10 ? Math.round(v) : Math.round(v * 10) / 10;
-    return `${diff >= 0 ? '+' : '-'}${n > 999 ? '999+' : formatNumber(n)}%`;
+    let shown = String(n);
+    try { shown = n.toLocaleString(window.RoUtilityI18n.locale(), { maximumFractionDigits: 1 }); } catch {}
+    return `${diff >= 0 ? '+' : '-'}${n > 999 ? '999+' : shown}%`;
   }
 
   function renderSummary() {

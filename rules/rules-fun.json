@@ -100,5 +100,56 @@
         "other"
       ]
     }
+  },
+  {
+    "id": 7,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "regexFilter": "^https://games\\.roblox\\.com/v1/games/vip-servers/[0-9]+",
+      "requestMethods": [
+        "post"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "regexFilter": "^https://games\\.roblox\\.com/v1/vip-servers/[0-9]+/subscription",
+      "requestMethods": [
+        "patch"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "regexFilter": "^https://[a-z]+\\.roblox\\.com/v1/subscriptions/[^/]+/resubscribe",
+      "requestMethods": [
+        "post"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest",
+        "other"
+      ]
+    }
   }
 ]

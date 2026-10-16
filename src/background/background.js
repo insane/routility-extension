@@ -1117,14 +1117,31 @@ async function cloudPost(path, body) {
   return null;
 }
 
+async function cloudKeyName() {
+  const st = await chrome.storage.local.get('routilityCloudTag');
+  let tag = st.routilityCloudTag;
+  if (!/^[0-9a-f]{4}$/.test(tag || '')) {
+    tag = Math.floor(Math.random() * 65536).toString(16).padStart(4, '0');
+    await chrome.storage.local.set({ routilityCloudTag: tag });
+  }
+  return CLOUD_KEY_NAME + ' ' + tag;
+}
+
 async function makeCloudKey(uid) {
   const can = await cloudPost('canUseApiKeys');
   if (!can || !can.canUseApiKeys) return null;
-  const list = await cloudPost('apiKeys', { cursor: '', limit: 50, reverse: false });
-  const mine = ((list && list.cloudAuthInfo) || []).find(k => k.cloudAuthUserConfiguredProperties?.name === CLOUD_KEY_NAME);
+  const name = await cloudKeyName();
+  let mine = null;
+  let cursor = '';
+  for (let page = 0; page < 5 && !mine; page++) {
+    const list = await cloudPost('apiKeys', { cursor, limit: 50, reverse: false });
+    mine = ((list && list.cloudAuthInfo) || []).find(k => k.cloudAuthUserConfiguredProperties?.name === name) || null;
+    cursor = list && list.nextPageCursor;
+    if (!cursor) break;
+  }
   const made = mine
     ? await cloudPost(`apiKey/${mine.id}/regenerate`)
-    : await cloudPost('apiKey', { cloudAuthUserConfiguredProperties: { name: CLOUD_KEY_NAME, description: CLOUD_KEY_DESC, isEnabled: true, allowedCidrs: ['0.0.0.0/0'], scopes: [] } });
+    : await cloudPost('apiKey', { cloudAuthUserConfiguredProperties: { name, description: CLOUD_KEY_DESC, isEnabled: true, allowedCidrs: ['0.0.0.0/0'], scopes: [] } });
   if (!made || !made.apikeySecret) return null;
   const st = await chrome.storage.local.get('routilityCloudKeys');
   await chrome.storage.local.set({ routilityCloudKeys: { ...(st.routilityCloudKeys || {}), [uid]: { secret: made.apikeySecret, id: made.cloudAuthInfo?.id || mine?.id || '' } } });
@@ -1142,22 +1159,28 @@ async function cloudKey(uid, fresh) {
 }
 
 const JOINED_TTL = 30 * 86400000;
+const JOINED_NONE_TTL = 3600000;
+const CLOUD_FAIL_WAIT = 86400000;
 
 async function groupJoined(gid) {
   if (!/^\d+$/.test(gid)) return null;
-  const uid = await signedInUser();
+  const uid = await signedInUser(true);
   if (!uid) return null;
   const tag = uid + ':' + gid;
-  const st = await chrome.storage.local.get('routilityJoined');
+  const st = await chrome.storage.local.get(['routilityJoined', 'routilityCloudFail']);
   const memo = st.routilityJoined || {};
-  if (memo[tag] && Date.now() - memo[tag].at < JOINED_TTL) return memo[tag].t || null;
+  if (memo[tag] && Date.now() - memo[tag].at < (memo[tag].t ? JOINED_TTL : JOINED_NONE_TTL)) return memo[tag].t || null;
+  if (st.routilityCloudFail && Date.now() - st.routilityCloudFail < CLOUD_FAIL_WAIT) return null;
   const url = `https://apis.roblox.com/cloud/v2/groups/${gid}/memberships?maxPageSize=1&filter=${encodeURIComponent(`user == 'users/${uid}'`)}`;
   for (let i = 0; i < 2; i++) {
     const key = await cloudKey(uid, i > 0);
     if (!key) return null;
     const res = await fetch(url, { credentials: 'omit', headers: { 'x-api-key': key } }).catch(() => null);
     if (!res) return null;
-    if (res.status === 401) continue;
+    if (res.status === 401) {
+      if (i > 0) await chrome.storage.local.set({ routilityCloudFail: Date.now() });
+      continue;
+    }
     if (!res.ok) return null;
     const data = await res.json().catch(() => null);
     const t = data?.groupMemberships?.[0]?.createTime || '';
@@ -1598,8 +1621,11 @@ async function ensureLiveNow() {
 
 async function checkPriceAlerts() {
   const all = (await chrome.storage.local.get(ALERTS_KEY))[ALERTS_KEY] || {};
-  const ids = Object.keys(all).slice(0, 25);
-  if (!ids.length) return;
+  const keys = Object.keys(all);
+  if (!keys.length) return;
+  const from = keys.length > 25 ? (Number((await chrome.storage.local.get('routilityAlertCursor')).routilityAlertCursor) || 0) % keys.length : 0;
+  const ids = keys.length > 25 ? keys.slice(from).concat(keys.slice(0, from)).slice(0, 25) : keys;
+  if (keys.length > 25) await chrome.storage.local.set({ routilityAlertCursor: (from + 25) % keys.length });
   let changed = false;
   for (const id of ids) {
     const a = all[id];

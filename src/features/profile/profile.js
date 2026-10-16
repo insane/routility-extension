@@ -135,7 +135,7 @@
     }
     const rapTotal = s.assets.reduce((sum, a) => sum + (Number(a.recentAveragePrice) || 0), 0);
     const summary = { private: false, usd, rap, rapTotal, worth, valued, count, complete: s.complete };
-    return s.unpriced ? summary : remember(userId, summary);
+    return s.unpriced ? { ...summary, unpriced: true } : remember(userId, summary);
   }
 
 
@@ -535,12 +535,13 @@
       (async () => {
         let summary = await summarize(userId);
         for (const delay of [2000, 5000]) {
-          if (summary || trade !== t) break;
+          if ((summary && !summary.unpriced) || trade !== t) break;
           await new Promise(r => setTimeout(r, delay));
           if (trade !== t) return;
           summary = await summarize(userId);
         }
         if (trade !== t) return;
+        if (summary && summary.unpriced) summary = null;
         t.summaries.set(userId, summary || null);
         if (!summary) document.querySelectorAll('.routility-trade-inv-pills[data-state="loading"]').forEach(n => n.remove());
         ensureTradePills();
@@ -577,13 +578,13 @@
       return;
     }
     for (const delay of [2000, 5000]) {
-      if (summary || state !== s) break;
+      if ((summary && !summary.unpriced) || state !== s) break;
       await new Promise(r => setTimeout(r, delay));
       if (state !== s) return;
       summary = await summarize(userId);
     }
     if (state !== s) return;
-    if (!summary) {
+    if (!summary || summary.unpriced) {
       s.failed = true;
       document.querySelectorAll('.routility-value-row').forEach(n => n.remove());
       return;

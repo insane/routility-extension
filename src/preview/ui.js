@@ -244,6 +244,15 @@ export async function open(host, item) {
 
 export async function adjustPreview(canvas) {
   const scene = new AvatarScene(canvas);
+  try {
+    return await adjustBuild(scene, canvas);
+  } catch (e) {
+    scene.dispose();
+    throw e;
+  }
+}
+
+async function adjustBuild(scene, canvas) {
   const data = await myAvatar();
   const kind = data.playerAvatarType === 'R15' ? 'R15' : 'R6';
   const assets = (data.assets || []).map(a => ({ id: String(a.id), type: a.assetType && a.assetType.id, meta: a.meta }));
@@ -285,6 +294,15 @@ export async function thumbPreview(canvas) {
   const scene = new AvatarScene(canvas, { controls: false });
   scene.ground.visible = false;
   scene.shadow.visible = false;
+  try {
+    return await thumbBuild(scene, canvas);
+  } catch (e) {
+    scene.dispose();
+    throw e;
+  }
+}
+
+async function thumbBuild(scene, canvas) {
   const data = await avatarOnce();
   const kind = data.playerAvatarType === 'R15' ? 'R15' : 'R6';
   const assets = (data.assets || []).map(a => ({ id: String(a.id), type: a.assetType && a.assetType.id, meta: a.meta }));

@@ -281,12 +281,22 @@
   }
 
   let countJob = null;
+  let countAt = 0;
+  let groupMax = 100;
+
+  function groupMeta() {
+    if (!countJob || Date.now() - countAt > 60000) {
+      countAt = Date.now();
+      countJob = getJson('https://groups.roblox.com/v1/groups/metadata');
+      countJob.then((d) => { if (d && d.groupLimit > 0) groupMax = d.groupLimit; else countJob = null; });
+    }
+    return countJob;
+  }
 
   async function groupCount() {
     const head = document.querySelector('.groups-list-heading');
     if (!head || document.querySelector('.routility-cm-count')) return;
-    if (!countJob) countJob = getJson('https://groups.roblox.com/v1/groups/metadata');
-    const d = await countJob;
+    const d = await groupMeta();
     if (!d || !(d.groupLimit > 0) || !Number.isFinite(d.currentGroupCount) || !head.isConnected || document.querySelector('.routility-cm-count')) return;
     const bar = head.parentElement;
     if (!bar || bar.parentElement.querySelector(':scope > .routility-cm-count')) return;
@@ -314,6 +324,7 @@
   }
 
   async function openManager() {
+    groupMeta();
     document.querySelector('.routility-cm-backdrop')?.remove();
     const backdrop = el('div', 'routility-modal-backdrop routility-injected routility-cm-backdrop');
     const modal = el('div', 'routility-modal routility-cm-modal');
@@ -405,7 +416,7 @@
 
     const paintFoot = () => {
       const n = selected.size;
-      titleBox.querySelector('.routility-cm-count').textContent = lt('{n} of 100', { n: formatNumber(groups.length) });
+      titleBox.querySelector('.routility-cm-count').textContent = lt('{n} of {max}', { n: formatNumber(groups.length), max: formatNumber(groupMax) });
       selInfo.textContent = note || (n ? lt('{n} selected', { n: formatNumber(n) }) : lt('Select communities to leave them'));
       selInfo.classList.toggle('routility-cm-note-bad', !!note && failed.size > 0);
       leave.disabled = !n || busy;
@@ -802,7 +813,8 @@
     if (key !== lastUrl) {
       lastUrl = key;
       closePop();
-      document.querySelectorAll('.routility-cm-friends, .routility-cm-funds, .routility-cm-created').forEach(n => n.remove());
+      document.querySelectorAll('.routility-cm-friends, .routility-cm-funds, .routility-cm-created, .routility-cm-joined').forEach(n => n.remove());
+      document.querySelectorAll('[data-rt-rank]').forEach(n => { delete n.dataset.rtRank; });
       const gid = groupId();
       if (/^\/communities\/configure/i.test(location.pathname) && gid) page = configurePage(gid);
       else if (gid && /^\/communities\/\d+/i.test(location.pathname)) page = communityPage(gid);

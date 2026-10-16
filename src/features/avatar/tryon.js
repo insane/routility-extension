@@ -94,9 +94,14 @@
     if (e.source !== window || !e.data || e.data.type !== 'routility-tryon-keep' || typeof e.data.id !== 'string' || keepAsked.has(e.data.id)) return;
     const id = e.data.id;
     keepAsked.add(id);
-    chrome.storage.local.get('routilitySettings', (s) => {
-      window.postMessage({ type: 'routility-tryon-keep-done', id, on: ((s && s.routilitySettings) || {}).tryOnKeepWorn !== false }, location.origin);
-    });
+    const type = st && st.type ? st.type : 0;
+    try {
+      chrome.storage.local.get('routilitySettings', (s) => {
+        window.postMessage({ type: 'routility-tryon-keep-done', id, on: ((s && s.routilitySettings) || {}).tryOnKeepWorn !== false, itemType: type }, location.origin);
+      });
+    } catch {
+      window.postMessage({ type: 'routility-tryon-keep-done', id, on: false }, location.origin);
+    }
   });
 
   window.RoUtilityTryOn = { setup, setupBundle, teardown };

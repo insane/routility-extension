@@ -46,7 +46,9 @@
         csrf = r.headers.get('x-csrf-token');
         continue;
       }
-      return r.ok;
+      if (!r.ok) return false;
+      const data = await r.json().catch(() => null);
+      return !(data && data.success === false);
     }
     return false;
   }

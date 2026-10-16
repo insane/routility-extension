@@ -5,7 +5,7 @@
   const { lt, ltn, LT } = window.RoUtilityI18n;
   let langReady = false;
 
-  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, classicLayout: 'tabs', hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarWearingValues: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, sessionIps: true, backupCodeDate: true, voiceStatus: true, groupCreated: true, groupJoined: true, groupCount: true, gameAvatarType: true, createSafety: true, gameUnavailable: true, oldLeftNav: false, calcRate: '3.80', currency: 'USD', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, itemExplorer: true, gearFix: true, avatarPreview: true, tryOnKeepWorn: true, funOutfits: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, badgeSizeFix: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, plusTheme: '', groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, classicPremium: false, classicVerified: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true, friendsSince: true, fakeRequests: false, fakeRequestsAdd: 'amount', fakeRequestsAmount: '500', sendRobux: true, menuHighlight: 'fill' };
+  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, classicLayout: 'tabs', hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarWearingValues: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeSort: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, sessionIps: true, backupCodeDate: true, voiceStatus: true, groupCreated: true, groupJoined: true, groupCount: true, gameAvatarType: true, createSafety: true, gameUnavailable: true, oldLeftNav: false, calcRate: '3.80', currency: 'USD', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, itemExplorer: true, gearFix: true, avatarPreview: true, tryOnKeepWorn: true, funOutfits: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, badgeSizeFix: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, plusTheme: '', groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, classicPremium: false, classicVerified: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true, friendsSince: true, fakeRequests: false, fakeRequestsAdd: 'amount', fakeRequestsAmount: '500', sendRobux: true, menuHighlight: 'fill' };
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
 
   const TABS = [
@@ -898,7 +898,7 @@
           { key: 'serverRegions', parent: 'serverStats', title: LT('Server Regions'), desc: LT('Where each server is, a world map of every server in the game, and lists of servers per region. Sends the game and the server ids on screen to RoUtility to look them up, and the server you join when you press Play so the launch window can show its region. No account details are sent.') },
           { custom: 'preferredRegion', parent: 'serverRegions' },
           { key: 'playRegionTag', parent: 'serverRegions', title: LT('Region Under Play'), desc: LT('A small button under the Play button that shows where Play takes you, a region or Roblox picks. Click it to change.') },
-          { key: 'avoidFriends', parent: 'serverRegions', title: LT('Avoid Friends’ Servers'), desc: LT('When you press Play, join a server none of your online friends are in. Also in the menu under the Play button.') },
+          { key: 'avoidFriends', parent: 'serverStats', title: LT('Avoid Friends’ Servers'), desc: LT('When you press Play, join a server none of your online friends are in. Also in the menu under the Play button.') },
           { key: 'privateServerToggle', title: LT('Collapse Private Servers'), desc: LT('A Hide / Show link on “Your private servers” in the Servers tab, so the public servers come first. Remembers your choice.') },
         ] },
         { title: LT('Joining'), rows: [
@@ -1244,27 +1244,45 @@
   }
 
   let titleMemo = null;
+  let parentMemo = null;
 
   function titleOf(key) {
     if (!titleMemo) {
       titleMemo = {};
-      for (const pg of Object.values(PAGES)) for (const g of pg.groups) for (const r of g.rows) if (r.key) titleMemo[r.key] = r.title;
+      parentMemo = {};
+      for (const pg of Object.values(PAGES)) for (const g of pg.groups) for (const r of g.rows) if (r.key) {
+        titleMemo[r.key] = r.title;
+        if (r.parent) parentMemo[r.key] = r.parent;
+      }
     }
     return titleMemo[key] || '';
   }
 
+  function offParent(def, settings) {
+    titleOf('');
+    const seen = new Set();
+    let off = '';
+    for (let k = def.parent; k && !seen.has(k); k = parentMemo[k]) {
+      seen.add(k);
+      if (!settings[k]) off = k;
+    }
+    return off;
+  }
+
   function paint(rows, settings) {
     for (const { def, section } of rows) {
-      const blocked = !!(def.parent && !settings[def.parent]);
+      const needs = def.parent ? offParent(def, settings) : '';
+      const blocked = !!needs;
       section.classList.toggle('routility-set-off', !def.options && !settings[def.key]);
       section.classList.toggle('routility-set-blocked', blocked);
       let note = section.querySelector('.routility-set-needs');
-      if (blocked && !note && titleOf(def.parent)) {
+      if (blocked && titleOf(needs)) {
         const text = section.querySelector('.routility-set-text');
-        if (text) {
-          note = el('p', 'text-body-small margin-none routility-set-needs', lt('Turn on {name} to use this.', { name: lt(titleOf(def.parent)) }));
+        const words = lt('Turn on {name} to use this.', { name: lt(titleOf(needs)) });
+        if (!note && text) {
+          note = el('p', 'text-body-small margin-none routility-set-needs', words);
           text.appendChild(note);
-        }
+        } else if (note && note.textContent !== words) note.textContent = words;
       }
       if (note) note.hidden = !blocked;
     }

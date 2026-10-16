@@ -422,6 +422,7 @@
   };
   const PLUS_THEMES = ['nebula-drift', 'nitro-frost', 'circuit-rush', 'kinetic-energy', 'inferno-blast', 'hyper-plum', 'quantum-pulse', 'cosmic-dust', 'polar-freeze', 'super-charge', 'electric-lime', 'lava-glow', 'star-burst', 'pixel-pop', 'classic'];
   let plusMine = '';
+  let plusTheirs = '';
   let plusWatch = null;
   const plusTheme = () => {
     const s = lastSettings || {};
@@ -438,8 +439,14 @@
     const cls = body.classList;
     if (plusMine && plusMine !== want) cls.remove('theme-' + plusMine, plusMine + '-theme');
     if (want) {
-      for (const k of PLUS_THEMES) if (k !== want && cls.contains('theme-' + k)) cls.remove('theme-' + k, k + '-theme');
+      for (const k of PLUS_THEMES) if (k !== want && cls.contains('theme-' + k)) {
+        if (k !== plusMine) plusTheirs = k;
+        cls.remove('theme-' + k, k + '-theme');
+      }
       if (!cls.contains('theme-' + want)) cls.add('theme-' + want, want + '-theme');
+    } else if (plusTheirs) {
+      cls.add('theme-' + plusTheirs, plusTheirs + '-theme');
+      plusTheirs = '';
     }
     plusMine = want;
     if (want && !body.routilityPlusWatch) {

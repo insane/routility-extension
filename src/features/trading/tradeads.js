@@ -583,11 +583,11 @@
       uRbx.addEventListener('click', () => setUnit('robux'));
       setUnit('usd');
       amount.input.addEventListener('input', () => {
-        amount.input.value = amount.input.value.replace(st.unit[key] === 'usd' ? /[^\d.]/g : /[^\d]/g, '');
+        amount.input.value = amount.input.value.replace(st.unit[key] === 'usd' ? /[^\d.,]/g : /[^\d.,]/g, '');
       });
       const addAmount = () => {
         const u = st.unit[key];
-        const v = u === 'usd' ? Math.round(window.RoUtilityUI.fromCash(Number(amount.input.value)) * 100) / 100 : Math.floor(Number(amount.input.value));
+        const v = u === 'usd' ? Math.round(window.RoUtilityUI.fromCash(window.RoUtilityUI.parseAmount(amount.input.value)) * 100) / 100 : window.RoUtilityUI.parseAmount(amount.input.value, true);
         if (!(v > 0)) return;
         if (u === 'usd' && st.user && !st.user.discord) return hint(lt('Link your Discord on routility.io to add USD to an ad.'), true);
         const list = st[key];

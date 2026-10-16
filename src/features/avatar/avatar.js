@@ -787,7 +787,7 @@
     w.assets = (data.assets || []).filter(a => !HIDDEN_TYPES.test(a.assetType?.name || '')).map(a => ({ id: String(a.id), name: a.name, type: a.assetType?.name || '', removable: !FIXED.test(a.assetType?.name || '') }));
     const FAKE_TYPES = { 8: 'Hat', 41: 'HairAccessory', 42: 'FaceAccessory', 43: 'NeckAccessory', 44: 'ShoulderAccessory', 45: 'FrontAccessory', 46: 'BackAccessory', 47: 'WaistAccessory', 57: 'EarAccessory', 58: 'EyeAccessory' };
     for (const f of window.RoUtilityFun ? window.RoUtilityFun.worn() : []) {
-      if (!w.assets.some(a => a.id === String(f.id))) w.assets.push({ id: String(f.id), name: f.name, type: FAKE_TYPES[f.type] || 'Hat', removable: true });
+      if (!w.assets.some(a => a.id === String(f.id))) w.assets.push({ id: String(f.id), name: f.name, type: (window.RoUtilityFun.typeName && window.RoUtilityFun.typeName(f.type)) || FAKE_TYPES[f.type] || 'Hat', removable: !FIXED.test((window.RoUtilityFun.typeName && window.RoUtilityFun.typeName(f.type)) || '') });
     }
     const ids = new Set(w.assets.map(a => a.id));
     for (const id of [...w.pending]) if (!ids.has(id)) w.pending.delete(id);

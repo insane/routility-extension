@@ -155,7 +155,9 @@
         window.postMessage({ type: 'routility-fun-render', id, size }, location.origin);
       }));
     }
-    return bodies.get(size);
+    const out = bodies.get(size);
+    out.then((url) => { if (!url && bodies.get(size) === out) bodies.delete(size); });
+    return out;
   }
 
   function headshotFor(circular) {
@@ -207,17 +209,18 @@
     return changed ? new Response(JSON.stringify(data), { status: res.status, statusText: res.statusText, headers: res.headers }) : res;
   }
 
+  const TYPE_NAMES = { 2: 'TShirt', 8: 'Hat', 11: 'Shirt', 12: 'Pants', 17: 'Head', 18: 'Face', 19: 'Gear', 27: 'Torso', 28: 'RightArm', 29: 'LeftArm', 30: 'LeftLeg', 31: 'RightLeg', 41: 'HairAccessory', 42: 'FaceAccessory', 43: 'NeckAccessory', 44: 'ShoulderAccessory', 45: 'FrontAccessory', 46: 'BackAccessory', 47: 'WaistAccessory', 48: 'ClimbAnimation', 49: 'DeathAnimation', 50: 'FallAnimation', 51: 'IdleAnimation', 52: 'JumpAnimation', 53: 'RunAnimation', 54: 'SwimAnimation', 55: 'WalkAnimation', 56: 'PoseAnimation', 57: 'EarAccessory', 58: 'EyeAccessory', 64: 'TShirtAccessory', 65: 'ShirtAccessory', 66: 'PantsAccessory', 67: 'JacketAccessory', 68: 'SweaterAccessory', 69: 'ShortsAccessory', 70: 'LeftShoeAccessory', 71: 'RightShoeAccessory', 72: 'DressSkirtAccessory', 76: 'EyebrowAccessory', 77: 'EyelashAccessory', 78: 'MoodAnimation', 79: 'DynamicHead' };
+
   async function swapWearing(kind, pending) {
     const res = await pending;
     if (!res.ok) return res;
     let data;
     try { data = await res.clone().json(); } catch { return res; }
     const worn = wornList();
-    const NAMES = { 8: 'Hat', 41: 'HairAccessory', 42: 'FaceAccessory', 43: 'NeckAccessory', 44: 'ShoulderAccessory', 45: 'FrontAccessory', 46: 'BackAccessory', 47: 'WaistAccessory', 57: 'EarAccessory', 58: 'EyeAccessory' };
     if (kind === 'currently-wearing' && data && Array.isArray(data.assetIds)) {
       for (const x of worn) if (!data.assetIds.includes(x.id)) data.assetIds.push(x.id);
     } else if (kind === 'avatar' && data && Array.isArray(data.assets)) {
-      for (const x of worn) if (!data.assets.some(a => Number(a.id) === x.id)) data.assets.push({ id: x.id, name: x.name, assetType: { id: x.type, name: NAMES[x.type] || 'Hat' }, currentVersionId: 0 });
+      for (const x of worn) if (!data.assets.some(a => Number(a.id) === x.id)) data.assets.push({ id: x.id, name: x.name, assetType: { id: x.type, name: TYPE_NAMES[x.type] || 'Hat' }, currentVersionId: 0 });
     } else return res;
     return new Response(JSON.stringify(data), { status: res.status, statusText: res.statusText, headers: res.headers });
   }
@@ -361,6 +364,11 @@
     ready,
     worn: () => wornList(),
     headshot: (circular) => ready.then(() => (wornList().length ? headshotFor(circular) : null)),
-    render: (size) => ready.then(() => (buying() && state.worn.length ? bodyRender(size) : null)),
+    typeName: (type) => TYPE_NAMES[type] || '',
+    render: (size) => ready.then(() => {
+      if (!buying() || !state.worn.length) return null;
+      bodies.delete(size);
+      return bodyRender(size);
+    }),
   };
 })();

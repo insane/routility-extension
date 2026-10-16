@@ -988,7 +988,19 @@
     return waits.size ? Promise.all(waits).then(pick) : Promise.resolve(pick());
   }
 
-  window.RoUtilityUI = { json, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
+  function parseAmount(text, whole) {
+    let s = String(text || '').replace(/[^\d.,]/g, '');
+    if (whole) return Math.floor(Number(s.replace(/[.,]/g, '')) || 0);
+    const dot = s.lastIndexOf('.');
+    const comma = s.lastIndexOf(',');
+    if (dot >= 0 && comma >= 0) s = dot > comma ? s.replace(/,/g, '') : s.replace(/\./g, '').replace(',', '.');
+    else if (comma >= 0) s = /^\d*,\d{1,2}$/.test(s) ? s.replace(',', '.') : s.replace(/,/g, '');
+    else if (/^\d{1,3}(\.\d{3})+$/.test(s) && (s.match(/\./g) || []).length > 1) s = s.replace(/\./g, '');
+    else s = s.replace(/(\..*)\./g, '$1');
+    return Number(s) || 0;
+  }
+
+  window.RoUtilityUI = { json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
 })();
 
 (function () {

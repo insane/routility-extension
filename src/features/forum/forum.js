@@ -605,7 +605,7 @@
   }
 
   function write(path, payload) {
-    return request({ type: 'forumWrite', path, body: payload }, r => r && r.status !== 0).then(res => {
+    return request({ type: 'forumWrite', path, body: payload }, r => r !== undefined).then(res => {
       if (res && res.status === 401 && s) {
         s.user = null;
         userChanged();
@@ -1428,7 +1428,7 @@
           if (!s || s.token !== token) return;
           table.querySelectorAll(`.routility-forum-pills[data-user-id="${id}"]`).forEach(box => {
             box.textContent = '';
-            if (!sum || sum.invalid || !window.RoUtilityProfile.valuePills) return;
+            if (!sum || sum.invalid || sum.unpriced || !window.RoUtilityProfile.valuePills) return;
             const made = window.RoUtilityProfile.valuePills(id, sum, box.dataset.name || '');
             for (const [node, kind] of [[made.value, 'value'], [made.rap, 'rap']]) {
               if (!node) continue;

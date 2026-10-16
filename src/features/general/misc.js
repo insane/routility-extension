@@ -892,7 +892,7 @@
           control.saved = value;
           const join = key === 'whoCanSeeMyOnlineStatus' && QS_JOIN_FOR[value];
           const joins = controls.find(c => c.key === 'whoCanJoinMeInExperiences');
-          if (join && joins && joins.saved !== join) {
+          if (join && joins && QS_JOIN_RANK.indexOf(joins.saved) < QS_JOIN_RANK.indexOf(join)) {
             joins.dd.closest('.routility-quick-row')?.classList.add('routility-quick-busy');
             if (await qsSave('whoCanJoinMeInExperiences', join)) {
               joins.saved = join;

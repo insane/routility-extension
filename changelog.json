@@ -19,7 +19,18 @@
         { "type": "improved", "text": "An Open Source on GitHub link on the About page." },
         { "type": "fixed", "text": "The device and location filters on Charts no longer drop to the bottom of the page." },
         { "type": "fixed", "text": "Other Extensions forgets extensions you've uninstalled." },
-        { "type": "fixed", "text": "Gear like the Darkheart shows its real color in Avatar Preview instead of looking like a Linked Sword." }
+        { "type": "fixed", "text": "Gear like the Darkheart shows its real color in Avatar Preview instead of looking like a Linked Sword." },
+        { "type": "improved", "text": "Banned profiles show a red Banned tag next to the username and a ban badge on the avatar, like Roblox's app." },
+        { "type": "fixed", "text": "Fake Purchases now also blocks private server purchases and renewals, so real Robux are never spent while it is on." },
+        { "type": "fixed", "text": "Changing Online Status in Quick Settings no longer opens up who can join you." },
+        { "type": "fixed", "text": "Trade price differences count the Robux in each offer." },
+        { "type": "fixed", "text": "Amounts like 12,50 or 1.000 are read correctly in the Trade Calculator and Trade Ads." },
+        { "type": "fixed", "text": "Off-sale hats no longer show as LIMITED on classic profiles." },
+        { "type": "fixed", "text": "Profiles no longer show $0 when prices can't load." },
+        { "type": "fixed", "text": "Trailers you start yourself keep playing with Stop Trailer Autoplay on." },
+        { "type": "fixed", "text": "The unfriend detector keeps working after a big change in your friends list." },
+        { "type": "fixed", "text": "Price alerts past your 25th are checked too." },
+        { "type": "fixed", "text": "A lot of smaller fixes from a full bug sweep." }
       ]
     },
     {

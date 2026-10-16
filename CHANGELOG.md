@@ -27,6 +27,7 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 ~ Roblox's Try On on item pages keeps the hats and accessories you're wearing instead of taking them all off.
 ~ Greyed out settings now say which setting to turn on first.
 ~ An Open Source on GitHub link on the About page.
+~ Banned profiles show a red Banned tag next to the username and a ban badge on the avatar, like Roblox's app.
 ```
 
 **Fixed**
@@ -35,6 +36,16 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 - The device and location filters on Charts no longer drop to the bottom of the page.
 - Other Extensions forgets extensions you've uninstalled.
 - Gear like the Darkheart shows its real color in Avatar Preview instead of looking like a Linked Sword.
+- Fake Purchases now also blocks private server purchases and renewals, so real Robux are never spent while it is on.
+- Changing Online Status in Quick Settings no longer opens up who can join you.
+- Trade price differences count the Robux in each offer.
+- Amounts like 12,50 or 1.000 are read correctly in the Trade Calculator and Trade Ads.
+- Off-sale hats no longer show as LIMITED on classic profiles.
+- Profiles no longer show $0 when prices can't load.
+- Trailers you start yourself keep playing with Stop Trailer Autoplay on.
+- The unfriend detector keeps working after a big change in your friends list.
+- Price alerts past your 25th are checked too.
+- A lot of smaller fixes from a full bug sweep.
 ```
 
 ## 1.1.4 · October 15, 2026
