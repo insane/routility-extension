@@ -785,6 +785,14 @@
     qsToastTimer = setTimeout(() => box.remove(), 5000);
   }
 
+  const QS_SHORT = { whoCanJoinMeInExperiences: LT('Joins'), whoCanSeeMyOnlineStatus: LT('Online') };
+
+  function qsLabelEl(full, short) {
+    const label = el('span', 'text-body-medium content-emphasis routility-quick-label');
+    label.append(el('span', 'routility-quick-full', full), el('span', 'routility-quick-short', short));
+    return label;
+  }
+
   function qsIcon(name) {
     return el('span', 'icon icon-regular-' + name + ' routility-quick-icon');
   }
@@ -949,7 +957,7 @@
       control.dd = dd;
       controls.push(control);
       dd.querySelector('.input-dropdown-btn').classList.add('bg-shift-300', 'content-emphasis', 'text-label-small');
-      row.append(qsIcon(QS_ICONS[key]), el('span', 'text-body-medium content-emphasis routility-quick-label', lt(label)), dd);
+      row.append(qsIcon(QS_ICONS[key]), qsLabelEl(lt(label), lt(QS_SHORT[key] || label)), dd);
       body.appendChild(row);
     }
     paintSum();
@@ -989,7 +997,7 @@
       }, 'routility-quick-dd');
       dd.querySelector('.input-dropdown-btn').classList.add('bg-shift-300', 'content-emphasis', 'text-label-small');
       row.dd = dd;
-      row.append(qsIcon('lock-closed'), el('span', 'text-body-medium content-emphasis routility-quick-label', lt('Streamer Mode')), dd);
+      row.append(qsIcon('lock-closed'), qsLabelEl(lt('Streamer Mode'), lt('Streamer')), dd);
       const rot = body.querySelector('.routility-quick-rot');
       if (rot) rot.before(row);
       else body.appendChild(row);
@@ -1036,7 +1044,7 @@
         }, 'routility-quick-dd');
         dd.querySelector('.input-dropdown-btn').classList.add('bg-shift-300', 'content-emphasis', 'text-label-small');
         row.dd = dd;
-        row.append(qsIcon('clock'), el('span', 'text-body-medium content-emphasis routility-quick-label', lt('Outfit Rotator')), dd);
+        row.append(qsIcon('clock'), qsLabelEl(lt('Outfit Rotator'), lt('Rotator')), dd);
         body.appendChild(row);
       }
       row.dd.setValue(live ? 'on' : 'off');
