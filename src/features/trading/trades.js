@@ -1450,6 +1450,7 @@
 
   function scan() {
     ensureCleanButton();
+    ensureProof();
     scanRows();
     scanOffers();
     checkOwnership();
@@ -1464,6 +1465,412 @@
   }
 
   let lastFilterRows = 0;
+  let proofOn = true;
+  chrome.storage.local.get('routilitySettings', (st) => {
+    proofOn = (st.routilitySettings || {}).tradeProof !== false;
+  });
+
+  function proofButtonEl(label, primary) {
+    const b = el('button', 'foundation-web-button relative clip group/interactable focus-visible:outline-focus cursor-pointer flex items-center justify-center stroke-none select-none radius-medium text-label-medium height-1000 padding-x-medium ' + (primary ? 'bg-action-emphasis content-action-emphasis' : 'bg-action-standard content-action-standard'));
+    b.type = 'button';
+    const layer = el('div', 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)]');
+    layer.setAttribute('aria-hidden', 'true');
+    b.label = el('span', 'text-no-wrap', label);
+    b.append(layer, b.label);
+    return b;
+  }
+
+  function ensureProof() {
+    const h2 = document.querySelector('.trades-list-detail > div > h2');
+    if (!proofOn || !h2 || !document.querySelector('.trade-list-detail-offer')) {
+      document.querySelectorAll('.routility-proof-btn').forEach(n => n.remove());
+      return;
+    }
+    if (h2.querySelector('.routility-proof-btn')) return;
+    const b = proofButtonEl(lt('Proof'));
+    b.classList.add('routility-injected', 'routility-proof-btn');
+    b.dataset.rtTip = lt('A picture of this trade and the text for a value request, ready to paste');
+    b.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openProof();
+    });
+    h2.appendChild(b);
+  }
+
+  async function proofData() {
+    const id = await selectedTradeId();
+    if (!id) return null;
+    const [d, map] = await Promise.all([rawDetail(id), catalogMap()]);
+    if (!d || !d.participantAOffer || !d.participantBOffer) return null;
+    const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+    const side = (offer) => {
+      const items = (offer.items || []).map((it) => {
+        const k = offerItemKey(it);
+        const c = map.lookup ? map.lookup(k) : map.get(k.targetId);
+        return { name: it.itemName || (c && c.name) || '', acr: (c && c.acr) || '', usd: c && c.usd > 0 ? c.usd : 0, priced: !!(c && c.usd > 0), rap: Number(it.recentAveragePrice) || (c ? c.rap : 0) || 0, serial: Number(it.serialNumber) || 0, thumbKey: (k.bundle ? 'b' : '') + k.targetId };
+      });
+      const robux = Number(offer.robux) || 0;
+      return { user: offer.user || {}, items, robux, usd: items.reduce((n, i) => n + i.usd, 0) + robux * robuxRate, rap: items.reduce((n, i) => n + i.rap, 0), missing: items.filter(i => !i.priced).length };
+    };
+    const a = side(d.participantAOffer);
+    const b = side(d.participantBOffer);
+    const mineIsB = String(b.user.id) === String(me);
+    const entry = (tradeLists.get(currentTradeType())?.entries || []).find(e => e.id === String(id));
+    return { id, status: String(d.status || ''), created: d.created || (entry && entry.created) || '', sender: a, receiver: b, mine: mineIsB ? b : a, theirs: mineIsB ? a : b };
+  }
+
+  function proofText(p, comment) {
+    const money = (n) => '$' + Math.round(n).toLocaleString('en-US');
+    const label = (s) => {
+      const parts = s.items.map(i => (i.acr && i.acr.toLowerCase() !== i.name.toLowerCase() ? `${i.name} (${i.acr})` : i.name)).filter(Boolean);
+      if (s.robux > 0) parts.push(`R$ ${s.robux.toLocaleString('en-US')}`);
+      return parts.join(' + ') || 'Nothing';
+    };
+    const d = p.receiver.usd - p.sender.usd;
+    const tag = Math.abs(d) < 1 ? 'even' : `${money(Math.abs(d))} ${d > 0 ? 'op' : 'LB'}`;
+    const at = new Date(p.created);
+    const date = isNaN(at) ? '' : `${at.getMonth() + 1}/${at.getDate()}/${String(at.getFullYear()).slice(-2)}`;
+    const lines = [
+      `${label(p.sender)} / ${label(p.receiver)}`,
+      `${money(p.sender.usd)}${p.sender.missing ? '+' : ''} vs ${money(p.receiver.usd)}${p.receiver.missing ? '+' : ''} (${tag})`,
+      `S: ${p.sender.user.name || ''}`,
+      `R: ${p.receiver.user.name || ''}`,
+      `D: ${date}`,
+    ];
+    if (comment && comment.trim()) lines.push(`C: ${comment.trim().replace(/\s+/g, ' ')}`);
+    return lines.join('\n');
+  }
+
+  function loadImg(src) {
+    return new Promise((resolve) => {
+      if (!src) return resolve(null);
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => resolve(img);
+      img.onerror = () => resolve(null);
+      img.src = src;
+    });
+  }
+
+  async function proofImage(p, opts) {
+    const keys = [...new Set([...p.mine.items, ...p.theirs.items].map(i => i.thumbKey))];
+    const urls = (await window.RoUtilityUI.request({ type: 'getAssetThumbs', ids: keys })) || {};
+    const imgs = new Map(await Promise.all(keys.map(async k => [k, await loadImg(urls[k])])));
+    const logo = await loadImg(LOGO_URL);
+    const dark = !document.body.classList.contains('light-theme');
+    const C = dark
+      ? { bg: '#121215', tile: '#24262c', text: '#f7f7f8', muted: '#a3a6ad', line: 'rgba(255,255,255,0.12)', price: '#3aa0ff', win: '#3fc679', over: '#f35b5b' }
+      : { bg: '#ffffff', tile: '#ececef', text: '#202227', muted: '#666a72', line: 'rgba(0,0,0,0.12)', price: '#0a79e0', win: '#178d4b', over: '#d23439' };
+    const PAD = 28;
+    const TILE = 140;
+    const GAP = 18;
+    const count = (s) => s.items.length + (s.robux > 0 ? 1 : 0);
+    const COLS = Math.min(4, Math.max(1, count(p.mine), count(p.theirs)));
+    const font = (w, s) => `${w} ${s}px "Builder Sans", "Gotham SSm", Arial, sans-serif`;
+    const nf = (n) => Math.round(n).toLocaleString('en-US');
+    const money = (n) => '$' + nf(n);
+    const tileH = TILE + 10 + 36 + (opts.rap ? 18 : 0) + (opts.prices ? 18 : 0);
+    const probe = document.createElement('canvas').getContext('2d');
+    probe.font = font(700, 24);
+    const them0 = p.theirs.user;
+    const titleW = probe.measureText(lt('Trade with {name}', { name: them0.displayName || them0.name || '' })).width;
+    probe.font = font(600, 20);
+    const W = Math.ceil(Math.max(PAD * 2 + COLS * TILE + (COLS - 1) * GAP, PAD * 2 + titleW + 8 + probe.measureText('@' + (them0.name || '')).width, 560));
+    const totals = 8 + (opts.rap ? 26 : 0) + (opts.prices ? 26 : 0);
+    const sectionH = (s) => 34 + Math.max(1, Math.ceil(count(s) / COLS)) * (tileH + GAP) + totals;
+    const H = PAD + 46 + sectionH(p.mine) + 46 + sectionH(p.theirs) + 34 + PAD;
+    const scale = 2;
+    const cv = document.createElement('canvas');
+    cv.width = W * scale;
+    cv.height = H * scale;
+    const g = cv.getContext('2d');
+    g.scale(scale, scale);
+    g.fillStyle = C.bg;
+    g.fillRect(0, 0, W, H);
+    g.textBaseline = 'alphabetic';
+    const text = (s, x, y, f, color, align = 'left') => {
+      g.font = f;
+      g.fillStyle = color;
+      g.textAlign = align;
+      g.fillText(s, x, y);
+      return g.measureText(s).width;
+    };
+    const fit = (s, max, f) => {
+      g.font = f;
+      if (g.measureText(s).width <= max) return s;
+      let t = s;
+      while (t.length > 1 && g.measureText(t + '…').width > max) t = t.slice(0, -1);
+      return t + '…';
+    };
+    const wrap = (s, max, f) => {
+      g.font = f;
+      const words = s.split(/\s+/);
+      const lines = [''];
+      for (const w of words) {
+        const next = lines[lines.length - 1] ? lines[lines.length - 1] + ' ' + w : w;
+        if (g.measureText(next).width <= max || !lines[lines.length - 1]) lines[lines.length - 1] = next;
+        else lines.push(w);
+      }
+      if (lines.length > 2) lines[1] = fit(lines.slice(1).join(' '), max, f);
+      return lines.slice(0, 2).map((l, i) => (i === 0 ? fit(l, max, f) : l));
+    };
+    const round = (x, y, w, h, r) => {
+      g.beginPath();
+      g.moveTo(x + r, y);
+      g.arcTo(x + w, y, x + w, y + h, r);
+      g.arcTo(x + w, y + h, x, y + h, r);
+      g.arcTo(x, y + h, x, y, r);
+      g.arcTo(x, y, x + w, y, r);
+      g.closePath();
+    };
+    let y = PAD + 26;
+    const them = p.theirs.user;
+    const w1 = text(lt('Trade with {name}', { name: them.displayName || them.name || '' }), PAD, y, font(700, 24), C.text);
+    text('@' + (them.name || ''), PAD + w1 + 8, y, font(600, 20), C.muted);
+    y += 20;
+    const section = (title, s) => {
+      y += 24;
+      text(title, PAD, y, font(700, 17), C.text);
+      y += 14;
+      const cells = [...s.items.map(i => ({ item: i })), ...(s.robux > 0 ? [{ robux: s.robux }] : [])];
+      if (!cells.length) {
+        text(lt('Nothing'), PAD, y + 24, font(500, 14), C.muted);
+        y += tileH + GAP;
+      }
+      cells.forEach((cell, i) => {
+        const col = i % COLS;
+        const row = Math.floor(i / COLS);
+        const x = PAD + col * (TILE + GAP);
+        const top = y + row * (tileH + GAP);
+        round(x, top, TILE, TILE, 10);
+        g.fillStyle = C.tile;
+        g.fill();
+        if (cell.robux) {
+          text('R$', x + TILE / 2, top + TILE / 2 + 4, font(800, 30), C.text, 'center');
+          text(lt('Robux'), x, top + TILE + 24, font(700, 13), C.text);
+          text('R$ ' + nf(cell.robux), x, top + TILE + 42, font(600, 12), C.muted);
+          return;
+        }
+        const it = cell.item;
+        const im = imgs.get(it.thumbKey);
+        if (im) {
+          g.save();
+          round(x, top, TILE, TILE, 10);
+          g.clip();
+          g.drawImage(im, x + 6, top + 6, TILE - 12, TILE - 12);
+          g.restore();
+        }
+        if (it.serial) {
+          const tag = '#' + nf(it.serial);
+          g.font = font(700, 11);
+          const tw = g.measureText(tag).width + 12;
+          round(x + 6, top + TILE - 24, tw, 18, 9);
+          g.fillStyle = 'rgba(0,0,0,0.55)';
+          g.fill();
+          text(tag, x + 12, top + TILE - 11, font(700, 11), '#ffffff');
+        }
+        let ty = top + TILE + 22;
+        for (const line of wrap(it.name, TILE, font(700, 13))) {
+          text(line, x, ty, font(700, 13), C.text);
+          ty += 16;
+        }
+        ty = top + TILE + 10 + 36 + 14;
+        if (opts.rap) {
+          text('R$ ' + nf(it.rap), x, ty, font(600, 12), C.muted);
+          ty += 18;
+        }
+        if (opts.prices) text(it.priced ? money(it.usd) : lt('No price'), x, ty, font(700, 12), it.priced ? C.price : C.muted);
+      });
+      y += Math.max(1, Math.ceil(cells.length / COLS)) * (tileH + GAP);
+      const right = W - PAD;
+      if (opts.rap) {
+        y += 22;
+        text(lt('Total Value:'), PAD, y, font(600, 14), C.muted);
+        text('R$ ' + nf(s.rap + s.robux), right, y, font(700, 15), C.text, 'right');
+      }
+      if (opts.prices) {
+        y += 26;
+        text(lt('Price:'), PAD, y, font(600, 14), C.muted);
+        text(money(s.usd) + (s.missing ? '+' : ''), right, y, font(700, 15), C.price, 'right');
+      }
+      y += 8;
+    };
+    section(lt('Items you gave'), p.mine);
+    y += 24;
+    g.fillStyle = C.line;
+    g.fillRect(PAD, y, W - PAD * 2, 1);
+    const parts = [];
+    if (opts.prices) {
+      const d = p.theirs.usd - p.mine.usd;
+      const pct = p.mine.usd > 0 ? Math.round(Math.abs(d) / p.mine.usd * 1000) / 10 : null;
+      parts.push({ s: `${d >= 0 ? '+' : '-'}${money(Math.abs(d))}${pct !== null ? ` (${pct}%)` : ''}`, c: Math.abs(d) < 1 ? C.muted : d > 0 ? C.win : C.over });
+    }
+    if (opts.rap) {
+      const d = (p.theirs.rap + p.theirs.robux) - (p.mine.rap + p.mine.robux);
+      parts.push({ s: `${d >= 0 ? '+' : '-'}R$ ${nf(Math.abs(d))}`, c: d === 0 ? C.muted : d > 0 ? C.win : C.over });
+    }
+    if (parts.length) {
+      g.font = font(700, 13);
+      const widths = parts.map(x => g.measureText(x.s).width);
+      const total = widths.reduce((a, b) => a + b, 0) + (parts.length - 1) * 18 + 24;
+      let x = W / 2 - total / 2;
+      g.fillStyle = C.bg;
+      g.fillRect(x, y - 10, total, 20);
+      x += 12;
+      parts.forEach((part, i) => {
+        text(part.s, x, y + 5, font(700, 13), part.c);
+        x += widths[i] + 18;
+      });
+    }
+    y += 6;
+    section(lt('Items you received'), p.theirs);
+    y += 18;
+    g.fillStyle = C.line;
+    g.fillRect(PAD, y, W - PAD * 2, 1);
+    y += 22;
+    const at = new Date(p.created);
+    let when = '';
+    try { when = isNaN(at) ? '' : at.toLocaleDateString(window.RoUtilityI18n.locale(), { month: 'short', day: 'numeric', year: 'numeric' }); } catch { when = isNaN(at) ? '' : at.toDateString(); }
+    text([p.status, when].filter(Boolean).join(' · '), PAD, y, font(600, 12), C.muted);
+    let lx = W - PAD;
+    lx -= text('routility.io', lx, y, font(600, 12), C.muted, 'right');
+    lx -= 6;
+    lx -= text('RoUtility', lx, y, font(800, 13), C.text, 'right');
+    if (logo) g.drawImage(logo, lx - 22, y - 13, 16, 16);
+    return cv;
+  }
+
+  function proofChip(label, on, onChange) {
+    const b = el('button', 'relative clip group/interactable cursor-pointer routility-proof-chip text-label-medium');
+    b.type = 'button';
+    const paint = () => {
+      b.classList.toggle('bg-inverse-surface-0', on);
+      b.classList.toggle('content-inverse-emphasis', on);
+      b.classList.toggle('bg-shift-300', !on);
+      b.classList.toggle('content-action-utility', !on);
+      b.setAttribute('aria-pressed', String(on));
+    };
+    const layer = el('div', 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)]');
+    layer.setAttribute('aria-hidden', 'true');
+    b.append(layer, el('span', 'text-no-wrap', label));
+    b.addEventListener('click', () => {
+      on = !on;
+      paint();
+      onChange(on);
+    });
+    paint();
+    return b;
+  }
+
+  async function openProof() {
+    document.querySelector('.routility-proof-backdrop')?.remove();
+    const backdrop = el('div', 'routility-modal-backdrop routility-injected routility-proof-backdrop');
+    const modal = el('div', 'routility-modal routility-proof-modal');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    const head = el('div', 'routility-modal-head');
+    const closeBtn = el('button', 'routility-modal-icon routility-modal-close');
+    closeBtn.type = 'button';
+    closeBtn.setAttribute('aria-label', lt('Close'));
+    closeBtn.appendChild(el('span', 'icon icon-regular-x'));
+    head.append(el('h2', 'routility-modal-title', lt('Trade Proof')), closeBtn);
+    const body = el('div', 'routility-proof-body');
+    const shot = el('div', 'routility-proof-shot');
+    shot.appendChild(el('span', 'routility-sk routility-proof-sk'));
+    const side = el('div', 'routility-proof-side');
+    const opts = { prices: true, rap: true };
+    const chips = el('div', 'routility-proof-chips');
+    const comment = el('input', 'routility-proof-comment text-body-medium');
+    comment.type = 'text';
+    comment.maxLength = 200;
+    comment.placeholder = lt('Comment (optional)');
+    comment.setAttribute('aria-label', comment.placeholder);
+    const area = el('textarea', 'routility-proof-text');
+    area.spellcheck = false;
+    area.rows = 6;
+    area.setAttribute('aria-label', lt('Value request text'));
+    const actions = el('div', 'routility-proof-actions');
+    const copyImg = proofButtonEl(lt('Copy Image'), true);
+    const copyText = proofButtonEl(lt('Copy Text'));
+    const save = proofButtonEl(lt('Download'));
+    actions.append(copyImg, copyText, save);
+    const note = el('p', 'text-body-small content-muted margin-none routility-proof-note');
+    const link = el('a', 'text-link', lt('the RoUtility Discord'));
+    link.href = 'https://discord.gg/util';
+    link.target = '_blank';
+    link.rel = 'noreferrer';
+    note.append(document.createTextNode(lt('Paste the picture and the text together in #value-requests on') + ' '), link, document.createTextNode('.'));
+    side.append(el('span', 'text-label-medium content-muted', lt('Show in the picture')), chips, el('span', 'text-label-medium content-muted', lt('Request text')), comment, area, actions, note);
+    body.append(shot, side);
+    modal.append(head, body);
+    backdrop.appendChild(modal);
+    document.body.appendChild(backdrop);
+    document.documentElement.classList.add('routility-modal-open');
+    let alive = true;
+    const shut = () => {
+      alive = false;
+      backdrop.remove();
+      document.documentElement.classList.remove('routility-modal-open');
+      document.removeEventListener('keydown', onKey, true);
+    };
+    const onKey = (e) => { if (e.key === 'Escape') { e.stopPropagation(); shut(); } };
+    backdrop.routilityShut = shut;
+    document.addEventListener('keydown', onKey, true);
+    closeBtn.addEventListener('click', shut);
+    backdrop.addEventListener('mousedown', (e) => { if (e.target === backdrop) shut(); });
+
+    const data = await proofData();
+    if (!alive) return;
+    if (!data) {
+      shot.textContent = '';
+      shot.appendChild(el('p', 'text-body-medium content-muted', lt('Couldn’t load this trade. Try again in a moment.')));
+      [copyImg, copyText, save].forEach(b => { b.disabled = true; });
+      return;
+    }
+    let canvas = null;
+    let drawing = 0;
+    const redraw = async () => {
+      const mine = ++drawing;
+      const cv = await proofImage(data, opts);
+      if (!alive || mine !== drawing) return;
+      canvas = cv;
+      const img = el('img', 'routility-proof-img');
+      img.alt = lt('Trade Proof');
+      img.src = cv.toDataURL('image/png');
+      shot.textContent = '';
+      shot.appendChild(img);
+    };
+    const retext = () => { area.value = proofText(data, comment.value); };
+    chips.append(proofChip(lt('Prices'), true, (on) => { opts.prices = on; redraw(); }), proofChip(lt('RAP'), true, (on) => { opts.rap = on; redraw(); }));
+    comment.addEventListener('input', retext);
+    retext();
+    redraw();
+    const flash = (b, words) => {
+      const was = b.label.textContent;
+      b.label.textContent = words;
+      setTimeout(() => { b.label.textContent = was; }, 1600);
+    };
+    copyImg.addEventListener('click', () => {
+      if (!canvas) return;
+      const blob = new Promise((resolve, reject) => canvas.toBlob(x => (x ? resolve(x) : reject(new Error('blob'))), 'image/png'));
+      navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
+        .then(() => flash(copyImg, lt('Copied!')), () => flash(copyImg, lt('Couldn’t Copy')));
+    });
+    copyText.addEventListener('click', () => {
+      navigator.clipboard.writeText(area.value).then(() => flash(copyText, lt('Copied!')), () => flash(copyText, lt('Couldn’t Copy')));
+    });
+    save.addEventListener('click', () => {
+      if (!canvas) return;
+      const a = el('a');
+      a.href = canvas.toDataURL('image/png');
+      a.download = `trade-${data.id}.png`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
+  }
+
   const schedule = window.RoUtilityUI.onFrame(() => scan());
 
   function setup() {
@@ -1498,7 +1905,8 @@
     document.removeEventListener('mouseout', onRowOut);
     document.removeEventListener('scroll', closePreview, true);
     closePreview();
-    document.querySelectorAll('.routility-trade-filter').forEach(n => n.remove());
+    document.querySelectorAll('.routility-trade-filter, .routility-proof-btn').forEach(n => n.remove());
+    document.querySelectorAll('.routility-proof-backdrop').forEach(n => (n.routilityShut ? n.routilityShut() : n.remove()));
     document.querySelectorAll('.routility-trade-hidden').forEach(n => n.classList.remove('routility-trade-hidden'));
   }
 
