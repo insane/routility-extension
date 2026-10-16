@@ -1216,6 +1216,57 @@
     };
   }]);
 
+  const RIGID = new Set([8, 41, 42, 43, 44, 45, 46, 47, 57, 58]);
+  const LAYERED = new Set([64, 65, 66, 67, 68, 69, 70, 71, 72]);
+  let wornJob = null;
+  let wornAt = 0;
+
+  function wornNow() {
+    if (!wornJob || Date.now() - wornAt > 60000) {
+      wornAt = Date.now();
+      wornJob = oFetch.call(window, 'https://avatar.roblox.com/v2/avatar/avatar', { credentials: 'include' })
+        .then(r => (r.ok ? r.json() : null))
+        .then(d => (d && Array.isArray(d.assets) ? d.assets : null))
+        .catch(() => null);
+      wornJob.then((v) => { if (!v) wornJob = null; });
+    }
+    return wornJob;
+  }
+
+  function keepWorn(def, worn) {
+    const have = new Set(def.assets.map(a => Number(a && a.id)));
+    const tried = def.assets.filter(a => !worn.some(w => Number(w.id) === Number(a.id)));
+    const kept = worn.filter(w => have.has(Number(w.id)) && RIGID.has(Number(w.assetType && w.assetType.id)));
+    let room = 10 - tried.length - kept.length;
+    const add = [];
+    for (const w of worn) {
+      const type = Number(w.assetType && w.assetType.id);
+      if (have.has(Number(w.id)) || !(RIGID.has(type) || LAYERED.has(type))) continue;
+      if (RIGID.has(type)) {
+        if (room <= 0) continue;
+        room--;
+      }
+      add.push(w.meta ? { id: Number(w.id), meta: w.meta } : { id: Number(w.id) });
+      have.add(Number(w.id));
+    }
+    return add;
+  }
+
+  ROUTES.push(['POST', /^https:\/\/avatar\.roblox\.com\/v1\/avatar\/render(?:[?#]|$)/i, (m, req, body) => {
+    if (!/^\/catalog\/\d+/i.test(location.pathname)) return null;
+    const def = body && body.avatarDefinition;
+    const id = Number(body && body.thumbnailConfig && body.thumbnailConfig.thumbnailId);
+    if (!def || !Array.isArray(def.assets) || !def.assets.some(a => a && Number(a.id) === id)) return null;
+    const p = {};
+    p.wait = Promise.all([askIso('routility-tryon-keep', {}), wornNow()]).then(([gate, worn]) => {
+      if (!gate || !gate.on || !worn) return;
+      const add = keepWorn(def, worn);
+      if (!add.length) return;
+      p.body = JSON.stringify(Object.assign({}, body, { avatarDefinition: Object.assign({}, def, { assets: def.assets.concat(add) }) }));
+    });
+    return p;
+  }]);
+
   function pick(method, url) {
     for (const [m, re, fn] of ROUTES) {
       if (m !== method) continue;

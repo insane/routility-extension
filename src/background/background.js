@@ -455,6 +455,7 @@ function botFeatures() {
 const PRESET_VALUES = new Set(['itemPrices', 'itemUsd', 'itemDemand', 'itemTrend', 'itemCopies', 'itemChange', 'itemOwnedRow', 'itemTags', 'usdChart', 'owners', 'resellerDeals', 'inventoryValues', 'tradeValues', 'tradeOwnership', 'tradeItemCard', 'marketplaceValues', 'robuxUsd', 'exactPrices', 'txUsd', 'tradeCalculator', 'calcNav', 'calcLinks', 'calcRemember', 'calcEven', 'calcPercents', 'calcRobuxRap', 'tradeWarning', 'tradeSendSummary', 'purchaseLock', 'buyBalance', 'menuLink', 'hoverTips']);
 const PRESET_INERT = /^(streamer(?!Mode$)|classic(Games|Catalog|Develop|Groups|Packages)$|forumStat)/;
 const PRESET_NEVER = new Set(['badgeAutoDelete', 'streamerMode', 'hideChat', 'customTheme', 'classicNames', 'classicLogo', 'classicPremium', 'classicVerified', 'studioStatus', 'fakeRobux', 'fakeBuy', 'catalogRobloxOnly', 'skipR6Warning', 'keepR6', 'avoidFriends', 'notifyUgc', 'fakeRequests', 'oldLeftNav']);
+const VALUE_KEYS = ['itemPrices', 'itemSimilar', 'itemTags', 'marketplaceValues', 'usdChart', 'inventoryValues', 'tradeValues', 'tradeItemCard', 'tradePreview', 'tradeSendSummary', 'tradeWarning', 'tradeCalculator', 'calcNav', 'calcLinks', 'searchItems', 'avatarWearingValues', 'robuxUsd', 'txUsd', 'createUsd', 'forumStatValue', 'forumStatRap'];
 let defaultsMemo = null;
 
 function settingsDefaults() {
@@ -489,7 +490,18 @@ async function presetState() {
     const map = presetMap(name, defs);
     if (Object.keys(map).every(k => effective(k) === map[k])) { current = name; break; }
   }
-  return { current, canUndo: !!st.routilityPresetBackup, welcome: !!st.routilityWelcome };
+  const valuesOff = VALUE_KEYS.every(k => effective(k) === false);
+  return { current, valuesOff, canUndo: !!st.routilityPresetBackup, welcome: !!st.routilityWelcome };
+}
+
+async function setValues(on) {
+  const defs = await settingsDefaults();
+  if (!Object.keys(defs).length) return { ok: false };
+  const st = await chrome.storage.local.get('routilitySettings');
+  const cur = st.routilitySettings || {};
+  const patch = Object.fromEntries(VALUE_KEYS.map(k => [k, on ? defs[k] !== false : false]));
+  await chrome.storage.local.set({ routilitySettings: { ...cur, ...patch }, routilityPresetBackup: cur, routilityWelcome: false });
+  return { ok: true };
 }
 
 async function applyPreset(name) {
@@ -567,6 +579,10 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     rotatorSave(msg).then(sendResponse, () => sendResponse(null));
     return true;
   }
+  if (msg.type === 'groupJoined') {
+    groupJoined(String(msg.groupId || '')).then(sendResponse, () => sendResponse(null));
+    return true;
+  }
   if (msg.type === 'fiatRates') {
     fiatRates().then(sendResponse, () => sendResponse(null));
     return true;
@@ -581,6 +597,10 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   }
   if (msg.type === 'applyPreset') {
     applyPreset(String(msg.name || '')).then(sendResponse, () => sendResponse({ ok: false }));
+    return true;
+  }
+  if (msg.type === 'setValues') {
+    setValues(!!msg.on).then(sendResponse, () => sendResponse({ ok: false }));
     return true;
   }
   if (msg.type === 'undoPreset') {
@@ -1078,6 +1098,75 @@ async function signedInUser(fresh) {
   const r = await authJson('https://users.roblox.com/v1/users/authenticated');
   meCache = { id: r.data && r.data.id ? String(r.data.id) : null, at: Date.now() };
   return meCache.id;
+}
+
+const CLOUD_KEY_NAME = 'RoUtility';
+const CLOUD_KEY_DESC = 'Lets RoUtility show when you joined a community. It has no permissions and is only used from your own browser.';
+let cloudToken = null;
+const cloudKeyMemo = new Map();
+
+async function cloudPost(path, body) {
+  for (let i = 0; i < 2; i++) {
+    const res = await fetch('https://apis.roblox.com/cloud-authentication/v1/' + path, { method: 'POST', credentials: 'include', headers: Object.assign({ 'content-type': 'application/json' }, cloudToken ? { 'x-csrf-token': cloudToken } : {}), body: JSON.stringify(body || {}) });
+    if (res.status === 403 && res.headers.get('x-csrf-token')) {
+      cloudToken = res.headers.get('x-csrf-token');
+      continue;
+    }
+    return res.ok ? res.json() : null;
+  }
+  return null;
+}
+
+async function makeCloudKey(uid) {
+  const can = await cloudPost('canUseApiKeys');
+  if (!can || !can.canUseApiKeys) return null;
+  const list = await cloudPost('apiKeys', { cursor: '', limit: 50, reverse: false });
+  const mine = ((list && list.cloudAuthInfo) || []).find(k => k.cloudAuthUserConfiguredProperties?.name === CLOUD_KEY_NAME);
+  const made = mine
+    ? await cloudPost(`apiKey/${mine.id}/regenerate`)
+    : await cloudPost('apiKey', { cloudAuthUserConfiguredProperties: { name: CLOUD_KEY_NAME, description: CLOUD_KEY_DESC, isEnabled: true, allowedCidrs: ['0.0.0.0/0'], scopes: [] } });
+  if (!made || !made.apikeySecret) return null;
+  const st = await chrome.storage.local.get('routilityCloudKeys');
+  await chrome.storage.local.set({ routilityCloudKeys: { ...(st.routilityCloudKeys || {}), [uid]: { secret: made.apikeySecret, id: made.cloudAuthInfo?.id || mine?.id || '' } } });
+  return made.apikeySecret;
+}
+
+async function cloudKey(uid, fresh) {
+  if (!fresh) {
+    const st = await chrome.storage.local.get('routilityCloudKeys');
+    const have = (st.routilityCloudKeys || {})[uid];
+    if (have && have.secret) return have.secret;
+  }
+  if (!cloudKeyMemo.has(uid)) cloudKeyMemo.set(uid, makeCloudKey(uid).catch(() => null).finally(() => setTimeout(() => cloudKeyMemo.delete(uid), 60000)));
+  return cloudKeyMemo.get(uid);
+}
+
+const JOINED_TTL = 30 * 86400000;
+
+async function groupJoined(gid) {
+  if (!/^\d+$/.test(gid)) return null;
+  const uid = await signedInUser();
+  if (!uid) return null;
+  const tag = uid + ':' + gid;
+  const st = await chrome.storage.local.get('routilityJoined');
+  const memo = st.routilityJoined || {};
+  if (memo[tag] && Date.now() - memo[tag].at < JOINED_TTL) return memo[tag].t || null;
+  const url = `https://apis.roblox.com/cloud/v2/groups/${gid}/memberships?maxPageSize=1&filter=${encodeURIComponent(`user == 'users/${uid}'`)}`;
+  for (let i = 0; i < 2; i++) {
+    const key = await cloudKey(uid, i > 0);
+    if (!key) return null;
+    const res = await fetch(url, { credentials: 'omit', headers: { 'x-api-key': key } }).catch(() => null);
+    if (!res) return null;
+    if (res.status === 401) continue;
+    if (!res.ok) return null;
+    const data = await res.json().catch(() => null);
+    const t = data?.groupMemberships?.[0]?.createTime || '';
+    const now = Date.now();
+    const next = Object.fromEntries(Object.entries({ ...((await chrome.storage.local.get('routilityJoined')).routilityJoined || {}), [tag]: { t, at: now } }).filter(([, v]) => now - v.at < JOINED_TTL).slice(-500));
+    await chrome.storage.local.set({ routilityJoined: next });
+    return t || null;
+  }
+  return null;
 }
 
 async function dataUrl(url) {

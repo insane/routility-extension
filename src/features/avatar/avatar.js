@@ -794,7 +794,7 @@
     const missing = w.assets.map(a => a.id).filter(id => !w.thumbs.has(id));
     const [thumbMap, found] = await Promise.all([
       missing.length ? request({ type: 'getAssetThumbs', ids: missing }).catch(() => null) : null,
-      prices(w.assets.map(a => 'id:' + a.id)).catch(() => []),
+      w.values ? prices(w.assets.map(a => 'id:' + a.id)).catch(() => []) : [],
     ]);
     if (wear !== w || token !== w.token) return;
     for (const id of missing) w.thumbs.set(id, (thumbMap || {})[id] || '');
@@ -841,7 +841,7 @@
       if (w.error) panel.appendChild(el('div', 'text-secondary font-caption-body routility-av-wearing-error', w.error));
       const usd = assets.reduce((sum, a) => sum + (w.prices?.get(a.id)?.usd || 0), 0);
       const rap = assets.reduce((sum, a) => sum + (w.prices?.get(a.id)?.rap || 0), 0);
-      if (usd > 0 || rap > 0) {
+      if (w.values && (usd > 0 || rap > 0)) {
         const stats = el('div', 'routility-av-wearing-stats');
         const short = (n) => {
           for (const [d, u] of [[1e9, 'B'], [1e6, 'M'], [1e3, 'K']]) if (n >= d) return (Math.floor(n / d * 10) / 10).toString().replace(/\.0$/, '') + u;
@@ -925,7 +925,7 @@
 
   function setupWearing(opts = {}) {
     if (wear) return;
-    wear = { assets: null, thumbs: new Map(), prices: null, pending: new Set(), token: 0, failed: false, rendered: '', panel: opts.panel !== false, more: !!opts.more, limits: null, advancedBusy: false };
+    wear = { assets: null, thumbs: new Map(), prices: null, pending: new Set(), token: 0, failed: false, rendered: '', panel: opts.panel !== false, values: opts.values !== false, more: !!opts.more, limits: null, advancedBusy: false };
     const w = wear;
     document.addEventListener('click', onCardClick, true);
     loadRules();

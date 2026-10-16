@@ -89,5 +89,15 @@
     document.querySelectorAll('.routility-pv-btn, .routility-pv').forEach(n => n.remove());
   }
 
+  const keepAsked = new Set();
+  window.addEventListener('message', (e) => {
+    if (e.source !== window || !e.data || e.data.type !== 'routility-tryon-keep' || typeof e.data.id !== 'string' || keepAsked.has(e.data.id)) return;
+    const id = e.data.id;
+    keepAsked.add(id);
+    chrome.storage.local.get('routilitySettings', (s) => {
+      window.postMessage({ type: 'routility-tryon-keep-done', id, on: ((s && s.routilitySettings) || {}).tryOnKeepWorn !== false }, location.origin);
+    });
+  });
+
   window.RoUtilityTryOn = { setup, setupBundle, teardown };
 })();

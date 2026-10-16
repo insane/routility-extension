@@ -5,7 +5,7 @@
   const { lt, ltn, LT } = window.RoUtilityI18n;
   let langReady = false;
 
-  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, classicLayout: 'tabs', hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, sessionIps: true, backupCodeDate: true, voiceStatus: true, groupCreated: true, groupCount: true, gameAvatarType: true, createSafety: true, gameUnavailable: true, oldLeftNav: false, calcRate: '3.80', currency: 'USD', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, itemExplorer: true, gearFix: true, avatarPreview: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, badgeSizeFix: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, classicPremium: false, classicVerified: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true, friendsSince: true, fakeRequests: false, fakeRequestsAdd: 'amount', fakeRequestsAmount: '500', sendRobux: true, menuHighlight: 'fill' };
+  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, classicLayout: 'tabs', hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarWearingValues: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, sessionIps: true, backupCodeDate: true, voiceStatus: true, groupCreated: true, groupJoined: true, groupCount: true, gameAvatarType: true, createSafety: true, gameUnavailable: true, oldLeftNav: false, calcRate: '3.80', currency: 'USD', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, itemExplorer: true, gearFix: true, avatarPreview: true, tryOnKeepWorn: true, funOutfits: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, badgeSizeFix: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, plusTheme: '', groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, classicPremium: false, classicVerified: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true, friendsSince: true, fakeRequests: false, fakeRequestsAdd: 'amount', fakeRequestsAmount: '500', sendRobux: true, menuHighlight: 'fill' };
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
 
   const TABS = [
@@ -718,8 +718,11 @@
       ],
     },
     themes: {
-      intro: LT('Make Roblox look the way you like: your own colors, another font and a scrollbar that matches.'),
+      intro: LT('Make Roblox look the way you like: every Roblox Plus theme for free, your own colors, another font and a scrollbar that matches.'),
       groups: [
+        { title: LT('Roblox Plus Themes'), rows: [
+          { custom: 'plusThemes', title: LT('Roblox Plus Themes'), desc: LT('Every app theme from Roblox Plus, free for everyone.'), keywords: 'plus premium theme themes color colour calm dynamic classic nebula nitro circuit kinetic inferno plum quantum cosmic polar charge lime lava star pixel free' },
+        ] },
         { title: LT('Theme'), rows: [
           { key: 'customTheme', title: LT('Custom Theme'), desc: LT('Pick your own colors for Roblox: backgrounds, cards, text, links and the Play button. Start from a preset or set each color yourself.') },
           { custom: 'themeEditor', parent: 'customTheme', title: LT('Theme Editor'), desc: LT('Your colors, the theme presets and your saved themes.'), keywords: 'theme themes color colors colour palette preset presets background dark light' },
@@ -938,6 +941,7 @@
         ] },
         { title: LT('What You’re Wearing'), rows: [
           { key: 'avatarWearing', title: LT('Wearing Panel'), desc: LT('What your avatar has on, under the preview, with the price and R$ value of worn limiteds. Click an item to take it off.') },
+          { key: 'avatarWearingValues', parent: 'avatarWearing', title: LT('Price and R$ Value'), desc: LT('The Price and R$ value of the limiteds you’re wearing, above your items. Off, the panel only shows what you have on.') },
           { key: 'avatarMoreAccessories', title: LT('Wear Up to 10 Accessories'), desc: LT('Wear up to 10 accessories, like 4 hats or 2 face accessories, with a normal click instead of Roblox swapping one out.') },
         ] },
         { title: LT('Free Items'), rows: [
@@ -1018,6 +1022,7 @@
         ] },
         { title: LT('Try On & Explore'), rows: [
           { key: 'avatarPreview', title: LT('Avatar Preview'), desc: LT('A Preview button next to Try On that shows the item on your avatar in 3D. Drag to turn it, switch R6 / R15, and take your worn items on or off.') },
+          { key: 'tryOnKeepWorn', title: LT('Keep Your Hats on Try On'), desc: LT('Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, up to 10 accessories.') },
           { key: 'itemExplorer', title: LT('Explorer'), desc: LT('A button on item pages that opens the item like Roblox Studio would: its Explorer tree and every property, with links to its meshes and textures, and a download of the model file.') },
         ] },
         { title: LT('Resellers & Owners'), rows: [
@@ -1117,6 +1122,7 @@
           { key: 'groupDetails', title: LT('Exact Numbers'), desc: LT('The exact member count instead of 570.2K+, your rank number on your role, and on communities you run, Community Funds with what they’re worth in your currency.') },
           { key: 'groupFind', title: LT('Find a Member'), desc: LT('A search box in the Members list. Type a username to see if they’re in the community and what their role is, even in communities with millions of members.') },
           { key: 'groupCreated', title: LT('Created Date'), desc: LT('When the community was made, as a pill under its name. Handy for spotting brand new copycat or scam communities.') },
+          { key: 'groupJoined', title: LT('Joined Date'), desc: LT('When you joined the community, as a pill under its name. To read it, RoUtility makes an API key named RoUtility on your Roblox account, with no permissions, used only from your browser.') },
           { key: 'groupHiddenGames', title: LT('Hidden Experiences'), desc: LT('Experiences a community owns that aren’t listed on its page, like test places and old games, in their own section under Experiences.') },
           { key: 'groupFullDesc', title: LT('Full Descriptions'), desc: LT('Shows a community’s whole description on its page, instead of three lines and a More button.') },
         ] },
@@ -1173,6 +1179,7 @@
         { title: LT('Purchases'), rows: [
           { key: 'fakeBuy', title: LT('Fake Purchases'), desc: LT('Buy items, bundles, game passes and developer products like normal, through Roblox’s own purchase window and Purchase Completed screen. Your balance goes down and the item shows as owned, in your inventory too, but no Robux are spent and nothing is added to your account. Hats and other accessories also show up in the Avatar editor, and you can put them on there. Only you see them on your avatar. Real item purchases are blocked while this is on.') },
           { custom: 'funItems', parent: 'fakeBuy', title: LT('Your Fake Items'), desc: LT('Everything you’ve fake bought. Remove one to get its Robux back.') },
+          { key: 'funOutfits', parent: 'fakeBuy', title: LT('Fun Outfits'), desc: LT('A Fun Outfits button in the avatar editor’s Creations: save looks with items you don’t own yet, wear them again in Fun Mode, and see what they’d cost to buy for real.') },
         ] },
         { title: LT('Friends'), rows: [
           { key: 'fakeRequests', title: LT('Fake Friend Requests'), desc: LT('More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.') },
@@ -1236,10 +1243,30 @@
     return wrap;
   }
 
+  let titleMemo = null;
+
+  function titleOf(key) {
+    if (!titleMemo) {
+      titleMemo = {};
+      for (const pg of Object.values(PAGES)) for (const g of pg.groups) for (const r of g.rows) if (r.key) titleMemo[r.key] = r.title;
+    }
+    return titleMemo[key] || '';
+  }
+
   function paint(rows, settings) {
     for (const { def, section } of rows) {
+      const blocked = !!(def.parent && !settings[def.parent]);
       section.classList.toggle('routility-set-off', !def.options && !settings[def.key]);
-      section.classList.toggle('routility-set-blocked', !!(def.parent && !settings[def.parent]));
+      section.classList.toggle('routility-set-blocked', blocked);
+      let note = section.querySelector('.routility-set-needs');
+      if (blocked && !note && titleOf(def.parent)) {
+        const text = section.querySelector('.routility-set-text');
+        if (text) {
+          note = el('p', 'text-body-small margin-none routility-set-needs', lt('Turn on {name} to use this.', { name: lt(titleOf(def.parent)) }));
+          text.appendChild(note);
+        }
+      }
+      if (note) note.hidden = !blocked;
     }
   }
 
@@ -1598,6 +1625,71 @@
 
   function colorHex(c) {
     return '#' + [c.r, c.g, c.b].map(x => x.toString(16).padStart(2, '0')).join('');
+  }
+
+  const PLUS_THEMES = [
+    [LT('Calm'), [['nebula-drift', LT('Nebula Drift'), '#ddcffe', '#480b98'], ['nitro-frost', LT('Nitro Frost'), '#98e3f4', '#043b5d'], ['circuit-rush', LT('Circuit Rush'), '#ade7b1', '#043e32'], ['kinetic-energy', LT('Kinetic Energy'), '#cae388', '#2e3c02'], ['inferno-blast', LT('Inferno Blast'), '#fecec8', '#6b0f0b'], ['hyper-plum', LT('Hyper Plum'), '#fbc9d8', '#710437'], ['quantum-pulse', LT('Quantum Pulse'), '#fbc8f8', '#5d0e5d']]],
+    [LT('Dynamic'), [['cosmic-dust', LT('Cosmic Dust'), '#cbb7fd', '#6625d0'], ['polar-freeze', LT('Polar Freeze'), '#6cd1ed', '#065684'], ['super-charge', LT('Super Charge'), '#81d887', '#045d4a'], ['electric-lime', LT('Electric Lime'), '#b4d159', '#455903'], ['lava-glow', LT('Lava Glow'), '#fbb2a9', '#a71811'], ['star-burst', LT('Star Burst'), '#fbadc6', '#a5094f'], ['pixel-pop', LT('Pixel Pop'), '#f7acf4', '#8e1f8e']]],
+    [LT('Special'), [['classic', LT('Classic'), '#e42727', '#e42727']]],
+  ];
+
+  function plusThemes(settings, save) {
+    const section = el('section', 'routility-set-row routility-plus-row');
+    section.dataset.key = 'plusTheme';
+    const text = el('div', 'routility-set-text flex flex-col gap-xsmall');
+    const title = el('h3', 'text-title-large content-emphasis padding-none', lt('Roblox Plus Themes'));
+    title.appendChild(el('span', 'routility-set-chip routility-plus-free', lt('Free')));
+    text.appendChild(title);
+    text.appendChild(el('p', 'text-body-small content-muted margin-none', lt('Every app theme from Roblox Plus, free for everyone. They’re Roblox’s own themes, so every page changes color just like it does for Plus members, in light and dark mode.')));
+    section.appendChild(text);
+    if (settings.customTheme) section.appendChild(el('p', 'text-body-small content-muted margin-none routility-plus-paused', lt('Custom Theme is on, so it’s used instead. Picking a theme here turns Custom Theme off.')));
+    const dark = () => !document.body.classList.contains('light-theme');
+    const cards = [];
+    const card = (key, label, light, darkHex) => {
+      const on = (settings.plusTheme || '') === key;
+      const b = el('button', 'routility-plus-card flex items-center gap-small width-full padding-medium radius-medium text-align-x-start stroke-standard cursor-pointer ' + (on ? 'bg-shift-200 routility-plus-on' : 'bg-none stroke-emphasis'));
+      b.type = 'button';
+      b.setAttribute('aria-pressed', String(on));
+      const dot = el('span', 'routility-plus-swatch grow-0 shrink-0 basis-auto size-800 radius-circle clip stroke-standard');
+      dot.setAttribute('aria-hidden', 'true');
+      const fill = el('span', 'block size-full');
+      if (light) fill.style.backgroundColor = dark() ? darkHex : light;
+      else fill.classList.add('routility-plus-default');
+      dot.appendChild(fill);
+      b.append(dot, el('span', 'fill basis-0 min-width-0 text-no-wrap text-truncate-end text-body-medium content-default', label));
+      b.addEventListener('click', () => {
+        if ((settings.plusTheme || '') === key && !settings.customTheme) return;
+        const patch = { plusTheme: key };
+        if (key && settings.customTheme) patch.customTheme = false;
+        save(patch);
+        if (patch.customTheme === false) {
+          setTimeout(() => location.reload(), 150);
+          return;
+        }
+        settings.plusTheme = key;
+        for (const c of cards) {
+          const mine = c.dataset.key === key;
+          c.classList.toggle('bg-shift-200', mine);
+          c.classList.toggle('routility-plus-on', mine);
+          c.classList.toggle('bg-none', !mine);
+          c.classList.toggle('stroke-emphasis', !mine);
+          c.setAttribute('aria-pressed', String(mine));
+        }
+      });
+      b.dataset.key = key;
+      cards.push(b);
+      return b;
+    };
+    const first = el('div', 'routility-plus-grid');
+    first.appendChild(card('', lt('Roblox Default')));
+    section.appendChild(first);
+    for (const [group, list] of PLUS_THEMES) {
+      section.appendChild(el('span', 'text-label-medium content-muted routility-plus-group', lt(group)));
+      const grid = el('div', 'routility-plus-grid');
+      for (const [key, label, light, darkHex] of list) grid.appendChild(card(key, lt(label), light, darkHex));
+      section.appendChild(grid);
+    }
+    return section;
   }
 
   function themeEditor(settings) {
@@ -2688,6 +2780,12 @@
     version.href = '#!/routility/whatsnew';
     version.dataset.rtTip = lt('See what’s new');
     chips.appendChild(version);
+    const source = el('a', 'routility-set-chip routility-set-chip-link', lt('Open Source on GitHub'));
+    source.href = 'https://github.com/insane/routility-extension';
+    source.target = '_blank';
+    source.rel = 'noreferrer';
+    source.dataset.rtTip = lt('Read every line of RoUtility’s code');
+    chips.appendChild(source);
     words.appendChild(chips);
     hero.appendChild(words);
     section.appendChild(hero);
@@ -2733,6 +2831,24 @@
         grid.appendChild(card);
       }
       setup.card.appendChild(grid);
+      const values = el('div', 'routility-set-presets-foot');
+      values.appendChild(el('span', 'text-body-small content-muted', state.valuesOff ? lt('Prices and values are off. Turn them back on to see prices, RAP and values on items, inventories, trades and the Wearing panel again.') : lt('Don’t want prices or values? Turn off every price, RAP and value RoUtility adds, and keep everything else how it is.')));
+      values.appendChild(button(state.valuesOff ? lt('Turn Values Back On') : lt('Turn Off Values'), (btn, text) => {
+        btn.disabled = true;
+        text.textContent = lt('Applying…');
+        chrome.runtime.sendMessage({ type: 'setValues', on: !!state.valuesOff }, (res) => {
+          void chrome.runtime.lastError;
+          if (res && res.ok) location.reload();
+          else {
+            text.textContent = lt('Didn’t Apply, Try Again');
+            setTimeout(() => {
+              btn.disabled = false;
+              text.textContent = state.valuesOff ? lt('Turn Values Back On') : lt('Turn Off Values');
+            }, 2500);
+          }
+        });
+      }));
+      setup.card.appendChild(values);
       if (state.canUndo || state.welcome) {
         const foot = el('div', 'routility-set-presets-foot');
         if (state.canUndo) {
@@ -2815,8 +2931,19 @@
     const others = group(lt('Other Extensions'), lt('Seen on Roblox pages recently'));
     others.hidden = true;
     section.appendChild(others);
-    chrome.storage.local.get('routilityOtherExts', (st) => {
+    const installed = (url) => fetch(url, { mode: 'no-cors', cache: 'no-store' }).then(() => true, () => false);
+    chrome.storage.local.get('routilityOtherExts', async (st) => {
       const seen = st.routilityOtherExts || {};
+      const ids = Object.entries(seen.ids || {});
+      const live = new Map(await Promise.all(ids.map(async ([id, e]) => [id, !(e && e.url) || await installed(e.url)])));
+      const gone = ids.filter(([id]) => !live.get(id)).map(([id]) => id);
+      if (gone.length) {
+        const keep = (map, test) => Object.fromEntries(Object.entries(map || {}).filter(test));
+        seen.ids = keep(seen.ids, ([id]) => live.get(id));
+        seen.brands = keep(seen.brands, ([, e]) => !(e && Array.isArray(e.ids) && e.ids.length && e.ids.every(id => gone.includes(id))));
+        chrome.storage.local.set({ routilityOtherExts: seen });
+      }
+      if (!others.isConnected) return;
       const brands = Object.keys(seen.brands || {}).sort();
       const unknown = Math.max(0, Object.keys(seen.ids || {}).length - brands.length);
       if (!brands.length && !unknown) return;
@@ -3200,6 +3327,10 @@
           }
           if (def.custom === 'layoutPreview') {
             wrap.card.appendChild(layoutVisualizer(stored));
+            continue;
+          }
+          if (def.custom === 'plusThemes') {
+            place(def, plusThemes(settings, save));
             continue;
           }
           if (def.custom === 'themeEditor') {

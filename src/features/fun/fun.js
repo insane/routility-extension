@@ -361,5 +361,6 @@
     ready,
     worn: () => wornList(),
     headshot: (circular) => ready.then(() => (wornList().length ? headshotFor(circular) : null)),
+    render: (size) => ready.then(() => (buying() && state.worn.length ? bodyRender(size) : null)),
   };
 })();

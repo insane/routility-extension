@@ -452,6 +452,7 @@
     window.RoUtilityThumbCam.teardown();
     window.RoUtilityAccAdjust.teardown();
     window.RoUtilityRotator.teardown();
+    window.RoUtilityFunOutfits.teardown();
     window.RoUtilityBadgeManage.teardown();
     window.RoUtilitySkinTone.teardown();
     window.RoUtilityMutual.teardown();
@@ -670,12 +671,13 @@
         const settings = { avatarSearch: true, avatarWearing: true, avatarMoreAccessories: true, avatarRig: true, avatarRemember: true, thumbCustomize: true, accessoryAdjust: true, outfitRotator: true, skinWheel: true, marketplaceValues: true, ...(stored.routilitySettings || {}) };
         if (window.location.pathname !== path) return;
         if (settings.avatarSearch) window.RoUtilityAvatar.setup();
-        if (settings.avatarWearing || settings.avatarMoreAccessories) window.RoUtilityAvatar.setupWearing({ panel: settings.avatarWearing, more: settings.avatarMoreAccessories });
+        if (settings.avatarWearing || settings.avatarMoreAccessories) window.RoUtilityAvatar.setupWearing({ panel: settings.avatarWearing, values: settings.avatarWearingValues !== false, more: settings.avatarMoreAccessories });
         if (settings.avatarRig) window.RoUtilityAvatar.setupRig();
         if (settings.avatarRemember) window.RoUtilityAvatar.setupRemember();
         if (settings.thumbCustomize) window.RoUtilityThumbCam.setup();
         if (settings.accessoryAdjust) window.RoUtilityAccAdjust.setup();
         if (settings.outfitRotator) window.RoUtilityRotator.setup();
+        if (settings.fakeBuy === true && settings.funOutfits !== false) window.RoUtilityFunOutfits.setup();
         if (settings.skinWheel) window.RoUtilitySkinTone.setup();
         if (settings.marketplaceValues) window.RoUtilityInventory.setup();
       });

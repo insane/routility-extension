@@ -7,6 +7,36 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 - Code: [@reqonn](https://github.com/reqonn), [@awkward222](https://github.com/awkward222)
 - Bug reports and ideas: [@reqonn](https://github.com/reqonn), api_cats
 
+## 1.1.5 · October 16, 2026
+
+Every Roblox Plus theme for free, when you joined each community, Fun Outfits, and Try On that keeps your hats.
+
+**New**
+
+```diff
++ Roblox Plus Themes, free: all 15 of Roblox Plus's own themes, like Cosmic Dust, Polar Freeze, Lava Glow and Classic, for everyone. Pick one in Themes and every page changes color, in light and dark mode.
++ Joined Date: see when you joined a community, as a pill next to its Created date.
++ Fun Outfits: in Fun Mode, save looks with items you don't own yet, wear them again later, and see what they'd cost to buy for real.
++ Turn Off Values: one button under Quick Setup turns off every price, RAP and value RoUtility adds, and leaves everything else as it is.
++ Price and R$ Value on the Wearing panel can now be turned off on its own.
+```
+
+**Improved**
+
+```diff
+~ Roblox's Try On on item pages keeps the hats and accessories you're wearing instead of taking them all off.
+~ Greyed out settings now say which setting to turn on first.
+~ An Open Source on GitHub link on the About page.
+```
+
+**Fixed**
+
+```diff
+- The device and location filters on Charts no longer drop to the bottom of the page.
+- Other Extensions forgets extensions you've uninstalled.
+- Gear like the Darkheart shows its real color in Avatar Preview instead of looking like a Linked Sword.
+```
+
 ## 1.1.4 · October 15, 2026
 
 Send Robux without the app, prices in your own currency, much more customizable themes, a second classic profile layout, and updates that clean up after themselves.

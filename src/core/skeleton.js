@@ -420,9 +420,37 @@
       if (!on) localStorage.removeItem('routilityNavFlipped');
     } catch {}
   };
+  const PLUS_THEMES = ['nebula-drift', 'nitro-frost', 'circuit-rush', 'kinetic-energy', 'inferno-blast', 'hyper-plum', 'quantum-pulse', 'cosmic-dust', 'polar-freeze', 'super-charge', 'electric-lime', 'lava-glow', 'star-burst', 'pixel-pop', 'classic'];
+  let plusMine = '';
+  let plusWatch = null;
+  const plusTheme = () => {
+    const s = lastSettings || {};
+    const want = !s.customTheme && PLUS_THEMES.includes(s.plusTheme) ? s.plusTheme : '';
+    const body = document.body;
+    if (!body) {
+      if (want && !plusWatch) {
+        plusWatch = new MutationObserver(() => { if (document.body) { plusWatch.disconnect(); plusWatch = null; plusTheme(); } });
+        plusWatch.observe(document.documentElement, { childList: true });
+      }
+      return;
+    }
+    if (!want && !plusMine) return;
+    const cls = body.classList;
+    if (plusMine && plusMine !== want) cls.remove('theme-' + plusMine, plusMine + '-theme');
+    if (want) {
+      for (const k of PLUS_THEMES) if (k !== want && cls.contains('theme-' + k)) cls.remove('theme-' + k, k + '-theme');
+      if (!cls.contains('theme-' + want)) cls.add('theme-' + want, want + '-theme');
+    }
+    plusMine = want;
+    if (want && !body.routilityPlusWatch) {
+      body.routilityPlusWatch = true;
+      new MutationObserver(() => { if (plusMine && (!body.classList.contains('theme-' + plusMine) || PLUS_THEMES.some(k => k !== plusMine && body.classList.contains('theme-' + k)))) plusTheme(); }).observe(body, { attributes: true, attributeFilter: ['class'] });
+    }
+  };
   const boot = (s) => {
     lastSettings = s.routilitySettings || {};
     oldNav();
+    plusTheme();
     watchRobloxOnly();
     themeOn = !!lastSettings.customTheme;
     themeColors = (s.routilityTheme && s.routilityTheme.colors) || {};
@@ -443,7 +471,7 @@
   });
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area === 'local' && EARLY_KEYS.some(k => changes[k])) remember(Object.fromEntries(EARLY_KEYS.filter(k => changes[k]).map(k => [k, changes[k].newValue])));
-    if (area === 'local' && changes.routilitySettings) { lastSettings = changes.routilitySettings.newValue || {}; oldNav(); apply(changes.routilitySettings.newValue); applyNav(navLayout); applyCollapse(); watchRobloxOnly(); themeOn = !!lastSettings.customTheme; needImage(); applyTheme(); }
+    if (area === 'local' && changes.routilitySettings) { lastSettings = changes.routilitySettings.newValue || {}; oldNav(); plusTheme(); apply(changes.routilitySettings.newValue); applyNav(navLayout); applyCollapse(); watchRobloxOnly(); themeOn = !!lastSettings.customTheme; needImage(); applyTheme(); }
     if (area === 'local' && changes.routilityTheme) { const t = changes.routilityTheme.newValue || {}; themeColors = t.colors || {}; themeFx = typeof t.fx === 'string' ? t.fx : ''; themeLook = t; needImage(); applyTheme(); }
     if (area === 'local' && changes.routilityFont) { fontAsked = true; useFont(changes.routilityFont.newValue); }
     if (area === 'local' && changes.routilityThemeImage) { themeImage = IMAGE.test(changes.routilityThemeImage.newValue) ? changes.routilityThemeImage.newValue : ''; imageAsked = true; applyTheme(); }

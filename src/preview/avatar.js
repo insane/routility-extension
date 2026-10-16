@@ -687,7 +687,8 @@ async function partMesh(inst, color) {
   const side = bitmap ? Math.min(1024, Math.max(bitmap.width || 0, bitmap.height || 0)) || 512 : 0;
   const map = bitmap ? (inst.className === 'MeshPart' ? paint(base, [bitmap], side, side) : bitmapTexture(bitmap)) : null;
   if (!geometry) return null;
-  const mesh = new THREE.Mesh(geometry, material(map ? new THREE.Color(1, 1, 1) : base, map));
+  const tint = special && map ? vec(special, 'VertexColor') : null;
+  const mesh = new THREE.Mesh(geometry, material(map ? (tint ? new THREE.Color(tint.x, tint.y, tint.z) : new THREE.Color(1, 1, 1)) : base, map));
   mesh.geometry.userData.shared = true;
   const see = Number((prop(inst, 'Transparency') || {}).value) || 0;
   if (see > 0) {

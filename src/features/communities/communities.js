@@ -6,7 +6,7 @@
   const DAY = 86400000;
   const FG_KEY = 'routilityFriendGroups';
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
-  const settings = { groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, groupFind: true, groupHiddenGames: true, groupCreated: true, groupCount: true };
+  const settings = { groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, groupFind: true, groupHiddenGames: true, groupCreated: true, groupJoined: true, groupCount: true };
   let lastUrl = '';
   let page = null;
   let csrf = '';
@@ -159,7 +159,7 @@
   }
 
   function communityPage(gid) {
-    const s = { gid, info: null, role: null, friends: null, pics: {}, funds: null, created: null, asked: false };
+    const s = { gid, info: null, role: null, friends: null, pics: {}, funds: null, created: null, joined: null, asked: false };
     s.run = () => {
       const row = document.querySelector('.profile-insights-container');
       if (!row) return;
@@ -181,6 +181,10 @@
       }
       if (settings.groupCreated && s.created && !row.querySelector('.routility-cm-created')) {
         const pill = el('span', pillClass().replace(/cursor-pointer/g, '') + ' routility-injected routility-cm-created', lt('Created {date}', { date: s.created }));
+        row.insertBefore(pill, row.querySelector('.routility-cm-joined, .routility-cm-funds, .routility-cm-friends'));
+      }
+      if (settings.groupJoined && s.joined && !row.querySelector('.routility-cm-joined')) {
+        const pill = el('span', pillClass().replace(/cursor-pointer/g, '') + ' routility-injected routility-cm-joined', lt('Joined {date}', { date: s.joined }));
         row.insertBefore(pill, row.querySelector('.routility-cm-funds, .routility-cm-friends'));
       }
       if (settings.groupDetails && s.funds !== null && !row.querySelector('.routility-cm-funds')) {
@@ -217,8 +221,24 @@
     return s;
   }
 
+  function shortDate(at) {
+    try {
+      return at.toLocaleDateString(window.RoUtilityI18n.locale(), { month: 'short', day: 'numeric', year: 'numeric' });
+    } catch {
+      return at.toDateString();
+    }
+  }
+
   async function start(s) {
     const tasks = [];
+    if (settings.groupJoined) {
+      tasks.push(window.RoUtilityUI.request({ type: 'groupJoined', groupId: s.gid }).then((t) => {
+        const at = t && new Date(t);
+        if (!at || isNaN(at) || page !== s) return;
+        s.joined = shortDate(at);
+        s.run();
+      }).catch(() => {}));
+    }
     if (settings.groupCreated) {
       tasks.push(getJson(`https://groups.roblox.com/v2/groups?groupIds=${s.gid}`).then((d) => {
         const at = d && d.data && d.data[0] && new Date(d.data[0].created);
