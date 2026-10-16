@@ -79,7 +79,7 @@
     const missing = want.filter(id => !itemMeta.has(String(id)));
     for (let i = 0; i < missing.length; i += 4) {
       await Promise.all(missing.slice(i, i + 4).map(id => json(`https://economy.roblox.com/v2/assets/${id}/details`).then(d => {
-        if (d && d.Name) itemMeta.set(String(id), { name: d.Name, limited: !!d.IsLimited || !!d.CollectibleItemId && d.IsForSale === false && !!d.CollectiblesItemDetails, unique: !!d.IsLimitedUnique });
+        if (d && d.Name) itemMeta.set(String(id), { name: d.Name, limited: !!d.IsLimited || !!(d.CollectiblesItemDetails && d.CollectiblesItemDetails.IsLimited), unique: !!d.IsLimitedUnique });
       })));
     }
     return new Map(ids.filter(id => itemMeta.has(String(id))).map(id => [id, itemMeta.get(String(id))]));
