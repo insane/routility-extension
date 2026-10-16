@@ -720,12 +720,12 @@
     themes: {
       intro: LT('Make Roblox look the way you like: every Roblox Plus theme for free, your own colors, another font and a scrollbar that matches.'),
       groups: [
-        { title: LT('Roblox Plus Themes'), rows: [
-          { custom: 'plusThemes', title: LT('Roblox Plus Themes'), desc: LT('Every app theme from Roblox Plus, free for everyone.'), keywords: 'plus premium theme themes color colour calm dynamic classic nebula nitro circuit kinetic inferno plum quantum cosmic polar charge lime lava star pixel free' },
-        ] },
         { title: LT('Theme'), rows: [
           { key: 'customTheme', title: LT('Custom Theme'), desc: LT('Pick your own colors for Roblox: backgrounds, cards, text, links and the Play button. Start from a preset or set each color yourself.') },
           { custom: 'themeEditor', parent: 'customTheme', title: LT('Theme Editor'), desc: LT('Your colors, the theme presets and your saved themes.'), keywords: 'theme themes color colors colour palette preset presets background dark light' },
+        ] },
+        { title: LT('Roblox Plus Themes'), rows: [
+          { custom: 'plusThemes', title: LT('Roblox Plus Themes'), desc: LT('Every app theme from Roblox Plus, free for everyone.'), keywords: 'plus premium theme themes color colour calm dynamic classic nebula nitro circuit kinetic inferno plum quantum cosmic polar charge lime lava star pixel free' },
         ] },
         { title: LT('Font'), rows: [
           { key: 'siteFont', title: LT('Website Font'), desc: LT('Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.'), options: [['default', LT('Roblox default')], ['builder', 'Builder Sans'], ['system', LT('System font')], ['custom', LT('Your Own Font')]], fontInput: 'custom' },
@@ -1680,15 +1680,38 @@
       cards.push(b);
       return b;
     };
+    const fold = el('button', 'text-label-medium content-emphasis routility-theme-group routility-plus-fold');
+    fold.type = 'button';
+    fold.setAttribute('aria-expanded', 'false');
+    const now = el('span', 'routility-theme-group-name');
+    fold.append(now, el('span', 'routility-theme-group-chev'));
+    const body = el('div', 'routility-plus-body');
+    body.hidden = true;
+    fold.addEventListener('click', () => {
+      const open = fold.getAttribute('aria-expanded') !== 'true';
+      fold.setAttribute('aria-expanded', String(open));
+      body.hidden = !open;
+    });
+    const showNow = () => {
+      const pick = PLUS_THEMES.flatMap(g => g[1]).find(t => t[0] === (settings.plusTheme || ''));
+      now.textContent = '';
+      const dot = el('span', 'routility-plus-mini');
+      if (pick) dot.style.backgroundColor = dark() ? pick[3] : pick[2];
+      else dot.classList.add('routility-plus-default');
+      now.append(dot, el('span', null, pick ? lt(pick[1]) : lt('Roblox Default')));
+    };
     const first = el('div', 'routility-plus-grid');
     first.appendChild(card('', lt('Roblox Default')));
-    section.appendChild(first);
+    body.appendChild(first);
     for (const [group, list] of PLUS_THEMES) {
-      section.appendChild(el('span', 'text-label-medium content-muted routility-plus-group', lt(group)));
+      body.appendChild(el('span', 'text-label-medium content-muted routility-plus-group', lt(group)));
       const grid = el('div', 'routility-plus-grid');
       for (const [key, label, light, darkHex] of list) grid.appendChild(card(key, lt(label), light, darkHex));
-      section.appendChild(grid);
+      body.appendChild(grid);
     }
+    for (const c of cards) c.addEventListener('click', showNow);
+    showNow();
+    section.append(fold, body);
     return section;
   }
 

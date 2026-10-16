@@ -12121,3 +12121,27 @@ html.routility-menu-bar .rt-m-tab-on::before {
 .routility-plus-default {
   background: linear-gradient(135deg, #ffffff 50%, #121215 50%);
 }
+
+.routility-plus-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.routility-plus-body[hidden] {
+  display: none;
+}
+
+.routility-plus-fold .routility-theme-group-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.routility-plus-mini {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--color-content-muted, rgba(127, 127, 127, 0.5));
+  flex-shrink: 0;
+}
