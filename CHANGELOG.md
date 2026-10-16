@@ -14,6 +14,7 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 **New**
 
 ```diff
++ Hidden Item Details: when an item's page is hidden, like an archived or unreleased item, RoUtility rebuilds it with its picture, creator, type, dates, favorites and description instead of a 404.
 + Smarter Inventory Search: when you make or counter a trade, searching an inventory also finds items by acronym, like CWS for Clockwork's Shades, and shows suggestions as you type.
 + Quick Settings Style: List, Tiles or Compact, a single line with your online status that opens the settings when you click it. Quick Settings also looks quieter and lines up with the menu. (by @reqonn)
 + Recent Servers: a game's Servers tab lists the servers you played in lately, so you can jump back into one while it's still running.

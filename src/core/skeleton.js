@@ -4,6 +4,7 @@
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const CLASS = 'routility-skeleton';
   const root = document.documentElement;
+  if (location.hostname === 'www.roblox.com' && /^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?(?:catalog|bundles)\/\d+/i.test(location.pathname)) root.classList.add('routility-hi-path');
   if (location.hostname === 'www.roblox.com') {
     const pushKey = 'routilityNavPush:' + ((location.pathname.split('/')[1] || 'home').toLowerCase().replace(/^\d+$/, 'id')) + ':' + Math.round(window.innerWidth / 100);
     let pushed = null;
