@@ -339,10 +339,11 @@
     const now = Date.now();
     const results = await Promise.all(entries.map((e, i) => {
       const hit = mem.get(keys[i]);
-      const own = me && AVATAR_TYPES.has(e.type) && String(e.targetId) === me;
-      if (hit && !own && now - hit.t < DAY) {
+      const avatar = AVATAR_TYPES.has(e.type);
+      const own = me && avatar && String(e.targetId) === me;
+      if (hit && !own && now - hit.t < (avatar ? freshFor(e.type) : DAY)) {
         stats.cached++;
-        if (now - hit.t > freshFor(e.type)) queue(e, keys[i], true);
+        if (!avatar && now - hit.t > freshFor(e.type)) queue(e, keys[i], true);
         return { state: hit.s, imageUrl: hit.u, version: hit.v, errorCode: 0, errorMessage: '' };
       }
       return queue(e, keys[i], false);
