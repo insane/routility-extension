@@ -9,6 +9,7 @@
       "date": "2026-10-16",
       "summary": "Every Roblox Plus theme for free, when you joined each community, Fun Outfits, and Try On that keeps your hats.",
       "changes": [
+        { "type": "new", "text": "Short Numbers on Profiles: show the profile pills like 7.27M+ instead of the full number. Value now uses the RoUtility logo, price a dollar icon and RAP the Robux icon, so they never look alike." },
         { "type": "new", "text": "RoUtility Values in trades: every item shows its RAP, Value and price, each side gets a Value total under the RAP total, and there are RAP, Value and price difference pills. Pick which two pills your trade list shows: RAP and Price, Value and Price, or RAP and Value." },
         { "type": "fixed", "text": "The Trade Calculator sits centered with room on both sides instead of running into the menu and the window edge on wide screens, and its loading skeleton matches." },
         { "type": "new", "text": "RoUtility Values on profiles: the price and Robux Value share one pill next to the green RAP pill. Pick which of the three you see in Settings > Inventory > Inventory Values." },

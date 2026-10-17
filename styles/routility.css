@@ -12855,3 +12855,7 @@ html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padd
 .routility-card-usd .routility-usd-ic { width: 14px; height: 14px; margin-right: 5px; }
 .routility-usd-total { display: inline-flex; align-items: center; gap: 6px; }
 .routility-usd-total .routility-usd-ic { width: 18px; height: 18px; }
+
+.routility-value-usd-ic { width: 16px; height: 16px; }
+.routility-worth-logo { width: 16px; height: 16px; flex: none; }
+.routility-classic-pills .routility-value-usd-ic, .routility-classic-pills .routility-worth-logo, .routility-trade-inv-pills .routility-value-usd-ic, .routility-trade-inv-pills .routility-worth-logo { width: 14px; height: 14px; }

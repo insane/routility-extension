@@ -140,11 +140,25 @@
 
 
   const LOGO_URL = chrome.runtime.getURL('assets/icons/logo.png');
+  let shortOn = false;
+  chrome.storage.local.get('routilitySettings', (s) => { shortOn = (s.routilitySettings || {}).profileShort === true; });
+
+  function pillNumber(n, more) {
+    if (!shortOn || n < 1000) return formatNumber(n) + (more ? '+' : '');
+    const [size, suffix] = n >= 1e9 ? [1e9, 'B'] : n >= 1e6 ? [1e6, 'M'] : [1e3, 'K'];
+    const cut = Math.floor(n / size * 100) / 100;
+    const text = cut.toFixed(2).replace(/\.?0+$/, '');
+    return text + suffix + (more || cut * size < n ? '+' : '');
+  }
+
+  function exactTip(text, n) {
+    return shortOn && n >= 1000 ? text + ' · ' + formatNumber(n) : text;
+  }
 
   function pillText(summary) {
     if (summary.private) return lt('Private');
     const { symbol } = window.RoUtilityUI.cash();
-    return symbol + formatNumber(Math.round(window.RoUtilityUI.toCash(summary.usd))) + (summary.complete ? '' : '+');
+    return symbol + pillNumber(Math.round(window.RoUtilityUI.toCash(summary.usd)), !summary.complete);
   }
 
   function makePill(userId, summary, name) {
@@ -163,13 +177,13 @@
     a.dataset.rtTip = summary.private
       ? lt('Private inventory')
       : ltn(summary.count, '{count} limited', '{count} limiteds', { count: formatNumber(summary.count) });
+    if (!summary.private && shortOn) a.dataset.rtTip += ' · ' + window.RoUtilityUI.cash().symbol + formatNumber(Math.round(window.RoUtilityUI.toCash(summary.usd)));
     const layer = el('div', STATE_LAYER);
     layer.setAttribute('aria-hidden', 'true');
     a.appendChild(layer);
-    const logo = el('img', 'routility-value-logo');
-    logo.src = LOGO_URL;
-    logo.alt = '';
-    a.appendChild(logo);
+    const icon = el('span', 'routility-usd-ic routility-value-usd-ic');
+    icon.setAttribute('aria-hidden', 'true');
+    a.appendChild(icon);
     a.appendChild(el('span', 'padding-y-xsmall text-no-wrap text-truncate-end', pillText(summary)));
     return a;
   }
@@ -397,12 +411,15 @@
     const a = el('a', PILL_CLASS + ' routility-worth-pill');
     a.href = `https://routility.io/player/${userId}`;
     a.style.textDecoration = 'none';
-    a.dataset.rtTip = lt('RoUtility Value, counting RAP for items we haven’t valued yet');
+    a.dataset.rtTip = exactTip(lt('RoUtility Value, counting RAP for items we haven’t valued yet'), summary.worth);
     const layer = el('div', STATE_LAYER);
     layer.setAttribute('aria-hidden', 'true');
     a.appendChild(layer);
-    const tag = valueTag(summary.worth, { tip: false, className: 'padding-y-xsmall text-no-wrap' });
-    tag.lastChild.textContent += summary.complete ? '' : '+';
+    const tag = el('span', 'routility-val padding-y-xsmall text-no-wrap');
+    const logo = el('img', 'routility-worth-logo');
+    logo.src = LOGO_URL;
+    logo.alt = '';
+    tag.append(logo, el('span', null, pillNumber(summary.worth, !summary.complete)));
     a.appendChild(tag);
     a.addEventListener('mouseenter', () => { scan(userId); }, { once: true });
     a.addEventListener('click', (e) => {
@@ -438,13 +455,13 @@
     const a = el('a', PILL_CLASS + ' routility-rap-pill');
     a.href = `https://routility.io/player/${userId}`;
     a.style.textDecoration = 'none';
-    a.dataset.rtTip = lt('Total RAP');
+    a.dataset.rtTip = exactTip(lt('Total RAP'), Number(summary.rapTotal) || 0);
     const layer = el('div', STATE_LAYER);
     layer.setAttribute('aria-hidden', 'true');
     a.appendChild(layer);
     a.appendChild(el('span', 'icon-robux-16x16 routility-rap-icon'));
     const total = Number(summary.rapTotal) || 0;
-    a.appendChild(el('span', 'padding-y-xsmall text-no-wrap text-truncate-end', formatNumber(total) + (summary.complete ? '' : '+')));
+    a.appendChild(el('span', 'padding-y-xsmall text-no-wrap text-truncate-end', pillNumber(total, !summary.complete)));
     a.addEventListener('mouseenter', () => { scan(userId); }, { once: true });
     a.addEventListener('click', (e) => {
       e.preventDefault();
