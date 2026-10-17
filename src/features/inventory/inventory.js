@@ -1,34 +1,57 @@
 (function () {
   'use strict';
 
-  const { el, formatUSD, cardKey, prices, priceTitle, itemValue, valueTag, shows } = window.RoUtilityUI;
+  const { el, formatUSD, formatNumber, cardKey, prices, priceTitle, itemValue, shows } = window.RoUtilityUI;
   const showing = shows(() => (/^\/(catalog|bundles|marketplace)\b/i.test(location.pathname) ? 'Market' : /^\/users\/\d+\/profile/i.test(location.pathname) ? 'Profile' : 'Inventory'));
   const LOGO_URL = chrome.runtime.getURL('assets/icons/logo.png');
   let observer = null;
 
+  function worthLine(card, anchor, price) {
+    let line = card.querySelector('.routility-card-worth');
+    const v = price && showing.value ? itemValue(price) : 0;
+    if (!v) {
+      line?.remove();
+      return;
+    }
+    if (line && line.dataset.key === String(v)) return;
+    if (!line) {
+      line = el('div', (anchor ? anchor.className : 'text-overflow item-card-price font-header-2 text-subheader margin-top-none') + ' routility-injected routility-card-worth');
+      if (anchor) anchor.after(line);
+      else (card.querySelector('.item-card-caption') || card.querySelector('.item-card-container') || card).appendChild(line);
+    }
+    line.dataset.key = String(v);
+    line.textContent = '';
+    const tag = el('span', 'routility-val routility-val-r');
+    const logo = el('img', 'routility-logo');
+    logo.src = LOGO_URL;
+    logo.alt = '';
+    tag.append(logo, el('span', 'text-robux-tile', formatNumber(v)));
+    line.appendChild(tag);
+  }
+
   function usdLine(card, key, price) {
+    const anchor = card.querySelector('.item-card-price:not(.routility-injected)');
+    worthLine(card, anchor, price);
     let line = card.querySelector('.routility-card-usd');
-    const text = price ? (showing.usd ? formatUSD(price.usd) : '') + '|' + (showing.value ? itemValue(price) : '') : '';
+    const text = price ? (showing.usd ? formatUSD(price.usd) : '') : '';
     if (line && line.dataset.key === (key || '') && line.dataset.text === text) return;
     if (!line) {
-      const anchor = card.querySelector('.item-card-price:not(.routility-card-usd)');
       line = el('div', (anchor ? anchor.className : 'text-overflow item-card-price font-header-2 text-subheader margin-top-none') + ' routility-injected routility-card-usd');
-      if (anchor) anchor.after(line);
+      const after = card.querySelector('.routility-card-worth') || anchor;
+      if (after) after.after(line);
       else (card.querySelector('.item-card-caption') || card.querySelector('.item-card-container') || card).appendChild(line);
     }
     line.dataset.key = key || '';
     line.dataset.text = text;
-    line.dataset.rtTip = priceTitle(price);
+    if (price && showing.usd && !showing.value) line.dataset.rtTip = priceTitle(price);
+    else delete line.dataset.rtTip;
     line.textContent = '';
-    if (price) {
-      const logo = el('img', 'routility-logo');
-      logo.src = LOGO_URL;
-      logo.alt = '';
-      if (showing.usd) line.append(logo, el('span', 'text-robux-tile', formatUSD(price.usd)));
-      if (showing.value && itemValue(price)) line.appendChild(valueTag(itemValue(price), { short: true, className: 'routility-card-val text-robux-tile' }));
-      if (!line.childNodes.length) line.appendChild(el('span', 'text-robux-tile', '\u00a0'));
+    if (price && showing.usd) {
+      const icon = el('span', 'routility-usd-ic');
+      icon.setAttribute('aria-hidden', 'true');
+      line.append(icon, el('span', 'text-robux-tile', formatUSD(price.usd)));
     } else {
-      line.appendChild(el('span', 'text-robux-tile', ' '));
+      line.appendChild(el('span', 'text-robux-tile', '\u00a0'));
     }
   }
 

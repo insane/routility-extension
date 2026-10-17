@@ -12879,3 +12879,9 @@ html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padd
 .routility-modal .item-card-price > .icon-robux-16x16 { margin-right: 2px; }
 .routility-modal-count { margin-left: 10px; font-size: 15px; font-weight: 600; color: var(--color-content-muted, #a3a6ad); }
 
+.item-card-price.routility-card-worth { display: flex; align-items: center; }
+.item-card-price.routility-card-worth .routility-val-r { gap: 0; color: inherit !important; font-weight: inherit; }
+.item-card-price.routility-card-worth .routility-logo, .item-card-price.routility-card-usd > .routility-usd-ic { width: 16px; height: 16px; margin: 0 4px 0 2px; flex: none; }
+.item-card-price.routility-card-usd > .routility-usd-ic { color: #3fc679; }
+.light-theme .item-card-price.routility-card-usd > .routility-usd-ic { color: #178d4b; }
+.item-card-caption:has(.routility-card-worth) .item-card-price:not(.routility-injected) .icon-robux-16x16 { margin-right: 2px; }
