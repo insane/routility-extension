@@ -9,6 +9,7 @@
       "date": "2026-10-16",
       "summary": "Every Roblox Plus theme for free, when you joined each community, Fun Outfits, and Try On that keeps your hats.",
       "changes": [
+        { "type": "fixed", "text": "Joining a friend from their profile no longer says you're in the game before Roblox even opens, and the join window now shows their server's players, ping and performance instead of dashes." },
         { "type": "new", "text": "Hidden Item Details: when an item's page is hidden, like an archived or unreleased item, RoUtility rebuilds it with its picture, creator, type, dates, favorites and description instead of a 404." },
         { "type": "new", "text": "Smarter Inventory Search: when you make or counter a trade, searching an inventory also finds items by acronym, like CWS for Clockwork's Shades, and shows suggestions as you type." },
         { "type": "fixed", "text": "Robux you add to an offer now count in the overpay warning and the Send summary." },

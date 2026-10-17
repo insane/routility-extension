@@ -39,6 +39,7 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 **Fixed**
 
 ```diff
+- Joining a friend from their profile no longer says you're in the game before Roblox even opens, and the join window now shows their server's players, ping and performance instead of dashes.
 - Robux you add to an offer now count in the overpay warning and the Send summary.
 - Avatar changes show up right away instead of after a day. (by @reqonn)
 - The device and location filters on Charts no longer drop to the bottom of the page.

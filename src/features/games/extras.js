@@ -1013,7 +1013,7 @@
       setTimeout(() => closeLaunch(dialog), 3500);
     };
     const onLaunch = (e) => {
-      if (e.source === window && e.data && e.data.type === 'routility-launch-success' && dialog.isConnected) finish();
+      if (e.source === window && e.data && e.data.type === 'routility-launch-success' && dialog.isConnected && !w.done) set('open');
     };
     window.addEventListener('message', onLaunch);
     const joined = async () => {
@@ -1119,12 +1119,15 @@
       t.appendChild(el('div', 'text-label-small content-muted', label));
       tiles.appendChild(t);
     };
-    tile(lt('Players'), sv.maxPlayers ? `${formatNumber(sv.playing || 0)}/${formatNumber(sv.maxPlayers)}` : '—');
-    tile(lt('Ping'), Number.isFinite(sv.ping) ? lt('{n} ms', { n: Math.round(sv.ping) }) : '—', Number.isFinite(sv.ping) ? el('span', `routility-server-dot routility-server-${sv.ping < 100 ? 'good' : sv.ping < 200 ? 'ok' : 'bad'}`) : null);
-    tile(lt('Performance'), Number.isFinite(sv.fps) ? `${Math.max(0, Math.min(100, Math.round(sv.fps / 60 * 100)))}%` : '—');
+    if (sv.maxPlayers) tile(lt('Players'), `${formatNumber(sv.playing || 0)}/${formatNumber(sv.maxPlayers)}`);
+    if (Number.isFinite(sv.ping)) tile(lt('Ping'), lt('{n} ms', { n: Math.round(sv.ping) }), el('span', `routility-server-dot routility-server-${sv.ping < 100 ? 'good' : sv.ping < 200 ? 'ok' : 'bad'}`));
+    if (Number.isFinite(sv.fps)) tile(lt('Performance'), `${Math.max(0, Math.min(100, Math.round(sv.fps / 60 * 100)))}%`);
     const d = j.details || {};
-    tile(lt('Uptime'), d.startedAt ? uptimeText(d.startedAt) : '—');
-    root.appendChild(tiles);
+    if (d.startedAt) tile(lt('Uptime'), uptimeText(d.startedAt));
+    if (tiles.children.length) {
+      tiles.style.gridTemplateColumns = `repeat(${tiles.children.length}, minmax(0, 1fr))`;
+      root.appendChild(tiles);
+    }
     const foot = el('div', 'routility-launch-foot text-label-small content-muted');
     const parts = String(sv.id || '').split('-');
     if (parts.length >= 3) foot.appendChild(el('span', null, lt('Server {id}', { id: `${parts[1]}-${parts[2]}` })));
@@ -1300,21 +1303,31 @@
     }
     const placeId = String(pr.placeId);
     const id = String(pr.gameId);
-    const [reg, dcs] = await Promise.all([
+    const friendServer = async () => {
+      try {
+        const res = await fetch(`https://games.roblox.com/v1/games/${placeId}/servers/Friend?limit=100`, { credentials: 'include' });
+        const data = res.ok ? await res.json() : null;
+        return ((data && data.data) || []).find(x => x && x.id === id) || null;
+      } catch {
+        return null;
+      }
+    };
+    const [reg, dcs, seen] = await Promise.all([
       window.RoUtilityUI.request({ type: 'serverRegions', placeId, ids: [id] }, r => r !== undefined),
       window.RoUtilityUI.request({ type: 'getDatacenters' }, r => r && Array.isArray(r.list)),
+      friendServer(),
     ]);
     if (!live()) return;
     const list = (dcs && dcs.list) || [];
     const dcId = reg && reg.regions ? reg.regions[id] : null;
     const dc = Number.isFinite(dcId) ? list.find(x => x.id === dcId) || null : null;
     const details = { ...((reg && reg.details && reg.details[id]) || {}) };
-    const j = { server: { id }, dc, details, name: pr.lastLocation || '', universeId: pr.universeId ? String(pr.universeId) : '' };
+    const j = { server: seen ? { ...seen, id } : { id }, dc, details, name: pr.lastLocation || '', universeId: pr.universeId ? String(pr.universeId) : '' };
     const now = dialog.querySelector('.routility-launch-plain');
     if (!now) return;
     let panel = launchPanel(j, dialog);
     now.replaceWith(panel);
-    if (!dc) return;
+    if (!dc || seen) return;
     const ids = list.filter(x => placeName(x) === placeName(dc)).map(x => x.id).slice(0, 20);
     let cursor = '';
     for (let i = 0; i < 3; i++) {
