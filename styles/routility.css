@@ -12845,7 +12845,9 @@ html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padd
 .trade-list-detail-offer .item-cards-stackable:has(.routility-card-worth) .trade-item-card,
 .trade-list-detail-offer .item-cards-stackable:has(.routility-card-worth) .grid-item-container,
 .trade-list-detail-offer .item-cards-stackable:has(.routility-card-worth) .item-card-container { height: auto !important; overflow: visible !important; }
-.trade-list-detail-offer .routility-trade-val { display: flex; justify-content: flex-end; clear: both; margin-top: -6px; }
+.trade-list-detail-offer .routility-trade-val, .trade-list-detail-offer .routility-trade-usd { display: flex; justify-content: flex-end; align-items: center; clear: both; margin: 0; height: 30px; }
+.trade-list-detail-offer .routility-trade-val .robux-line-amount, .trade-list-detail-offer .routility-trade-usd .robux-line-amount, .trade-list-detail-offer .routility-trade-val .routility-val-r, .trade-list-detail-offer .routility-trade-usd .routility-usd-total { gap: 2px; margin: 0; padding: 0; }
+.trade-list-detail-offer .routility-trade-val .routility-logo, .trade-list-detail-offer .routility-trade-usd .routility-usd-ic { width: 18px; height: 18px; margin: 0; }
 .routility-trade-diffs > .routility-diff-break { flex-basis: 100%; height: 0; }
 
 .routility-val-r .routility-logo { width: 1em; height: 1em; margin: 0; flex: none; }
@@ -12859,3 +12861,7 @@ html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padd
 .routility-value-usd-ic { width: 16px; height: 16px; }
 .routility-worth-logo { width: 16px; height: 16px; flex: none; }
 .routility-classic-pills .routility-value-usd-ic, .routility-classic-pills .routility-worth-logo, .routility-trade-inv-pills .routility-value-usd-ic, .routility-trade-inv-pills .routility-worth-logo { width: 14px; height: 14px; }
+
+.trade-list-detail-offer .trade-item-card:has(.routility-card-worth) .item-card-price:not(.routility-injected) .icon-robux-16x16 { margin-right: 2px; }
+.trade-list-detail-offer .routility-card-worth .routility-val-r { gap: 4px; }
+.trade-list-detail-offer .routility-card-usd .routility-usd-ic { margin-right: 4px; }

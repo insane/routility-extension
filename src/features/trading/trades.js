@@ -138,7 +138,7 @@
     row.dataset.key = key;
     row.textContent = '';
     if (title) row.dataset.rtTip = title;
-    else row.removeAttribute('title');
+    else delete row.dataset.rtTip;
     row.appendChild(el('span', 'text-lead', label));
     const amount = el('span', 'robux-line-amount');
     if (withLogo) amount.appendChild(logo());
@@ -216,9 +216,9 @@
       const text = t.priced ? formatUSD(t.usd) + (t.missing ? '+' : '') : (t.missing ? lt('N/A') : formatCash(0));
       const usdNode = offer.matches('.trade-list-detail-offer') ? el('span', 'routility-usd-total') : null;
       if (usdNode) usdNode.append(usdMark(), el('span', 'text-robux-lg robux-line-value', text));
-      if (show.price) summaryRow(offer, 'routility-trade-usd', lt('Price:'), text, { withLogo: !usdNode, node: usdNode, title: t.missing ? ltn(t.missing, '{n} unpriced', '{n} unpriced') : '' });
+      if (show.price) summaryRow(offer, 'routility-trade-usd', usdNode ? '' : lt('Price:'), text, { withLogo: !usdNode, node: usdNode, title: t.missing ? ltn(t.missing, '{n} unpriced', '{n} unpriced') : '' });
       else offer.querySelector('.routility-trade-usd')?.remove();
-      if (show.value && totals.some(x => x.valued > 0) && offer.matches('.trade-list-detail-offer')) summaryRow(offer, 'routility-trade-val', '', String(t.value), { node: valueMark(t.value, 'text-robux-lg robux-line-value'), title: lt('RoUtility Value, counting RAP for items we haven’t valued yet') });
+      if (show.value && totals.some(x => x.valued > 0) && offer.matches('.trade-list-detail-offer')) summaryRow(offer, 'routility-trade-val', '', String(t.value), { node: valueMark(t.value, 'text-robux-lg robux-line-value') });
       else offer.querySelector('.routility-trade-val')?.remove();
     });
 
