@@ -30,9 +30,6 @@
  "{count} items found": {
   "other": "{count}個のアイテムが見つかりました"
  },
- "{count} limiteds": {
-  "other": "{count}個のリミテッド"
- },
  "{count} Members": "{count}人のメンバー",
  "{count} more lines. Download the file to see all of it.": {
   "other": "あと{count}行あります。すべて見るにはファイルをダウンロードしてください。"
@@ -1840,6 +1837,7 @@
  "Price on Profiles": "プロフィールの価格",
  "Price:": "価格:",
  "Price: {give} vs {get}": "価格: {give} 対 {get}",
+ "Price: {value}": "価格: {value}",
  "Prices": "価格",
  "Prices & Chart": "価格とチャート",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "アイテム、インベントリ、プロフィール、トレードの価格と RAP、価格チャート、トレード計算機。それ以外はオフになります。",
@@ -1899,6 +1897,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "トレード内の各アイテムのRAP・RoUtility価値・価格、両側の合計、両側のRAP・価値・価格の差分ピル。",
  "RAP: {give} vs {get}": "RAP: {give} 対 {get}",
  "RAP: {give} vs {get} ({diff})": "RAP:{give} vs {get} ({diff})",
+ "RAP: {value}": "RAP: {value}",
  "Rare": "レア",
  "Rare & Projected Tags": "レアと釣り上げのタグ",
  "Rares": "レア品",
@@ -2581,6 +2580,7 @@
  "Value on Profiles": "プロフィールの価値",
  "Value request text": "価値リクエストのテキスト",
  "Value: {give} vs {get} ({diff})": "価値:{give} vs {get} ({diff})",
+ "Value: {value}": "価値: {value}",
  "Values": "価値",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "リミテッドアイテムのページに routility.io の価値を表示します。表示する行を下で選んでください。",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "送受信するすべてのトレードの価値、プレビュー、安全チェックに加え、routility.io の Trade Ads。",

@@ -30,9 +30,6 @@
  "{count} items found": {
   "other": "아이템 {count}개 찾음"
  },
- "{count} limiteds": {
-  "other": "한정판 {count}개"
- },
  "{count} Members": "멤버 {count}명",
  "{count} more lines. Download the file to see all of it.": {
   "other": "{count}줄이 더 있습니다. 전체를 보려면 파일을 다운로드하세요."
@@ -1840,6 +1837,7 @@
  "Price on Profiles": "프로필의 가격",
  "Price:": "가격:",
  "Price: {give} vs {get}": "가격: {give} 대 {get}",
+ "Price: {value}": "가격: {value}",
  "Prices": "가격",
  "Prices & Chart": "가격 및 차트",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "아이템, 인벤토리, 프로필, 거래의 가격과 RAP, 가격 차트, 거래 계산기. 나머지는 모두 꺼져요.",
@@ -1899,6 +1897,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "거래의 모든 아이템에 RAP, RoUtility 가치, 가격을 표시하고, 양쪽 합계와 RAP·가치·가격 차이 알약을 보여 줘요.",
  "RAP: {give} vs {get}": "RAP: {give} 대 {get}",
  "RAP: {give} vs {get} ({diff})": "RAP: {give} vs {get} ({diff})",
+ "RAP: {value}": "RAP: {value}",
  "Rare": "레어",
  "Rare & Projected Tags": "레어 및 부풀려짐 태그",
  "Rares": "레어 아이템",
@@ -2581,6 +2580,7 @@
  "Value on Profiles": "프로필의 가치",
  "Value request text": "가치 요청 텍스트",
  "Value: {give} vs {get} ({diff})": "가치: {give} vs {get} ({diff})",
+ "Value: {value}": "가치: {value}",
  "Values": "가치",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "한정판 아이템 페이지에 routility.io의 가치를 표시합니다. 원하는 줄을 아래에서 고르세요.",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "보내거나 받는 모든 트레이드의 가치, 미리보기, 안전 확인과 routility.io의 Trade Ads.",

@@ -37,10 +37,6 @@
   "one": "{count} objet trouvé",
   "other": "{count} objets trouvés"
  },
- "{count} limiteds": {
-  "one": "{count} limité",
-  "other": "{count} limités"
- },
  "{count} Members": "{count} membres",
  "{count} more lines. Download the file to see all of it.": {
   "one": "{count} ligne de plus. Télécharge le fichier pour tout voir.",
@@ -1962,6 +1958,7 @@
  "Price on Profiles": "Prix sur les Profils",
  "Price:": "Prix :",
  "Price: {give} vs {get}": "Prix : {give} contre {get}",
+ "Price: {value}": "Prix : {value}",
  "Prices": "Prix",
  "Prices & Chart": "Prix et graphique",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "Prix et RAP sur les objets, inventaires, profils et échanges, plus le graphique des prix et le calculateur d’échanges. Tout le reste reste désactivé.",
@@ -2021,6 +2018,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "Le RAP, la Valeur RoUtility et le prix de chaque objet d’un échange, les totaux de chaque côté et les pastilles d’écart de RAP, de Valeur et de prix entre les deux côtés.",
  "RAP: {give} vs {get}": "RAP : {give} contre {get}",
  "RAP: {give} vs {get} ({diff})": "RAP : {give} vs {get} ({diff})",
+ "RAP: {value}": "RAP : {value}",
  "Rare": "Rare",
  "Rare & Projected Tags": "Étiquettes Rare et Projeté",
  "Rares": "Rares",
@@ -2709,6 +2707,7 @@
  "Value on Profiles": "Valeur sur les Profils",
  "Value request text": "Texte de la demande de valeur",
  "Value: {give} vs {get} ({diff})": "Valeur : {give} vs {get} ({diff})",
+ "Value: {value}": "Valeur : {value}",
  "Values": "Valeurs",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "Les valeurs de routility.io sur les pages des objets limités. Choisis les lignes que tu veux ci-dessous.",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "Valeurs, aperçus et vérifications de sécurité pour chaque échange envoyé ou reçu, plus les Trade Ads de routility.io.",

@@ -37,10 +37,6 @@
   "one": "{count} artículo encontrado",
   "other": "{count} artículos encontrados"
  },
- "{count} limiteds": {
-  "one": "{count} limitado",
-  "other": "{count} limitados"
- },
  "{count} Members": "{count} miembros",
  "{count} more lines. Download the file to see all of it.": {
   "one": "{count} línea más. Descarga el archivo para verlo completo.",
@@ -1962,6 +1958,7 @@
  "Price on Profiles": "Precio en Perfiles",
  "Price:": "Precio:",
  "Price: {give} vs {get}": "Precio: {give} vs {get}",
+ "Price: {value}": "Precio: {value}",
  "Prices": "Precios",
  "Prices & Chart": "Precios y gráfico",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "Precios y RAP en artículos, inventarios, perfiles e intercambios, más el gráfico de precios y la calculadora de intercambios. Todo lo demás queda desactivado.",
@@ -2021,6 +2018,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "RAP, Valor de RoUtility y precio en cada objeto de un intercambio, totales de cada lado y las píldoras de diferencia de RAP, Valor y precio entre los dos lados.",
  "RAP: {give} vs {get}": "RAP: {give} vs {get}",
  "RAP: {give} vs {get} ({diff})": "RAP: {give} vs. {get} ({diff})",
+ "RAP: {value}": "RAP: {value}",
  "Rare": "Raro",
  "Rare & Projected Tags": "Etiquetas Raro y Proyectado",
  "Rares": "Raros",
@@ -2709,6 +2707,7 @@
  "Value on Profiles": "Valor en Perfiles",
  "Value request text": "Texto de la solicitud de valor",
  "Value: {give} vs {get} ({diff})": "Valor: {give} vs. {get} ({diff})",
+ "Value: {value}": "Valor: {value}",
  "Values": "Valores",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "Valores de routility.io en las páginas de artículos limitados. Elige las líneas que quieras abajo.",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "Valores, vistas previas y comprobaciones de seguridad para cada intercambio que envías o recibes, además de los Trade Ads de routility.io.",

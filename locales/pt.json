@@ -37,10 +37,6 @@
   "one": "{count} item encontrado",
   "other": "{count} itens encontrados"
  },
- "{count} limiteds": {
-  "one": "{count} limitado",
-  "other": "{count} limitados"
- },
  "{count} Members": "{count} membros",
  "{count} more lines. Download the file to see all of it.": {
   "one": "Mais {count} linha. Baixe o arquivo para ver tudo.",
@@ -1962,6 +1958,7 @@
  "Price on Profiles": "Preço nos Perfis",
  "Price:": "Preço:",
  "Price: {give} vs {get}": "Preço: {give} vs {get}",
+ "Price: {value}": "Preço: {value}",
  "Prices": "Preços",
  "Prices & Chart": "Preços e gráfico",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "Preços e RAP em itens, inventários, perfis e trocas, mais o gráfico de preços e a calculadora de trocas. Todo o resto fica desligado.",
@@ -2021,6 +2018,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "RAP, Valor RoUtility e preço em cada item de uma troca, totais de cada lado e as pílulas de diferença de RAP, Valor e preço entre os dois lados.",
  "RAP: {give} vs {get}": "RAP: {give} vs {get}",
  "RAP: {give} vs {get} ({diff})": "RAP: {give} vs. {get} ({diff})",
+ "RAP: {value}": "RAP: {value}",
  "Rare": "Raro",
  "Rare & Projected Tags": "Etiquetas Raro e Projetado",
  "Rares": "Raros",
@@ -2709,6 +2707,7 @@
  "Value on Profiles": "Valor nos Perfis",
  "Value request text": "Texto do pedido de avaliação",
  "Value: {give} vs {get} ({diff})": "Valor: {give} vs. {get} ({diff})",
+ "Value: {value}": "Valor: {value}",
  "Values": "Valores",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "Valores do routility.io nas páginas de itens limitados. Escolha as linhas que quiser abaixo.",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "Valores, prévias e verificações de segurança para cada troca que você envia ou recebe, além dos Trade Ads do routility.io.",

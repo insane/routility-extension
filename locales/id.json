@@ -30,9 +30,6 @@
  "{count} items found": {
   "other": "{count} item ditemukan"
  },
- "{count} limiteds": {
-  "other": "{count} limited"
- },
  "{count} Members": "{count} Anggota",
  "{count} more lines. Download the file to see all of it.": {
   "other": "{count} baris lagi. Unduh file untuk melihat semuanya."
@@ -1840,6 +1837,7 @@
  "Price on Profiles": "Harga di Profil",
  "Price:": "Harga:",
  "Price: {give} vs {get}": "Harga: {give} vs {get}",
+ "Price: {value}": "Harga: {value}",
  "Prices": "Harga",
  "Prices & Chart": "Harga & Grafik",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "Harga dan RAP di item, inventaris, profil, dan trade, plus grafik harga dan kalkulator trade. Sisanya mati.",
@@ -1899,6 +1897,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "RAP, Nilai RoUtility, dan harga di setiap item dalam trade, total tiap sisi, serta pil selisih RAP, Nilai, dan harga di antara kedua sisi.",
  "RAP: {give} vs {get}": "RAP: {give} vs {get}",
  "RAP: {give} vs {get} ({diff})": "RAP: {give} vs {get} ({diff})",
+ "RAP: {value}": "RAP: {value}",
  "Rare": "Langka",
  "Rare & Projected Tags": "Tag Langka & Projected",
  "Rares": "Langka",
@@ -2581,6 +2580,7 @@
  "Value on Profiles": "Nilai di Profil",
  "Value request text": "Teks permintaan nilai",
  "Value: {give} vs {get} ({diff})": "Nilai: {give} vs {get} ({diff})",
+ "Value: {value}": "Nilai: {value}",
  "Values": "Nilai",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "Nilai dari routility.io di halaman item limited. Pilih baris yang kamu mau di bawah.",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "Nilai, pratinjau, dan pemeriksaan keamanan untuk setiap trade yang kamu kirim atau terima, plus Trade Ads dari routility.io.",

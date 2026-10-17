@@ -37,10 +37,6 @@
   "one": "{count} Item gefunden",
   "other": "{count} Items gefunden"
  },
- "{count} limiteds": {
-  "one": "{count} Limited",
-  "other": "{count} Limiteds"
- },
  "{count} Members": "{count} Mitglieder",
  "{count} more lines. Download the file to see all of it.": {
   "one": "{count} weitere Zeile. Lade die Datei herunter, um alles zu sehen.",
@@ -1962,6 +1958,7 @@
  "Price on Profiles": "Preis auf Profilen",
  "Price:": "Preis:",
  "Price: {give} vs {get}": "Preis: {give} vs. {get}",
+ "Price: {value}": "Preis: {value}",
  "Prices": "Preise",
  "Prices & Chart": "Preise & Diagramm",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "Preise und RAP bei Items, Inventaren, Profilen und Trades, dazu das Preisdiagramm und der Trade-Rechner. Alles andere bleibt aus.",
@@ -2021,6 +2018,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "RAP, RoUtility-Wert und Preis bei jedem Item in einem Trade, Summen für beide Seiten und die Differenz-Pillen für RAP, Wert und Preis zwischen beiden Seiten.",
  "RAP: {give} vs {get}": "RAP: {give} vs. {get}",
  "RAP: {give} vs {get} ({diff})": "RAP: {give} vs. {get} ({diff})",
+ "RAP: {value}": "RAP: {value}",
  "Rare": "Selten",
  "Rare & Projected Tags": "Selten- & Projected-Tags",
  "Rares": "Seltene",
@@ -2709,6 +2707,7 @@
  "Value on Profiles": "Wert auf Profilen",
  "Value request text": "Text der Wertanfrage",
  "Value: {give} vs {get} ({diff})": "Wert: {give} vs. {get} ({diff})",
+ "Value: {value}": "Wert: {value}",
  "Values": "Werte",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "Werte von routility.io auf Limited-Seiten. Wähle unten die gewünschten Zeilen.",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "Werte, Vorschauen und Sicherheitschecks für jeden Trade, den du sendest oder bekommst, plus Trade Ads von routility.io.",

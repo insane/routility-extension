@@ -37,10 +37,6 @@
   "one": "{count} eşya bulundu",
   "other": "{count} eşya bulundu"
  },
- "{count} limiteds": {
-  "one": "{count} limited",
-  "other": "{count} limited"
- },
  "{count} Members": "{count} üye",
  "{count} more lines. Download the file to see all of it.": {
   "one": "{count} satır daha. Tamamını görmek için dosyayı indir.",
@@ -1962,6 +1958,7 @@
  "Price on Profiles": "Profillerde Fiyat",
  "Price:": "Fiyat:",
  "Price: {give} vs {get}": "Fiyat: {give} - {get}",
+ "Price: {value}": "Fiyat: {value}",
  "Prices": "Fiyatlar",
  "Prices & Chart": "Fiyatlar ve Grafik",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "Eşyalarda, envanterlerde, profillerde ve takaslarda fiyatlar ve RAP, ayrıca fiyat grafiği ve takas hesaplayıcı. Geri kalan her şey kapalı.",
@@ -2021,6 +2018,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "Takastaki her eşyada RAP, RoUtility Değeri ve fiyat, her tarafın toplamı ve iki taraf arasındaki RAP, Değer ve fiyat fark hapları.",
  "RAP: {give} vs {get}": "RAP: {give} - {get}",
  "RAP: {give} vs {get} ({diff})": "RAP: {give} - {get} ({diff})",
+ "RAP: {value}": "RAP: {value}",
  "Rare": "Nadir",
  "Rare & Projected Tags": "Nadir ve şişirilmiş etiketleri",
  "Rares": "Nadirler",
@@ -2709,6 +2707,7 @@
  "Value on Profiles": "Profillerde Değer",
  "Value request text": "Değer talebi metni",
  "Value: {give} vs {get} ({diff})": "Değer: {give} - {get} ({diff})",
+ "Value: {value}": "Değer: {value}",
  "Values": "Değerler",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "Limited eşya sayfalarında routility.io'dan değerler. İstediğin satırları aşağıdan seç.",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "Gönderdiğin veya aldığın her takas için değerler, önizlemeler ve güvenlik kontrolleri, ayrıca routility.io’dan Trade Ads.",

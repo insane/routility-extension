@@ -37,10 +37,6 @@
   "one": "{count} oggetto trovato",
   "other": "{count} oggetti trovati"
  },
- "{count} limiteds": {
-  "one": "{count} limited",
-  "other": "{count} limited"
- },
  "{count} Members": "{count} membri",
  "{count} more lines. Download the file to see all of it.": {
   "one": "Ancora {count} riga. Scarica il file per vederlo tutto.",
@@ -1962,6 +1958,7 @@
  "Price on Profiles": "Prezzo sui Profili",
  "Price:": "Prezzo:",
  "Price: {give} vs {get}": "Prezzo: {give} vs {get}",
+ "Price: {value}": "Prezzo: {value}",
  "Prices": "Prezzi",
  "Prices & Chart": "Prezzi e grafico",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "Prezzi e RAP su oggetti, inventari, profili e scambi, più il grafico dei prezzi e il calcolatore di scambi. Tutto il resto resta spento.",
@@ -2021,6 +2018,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "RAP, Valore RoUtility e prezzo su ogni oggetto di uno scambio, i totali di ogni lato e le pillole di differenza di RAP, Valore e prezzo tra i due lati.",
  "RAP: {give} vs {get}": "RAP: {give} vs {get}",
  "RAP: {give} vs {get} ({diff})": "RAP: {give} vs {get} ({diff})",
+ "RAP: {value}": "RAP: {value}",
  "Rare": "Raro",
  "Rare & Projected Tags": "Etichette Raro e Proiettato",
  "Rares": "Rari",
@@ -2709,6 +2707,7 @@
  "Value on Profiles": "Valore sui Profili",
  "Value request text": "Testo della richiesta di valutazione",
  "Value: {give} vs {get} ({diff})": "Valore: {give} vs {get} ({diff})",
+ "Value: {value}": "Valore: {value}",
  "Values": "Valori",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "Valori da routility.io nelle pagine degli oggetti limited. Scegli qui sotto le righe che vuoi.",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "Valori, anteprime e controlli di sicurezza per ogni scambio che invii o ricevi, più i Trade Ads di routility.io.",

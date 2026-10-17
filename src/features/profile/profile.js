@@ -151,9 +151,6 @@
     return text + suffix + (more || cut * size < n ? '+' : '');
   }
 
-  function exactTip(text, n) {
-    return shortOn && n >= 1000 ? text + ' · ' + formatNumber(n) : text;
-  }
 
   function pillText(summary) {
     if (summary.private) return lt('Private');
@@ -176,8 +173,7 @@
     }
     a.dataset.rtTip = summary.private
       ? lt('Private inventory')
-      : ltn(summary.count, '{count} limited', '{count} limiteds', { count: formatNumber(summary.count) });
-    if (!summary.private && shortOn) a.dataset.rtTip += ' · ' + window.RoUtilityUI.cash().symbol + formatNumber(Math.round(window.RoUtilityUI.toCash(summary.usd)));
+      : lt('Price: {value}', { value: window.RoUtilityUI.cash().symbol + formatNumber(Math.round(window.RoUtilityUI.toCash(summary.usd))) });
     const layer = el('div', STATE_LAYER);
     layer.setAttribute('aria-hidden', 'true');
     a.appendChild(layer);
@@ -411,7 +407,7 @@
     const a = el('a', PILL_CLASS + ' routility-worth-pill');
     a.href = `https://routility.io/player/${userId}`;
     a.style.textDecoration = 'none';
-    a.dataset.rtTip = exactTip(lt('RoUtility Value, counting RAP for items we haven’t valued yet'), summary.worth);
+    a.dataset.rtTip = lt('Value: {value}', { value: formatNumber(summary.worth) });
     const layer = el('div', STATE_LAYER);
     layer.setAttribute('aria-hidden', 'true');
     a.appendChild(layer);
@@ -455,7 +451,7 @@
     const a = el('a', PILL_CLASS + ' routility-rap-pill');
     a.href = `https://routility.io/player/${userId}`;
     a.style.textDecoration = 'none';
-    a.dataset.rtTip = exactTip(lt('Total RAP'), Number(summary.rapTotal) || 0);
+    a.dataset.rtTip = lt('RAP: {value}', { value: formatNumber(Number(summary.rapTotal) || 0) });
     const layer = el('div', STATE_LAYER);
     layer.setAttribute('aria-hidden', 'true');
     a.appendChild(layer);

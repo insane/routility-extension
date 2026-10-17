@@ -51,12 +51,6 @@
   "many": "найдено {count} предметов",
   "other": "найдено {count} предмета"
  },
- "{count} limiteds": {
-  "one": "{count} лимитед",
-  "few": "{count} лимитеда",
-  "many": "{count} лимитедов",
-  "other": "{count} лимитеда"
- },
  "{count} Members": "Участники: {count}",
  "{count} more lines. Download the file to see all of it.": {
   "one": "Ещё {count} строка. Скачай файл, чтобы увидеть всё.",
@@ -2206,6 +2200,7 @@
  "Price on Profiles": "Цена в профилях",
  "Price:": "Цена:",
  "Price: {give} vs {get}": "Цена: {give} против {get}",
+ "Price: {value}": "Цена: {value}",
  "Prices": "Цены",
  "Prices & Chart": "Цены и график",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "Цены и RAP на предметах, в инвентарях, профилях и обменах, плюс график цен и калькулятор обменов. Всё остальное выключено.",
@@ -2265,6 +2260,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "RAP, ценность RoUtility и цена у каждого предмета в обмене, итоги каждой стороны и плашки разницы RAP, ценности и цены между сторонами.",
  "RAP: {give} vs {get}": "RAP: {give} против {get}",
  "RAP: {give} vs {get} ({diff})": "RAP: {give} против {get} ({diff})",
+ "RAP: {value}": "RAP: {value}",
  "Rare": "Редкий",
  "Rare & Projected Tags": "Метки «Редкий» и «Прогноз»",
  "Rares": "Редкие",
@@ -2965,6 +2961,7 @@
  "Value on Profiles": "Ценность в профилях",
  "Value request text": "Текст запроса на оценку",
  "Value: {give} vs {get} ({diff})": "Ценность: {give} против {get} ({diff})",
+ "Value: {value}": "Ценность: {value}",
  "Values": "Ценности",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "Ценности с routility.io на страницах лимитедов. Выбери нужные строки ниже.",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "Ценности, превью и проверки безопасности для каждого отправленного или полученного обмена, плюс Trade Ads с routility.io.",

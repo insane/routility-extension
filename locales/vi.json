@@ -30,9 +30,6 @@
  "{count} items found": {
   "other": "Tìm thấy {count} vật phẩm"
  },
- "{count} limiteds": {
-  "other": "{count} limited"
- },
  "{count} Members": "{count} Thành viên",
  "{count} more lines. Download the file to see all of it.": {
   "other": "Còn {count} dòng nữa. Tải tệp xuống để xem toàn bộ."
@@ -1840,6 +1837,7 @@
  "Price on Profiles": "Giá trên Hồ Sơ",
  "Price:": "Giá:",
  "Price: {give} vs {get}": "Giá: {give} so với {get}",
+ "Price: {value}": "Giá: {value}",
  "Prices": "Giá",
  "Prices & Chart": "Giá & Biểu đồ",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "Giá và RAP trên vật phẩm, kho đồ, hồ sơ và giao dịch, cùng biểu đồ giá và máy tính giao dịch. Mọi thứ khác đều tắt.",
@@ -1899,6 +1897,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "RAP, Giá trị RoUtility và giá của mọi vật phẩm trong giao dịch, tổng mỗi bên, và các nhãn chênh lệch RAP, Giá trị và giá giữa hai bên.",
  "RAP: {give} vs {get}": "RAP: {give} so với {get}",
  "RAP: {give} vs {get} ({diff})": "RAP: {give} vs {get} ({diff})",
+ "RAP: {value}": "RAP: {value}",
  "Rare": "Hiếm",
  "Rare & Projected Tags": "Nhãn Hiếm & Bị đẩy giá",
  "Rares": "Đồ hiếm",
@@ -2581,6 +2580,7 @@
  "Value on Profiles": "Giá Trị trên Hồ Sơ",
  "Value request text": "Văn bản yêu cầu định giá",
  "Value: {give} vs {get} ({diff})": "Giá trị: {give} vs {get} ({diff})",
+ "Value: {value}": "Giá trị: {value}",
  "Values": "Giá trị",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "Giá trị từ routility.io trên trang vật phẩm limited. Chọn các dòng bạn muốn bên dưới.",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "Giá trị, xem trước và kiểm tra an toàn cho mọi giao dịch bạn gửi hoặc nhận, cùng Trade Ads từ routility.io.",

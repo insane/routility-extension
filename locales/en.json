@@ -37,10 +37,6 @@
   "one": "{count} item found",
   "other": "{count} items found"
  },
- "{count} limiteds": {
-  "one": "{count} limited",
-  "other": "{count} limiteds"
- },
  "{count} Members": "{count} Members",
  "{count} more lines. Download the file to see all of it.": {
   "one": "{count} more line. Download the file to see all of it.",
@@ -1962,6 +1958,7 @@
  "Price on Profiles": "Price on Profiles",
  "Price:": "Price:",
  "Price: {give} vs {get}": "Price: {give} vs {get}",
+ "Price: {value}": "Price: {value}",
  "Prices": "Prices",
  "Prices & Chart": "Prices & Chart",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.",
@@ -2021,6 +2018,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.",
  "RAP: {give} vs {get}": "RAP: {give} vs {get}",
  "RAP: {give} vs {get} ({diff})": "RAP: {give} vs {get} ({diff})",
+ "RAP: {value}": "RAP: {value}",
  "Rare": "Rare",
  "Rare & Projected Tags": "Rare & Projected Tags",
  "Rares": "Rares",
@@ -2709,6 +2707,7 @@
  "Value on Profiles": "Value on Profiles",
  "Value request text": "Value request text",
  "Value: {give} vs {get} ({diff})": "Value: {give} vs {get} ({diff})",
+ "Value: {value}": "Value: {value}",
  "Values": "Values",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "Values from routility.io on limited item pages. Pick the lines you want below.",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.",

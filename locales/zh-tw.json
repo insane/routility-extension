@@ -30,9 +30,6 @@
  "{count} items found": {
   "other": "找到 {count} 個物品"
  },
- "{count} limiteds": {
-  "other": "{count} 個限量物品"
- },
  "{count} Members": "{count} 名成員",
  "{count} more lines. Download the file to see all of it.": {
   "other": "還有 {count} 行。下載檔案即可查看全部內容。"
@@ -1840,6 +1837,7 @@
  "Price on Profiles": "個人檔案上的價格",
  "Price:": "價格：",
  "Price: {give} vs {get}": "價格：{give} 對 {get}",
+ "Price: {value}": "價格：{value}",
  "Prices": "價格",
  "Prices & Chart": "價格與圖表",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "物品、庫存、個人檔案和交易上的價格與 RAP，外加價格圖表和交易計算機。其他全部關閉。",
@@ -1899,6 +1897,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "交易中每件物品的 RAP、RoUtility 價值和價格，雙方的合計，以及雙方之間的 RAP、價值和價格差額標籤。",
  "RAP: {give} vs {get}": "RAP：{give} 對 {get}",
  "RAP: {give} vs {get} ({diff})": "RAP：{give} 對 {get}（{diff}）",
+ "RAP: {value}": "RAP：{value}",
  "Rare": "稀有",
  "Rare & Projected Tags": "稀有和預測標籤",
  "Rares": "稀有物品",
@@ -2581,6 +2580,7 @@
  "Value on Profiles": "個人檔案上的價值",
  "Value request text": "估值請求文字",
  "Value: {give} vs {get} ({diff})": "價值：{give} 對 {get}（{diff}）",
+ "Value: {value}": "價值：{value}",
  "Values": "價值",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "限量物品頁面上來自 routility.io 的估值。在下方選擇你想要顯示的行。",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "你發出或收到的每筆交易的價值、預覽和安全檢查，以及來自 routility.io 的 Trade Ads。",

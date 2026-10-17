@@ -30,9 +30,6 @@
  "{count} items found": {
   "other": "พบ {count} ไอเทม"
  },
- "{count} limiteds": {
-  "other": "{count} ลิมิเต็ด"
- },
  "{count} Members": "{count} สมาชิก",
  "{count} more lines. Download the file to see all of it.": {
   "other": "อีก {count} บรรทัด ดาวน์โหลดไฟล์เพื่อดูทั้งหมด"
@@ -1840,6 +1837,7 @@
  "Price on Profiles": "ราคาในโปรไฟล์",
  "Price:": "ราคา:",
  "Price: {give} vs {get}": "ราคา: {give} กับ {get}",
+ "Price: {value}": "ราคา: {value}",
  "Prices": "ราคา",
  "Prices & Chart": "ราคาและกราฟ",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "ราคาและ RAP บนไอเทม คลัง โปรไฟล์ และการเทรด พร้อมกราฟราคาและเครื่องคำนวณเทรด ที่เหลือปิดทั้งหมด",
@@ -1899,6 +1897,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "RAP มูลค่า RoUtility และราคาของทุกไอเท็มในการเทรด ยอดรวมแต่ละฝั่ง และป้ายส่วนต่าง RAP มูลค่า และราคาระหว่างสองฝั่ง",
  "RAP: {give} vs {get}": "RAP: {give} กับ {get}",
  "RAP: {give} vs {get} ({diff})": "RAP: {give} vs {get} ({diff})",
+ "RAP: {value}": "RAP: {value}",
  "Rare": "หายาก",
  "Rare & Projected Tags": "แท็กหายากและถูกปั่น",
  "Rares": "ของหายาก",
@@ -2581,6 +2580,7 @@
  "Value on Profiles": "มูลค่าในโปรไฟล์",
  "Value request text": "ข้อความคำขอประเมินมูลค่า",
  "Value: {give} vs {get} ({diff})": "มูลค่า: {give} vs {get} ({diff})",
+ "Value: {value}": "มูลค่า: {value}",
  "Values": "มูลค่า",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "มูลค่าจาก routility.io บนหน้าไอเทมลิมิเต็ด เลือกบรรทัดที่คุณต้องการด้านล่าง",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "มูลค่า ตัวอย่าง และการตรวจสอบความปลอดภัยของทุกเทรดที่คุณส่งหรือได้รับ พร้อม Trade Ads จาก routility.io",

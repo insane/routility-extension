@@ -51,12 +51,6 @@
   "many": "Znaleziono {count} przedmiotów",
   "other": "Znaleziono {count} przedmiotu"
  },
- "{count} limiteds": {
-  "one": "{count} limited",
-  "few": "{count} limitedy",
-  "many": "{count} limitedów",
-  "other": "{count} limiteda"
- },
  "{count} Members": "Członkowie: {count}",
  "{count} more lines. Download the file to see all of it.": {
   "one": "Jeszcze {count} wiersz. Pobierz plik, aby zobaczyć całość.",
@@ -2206,6 +2200,7 @@
  "Price on Profiles": "Cena na Profilach",
  "Price:": "Cena:",
  "Price: {give} vs {get}": "Cena: {give} vs {get}",
+ "Price: {value}": "Cena: {value}",
  "Prices": "Ceny",
  "Prices & Chart": "Ceny i wykres",
  "Prices and RAP on items, inventories, profiles and trades, plus the price chart and the trade calculator. Everything else stays off.": "Ceny i RAP przy przedmiotach, ekwipunkach, profilach i wymianach, plus wykres cen i kalkulator wymian. Cała reszta wyłączona.",
@@ -2265,6 +2260,7 @@
  "RAP, RoUtility Value and price on every item in a trade, totals for each side, and the RAP, Value and price difference pills between the two sides.": "RAP, Wartość RoUtility i cena przy każdym przedmiocie w wymianie, sumy dla obu stron oraz pigułki różnicy RAP, Wartości i ceny między stronami.",
  "RAP: {give} vs {get}": "RAP: {give} vs {get}",
  "RAP: {give} vs {get} ({diff})": "RAP: {give} vs {get} ({diff})",
+ "RAP: {value}": "RAP: {value}",
  "Rare": "Rzadki",
  "Rare & Projected Tags": "Etykiety Rzadki i Zawyżony",
  "Rares": "Rzadkie",
@@ -2965,6 +2961,7 @@
  "Value on Profiles": "Wartość na Profilach",
  "Value request text": "Tekst prośby o wycenę",
  "Value: {give} vs {get} ({diff})": "Wartość: {give} vs {get} ({diff})",
+ "Value: {value}": "Wartość: {value}",
  "Values": "Wartości",
  "Values from routility.io on limited item pages. Pick the lines you want below.": "Wartości z routility.io na stronach limitedów. Wybierz poniżej wiersze, które chcesz.",
  "Values, previews and safety checks for every trade you send or receive, plus trade ads from routility.io.": "Wartości, podglądy i kontrole bezpieczeństwa każdej wysłanej lub otrzymanej wymiany, plus Trade Ads z routility.io.",
