@@ -7,6 +7,17 @@
   const resale = new Map();
   let cfg = null;
   let lastReal = null;
+  try { lastReal = robuxSaved(sessionStorage.getItem('routilityFunReal')); } catch {}
+
+  function robuxSaved(v) {
+    const n = v == null ? NaN : Number(v);
+    return Number.isFinite(n) && n >= 0 ? Math.floor(n) : null;
+  }
+
+  function rememberBalance(n) {
+    lastReal = n;
+    try { sessionStorage.setItem('routilityFunReal', String(n)); } catch {}
+  }
 
   function clean(c) {
     const o = c && typeof c === 'object' ? c : {};
@@ -68,6 +79,9 @@
     return Math.max(0, base - (cfg.buy ? cfg.spent : 0));
   }
 
+  const picked = () => !!(cfg && cfg.robux && !(cfg.mult > 1));
+  const realOrNull = () => (picked() ? 0 : lastReal);
+
   function owned(kind, id) {
     if (!cfg || !cfg.buy) return null;
     const n = Number(id);
@@ -83,6 +97,7 @@
     64: 'TShirtAccessory', 65: 'ShirtAccessory', 66: 'PantsAccessory', 67: 'JacketAccessory', 68: 'SweaterAccessory', 69: 'ShortsAccessory', 70: 'LeftShoeAccessory', 71: 'RightShoeAccessory', 72: 'DressSkirtAccessory',
     76: 'EyebrowAccessory', 77: 'EyelashAccessory', 78: 'MoodAnimation', 79: 'DynamicHead',
   };
+  const CLASSIC_ONLY = new Set([17, 18]);
   const SINGLE_SLOT = new Set([2, 11, 12, 17, 18, 19, 27, 28, 29, 30, 31, 48, 49, 50, 51, 52, 53, 54, 55, 56, 78, 79]);
   const bundleParts = new Map();
   const partJobs = new Map();
@@ -525,7 +540,8 @@
   const pause = () => 650 + Math.floor(Math.random() * 450);
 
   function sold(rec, assetType, display, wearable, productId) {
-    const after = lastReal == null ? 0 : Math.max(0, shown(lastReal) - rec.price);
+    const real = realOrNull();
+    const after = real == null ? 0 : Math.max(0, shown(real) - rec.price);
     return {
       purchased: true,
       reason: 'Success',
@@ -619,13 +635,17 @@
     }],
     ['GET', /^https:\/\/economy\.roblox\.com\/v1\/users\/(\d+)\/currency(?:[?#]|$)/, (m) => {
       if (Number(m[1]) !== me() || !(cfg.robux || cfg.buy)) return null;
-      return { edit: (t) => {
-        const d = parse(t);
-        if (!d || typeof d.robux !== 'number') return t;
-        lastReal = d.robux;
-        d.robux = shown(d.robux);
-        return JSON.stringify(d);
-      } };
+      if (picked()) return { fake: { now: true, body: { robux: shown(0) } } };
+      return {
+        edit: (t) => {
+          const d = parse(t);
+          if (!d || typeof d.robux !== 'number') return t;
+          rememberBalance(d.robux);
+          d.robux = shown(d.robux);
+          return JSON.stringify(d);
+        },
+        rescue: () => (lastReal == null ? null : JSON.stringify({ robux: shown(lastReal) })),
+      };
     }],
     ['GET', /^https:\/\/inventory\.roblox\.com\/v1\/users\/(\d+)\/items\/(asset|bundle|gamepass)\/(\d+)\/is-owned/i, (m) => {
       if (Number(m[1]) !== me() || !cfg.buy) return null;
@@ -675,6 +695,15 @@
           const h = hits.get(Number(x.id));
           if (!h || !h.list || String(x.itemType).toLowerCase() !== 'asset') continue;
           fixCatalog(x, remaining(h.list, bought(x.id, x.collectibleItemId)));
+          changed = true;
+        }
+        const have = new Set(d.data.map(x => Number(x.id)));
+        for (const it of Array.isArray(b.items) ? b.items : []) {
+          const rec = String(it && it.itemType).toLowerCase() === 'asset' && !have.has(Number(it.id)) && owned('asset', it.id);
+          if (!rec) continue;
+          have.add(rec.id);
+          const c = rec.creator || { id: 1, name: 'Roblox', type: 'User', verified: true };
+          d.data.push({ id: rec.id, itemType: 'Asset', assetType: rec.type || 0, name: rec.name, description: '', itemStatus: [], itemRestrictions: rec.limited ? ['Collectible'] : [], creatorHasVerifiedBadge: !!c.verified, creatorType: c.type, creatorTargetId: c.id, creatorName: c.name, price: rec.price, lowestPrice: rec.price, priceStatus: 'Off Sale', isOffSale: true, favoriteCount: 0, offSaleDeadline: null });
           changed = true;
         }
         return changed ? JSON.stringify(d) : t;
@@ -1017,6 +1046,23 @@
         return li.replace(/<button[^>]*\bPurchaseButton\b[\s\S]*?<\/button>/, '<h5>Owned</h5>');
       }) };
     }],
+    ['GET', /^https:\/\/inventory\.roblox\.com\/v1\/users\/(\d+)\/categories(?:[?#]|$)/, (m) => {
+      if (Number(m[1]) !== me() || !cfg.buy) return null;
+      const types = new Set(cfg.items.filter(x => x.kind === 'asset').map(x => x.type));
+      const add = [[17, 'Classic Heads', 'Head'], [18, 'Classic Faces', 'Face']].filter(([id]) => types.has(id));
+      if (!add.length) return null;
+      return { edit: (t) => {
+        const d = parse(t);
+        if (!d || !Array.isArray(d.categories)) return t;
+        const listed = new Set(d.categories.flatMap(c => (c.items || []).filter(i => i.type === 'AssetType').map(i => Number(i.id))));
+        const items = add.filter(([id]) => !listed.has(id)).map(([id, name, kind]) => ({ name, displayName: name, filter: null, id, type: 'AssetType', categoryType: kind }));
+        if (!items.length) return t;
+        const heads = d.categories.find(c => c.categoryType === 'DynamicHead');
+        if (heads && Array.isArray(heads.items)) heads.items = heads.items.concat(items);
+        else d.categories.push({ name: 'Heads', displayName: 'Heads', categoryType: 'DynamicHead', items });
+        return JSON.stringify(d);
+      } };
+    }],
     ['GET', /^https:\/\/inventory\.roblox\.com\/v2\/users\/(\d+)\/inventory\/(\d+)/, (m, req) => {
       if (Number(m[1]) !== me() || !cfg.buy) return null;
       const mine = cfg.items.filter(x => x.kind === 'asset' && x.type === Number(m[2]));
@@ -1034,6 +1080,12 @@
           const limited = !!(x.listing || x.limited);
           return { userAssetId: x.at, assetId: x.id, assetName: x.name, collectibleItemId: limited ? x.cid || (x.listing && x.listing.cid) || null : null, collectibleItemInstanceId: limited ? instanceId(x) : null, serialNumber: x.listing && x.listing.serial != null ? x.listing.serial : null, owner, created: when, updated: when };
         });
+        if (CLASSIC_ONLY.has(Number(m[2]))) {
+          d.data = desc ? extra : extra.reverse();
+          d.nextPageCursor = null;
+          d.previousPageCursor = null;
+          return JSON.stringify(d);
+        }
         if (!extra.length) return t;
         d.data = desc ? extra.concat(d.data) : d.data.concat(extra.reverse());
         return JSON.stringify(d);
@@ -1371,7 +1423,26 @@
       xhr.dispatchEvent(new Event('readystatechange'));
       xhr.dispatchEvent(new ProgressEvent('load', size));
       xhr.dispatchEvent(new ProgressEvent('loadend', size));
-    }, pause() + (fake.extra || 0));
+    }, fake.now ? 0 : pause() + (fake.extra || 0));
+  }
+
+  function rescueXhr(xhr, rescue) {
+    const getStatus = Object.getOwnPropertyDescriptor(XHR, 'status').get;
+    let text;
+    const failed = () => {
+      if (getState.call(xhr) !== 4) return false;
+      const s = getStatus.call(xhr);
+      if (s >= 200 && s < 300) return false;
+      if (text === undefined) text = rescue();
+      return text != null;
+    };
+    define(xhr, 'status', () => (failed() ? 200 : getStatus.call(xhr)));
+    define(xhr, 'statusText', () => (failed() ? 'OK' : Object.getOwnPropertyDescriptor(XHR, 'statusText').get.call(xhr)));
+    const own = (key) => Object.getOwnPropertyDescriptor(xhr, key);
+    const prevText = own('responseText');
+    const prevResponse = own('response');
+    define(xhr, 'responseText', () => (failed() ? text : prevText ? prevText.get.call(xhr) : getText.call(xhr)));
+    define(xhr, 'response', () => (failed() ? (xhr.responseType === 'json' ? parse(text) : text) : prevResponse ? prevResponse.get.call(xhr) : getResponse.call(xhr)));
   }
 
   function editXhr(xhr, edit) {
@@ -1429,6 +1500,7 @@
       if (p && p.fake) return fakeXhr(this, req, p.fake);
       const fire = () => {
         if (p && p.edit) editXhr(this, p.edit);
+        if (p && p.rescue) rescueXhr(this, p.rescue);
         return xSend.apply(this, p && typeof p.body === 'string' ? [p.body] : args);
       };
       if (p && p.wait) {
@@ -1463,17 +1535,28 @@
       }
       const p = plan(route, { method, url }, body);
       if (p && p.fake) {
-        await new Promise(r => setTimeout(r, pause() + (p.fake.extra || 0)));
+        if (!p.fake.now) await new Promise(r => setTimeout(r, pause() + (p.fake.extra || 0)));
         try { if (p.fake.done) p.fake.done(); } catch {}
         return new Response(JSON.stringify(p.fake.body), { status: 200, headers: { 'content-type': 'application/json; charset=utf-8' } });
       }
       if (p && p.wait) await p.wait.catch(() => {});
+      const saved = () => {
+        const text = p && p.rescue ? p.rescue() : null;
+        return text == null ? null : new Response(text, { status: 200, headers: { 'content-type': 'application/json; charset=utf-8' } });
+      };
       let res;
-      if (p && typeof p.body === 'string') {
-        res = input instanceof Request ? await oFetch.call(self, new Request(input, Object.assign({}, init || {}, { body: p.body }))) : await oFetch.call(self, input, Object.assign({}, init || {}, { body: p.body }));
-      } else {
-        res = await oFetch.apply(self, args);
+      try {
+        if (p && typeof p.body === 'string') {
+          res = input instanceof Request ? await oFetch.call(self, new Request(input, Object.assign({}, init || {}, { body: p.body }))) : await oFetch.call(self, input, Object.assign({}, init || {}, { body: p.body }));
+        } else {
+          res = await oFetch.apply(self, args);
+        }
+      } catch (e) {
+        const back = saved();
+        if (back) return back;
+        throw e;
       }
+      if (!res.ok && p && p.rescue) return saved() || res;
       if (!p || !p.edit) return res;
       try {
         const text = await res.clone().text();

@@ -365,6 +365,7 @@
     worn: () => wornList(),
     headshot: (circular) => ready.then(() => (wornList().length ? headshotFor(circular) : null)),
     typeName: (type) => TYPE_NAMES[type] || '',
+    inventory: (userId, type) => ready.then(() => (buying() && String(userId) === myId() ? state.items.filter(x => x.kind === 'asset' && x.type === Number(type)).sort((a, b) => b.at - a.at) : [])),
     render: (size) => ready.then(() => {
       if (!buying() || !state.worn.length) return null;
       bodies.delete(size);

@@ -94,7 +94,10 @@
         if (!cursor) break;
       }
       const byAsset = new Map();
-      for (const a of out) {
+      const fakes = window.RoUtilityFun ? await window.RoUtilityFun.inventory(s.userId, typeId) : [];
+      const real = new Set(out.map(a => Number(a.assetId)));
+      const extra = fakes.filter(x => x.listing || !real.has(x.id)).map(x => ({ assetId: x.id, assetName: x.name, serialNumber: x.listing ? x.listing.serial : null }));
+      for (const a of asc ? out.concat(extra.reverse()) : extra.concat(out)) {
         const key = String(a.assetId);
         const hit = byAsset.get(key);
         if (hit) {

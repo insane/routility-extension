@@ -64,8 +64,10 @@
         const id = (li.querySelector('a.item-card-link')?.getAttribute('href') || '').match(HREF)?.[1];
         return rank.has(id) ? rank.get(id) : Infinity;
       };
-      if (now.filter(li => pos(li) !== Infinity).length < 2) return;
-      const sorted = now.slice().sort((a, b) => pos(a) - pos(b));
+      const known = now.filter(li => pos(li) !== Infinity);
+      if (known.length < 2) return;
+      const ranked = known.slice().sort((a, b) => pos(a) - pos(b));
+      const sorted = now.map(li => (pos(li) === Infinity ? li : ranked.shift()));
       if (sorted.every((li, i) => li === now[i])) return;
       const anchor = now[now.length - 1].nextSibling;
       for (const li of sorted) ul.insertBefore(li, anchor);

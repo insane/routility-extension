@@ -2265,6 +2265,17 @@ chrome.storage.onChanged.addListener((changes, area) => {
   if (was !== now) syncCopyMenus();
 });
 
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area !== 'local' || !changes.routilitySettings) return;
+  const was = changes.routilitySettings.oldValue || {};
+  const now = changes.routilitySettings.newValue || {};
+  if (!['fakeRobux', 'fakeRobuxAmount', 'fakeRobuxMode'].some(k => String(was[k]) !== String(now[k]))) return;
+  chrome.storage.local.get('routilityFun', (st) => {
+    const fun = st.routilityFun;
+    if (fun && fun.spent) chrome.storage.local.set({ routilityFun: Object.assign({}, fun, { spent: 0 }) });
+  });
+});
+
 chrome.contextMenus?.onClicked.addListener((info, tab) => {
   const m = String(info.menuItemId).match(/^rt-copy-(link|page)-(\w+)$/);
   if (!m || !tab || tab.id < 0) return;
