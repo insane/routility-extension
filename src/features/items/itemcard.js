@@ -1,7 +1,8 @@
 (function () {
   'use strict';
 
-  const { el, formatUSD, formatNumber, request, cardKey, itemValue, valueTag, shows } = window.RoUtilityUI;
+  const { el, formatUSD, formatNumber, request, cardKey, itemValue, shows } = window.RoUtilityUI;
+  const LOGO = chrome.runtime.getURL('assets/icons/logo.png');
   const showing = shows('Cards');
   const { lt } = window.RoUtilityI18n;
   const CARDS = '.trade-list-detail-offer .trade-item-card, .trade-request-window-offer .trade-request-item, .trade-request-window-offer .trade-item-card';
@@ -88,10 +89,20 @@
     head.appendChild(names);
     body.appendChild(head);
     const usdRow = el('div', 'flex items-center gap-small flex-wrap routility-ic-prices');
-    const logo = window.RoUtilityUI.usdIcon('routility-ic-logo');
-    if (showing.usd || !(showing.value && itemValue(item))) usdRow.append(logo, el('span', 'text-heading-small content-emphasis', Number.isFinite(item.usd) && item.usd > 0 ? formatUSD(item.usd) : lt('No price')));
-    if (!showing.value && itemValue(item)) usdRow.dataset.rtTip = window.RoUtilityUI.valueTip(item);
-    if (showing.value && itemValue(item)) usdRow.appendChild(valueTag(itemValue(item), { className: 'text-heading-small routility-ic-val', tip: false }));
+    const worth = itemValue(item) || Number(item.rap) || 0;
+    if (showing.value && worth) {
+      const part = el('span', 'routility-ic-part');
+      const logo = el('img', 'routility-ic-logo');
+      logo.src = LOGO;
+      logo.alt = '';
+      part.append(logo, el('span', 'text-heading-small content-emphasis', formatNumber(worth)));
+      usdRow.appendChild(part);
+    }
+    if (showing.usd || !usdRow.children.length) {
+      const part = el('span', 'routility-ic-part');
+      part.append(window.RoUtilityUI.usdIcon('routility-ic-logo'), el('span', 'text-heading-small content-emphasis', Number.isFinite(item.usd) && item.usd > 0 ? formatUSD(item.usd) : lt('No price')));
+      usdRow.appendChild(part);
+    }
     body.appendChild(usdRow);
     const chart = spark(data.points);
     if (chart) {

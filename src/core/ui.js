@@ -255,7 +255,7 @@
   document.addEventListener('mousedown', hideTip, true);
 
   const VISIBLE = Object.freeze({ usd: true, value: false, rap: true });
-  const PLACE_KEYS = { Profile: { usd: 'profileUsd', value: 'profileValue', rap: 'profileRap' }, Trades: { usd: 'tradeUsd', value: 'tradeValue', rap: 'tradeRap' }, Market: { usd: 'marketUsd', value: 'marketValue', rap: 'marketRap' } };
+  const PLACE_KEYS = { Profile: { usd: 'profileUsd', value: 'profileValue', rap: 'profileRap' }, Trades: { usd: 'tradeUsd', value: 'tradeValue', rap: 'tradeRap' }, Market: { usd: 'marketUsd', value: 'marketValue', rap: 'marketRap' }, Cards: { usd: 'cardUsd', value: 'cardValue', rap: 'cardRap' } };
 
   function shows(place) {
     const pick = (k) => {

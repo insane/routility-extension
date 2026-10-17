@@ -12888,3 +12888,7 @@ html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padd
 
 .routility-usd-mark { color: #3fc679; filter: none !important; }
 .light-theme .routility-usd-mark { color: #178d4b; }
+
+.routility-ic-prices { column-gap: 16px; }
+.routility-ic-part { display: inline-flex; align-items: center; gap: 6px; }
+.routility-ic-prices .routility-ic-part .routility-ic-logo + span { margin-right: 0; }
