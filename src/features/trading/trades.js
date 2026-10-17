@@ -25,9 +25,15 @@
     return icon;
   }
 
-  function valueMark(v, textClass) {
+  function shortTwo(n) {
+    if (!(n >= 1000)) return formatNumber(Math.round(n || 0));
+    const [d, u] = n >= 1e9 ? [1e9, 'B'] : n >= 1e6 ? [1e6, 'M'] : [1e3, 'K'];
+    return String(Math.round(n / d * 100) / 100) + u;
+  }
+
+  function valueMark(v, textClass, short) {
     const tag = el('span', 'routility-val routility-val-r');
-    tag.append(logo(), el('span', textClass || null, formatNumber(v)));
+    tag.append(logo(), el('span', textClass || null, short ? shortTwo(v) : formatNumber(v)));
     return tag;
   }
 
@@ -73,12 +79,12 @@
     }
     line.dataset.key = key;
     line.textContent = '';
-    line.appendChild(valueMark(v, textClass));
+    line.appendChild(valueMark(v, textClass, card.matches('.trade-request-item')));
     line.dataset.rtTip = itemValue(price) ? lt('Value: {value}', { value: formatNumber(v) }) : lt('Not valued yet, so this is its RAP');
   }
 
   function cardLine(card, key, price) {
-    const text = price && show.price ? formatUSD(price.usd) : ' ';
+    const text = price && show.price ? (card.matches('.trade-request-item') ? window.RoUtilityUI.cash().symbol + shortTwo(window.RoUtilityUI.toCash(price.usd)) : formatUSD(price.usd)) : ' ';
     const v = 0;
     const anchor = card.querySelector(PRICE_SELECTOR);
     if (!anchor) return;

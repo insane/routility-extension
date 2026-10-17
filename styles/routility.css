@@ -12931,12 +12931,10 @@ html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padd
 .routility-ads-total-part { display: inline-flex; align-items: center; gap: 4px; }
 .routility-ads-total .routility-val { gap: 4px; }
 .routility-ads-total .routility-val-logo, .routility-ads-usd-ic { width: 14px; height: 14px; }
-.trade-request-item:has(.routility-card-worth) .item-value, .trade-request-item .routility-card-worth, .trade-request-item .routility-card-usd { display: flex !important; align-items: center; margin-left: 0 !important; }
 .trade-request-item .routility-card-worth .routility-logo, .trade-request-item .routility-card-usd .routility-usd-ic { width: 16px; height: 16px; margin: 0 4px 0 0 !important; }
 
 .routility-calc-total-v { display: inline-flex; align-items: center; gap: 6px; }
 .routility-calc-total-v > .routility-usd-ic { width: 18px; height: 18px; }
 .routility-calc-summary-cell .routility-calc-total-v > .routility-usd-ic { width: 16px; height: 16px; }
 .routility-calc-price > .routility-usd-ic { width: 16px; height: 16px; margin: 0 0 0 2px !important; }
-.trade-request-item:has(.routility-card-worth) { height: auto !important; min-height: 70px; }
-.trade-request-item:has(.routility-card-worth) > .thumbnail-2d-container { margin-bottom: 26px; }
+.trade-request-item .routility-card-worth, .trade-request-item .routility-card-usd { display: inline-flex !important; align-items: center; vertical-align: top; margin-left: 10px !important; }
