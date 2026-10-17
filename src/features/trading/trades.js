@@ -233,9 +233,6 @@
     if (show.rap && rapGive !== null && rapGet !== null && (rapGive || rapGet)) {
       box.appendChild(pill(pillIcon('robux'), rapGive, rapGet, rap, lt('RAP difference • you give {give}, you get {get}', { give: rap(rapGive), get: rap(rapGet) })));
     }
-    if (show.worth && (totals[0].valued || totals[1].valued) && host.matches('.trade-list-detail-offer')) {
-      box.appendChild(worthPill(totals[0].value, totals[1].value, lt('RoUtility Value difference • you give {give}, you get {get} • RAP is used for items we haven’t valued yet', { give: rap(totals[0].value), get: rap(totals[1].value) })));
-    }
     if (show.price && (totals[0].priced || totals[1].priced)) {
       const icon = pillIcon('logo');
       const vars = { give: usdAmount(usdGive), get: usdAmount(usdGet), n: rap(unsure) };
@@ -243,6 +240,10 @@
         ? ltn(unsure, 'Price difference • you give {give}, you get {get} • {n} unpriced item not counted', 'Price difference • you give {give}, you get {get} • {n} unpriced items not counted', vars)
         : lt('Price difference • you give {give}, you get {get}', vars);
       box.appendChild(pill(icon, usdGive, usdGet, usdAmount, tip));
+    }
+    if (show.worth && (totals[0].valued || totals[1].valued) && host.matches('.trade-list-detail-offer')) {
+      if (box.children.length) box.appendChild(el('span', 'routility-diff-break'));
+      box.appendChild(worthPill(totals[0].value, totals[1].value, lt('RoUtility Value difference • you give {give}, you get {get} • RAP is used for items we haven’t valued yet', { give: rap(totals[0].value), get: rap(totals[1].value) })));
     }
     if (box.children.length) host.appendChild(box);
   }
