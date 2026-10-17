@@ -228,7 +228,7 @@
 
   const SORTS = {
     value: (x, y) => ((y.price?.usd || 0) - (x.price?.usd || 0)) || (y.rap - x.rap),
-    worth: (x, y) => (itemValue(y.price) - itemValue(x.price)) || ((y.price?.usd || 0) - (x.price?.usd || 0)) || (y.rap - x.rap),
+    worth: (x, y) => ((itemValue(y.price) || y.rap) - (itemValue(x.price) || x.rap)) || ((y.price?.usd || 0) - (x.price?.usd || 0)),
     rap: (x, y) => (y.rap - x.rap) || ((y.price?.usd || 0) - (x.price?.usd || 0)),
     name: (x, y) => x.name.localeCompare(y.name),
     copies: (x, y) => (y.count - x.count) || ((y.price?.usd || 0) - (x.price?.usd || 0)),
@@ -311,6 +311,7 @@
     close.type = 'button';
     close.setAttribute('aria-label', lt('Close'));
     close.appendChild(svgIcon('M6 6l12 12M18 6L6 18'));
+    if (Number(summary.count) > 0) title.appendChild(el('span', 'routility-modal-count', ltn(summary.count, '{count} limited', '{count} limiteds', { count: formatNumber(summary.count) })));
     head.append(title, ext, close);
     const tools = el('div', 'routility-modal-tools');
     const search = el('input', 'form-control input-field routility-modal-search');
@@ -318,9 +319,9 @@
     search.placeholder = lt('Search by item name');
     let resort = () => {};
     const sorter = window.RoUtilityUI.dropdown([
-      { value: 'value', label: lt('Price') },
-      { value: 'worth', label: lt('Value') },
       { value: 'rap', label: 'RAP' },
+      ...(showing.value ? [{ value: 'worth', label: lt('Value') }] : []),
+      ...(showing.usd ? [{ value: 'value', label: lt('Price') }] : []),
       { value: 'name', label: lt('Name') },
       { value: 'copies', label: lt('Copies') },
     ], sortBy, (v) => {
