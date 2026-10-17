@@ -318,7 +318,6 @@
   const BODY_PART = /^(Head|DynamicHead|Torso|LeftArm|RightArm|LeftLeg|RightLeg)$/;
   const HIDDEN_TYPES = /Animation$/;
   const WRITE = /avatar\.roblox\.com\/v\d+\/avatar$|avatar\.roblox\.com\/v\d+\/outfits\/\d+\/wear|set-wearing|avatar\.roblox\.com\/v\d+\/avatar\/(set|remove|wear)/;
-  const LOGO_URL = chrome.runtime.getURL('assets/icons/logo.png');
   let wear = null;
 
   function cardFor(id) {
@@ -858,9 +857,7 @@
           b.appendChild(v);
           return b;
         };
-        const logo = el('img', 'routility-logo');
-        logo.src = LOGO_URL;
-        logo.alt = '';
+        const logo = window.RoUtilityUI.usdIcon('routility-logo');
         stats.appendChild(box(lt('Price'), lt('RoUtility USD price of the limiteds you’re wearing'), logo, formatUSD(usd), window.RoUtilityUI.shortUSD(usd)));
         stats.appendChild(box(lt('R$ value'), lt('Recent average price of the limiteds you’re wearing'), el('span', 'icon-robux-16x16'), formatNumber(Math.round(rap)), short(rap)));
         panel.appendChild(stats);

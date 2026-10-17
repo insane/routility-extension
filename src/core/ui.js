@@ -308,6 +308,12 @@
   document.addEventListener('click', rememberProfileClick, true);
   document.addEventListener('auxclick', rememberProfileClick, true);
 
+  function usdIcon(cls) {
+    const icon = el('span', 'routility-usd-ic routility-usd-mark' + (cls ? ' ' + cls : ''));
+    icon.setAttribute('aria-hidden', 'true');
+    return icon;
+  }
+
   function verifiedBadge() {
     const wrap = el('span', 'relative flex items-center justify-center routility-injected routility-verified');
     const plate = el('span', 'grow-0 shrink-0 basis-auto icon icon-filled-verified-backplate content-system-emphasis');
@@ -1005,7 +1011,7 @@
     return Number(s) || 0;
   }
 
-  window.RoUtilityUI = { json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
+  window.RoUtilityUI = { json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, usdIcon, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
 })();
 
 (function () {

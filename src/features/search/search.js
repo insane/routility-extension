@@ -264,10 +264,7 @@
     for (const i of r.items) {
       const sub = el('span', 'routility-search-sub routility-search-value');
       const usd = el('span', 'routility-search-pill routility-search-pill-usd');
-      const logo = el('img', 'routility-value-logo');
-      logo.src = chrome.runtime.getURL('assets/icons/logo.png');
-      logo.alt = '';
-      usd.append(logo, el('span', null, window.RoUtilityUI.formatUSD(i.usd)));
+      usd.append(window.RoUtilityUI.usdIcon('routility-value-logo'), el('span', null, window.RoUtilityUI.formatUSD(i.usd)));
       const ui = window.RoUtilityUI;
       const sh = ui.shows('Search');
       if (!sh.value && ui.itemValue(i)) usd.dataset.rtTip = ui.valueTip(i);

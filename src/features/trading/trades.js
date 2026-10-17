@@ -1020,13 +1020,12 @@
         r.appendChild(el('span', 'content-emphasis routility-send-value', value));
         return r;
       };
-      const logoIcon = el('img', 'routility-send-icon');
-      logoIcon.src = LOGO_URL;
-      logoIcon.alt = '';
+      const logoIcon = window.RoUtilityUI.usdIcon('routility-send-icon');
       card.appendChild(line(logoIcon, lt('Price'), totals[i].priced ? formatUSD(totals[i].usd) + (totals[i].missing ? '+' : '') : (totals[i].missing ? lt('Unpriced') : formatCash(0))));
       if (anyValued) {
-        const valIcon = el('span', 'routility-val-icon routility-send-icon routility-send-val-icon');
-        valIcon.setAttribute('aria-hidden', 'true');
+        const valIcon = el('img', 'routility-send-icon');
+        valIcon.src = LOGO_URL;
+        valIcon.alt = '';
         const v = line(valIcon, lt('Value'), '');
         v.querySelector('.routility-send-value').replaceWith(valueTag(totals[i].value, { className: 'routility-send-value', tip: false }));
         card.appendChild(v);

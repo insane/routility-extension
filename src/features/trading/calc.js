@@ -552,10 +552,7 @@
     rap.append(el('span', 'icon-robux-16x16'), el('span', 'text-robux-tile', formatNumber(item.rap || 0)));
     cap.appendChild(rap);
     const usd = el('div', 'text-overflow item-card-price routility-calc-price');
-    const logo = el('img', 'routility-logo');
-    logo.src = LOGO;
-    logo.alt = '';
-    usd.append(logo, el('span', 'text-robux-tile', item.usd ? usdText(item.usd) : lt('No price')));
+    usd.append(window.RoUtilityUI.usdIcon('routility-logo'), el('span', 'text-robux-tile', item.usd ? usdText(item.usd) : lt('No price')));
     if (!showing.value && itemValue(item)) usd.dataset.rtTip = window.RoUtilityUI.valueTip(item);
     if (showing.value && itemValue(item)) {
       usd.classList.add('routility-card-usd');
@@ -1117,6 +1114,20 @@
         ctx.stroke();
       }
     };
+    const dollar = (x, y, size, color) => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(size / 24, size / 24);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2.2;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.arc(12, 12, 10, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.lineWidth = 2.1;
+      ctx.stroke(new Path2D('M15.2 8.6c-.6-1-1.8-1.6-3.2-1.6-1.8 0-3.1.9-3.1 2.3 0 3.3 6.3 1.8 6.3 5 0 1.4-1.4 2.4-3.2 2.4-1.5 0-2.7-.6-3.3-1.7M12 5v14'));
+      ctx.restore();
+    };
     const robux = (x, y, size, color) => {
       const c = size / 2;
       const r = size * 0.46;
@@ -1205,7 +1216,7 @@
       robux(x + 346 - rw - 15, m + 7, 11, T.text);
       type(lt('Price Est.'), x + 14, m + 34, 10, T.muted, 400);
       const pw = type(usdText(t.usd), x + 346, m + 34, 10, T.text, 700, 'right');
-      if (logo) ctx.drawImage(logo, x + 346 - pw - 15, m + 25, 11, 11);
+      dollar(x + 346 - pw - 15, m + 25, 11, '#3fc679');
     };
     const tg = totals('give');
     const tr = totals('get');

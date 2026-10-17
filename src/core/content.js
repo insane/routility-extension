@@ -1,7 +1,6 @@
 (function () {
   'use strict';
 
-  const LOGO_URL = chrome.runtime.getURL('assets/icons/logo.png');
 
   const formatUSD = window.RoUtilityUI.formatUSD;
   const el = window.RoUtilityUI.el;
@@ -32,10 +31,7 @@
     line.href = `https://routility.io/items/${item.id}`;
     line.target = '_blank';
     line.rel = 'noopener';
-    const logo = el('img', 'routility-logo');
-    logo.src = LOGO_URL;
-    logo.alt = '';
-    line.appendChild(logo);
+    line.appendChild(window.RoUtilityUI.usdIcon('routility-logo'));
     line.appendChild(el('span', 'text-robux-lg', formatUSD(item.usd)));
     const tip = window.RoUtilityUI.valueTip(item);
     if (tip && !itemExtras.value) line.dataset.rtTip = tip;
@@ -287,15 +283,21 @@
     const rap = el('div', 'text-overflow item-card-price font-header-2 text-subheader margin-top-none');
     rap.append(el('span', 'icon-robux-16x16'), el('span', 'text-robux-tile', window.RoUtilityUI.formatNumber(i.rap || 0)));
     cap.appendChild(rap);
+    const worthV = window.RoUtilityUI.shows('Market').value ? window.RoUtilityUI.itemValue(i) : 0;
+    if (worthV) {
+      const worth = el('div', 'text-overflow item-card-price font-header-2 text-subheader margin-top-none routility-injected routility-card-worth');
+      const tag = el('span', 'routility-val routility-val-r');
+      const vlogo = el('img', 'routility-logo');
+      vlogo.src = chrome.runtime.getURL('assets/icons/logo.png');
+      vlogo.alt = '';
+      tag.append(vlogo, el('span', 'text-robux-tile', window.RoUtilityUI.formatNumber(worthV)));
+      worth.appendChild(tag);
+      cap.appendChild(worth);
+    }
     const usd = el('div', 'text-overflow item-card-price font-header-2 text-subheader margin-top-none routility-injected routility-card-usd');
     usd.dataset.key = 'id:' + i.id;
     usd.dataset.text = window.RoUtilityUI.formatUSD(i.usd);
-    const logo = el('img', 'routility-logo');
-    logo.src = chrome.runtime.getURL('assets/icons/logo.png');
-    logo.alt = '';
-    usd.append(logo, el('span', 'text-robux-tile', window.RoUtilityUI.formatUSD(i.usd)));
-    usd.dataset.rtTip = window.RoUtilityUI.priceTitle(i);
-    if (window.RoUtilityUI.shows('Market').value && window.RoUtilityUI.itemValue(i)) usd.appendChild(window.RoUtilityUI.valueTag(window.RoUtilityUI.itemValue(i), { short: true, className: 'routility-card-val text-robux-tile' }));
+    usd.append(window.RoUtilityUI.usdIcon(), el('span', 'text-robux-tile', window.RoUtilityUI.formatUSD(i.usd)));
     cap.appendChild(usd);
     a.appendChild(cap);
     box.appendChild(a);
