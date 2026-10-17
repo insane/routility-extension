@@ -19,6 +19,18 @@
     return img;
   }
 
+  function usdMark() {
+    const icon = el('span', 'routility-usd-ic');
+    icon.setAttribute('aria-hidden', 'true');
+    return icon;
+  }
+
+  function valueMark(v, textClass) {
+    const tag = el('span', 'routility-val routility-val-r');
+    tag.append(logo(), el('span', textClass || null, formatNumber(v)));
+    return tag;
+  }
+
   function totalLine(offer) {
     const lines = [...offer.querySelectorAll('.robux-line:not(.routility-injected)')].filter(n => n.querySelector('.robux-line-value'));
     return lines[lines.length - 1] || null;
@@ -61,7 +73,7 @@
     }
     line.dataset.key = key;
     line.textContent = '';
-    line.appendChild(valueTag(v, { tip: false, textClass }));
+    line.appendChild(valueMark(v, textClass));
     line.dataset.rtTip = itemValue(price) ? lt('RoUtility Value: {value} Robux', { value: formatNumber(v) }) : lt('Not valued yet, so this is its RAP');
   }
 
@@ -82,7 +94,7 @@
     line.dataset.text = text + '|' + v;
     line.dataset.rtTip = window.RoUtilityUI.priceTitle(price);
     line.textContent = '';
-    if (price && show.price) line.appendChild(logo());
+    if (price && show.price) line.appendChild(card.closest('.trade-list-detail-offer') ? usdMark() : logo());
     if (show.price || !v) line.appendChild(el('span', textClass, text));
     if (v && show.value) line.appendChild(valueTag(v, { short: true, className: 'routility-card-val ' + textClass }));
   }
@@ -202,9 +214,11 @@
       }
       const t = totals[i];
       const text = t.priced ? formatUSD(t.usd) + (t.missing ? '+' : '') : (t.missing ? lt('N/A') : formatCash(0));
-      if (show.price) summaryRow(offer, 'routility-trade-usd', lt('Price:'), text, { withLogo: true, title: t.missing ? ltn(t.missing, '{n} unpriced', '{n} unpriced') : '' });
+      const usdNode = offer.matches('.trade-list-detail-offer') ? el('span', 'routility-usd-total') : null;
+      if (usdNode) usdNode.append(usdMark(), el('span', 'text-robux-lg robux-line-value', text));
+      if (show.price) summaryRow(offer, 'routility-trade-usd', lt('Price:'), text, { withLogo: !usdNode, node: usdNode, title: t.missing ? ltn(t.missing, '{n} unpriced', '{n} unpriced') : '' });
       else offer.querySelector('.routility-trade-usd')?.remove();
-      if (show.value && totals.some(x => x.valued > 0) && offer.matches('.trade-list-detail-offer')) summaryRow(offer, 'routility-trade-val', '', String(t.value), { node: valueTag(t.value, { textClass: 'text-robux-lg robux-line-value', tip: false }), title: lt('RoUtility Value, counting RAP for items we haven’t valued yet') });
+      if (show.value && totals.some(x => x.valued > 0) && offer.matches('.trade-list-detail-offer')) summaryRow(offer, 'routility-trade-val', '', String(t.value), { node: valueMark(t.value, 'text-robux-lg robux-line-value'), title: lt('RoUtility Value, counting RAP for items we haven’t valued yet') });
       else offer.querySelector('.routility-trade-val')?.remove();
     });
 
@@ -234,7 +248,7 @@
       box.appendChild(pill(pillIcon('robux'), rapGive, rapGet, rap, lt('RAP difference • you give {give}, you get {get}', { give: rap(rapGive), get: rap(rapGet) })));
     }
     if (show.price && (totals[0].priced || totals[1].priced)) {
-      const icon = pillIcon('logo');
+      const icon = pillIcon('usd');
       const vars = { give: usdAmount(usdGive), get: usdAmount(usdGet), n: rap(unsure) };
       const tip = unsure
         ? ltn(unsure, 'Price difference • you give {give}, you get {get} • {n} unpriced item not counted', 'Price difference • you give {give}, you get {get} • {n} unpriced items not counted', vars)
@@ -381,21 +395,19 @@
     const pct = ratio === null ? '' : ratio > 999 ? ' (>999%)' : ` (${ratio}%)`;
     const node = el('span', 'routility-row-pill' + (tone ? ' routility-pill-' + tone : ''));
     node.dataset.rtTip = title;
-    node.appendChild(iconNode);
+    if (iconNode) node.appendChild(iconNode);
     node.appendChild(el('span', null, sign + format(Math.abs(diff)) + pct));
     return node;
   }
 
   function pillIcon(kind) {
-    const icon = el('span', 'routility-pill-ic ' + (kind === 'logo' ? 'routility-pill-ic-logo' : 'routility-val-icon'));
+    const icon = el('span', 'routility-pill-ic ' + (kind === 'logo' ? 'routility-pill-ic-logo' : kind === 'usd' ? 'routility-usd-ic' : 'routility-val-icon'));
     icon.setAttribute('aria-hidden', 'true');
     return icon;
   }
 
   function worthPill(give, get, title) {
-    const icon = el('span', 'routility-val-icon');
-    icon.setAttribute('aria-hidden', 'true');
-    const node = pill(icon, give, get, formatNumber, title);
+    const node = pill(pillIcon('logo'), give, get, formatNumber, title);
     node.classList.add('routility-row-pill-worth');
     return node;
   }
@@ -429,7 +441,7 @@
       const sum = list => list.reduce((s, p) => s + (p ? p.usd : 0), 0);
       const giveUsd = sum(give);
       const getUsd = sum(get);
-      box.appendChild(pill(pillIcon('logo'), giveUsd, getUsd, usdAmount, lt('Price: {give} vs {get}', { give: usdAmount(giveUsd), get: usdAmount(getUsd) })));
+      box.appendChild(pill(pillIcon('usd'), giveUsd, getUsd, usdAmount, lt('Price: {give} vs {get}', { give: usdAmount(giveUsd), get: usdAmount(getUsd) })));
     }
     if (!box.children.length) return;
     (row.querySelector('.trade-row-container') || row).appendChild(box);
