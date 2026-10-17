@@ -12867,3 +12867,7 @@ html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padd
 .trade-list-detail-offer .routility-card-worth .routility-val-r { gap: 0; }
 .trade-list-detail-offer .routility-card-worth .routility-logo, .trade-list-detail-offer .routility-card-usd .routility-usd-ic { width: 16px; height: 16px; margin: 0 4px 0 2px; }
 .trade-list-detail-offer .routility-trade-usd .routility-usd-ic { color: rgb(143, 176, 204); }
+
+.routility-usd-ic { transition: color 0.15s ease; }
+.routility-card-usd:hover .routility-usd-ic, .routility-usd-total:hover .routility-usd-ic { color: #3fc679 !important; }
+.light-theme .routility-card-usd:hover .routility-usd-ic, .light-theme .routility-usd-total:hover .routility-usd-ic { color: #178d4b !important; }
