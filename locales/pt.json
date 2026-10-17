@@ -396,7 +396,7 @@
  "{name} opacity": "Opacidade de {name}",
  "{name} selected": "{name} selecionado",
  "{name} value": "Valor de {name}",
- "{name}'s Collectibles ({price})": "Colecionáveis de {name} ({price})",
+ "{name}'s Collectibles": "Colecionáveis de {name}",
  "{name}’s inventory is private, so I can’t see their limiteds.": "O inventário de {name} é privado, então não consigo ver os limitados.",
  "{name}’s inventory is private.": "O inventário de {name} é privado.",
  "{name}’s limiteds are worth {value}.": "Os limitados de {name} valem {value}.",

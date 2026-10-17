@@ -314,7 +314,7 @@
  "{name} opacity": "{name} 불투명도",
  "{name} selected": "{name} 선택됨",
  "{name} value": "{name} 가치",
- "{name}'s Collectibles ({price})": "{name}의 수집품 ({price})",
+ "{name}'s Collectibles": "{name}의 수집품",
  "{name}’s inventory is private, so I can’t see their limiteds.": "{name}님의 인벤토리가 비공개라서 한정판을 볼 수 없어요.",
  "{name}’s inventory is private.": "{name}님의 인벤토리는 비공개입니다.",
  "{name}’s limiteds are worth {value}.": "{name}님의 한정판 가치는 {value}이에요.",

@@ -314,7 +314,7 @@
  "{name} opacity": "{name}不透明度",
  "{name} selected": "已选择 {name}",
  "{name} value": "{name}价值",
- "{name}'s Collectibles ({price})": "{name} 的收藏品（{price}）",
+ "{name}'s Collectibles": "{name} 的收藏品",
  "{name}’s inventory is private, so I can’t see their limiteds.": "{name}的物品栏是私密的，所以我看不到对方的限量物品。",
  "{name}’s inventory is private.": "{name}的物品栏是私密的。",
  "{name}’s limiteds are worth {value}.": "{name}的限量物品价值 {value}。",

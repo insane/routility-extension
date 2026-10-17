@@ -314,7 +314,7 @@
  "{name} opacity": "{name}の不透明度",
  "{name} selected": "{name}を選択中",
  "{name} value": "{name}の価値",
- "{name}'s Collectibles ({price})": "{name}のコレクション（{price}）",
+ "{name}'s Collectibles": "{name}のコレクション",
  "{name}’s inventory is private, so I can’t see their limiteds.": "{name}さんのインベントリは非公開なので、リミテッドを確認できません。",
  "{name}’s inventory is private.": "{name}さんのインベントリは非公開です。",
  "{name}’s limiteds are worth {value}.": "{name}さんのリミテッドの価値は{value}です。",

@@ -560,7 +560,7 @@
  "{name} opacity": "Прозрачность: {name}",
  "{name} selected": "{name} выбран",
  "{name} value": "Ценность: {name}",
- "{name}'s Collectibles ({price})": "Коллекция {name} ({price})",
+ "{name}'s Collectibles": "Коллекция {name}",
  "{name}’s inventory is private, so I can’t see their limiteds.": "Инвентарь {name} скрыт, поэтому я не вижу его лимитеды.",
  "{name}’s inventory is private.": "Инвентарь {name} скрыт.",
  "{name}’s limiteds are worth {value}.": "Лимитеды {name} стоят {value}.",

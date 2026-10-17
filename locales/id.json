@@ -314,7 +314,7 @@
  "{name} opacity": "Opasitas {name}",
  "{name} selected": "{name} dipilih",
  "{name} value": "Nilai {name}",
- "{name}'s Collectibles ({price})": "Koleksi {name} ({price})",
+ "{name}'s Collectibles": "Koleksi {name}",
  "{name}’s inventory is private, so I can’t see their limiteds.": "Inventaris {name} privat, jadi aku tidak bisa melihat limited-nya.",
  "{name}’s inventory is private.": "Inventaris {name} privat.",
  "{name}’s limiteds are worth {value}.": "Limited milik {name} bernilai {value}.",

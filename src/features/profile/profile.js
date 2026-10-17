@@ -300,7 +300,7 @@
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-modal', 'true');
     const head = el('div', 'routility-modal-head');
-    const title = el('h2', 'routility-modal-title', lt("{name}'s Collectibles ({price})", { name: name || profileName(), price: pillText(summary) }));
+    const title = el('h2', 'routility-modal-title', lt("{name}'s Collectibles", { name: name || profileName() }));
     const ext = el('a', 'routility-modal-icon');
     ext.href = `https://routility.io/player/${userId}`;
     ext.target = '_blank';

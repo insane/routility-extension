@@ -396,7 +396,7 @@
  "{name} opacity": "{name} opacity",
  "{name} selected": "{name} selected",
  "{name} value": "{name} value",
- "{name}'s Collectibles ({price})": "{name}'s Collectibles ({price})",
+ "{name}'s Collectibles": "{name}'s Collectibles",
  "{name}’s inventory is private, so I can’t see their limiteds.": "{name}’s inventory is private, so I can’t see their limiteds.",
  "{name}’s inventory is private.": "{name}’s inventory is private.",
  "{name}’s limiteds are worth {value}.": "{name}’s limiteds are worth {value}.",

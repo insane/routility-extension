@@ -396,7 +396,7 @@
  "{name} opacity": "{name} opaklığı",
  "{name} selected": "{name} seçildi",
  "{name} value": "{name} değeri",
- "{name}'s Collectibles ({price})": "{name} koleksiyonu ({price})",
+ "{name}'s Collectibles": "{name} koleksiyonu",
  "{name}’s inventory is private, so I can’t see their limiteds.": "{name} adlı kullanıcının envanteri gizli, bu yüzden limited'lerini göremiyorum.",
  "{name}’s inventory is private.": "{name} adlı kullanıcının envanteri gizli.",
  "{name}’s limiteds are worth {value}.": "{name} adlı kullanıcının limited'lerinin değeri {value}.",

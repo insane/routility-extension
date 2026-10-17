@@ -560,7 +560,7 @@
  "{name} opacity": "Krycie: {name}",
  "{name} selected": "{name} zaznaczone",
  "{name} value": "Wartość: {name}",
- "{name}'s Collectibles ({price})": "Kolekcja {name} ({price})",
+ "{name}'s Collectibles": "Kolekcja {name}",
  "{name}’s inventory is private, so I can’t see their limiteds.": "Ekwipunek użytkownika {name} jest prywatny, więc nie widzę jego limitedów.",
  "{name}’s inventory is private.": "Ekwipunek użytkownika {name} jest prywatny.",
  "{name}’s limiteds are worth {value}.": "Limitedy użytkownika {name} są warte {value}.",

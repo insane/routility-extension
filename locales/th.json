@@ -314,7 +314,7 @@
  "{name} opacity": "ความทึบ{name}",
  "{name} selected": "เลือก {name} แล้ว",
  "{name} value": "ค่า{name}",
- "{name}'s Collectibles ({price})": "ของสะสมของ {name} ({price})",
+ "{name}'s Collectibles": "ของสะสมของ {name}",
  "{name}’s inventory is private, so I can’t see their limiteds.": "สินค้าคงคลังของ {name} เป็นส่วนตัว ฉันจึงดูลิมิเต็ดของเขาไม่ได้",
  "{name}’s inventory is private.": "สินค้าคงคลังของ {name} เป็นส่วนตัว",
  "{name}’s limiteds are worth {value}.": "ลิมิเต็ดของ {name} มีมูลค่า {value}",

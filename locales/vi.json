@@ -314,7 +314,7 @@
  "{name} opacity": "Độ mờ {name}",
  "{name} selected": "Đã chọn {name}",
  "{name} value": "Giá trị {name}",
- "{name}'s Collectibles ({price})": "Bộ sưu tập của {name} ({price})",
+ "{name}'s Collectibles": "Bộ sưu tập của {name}",
  "{name}’s inventory is private, so I can’t see their limiteds.": "Kho đồ của {name} đang ở chế độ riêng tư nên mình không xem được limited của họ.",
  "{name}’s inventory is private.": "Kho đồ của {name} đang ở chế độ riêng tư.",
  "{name}’s limiteds are worth {value}.": "Limited của {name} đáng giá {value}.",
