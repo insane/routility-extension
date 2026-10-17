@@ -159,13 +159,17 @@
 
   function totals(usdTotal, rapTotal, valueTotal) {
     const line = el('span', 'routility-ads-total text-label-medium');
-    if (showing.usd) line.append(el('span', 'content-emphasis routility-ads-total-usd', usd(usdTotal)));
-    if (showing.value && valueTotal > 0) {
-      const v = valueTag(valueTotal, { short: true, className: 'routility-ads-total-val', tip: false });
-      v.dataset.rtTip = lt('RoUtility Value: {value} Robux', { value: formatNumber(valueTotal) }) + ' · ' + lt('Only items with a RoUtility value are counted');
-      line.append(v);
+    if (showing.rap) {
+      const part = el('span', 'routility-ads-total-part');
+      part.append(robuxIcon(), el('span', 'content-emphasis', compact(rapTotal)));
+      line.append(part);
     }
-    if (showing.rap) line.append(el('span', 'content-muted routility-ads-total-rap', 'RAP'), robuxIcon(), el('span', 'content-emphasis', compact(rapTotal)));
+    if (showing.value && valueTotal > 0) line.append(valueTag(valueTotal, { short: true, className: 'routility-ads-total-part routility-ads-total-val content-emphasis', tip: false }));
+    if (showing.usd) {
+      const part = el('span', 'routility-ads-total-part');
+      part.append(window.RoUtilityUI.usdIcon('routility-ads-usd-ic'), el('span', 'content-emphasis routility-ads-total-usd', usd(usdTotal)));
+      line.append(part);
+    }
     return line;
   }
 

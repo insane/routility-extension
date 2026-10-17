@@ -60,7 +60,7 @@
 
   function valueLine(card, anchor, price, textClass) {
     let line = card.querySelector('.routility-card-worth');
-    const v = price && show.value && card.closest('.trade-list-detail-offer') ? worthOf(price) : 0;
+    const v = price && show.value && card.closest('.trade-list-detail-offer, .trade-request-window-offer') ? worthOf(price) : 0;
     if (!v) {
       line?.remove();
       return;
@@ -95,7 +95,7 @@
     if (price && show.price) line.dataset.rtTip = lt('Price: {value}', { value: formatUSD(price.usd) });
     else delete line.dataset.rtTip;
     line.textContent = '';
-    if (price && show.price) line.appendChild(card.closest('.trade-list-detail-offer') ? usdMark() : logo());
+    if (price && show.price) line.appendChild(usdMark());
     if (show.price || !v) line.appendChild(el('span', textClass, text));
     if (v && show.value) line.appendChild(valueTag(v, { short: true, className: 'routility-card-val ' + textClass }));
   }
@@ -215,11 +215,11 @@
       }
       const t = totals[i];
       const text = t.priced ? formatUSD(t.usd) + (t.missing ? '+' : '') : (t.missing ? lt('N/A') : formatCash(0));
-      const usdNode = offer.matches('.trade-list-detail-offer') ? el('span', 'routility-usd-total') : null;
+      const usdNode = el('span', 'routility-usd-total');
       if (usdNode) usdNode.append(usdMark(), el('span', 'text-robux-lg robux-line-value', text));
       if (show.price) summaryRow(offer, 'routility-trade-usd', usdNode ? '' : lt('Price:'), text, { withLogo: !usdNode, node: usdNode, title: t.missing ? ltn(t.missing, '{n} unpriced', '{n} unpriced') : '' });
       else offer.querySelector('.routility-trade-usd')?.remove();
-      if (show.value && totals.some(x => x.valued > 0) && offer.matches('.trade-list-detail-offer')) summaryRow(offer, 'routility-trade-val', '', String(t.value), { node: valueMark(t.value, 'text-robux-lg robux-line-value') });
+      if (show.value && totals.some(x => x.valued > 0)) summaryRow(offer, 'routility-trade-val', '', String(t.value), { node: valueMark(t.value, 'text-robux-lg robux-line-value') });
       else offer.querySelector('.routility-trade-val')?.remove();
     });
 
@@ -248,7 +248,7 @@
     if (show.rap && rapGive !== null && rapGet !== null && (rapGive || rapGet)) {
       box.appendChild(pill(pillIcon('robux'), rapGive, rapGet, rap, lt('RAP: {give} vs {get}', { give: rap(rapGive), get: rap(rapGet) })));
     }
-    if (show.worth && (totals[0].valued || totals[1].valued) && host.matches('.trade-list-detail-offer')) {
+    if (show.worth && (totals[0].valued || totals[1].valued)) {
       box.appendChild(worthPill(totals[0].value, totals[1].value, lt('Value: {give} vs {get}', { give: rap(totals[0].value), get: rap(totals[1].value) })));
     }
     if (show.price && (totals[0].priced || totals[1].priced)) {

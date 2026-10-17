@@ -12892,3 +12892,42 @@ html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padd
 .routility-ic-prices { column-gap: 16px; }
 .routility-ic-part { display: inline-flex; align-items: center; gap: 6px; }
 .routility-ic-prices .routility-ic-part .routility-ic-logo + span { margin-right: 0; }
+
+.routility-val { color: inherit !important; }
+.routility-val-logo { width: 1.1em; height: 1.1em; flex: none; }
+
+.routility-calc-summary.routility-calc-summary-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 900px) { .routility-calc-summary.routility-calc-summary-4 { grid-template-columns: minmax(0, 1fr); } }
+.routility-calc-price .routility-val { gap: 0; font-weight: inherit; }
+.routility-calc-price .routility-val-logo { width: 16px; height: 16px; margin: 0 4px 0 2px; }
+.routility-calc-price > .icon-robux-16x16 { margin-right: 2px; }
+.routility-calc-total .routility-val { gap: 6px; }
+.routility-calc-total .routility-val-logo { width: 18px; height: 18px; }
+.routility-calc-summary-cell .routility-val { gap: 6px; }
+.routility-calc-summary-cell .routility-val-logo { width: 16px; height: 16px; }
+.routility-calc-grid > .routility-calc-card, .routility-calc-grid > .routility-calc-card > .item-card-container { height: auto !important; overflow: visible !important; }
+.routility-price-pair { flex-direction: column; align-items: flex-start; row-gap: 4px; }
+.routility-price-pair > .routility-item-val { margin-top: 0; }
+.routility-item-val .routility-val { gap: 0; }
+.routility-item-val .routility-val-logo, .routility-usd > .routility-usd-ic { width: 18px; height: 18px; margin: 0 6px 0 1px; }
+
+.trade-request-window-offer .routility-trade-val, .trade-request-window-offer .routility-trade-usd { display: flex; justify-content: flex-end; align-items: center; clear: both; margin: 0; height: 30px; }
+.trade-request-window-offer .routility-trade-val .robux-line-amount, .trade-request-window-offer .routility-trade-usd .robux-line-amount, .trade-request-window-offer .routility-trade-val .routility-val-r, .trade-request-window-offer .routility-trade-usd .routility-usd-total { gap: 2px; margin: 0; padding: 0; }
+.trade-request-window-offer .routility-trade-val .routility-logo, .trade-request-window-offer .routility-trade-usd .routility-usd-ic { width: 18px; height: 18px; margin: 0; }
+.trade-request-window-offer .routility-usd-total .routility-usd-ic, .trade-request-window-offer .routility-card-usd .routility-usd-ic { color: #3fc679 !important; }
+.trade-request-item .routility-card-worth { display: inline-flex !important; align-items: center; vertical-align: top; margin-left: 12px; }
+.trade-request-item .routility-card-worth .routility-val-r { gap: 0; }
+.trade-request-item .routility-card-worth .routility-logo, .trade-request-item .routility-card-usd .routility-usd-ic { width: 14px; height: 14px; margin: 0 4px 0 0; }
+.trade-inventory-panel .item-cards-stackable:has(.routility-card-worth) { height: auto !important; }
+.trade-inventory-panel .item-cards-stackable:has(.routility-card-worth) li.trade-item-card { height: 262px !important; }
+.trade-inventory-panel .item-cards-stackable:has(.routility-card-worth) li.trade-item-card .trade-inventory-card, .trade-inventory-panel .item-cards-stackable:has(.routility-card-worth) li.trade-item-card .item-card-container { height: auto !important; }
+
+.routility-av-wearing-stats.routility-av-wearing-stats-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.routility-av-wearing-stats-3 { gap: 6px; }
+.routility-av-wearing-stats-3 .routility-av-wearing-stat { padding: 7px 8px; }
+.routility-av-wearing-stats-3 .routility-av-wearing-stat-value { gap: 4px; font-size: 14px; }
+.routility-av-wearing-stats-3 .routility-av-wearing-stat-value .routility-logo { width: 14px; height: 14px; }
+.routility-ads-total { display: inline-flex; align-items: center; gap: 12px; }
+.routility-ads-total-part { display: inline-flex; align-items: center; gap: 4px; }
+.routility-ads-total .routility-val { gap: 4px; }
+.routility-ads-total .routility-val-logo, .routility-ads-usd-ic { width: 14px; height: 14px; }

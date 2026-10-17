@@ -857,9 +857,16 @@
           b.appendChild(v);
           return b;
         };
-        const logo = window.RoUtilityUI.usdIcon('routility-logo');
-        stats.appendChild(box(lt('Price'), lt('RoUtility USD price of the limiteds you’re wearing'), logo, formatUSD(usd), window.RoUtilityUI.shortUSD(usd)));
-        stats.appendChild(box(lt('R$ value'), lt('Recent average price of the limiteds you’re wearing'), el('span', 'icon-robux-16x16'), formatNumber(Math.round(rap)), short(rap)));
+        stats.appendChild(box(lt('RAP'), lt('Recent average price of the limiteds you’re wearing'), el('span', 'icon-robux-16x16'), formatNumber(Math.round(rap)), short(rap)));
+        if (window.RoUtilityUI.shows('Avatar').value) {
+          const worth = assets.reduce((sum, a) => { const p = w.prices?.get(a.id); return sum + (window.RoUtilityUI.itemValue(p) || p?.rap || 0); }, 0);
+          const vlogo = el('img', 'routility-logo');
+          vlogo.src = chrome.runtime.getURL('assets/icons/logo.png');
+          vlogo.alt = '';
+          stats.appendChild(box(lt('Value'), lt('RoUtility Value of the limiteds you’re wearing, counting RAP for items we haven’t valued yet'), vlogo, formatNumber(Math.round(worth)), short(worth)));
+          stats.classList.add('routility-av-wearing-stats-3');
+        }
+        stats.appendChild(box(lt('Price'), lt('RoUtility USD price of the limiteds you’re wearing'), window.RoUtilityUI.usdIcon('routility-logo'), formatUSD(usd), window.RoUtilityUI.shortUSD(usd)));
         panel.appendChild(stats);
       }
     }

@@ -41,7 +41,7 @@
   function valueLine(item) {
     const v = window.RoUtilityUI.itemValue(item);
     const line = el('div', 'icon-text-wrapper clearfix routility-injected routility-item-val');
-    if (v) line.appendChild(window.RoUtilityUI.valueTag(v, { textClass: 'text-robux-lg' }));
+    if (v) line.appendChild(window.RoUtilityUI.valueTag(v, { textClass: 'text-robux-lg', tip: false }));
     else line.appendChild(el('span', 'font-body routility-val-none', lt('Not valued yet')));
     return line;
   }
@@ -378,7 +378,7 @@
     const robuxPrice = details.querySelector('.price-info .item-price-value:not(.routility-injected)');
     const priceInfo = details.querySelector('.price-info');
     if (!priceInfo) return;
-    const lines = [itemExtras.usd && usdLine(item), itemExtras.value && valueLine(item)].filter(Boolean);
+    const lines = [itemExtras.value && window.RoUtilityUI.itemValue(item) && valueLine(item), itemExtras.usd && usdLine(item)].filter(Boolean);
     let block = lines[0];
     if (lines.length > 1) {
       block = el('div', 'routility-injected routility-price-pair');

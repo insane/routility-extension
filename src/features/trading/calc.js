@@ -107,13 +107,19 @@
     return itemValue(catalogItem(e.id) || e);
   }
 
+  function entryWorth(e) {
+    if (e.kind === 'item') return entryValue(e) || e.rap || 0;
+    if (e.kind === 'robux') return e.amount;
+    return 0;
+  }
+
   function filled(side) {
     return s.sides[side].entries.filter(Boolean);
   }
 
   function totals(side) {
     const list = filled(side);
-    return { usd: list.reduce((n, e) => n + entryUsd(e), 0), rap: list.reduce((n, e) => n + entryRap(e), 0), value: list.reduce((n, e) => n + entryValue(e), 0), valued: list.filter(e => entryValue(e) > 0).length, count: list.length };
+    return { usd: list.reduce((n, e) => n + entryUsd(e), 0), rap: list.reduce((n, e) => n + entryRap(e), 0), value: list.reduce((n, e) => n + entryWorth(e), 0), valued: list.filter(e => entryValue(e) > 0).length, count: list.length };
   }
 
   function catalogItem(id) {
@@ -306,14 +312,13 @@
       const t = totals(side);
       const sums = panel.querySelector('.routility-calc-sums');
       sums.textContent = '';
-      sums.appendChild(totalLine(lt('Price est.'), usdText(t.usd), 'content-emphasis'));
-      if (showing.value && totals('give').valued + totals('get').valued > 0) {
-        const line = totalLine(lt('RoUtility Value'), '', 'content-emphasis');
-        line.lastChild.replaceWith(t.valued ? valueTag(t.value, { className: 'text-title-large', tip: false }) : el('span', 'text-body-medium routility-val-none', lt('None valued')));
-        line.dataset.rtTip = lt('Only items with a RoUtility value are counted');
+      sums.appendChild(totalLine(lt('Total RAP'), formatNumber(Math.round(t.rap)) + ' R$', 'content-emphasis'));
+      if (showing.value) {
+        const line = totalLine(lt('Value'), '', 'content-emphasis');
+        line.lastChild.replaceWith(valueTag(t.value, { className: 'text-title-large content-emphasis', tip: false }));
         sums.appendChild(line);
       }
-      sums.appendChild(totalLine(lt('Total RAP'), formatNumber(Math.round(t.rap)) + ' R$', 'content-emphasis'));
+      sums.appendChild(totalLine(lt('Price est.'), usdText(t.usd), 'content-emphasis'));
       panel.classList.toggle('routility-calc-adding', s.adding === side);
     }
   }
@@ -377,6 +382,15 @@
       return c;
     };
     box.appendChild(cell(lt('RAP difference'), both ? signed(Math.round(dRap), formatNumber) + ' R$' : '—', tone(dRap), both && percentsOn() ? pct(dRap, give.rap) : ''));
+    box.classList.toggle('routility-calc-summary-4', !!showing.value);
+    if (showing.value) {
+      const dVal = get.value - give.value;
+      const vcell = cell(lt('Value difference'), '', tone(dVal), both && percentsOn() ? pct(dVal, give.value) : '');
+      const target = vcell.querySelector('.text-heading-small');
+      if (both) target.replaceWith(valueTag(Math.abs(dVal), { className: 'text-heading-small ' + tone(dVal), sign: dVal > 0 ? '+' : dVal < 0 ? '-' : '', tip: false }));
+      else target.textContent = '—';
+      box.appendChild(vcell);
+    }
     box.appendChild(cell(lt('Price difference'), both ? signed(dUsd, usdText) : '—', tone(dUsd), both && percentsOn() ? pct(dUsd, give.usd) : ''));
     const v = verdictFor(give, get);
     const vc = el('div', 'flex flex-col gap-xsmall routility-calc-summary-cell');
@@ -397,14 +411,6 @@
         : dv > 0 ? (byRap() ? lt('You get {pct}% more RAP', more) : lt('You get {pct}% more value', more))
           : (byRap() ? lt('You give {pct}% more RAP', more) : lt('You give {pct}% more value', more));
       if (sub) line.appendChild(el('span', 'text-body-small content-muted text-truncate-end', sub));
-      if (showing.value && give.valued + get.valued > 0) {
-        const dVal = get.value - give.value;
-        const row = el('div', 'flex items-center gap-small routility-calc-valdiff');
-        row.appendChild(el('span', 'text-body-small content-muted', lt('Value difference')));
-        row.appendChild(valueTag(Math.abs(dVal), { className: 'text-label-medium', sign: dVal > 0 ? '+' : dVal < 0 ? '−' : '', tip: false }));
-        row.dataset.rtTip = lt('Only items with a RoUtility value are counted');
-        vc.appendChild(row);
-      }
     }
     box.appendChild(vc);
     if (settings.calcEven === false) s.root.querySelector('.routility-calc-even')?.remove();
@@ -551,13 +557,14 @@
     const rap = el('div', 'text-overflow item-card-price routility-calc-price');
     rap.append(el('span', 'icon-robux-16x16'), el('span', 'text-robux-tile', formatNumber(item.rap || 0)));
     cap.appendChild(rap);
+    if (showing.value) {
+      const worth = el('div', 'text-overflow item-card-price routility-calc-price');
+      worth.appendChild(valueTag(itemValue(item) || item.rap || 0, { textClass: 'text-robux-tile', tip: false }));
+      worth.dataset.rtTip = itemValue(item) ? lt('Value: {value}', { value: formatNumber(itemValue(item)) }) : lt('Not valued yet, so this is its RAP');
+      cap.appendChild(worth);
+    }
     const usd = el('div', 'text-overflow item-card-price routility-calc-price');
     usd.append(window.RoUtilityUI.usdIcon('routility-logo'), el('span', 'text-robux-tile', item.usd ? usdText(item.usd) : lt('No price')));
-    if (!showing.value && itemValue(item)) usd.dataset.rtTip = window.RoUtilityUI.valueTip(item);
-    if (showing.value && itemValue(item)) {
-      usd.classList.add('routility-card-usd');
-      usd.appendChild(valueTag(itemValue(item), { short: true, className: 'routility-card-val text-robux-tile' }));
-    }
     cap.appendChild(usd);
     btn.appendChild(cap);
     btn.addEventListener('click', () => {

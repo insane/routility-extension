@@ -311,7 +311,7 @@
     close.type = 'button';
     close.setAttribute('aria-label', lt('Close'));
     close.appendChild(svgIcon('M6 6l12 12M18 6L6 18'));
-    if (Number(summary.count) > 0) title.appendChild(el('span', 'routility-modal-count', ltn(summary.count, '{count} limited', '{count} limiteds', { count: formatNumber(summary.count) })));
+    if (Number(summary.count) > 0) title.appendChild(el('span', 'routility-modal-count', ltn(summary.count, '{n} limited', '{n} limiteds', { n: formatNumber(summary.count) })));
     head.append(title, ext, close);
     const tools = el('div', 'routility-modal-tools');
     const search = el('input', 'form-control input-field routility-modal-search');

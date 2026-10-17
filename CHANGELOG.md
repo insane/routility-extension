@@ -14,6 +14,7 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 **New**
 
 ```diff
++ RoUtility Values everywhere: the item page, Marketplace, inventories, Make Offer, the Trade Calculator, Trade Ads, search, the avatar editor and item hover cards now show Value next to RAP and price. One switch turns them all off: Settings > Robux & Transactions > RoUtility Values.
 + One icon for each number everywhere: the RoUtility logo means Value, the green dollar icon means price, and the Robux icon means RAP. Marketplace tiles, Similar Price and the Collectibles window show Value on its own line.
 + Trade Proof shows RoUtility Value too: on every item, in each side's totals and in the difference, with a Value switch next to RAP and Prices.
 + Short Numbers on Profiles: show the profile pills like 7.27M+ instead of the full number. Value now uses the RoUtility logo, price a dollar icon and RAP the Robux icon, so they never look alike.

@@ -254,20 +254,22 @@
   window.addEventListener('scroll', hideTip, true);
   document.addEventListener('mousedown', hideTip, true);
 
-  const VISIBLE = Object.freeze({ usd: true, value: false, rap: true });
+  const VISIBLE = Object.freeze({ usd: true, value: true, rap: true });
   const PLACE_KEYS = { Profile: { usd: 'profileUsd', value: 'profileValue', rap: 'profileRap' }, Trades: { usd: 'tradeUsd', value: 'tradeValue', rap: 'tradeRap' }, Market: { usd: 'marketUsd', value: 'marketValue', rap: 'marketRap' }, Cards: { usd: 'cardUsd', value: 'cardValue', rap: 'cardRap' } };
 
   function shows(place) {
     const pick = (k) => {
       const keys = PLACE_KEYS[typeof place === 'function' ? place() : place];
-      return keys ? (fiatSettings || {})[keys[k]] !== false : VISIBLE[k];
+      const s = fiatSettings || {};
+      if (k === 'value' && s.showValues === false) return false;
+      return keys ? s[keys[k]] !== false : VISIBLE[k];
     };
     return { get usd() { return pick('usd'); }, get value() { return pick('value'); }, get rap() { return pick('rap'); } };
   }
 
   function valueTip(price) {
     const v = itemValue(price);
-    return v ? lt('RoUtility Value: {value} Robux', { value: formatNumber(v) }) : '';
+    return v ? lt('Value: {value}', { value: formatNumber(v) }) : '';
   }
 
   let tagsOn = true;
@@ -422,10 +424,11 @@
   function valueTag(value, opts = {}) {
     const v = Number(value) || 0;
     const tag = el('span', 'routility-val' + (opts.className ? ' ' + opts.className : ''));
-    const icon = el('span', 'routility-val-icon');
-    icon.setAttribute('aria-hidden', 'true');
+    const icon = el('img', 'routility-val-logo');
+    icon.src = chrome.runtime.getURL('assets/icons/logo.png');
+    icon.alt = '';
     tag.append(icon, el('span', opts.textClass || null, (opts.sign || '') + (opts.short ? shortValue(v) : formatNumber(v))));
-    if (opts.tip !== false) tag.dataset.rtTip = lt('RoUtility Value: {value} Robux', { value: formatNumber(v) });
+    if (opts.tip !== false) tag.dataset.rtTip = lt('Value: {value}', { value: formatNumber(v) });
     return tag;
   }
 
