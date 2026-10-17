@@ -74,7 +74,7 @@
     line.dataset.key = key;
     line.textContent = '';
     line.appendChild(valueMark(v, textClass));
-    line.dataset.rtTip = itemValue(price) ? lt('RoUtility Value: {value} Robux', { value: formatNumber(v) }) : lt('Not valued yet, so this is its RAP');
+    line.dataset.rtTip = itemValue(price) ? lt('Value: {value}', { value: formatNumber(v) }) : lt('Not valued yet, so this is its RAP');
   }
 
   function cardLine(card, key, price) {
@@ -92,7 +92,8 @@
     const textClass = anchor.querySelector('[class*="text-robux"]')?.className || 'text-robux-tile';
     line.dataset.key = key || '';
     line.dataset.text = text + '|' + v;
-    line.dataset.rtTip = window.RoUtilityUI.priceTitle(price);
+    if (price && show.price) line.dataset.rtTip = lt('Price: {value}', { value: formatUSD(price.usd) });
+    else delete line.dataset.rtTip;
     line.textContent = '';
     if (price && show.price) line.appendChild(card.closest('.trade-list-detail-offer') ? usdMark() : logo());
     if (show.price || !v) line.appendChild(el('span', textClass, text));
