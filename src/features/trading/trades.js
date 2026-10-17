@@ -1756,10 +1756,11 @@
       const items = (offer.items || []).map((it) => {
         const k = offerItemKey(it);
         const c = map.lookup ? map.lookup(k) : map.get(k.targetId);
-        return { name: it.itemName || (c && c.name) || '', acr: (c && c.acr) || '', usd: c && c.usd > 0 ? c.usd : 0, priced: !!(c && c.usd > 0), rap: Number(it.recentAveragePrice) || (c ? c.rap : 0) || 0, serial: Number(it.serialNumber) || 0, thumbKey: (k.bundle ? 'b' : '') + k.targetId };
+        const rap = Number(it.recentAveragePrice) || (c ? c.rap : 0) || 0;
+        return { name: it.itemName || (c && c.name) || '', acr: (c && c.acr) || '', usd: c && c.usd > 0 ? c.usd : 0, priced: !!(c && c.usd > 0), rap, worth: (c && Number(c.value) > 0 ? Number(c.value) : 0) || rap, serial: Number(it.serialNumber) || 0, thumbKey: (k.bundle ? 'b' : '') + k.targetId };
       });
       const robux = Number(offer.robux) || 0;
-      return { user: offer.user || {}, items, robux, usd: items.reduce((n, i) => n + i.usd, 0) + robux * robuxRate, rap: items.reduce((n, i) => n + i.rap, 0), missing: items.filter(i => !i.priced).length };
+      return { user: offer.user || {}, items, robux, usd: items.reduce((n, i) => n + i.usd, 0) + robux * robuxRate, rap: items.reduce((n, i) => n + i.rap, 0), worth: items.reduce((n, i) => n + i.worth, 0) + robux, missing: items.filter(i => !i.priced).length };
     };
     const a = side(d.participantAOffer);
     const b = side(d.participantBOffer);
@@ -1808,8 +1809,11 @@
     const logo = await loadImg(LOGO_URL);
     const dark = !document.body.classList.contains('light-theme');
     const C = dark
-      ? { bg: '#121215', tile: '#24262c', text: '#f7f7f8', muted: '#a3a6ad', line: 'rgba(255,255,255,0.12)', price: '#3aa0ff', win: '#3fc679', over: '#f35b5b' }
-      : { bg: '#ffffff', tile: '#ececef', text: '#202227', muted: '#666a72', line: 'rgba(0,0,0,0.12)', price: '#0a79e0', win: '#178d4b', over: '#d23439' };
+      ? { bg: '#121215', tile: '#24262c', text: '#f7f7f8', muted: '#a3a6ad', line: 'rgba(255,255,255,0.12)', price: '#3aa0ff', value: '#5cb2ff', win: '#3fc679', over: '#f35b5b' }
+      : { bg: '#ffffff', tile: '#ececef', text: '#202227', muted: '#666a72', line: 'rgba(0,0,0,0.12)', price: '#0a79e0', value: '#0a72c2', win: '#178d4b', over: '#d23439' };
+    const ROBUX_PATH = new Path2D('M19.78 4.897A4.369 4.369 0 0122 8.69v6.62a4.37 4.37 0 01-2.22 3.792l-5.812 3.311a4.487 4.487 0 01-4.437 0l-5.813-3.31A4.37 4.37 0 011.5 15.31V8.69c0-1.565.846-3.011 2.218-3.793l5.813-3.31a4.487 4.487 0 014.437 0l5.813 3.31zM10.31 3.09L4.648 6.313a2.836 2.836 0 00-1.44 2.463v6.448c0 1.015.548 1.954 1.44 2.463l5.66 3.223c.892.508 1.99.508 2.882 0l5.66-3.223a2.838 2.838 0 001.442-2.463V8.776c0-1.017-.55-1.955-1.441-2.463L13.19 3.09a2.914 2.914 0 00-2.882 0zm2.624 1.801l4.466 2.543a2.33 2.33 0 011.184 2.024v5.087a2.33 2.33 0 01-1.184 2.023l-4.466 2.544a2.394 2.394 0 01-2.367 0L6.1 16.568a2.33 2.33 0 01-1.183-2.023V9.458c0-.835.451-1.606 1.183-2.024l4.466-2.543a2.394 2.394 0 012.367 0zM9.188 14.53h5.124V9.473H9.189v5.057z');
+    const USD_PATH = new Path2D('M15.2 8.6c-.6-1-1.8-1.6-3.2-1.6-1.8 0-3.1.9-3.1 2.3 0 3.3 6.3 1.8 6.3 5 0 1.4-1.4 2.4-3.2 2.4-1.5 0-2.7-.6-3.3-1.7M12 5v14');
+    const lines = (opts.rap ? 1 : 0) + (opts.value ? 1 : 0) + (opts.prices ? 1 : 0);
     const PAD = 28;
     const TILE = 140;
     const GAP = 18;
@@ -1818,14 +1822,14 @@
     const font = (w, s) => `${w} ${s}px "Builder Sans", "Gotham SSm", Arial, sans-serif`;
     const nf = (n) => Math.round(n).toLocaleString('en-US');
     const money = (n) => '$' + nf(n);
-    const tileH = TILE + 10 + 36 + (opts.rap ? 18 : 0) + (opts.prices ? 18 : 0);
+    const tileH = TILE + 10 + 36 + lines * 18;
     const probe = document.createElement('canvas').getContext('2d');
     probe.font = font(700, 24);
     const them0 = p.theirs.user;
     const titleW = probe.measureText(lt('Trade with {name}', { name: them0.displayName || them0.name || '' })).width;
     probe.font = font(600, 20);
     const W = Math.ceil(Math.max(PAD * 2 + COLS * TILE + (COLS - 1) * GAP, PAD * 2 + titleW + 8 + probe.measureText('@' + (them0.name || '')).width, 560));
-    const totals = 8 + (opts.rap ? 26 : 0) + (opts.prices ? 26 : 0);
+    const totals = 8 + lines * 26;
     const sectionH = (s) => 34 + Math.max(1, Math.ceil(count(s) / COLS)) * (tileH + GAP) + totals;
     const H = PAD + 46 + sectionH(p.mine) + 46 + sectionH(p.theirs) + 34 + PAD;
     const scale = 2;
@@ -1863,6 +1867,52 @@
       if (lines.length > 2) lines[1] = fit(lines.slice(1).join(' '), max, f);
       return lines.slice(0, 2).map((l, i) => (i === 0 ? fit(l, max, f) : l));
     };
+    const tints = new Map();
+    const icon = (kind, x, base, size, color) => {
+      const top = base - size + Math.round(size * 0.12);
+      if (kind === 'value') {
+        if (logo) {
+          if (!tints.has(color)) {
+            const c = document.createElement('canvas');
+            c.width = c.height = 64;
+            const x2 = c.getContext('2d');
+            x2.drawImage(logo, 0, 0, 64, 64);
+            x2.globalCompositeOperation = 'source-in';
+            x2.fillStyle = color;
+            x2.fillRect(0, 0, 64, 64);
+            tints.set(color, c);
+          }
+          g.drawImage(tints.get(color), x, top, size, size);
+        }
+        return size + 4;
+      }
+      g.save();
+      g.translate(x, top);
+      g.scale(size / 24, size / 24);
+      if (kind === 'rap') {
+        g.fillStyle = color;
+        g.fill(ROBUX_PATH);
+      } else {
+        g.strokeStyle = color;
+        g.lineWidth = 2.2;
+        g.lineCap = 'round';
+        g.beginPath();
+        g.arc(12, 12, 10, 0, Math.PI * 2);
+        g.stroke();
+        g.lineWidth = 2.1;
+        g.stroke(USD_PATH);
+      }
+      g.restore();
+      return size + 4;
+    };
+    const iconText = (kind, s, x, base, f, color, size, align = 'left') => {
+      g.font = f;
+      const w = g.measureText(s).width;
+      const start = align === 'right' ? x - w - size - 4 : x;
+      icon(kind, start, base, size, color);
+      text(s, start + size + 4, base, f, color);
+      return w + size + 4;
+    };
     const round = (x, y, w, h, r) => {
       g.beginPath();
       g.moveTo(x + r, y);
@@ -1886,6 +1936,11 @@
         text(lt('Nothing'), PAD, y + 24, font(500, 14), C.muted);
         y += tileH + GAP;
       }
+      const rowLines = [];
+      cells.forEach((cell, i) => {
+        const n = cell.item ? wrap(cell.item.name, TILE, font(700, 13)).length : 1;
+        rowLines[Math.floor(i / COLS)] = Math.max(rowLines[Math.floor(i / COLS)] || 1, n);
+      });
       cells.forEach((cell, i) => {
         const col = i % COLS;
         const row = Math.floor(i / COLS);
@@ -1923,25 +1978,29 @@
           text(line, x, ty, font(700, 13), C.text);
           ty += 16;
         }
-        ty = top + TILE + 10 + 36 + 14;
+        ty = top + TILE + 22 + (rowLines[row] - 1) * 16 + 22;
         if (opts.rap) {
-          text('R$ ' + nf(it.rap), x, ty, font(600, 12), C.muted);
+          iconText('rap', nf(it.rap), x, ty, font(600, 12), C.muted, 13);
           ty += 18;
         }
-        if (opts.prices) text(it.priced ? money(it.usd) : lt('No price'), x, ty, font(700, 12), it.priced ? C.price : C.muted);
+        if (opts.value) {
+          iconText('value', nf(it.worth), x, ty, font(700, 12), C.value, 13);
+          ty += 18;
+        }
+        if (opts.prices) iconText('usd', it.priced ? money(it.usd) : lt('No price'), x, ty, font(700, 12), it.priced ? C.price : C.muted, 13);
       });
       y += Math.max(1, Math.ceil(cells.length / COLS)) * (tileH + GAP);
       const right = W - PAD;
-      if (opts.rap) {
-        y += 22;
-        text(lt('Total Value:'), PAD, y, font(600, 14), C.muted);
-        text('R$ ' + nf(s.rap + s.robux), right, y, font(700, 15), C.text, 'right');
-      }
-      if (opts.prices) {
-        y += 26;
-        text(lt('Price:'), PAD, y, font(600, 14), C.muted);
-        text(money(s.usd) + (s.missing ? '+' : ''), right, y, font(700, 15), C.price, 'right');
-      }
+      let labeled = false;
+      const total = (kind, s2, color) => {
+        y += labeled ? 26 : 22;
+        if (!labeled) text(lt('Total Value:'), PAD, y, font(600, 14), C.muted);
+        labeled = true;
+        iconText(kind, s2, right, y, font(700, 15), color, 16, 'right');
+      };
+      if (opts.rap) total('rap', nf(s.rap + s.robux), C.text);
+      if (opts.value) total('value', nf(s.worth), C.value);
+      if (opts.prices) total('usd', money(s.usd) + (s.missing ? '+' : ''), C.price);
       y += 8;
     };
     section(lt('Items you gave'), p.mine);
@@ -1949,25 +2008,30 @@
     g.fillStyle = C.line;
     g.fillRect(PAD, y, W - PAD * 2, 1);
     const parts = [];
+    const pctOf = (d, base) => (base > 0 ? ` (${Math.round(Math.abs(d) / base * 1000) / 10}%)` : '');
+    if (opts.rap) {
+      const base = p.mine.rap + p.mine.robux;
+      const d = (p.theirs.rap + p.theirs.robux) - base;
+      parts.push({ k: 'rap', s: `${d >= 0 ? '+' : '-'}${nf(Math.abs(d))}${pctOf(d, base)}`, c: d === 0 ? C.muted : d > 0 ? C.win : C.over });
+    }
+    if (opts.value) {
+      const d = p.theirs.worth - p.mine.worth;
+      parts.push({ k: 'value', s: `${d >= 0 ? '+' : '-'}${nf(Math.abs(d))}${pctOf(d, p.mine.worth)}`, c: d === 0 ? C.muted : d > 0 ? C.win : C.over });
+    }
     if (opts.prices) {
       const d = p.theirs.usd - p.mine.usd;
-      const pct = p.mine.usd > 0 ? Math.round(Math.abs(d) / p.mine.usd * 1000) / 10 : null;
-      parts.push({ s: `${d >= 0 ? '+' : '-'}${money(Math.abs(d))}${pct !== null ? ` (${pct}%)` : ''}`, c: Math.abs(d) < 1 ? C.muted : d > 0 ? C.win : C.over });
-    }
-    if (opts.rap) {
-      const d = (p.theirs.rap + p.theirs.robux) - (p.mine.rap + p.mine.robux);
-      parts.push({ s: `${d >= 0 ? '+' : '-'}R$ ${nf(Math.abs(d))}`, c: d === 0 ? C.muted : d > 0 ? C.win : C.over });
+      parts.push({ k: 'usd', s: `${d >= 0 ? '+' : '-'}${money(Math.abs(d))}${pctOf(d, p.mine.usd)}`, c: Math.abs(d) < 1 ? C.muted : d > 0 ? C.win : C.over });
     }
     if (parts.length) {
       g.font = font(700, 13);
-      const widths = parts.map(x => g.measureText(x.s).width);
+      const widths = parts.map(x => g.measureText(x.s).width + 18);
       const total = widths.reduce((a, b) => a + b, 0) + (parts.length - 1) * 18 + 24;
       let x = W / 2 - total / 2;
       g.fillStyle = C.bg;
       g.fillRect(x, y - 10, total, 20);
       x += 12;
       parts.forEach((part, i) => {
-        text(part.s, x, y + 5, font(700, 13), part.c);
+        iconText(part.k, part.s, x, y + 5, font(700, 13), part.c, 14);
         x += widths[i] + 18;
       });
     }
@@ -2027,7 +2091,7 @@
     const shot = el('div', 'routility-proof-shot');
     shot.appendChild(el('span', 'routility-sk routility-proof-sk'));
     const side = el('div', 'routility-proof-side');
-    const opts = { prices: true, rap: true };
+    const opts = { prices: true, rap: true, value: true };
     const chips = el('div', 'routility-proof-chips');
     const comment = el('input', 'routility-proof-comment text-body-medium');
     comment.type = 'text';
@@ -2090,7 +2154,7 @@
       shot.appendChild(img);
     };
     const retext = () => { area.value = proofText(data, comment.value); };
-    chips.append(proofChip(lt('Prices'), true, (on) => { opts.prices = on; redraw(); }), proofChip(lt('RAP'), true, (on) => { opts.rap = on; redraw(); }));
+    chips.append(proofChip(lt('RAP'), true, (on) => { opts.rap = on; redraw(); }), proofChip(lt('Value'), true, (on) => { opts.value = on; redraw(); }), proofChip(lt('Prices'), true, (on) => { opts.prices = on; redraw(); }));
     comment.addEventListener('input', retext);
     retext();
     redraw();

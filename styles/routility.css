@@ -12863,5 +12863,7 @@ html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padd
 .routility-classic-pills .routility-value-usd-ic, .routility-classic-pills .routility-worth-logo, .routility-trade-inv-pills .routility-value-usd-ic, .routility-trade-inv-pills .routility-worth-logo { width: 14px; height: 14px; }
 
 .trade-list-detail-offer .trade-item-card:has(.routility-card-worth) .item-card-price:not(.routility-injected) .icon-robux-16x16 { margin-right: 2px; }
-.trade-list-detail-offer .routility-card-worth .routility-val-r { gap: 4px; }
-.trade-list-detail-offer .routility-card-usd .routility-usd-ic { margin-right: 4px; }
+
+.trade-list-detail-offer .routility-card-worth .routility-val-r { gap: 0; }
+.trade-list-detail-offer .routility-card-worth .routility-logo, .trade-list-detail-offer .routility-card-usd .routility-usd-ic { width: 16px; height: 16px; margin: 0 4px 0 2px; }
+.trade-list-detail-offer .routility-trade-usd .routility-usd-ic { color: rgb(143, 176, 204); }

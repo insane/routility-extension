@@ -14,6 +14,7 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 **New**
 
 ```diff
++ Trade Proof shows RoUtility Value too: on every item, in each side's totals and in the difference, with a Value switch next to RAP and Prices.
 + Short Numbers on Profiles: show the profile pills like 7.27M+ instead of the full number. Value now uses the RoUtility logo, price a dollar icon and RAP the Robux icon, so they never look alike.
 + RoUtility Values in trades: every item shows its RAP, Value and price, each side gets a Value total under the RAP total, and there are RAP, Value and price difference pills. Pick which two pills your trade list shows: RAP and Price, Value and Price, or RAP and Value.
 + RoUtility Values on profiles: the price and Robux Value share one pill next to the green RAP pill. Pick which of the three you see in Settings > Inventory > Inventory Values.
