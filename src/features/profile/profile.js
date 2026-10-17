@@ -266,15 +266,24 @@
     robux.appendChild(el('span', 'icon-robux-16x16'));
     robux.appendChild(el('span', 'text-robux-tile', formatNumber(g.rap)));
     link.appendChild(robux);
-    const usd = el('div', 'text-overflow item-card-price font-header-2 text-subheader margin-top-none routility-card-usd');
-    if (g.price) {
-      usd.dataset.rtTip = window.RoUtilityUI.priceTitle(g.price);
+    if (showing.value && g.price) {
+      const v = itemValue(g.price) || Number(g.rap) || 0;
+      const worth = el('div', 'text-overflow item-card-price font-header-2 text-subheader margin-top-none routility-card-worth');
+      worth.dataset.rtTip = itemValue(g.price) ? lt('Value: {value}', { value: formatNumber(v) }) : lt('Not valued yet, so this is its RAP');
+      const tag = el('span', 'routility-val routility-val-r');
       const logo = el('img', 'routility-logo');
       logo.src = LOGO_URL;
       logo.alt = '';
-      usd.appendChild(logo);
-      usd.appendChild(el('span', 'text-robux-tile', window.RoUtilityUI.formatUSD(g.price.usd)));
-      if (showing.value && itemValue(g.price)) usd.appendChild(valueTag(itemValue(g.price), { short: true, className: 'routility-card-val text-robux-tile' }));
+      tag.append(logo, el('span', 'text-robux-tile', formatNumber(v)));
+      worth.appendChild(tag);
+      link.appendChild(worth);
+    }
+    const usd = el('div', 'text-overflow item-card-price font-header-2 text-subheader margin-top-none routility-card-usd');
+    if (g.price && showing.usd) {
+      usd.dataset.rtTip = lt('Price: {value}', { value: window.RoUtilityUI.formatUSD(g.price.usd) });
+      const icon = el('span', 'routility-usd-ic');
+      icon.setAttribute('aria-hidden', 'true');
+      usd.append(icon, el('span', 'text-robux-tile', window.RoUtilityUI.formatUSD(g.price.usd)));
     } else {
       usd.appendChild(el('span', 'text-robux-tile', ' '));
     }
