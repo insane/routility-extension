@@ -61,6 +61,9 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 - Trailers you start yourself keep playing with Stop Trailer Autoplay on.
 - The unfriend detector keeps working after a big change in your friends list.
 - Price alerts past your 25th are checked too.
+- Fun Mode: your fake Robux no longer turns into a ? after buying or changing the amount.
+- Fun Mode: picking a lower Robux amount after buying things starts from that amount instead of dropping to 0.
+- Fun Mode: T-shirts you buy show first in your inventory, and heads and faces get their own Classic Heads and Classic Faces tabs under Heads.
 - A lot of smaller fixes from a full bug sweep.
 ```
 

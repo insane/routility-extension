@@ -46,6 +46,9 @@
         { "type": "fixed", "text": "Trailers you start yourself keep playing with Stop Trailer Autoplay on." },
         { "type": "fixed", "text": "The unfriend detector keeps working after a big change in your friends list." },
         { "type": "fixed", "text": "Price alerts past your 25th are checked too." },
+        { "type": "fixed", "text": "Fun Mode: your fake Robux no longer turns into a ? after buying or changing the amount." },
+        { "type": "fixed", "text": "Fun Mode: picking a lower Robux amount after buying things starts from that amount instead of dropping to 0." },
+        { "type": "fixed", "text": "Fun Mode: T-shirts you buy show first in your inventory, and heads and faces get their own Classic Heads and Classic Faces tabs under Heads." },
         { "type": "fixed", "text": "A lot of smaller fixes from a full bug sweep." }
       ]
     },
