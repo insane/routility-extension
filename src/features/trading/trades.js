@@ -1936,11 +1936,6 @@
         text(lt('Nothing'), PAD, y + 24, font(500, 14), C.muted);
         y += tileH + GAP;
       }
-      const rowLines = [];
-      cells.forEach((cell, i) => {
-        const n = cell.item ? wrap(cell.item.name, TILE, font(700, 13)).length : 1;
-        rowLines[Math.floor(i / COLS)] = Math.max(rowLines[Math.floor(i / COLS)] || 1, n);
-      });
       cells.forEach((cell, i) => {
         const col = i % COLS;
         const row = Math.floor(i / COLS);
@@ -1978,7 +1973,7 @@
           text(line, x, ty, font(700, 13), C.text);
           ty += 16;
         }
-        ty = top + TILE + 22 + (rowLines[row] - 1) * 16 + 22;
+        ty += 6;
         if (opts.rap) {
           iconText('rap', nf(it.rap), x, ty, font(600, 12), C.muted, 13);
           ty += 18;
