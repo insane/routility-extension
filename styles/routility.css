@@ -12836,4 +12836,4 @@ html.routility-hi-off .routility-hi-loading, html.routility-hi-failed .routility
 .routility-classic-pills .routility-worth-pill, .routility-trade-inv-pills .routility-split-pill > * { height: 28px; font-size: 12px; }
 
 #content:has(> .routility-calc), #content:has(> .routility-ads) { padding-left: max(22px, 2%) !important; padding-right: max(22px, 2%) !important; }
-#content > .routility-calc, #content > .routility-ads { max-width: 2400px; margin-left: auto; margin-right: auto; box-sizing: border-box; }
+#content > .routility-calc, #content > .routility-ads { max-width: 1800px; margin-left: auto; margin-right: auto; box-sizing: border-box; }

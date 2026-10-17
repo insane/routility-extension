@@ -9,7 +9,7 @@
       "date": "2026-10-16",
       "summary": "Every Roblox Plus theme for free, when you joined each community, Fun Outfits, and Try On that keeps your hats.",
       "changes": [
-        { "type": "fixed", "text": "Trade Calculator and Trade Ads have the same side spacing as Home instead of running into the menu and the window edge on wide screens." },
+        { "type": "fixed", "text": "Trade Calculator and Trade Ads sit centered with room on both sides instead of running into the menu and the window edge on wide screens." },
         { "type": "new", "text": "RoUtility Values on profiles: the price and Robux Value share one pill next to the green RAP pill. Pick which of the three you see in Settings > Inventory > Inventory Values." },
         { "type": "fixed", "text": "Joining a friend from their profile no longer says you're in the game before Roblox even opens, and the join window now shows their server's players, ping and performance instead of dashes." },
         { "type": "new", "text": "Hidden Item Details: when an item's page is hidden, like an archived or unreleased item, RoUtility rebuilds it with its picture, creator, type, dates, favorites and description instead of a 404." },
