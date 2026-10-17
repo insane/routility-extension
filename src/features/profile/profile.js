@@ -416,14 +416,21 @@
 
   function pillSet(userId, summary, name) {
     const out = [];
-    if (showing.usd || summary.private) out.push(makePill(userId, summary, name));
-    if (hasWorth(summary)) out.push(makeWorthPill(userId, summary, name));
+    if (showing.usd && hasWorth(summary)) {
+      const split = el('div', 'flex routility-split-pill');
+      split.append(makePill(userId, summary, name), makeWorthPill(userId, summary, name));
+      out.push(split);
+    } else {
+      if (showing.usd || summary.private) out.push(makePill(userId, summary, name));
+      if (hasWorth(summary)) out.push(makeWorthPill(userId, summary, name));
+    }
     if (showing.rap && !summary.private) out.push(makeRapPill(userId, summary, name));
     return out;
   }
 
   function skeletonPills() {
-    return [showing.usd && 'routility-value-pill', showing.value && 'routility-worth-pill', showing.rap && 'routility-rap-pill']
+    const both = showing.usd && showing.value;
+    return [both && 'routility-value-pill routility-split-skeleton', !both && showing.usd && 'routility-value-pill', !both && showing.value && 'routility-worth-pill', showing.rap && 'routility-rap-pill']
       .filter(Boolean).map(c => el('span', PILL_CLASS + ' ' + c + ' routility-pill-skeleton'));
   }
 

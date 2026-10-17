@@ -12828,3 +12828,9 @@ html.routility-hi-off .routility-hi-loading, html.routility-hi-failed .routility
 @media (max-width: 767px) {
   .routility-hi-banner { flex-wrap: wrap; }
 }
+
+.routility-split-pill { flex: none; }
+.routility-split-pill > .routility-value-pill { border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important; padding-right: 12px !important; }
+.routility-split-pill > .routility-worth-pill { border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important; padding-left: 12px !important; background-color: rgba(15, 159, 255, 0.16) !important; }
+.routility-value-pill.routility-split-skeleton { width: 240px; }
+.routility-classic-pills .routility-worth-pill, .routility-trade-inv-pills .routility-split-pill > * { height: 28px; font-size: 12px; }

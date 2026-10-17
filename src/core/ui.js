@@ -255,9 +255,14 @@
   document.addEventListener('mousedown', hideTip, true);
 
   const VISIBLE = Object.freeze({ usd: true, value: false, rap: true });
+  const PLACE_KEYS = { Profile: { usd: 'profileUsd', value: 'profileValue', rap: 'profileRap' } };
 
-  function shows() {
-    return VISIBLE;
+  function shows(place) {
+    const pick = (k) => {
+      const keys = PLACE_KEYS[typeof place === 'function' ? place() : place];
+      return keys ? (fiatSettings || {})[keys[k]] !== false : VISIBLE[k];
+    };
+    return { get usd() { return pick('usd'); }, get value() { return pick('value'); }, get rap() { return pick('rap'); } };
   }
 
   function valueTip(price) {
