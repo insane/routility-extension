@@ -246,18 +246,15 @@
     box = el('div', 'routility-injected routility-trade-diffs');
     box.dataset.key = key;
     if (show.rap && rapGive !== null && rapGet !== null && (rapGive || rapGet)) {
-      box.appendChild(pill(pillIcon('robux'), rapGive, rapGet, rap, lt('RAP difference • you give {give}, you get {get}', { give: rap(rapGive), get: rap(rapGet) })));
+      box.appendChild(pill(pillIcon('robux'), rapGive, rapGet, rap, lt('RAP: {give} vs {get}', { give: rap(rapGive), get: rap(rapGet) })));
     }
     if (show.worth && (totals[0].valued || totals[1].valued) && host.matches('.trade-list-detail-offer')) {
-      box.appendChild(worthPill(totals[0].value, totals[1].value, lt('RoUtility Value difference • you give {give}, you get {get} • RAP is used for items we haven’t valued yet', { give: rap(totals[0].value), get: rap(totals[1].value) })));
+      box.appendChild(worthPill(totals[0].value, totals[1].value, lt('Value: {give} vs {get}', { give: rap(totals[0].value), get: rap(totals[1].value) })));
     }
     if (show.price && (totals[0].priced || totals[1].priced)) {
       const icon = pillIcon('usd');
       if (box.children.length) box.appendChild(el('span', 'routility-diff-break'));
-      const vars = { give: usdAmount(usdGive), get: usdAmount(usdGet), n: rap(unsure) };
-      const tip = unsure
-        ? ltn(unsure, 'Price difference • you give {give}, you get {get} • {n} unpriced item not counted', 'Price difference • you give {give}, you get {get} • {n} unpriced items not counted', vars)
-        : lt('Price difference • you give {give}, you get {get}', vars);
+      const tip = lt('Price: {give} vs {get}', { give: usdAmount(usdGive), get: usdAmount(usdGet) });
       box.appendChild(pill(icon, usdGive, usdGet, usdAmount, tip));
     }
     if (box.children.length) host.appendChild(box);
@@ -436,7 +433,7 @@
       const sum = list => list.reduce((s, p) => s + worthOf(p), 0);
       const giveVal = sum(give);
       const getVal = sum(get);
-      box.appendChild(worthPill(giveVal, getVal, lt('RoUtility Value: {give} vs {get} • RAP is used for items we haven’t valued yet', { give: rap(giveVal), get: rap(getVal) })));
+      box.appendChild(worthPill(giveVal, getVal, lt('Value: {give} vs {get}', { give: rap(giveVal), get: rap(getVal) })));
     }
     if (pair.includes('usd') && [...give, ...get].some(Boolean)) {
       const sum = list => list.reduce((s, p) => s + (p ? p.usd : 0), 0);
