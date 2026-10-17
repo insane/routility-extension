@@ -255,7 +255,7 @@
   document.addEventListener('mousedown', hideTip, true);
 
   const VISIBLE = Object.freeze({ usd: true, value: false, rap: true });
-  const PLACE_KEYS = { Profile: { usd: 'profileUsd', value: 'profileValue', rap: 'profileRap' } };
+  const PLACE_KEYS = { Profile: { usd: 'profileUsd', value: 'profileValue', rap: 'profileRap' }, Trades: { usd: 'tradeUsd', value: 'tradeValue', rap: 'tradeRap' } };
 
   function shows(place) {
     const pick = (k) => {

@@ -518,7 +518,7 @@
       existing?.remove();
       const wrap = el('div', 'flex-nowrap gap-small flex routility-injected routility-trade-inv-pills');
       wrap.dataset.state = want;
-      pillPlace = 'Trades';
+      pillPlace = 'TradeWindow';
       if (summary) {
         wrap.append(...pillSet(owner.userId, summary, owner.name));
       } else {

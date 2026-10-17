@@ -42,16 +42,40 @@
     return [...offer.querySelectorAll('.trade-item-card')];
   }
 
+  function worthOf(price) {
+    return itemValue(price) || (price ? Number(price.rap) || 0 : 0);
+  }
+
+  function valueLine(card, anchor, price, textClass) {
+    let line = card.querySelector('.routility-card-worth');
+    const v = price && show.value && card.closest('.trade-list-detail-offer') ? worthOf(price) : 0;
+    if (!v) {
+      line?.remove();
+      return;
+    }
+    const key = v + '|' + itemValue(price);
+    if (line && line.dataset.key === key) return;
+    if (!line) {
+      line = el('div', anchor.className + ' routility-injected routility-card-worth');
+      anchor.after(line);
+    }
+    line.dataset.key = key;
+    line.textContent = '';
+    line.appendChild(valueTag(v, { tip: false, textClass }));
+    line.dataset.rtTip = itemValue(price) ? lt('RoUtility Value: {value} Robux', { value: formatNumber(v) }) : lt('Not valued yet, so this is its RAP');
+  }
+
   function cardLine(card, key, price) {
     const text = price && show.price ? formatUSD(price.usd) : ' ';
-    const v = show.value ? itemValue(price) : 0;
-    let line = card.querySelector('.routility-card-usd');
-    if (line && line.dataset.key === (key || '') && line.dataset.text === text + '|' + v) return;
+    const v = 0;
     const anchor = card.querySelector(PRICE_SELECTOR);
     if (!anchor) return;
+    valueLine(card, anchor, price, anchor.querySelector('[class*="text-robux"]')?.className || 'text-robux-tile');
+    let line = card.querySelector('.routility-card-usd');
+    if (line && line.dataset.key === (key || '') && line.dataset.text === text + '|' + v) return;
     if (!line) {
       line = el('div', anchor.className + ' routility-injected routility-card-usd');
-      anchor.after(line);
+      (card.querySelector('.routility-card-worth') || anchor).after(line);
     }
     const textClass = anchor.querySelector('[class*="text-robux"]')?.className || 'text-robux-tile';
     line.dataset.key = key || '';
@@ -95,7 +119,7 @@
     if (row && row.dataset.key === key) return;
     if (!row) {
       row = el('div', 'robux-line routility-injected ' + cls);
-      const order = ['routility-trade-usd', 'routility-trade-val'];
+      const order = ['routility-trade-val', 'routility-trade-usd'];
       const before = order.slice(0, order.indexOf(cls)).reverse().map(c => offer.querySelector('.' + c)).find(Boolean);
       (before || anchor).after(row);
     }
@@ -130,6 +154,7 @@
     if (pricesPerOffer.some(list => list.some(p => p === undefined))) { setTimeout(schedule, 2500); return; }
     if (token !== offersToken) return;
     const robuxUsd = [0, 0];
+    const robuxRaw = [0, 0];
     if (offers.length === 2 && !offers[0].matches('.trade-request-window-offer')) {
       const id = await selectedTradeId();
       const d = id ? await rawDetail(id) : null;
@@ -137,20 +162,23 @@
       if (d && d.participantAOffer && d.participantBOffer) {
         const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
         const [mine, theirs] = String(d.participantBOffer.user?.id) === me ? [d.participantBOffer, d.participantAOffer] : [d.participantAOffer, d.participantBOffer];
-        robuxUsd[0] = (Number(mine.robux) || 0) * robuxRate;
-        robuxUsd[1] = (Number(theirs.robux) || 0) * robuxRate;
+        robuxRaw[0] = Number(mine.robux) || 0;
+        robuxRaw[1] = Number(theirs.robux) || 0;
+        robuxUsd[0] = robuxRaw[0] * robuxRate;
+        robuxUsd[1] = robuxRaw[1] * robuxRate;
       }
     } else if (offers.length === 2) {
       const boxes = [...document.querySelectorAll('.trade-request-window .robux-input-group input')];
       offers.forEach((o, i) => {
         const box = o.querySelector('.robux-input-group input') || boxes[i];
-        robuxUsd[i] = window.RoUtilityUI.parseAmount(box ? box.value : '', true) * robuxRate;
+        robuxRaw[i] = window.RoUtilityUI.parseAmount(box ? box.value : '', true);
+        robuxUsd[i] = robuxRaw[i] * robuxRate;
       });
     }
 
-    const totals = pricesPerOffer.map(list => ({
+    const totals = pricesPerOffer.map((list, i) => ({
       usd: list.reduce((s, p) => s + (p ? p.usd : 0), 0),
-      value: list.reduce((s, p) => s + itemValue(p), 0),
+      value: list.reduce((s, p) => s + worthOf(p), 0) + robuxRaw[i],
       valued: list.filter(p => itemValue(p) > 0).length,
       priced: list.filter(Boolean).length,
       missing: list.filter(p => !p).length,
@@ -169,14 +197,14 @@
         }
       });
       if (!valuesOn) {
-        offer.querySelectorAll('.routility-trade-usd, .routility-trade-val, .routility-card-usd, .routility-card-tags, .routility-trade-diffs').forEach(n => n.remove());
+        offer.querySelectorAll('.routility-trade-usd, .routility-trade-val, .routility-card-usd, .routility-card-worth, .routility-card-tags, .routility-trade-diffs').forEach(n => n.remove());
         return;
       }
       const t = totals[i];
       const text = t.priced ? formatUSD(t.usd) + (t.missing ? '+' : '') : (t.missing ? lt('N/A') : formatCash(0));
       if (show.price) summaryRow(offer, 'routility-trade-usd', lt('Price:'), text, { withLogo: true, title: t.missing ? ltn(t.missing, '{n} unpriced', '{n} unpriced') : '' });
       else offer.querySelector('.routility-trade-usd')?.remove();
-      if (show.value && totals.some(x => x.valued > 0)) summaryRow(offer, 'routility-trade-val', lt('RoUtility Value:'), String(t.value), { node: valueTag(t.value, { textClass: 'text-robux-lg robux-line-value', tip: false }), title: lt('Only items with a RoUtility value are counted') });
+      if (show.value && totals.some(x => x.valued > 0) && offer.matches('.trade-list-detail-offer')) summaryRow(offer, 'routility-trade-val', '', String(t.value), { node: valueTag(t.value, { textClass: 'text-robux-lg robux-line-value', tip: false }), title: lt('RoUtility Value, counting RAP for items we haven’t valued yet') });
       else offer.querySelector('.routility-trade-val')?.remove();
     });
 
@@ -202,6 +230,12 @@
     box?.remove();
     box = el('div', 'routility-injected routility-trade-diffs');
     box.dataset.key = key;
+    if (show.rap && rapGive !== null && rapGet !== null && (rapGive || rapGet)) {
+      box.appendChild(pill(pillIcon('robux'), rapGive, rapGet, rap, lt('RAP difference • you give {give}, you get {get}', { give: rap(rapGive), get: rap(rapGet) })));
+    }
+    if (show.worth && (totals[0].valued || totals[1].valued) && host.matches('.trade-list-detail-offer')) {
+      box.appendChild(worthPill(totals[0].value, totals[1].value, lt('RoUtility Value difference • you give {give}, you get {get} • RAP is used for items we haven’t valued yet', { give: rap(totals[0].value), get: rap(totals[1].value) })));
+    }
     if (show.price && (totals[0].priced || totals[1].priced)) {
       const icon = pillIcon('logo');
       const vars = { give: usdAmount(usdGive), get: usdAmount(usdGet), n: rap(unsure) };
@@ -209,12 +243,6 @@
         ? ltn(unsure, 'Price difference • you give {give}, you get {get} • {n} unpriced item not counted', 'Price difference • you give {give}, you get {get} • {n} unpriced items not counted', vars)
         : lt('Price difference • you give {give}, you get {get}', vars);
       box.appendChild(pill(icon, usdGive, usdGet, usdAmount, tip));
-    }
-    if (show.worth && (totals[0].valued || totals[1].valued)) {
-      box.appendChild(worthPill(totals[0].value, totals[1].value, lt('RoUtility Value difference • you give {give}, you get {get} • only items with a value are counted', { give: rap(totals[0].value), get: rap(totals[1].value) })));
-    }
-    if (show.rap && rapGive !== null && rapGet !== null && (rapGive || rapGet)) {
-      box.appendChild(pill(pillIcon('robux'), rapGive, rapGet, rap, lt('RAP difference • you give {give}, you get {get}', { give: rap(rapGive), get: rap(rapGet) })));
     }
     if (box.children.length) host.appendChild(box);
   }
@@ -382,20 +410,25 @@
     const box = el('div', 'routility-injected routility-row-pills');
     box.dataset.tradeId = entry.id;
     const rap = window.RoUtilityUI.formatNumber;
-    if (show.price && [...give, ...get].some(Boolean)) {
+    const pair = listPair.split('-');
+    const valued = [...give, ...get].some(p => itemValue(p) > 0);
+    const hasRap = Number.isFinite(detail.rapGive) && Number.isFinite(detail.rapGet) && (detail.rapGive || detail.rapGet);
+    const wantValue = pair.includes('value') && valued;
+    const wantRap = (pair.includes('rap') || (pair.includes('value') && !valued)) && hasRap;
+    if (wantValue) {
+      const sum = list => list.reduce((s, p) => s + worthOf(p), 0);
+      const giveVal = sum(give);
+      const getVal = sum(get);
+      box.appendChild(worthPill(giveVal, getVal, lt('RoUtility Value: {give} vs {get} • RAP is used for items we haven’t valued yet', { give: rap(giveVal), get: rap(getVal) })));
+    }
+    if (wantRap) {
+      box.appendChild(pill(pillIcon('robux'), detail.rapGive, detail.rapGet, rap, lt('RAP: {give} vs {get}', { give: rap(detail.rapGive), get: rap(detail.rapGet) })));
+    }
+    if (pair.includes('usd') && [...give, ...get].some(Boolean)) {
       const sum = list => list.reduce((s, p) => s + (p ? p.usd : 0), 0);
       const giveUsd = sum(give);
       const getUsd = sum(get);
       box.appendChild(pill(pillIcon('logo'), giveUsd, getUsd, usdAmount, lt('Price: {give} vs {get}', { give: usdAmount(giveUsd), get: usdAmount(getUsd) })));
-    }
-    if (show.worth && [...give, ...get].some(p => itemValue(p) > 0)) {
-      const sum = list => list.reduce((s, p) => s + itemValue(p), 0);
-      const giveVal = sum(give);
-      const getVal = sum(get);
-      box.appendChild(worthPill(giveVal, getVal, lt('RoUtility Value: {give} vs {get} • only items with a value are counted', { give: rap(giveVal), get: rap(getVal) })));
-    }
-    if (show.rap && Number.isFinite(detail.rapGive) && Number.isFinite(detail.rapGet) && (detail.rapGive || detail.rapGet)) {
-      box.appendChild(pill(pillIcon('robux'), detail.rapGive, detail.rapGet, rap, lt('RAP: {give} vs {get}', { give: rap(detail.rapGive), get: rap(detail.rapGet) })));
     }
     if (!box.children.length) return;
     (row.querySelector('.trade-row-container') || row).appendChild(box);
@@ -409,8 +442,10 @@
   let ownOn = true;
   let ageOn = true;
   let valuesOn = true;
+  let listPair = 'rap-usd';
   chrome.storage.local.get('routilitySettings', (s) => {
     valuesOn = (s.routilitySettings || {}).tradeValues !== false;
+    if (/^(rap-usd|value-usd|rap-value)$/.test((s.routilitySettings || {}).tradeListPills)) listPair = s.routilitySettings.tradeListPills;
     ownOn = (s.routilitySettings || {}).tradeOwnership !== false;
     ageOn = (s.routilitySettings || {}).tradeAge !== false;
   });

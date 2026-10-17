@@ -12837,3 +12837,14 @@ html.routility-hi-off .routility-hi-loading, html.routility-hi-failed .routility
 
 html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padding-right: max(22px, 2%) !important; }
 #content > .routility-calc, html.routility-calc-page:not(.routility-calc-ready) #content::after { max-width: 1800px; margin-left: auto; margin-right: auto; box-sizing: border-box; }
+
+.routility-card-worth { display: flex; align-items: center; }
+.routility-card-worth .routility-val { gap: 4px; }
+.routility-card-worth .routility-val-icon { width: 16px; height: 16px; }
+.trade-list-detail-offer .item-cards-stackable:has(.routility-card-worth),
+.trade-list-detail-offer .item-cards-stackable:has(.routility-card-worth) .trade-item-card,
+.trade-list-detail-offer .item-cards-stackable:has(.routility-card-worth) .grid-item-container,
+.trade-list-detail-offer .item-cards-stackable:has(.routility-card-worth) .item-card-container { height: auto !important; overflow: visible !important; }
+.trade-list-detail-offer .routility-trade-val { display: flex; justify-content: flex-end; clear: both; margin-top: -6px; }
+.routility-row-pill-worth .routility-val-icon { color: #5cb2ff; }
+.light-theme .routility-row-pill-worth .routility-val-icon { color: #0a72c2; }
