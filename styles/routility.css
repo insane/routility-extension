@@ -12846,5 +12846,3 @@ html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padd
 .trade-list-detail-offer .item-cards-stackable:has(.routility-card-worth) .grid-item-container,
 .trade-list-detail-offer .item-cards-stackable:has(.routility-card-worth) .item-card-container { height: auto !important; overflow: visible !important; }
 .trade-list-detail-offer .routility-trade-val { display: flex; justify-content: flex-end; clear: both; margin-top: -6px; }
-.routility-row-pill-worth .routility-val-icon { color: #5cb2ff; }
-.light-theme .routility-row-pill-worth .routility-val-icon { color: #0a72c2; }
