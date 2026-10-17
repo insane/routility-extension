@@ -257,11 +257,27 @@
     return row;
   }
 
-  function totalLine(label, value, cls) {
+  function totalLine(label, value, cls, icon) {
     const line = el('div', 'flex items-center justify-between routility-calc-total');
     line.appendChild(el('span', 'text-label-small content-muted', label));
-    line.appendChild(el('span', 'text-title-large ' + (cls || 'content-emphasis'), value));
+    const text = el('span', 'text-title-large ' + (cls || 'content-emphasis'), value);
+    if (icon) {
+      const wrap = el('span', 'routility-calc-total-v');
+      wrap.append(icon, text);
+      line.appendChild(wrap);
+    } else line.appendChild(text);
     return line;
+  }
+
+  function markIcon(kind, toned) {
+    if (kind === 'rap') {
+      const s = el('span', 'icon-robux-16x16 routility-calc-mark');
+      s.setAttribute('aria-hidden', 'true');
+      return s;
+    }
+    const s = toned ? el('span', 'routility-usd-ic routility-calc-mark') : window.RoUtilityUI.usdIcon('routility-calc-mark');
+    s.setAttribute('aria-hidden', 'true');
+    return s;
   }
 
   function sidePanel(side) {
@@ -312,13 +328,13 @@
       const t = totals(side);
       const sums = panel.querySelector('.routility-calc-sums');
       sums.textContent = '';
-      sums.appendChild(totalLine(lt('Total RAP'), formatNumber(Math.round(t.rap)) + ' R$', 'content-emphasis'));
+      sums.appendChild(totalLine(lt('Total RAP'), formatNumber(Math.round(t.rap)), 'content-emphasis', markIcon('rap')));
       if (showing.value) {
         const line = totalLine(lt('Value'), '', 'content-emphasis');
         line.lastChild.replaceWith(valueTag(t.value, { className: 'text-title-large content-emphasis', tip: false }));
         sums.appendChild(line);
       }
-      sums.appendChild(totalLine(lt('Price est.'), usdText(t.usd), 'content-emphasis'));
+      sums.appendChild(totalLine(lt('Price est.'), usdText(t.usd), 'content-emphasis', markIcon('usd')));
       panel.classList.toggle('routility-calc-adding', s.adding === side);
     }
   }
@@ -372,16 +388,20 @@
     const dUsd = get.usd - give.usd;
     const dRap = get.rap - give.rap;
     const tone = (v) => (!both || Math.abs(v) < 0.005 ? 'content-emphasis' : v > 0 ? 'content-system-success' : 'content-system-alert');
-    const cell = (label, value, toneClass, note) => {
+    const cell = (label, value, toneClass, note, icon) => {
       const c = el('div', 'flex flex-col gap-xsmall routility-calc-summary-cell');
       c.appendChild(el('span', 'text-label-small content-muted', label));
-      const row = el('div', 'flex items-baseline gap-small');
-      row.appendChild(el('span', 'text-heading-small ' + toneClass, value));
+      const row = el('div', 'flex items-center gap-small');
+      if (icon && value !== '—') {
+        const v = el('span', 'routility-calc-total-v text-heading-small ' + toneClass);
+        v.append(icon, el('span', null, value));
+        row.appendChild(v);
+      } else row.appendChild(el('span', 'text-heading-small ' + toneClass, value));
       if (note) row.appendChild(el('span', 'text-label-medium ' + toneClass + ' routility-calc-pct', note));
       c.appendChild(row);
       return c;
     };
-    box.appendChild(cell(lt('RAP difference'), both ? signed(Math.round(dRap), formatNumber) + ' R$' : '—', tone(dRap), both && percentsOn() ? pct(dRap, give.rap) : ''));
+    box.appendChild(cell(lt('RAP difference'), both ? signed(Math.round(dRap), formatNumber) : '—', tone(dRap), both && percentsOn() ? pct(dRap, give.rap) : '', markIcon('rap')));
     box.classList.toggle('routility-calc-summary-4', !!showing.value);
     if (showing.value) {
       const dVal = get.value - give.value;
@@ -391,7 +411,7 @@
       else target.textContent = '—';
       box.appendChild(vcell);
     }
-    box.appendChild(cell(lt('Price difference'), both ? signed(dUsd, usdText) : '—', tone(dUsd), both && percentsOn() ? pct(dUsd, give.usd) : ''));
+    box.appendChild(cell(lt('Price difference'), both ? signed(dUsd, usdText) : '—', tone(dUsd), both && percentsOn() ? pct(dUsd, give.usd) : '', markIcon('usd', true)));
     const v = verdictFor(give, get);
     const vc = el('div', 'flex flex-col gap-xsmall routility-calc-summary-cell');
     vc.appendChild(el('span', 'text-label-small content-muted', lt('Verdict')));
