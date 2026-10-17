@@ -1905,11 +1905,11 @@
       g.restore();
       return size + 4;
     };
-    const iconText = (kind, s, x, base, f, color, size, align = 'left') => {
+    const iconText = (kind, s, x, base, f, color, size, align = 'left', iconColor = color) => {
       g.font = f;
       const w = g.measureText(s).width;
       const start = align === 'right' ? x - w - size - 4 : x;
-      icon(kind, start, base, size, color);
+      icon(kind, start, base, size, iconColor);
       text(s, start + size + 4, base, f, color);
       return w + size + 4;
     };
@@ -1984,23 +1984,23 @@
           ty += 18;
         }
         if (opts.value) {
-          iconText('value', nf(it.worth), x, ty, font(700, 12), C.value, 13);
+          iconText('value', nf(it.worth), x, ty, font(600, 12), C.muted, 13, 'left', C.value);
           ty += 18;
         }
-        if (opts.prices) iconText('usd', it.priced ? money(it.usd) : lt('No price'), x, ty, font(700, 12), it.priced ? C.price : C.muted, 13);
+        if (opts.prices) iconText('usd', it.priced ? money(it.usd) : lt('No price'), x, ty, font(600, 12), C.muted, 13, 'left', C.win);
       });
       y += Math.max(1, Math.ceil(cells.length / COLS)) * (tileH + GAP);
       const right = W - PAD;
       let labeled = false;
-      const total = (kind, s2, color) => {
+      const total = (kind, s2, color, iconColor = color) => {
         y += labeled ? 26 : 22;
         if (!labeled) text(lt('Total Value:'), PAD, y, font(600, 14), C.muted);
         labeled = true;
-        iconText(kind, s2, right, y, font(700, 15), color, 16, 'right');
+        iconText(kind, s2, right, y, font(700, 15), color, 16, 'right', iconColor);
       };
       if (opts.rap) total('rap', nf(s.rap + s.robux), C.text);
-      if (opts.value) total('value', nf(s.worth), C.value);
-      if (opts.prices) total('usd', money(s.usd) + (s.missing ? '+' : ''), C.price);
+      if (opts.value) total('value', nf(s.worth), C.text, C.value);
+      if (opts.prices) total('usd', money(s.usd) + (s.missing ? '+' : ''), C.text, C.win);
       y += 8;
     };
     section(lt('Items you gave'), p.mine);
