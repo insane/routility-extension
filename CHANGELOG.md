@@ -40,7 +40,7 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 **Fixed**
 
 ```diff
-- Trade Calculator and Trade Ads sit centered with room on both sides instead of running into the menu and the window edge on wide screens.
+- The Trade Calculator sits centered with room on both sides instead of running into the menu and the window edge on wide screens, and its loading skeleton matches.
 - Joining a friend from their profile no longer says you're in the game before Roblox even opens, and the join window now shows their server's players, ping and performance instead of dashes.
 - Robux you add to an offer now count in the overpay warning and the Send summary.
 - Avatar changes show up right away instead of after a day. (by @reqonn)

@@ -2831,11 +2831,11 @@ html.routility-calc-page #content > .request-error-page-content {
 html.routility-calc-page:not(.routility-calc-ready) #content::after {
   content: "";
   display: block;
-  height: 720px;
+  height: 760px;
   margin-top: 24px;
   background: var(--routility-sk, rgba(127, 127, 127, 0.18));
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='720' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='260' height='36' rx='8' fill='black'/%3E%3Crect x='0' y='60' width='480' height='420' rx='12' fill='black' fill-opacity='0.5'/%3E%3Crect x='520' y='60' width='480' height='420' rx='12' fill='black' fill-opacity='0.5'/%3E%3Crect x='0' y='500' width='1000' height='80' rx='12' fill='black' fill-opacity='0.5'/%3E%3Crect x='0' y='600' width='1000' height='120' rx='12' fill='black' fill-opacity='0.5'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='720' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='260' height='36' rx='8' fill='black'/%3E%3Crect x='0' y='60' width='480' height='420' rx='12' fill='black' fill-opacity='0.5'/%3E%3Crect x='520' y='60' width='480' height='420' rx='12' fill='black' fill-opacity='0.5'/%3E%3Crect x='0' y='500' width='1000' height='80' rx='12' fill='black' fill-opacity='0.5'/%3E%3Crect x='0' y='600' width='1000' height='120' rx='12' fill='black' fill-opacity='0.5'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 760' width='1000' height='760' preserveAspectRatio='none'%3E%3Crect x='0' y='4' width='160' height='36' rx='8' fill='black'/%3E%3Crect x='830' y='4' width='170' height='36' rx='8' fill='black' fill-opacity='0.5'/%3E%3Crect x='0' y='60' width='484' height='450' rx='12' fill='black' fill-opacity='0.5'/%3E%3Crect x='516' y='60' width='484' height='450' rx='12' fill='black' fill-opacity='0.5'/%3E%3Crect x='0' y='526' width='1000' height='68' rx='12' fill='black' fill-opacity='0.5'/%3E%3Crect x='0' y='610' width='1000' height='150' rx='12' fill='black' fill-opacity='0.5'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 760' width='1000' height='760' preserveAspectRatio='none'%3E%3Crect x='0' y='4' width='160' height='36' rx='8' fill='black'/%3E%3Crect x='830' y='4' width='170' height='36' rx='8' fill='black' fill-opacity='0.5'/%3E%3Crect x='0' y='60' width='484' height='450' rx='12' fill='black' fill-opacity='0.5'/%3E%3Crect x='516' y='60' width='484' height='450' rx='12' fill='black' fill-opacity='0.5'/%3E%3Crect x='0' y='526' width='1000' height='68' rx='12' fill='black' fill-opacity='0.5'/%3E%3Crect x='0' y='610' width='1000' height='150' rx='12' fill='black' fill-opacity='0.5'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%;
   animation: routility-sk-pulse 1.2s ease-in-out infinite;
 }
 
@@ -12835,5 +12835,5 @@ html.routility-hi-off .routility-hi-loading, html.routility-hi-failed .routility
 .routility-value-pill.routility-split-skeleton { width: 240px; }
 .routility-classic-pills .routility-worth-pill, .routility-trade-inv-pills .routility-split-pill > * { height: 28px; font-size: 12px; }
 
-#content:has(> .routility-calc), #content:has(> .routility-ads) { padding-left: max(22px, 2%) !important; padding-right: max(22px, 2%) !important; }
-#content > .routility-calc, #content > .routility-ads { max-width: 1800px; margin-left: auto; margin-right: auto; box-sizing: border-box; }
+html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padding-right: max(22px, 2%) !important; }
+#content > .routility-calc, html.routility-calc-page:not(.routility-calc-ready) #content::after { max-width: 1800px; margin-left: auto; margin-right: auto; box-sizing: border-box; }
