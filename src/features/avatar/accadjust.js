@@ -96,20 +96,17 @@
 
   function close() {
     if (!state || !state.modal) return;
-    const saved = state.saved;
     state.modal.remove();
     document.removeEventListener('keydown', state.onKey, true);
     state.modal = null;
     state.preview?.dispose();
     state.preview = null;
     state.trigger?.focus();
-    if (saved) location.reload();
   }
 
   function open() {
     if (!state || state.modal) return;
     const s = state;
-    s.saved = false;
     const overlay = el('div', 'foundation-web-dialog-overlay padding-medium foundation-web-portal-zindex bg-common-backdrop routility-injected routility-tc-modal routility-aa-modal');
     overlay.dataset.state = 'open';
     const dialog = el('div', 'relative radius-large bg-surface-100 stroke-muted stroke-standard foundation-web-dialog-content shadow-transient-high routility-tc-dialog');
@@ -290,11 +287,13 @@
       setStatus('');
       const fresh = await getJson(API + 'v2/avatar/avatar');
       let failed = '';
+      const sent = new Map();
       if (!fresh || !Array.isArray(fresh.assets)) failed = lt('Couldn’t read your avatar. Try again.');
       if (!failed) {
         const assets = fresh.assets.map((a) => {
           const adj = edits.has(a.id) ? edits.get(a.id) : null;
           const meta = adj ? withAdjust(a.meta, adj) : a.meta;
+          sent.set(a.id, meta || null);
           return meta ? { id: a.id, meta } : { id: a.id };
         });
         const r = await send(API + 'v2/avatar/set-wearing-assets', { assets });
@@ -311,14 +310,20 @@
         if (lost) failed = lt('Roblox didn’t keep the change to {name}.', { name: lost.name });
         else {
           for (const item of list) original.set(item.id, copy(edits.get(item.id)));
-          s.saved = true;
-          send(API + 'v1/avatar/redraw-thumbnail');
+          window.postMessage({ type: 'routility-aa-saved', items: list.map(item => [item.id, sent.get(item.id)]) }, location.origin);
+          const redraw = document.querySelector('#avatar-web-app .redraw-avatar button');
+          if (redraw) redraw.click();
+          else send(API + 'v1/avatar/redraw-thumbnail');
         }
       }
       busy = false;
       apply.label.textContent = lt('Apply');
       sync();
-      setStatus(failed || lt('Saved. The editor reloads when you close this so it keeps your changes.'), !!failed);
+      if (!failed) {
+        close();
+        return;
+      }
+      setStatus(failed, true);
     };
 
     apply.addEventListener('click', commit);
@@ -402,7 +407,7 @@
 
   function setup() {
     if (state) return;
-    state = { modal: null, trigger: null, preview: null, saved: false };
+    state = { modal: null, trigger: null, preview: null };
     state.observer = new MutationObserver(onFrame(place));
     state.observer.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true });
     place();
@@ -410,7 +415,6 @@
 
   function teardown() {
     if (!state) return;
-    state.saved = false;
     close();
     state.observer.disconnect();
     state = null;

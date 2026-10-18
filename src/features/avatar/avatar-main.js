@@ -51,6 +51,40 @@
     return body;
   }
 
+  const SAVE_URL = /avatar\.roblox\.com\/v\d+\/avatar\//;
+  const adjusted = new Map();
+  window.addEventListener('message', (e) => {
+    const d = e.data;
+    if (e.origin !== location.origin || !d || d.type !== 'routility-aa-saved' || !Array.isArray(d.items)) return;
+    for (const [id, meta] of d.items) adjusted.set(Number(id), meta || null);
+  });
+
+  function keepMeta(url, body) {
+    if (!adjusted.size || typeof body !== 'string' || !SAVE_URL.test(String(url))) return body;
+    try {
+      const data = JSON.parse(body);
+      let hit = false;
+      const walk = (o, depth) => {
+        if (!o || typeof o !== 'object' || depth > 8) return;
+        if (Array.isArray(o)) {
+          for (const x of o) walk(x, depth + 1);
+          return;
+        }
+        if (adjusted.has(Number(o.id)) && ('meta' in o || 'assetType' in o || Object.keys(o).length === 1)) {
+          const meta = adjusted.get(Number(o.id));
+          if (meta) o.meta = meta;
+          else delete o.meta;
+          hit = true;
+        }
+        for (const v of Object.values(o)) if (v && typeof v === 'object') walk(v, depth + 1);
+      };
+      walk(data, 0);
+      return hit ? JSON.stringify(data) : body;
+    } catch {
+      return body;
+    }
+  }
+
   const OUTFIT_URL = /avatar\.roblox\.com\/v\d+\/outfits\/\d+\/details/;
 
   function keepOutfit(text) {
@@ -111,7 +145,7 @@
         try { learn(this.__routilityUrl, typeof this.response === 'string' ? this.response : JSON.stringify(this.response)); } catch {}
       });
     }
-    return xhrSend.call(this, keepBody(this.__routilityUrl, body));
+    return xhrSend.call(this, keepMeta(this.__routilityUrl, keepBody(this.__routilityUrl, body)));
   };
   const origFetch = window.fetch;
   window.fetch = function (input, init) {
@@ -119,7 +153,7 @@
     try {
       url = typeof input === 'string' ? input : input && input.url;
       if (init && typeof init.body === 'string') {
-        const body = keepBody(url, init.body);
+        const body = keepMeta(url, keepBody(url, init.body));
         if (body !== init.body) init = { ...init, body };
       }
     } catch {}
