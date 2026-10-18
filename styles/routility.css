@@ -12927,6 +12927,9 @@ html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padd
 .routility-av-wearing-stats-3 .routility-av-wearing-stat { padding: 7px 8px; }
 .routility-av-wearing-stats-3 .routility-av-wearing-stat-value { gap: 4px; font-size: 14px; }
 .routility-av-wearing-stats-3 .routility-av-wearing-stat-value .routility-logo { width: 14px; height: 14px; }
+.routility-av-wearing-stats-3 .routility-av-wearing-stat-value > :first-child { transition: width 0.18s ease, margin 0.18s ease, opacity 0.18s ease; }
+.routility-av-wearing-stats-3:has(.routility-av-wearing-stat:hover) > .routility-av-wearing-stat:not(:hover) { min-width: 0; }
+.routility-av-wearing-stats-3:has(.routility-av-wearing-stat:hover) > .routility-av-wearing-stat:not(:hover) .routility-av-wearing-stat-value > :first-child { width: 0; margin-right: -4px; opacity: 0; }
 .routility-ads-total { display: inline-flex; align-items: center; gap: 12px; }
 .routility-ads-total-part { display: inline-flex; align-items: center; gap: 4px; }
 .routility-ads-total .routility-val { gap: 4px; }

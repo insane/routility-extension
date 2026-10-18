@@ -64,6 +64,9 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 - Fun Mode: your fake Robux no longer turns into a ? after buying or changing the amount.
 - Fun Mode: picking a lower Robux amount after buying things starts from that amount instead of dropping to 0.
 - Fun Mode: T-shirts you buy show first in your inventory, and heads and faces get their own Classic Heads and Classic Faces tabs under Heads.
+- Hovering a big number in the avatar Wearing totals no longer spills into the next box.
+- Server regions show up on the servers you can see within a few seconds, instead of sometimes waiting behind the map's background sample, and the map no longer goes missing on games RoUtility hasn't counted yet.
+- Searching someone's old username puts them first again when Roblox is slow to answer, instead of sometimes dropping the "formerly" match.
 - A lot of smaller fixes from a full bug sweep.
 ```
 

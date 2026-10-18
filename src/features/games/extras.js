@@ -348,14 +348,14 @@
       if (p !== page || settings.serverRegions === false) return;
       const res = await window.RoUtilityUI.request({ type: 'serverCounts', placeId }, r => r !== undefined);
       if (p !== page) return;
-      if (res && Array.isArray(res.regions)) {
+      if (res && Array.isArray(res.regions) && res.regions.length) {
         counts = res;
         p.regionCounts = res;
         p.latestVersion = Number.isFinite(res.latestVersion) ? res.latestVersion : null;
         countsTimer = setTimeout(loadCounts, 300000);
       } else {
         if (res && res.scanning && !(counts && Array.isArray(counts.regions))) counts = { scanning: true, listed: res.listed || 0, resolved: res.resolved || 0 };
-        if (countsTries++ < 120) countsTimer = setTimeout(loadCounts, res && res.retryAfter ? res.retryAfter * 1000 : 15000);
+        if (countsTries++ < 120) countsTimer = setTimeout(loadCounts, res && res.retryAfter ? res.retryAfter * 1000 : res && Array.isArray(res.regions) ? 60000 : 15000);
       }
       mapKey = '';
       p.tick();
@@ -416,24 +416,31 @@
     };
     loadCenters(0);
     const askedAt = new Map();
+    const retries = new Map();
     const waiting = new Set();
-    let regionBusy = false;
+    const urgent = new Set();
+    const regionBusy = { soon: false, rest: false };
     let regionTimer = null;
+    let recheckTimer = null;
     let regionPauseUntil = 0;
     const askRegions = () => {
       clearTimeout(regionTimer);
       regionTimer = setTimeout(async () => {
-        if (p !== page || regionBusy || !waiting.size || settings.serverRegions === false) return;
+        if (p !== page || !waiting.size || settings.serverRegions === false) return;
         const wait = regionPauseUntil - Date.now();
         if (wait > 0) {
           regionTimer = setTimeout(askRegions, wait);
           return;
         }
-        const ids = [...waiting].slice(0, 30);
-        ids.forEach(id => waiting.delete(id));
-        regionBusy = true;
+        for (const id of urgent) if (!waiting.has(id)) urgent.delete(id);
+        const lane = urgent.size && !regionBusy.soon ? 'soon' : !regionBusy.rest && waiting.size > urgent.size ? 'rest' : null;
+        if (!lane) return;
+        const ids = (lane === 'soon' ? [...urgent] : [...waiting].filter(id => !urgent.has(id))).slice(0, 30);
+        ids.forEach(id => { waiting.delete(id); urgent.delete(id); });
+        regionBusy[lane] = true;
+        if (waiting.size) askRegions();
         const res = await window.RoUtilityUI.request({ type: 'serverRegions', placeId, ids }, r => r !== undefined);
-        regionBusy = false;
+        regionBusy[lane] = false;
         if (p !== page) return;
         if (!res || res.retryAfter) {
           regionPauseUntil = Date.now() + (res && res.retryAfter ? res.retryAfter * 1000 : 30000);
@@ -443,6 +450,10 @@
             const dc = res.regions ? res.regions[id] : null;
             regionOf.set(id, Number.isFinite(dc) ? { dc, why: '' } : { dc: null, why: '' });
             if (res.details && res.details[id]) detailsOf.set(id, res.details[id]);
+          }
+          if (ids.some(id => regionOf.get(id).dc == null)) {
+            clearTimeout(recheckTimer);
+            recheckTimer = setTimeout(() => { if (p === page) p.tick(); }, 31000);
           }
         }
         p.tick();
@@ -569,21 +580,25 @@
       const groups = new Map();
       const seen = new Map();
       let shownMatches = 0;
-      const ask = (sv) => {
+      const ask = (sv, soon) => {
         const prev = regionOf.get(sv.id);
-        const stale = prev && prev.dc == null && Date.now() - (askedAt.get(sv.id) || 0) > 300000;
+        const full = sv.maxPlayers > 0 && sv.playing >= sv.maxPlayers;
+        const tries = retries.get(sv.id) || 0;
+        const stale = prev && prev.dc == null && Date.now() - (askedAt.get(sv.id) || 0) > (!full && tries < 10 ? 30000 : 300000);
         if ((!askedAt.has(sv.id) || stale) && !waiting.has(sv.id)) {
+          if (prev) retries.set(sv.id, tries + 1);
           askedAt.set(sv.id, Date.now());
           waiting.add(sv.id);
           askRegions();
         }
+        if (soon && waiting.has(sv.id)) urgent.add(sv.id);
       };
       for (const li of tiles) {
         const short = li.querySelector('.server-id-text')?.textContent.replace(/^ID:\s*/, '').trim();
         const s = short && servers.get(short);
         if (!s) continue;
         seen.set(s.id, s);
-        ask(s);
+        ask(s, true);
         const known = regionOf.has(s.id);
         const res = known ? regionOf.get(s.id) : null;
         const dc = res && res.dc != null ? centers.get(res.dc) : null;

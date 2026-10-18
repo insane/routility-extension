@@ -78,7 +78,8 @@
   async function exactUser(name) {
     if (!/^[A-Za-z0-9_]{3,20}$/.test(name)) return null;
     const hit = await post('https://users.roblox.com/v1/usernames/users', { usernames: [name], excludeBannedUsers: !prefs.termed });
-    const u = hit && hit.data && hit.data[0];
+    if (!hit) return false;
+    const u = hit.data && hit.data[0];
     if (!u || !u.id) return null;
     const asked = String(u.requestedUsername || name);
     const formerly = u.name && asked.toLowerCase() !== String(u.name).toLowerCase() ? asked : '';
@@ -137,7 +138,7 @@
         thumbs(reqs),
         presence(ranked.map(u => u.id)),
       ]);
-      const failed = (prefs.people && !people) || (prefs.games && !all);
+      const failed = (prefs.people && (!people || gone === false)) || (prefs.games && !all);
       return { query, users: ranked, game, items: limiteds, pics, presence: pres, failed };
     })();
     cache.set(key, job);
