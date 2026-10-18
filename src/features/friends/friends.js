@@ -1441,7 +1441,14 @@
 
   let fmCsrf = '';
 
+  function friendsChanged(ids) {
+    try {
+      chrome.storage.local.set({ routilityFriendsAt: { at: Date.now(), ids: [myId(), ...ids].filter(Boolean).map(String) } });
+    } catch {}
+  }
+
   async function byMe(id) {
+    friendsChanged([id]);
     try {
       const st = await chrome.storage.local.get('routilityUnfriendedByMe');
       const list = (st.routilityUnfriendedByMe || []).filter(x => x !== String(id));
@@ -1767,6 +1774,7 @@
     } else {
       await chrome.storage.local.set({ [SNAP_KEY(me)]: { ...prev, miss } });
     }
+    if (fresh.length) friendsChanged(fresh);
     return { gone, fresh, count: live.length };
   }
 
@@ -1798,6 +1806,7 @@
         const res = await fetch(`https://friends.roblox.com/v1/users/${w.me}/friends/count`, { credentials: 'include', cache: 'no-store' });
         if (res.ok) count = Number((await res.json()).count);
       } catch {}
+      if (count !== null && st.count != null && count !== st.count) friendsChanged([]);
       if (count !== null && count === st.count && now - (st.full || 0) < (force ? 300000 : 900000)) return;
       const r = await ufScan(w.me, ff && ff.friends);
       await chrome.storage.local.set({ [key]: { at: now, full: now, count: r ? (count !== null ? count : r.count) : st.count } });
