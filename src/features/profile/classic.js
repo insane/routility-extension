@@ -1593,11 +1593,12 @@
   }
 
   const PROFILE_CACHE = 'routilityProfileCache';
+  const FRIENDS_AT = 'routilityFriendsAt';
 
-  function cachedData(key) {
+  function cachedData(key, since) {
     try {
       const hit = JSON.parse(sessionStorage.getItem(PROFILE_CACHE) || '{}')[key];
-      return hit && Date.now() - hit.at < 120000 ? hit.data : null;
+      return hit && Date.now() - hit.at < 120000 && hit.at > since ? hit.data : null;
     } catch {
       return null;
     }
@@ -1615,7 +1616,8 @@
 
   async function profileData(userId, columns) {
     const key = userId + (columns ? ':columns' : '');
-    const hit = cachedData(key);
+    const changed = await new Promise(r => chrome.storage.local.get(FRIENDS_AT, st => r(((st && st[FRIENDS_AT]) || {}).at || 0)));
+    const hit = cachedData(key, changed);
     if (hit) return hit;
     const data = await loadData(userId, columns);
     if (data) keepData(key, data);
@@ -1814,7 +1816,15 @@
     s.onDoc = (e) => { if (!e.target.closest?.('.routility-classic-more-wrap')) closeMenu(); };
     document.addEventListener('click', s.onDoc);
 
-    const data = await Promise.race([profileData(userId, s.columns), new Promise(r => setTimeout(() => r(null), 20000))]);
+    let data = null;
+    for (let i = 0; i < 2 && !data && state === s; i++) {
+      if (i) await pause(1500);
+      try {
+        data = await Promise.race([profileData(userId, s.columns), new Promise(r => setTimeout(() => r(null), i ? 15000 : 20000))]);
+      } catch {
+        data = null;
+      }
+    }
     if (state !== s) return;
     if (!data) {
       teardown();
@@ -1913,6 +1923,69 @@
     state = null;
     document.documentElement.classList.remove(ON_CLASS, PROXY_CLASS);
   }
+
+  async function refreshFriends(s) {
+    if (s.refreshing) return;
+    s.refreshing = true;
+    s.friendsStale = false;
+    try {
+      const base = `https://friends.roblox.com/v1/users/${s.userId}/`;
+      const [count, find] = await Promise.all([json(base + 'friends/count'), jsonStatus(base + 'friends/find?limit=9', 2)]);
+      if (state !== s || !find.body) return;
+      const ids = (find.body.PageItems || []).map(f => Number(f.id)).filter(id => Number.isSafeInteger(id) && id > 0).slice(0, 9);
+      const total = count && count.count != null ? count.count : s.data.counts.friends;
+      if (total === s.data.counts.friends && ids.join() === s.data.friends.map(f => f.id).join()) return;
+      const known = new Map(s.data.friends.map(f => [f.id, f]));
+      const fresh = ids.filter(id => !known.has(id));
+      const [thumbs, named, profiles] = await Promise.all([
+        fresh.length ? thumbnails(fresh.map(id => ({ requestId: 'head:' + id, targetId: id, type: 'AvatarHeadShot', size: '150x150' }))) : new Map(),
+        fresh.length ? post('https://users.roblox.com/v1/users', { userIds: fresh, excludeBannedUsers: false }) : null,
+        fresh.length ? post('https://apis.roblox.com/user-profile-api/v1/user/profiles/get-profiles', { userIds: fresh, fields: ['names.combinedName'] }) : null,
+      ]);
+      if (state !== s) return;
+      thumbs.forEach((v, k) => s.thumbs.set(k, v));
+      const byId = new Map(((named && named.data) || []).map(u => [u.id, u]));
+      const shown = new Map(((profiles && profiles.profileDetails) || []).map(p => [p.userId, p.names && p.names.combinedName]));
+      for (const id of fresh) {
+        const u = byId.get(id) || { id, name: '', displayName: '' };
+        known.set(id, shown.get(id) ? { ...u, displayName: shown.get(id) } : u);
+      }
+      s.data.counts.friends = total;
+      s.data.friends = ids.map(id => known.get(id));
+      s.data.hiddenSlots = 0;
+      const href = `/users/${s.userId}/friends#!/friends`;
+      const stat = s.root.querySelector(`a.text-name[href="${href}"]`);
+      if (stat && total != null) stat.textContent = short(total);
+      const pill = s.root.querySelector(`.routility-modern-pill[href="${href}"]`);
+      if (pill && total != null) pill.textContent = lt('{n} Friends', { n: compact(total) });
+      if (!s.data.friendsHidden) {
+        s.root.querySelector('.routility-classic-friends')?.replaceWith(buildFriends(s));
+        const row = s.root.querySelector('.routility-modern-friend-row');
+        if (row) {
+          row.textContent = '';
+          for (const f of s.data.friends) row.appendChild(mFriendTile(f));
+        }
+        const head = s.root.querySelector('.routility-modern-friends .routility-modern-count');
+        if (head) head.textContent = `(${formatNumber(total || s.data.friends.length)})`;
+      }
+      keepData(s.userId + (s.columns ? ':columns' : ''), s.data);
+      s.presenceAt = 0;
+      refreshPresence(s);
+    } finally {
+      s.refreshing = false;
+    }
+  }
+
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== 'local' || !changes[FRIENDS_AT] || !state || !state.data) return;
+    if (!((changes[FRIENDS_AT].newValue || {}).ids || []).includes(String(state.userId))) return;
+    if (document.hidden) state.friendsStale = true;
+    else refreshFriends(state);
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && state && state.data && state.friendsStale) refreshFriends(state);
+  });
 
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== 'local' || !changes.routilitySettings || !state || state.modern) return;
