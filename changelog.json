@@ -5,6 +5,14 @@
   },
   "releases": [
     {
+      "version": "1.1.8",
+      "date": "2026-10-20",
+      "summary": "Customize Thumbnail fix.",
+      "changes": [
+        { "type": "fixed", "text": "Customize Thumbnail: Field of View and Rotation now apply to your Full Body thumbnail too, so it faces the way the preview shows instead of Roblox’s default angle." }
+      ]
+    },
+    {
       "version": "1.1.7",
       "date": "2026-10-19",
       "summary": "Smaller fixes for Home and the classic profile.",

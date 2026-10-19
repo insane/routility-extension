@@ -7,6 +7,16 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 - Code: [@reqonn](https://github.com/reqonn), [@awkward222](https://github.com/awkward222)
 - Bug reports and ideas: [@reqonn](https://github.com/reqonn), api_cats
 
+## 1.1.8 · October 20, 2026
+
+Customize Thumbnail fix.
+
+**Fixed**
+
+```diff
+- Customize Thumbnail: Field of View and Rotation now apply to your Full Body thumbnail too, so it faces the way the preview shows instead of Roblox’s default angle.
+```
+
 ## 1.1.7 · October 19, 2026
 
 Smaller fixes for Home and the classic profile.

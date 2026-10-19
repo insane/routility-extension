@@ -378,8 +378,9 @@
       syncSave();
     };
 
-    fov.input.addEventListener('input', () => { cur().fov = Number(fov.input.value); syncSave(); });
-    rot.input.addEventListener('input', () => { cur().rot = Number(rot.input.value); syncSave(); });
+    const camOn = () => { if (!tab.distance && cur().dist < 0) cur().dist = 1; };
+    fov.input.addEventListener('input', () => { cur().fov = Number(fov.input.value); camOn(); syncSave(); });
+    rot.input.addEventListener('input', () => { cur().rot = Number(rot.input.value); camOn(); syncSave(); });
     dist.input.addEventListener('input', () => { cur().dist = Number(dist.input.value); syncSave(); });
     sInput.addEventListener('input', paintEmotes);
 
@@ -403,7 +404,7 @@
     tabButtons[0].setAttribute('aria-selected', 'true');
     tabButtons[0].classList.add('routility-tc-tab-on');
 
-    const body0 = (t, e) => ({ thumbnailType: t.id, emoteAssetId: e.emote, camera: { fieldOfViewDeg: e.fov, yRotDeg: e.rot, distanceScale: t.distance ? e.dist : -1 } });
+    const body0 = (t, e) => ({ thumbnailType: t.id, emoteAssetId: e.emote, camera: { fieldOfViewDeg: e.fov, yRotDeg: e.rot, distanceScale: t.distance ? e.dist : (e.dist > 0 ? 1 : -1) } });
 
     const commit = async (list) => {
       busy = true;

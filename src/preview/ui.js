@@ -349,7 +349,8 @@ async function thumbBuild(scene, canvas) {
     const r = canvas.getBoundingClientRect();
     if (r.width && r.height) scene.resize(r.width, r.height);
     const cam = scene.camera;
-    cam.fov = Number(o.fov) || 30;
+    const custom = o.head || o.dist > 0;
+    cam.fov = custom ? Number(o.fov) || 30 : 30;
     cam.updateProjectionMatrix();
     scene.root.updateMatrixWorld(true);
     const box = new THREE.Box3();
@@ -373,9 +374,9 @@ async function thumbBuild(scene, canvas) {
       const size = box.getSize(new THREE.Vector3());
       box.getCenter(scene.target);
       scene.distance = (Math.max(size.y, size.x * 0.9) * 0.85) / half;
-      scene.pitch = 0.12;
+      scene.pitch = custom ? 0 : 0.12;
     }
-    scene.yaw = -0.62 - THREE.MathUtils.degToRad(Number(o.rot) || 0);
+    scene.yaw = custom ? -THREE.MathUtils.degToRad(Number(o.rot) || 0) : -0.62;
   };
   return {
     async set(o) {
