@@ -2172,6 +2172,10 @@
  "Roblox didn’t save your About. Try again.": "O Roblox não salvou seu Sobre. Tente de novo.",
  "Roblox didn’t send this outfit": "O Roblox não enviou este visual",
  "Roblox didn’t send your trades. Try again in a moment.": "O Roblox não enviou suas trocas. Tente de novo daqui a pouco.",
+ "Roblox doesn’t go back further than {date}, so this counts your {n} purchases since then.": {
+  "one": "O Roblox não vai além de {date}, então isto conta sua {n} compra desde então.",
+  "other": "O Roblox não vai além de {date}, então isto conta suas {n} compras desde então."
+ },
  "Roblox doesn’t share this file, so it can’t be checked.": "O Roblox não compartilha este arquivo, então não dá para verificar.",
  "Roblox doesn’t share this item’s file.": "O Roblox não compartilha o arquivo deste item.",
  "Roblox Fees": "Taxas do Roblox",
@@ -2232,6 +2236,7 @@
  "Robux balance": "Saldo de Robux",
  "Robux in the Price": "Robux no preço",
  "Robux in Your Currency": "Robux na sua moeda",
+ "Robux Spent": "Robux gastos",
  "Robux you add to a side count toward the price estimate at your Robux rate, which you can change under Robux. Off, Robux only count toward RAP.": "Os Robux que você adiciona a um lado contam no preço estimado pela sua taxa de Robux, que você pode mudar em Robux. Desligado, os Robux só contam para o RAP.",
  "Role": "Cargo",
  "Roll again": "Sortear de novo",
@@ -2641,7 +2646,6 @@
  "Total Posts:": "Total de posts:",
  "Total RAP": "RAP total",
  "Total Robux of every match found so far. Pending Robux is included.": "Total de Robux de todos os resultados encontrados até agora. Inclui Robux pendentes.",
- "Total Spent": "Total gasto",
  "Total Value:": "Valor total:",
  "Total visits across {n} public experiences": {
   "one": "Total de visitas em {n} experiência pública",

@@ -2044,6 +2044,9 @@
  "Roblox didn’t save your About. Try again.": "Roblox ไม่ได้บันทึกเกี่ยวกับของคุณ ลองอีกครั้ง",
  "Roblox didn’t send this outfit": "Roblox ไม่ได้ส่งชุดนี้มา",
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox ไม่ได้ส่งการแลกเปลี่ยนของคุณมา ลองอีกครั้งในอีกสักครู่",
+ "Roblox doesn’t go back further than {date}, so this counts your {n} purchases since then.": {
+  "other": "Roblox ไม่มีประวัติย้อนไปก่อน {date} จึงนับการซื้อ {n} รายการตั้งแต่นั้น"
+ },
  "Roblox doesn’t share this file, so it can’t be checked.": "Roblox ไม่แชร์ไฟล์นี้ จึงตรวจสอบไม่ได้",
  "Roblox doesn’t share this item’s file.": "Roblox ไม่แชร์ไฟล์ของไอเทมนี้",
  "Roblox Fees": "ค่าธรรมเนียม Roblox",
@@ -2102,6 +2105,7 @@
  "Robux balance": "ยอด Robux",
  "Robux in the Price": "Robux ในราคา",
  "Robux in Your Currency": "Robux เป็นสกุลเงินของคุณ",
+ "Robux Spent": "Robux ที่ใช้ไป",
  "Robux you add to a side count toward the price estimate at your Robux rate, which you can change under Robux. Off, Robux only count toward RAP.": "Robux ที่คุณเพิ่มในฝั่งใดฝั่งหนึ่งจะนับรวมในราคาประมาณตามอัตรา Robux ของคุณ ซึ่งเปลี่ยนได้ในแท็บ Robux เมื่อปิด Robux จะนับเฉพาะใน RAP",
  "Role": "บทบาท",
  "Roll again": "สุ่มอีกครั้ง",
@@ -2510,7 +2514,6 @@
  "Total Posts:": "โพสต์ทั้งหมด:",
  "Total RAP": "RAP รวม",
  "Total Robux of every match found so far. Pending Robux is included.": "Robux รวมของทุกรายการที่ตรงกันที่พบจนถึงตอนนี้ รวม Robux ที่รอดำเนินการ",
- "Total Spent": "ยอดใช้จ่ายรวม",
  "Total Value:": "มูลค่ารวม:",
  "Total visits across {n} public experiences": {
   "other": "การเข้าชมรวมจากประสบการณ์สาธารณะ {n} รายการ"

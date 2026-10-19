@@ -209,6 +209,8 @@
         }
         if (!data || !Array.isArray(data.data)) {
           c.failed = true;
+          c.failStatus = status;
+          c.failPhase = phase;
           break;
         }
         const next = data.nextPageCursor || '';

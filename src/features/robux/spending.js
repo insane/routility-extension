@@ -128,7 +128,7 @@
     title.id = 'routility-spend-title';
 
     const stats = el('div', 'routility-spend-stats');
-    const [spentCell, spentValue] = stat(lt('Total Spent'));
+    const [spentCell, spentValue] = stat(lt('Robux Spent'));
     const [countCell, countValue] = stat(lt('Purchases'));
     const [topCell, topValue] = stat(lt('Most Spent On'));
     stats.append(spentCell, countCell, topCell);
@@ -361,6 +361,9 @@
       text = ltn(n, 'Counted from your {n} purchase.', 'Counted from all {n} of your purchases.', vars);
     } else if (covered(s)) {
       text = lt('Every purchase in this date range is counted.');
+    } else if (c.failed && n && c.failPhase === 'deep' && (c.failStatus >= 500 || (!c.failStatus && navigator.onLine))) {
+      text = ltn(n, 'Roblox doesn’t go back further than {date}, so this counts your {n} purchase since then.', 'Roblox doesn’t go back further than {date}, so this counts your {n} purchases since then.', vars);
+      action = [lt('Try Again'), () => { c.failed = false; s.stopped = false; kick(s); }];
     } else if (c.failed) {
       text = n ? ltn(n, 'Roblox stopped answering. Counted from your most recent purchase, back to {date}.', 'Roblox stopped answering. Counted from your {n} most recent purchases, back to {date}.', vars) : lt('Roblox stopped answering. Try again in a minute.');
       action = [lt('Try Again'), () => { c.failed = false; s.stopped = false; kick(s); }];

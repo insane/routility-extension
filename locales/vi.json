@@ -2044,6 +2044,9 @@
  "Roblox didn’t save your About. Try again.": "Roblox không lưu được phần Giới thiệu của bạn. Hãy thử lại.",
  "Roblox didn’t send this outfit": "Roblox không gửi trang phục này",
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox không gửi các giao dịch của bạn. Hãy thử lại sau giây lát.",
+ "Roblox doesn’t go back further than {date}, so this counts your {n} purchases since then.": {
+  "other": "Roblox không lưu lịch sử trước {date}, nên đây là {n} lượt mua của bạn từ đó đến nay."
+ },
  "Roblox doesn’t share this file, so it can’t be checked.": "Roblox không chia sẻ tệp này nên không thể kiểm tra.",
  "Roblox doesn’t share this item’s file.": "Roblox không chia sẻ tệp của vật phẩm này.",
  "Roblox Fees": "Phí Roblox",
@@ -2102,6 +2105,7 @@
  "Robux balance": "Số dư Robux",
  "Robux in the Price": "Robux trong giá",
  "Robux in Your Currency": "Robux ra tiền tệ của bạn",
+ "Robux Spent": "Robux đã tiêu",
  "Robux you add to a side count toward the price estimate at your Robux rate, which you can change under Robux. Off, Robux only count toward RAP.": "Robux bạn thêm vào một bên được tính vào giá ước tính theo tỷ giá Robux của bạn, có thể đổi trong mục Robux. Khi tắt, Robux chỉ được tính vào RAP.",
  "Role": "Vai trò",
  "Roll again": "Quay lại lần nữa",
@@ -2510,7 +2514,6 @@
  "Total Posts:": "Tổng số bài viết:",
  "Total RAP": "Tổng RAP",
  "Total Robux of every match found so far. Pending Robux is included.": "Tổng Robux của mọi mục khớp tìm được đến giờ. Có tính Robux đang chờ.",
- "Total Spent": "Tổng đã chi",
  "Total Value:": "Tổng giá trị:",
  "Total visits across {n} public experiences": {
   "other": "Tổng lượt truy cập trên {n} trải nghiệm công khai"

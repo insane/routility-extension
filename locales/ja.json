@@ -2044,6 +2044,9 @@
  "Roblox didn’t save your About. Try again.": "Roblox が自己紹介を保存しませんでした。もう一度お試しください。",
  "Roblox didn’t send this outfit": "Roblox からこのコーデが届きませんでした",
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox からトレードが届きませんでした。少ししてからもう一度お試しください。",
+ "Roblox doesn’t go back further than {date}, so this counts your {n} purchases since then.": {
+  "other": "Robloxは{date}より前の履歴を返さないため、それ以降の{n}件の購入を集計しています。"
+ },
  "Roblox doesn’t share this file, so it can’t be checked.": "Roblox がこのファイルを公開していないため、確認できません。",
  "Roblox doesn’t share this item’s file.": "Roblox はこのアイテムのファイルを公開していません。",
  "Roblox Fees": "Roblox 手数料",
@@ -2102,6 +2105,7 @@
  "Robux balance": "Robux 残高",
  "Robux in the Price": "価格に Robux",
  "Robux in Your Currency": "Robux をあなたの通貨で",
+ "Robux Spent": "使ったRobux",
  "Robux you add to a side count toward the price estimate at your Robux rate, which you can change under Robux. Off, Robux only count toward RAP.": "サイドに追加した Robux を、あなたの Robux レートで推定価格に含めます。レートは Robux で変更できます。オフにすると Robux は RAP にのみ加算されます。",
  "Role": "役職",
  "Roll again": "もう一度",
@@ -2510,7 +2514,6 @@
  "Total Posts:": "総投稿数:",
  "Total RAP": "RAP 合計",
  "Total Robux of every match found so far. Pending Robux is included.": "これまでに見つかったすべての一致の Robux 合計。保留中の Robux も含まれます。",
- "Total Spent": "合計支出",
  "Total Value:": "合計価値:",
  "Total visits across {n} public experiences": {
   "other": "{n}個の公開エクスペリエンスの総訪問数"

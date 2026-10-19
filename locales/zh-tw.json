@@ -2044,6 +2044,9 @@
  "Roblox didn’t save your About. Try again.": "Roblox 沒有儲存你的簡介。請再試一次。",
  "Roblox didn’t send this outfit": "Roblox 沒有傳送這套服裝",
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox 沒有傳送你的交易。請稍後再試。",
+ "Roblox doesn’t go back further than {date}, so this counts your {n} purchases since then.": {
+  "other": "Roblox 只能查到 {date} 之後的紀錄，因此這裡統計的是此後的 {n} 筆購買。"
+ },
  "Roblox doesn’t share this file, so it can’t be checked.": "Roblox 不提供此檔案，所以無法檢查。",
  "Roblox doesn’t share this item’s file.": "Roblox 不提供此物品的檔案。",
  "Roblox Fees": "Roblox 費用",
@@ -2102,6 +2105,7 @@
  "Robux balance": "Robux 餘額",
  "Robux in the Price": "價格中的 Robux",
  "Robux in Your Currency": "以你的貨幣顯示 Robux",
+ "Robux Spent": "已花費 Robux",
  "Robux you add to a side count toward the price estimate at your Robux rate, which you can change under Robux. Off, Robux only count toward RAP.": "你加到一方的 Robux 會按你的 Robux 匯率計入估價，匯率可在 Robux 中更改。關閉後，Robux 只計入 RAP。",
  "Role": "身分組",
  "Roll again": "再抽一次",
@@ -2510,7 +2514,6 @@
  "Total Posts:": "貼文總數：",
  "Total RAP": "總 RAP",
  "Total Robux of every match found so far. Pending Robux is included.": "目前找到的所有符合項目的 Robux 總額。包括待處理的 Robux。",
- "Total Spent": "總花費",
  "Total Value:": "總價值：",
  "Total visits across {n} public experiences": {
   "other": "{n} 個公開體驗的總造訪次數"
