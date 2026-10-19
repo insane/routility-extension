@@ -409,7 +409,7 @@
  "A row of limiteds worth about the same, above Recommendations on item pages.": "아이템 페이지의 추천 위에 가치가 비슷한 한정판 줄을 표시합니다.",
  "A row on Home with the experiences your friends are in right now, most friends first, with their avatars on each tile. Updates every minute.": "친구들이 지금 있는 경험을 친구가 많은 순으로 보여 주는 줄을 홈에 추가하고, 각 타일에 아바타를 표시합니다. 1분마다 업데이트됩니다.",
  "A search box above the trade list that finds every trade with the item you type, loading older trades as it goes.": "거래 목록 위에 검색창을 추가해 입력한 아이템이 포함된 모든 거래를 이전 거래를 불러오며 찾습니다.",
- "A search box above your items, by name or asset ID. Its label follows the section you’re in.": "아이템 위에 이름이나 에셋 ID로 찾는 검색창을 추가합니다. 라벨은 현재 섹션에 맞게 바뀝니다.",
+ "A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.": "아이템 위에 이름, 에셋 ID 또는 CWHP 같은 리미티드 약어로 찾는 검색창을 추가합니다. 라벨은 현재 섹션에 맞게 바뀝니다.",
  "A search box in the Members list. Type a username to see if they’re in the community and what their role is, even in communities with millions of members.": "멤버 목록에 검색창을 추가합니다. 사용자 이름을 입력하면 멤버가 수백만 명인 커뮤니티에서도 그 사람이 있는지와 역할을 확인할 수 있습니다.",
  "a server we couldn’t place yet": "아직 위치를 확인하지 못한 서버",
  "A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.": "액세서리 페이지에 실제 크기를 “1.6 × 0.6 × 1.6 스터드”처럼 스터드 단위로 보여 주는 크기 줄을 추가해, 구매 전에 너무 큰 아이템을 알아볼 수 있습니다.",
@@ -2028,7 +2028,7 @@
  "Roblox’s Buy window shows how many Robux you’ll have left after the purchase, right above the Buy button.": "Roblox 구매 창의 구매 버튼 바로 위에 구매 후 남는 Robux를 표시합니다.",
  "Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.": "Roblox의 현재 글꼴, Builder Sans(예전 글꼴), 컴퓨터 글꼴, 또는 직접 고른 글꼴 파일. 내 글꼴은 이 브라우저에만 저장돼요.",
  "Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.": "Roblox 스크롤바는 Roblox 테마 대신 내 컴퓨터의 라이트 또는 다크 모드를 따릅니다. 스크롤바를 테마에 맞추고 배경을 투명하게 만듭니다.",
- "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, up to 10 accessories.": "아이템 페이지에서 Roblox의 착용해 보기가 착용 중인 모자와 액세서리를 모두 벗기지 않고 유지합니다. 액세서리는 최대 10개까지입니다.",
+ "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, even past 3 hats, up to 10 accessories.": "아이템 페이지에서 Roblox의 착용해 보기가 착용 중인 모자와 액세서리를 모두 벗기지 않고 유지합니다. 모자가 3개를 넘어도 유지하며, 액세서리는 최대 10개까지입니다.",
  "Robux": "Robux",
  "Robux & Credit": "Robux 및 크레딧",
  "Robux & Transactions": "Robux 및 거래 내역",
@@ -2122,7 +2122,7 @@
  "Search {query}": "{query} 검색",
  "Search {type}": "{type} 검색",
  "Search a game’s badges and sort them by rarity, newest or most won yesterday, or show only the ones you don’t own yet. Lists every badge, not just the first few.": "게임 배지를 검색하고 희귀도, 최신순, 어제 가장 많이 획득한 순으로 정렬하거나 아직 없는 배지만 볼 수 있습니다. 처음 몇 개가 아니라 모든 배지를 보여 줍니다.",
- "Search a whole inventory category by name or asset ID, not just the current page.": "현재 페이지뿐 아니라 인벤토리 카테고리 전체를 이름이나 에셋 ID로 검색합니다.",
+ "Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.": "현재 페이지뿐 아니라 인벤토리 카테고리 전체를 이름, 에셋 ID 또는 RSTF 같은 리미티드 약어로 검색합니다.",
  "Search all limiteds": "모든 한정판 검색",
  "Search badges": "배지 검색",
  "Search Badges": "배지 검색",
@@ -2790,5 +2790,39 @@
  "Your Robux Rate": "내 Robux 환율",
  "Your Settings": "내 설정",
  "Your Slots": "내 슬롯",
- "Your Status": "내 상태"
+ "Your Status": "내 상태",
+ "Real Items First": "진짜 아이템 먼저",
+ "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora 먼저",
+ "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "마켓플레이스에서 검색하면 일치하는 Roblox 공식 아이템이 판매 종료된 것까지 맨 앞에 나와 복제품에 묻히지 않습니다. RSTF나 Emp 같은 리미티드 약어로도 진짜 아이템을 찾을 수 있습니다.",
+ "{count} Owners": {
+  "other": "소유자 {count}명"
+ },
+ "{n} following": "{n}명 팔로우 중",
+ "{n} sold": {
+  "other": "{n}개 판매"
+ },
+ "{results} (some categories couldn’t load)": "{results} (일부 카테고리를 불러오지 못했어요)",
+ "1 Year": "1년",
+ "All Favorites": "모든 즐겨찾기",
+ "all items": "모든 아이템",
+ "All Items": "모든 아이템",
+ "Couldn’t load who you follow right now.": "팔로우 중인 사람을 불러오지 못했어요.",
+ "Editing {game}": "{game} 편집 중",
+ "In": "범위",
+ "No one matches this filter.": "이 필터에 맞는 사람이 없어요.",
+ "No one matches your search.": "검색에 맞는 사람이 없어요.",
+ "Search all favorites": "모든 즐겨찾기 검색",
+ "Search all your items": "내 모든 아이템 검색",
+ "Search Following": "팔로잉 검색",
+ "Select people to unfollow them": "팔로우를 취소할 사람을 선택하세요",
+ "Unfollow {n} People?": {
+  "other": "{n}명 팔로우를 취소할까요?"
+ },
+ "Unfollow Selected": "선택한 사람 팔로우 취소",
+ "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "{n}명 팔로우 취소 · {failed}명은 실패했어요. 아직 선택되어 있으니 다시 시도하세요.",
+ "Unfollowed {n} people.": {
+  "other": "{n}명 팔로우를 취소했어요."
+ },
+ "Unfollowing {done} of {total}": "팔로우 취소 중 {done}/{total}",
+ "You don’t follow anyone yet.": "아직 아무도 팔로우하지 않았어요."
 }

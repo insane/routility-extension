@@ -7,13 +7,28 @@
 
   const CARD = '.tab-pane.active .avatar-item-list .hlist > li.item-card';
 
+  let acronyms = null;
+
   function cardText(li) {
     if (!li.dataset.routilitySearch) {
       const name = li.querySelector('.item-card-name')?.textContent || li.querySelector('[data-item-name]')?.dataset.itemName || '';
       const id = (li.querySelector('a[href*="/catalog/"], a[href*="/bundles/"]')?.getAttribute('href') || '').match(/\/(?:catalog|bundles)\/(\d+)/);
-      li.dataset.routilitySearch = (name + ' ' + (id ? id[1] : '')).toLowerCase();
+      li.dataset.routilitySearch = (name + ' ' + (id ? id[1] + ' ' + ((acronyms && acronyms[id[1]]) || '') : '')).toLowerCase();
     }
     return li.dataset.routilitySearch;
+  }
+
+  function loadAcronyms() {
+    acronyms = {};
+    request({ type: 'itemAcronyms' }, r => r && typeof r === 'object').then((r) => {
+      if (!r || !Object.keys(r).length) {
+        setTimeout(() => { acronyms = null; }, 30000);
+        return;
+      }
+      acronyms = r;
+      document.querySelectorAll('[data-routility-search]').forEach(n => delete n.dataset.routilitySearch);
+      if (state && state.query) apply();
+    });
   }
 
   function apply() {
@@ -21,6 +36,7 @@
     if (!s) return;
     ensureBox();
     const q = s.query;
+    if (q && acronyms === null) loadAcronyms();
     const cards = [...document.querySelectorAll(CARD)];
     let shown = 0;
     for (const li of cards) {

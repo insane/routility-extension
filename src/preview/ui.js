@@ -35,6 +35,27 @@ async function myAvatar() {
 }
 
 let current = null;
+let ownedEmotes = null;
+
+function loadOwnedEmotes() {
+  if (ownedEmotes) return ownedEmotes;
+  ownedEmotes = (async () => {
+    const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+    const out = [];
+    let cursor = '';
+    for (let page = 0; me && page < 5; page++) {
+      const r = await fetch(`https://inventory.roblox.com/v2/users/${me}/inventory/61?limit=100&sortOrder=Desc${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`, { credentials: 'include' }).catch(() => null);
+      if (!r || !r.ok) break;
+      const d = await r.json().catch(() => null);
+      for (const x of (d && d.data) || []) out.push({ assetId: x.assetId, assetName: x.assetName });
+      cursor = d && d.nextPageCursor;
+      if (!cursor) break;
+    }
+    if (!out.length) ownedEmotes = null;
+    return out;
+  })();
+  return ownedEmotes;
+}
 let avatarData = null;
 
 function avatarOnce() {
@@ -89,6 +110,7 @@ export async function open(host, item) {
   ro.observe(wrap);
 
   const state = current = { wrap, scene, ro, avatar: null, data: null, kind: null, off: new Set(), building: 0, anim: 'Idle', animator: null, clips: new Map() };
+  let owned = [];
   closeBtn.addEventListener('click', close);
 
   let data;
@@ -212,7 +234,8 @@ export async function open(host, item) {
     anims.textContent = '';
     for (const name of [...BASE_ANIMS, ...extraAnims]) anims.appendChild(chip(lt(name), state.anim === name, () => playAnim(name)));
     if (tryEmote) anims.appendChild(chip(tryEmote.name, state.anim === 'emote:' + tryEmote.id, () => playAnim('emote:' + tryEmote.id)));
-    const emotes = ((data && data.emotes) || []).filter(e => !tryEmote || String(e.assetId) !== tryEmote.id);
+    const seen = new Set();
+    const emotes = ((data && data.emotes) || []).concat(owned).filter(e => e && (!tryEmote || String(e.assetId) !== tryEmote.id) && !seen.has(String(e.assetId)) && seen.add(String(e.assetId)));
     if (emotes.length) {
       const on = state.anim.startsWith('emote:') && (!tryEmote || state.anim !== 'emote:' + tryEmote.id);
       anims.appendChild(chip(on ? (emotes.find(e => 'emote:' + e.assetId === state.anim) || {}).assetName || lt('Emote') : lt('Emotes'), on, () => {
@@ -237,6 +260,11 @@ export async function open(host, item) {
     if (!panel.hidden && !panel.childElementCount) renderPanel();
   });
 
+  loadOwnedEmotes().then((list) => {
+    if (current !== state || !list.length) return;
+    owned = list;
+    renderAnims();
+  });
   renderKinds();
   renderAnims();
   build();

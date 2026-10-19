@@ -1306,6 +1306,79 @@
     });
   });
 
+  const catalogPicked = new Map();
+  const catalogKey = (href) => {
+    const u = new URL(href);
+    u.searchParams.delete('cursor');
+    return u.href;
+  };
+  const squashName = (s) => String(s || '').toLowerCase().normalize('NFKD').replace(/[^\p{L}\p{N}]+/gu, '');
+  const stemWord = (w) => (w.length > 3 ? w.replace(/(?:['’]s|s)$/, '') : w);
+  const catalogItemKey = (x) => (x.itemType === 'Bundle' ? 'b' : 'a') + x.id;
+
+  async function catalogSearch(href) {
+    let r = null;
+    try { r = await oFetch.call(window, href, { credentials: 'include' }); } catch {}
+    if (!r || !r.ok) return [];
+    const d = await r.json().catch(() => null);
+    return d && Array.isArray(d.data) ? d.data : [];
+  }
+
+  async function catalogTop(href, kw) {
+    const gate = await askIso('routility-catalog', { q: kw });
+    if (!gate || !gate.on) return null;
+    const words = kw.split(/\s+/).map(w => squashName(stemWord(w.toLowerCase()))).filter(Boolean);
+    const official = new URL(href);
+    official.searchParams.set('creatorName', 'Roblox');
+    official.searchParams.set('includeNotForSale', 'true');
+    official.searchParams.set('limit', '30');
+    const named = (Array.isArray(gate.hits) ? gate.hits : []).slice(0, 3).map(async (h) => {
+      const u = new URL(href);
+      u.searchParams.set('keyword', h.name);
+      u.searchParams.set('includeNotForSale', 'true');
+      u.searchParams.set('limit', '30');
+      const list = await catalogSearch(u.href);
+      return list.find(x => (h.bundleId ? x.itemType === 'Bundle' && String(x.id) === h.bundleId : x.itemType === 'Asset' && String(x.id) === h.id)) || null;
+    });
+    const [roblox, ...hits] = await Promise.all([catalogSearch(official.href), ...named]);
+    const matches = roblox.filter(x => words.length && words.every(w => squashName(x.name).includes(w)));
+    const target = squashName(stemWord(kw.toLowerCase()));
+    const exact = (x) => squashName(stemWord(String(x.name).toLowerCase())) === target;
+    const ordered = matches.filter(exact).concat(matches.filter(x => !exact(x))).slice(0, 10);
+    const seen = new Set();
+    return hits.filter(Boolean).concat(ordered).filter(x => !seen.has(catalogItemKey(x)) && seen.add(catalogItemKey(x)));
+  }
+
+  ROUTES.push(['GET', /^https:\/\/catalog\.roblox\.com\/v2\/search\/items\/details\?/i, (m, req) => {
+    const u = new URL(req.url);
+    const sp = u.searchParams;
+    const kw = (sp.get('keyword') || '').trim();
+    if (!kw || kw.length > 50 || [...sp.keys()].some(k => /^creator(name|targetid)$/i.test(k))) return null;
+    const key = catalogKey(req.url);
+    if (sp.get('cursor')) {
+      const picked = catalogPicked.get(key);
+      if (!picked || !picked.size) return null;
+      return { edit: (t) => {
+        const d = parse(t);
+        if (!d || !Array.isArray(d.data)) return t;
+        d.data = d.data.filter(x => !picked.has(catalogItemKey(x)));
+        return JSON.stringify(d);
+      } };
+    }
+    const box = { top: null };
+    const wait = Promise.race([catalogTop(req.url, kw), new Promise(r => setTimeout(() => r(null), 4000))]).then((top) => { box.top = top; }, () => {});
+    return { wait, edit: (t) => {
+      const top = box.top;
+      if (!top || !top.length) return t;
+      const d = parse(t);
+      if (!d || !Array.isArray(d.data)) return t;
+      const picked = new Set(top.map(catalogItemKey));
+      catalogPicked.set(key, picked);
+      d.data = top.concat(d.data.filter(x => !picked.has(catalogItemKey(x))));
+      return JSON.stringify(d);
+    } };
+  }]);
+
   ROUTES.push(['POST', /^https:\/\/apis\.roblox\.com\/product-experimentation-platform\/v1\/projects\/1\/values/i, (m, req, body) => {
     if (!document.documentElement.classList.contains('routility-old-nav')) return null;
     if (!body || !body.layers || !body.layers['Website.Navigation']) return null;
@@ -1346,9 +1419,9 @@
     const tried = def.assets.filter(a => !worn.some(w => Number(w.id) === Number(a.id)));
     const kept = worn.filter(w => have.has(Number(w.id)) && RIGID.has(Number(w.assetType && w.assetType.id)));
     let room = 10 - tried.length - kept.length;
-    const limit = triedType === 8 ? 3 : 1;
+    const limit = 1;
     const sameWorn = triedType ? worn.filter(w => Number(w.assetType && w.assetType.id) === triedType).length : 0;
-    const stacked = sameWorn > limit;
+    const stacked = triedType === 8 || sameWorn > limit;
     let same = 1 + kept.filter(w => Number(w.assetType && w.assetType.id) === triedType).length;
     const add = [];
     for (const w of worn) {

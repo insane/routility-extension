@@ -4,6 +4,7 @@
   const { el, dropdown } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const PAGE_SIZE = 10;
+  const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
   const FILTERS = [
     { value: 'premium', name: LT('Plus/Premium') },
     { value: 'all', name: LT('All') },
@@ -76,6 +77,7 @@
       const a = el('a', 'text-name username', row.owner_name);
       a.href = profile;
       nameWrap.appendChild(a);
+      if (row.friend) nameWrap.appendChild(el('span', 'routility-hc-tag routility-owner-friend', lt('Friend')));
     } else {
       nameWrap.appendChild(el('span', 'text-name username', lt('Hidden')));
     }
@@ -106,6 +108,35 @@
     return li;
   }
 
+  function friendCopies(s) {
+    if (!s.friendJob) {
+      s.friendJob = (async () => {
+        const map = new Map();
+        const friends = await Promise.race([
+          window.RoUtilityItemExtras?.friendOwners ? window.RoUtilityItemExtras.friendOwners(s.itemId) : [],
+          new Promise(w => setTimeout(() => w(null), 10000)),
+        ]);
+        if (!friends) {
+          s.friendJob = null;
+          return map;
+        }
+        const list = friends.slice(0, 60);
+        for (let i = 0; i < list.length; i += 6) {
+          await Promise.all(list.slice(i, i + 6).map(async (f) => {
+            try {
+              const res = await fetch(`https://inventory.roblox.com/v1/users/${f.id}/items/Asset/${s.itemId}`, { credentials: 'include' });
+              const d = res.ok ? await res.json() : null;
+              for (const x of (d && d.data) || []) if (x.instanceId) map.set(String(x.instanceId), f);
+            } catch {}
+          }));
+          if (state !== s) break;
+        }
+        return map;
+      })();
+    }
+    return s.friendJob;
+  }
+
   async function load(reset) {
     const s = state;
     if (!s) return;
@@ -120,6 +151,13 @@
     s.more.hidden = true;
     s.spinner.hidden = false;
     const data = await send({ type: 'getOwners', id: s.itemId, filter: s.filter, page: s.page });
+    if (data && data.uaids.some(row => row.owner_id == null)) {
+      const copies = await friendCopies(s);
+      data.uaids = data.uaids.map((row) => {
+        const f = row.owner_id == null && copies.get(String(row.uaid));
+        return f ? Object.assign({}, row, { owner_id: String(f.id), owner_name: f.name, friend: true }) : row;
+      });
+    }
     const ids = data ? [...new Set(data.uaids.filter(r => r.owner_id != null).map(r => String(r.owner_id)))] : [];
     const headshots = ids.length ? (await send({ type: 'getHeadshots', ids })) || {} : {};
     if (state !== s || token !== s.token) return;
@@ -134,6 +172,7 @@
     if (data.counts) {
       s.counts = data.counts;
       s.filterDropdown.setOptions(filterOptions(s.counts));
+      chipLabel(s);
     }
     const me = myUserId();
     for (const row of data.uaids) s.list.appendChild(ownerRow(row, headshots, me));
@@ -141,6 +180,40 @@
     s.more.hidden = !data.hasMore;
     s.empty.textContent = lt('No owners to show.');
     s.empty.hidden = s.list.children.length > 0;
+  }
+
+  function chipLabel(s) {
+    if (!s.chip) return;
+    s.chip.lastChild.textContent = s.counts && s.counts.all ? ltn(s.counts.all, '{count} Owner', '{count} Owners', { count: window.RoUtilityUI.formatNumber(s.counts.all) }) : lt('Owners');
+  }
+
+  function placeChip(s) {
+    const host = document.querySelector('.favorites-button-container')?.parentElement;
+    if (!host || host.querySelector('.routility-owners-chip')) return;
+    const chip = s.chip = el('button', 'relative clip group/interactable focus-visible:outline-focus cursor-pointer flex justify-center items-center radius-circle stroke-none padding-left-medium padding-right-medium height-800 text-label-medium bg-shift-300 content-action-utility routility-injected routility-owners-chip');
+    chip.type = 'button';
+    const layer = el('div', STATE_LAYER);
+    layer.setAttribute('aria-hidden', 'true');
+    chip.append(layer, el('span', 'padding-y-xsmall text-no-wrap'));
+    chipLabel(s);
+    chip.addEventListener('click', show);
+    host.classList.add('routility-friendsown-host');
+    const friends = host.querySelector('.routility-friendsown-chip');
+    if (friends) friends.after(chip);
+    else host.appendChild(chip);
+  }
+
+  function show() {
+    const s = state;
+    if (!s || !s.section) return;
+    const changed = s.filter !== 'all';
+    s.filter = 'all';
+    s.filterDropdown?.setValue('all');
+    s.mode = 'owners';
+    s.modeDropdown?.setValue('owners');
+    if (s.loadedOnce && changed) load(true);
+    applyMode();
+    s.section.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function applyMode() {
@@ -161,6 +234,7 @@
     const header = section?.querySelector('.container-header');
     const content = section?.querySelector('.section-content');
     if (!header || !content) return;
+    placeChip(s);
     if (section === s.section && header.querySelector('.routility-owners-mode-dropdown') && content.contains(s.panel)) {
       if (section.classList.contains('routility-owners-mode') !== (s.mode === 'owners')) applyMode();
       return;
@@ -169,7 +243,7 @@
     s.section = section;
     header.querySelectorAll('.routility-injected').forEach(n => n.remove());
 
-    const modeDropdown = dropdown(
+    const modeDropdown = s.modeDropdown = dropdown(
       [{ value: 'resellers', label: lt('Resellers') }, { value: 'owners', label: lt('Owners') }],
       s.mode,
       (mode) => { s.mode = mode; applyMode(); },
@@ -207,6 +281,7 @@
     if (!state) return;
     state.observer?.disconnect();
     state.section?.classList.remove('routility-owners-mode');
+    document.querySelectorAll('.routility-owners-chip').forEach(n => n.remove());
     state = null;
   }
 
@@ -225,6 +300,12 @@
     };
     buildPanel(s);
     state = s;
+    send({ type: 'getOwners', id: itemId, filter: 'premium', page: 0 }).then((data) => {
+      if (state !== s || !data || !data.counts || s.counts) return;
+      s.counts = data.counts;
+      s.filterDropdown?.setOptions(filterOptions(s.counts));
+      chipLabel(s);
+    });
     s.observer = new MutationObserver(window.RoUtilityUI.onFrame(ensureInjected));
     s.observer.observe(document.querySelector('#item-details-container') || document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
     ensureInjected();

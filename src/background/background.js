@@ -683,6 +683,24 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return true;
   }
 
+  if (msg.type === 'acronymItems') {
+    const q = String(msg.query || '').toLowerCase().replace(/\s+/g, '').slice(0, 30);
+    if (q.length < 2) { sendResponse([]); return; }
+    getItems().then(items => {
+      sendResponse(Object.values(items).filter(i => i.acr && String(i.acr).toLowerCase() === q).slice(0, 3).map(i => ({ id: String(i.id), name: i.name || '', bundleId: i.bundleId ? String(i.bundleId) : '' })));
+    });
+    return true;
+  }
+
+  if (msg.type === 'itemAcronyms') {
+    getItems().then(items => {
+      const out = {};
+      for (const i of Object.values(items)) if (i.acr) out[String(i.id)] = String(i.acr).toLowerCase();
+      sendResponse(out);
+    });
+    return true;
+  }
+
   if (msg.type === 'calcItems') {
     getItems().then(items => {
       sendResponse(Object.values(items).map(i => ({ id: String(i.id), name: i.name || '', acr: i.acr || '', usd: Number.isFinite(i.usd) ? i.usd : 0, rap: i.rap || 0, value: Number(i.value) > 0 ? Number(i.value) : 0, bundleId: i.bundleId ? String(i.bundleId) : '', demand: i.demand || '', trend: i.trend || '', rare: !!i.rare, projected: !!i.projected, thumb: i.thumb || '' })));

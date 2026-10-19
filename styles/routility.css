@@ -111,6 +111,30 @@
   display: none !important;
 }
 
+.routility-chart-vol {
+  display: none;
+  clear: both;
+}
+
+.routility-range-mode .routility-chart {
+  display: block !important;
+  height: 130px;
+}
+
+.routility-range-mode .routility-chart-vol {
+  display: block;
+  height: 50px;
+}
+
+.routility-range-mode [id^="line_chart_"],
+.routility-range-mode [id^="vertical_bar_chart_"] {
+  display: none !important;
+}
+
+.routility-chart-volume rect {
+  fill: #bdbebe;
+}
+
 .routility-chart-svg {
   display: block;
 }
@@ -1255,6 +1279,10 @@ html.routility-av-adv-auto [role=dialog][data-state] {
 
 #avatar-web-app .avatar-item-list .hlist:has(.routility-card-usd) > li.item-card {
   height: 210px !important;
+}
+
+#avatar-web-app .avatar-item-list .hlist:has(.routility-card-usd):has(.routility-val) > li.item-card {
+  height: 234px !important;
 }
 
 .routility-search-own-sel > .navbar-search-option.new-selected:not(.routility-search-row) {
@@ -12941,3 +12969,78 @@ html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padd
 .routility-calc-summary-cell .routility-calc-total-v > .routility-usd-ic { width: 16px; height: 16px; }
 .routility-calc-price > .routility-usd-ic { width: 16px; height: 16px; margin: 0 0 0 2px !important; }
 .trade-request-item .routility-card-worth, .trade-request-item .routility-card-usd { display: inline-flex !important; align-items: center; vertical-align: top; margin-left: 10px !important; }
+
+ul.routility-list-ordered {
+  display: flex !important;
+  flex-wrap: wrap;
+}
+
+.friend-tile-dropdown .routility-hc-embed {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 12px;
+  padding: 0 4px 12px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+  box-sizing: border-box;
+}
+
+.friend-tile-dropdown .routility-hc-embed.routility-hc-embed-game {
+  align-self: stretch;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.friend-tile-dropdown .routility-hc-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.friend-tile-dropdown .routility-hc-stat[data-rt-tip] {
+  cursor: default;
+}
+
+.friend-tile-dropdown .routility-hc-sk-label {
+  width: 46px;
+  height: 11px;
+  margin: 2px 0;
+}
+
+.friend-tile-dropdown .routility-hc-sk-value {
+  width: 74px;
+  height: 14px;
+  margin: 1px 0;
+}
+
+#friends-web-app .container-header:has(> .routility-fm-follow) {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center !important;
+  align-self: stretch;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#friends-web-app .routility-fm-follow {
+  flex: none;
+  width: auto !important;
+  margin: 0;
+}
+
+#friends-web-app .container-header:has(> .routility-fm-follow) > .friends-subtitle {
+  margin: 0 !important;
+}
+
+#friends-web-app .container-header:has(> .routility-fm-follow)::before,
+#friends-web-app .container-header:has(> .routility-fm-follow)::after {
+  display: none;
+}
+
+assets-explorer ul.item-cards:has(.routility-card-worth) > li.list-item {
+  height: 262px !important;
+}

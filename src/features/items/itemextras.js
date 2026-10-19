@@ -386,6 +386,7 @@
     }
     s.owners = owners || [];
     s.phase = 'done';
+    s.ownersDone?.(s.owners);
     if (s.chip) renderChip(s, s.chip);
   }
 
@@ -407,7 +408,9 @@
       if (s.phase === 'done' && s.owners && s.owners.length) openPop(s, chip);
     });
     host.classList.add('routility-friendsown-host');
-    host.appendChild(chip);
+    const owners = host.querySelector('.routility-owners-chip');
+    if (owners) owners.before(chip);
+    else host.appendChild(chip);
     if (!document.hidden) chip.classList.add('routility-reveal');
   }
 
@@ -426,6 +429,7 @@
     if (!me) return;
     teardown();
     const s = st = { itemId: Number(itemId), me, opts, acquired: null, owners: null, pics: {} };
+    s.ownersReady = new Promise((resolve) => { s.ownersDone = resolve; });
     s.observer = new MutationObserver(onFrame(place));
     s.observer.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true });
     if (opts.acquired) acquired(s).then(a => { if (st !== s) return; s.acquired = a; place(); });
@@ -464,5 +468,11 @@
     document.querySelectorAll('.routility-friendsown-host').forEach(n => n.classList.remove('routility-friendsown-host'));
   }
 
-  window.RoUtilityItemExtras = { setup, teardown, classicFace };
+  function friendOwners(itemId) {
+    const s = st;
+    if (!s || !s.opts.friends || s.opts.bundle || s.itemId !== Number(itemId)) return Promise.resolve([]);
+    return s.ownersReady;
+  }
+
+  window.RoUtilityItemExtras = { setup, teardown, classicFace, friendOwners };
 })();

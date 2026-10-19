@@ -409,7 +409,7 @@
  "A row of limiteds worth about the same, above Recommendations on item pages.": "物品页面“推荐”上方的一栏价值相近的限量物品。",
  "A row on Home with the experiences your friends are in right now, most friends first, with their avatars on each tile. Updates every minute.": "主页上的一栏，显示你的好友当前所在的体验，好友最多的排在前面，每个方块上都有他们的虚拟形象。每分钟更新一次。",
  "A search box above the trade list that finds every trade with the item you type, loading older trades as it goes.": "交易列表上方的搜索框，可找到包含你输入物品的所有交易，并会边搜索边加载更早的交易。",
- "A search box above your items, by name or asset ID. Its label follows the section you’re in.": "物品上方的搜索框，可按名称或资产 ID 搜索。其标签会随你所在的版块而变化。",
+ "A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.": "物品上方的搜索框，可按名称、资产 ID 或限量物品缩写（如 CWHP）搜索。其标签会随你所在的版块而变化。",
  "A search box in the Members list. Type a username to see if they’re in the community and what their role is, even in communities with millions of members.": "成员列表中的搜索框。输入用户名即可查看对方是否在社群中以及其角色，即使是拥有数百万成员的社群也可以。",
  "a server we couldn’t place yet": "一个我们尚未定位的服务器",
  "A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.": "配饰页面上的“尺寸”一行，以格为单位显示配饰的实际大小，例如 1.6 × 0.6 × 1.6 格，让你在购买前就能发现过大的配饰。",
@@ -2028,7 +2028,7 @@
  "Roblox’s Buy window shows how many Robux you’ll have left after the purchase, right above the Buy button.": "Roblox 的购买窗口会在“购买”按钮正上方显示购买后你还剩多少 Robux。",
  "Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.": "Roblox 当前的字体、Builder Sans（以前的字体）、电脑自带的字体，或你选择的字体文件。你的字体只保存在此浏览器中。",
  "Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.": "Roblox 的滚动条会跟随你电脑的浅色或深色模式，而不是 Roblox 的主题。开启后，滚动条会匹配主题，背景也会变成透明。",
- "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, up to 10 accessories.": "物品页面上 Roblox 的“试穿”会保留你正在穿戴的帽子和配饰，而不是全部脱下，最多 10 个配饰。",
+ "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, even past 3 hats, up to 10 accessories.": "物品页面上 Roblox 的“试穿”会保留你正在穿戴的帽子和配饰，而不是全部脱下，即使超过 3 顶帽子也会保留，最多 10 个配饰。",
  "Robux": "Robux",
  "Robux & Credit": "Robux 和点数",
  "Robux & Transactions": "Robux 和交易记录",
@@ -2122,7 +2122,7 @@
  "Search {query}": "搜索 {query}",
  "Search {type}": "搜索{type}",
  "Search a game’s badges and sort them by rarity, newest or most won yesterday, or show only the ones you don’t own yet. Lists every badge, not just the first few.": "搜索游戏的徽章，并按稀有度、最新或昨日获得最多排序，或只显示你还没拥有的徽章。会列出每一个徽章，而不只是前几个。",
- "Search a whole inventory category by name or asset ID, not just the current page.": "按名称或资产 ID 搜索整个物品栏类别，而不只是当前页面。",
+ "Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.": "按名称、资产 ID 或限量物品缩写（如 RSTF）搜索整个物品栏类别，而不只是当前页面。",
  "Search all limiteds": "搜索所有限量物品",
  "Search badges": "搜索徽章",
  "Search Badges": "搜索徽章",
@@ -2790,5 +2790,39 @@
  "Your Robux Rate": "你的 Robux 汇率",
  "Your Settings": "你的设置",
  "Your Slots": "你的槽位",
- "Your Status": "你的状态"
+ "Your Status": "你的状态",
+ "Real Items First": "正品优先",
+ "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora 排在最前",
+ "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "在市场中搜索时，匹配的 Roblox 官方物品会排在最前，包括已下架的物品，不会被仿品淹没。用 RSTF 或 Emp 这样的限量物品缩写也能找到正品。",
+ "{count} Owners": {
+  "other": "{count} 位拥有者"
+ },
+ "{n} following": "已关注 {n}",
+ "{n} sold": {
+  "other": "售出 {n}"
+ },
+ "{results} (some categories couldn’t load)": "{results}(部分类别无法加载)",
+ "1 Year": "1 年",
+ "All Favorites": "所有收藏",
+ "all items": "所有物品",
+ "All Items": "所有物品",
+ "Couldn’t load who you follow right now.": "无法加载你关注的人。",
+ "Editing {game}": "正在编辑 {game}",
+ "In": "范围",
+ "No one matches this filter.": "没有人符合此筛选条件。",
+ "No one matches your search.": "没有人符合你的搜索。",
+ "Search all favorites": "搜索所有收藏",
+ "Search all your items": "搜索你的所有物品",
+ "Search Following": "搜索关注",
+ "Select people to unfollow them": "选择要取消关注的人",
+ "Unfollow {n} People?": {
+  "other": "取消关注 {n} 人?"
+ },
+ "Unfollow Selected": "取消关注所选",
+ "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "已取消关注 {n} 人 · {failed} 人失败。他们仍处于选中状态，请重试。",
+ "Unfollowed {n} people.": {
+  "other": "已取消关注 {n} 人。"
+ },
+ "Unfollowing {done} of {total}": "正在取消关注 {done}/{total}",
+ "You don’t follow anyone yet.": "你还没有关注任何人。"
 }

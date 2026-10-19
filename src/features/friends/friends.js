@@ -1387,6 +1387,15 @@
   function ffPlace() {
     const f = ff;
     if (!f) return;
+    if (f.manage && String(f.userId) === String(myId()) && /^#!\/following\b/.test(location.hash || '')) {
+      const head = document.querySelector('#friends-web-app .tab-pane.active .friends-content .container-header');
+      if (head && !head.querySelector('.routility-fm-follow')) {
+        const btn = el('button', 'btn-control-sm routility-injected routility-fm-follow', lt('Manage'));
+        btn.type = 'button';
+        btn.addEventListener('click', (e) => { e.stopPropagation(); fmOpen('following'); });
+        head.appendChild(btn);
+      }
+    }
     if (!/^#!\/friends\b/.test(location.hash || '#!/friends')) {
       if (f.active) ffActivate(null);
       document.querySelector('.routility-uf-banner')?.remove();
@@ -1465,11 +1474,71 @@
     return false;
   }
 
+  async function unfollow(id) {
+    for (let i = 0; i < 4; i++) {
+      try {
+        const r = await fetch(`https://friends.roblox.com/v1/users/${id}/unfollow`, { method: 'POST', credentials: 'include', headers: Object.assign({ 'content-type': 'application/json' }, fmCsrf ? { 'x-csrf-token': fmCsrf } : {}) });
+        if (r.status === 403 && r.headers.get('x-csrf-token')) { fmCsrf = r.headers.get('x-csrf-token'); continue; }
+        if (r.status === 429) { await pause(3000 * (i + 1)); continue; }
+        return r.ok;
+      } catch {
+        await pause(1000);
+      }
+    }
+    return false;
+  }
+
+  function ensureFollowing(f) {
+    if (!f.followingJob) {
+      f.followingJob = (async () => {
+        const ids = [];
+        let cursor = '';
+        for (let page = 0, tries = 0; page < 50; page++) {
+          let res = null;
+          try {
+            res = await fetch(`https://friends.roblox.com/v1/users/${f.userId}/followings?limit=100&sortOrder=Desc${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`, { credentials: 'include' });
+          } catch {}
+          if (res && res.status === 429 && tries < 4) {
+            tries++;
+            page--;
+            await pause(2000 * tries);
+            continue;
+          }
+          tries = 0;
+          const d = res && res.ok ? await res.json().catch(() => null) : null;
+          if (!d) {
+            f.followingJob = null;
+            return;
+          }
+          for (const x of d.data || []) if (x && Number(x.id) > 0) ids.push(Number(x.id));
+          cursor = d.nextPageCursor;
+          if (!cursor) break;
+        }
+        const unique = [...new Set(ids)];
+        const byId = new Map();
+        const batches = await Promise.all(chunks(unique, 100).map(part => usersBatch(part, false)));
+        for (const u of batches.flat().filter(Boolean)) byId.set(Number(u.id), u);
+        const list = unique.map((id) => {
+          const u = byId.get(id);
+          return { id, name: (u && u.name) || '', displayName: (u && (u.displayName || u.name)) || '', hasVerifiedBadge: !!(u && u.hasVerifiedBadge), deleted: !u };
+        });
+        const [thumbs, live] = await Promise.all([headshots(unique), presence(unique)]);
+        if (ff !== f) return;
+        for (const [k, v] of thumbs) f.thumbs.set(k, v);
+        for (const [k, v] of live) f.live.set(k, v);
+        f.following = list;
+      })();
+    }
+    return f.followingJob;
+  }
+
   const FM_FILTERS = [['all', LT('All')], ['online', LT('Online')], ['offline', LT('Offline')], ['verified', LT('Verified')], ['admin', LT('Admins')], ['deleted', LT('Terminated')]];
 
-  async function fmOpen() {
+  async function fmOpen(mode) {
     const f = ff;
     if (!f) return;
+    const following = mode === 'following';
+    const people = () => (following ? f.following : f.friends);
     document.querySelector('.routility-fm-backdrop')?.remove();
     const backdrop = el('div', 'routility-modal-backdrop routility-injected routility-cm-backdrop routility-fm-backdrop');
     const modal = el('div', 'routility-modal routility-cm-modal routility-fm-modal');
@@ -1478,7 +1547,7 @@
     const head = el('div', 'routility-modal-head');
     const titleBox = el('div', 'routility-cm-titlebox');
     const count = el('span', 'text-body-medium content-muted routility-cm-count');
-    titleBox.append(el('h2', 'routility-modal-title', lt('My Friends')), count);
+    titleBox.append(el('h2', 'routility-modal-title', following ? lt('Following') : lt('My Friends')), count);
     const close = el('button', 'routility-modal-icon routility-modal-close');
     close.type = 'button';
     close.setAttribute('aria-label', lt('Close'));
@@ -1488,10 +1557,10 @@
     const tools = el('div', 'routility-cm-tools');
     const search = el('input', 'form-control input-field routility-cm-search');
     search.type = 'search';
-    search.placeholder = lt('Search Friends');
+    search.placeholder = following ? lt('Search Following') : lt('Search Friends');
     const filters = el('div', 'routility-cm-filters');
     let filter = 'all';
-    for (const [key, label] of FM_FILTERS) {
+    for (const [key, label] of FM_FILTERS.filter(([key]) => !following || key !== 'admin')) {
       const b = el('button', 'relative clip group/interactable cursor-pointer flex justify-center items-center radius-circle stroke-none padding-left-medium padding-right-medium height-800 text-label-medium routility-cm-filter');
       b.type = 'button';
       b.dataset.key = key;
@@ -1516,7 +1585,7 @@
 
     const foot = el('div', 'routility-cm-foot');
     const selInfo = el('span', 'text-body-medium content-muted');
-    const remove = el('button', 'btn-alert-md btn-min-width routility-cm-leave', lt('Unfriend Selected'));
+    const remove = el('button', 'btn-alert-md btn-min-width routility-cm-leave', following ? lt('Unfollow Selected') : lt('Unfriend Selected'));
     remove.type = 'button';
     remove.disabled = true;
     foot.append(selInfo, remove);
@@ -1538,7 +1607,7 @@
     close.addEventListener('click', shut);
     backdrop.addEventListener('mousedown', (e) => { if (e.target === backdrop) shut(); });
 
-    await ensureFriends(f);
+    await (following ? ensureFollowing(f) : ensureFriends(f));
     if (!backdrop.isConnected || ff !== f) return;
     const selected = new Set();
     const failed = new Set();
@@ -1550,12 +1619,13 @@
 
     const paintFoot = () => {
       const n = selected.size;
-      count.textContent = ltn((f.friends || []).length, '{n} friend', '{n} friends', { n: formatNumber((f.friends || []).length) });
-      selInfo.textContent = note || (n ? lt('{n} selected', { n: formatNumber(n) }) : lt('Select friends to unfriend them'));
+      const total = (people() || []).length;
+      count.textContent = following ? lt('{n} following', { n: formatNumber(total) }) : ltn(total, '{n} friend', '{n} friends', { n: formatNumber(total) });
+      selInfo.textContent = note || (n ? lt('{n} selected', { n: formatNumber(n) }) : following ? lt('Select people to unfollow them') : lt('Select friends to unfriend them'));
       selInfo.classList.toggle('routility-cm-note-bad', !!note && failed.size > 0);
       remove.disabled = !n || busy;
       remove.classList.toggle('routility-cm-confirm', confirm);
-      if (!busy) remove.textContent = confirm ? ltn(n, 'Unfriend {n} Friend?', 'Unfriend {n} Friends?', { n: formatNumber(n) }) : lt('Unfriend Selected');
+      if (!busy) remove.textContent = following ? (confirm ? ltn(n, 'Unfollow {n} Person?', 'Unfollow {n} People?', { n: formatNumber(n) }) : lt('Unfollow Selected')) : confirm ? ltn(n, 'Unfriend {n} Friend?', 'Unfriend {n} Friends?', { n: formatNumber(n) }) : lt('Unfriend Selected');
       pickAll.disabled = busy || !shown.length;
       pickAll.textContent = shown.length && shown.every(x => selected.has(x.id)) ? lt('Clear') : lt('Select All');
     };
@@ -1570,7 +1640,7 @@
       });
       const q = search.value.trim().toLowerCase();
       const waiting = filter === 'admin' && !f.admin;
-      shown = waiting ? [] : (f.friends || []).filter(x => (filter === 'all' || (filter === 'online' && online(x)) || (filter === 'offline' && !online(x)) || (filter === 'verified' && x.hasVerifiedBadge) || (filter === 'admin' && f.admin.has(x.id)) || (filter === 'deleted' && x.deleted))
+      shown = waiting ? [] : (people() || []).filter(x => (filter === 'all' || (filter === 'online' && online(x)) || (filter === 'offline' && !online(x)) || (filter === 'verified' && x.hasVerifiedBadge) || (filter === 'admin' && f.admin.has(x.id)) || (filter === 'deleted' && x.deleted))
         && (!q || `${x.displayName} ${x.name}`.toLowerCase().includes(q)))
         .sort((a, b) => (a.displayName || a.name || '').localeCompare(b.displayName || b.name || ''));
       list.textContent = '';
@@ -1579,14 +1649,14 @@
         paintFoot();
         return;
       }
-      if (!f.friends) {
-        const li = el('li', 'routility-cm-empty text-body-medium content-muted', lt('Couldn’t load your friends right now.'));
+      if (!people()) {
+        const li = el('li', 'routility-cm-empty text-body-medium content-muted', following ? lt('Couldn’t load who you follow right now.') : lt('Couldn’t load your friends right now.'));
         const again = el('button', 'btn-control-sm routility-ff-retry', lt('Try Again'));
         again.type = 'button';
         again.addEventListener('click', async () => {
           again.disabled = true;
           again.textContent = lt('Loading…');
-          await ensureFriends(f);
+          await (following ? ensureFollowing(f) : ensureFriends(f));
           if (backdrop.isConnected) paint();
         });
         li.appendChild(again);
@@ -1594,7 +1664,7 @@
         paintFoot();
         return;
       }
-      if (!shown.length) list.appendChild(el('li', 'routility-cm-empty text-body-medium content-muted', q ? lt('No friends match your search.') : lt('No friends match this filter.')));
+      if (!shown.length) list.appendChild(el('li', 'routility-cm-empty text-body-medium content-muted', following && !people().length ? lt('You don’t follow anyone yet.') : q ? (following ? lt('No one matches your search.') : lt('No friends match your search.')) : (following ? lt('No one matches this filter.') : lt('No friends match this filter.'))));
       for (const x of shown) {
         const li = el('li', 'routility-cm-row' + (selected.has(x.id) ? ' routility-cm-picked' : '') + (failed.has(x.id) ? ' routility-cm-failed' : ''));
         const box = el('input', 'routility-cm-check');
@@ -1670,13 +1740,14 @@
       const gone = [];
       paint();
       for (let i = 0; i < queue.length; i++) {
-        remove.textContent = lt('Unfriending {done} of {total}', { done: formatNumber(i + 1), total: formatNumber(queue.length) });
-        if (await unfriend(queue[i])) gone.push(queue[i]);
+        remove.textContent = following ? lt('Unfollowing {done} of {total}', { done: formatNumber(i + 1), total: formatNumber(queue.length) }) : lt('Unfriending {done} of {total}', { done: formatNumber(i + 1), total: formatNumber(queue.length) });
+        if (await (following ? unfollow(queue[i]) : unfriend(queue[i]))) gone.push(queue[i]);
         else failed.add(queue[i]);
         await pause(400);
       }
       const goneSet = new Set(gone);
-      f.friends = (f.friends || []).filter(x => !goneSet.has(x.id));
+      if (following) f.following = (f.following || []).filter(x => !goneSet.has(x.id));
+      else f.friends = (f.friends || []).filter(x => !goneSet.has(x.id));
       for (const id of gone) {
         selected.delete(id);
         hideGone(id);
@@ -1684,7 +1755,9 @@
       document.querySelector('.routility-ff-list')?.removeAttribute('data-key');
       ffRender();
       busy = false;
-      note = failed.size ? lt('Unfriended {n} · {failed} didn’t work. They’re still selected, try again.', { n: formatNumber(gone.length), failed: formatNumber(failed.size) }) : ltn(gone.length, 'Unfriended {n} friend.', 'Unfriended {n} friends.', { n: formatNumber(gone.length) });
+      note = following
+        ? (failed.size ? lt('Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.', { n: formatNumber(gone.length), failed: formatNumber(failed.size) }) : ltn(gone.length, 'Unfollowed {n} person.', 'Unfollowed {n} people.', { n: formatNumber(gone.length) }))
+        : (failed.size ? lt('Unfriended {n} · {failed} didn’t work. They’re still selected, try again.', { n: formatNumber(gone.length), failed: formatNumber(failed.size) }) : ltn(gone.length, 'Unfriended {n} friend.', 'Unfriended {n} friends.', { n: formatNumber(gone.length) }));
       paint();
     });
     paint();

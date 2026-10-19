@@ -492,7 +492,7 @@
  "A row of limiteds worth about the same, above Recommendations on item pages.": "Eşya sayfalarında Öneriler'in üstünde, yaklaşık aynı değerdeki limited'lerden oluşan bir satır.",
  "A row on Home with the experiences your friends are in right now, most friends first, with their avatars on each tile. Updates every minute.": "Ana sayfada, arkadaşlarının şu anda bulunduğu deneyimleri en çok arkadaştan başlayarak, her kutuda avatarlarıyla gösteren bir satır. Her dakika güncellenir.",
  "A search box above the trade list that finds every trade with the item you type, loading older trades as it goes.": "Takas listesinin üstünde, yazdığın eşyayı içeren tüm takasları bulan ve ilerledikçe eski takasları yükleyen bir arama kutusu.",
- "A search box above your items, by name or asset ID. Its label follows the section you’re in.": "Eşyalarının üstünde, ada veya varlık ID'sine göre arama kutusu. Etiketi bulunduğun bölüme göre değişir.",
+ "A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.": "Eşyalarının üstünde, ada, varlık ID'sine veya CWHP gibi limited kısaltmasına göre arama kutusu. Etiketi bulunduğun bölüme göre değişir.",
  "A search box in the Members list. Type a username to see if they’re in the community and what their role is, even in communities with millions of members.": "Üyeler listesinde bir arama kutusu. Bir kullanıcı adı yazıp toplulukta olup olmadığını ve rolünü gör, milyonlarca üyesi olan topluluklarda bile.",
  "a server we couldn’t place yet": "henüz konumunu bulamadığımız bir sunucu",
  "A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.": "Aksesuar sayfalarında, aksesuarın stud cinsinden gerçek boyutunu gösteren bir Boyut satırı, örneğin 1.6 × 0.6 × 1.6 stud; böylece satın almadan önce aşırı büyük olanları fark edersin.",
@@ -2150,7 +2150,7 @@
  "Roblox’s Buy window shows how many Robux you’ll have left after the purchase, right above the Buy button.": "Roblox'un Satın al penceresi, Satın al düğmesinin hemen üstünde satın almadan sonra kaç Robux'un kalacağını gösterir.",
  "Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.": "Roblox’un şu anki yazı tipi, Builder Sans (önceki yazı tipi), bilgisayarının yazı tipi ya da seçtiğin bir yazı tipi dosyası. Yazı tipin yalnızca bu tarayıcıda saklanır.",
  "Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.": "Roblox'un kaydırma çubuğu, Roblox'un teması yerine bilgisayarının açık veya koyu moduna uyuyor. Bu, onu temaya uydurur ve arka planını şeffaf yapar.",
- "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, up to 10 accessories.": "Roblox’un eşya sayfalarındaki Dene özelliği, giydiğin şapka ve aksesuarları hepsini çıkarmak yerine korur, en fazla 10 aksesuar.",
+ "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, even past 3 hats, up to 10 accessories.": "Roblox’un eşya sayfalarındaki Dene özelliği, giydiğin şapka ve aksesuarları hepsini çıkarmak yerine korur, 3 şapkayı geçse bile, en fazla 10 aksesuar.",
  "Robux": "Robux",
  "Robux & Credit": "Robux ve kredi",
  "Robux & Transactions": "Robux ve işlemler",
@@ -2244,7 +2244,7 @@
  "Search {query}": "{query} ara",
  "Search {type}": "{type} ara",
  "Search a game’s badges and sort them by rarity, newest or most won yesterday, or show only the ones you don’t own yet. Lists every badge, not just the first few.": "Bir oyunun rozetlerinde ara ve onları nadirliğe, en yeniye veya dün en çok kazanılana göre sırala ya da sadece henüz sahip olmadıklarını göster. Sadece ilk birkaçını değil, tüm rozetleri listeler.",
- "Search a whole inventory category by name or asset ID, not just the current page.": "Sadece geçerli sayfada değil, tüm envanter kategorisinde ada veya varlık ID'sine göre ara.",
+ "Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.": "Sadece geçerli sayfada değil, tüm envanter kategorisinde ada, varlık ID'sine veya RSTF gibi limited kısaltmasına göre ara.",
  "Search all limiteds": "Tüm limited'lerde ara",
  "Search badges": "Rozetlerde ara",
  "Search Badges": "Rozet Ara",
@@ -2920,5 +2920,43 @@
  "Your Robux Rate": "Robux Kurun",
  "Your Settings": "Ayarların",
  "Your Slots": "Yuvaların",
- "Your Status": "Durumun"
+ "Your Status": "Durumun",
+ "Real Items First": "Önce Gerçek Eşyalar",
+ "Red Sparkle Time Fedora first": "Önce Red Sparkle Time Fedora",
+ "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "Marketplace’te arama yaptığında, eşleşen Roblox’un kendi eşyaları satıştan kalkmış olanlar dahil en üstte görünür, kopyaların altında kaybolmaz. RSTF veya Emp gibi limited kısaltmaları da gerçek eşyayı bulur.",
+ "{count} Owners": {
+  "one": "{count} Sahip",
+  "other": "{count} Sahip"
+ },
+ "{n} following": "{n} takip edilen",
+ "{n} sold": {
+  "one": "{n} satıldı",
+  "other": "{n} satıldı"
+ },
+ "{results} (some categories couldn’t load)": "{results} (bazı kategoriler yüklenemedi)",
+ "1 Year": "1 Yıl",
+ "All Favorites": "Tüm Favoriler",
+ "all items": "tüm eşyalar",
+ "All Items": "Tüm Eşyalar",
+ "Couldn’t load who you follow right now.": "Takip ettiklerin yüklenemedi.",
+ "Editing {game}": "{game} düzenliyor",
+ "In": "Kapsam",
+ "No one matches this filter.": "Bu filtreye uyan kimse yok.",
+ "No one matches your search.": "Aramana uyan kimse yok.",
+ "Search all favorites": "Tüm favorilerde ara",
+ "Search all your items": "Tüm eşyalarında ara",
+ "Search Following": "Takip Edilenlerde Ara",
+ "Select people to unfollow them": "Takibi bırakmak istediğin kişileri seç",
+ "Unfollow {n} People?": {
+  "one": "{n} kişiyi takipten çık?",
+  "other": "{n} kişiyi takipten çık?"
+ },
+ "Unfollow Selected": "Seçilenleri Takipten Çık",
+ "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "{n} kişi takipten çıkıldı · {failed} başarısız oldu. Hâlâ seçililer, tekrar dene.",
+ "Unfollowed {n} people.": {
+  "one": "{n} kişi takipten çıkıldı.",
+  "other": "{n} kişi takipten çıkıldı."
+ },
+ "Unfollowing {done} of {total}": "Takipten çıkılıyor {done}/{total}",
+ "You don’t follow anyone yet.": "Henüz kimseyi takip etmiyorsun."
 }

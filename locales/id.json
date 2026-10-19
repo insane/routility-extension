@@ -409,7 +409,7 @@
  "A row of limiteds worth about the same, above Recommendations on item pages.": "Baris limited dengan nilai yang kurang lebih sama, di atas Rekomendasi di halaman item.",
  "A row on Home with the experiences your friends are in right now, most friends first, with their avatars on each tile. Updates every minute.": "Baris di Beranda dengan pengalaman yang sedang dimainkan temanmu, yang paling banyak teman duluan, dengan avatar mereka di tiap ubin. Diperbarui setiap menit.",
  "A search box above the trade list that finds every trade with the item you type, loading older trades as it goes.": "Kotak pencarian di atas daftar perdagangan yang menemukan setiap perdagangan berisi item yang kamu ketik, sambil memuat perdagangan lama.",
- "A search box above your items, by name or asset ID. Its label follows the section you’re in.": "Kotak pencarian di atas item-mu, berdasarkan nama atau ID aset. Labelnya mengikuti bagian yang sedang kamu buka.",
+ "A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.": "Kotak pencarian di atas item-mu, berdasarkan nama, ID aset, atau singkatan limited seperti CWHP. Labelnya mengikuti bagian yang sedang kamu buka.",
  "A search box in the Members list. Type a username to see if they’re in the community and what their role is, even in communities with millions of members.": "Kotak pencarian di daftar Anggota. Ketik username untuk melihat apakah dia ada di komunitas dan apa perannya, bahkan di komunitas dengan jutaan anggota.",
  "a server we couldn’t place yet": "server yang belum bisa kami temukan lokasinya",
  "A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.": "Baris Ukuran di halaman aksesori yang menunjukkan seberapa besar aksesori itu sebenarnya dalam stud, seperti 1,6 × 0,6 × 1,6 stud, supaya kamu bisa melihat yang kebesaran sebelum membeli.",
@@ -2028,7 +2028,7 @@
  "Roblox’s Buy window shows how many Robux you’ll have left after the purchase, right above the Buy button.": "Jendela Beli Roblox menampilkan sisa Robux-mu setelah pembelian, tepat di atas tombol Beli.",
  "Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.": "Font Roblox saat ini, Builder Sans (font Roblox sebelumnya), font komputermu, atau file font pilihanmu. Fontmu hanya disimpan di browser ini.",
  "Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.": "Bilah gulir Roblox mengikuti mode terang atau gelap komputermu, bukan tema Roblox. Ini menyamakannya dengan tema dan membuat latarnya tembus pandang.",
- "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, up to 10 accessories.": "Coba milik Roblox di halaman item tetap mempertahankan topi dan aksesori yang kamu pakai alih-alih melepas semuanya, hingga 10 aksesori.",
+ "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, even past 3 hats, up to 10 accessories.": "Coba milik Roblox di halaman item tetap mempertahankan topi dan aksesori yang kamu pakai alih-alih melepas semuanya, bahkan lebih dari 3 topi, hingga 10 aksesori.",
  "Robux": "Robux",
  "Robux & Credit": "Robux & Kredit",
  "Robux & Transactions": "Robux & Transaksi",
@@ -2122,7 +2122,7 @@
  "Search {query}": "Cari {query}",
  "Search {type}": "Cari {type}",
  "Search a game’s badges and sort them by rarity, newest or most won yesterday, or show only the ones you don’t own yet. Lists every badge, not just the first few.": "Cari lencana game dan urutkan berdasarkan kelangkaan, terbaru, atau paling banyak didapat kemarin, atau tampilkan hanya yang belum kamu punya. Menampilkan semua lencana, bukan hanya beberapa yang pertama.",
- "Search a whole inventory category by name or asset ID, not just the current page.": "Cari di seluruh kategori inventaris berdasarkan nama atau ID aset, bukan hanya halaman saat ini.",
+ "Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.": "Cari di seluruh kategori inventaris berdasarkan nama, ID aset, atau singkatan limited seperti RSTF, bukan hanya halaman saat ini.",
  "Search all limiteds": "Cari semua limited",
  "Search badges": "Cari lencana",
  "Search Badges": "Cari Lencana",
@@ -2790,5 +2790,39 @@
  "Your Robux Rate": "Kurs Robux Kamu",
  "Your Settings": "Pengaturanmu",
  "Your Slots": "Slot-mu",
- "Your Status": "Statusmu"
+ "Your Status": "Statusmu",
+ "Real Items First": "Item Asli Duluan",
+ "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora duluan",
+ "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "Saat kamu mencari di Marketplace, item buatan Roblox sendiri yang cocok muncul paling atas, termasuk yang sudah tidak dijual, bukannya tertimbun di bawah tiruan. Singkatan limited seperti RSTF atau Emp juga menemukan item aslinya.",
+ "{count} Owners": {
+  "other": "{count} Pemilik"
+ },
+ "{n} following": "{n} diikuti",
+ "{n} sold": {
+  "other": "{n} terjual"
+ },
+ "{results} (some categories couldn’t load)": "{results} (beberapa kategori gagal dimuat)",
+ "1 Year": "1 Tahun",
+ "All Favorites": "Semua Favorit",
+ "all items": "semua item",
+ "All Items": "Semua Item",
+ "Couldn’t load who you follow right now.": "Tidak bisa memuat siapa yang kamu ikuti.",
+ "Editing {game}": "Mengedit {game}",
+ "In": "Di",
+ "No one matches this filter.": "Tidak ada yang cocok dengan filter ini.",
+ "No one matches your search.": "Tidak ada yang cocok dengan pencarianmu.",
+ "Search all favorites": "Cari semua favorit",
+ "Search all your items": "Cari semua item-mu",
+ "Search Following": "Cari yang Diikuti",
+ "Select people to unfollow them": "Pilih orang untuk berhenti mengikuti mereka",
+ "Unfollow {n} People?": {
+  "other": "Berhenti mengikuti {n} orang?"
+ },
+ "Unfollow Selected": "Berhenti Mengikuti yang Dipilih",
+ "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "Berhenti mengikuti {n} · {failed} gagal. Mereka masih dipilih, coba lagi.",
+ "Unfollowed {n} people.": {
+  "other": "Berhenti mengikuti {n} orang."
+ },
+ "Unfollowing {done} of {total}": "Berhenti mengikuti {done} dari {total}",
+ "You don’t follow anyone yet.": "Kamu belum mengikuti siapa pun."
 }

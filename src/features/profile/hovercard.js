@@ -104,7 +104,7 @@
     if (banned) return { kind: 'banned', text: lt('Banned') };
     const type = p ? p.userPresenceType : 0;
     if (type === 2) return { kind: 'game', text: p.lastLocation ? lt('Playing {game}', { game: p.lastLocation }) : lt('In a game'), place: p.rootPlaceId || p.placeId };
-    if (type === 3) return { kind: 'studio', text: p.lastLocation ? lt('In Studio • {game}', { game: p.lastLocation }) : lt('In Studio') };
+    if (type === 3) return { kind: 'studio', text: p.lastLocation && !/^studio$/i.test(String(p.lastLocation).trim()) ? lt('In Studio • {game}', { game: p.lastLocation }) : lt('In Studio') };
     if (type === 1) return { kind: 'online', text: lt('Online') };
     return { kind: 'offline', text: lt('Offline') };
   }
@@ -262,6 +262,104 @@
     }
     if (card && (from === cardFor || from === card) && !(to && (card.contains(to) || cardFor?.contains(to)))) scheduleClose();
   });
+
+  function stat(label, value, tip) {
+    const cell = el('div', 'routility-hc-stat');
+    cell.append(el('span', 'text-caption-medium content-muted', label), el('span', 'text-label-medium content-emphasis text-truncate-end', value));
+    if (tip) cell.dataset.rtTip = tip;
+    return cell;
+  }
+
+  function stats(d) {
+    const day = iso => new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    const cells = [];
+    if (d.friends !== null) cells.push(stat(lt('Friends'), formatNumber(d.friends)));
+    if (d.followers !== null) cells.push(stat(lt('Followers'), formatNumber(d.followers)));
+    if (!isNaN(new Date(d.user.created))) cells.push(stat(lt('Joined'), day(d.user.created), age(d.user.created)));
+    if (d.since) cells.push(stat(lt('Friends Since'), day(d.since), age(d.since)));
+    return cells;
+  }
+
+  function skeletonStats() {
+    return [0, 1, 2, 3].map(() => {
+      const cell = el('div', 'routility-hc-stat');
+      cell.append(el('span', 'routility-sk routility-hc-sk-label'), el('span', 'routility-sk routility-hc-sk-value'));
+      return cell;
+    });
+  }
+
+  let tileId = null;
+  document.addEventListener('mouseover', (e) => {
+    const tile = on && e.target.closest?.('.friends-carousel-tile');
+    const id = tile && tileUser(tile);
+    if (!id || id === tileId) return;
+    tileId = id;
+    load(id);
+    queueMicrotask(check);
+  }, true);
+
+  function tileUser(tile) {
+    const a = tile.querySelector('a[href*="/users/"]');
+    return a ? userId(a) : null;
+  }
+
+  function menuOwner(menu) {
+    const r = menu.getBoundingClientRect();
+    if (!r.width) return tileId;
+    const mid = r.left + r.width / 2;
+    let best = null;
+    let gap = Infinity;
+    for (const tile of document.querySelectorAll('.friends-carousel-tile')) {
+      const t = tile.getBoundingClientRect();
+      const center = t.left + t.width / 2;
+      const off = Math.abs(center - mid);
+      if (t.width && center >= r.left && center <= r.right && off < gap && t.top < r.top) {
+        gap = off;
+        best = tile;
+      }
+    }
+    return (best && tileUser(best)) || tileId;
+  }
+
+  function embed(menu, id) {
+    menu.dataset.routilityHc = id;
+    const box = el('div', 'routility-injected routility-hc-embed');
+    const fill = (d) => {
+      box.textContent = '';
+      box.append(...stats(d));
+      box.classList.add('routility-hc-in');
+    };
+    const job = load(id);
+    let ready = null;
+    job.then(d => { ready = d; });
+    Promise.resolve().then(() => {
+      if (ready) return fill(ready);
+      box.append(...skeletonStats());
+      job.then((d) => {
+        if (!box.isConnected || menu.dataset.routilityHc !== id) return;
+        if (d) fill(d);
+        else box.remove();
+      });
+    });
+    const actions = menu.querySelector('.in-game-friend-card--iarc > .in-game-friend-card-actions');
+    if (actions) {
+      box.classList.add('routility-hc-embed-game');
+      actions.before(box);
+    } else menu.prepend(box);
+  }
+
+  function check() {
+    if (!on || !tileId || !/^\/(home)?\/?$/i.test(location.pathname)) return;
+    for (const menu of document.querySelectorAll('.friend-tile-dropdown')) {
+      const id = menuOwner(menu);
+      if (id && (menu.dataset.routilityHc !== id || !menu.querySelector('.routility-hc-embed'))) {
+        menu.querySelector('.routility-hc-embed')?.remove();
+        embed(menu, id);
+      }
+    }
+  }
+
+  new MutationObserver(check).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
 
   document.addEventListener('mousedown', (e) => {
     if (card && !card.contains(e.target)) close();

@@ -409,7 +409,7 @@
  "A row of limiteds worth about the same, above Recommendations on item pages.": "แถวของลิมิเต็ดที่มีมูลค่าใกล้เคียงกัน เหนือส่วนแนะนำบนหน้าไอเทม",
  "A row on Home with the experiences your friends are in right now, most friends first, with their avatars on each tile. Updates every minute.": "แถวบนหน้าแรกที่แสดงประสบการณ์ที่เพื่อนของคุณกำลังเล่นอยู่ตอนนี้ เรียงจากที่มีเพื่อนมากที่สุด พร้อมอวาตาร์ของเพื่อนบนแต่ละไทล์ อัปเดตทุกนาที",
  "A search box above the trade list that finds every trade with the item you type, loading older trades as it goes.": "ช่องค้นหาเหนือรายการแลกเปลี่ยนที่หาทุกการแลกเปลี่ยนที่มีไอเทมที่คุณพิมพ์ และโหลดการแลกเปลี่ยนที่เก่ากว่าไปเรื่อยๆ",
- "A search box above your items, by name or asset ID. Its label follows the section you’re in.": "ช่องค้นหาเหนือไอเทมของคุณ ค้นด้วยชื่อหรือ ID ของแอสเซต ป้ายของช่องจะเปลี่ยนตามหมวดที่คุณอยู่",
+ "A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.": "ช่องค้นหาเหนือไอเทมของคุณ ค้นด้วยชื่อ ID ของแอสเซต หรือตัวย่อของไอเทมลิมิเต็ดอย่าง CWHP ป้ายของช่องจะเปลี่ยนตามหมวดที่คุณอยู่",
  "A search box in the Members list. Type a username to see if they’re in the community and what their role is, even in communities with millions of members.": "ช่องค้นหาในรายชื่อสมาชิก พิมพ์ชื่อผู้ใช้เพื่อดูว่าเขาอยู่ในชุมชนไหมและมีบทบาทอะไร แม้แต่ในชุมชนที่มีสมาชิกเป็นล้าน",
  "a server we couldn’t place yet": "เซิร์ฟเวอร์ที่เรายังระบุตำแหน่งไม่ได้",
  "A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.": "บรรทัดขนาดบนหน้าเครื่องประดับ บอกขนาดจริงของเครื่องประดับเป็นสตัด เช่น 1.6 × 0.6 × 1.6 สตัด เพื่อให้คุณเห็นอันที่ใหญ่เกินก่อนซื้อ",
@@ -2028,7 +2028,7 @@
  "Roblox’s Buy window shows how many Robux you’ll have left after the purchase, right above the Buy button.": "หน้าต่างซื้อของ Roblox จะแสดงว่าคุณจะเหลือ Robux เท่าไรหลังซื้อ อยู่เหนือปุ่มซื้อ",
  "Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.": "ฟอนต์ปัจจุบันของ Roblox, Builder Sans (ฟอนต์เดิม), ฟอนต์ในคอมพิวเตอร์ของคุณ หรือไฟล์ฟอนต์ที่คุณเลือก ฟอนต์ของคุณจะบันทึกไว้ในเบราว์เซอร์นี้เท่านั้น",
  "Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.": "แถบเลื่อนของ Roblox ใช้โหมดสว่างหรือมืดของคอมพิวเตอร์คุณแทนธีมของ Roblox ตัวเลือกนี้ทำให้แถบเลื่อนเข้ากับธีม และทำให้พื้นหลังโปร่งใส",
- "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, up to 10 accessories.": "“ลองสวม” ของ Roblox ในหน้าไอเทมจะเก็บหมวกและเครื่องประดับที่คุณสวมอยู่ไว้ แทนที่จะถอดออกทั้งหมด สูงสุด 10 ชิ้น",
+ "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, even past 3 hats, up to 10 accessories.": "“ลองสวม” ของ Roblox ในหน้าไอเทมจะเก็บหมวกและเครื่องประดับที่คุณสวมอยู่ไว้ แทนที่จะถอดออกทั้งหมด แม้จะเกิน 3 ใบ สูงสุด 10 ชิ้น",
  "Robux": "Robux",
  "Robux & Credit": "Robux และเครดิต",
  "Robux & Transactions": "Robux และธุรกรรม",
@@ -2122,7 +2122,7 @@
  "Search {query}": "ค้นหา {query}",
  "Search {type}": "ค้นหา{type}",
  "Search a game’s badges and sort them by rarity, newest or most won yesterday, or show only the ones you don’t own yet. Lists every badge, not just the first few.": "ค้นหาเหรียญตราของเกมและเรียงตามความหายาก ใหม่สุด หรือได้รับมากที่สุดเมื่อวาน หรือแสดงเฉพาะที่คุณยังไม่มี แสดงทุกเหรียญตรา ไม่ใช่แค่ไม่กี่อันแรก",
- "Search a whole inventory category by name or asset ID, not just the current page.": "ค้นหาทั้งหมวดในสินค้าคงคลังด้วยชื่อหรือ ID ของแอสเซต ไม่ใช่แค่หน้าปัจจุบัน",
+ "Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.": "ค้นหาทั้งหมวดในสินค้าคงคลังด้วยชื่อ ID ของแอสเซต หรือตัวย่อของไอเทมลิมิเต็ดอย่าง RSTF ไม่ใช่แค่หน้าปัจจุบัน",
  "Search all limiteds": "ค้นหาลิมิเต็ดทั้งหมด",
  "Search badges": "ค้นหาเหรียญตรา",
  "Search Badges": "ค้นหาตรา",
@@ -2790,5 +2790,39 @@
  "Your Robux Rate": "อัตรา Robux ของคุณ",
  "Your Settings": "การตั้งค่าของคุณ",
  "Your Slots": "ช่องของคุณ",
- "Your Status": "สถานะของคุณ"
+ "Your Status": "สถานะของคุณ",
+ "Real Items First": "ไอเทมของจริงขึ้นก่อน",
+ "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora ขึ้นก่อน",
+ "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "เมื่อค้นหาใน Marketplace ไอเทมของ Roblox เองที่ตรงกันจะขึ้นก่อน รวมถึงไอเทมที่เลิกขายแล้ว แทนที่จะจมอยู่ใต้ของก๊อป ตัวย่อของไอเทมลิมิเต็ดอย่าง RSTF หรือ Emp ก็หาไอเทมของจริงเจอเช่นกัน",
+ "{count} Owners": {
+  "other": "เจ้าของ {count} คน"
+ },
+ "{n} following": "กำลังติดตาม {n}",
+ "{n} sold": {
+  "other": "ขายแล้ว {n}"
+ },
+ "{results} (some categories couldn’t load)": "{results} (โหลดบางหมวดไม่ได้)",
+ "1 Year": "1 ปี",
+ "All Favorites": "รายการโปรดทั้งหมด",
+ "all items": "ไอเทมทั้งหมด",
+ "All Items": "ไอเทมทั้งหมด",
+ "Couldn’t load who you follow right now.": "โหลดรายชื่อที่คุณติดตามไม่ได้",
+ "Editing {game}": "กำลังแก้ไข {game}",
+ "In": "ใน",
+ "No one matches this filter.": "ไม่มีใครตรงกับตัวกรองนี้",
+ "No one matches your search.": "ไม่มีใครตรงกับการค้นหาของคุณ",
+ "Search all favorites": "ค้นหาในรายการโปรดทั้งหมด",
+ "Search all your items": "ค้นหาในไอเทมทั้งหมดของคุณ",
+ "Search Following": "ค้นหาในที่กำลังติดตาม",
+ "Select people to unfollow them": "เลือกคนที่ต้องการเลิกติดตาม",
+ "Unfollow {n} People?": {
+  "other": "เลิกติดตาม {n} คนไหม?"
+ },
+ "Unfollow Selected": "เลิกติดตามที่เลือก",
+ "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "เลิกติดตาม {n} คนแล้ว · {failed} คนไม่สำเร็จ ยังเลือกไว้อยู่ ลองอีกครั้ง",
+ "Unfollowed {n} people.": {
+  "other": "เลิกติดตาม {n} คนแล้ว"
+ },
+ "Unfollowing {done} of {total}": "กำลังเลิกติดตาม {done} จาก {total}",
+ "You don’t follow anyone yet.": "คุณยังไม่ได้ติดตามใครเลย"
 }

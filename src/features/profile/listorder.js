@@ -68,9 +68,8 @@
       if (known.length < 2) return;
       const ranked = known.slice().sort((a, b) => pos(a) - pos(b));
       const sorted = now.map(li => (pos(li) === Infinity ? li : ranked.shift()));
-      if (sorted.every((li, i) => li === now[i])) return;
-      const anchor = now[now.length - 1].nextSibling;
-      for (const li of sorted) ul.insertBefore(li, anchor);
+      ul.classList.add('routility-list-ordered');
+      sorted.forEach((li, i) => { if (li.style.order !== String(i)) li.style.order = String(i); });
     } finally {
       s.busy = false;
     }
@@ -80,6 +79,7 @@
     if (state) return;
     const s = state = { owner: String(owner), cache: new Map(), busy: false, timer: 0 };
     const run = () => {
+      fix(s);
       clearTimeout(s.timer);
       s.timer = setTimeout(() => fix(s), 120);
     };

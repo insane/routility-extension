@@ -257,7 +257,7 @@
     const card = el('div', 'list-item item-card grid-item-container');
     const box = el('div', 'item-card-container');
     const a = el('a', 'item-card-link');
-    a.href = `https://www.roblox.com/catalog/${i.id}`;
+    a.href = `https://www.roblox.com/catalog/${i.id}/${String(i.name || '').replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '') || '-'}`;
     const link = el('div', 'item-card-link');
     const thumb = el('div', 'item-card-thumb-container');
     const tin = el('div', 'item-card-thumb-container-inner');
@@ -691,6 +691,9 @@
     const listOwner = (inventory || favorites) && ((inventory || favorites)[1] || document.querySelector('meta[name="user-data"]')?.dataset.userid);
     if (listOwner) chrome.storage.local.get('routilitySettings', (stored) => {
       if (window.location.pathname === path && (stored.routilitySettings || {}).listOrder !== false) window.RoUtilityListOrder.setup(listOwner);
+    });
+    if (favorites && listOwner) chrome.storage.local.get('routilitySettings', (stored) => {
+      if (window.location.pathname === path && (stored.routilitySettings || {}).inventorySearch !== false) window.RoUtilityInvSearch.setup(listOwner, { favorites: true });
     });
     if (!profile && !inventory) return;
     chrome.storage.local.get('routilitySettings', (stored) => {

@@ -492,7 +492,7 @@
  "A row of limiteds worth about the same, above Recommendations on item pages.": "Eine Zeile mit Limiteds von ähnlichem Wert, über den Empfehlungen auf Item-Seiten.",
  "A row on Home with the experiences your friends are in right now, most friends first, with their avatars on each tile. Updates every minute.": "Eine Zeile auf der Startseite mit den Erlebnissen, in denen deine Freunde gerade sind, die mit den meisten Freunden zuerst, mit ihren Avataren auf jeder Kachel. Aktualisiert sich jede Minute.",
  "A search box above the trade list that finds every trade with the item you type, loading older trades as it goes.": "Ein Suchfeld über der Trade-Liste, das jeden Trade mit dem eingegebenen Item findet und dabei ältere Trades nachlädt.",
- "A search box above your items, by name or asset ID. Its label follows the section you’re in.": "Ein Suchfeld über deinen Items, nach Name oder Asset-ID. Die Beschriftung passt sich dem Bereich an, in dem du bist.",
+ "A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.": "Ein Suchfeld über deinen Items, nach Name, Asset-ID oder Limited-Abkürzung wie CWHP. Die Beschriftung passt sich dem Bereich an, in dem du bist.",
  "A search box in the Members list. Type a username to see if they’re in the community and what their role is, even in communities with millions of members.": "Ein Suchfeld in der Mitgliederliste. Gib einen Benutzernamen ein, um zu sehen, ob die Person in der Community ist und welche Rolle sie hat, sogar in Communitys mit Millionen Mitgliedern.",
  "a server we couldn’t place yet": "ein Server, den wir noch nicht orten konnten",
  "A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.": "Eine Größen-Zeile auf Accessoire-Seiten, die zeigt, wie groß das Accessoire wirklich ist, in Studs, z. B. 1,6 × 0,6 × 1,6 Studs, damit du übergroße vor dem Kauf erkennst.",
@@ -2150,7 +2150,7 @@
  "Roblox’s Buy window shows how many Robux you’ll have left after the purchase, right above the Buy button.": "Roblox’ Kauffenster zeigt direkt über dem Kaufen-Button, wie viele Robux du nach dem Kauf übrig hast.",
  "Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.": "Robloxs aktuelle Schrift, Builder Sans (die frühere Roblox-Schrift), die Schrift deines Computers oder eine Schriftdatei deiner Wahl. Deine Schrift wird nur in diesem Browser gespeichert.",
  "Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.": "Die Scrollleiste von Roblox richtet sich nach dem hellen oder dunklen Modus deines Computers statt nach dem Roblox-Theme. Das passt sie ans Theme an und macht ihren Hintergrund durchsichtig.",
- "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, up to 10 accessories.": "„Anprobieren“ von Roblox auf Item-Seiten behält die Hüte und Accessoires, die du trägst, statt alle abzunehmen, bis zu 10 Accessoires.",
+ "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, even past 3 hats, up to 10 accessories.": "„Anprobieren“ von Roblox auf Item-Seiten behält die Hüte und Accessoires, die du trägst, statt alle abzunehmen, auch über 3 Hüte hinaus, bis zu 10 Accessoires.",
  "Robux": "Robux",
  "Robux & Credit": "Robux & Guthaben",
  "Robux & Transactions": "Robux & Transaktionen",
@@ -2244,7 +2244,7 @@
  "Search {query}": "{query} suchen",
  "Search {type}": "{type} durchsuchen",
  "Search a game’s badges and sort them by rarity, newest or most won yesterday, or show only the ones you don’t own yet. Lists every badge, not just the first few.": "Durchsuche die Abzeichen eines Spiels und sortiere sie nach Seltenheit, neueste oder gestern am häufigsten erhalten, oder zeig nur die, die du noch nicht hast. Listet jedes Abzeichen auf, nicht nur die ersten paar.",
- "Search a whole inventory category by name or asset ID, not just the current page.": "Durchsuche eine ganze Inventarkategorie nach Name oder Asset-ID, nicht nur die aktuelle Seite.",
+ "Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.": "Durchsuche eine ganze Inventarkategorie nach Name, Asset-ID oder Limited-Abkürzung wie RSTF, nicht nur die aktuelle Seite.",
  "Search all limiteds": "Alle Limiteds durchsuchen",
  "Search badges": "Abzeichen durchsuchen",
  "Search Badges": "Abzeichen Suchen",
@@ -2920,5 +2920,43 @@
  "Your Robux Rate": "Dein Robux-Kurs",
  "Your Settings": "Deine Einstellungen",
  "Your Slots": "Deine Plätze",
- "Your Status": "Dein Status"
+ "Your Status": "Dein Status",
+ "Real Items First": "Echte Items zuerst",
+ "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora zuerst",
+ "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "Wenn du den Marketplace durchsuchst, erscheinen passende Items von Roblox selbst zuerst, auch nicht mehr verkaufte, statt unter Kopien unterzugehen. Limited-Abkürzungen wie RSTF oder Emp finden auch das echte Item.",
+ "{count} Owners": {
+  "one": "{count} Besitzer",
+  "other": "{count} Besitzer"
+ },
+ "{n} following": "{n} gefolgt",
+ "{n} sold": {
+  "one": "{n} verkauft",
+  "other": "{n} verkauft"
+ },
+ "{results} (some categories couldn’t load)": "{results} (einige Kategorien konnten nicht geladen werden)",
+ "1 Year": "1 Jahr",
+ "All Favorites": "Alle Favoriten",
+ "all items": "alle Items",
+ "All Items": "Alle Items",
+ "Couldn’t load who you follow right now.": "Konnte nicht laden, wem du folgst.",
+ "Editing {game}": "Bearbeitet {game}",
+ "In": "In",
+ "No one matches this filter.": "Niemand passt zu diesem Filter.",
+ "No one matches your search.": "Niemand passt zu deiner Suche.",
+ "Search all favorites": "Alle Favoriten durchsuchen",
+ "Search all your items": "Alle deine Items durchsuchen",
+ "Search Following": "Gefolgte durchsuchen",
+ "Select people to unfollow them": "Wähle Personen aus, um ihnen nicht mehr zu folgen",
+ "Unfollow {n} People?": {
+  "one": "{n} Person entfolgen?",
+  "other": "{n} Personen entfolgen?"
+ },
+ "Unfollow Selected": "Ausgewählten entfolgen",
+ "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "{n} entfolgt · bei {failed} hat es nicht geklappt. Sie sind noch ausgewählt, versuch es nochmal.",
+ "Unfollowed {n} people.": {
+  "one": "{n} Person entfolgt.",
+  "other": "{n} Personen entfolgt."
+ },
+ "Unfollowing {done} of {total}": "Entfolge {done} von {total}",
+ "You don’t follow anyone yet.": "Du folgst noch niemandem."
 }

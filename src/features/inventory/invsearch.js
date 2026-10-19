@@ -6,6 +6,8 @@
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
   const PAGE = 60;
   const BADGE = '21';
+  const ALL = 'all';
+  const ALL_TYPES = 'TShirt,Hat,Shirt,Pants,Head,Face,Gear,HairAccessory,FaceAccessory,NeckAccessory,ShoulderAccessory,FrontAccessory,BackAccessory,WaistAccessory,TShirtAccessory,ShirtAccessory,PantsAccessory,JacketAccessory,SweaterAccessory,ShortsAccessory,LeftShoeAccessory,RightShoeAccessory,DressSkirtAccessory,EyebrowAccessory,EyelashAccessory,MoodAnimation,DynamicHead,EmoteAnimation,ClimbAnimation,DeathAnimation,FallAnimation,IdleAnimation,JumpAnimation,RunAnimation,SwimAnimation,WalkAnimation,PoseAnimation,FaceMakeup,LipMakeup,EyeMakeup';
   const COLLECTIBLE = new Set(['8', '17', '18', '19', '41', '42', '43', '44', '45', '46', '47', '64', '65', '66', '67', '68', '69', '70', '71', '72', '76', '77']);
   const SORTS = {
     collectible: [['newest', LT('Newest')], ['oldest', LT('Oldest')], ['value', LT('Price')], ['rap', 'RAP'], ['name', LT('Name')]],
@@ -14,13 +16,30 @@
   };
   let state = null;
   let csrf = '';
+  let acr = null;
+  let acrJob = null;
 
-  const sortsFor = (type) => SORTS[!type ? 'plain' : type.id === BADGE ? 'badge' : COLLECTIBLE.has(type.id) ? 'collectible' : 'plain'];
+  function acronyms() {
+    if (!acrJob) acrJob = request({ type: 'itemAcronyms' }, r => r && typeof r === 'object').then(r => { acr = r || {}; if (!Object.keys(acr).length) acrJob = null; });
+    return acrJob;
+  }
+
+  function initials(name) {
+    return String(name || '').toLowerCase().replace(/['’]/g, '').split(/[^a-z0-9]+/).filter(Boolean).map(w => w[0]).join('');
+  }
+
+  function shortMatch(q, i) {
+    if (q.length < 2) return false;
+    return (acr && acr[i.id] === q) || (q.length >= 3 && initials(i.name) === q);
+  }
+
+  const sortsFor = (type) => SORTS[!type ? 'plain' : type.id === BADGE ? 'badge' : type.id === ALL || COLLECTIBLE.has(type.id) ? 'collectible' : 'plain'];
+  const active = (s) => (s.scope === ALL && s.type ? { id: ALL, label: lt('all items') } : s.type);
 
   async function categories(userId) {
     if (state.categories) return state.categories;
     try {
-      const res = await fetch(`https://inventory.roblox.com/v1/users/${userId}/categories`, { credentials: 'include' });
+      const res = await fetch(`https://inventory.roblox.com/v1/users/${userId}/categories${state.fav ? '/favorites' : ''}`, { credentials: 'include' });
       state.categories = res.ok ? ((await res.json()).categories || []) : [];
     } catch {
       state.categories = [];
@@ -29,7 +48,7 @@
   }
 
   function crumbs() {
-    return [...document.querySelectorAll('#inventory-container .assets-explorer-title .breadcrumb-container li span.ng-binding')].map(s => s.textContent.trim());
+    return [...document.querySelectorAll(':is(#inventory-container, #favorites-container) .assets-explorer-title .breadcrumb-container li span.ng-binding')].map(s => s.textContent.trim());
   }
 
   async function currentType() {
@@ -68,19 +87,68 @@
     return { list: out, complete: !cursor };
   }
 
+  async function loadFavorites(typeId) {
+    const s = state;
+    const types = typeId === ALL ? [...new Set((await categories(s.userId)).flatMap(c => (c.items || []).filter(i => i.type === 'AssetType' && !i.filter && String(i.id) !== '34').map(i => String(i.id))))] : [typeId];
+    const out = [];
+    let complete = true;
+    let missed = false;
+    for (const t of types) {
+      let cursor = '';
+      for (let page = 0, tries = 0; page < 20; page++) {
+        if (types.length > 1) await new Promise(w => setTimeout(w, 700));
+        let res = null;
+        try {
+          res = await fetch(`https://catalog.roblox.com/v1/favorites/users/${s.userId}/favorites/${t}/assets?limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`, { credentials: 'include' });
+        } catch {}
+        if ((!res || res.status === 429) && tries < 6) {
+          tries++;
+          page--;
+          await new Promise(w => setTimeout(w, 2000 * tries));
+          continue;
+        }
+        tries = 0;
+        if (res && res.status === 403) return { private: true };
+        if (!res || !res.ok) {
+          if (types.length === 1) return { failed: true };
+          missed = true;
+          cursor = '';
+          break;
+        }
+        const data = await res.json();
+        for (const x of data.data || []) out.push({ id: String(x.id), name: x.name || '', count: 1, serials: [] });
+        if (state !== s) return { failed: true };
+        s.loaded = out.length;
+        render();
+        cursor = data.nextPageCursor;
+        if (!cursor) break;
+      }
+      if (cursor) complete = false;
+    }
+    return { list: out, complete, missed };
+  }
+
   async function loadAll(typeId, asc) {
     const s = state;
     const key = typeId + (asc ? ':asc' : '');
     const order = asc ? 'Asc' : 'Desc';
     if (s.items.has(key)) return s.items.get(key);
-    const job = typeId === BADGE ? loadBadges(order) : (async () => {
+    const job = s.fav ? (asc ? loadAll(typeId, false).then(d => (d.list ? { ...d, list: d.list.slice().reverse() } : d)) : loadFavorites(typeId)) : typeId === BADGE ? loadBadges(order) : (async () => {
       const out = [];
       let cursor = '';
-      for (let page = 0; page < 20; page++) {
+      const base = typeId === ALL ? `https://inventory.roblox.com/v2/users/${s.userId}/inventory?assetTypes=${ALL_TYPES}&` : `https://inventory.roblox.com/v2/users/${s.userId}/inventory/${typeId}?`;
+      for (let page = 0, tries = 0; page < (typeId === ALL ? 50 : 20); page++) {
         let res = null;
         try {
-          res = await fetch(`https://inventory.roblox.com/v2/users/${s.userId}/inventory/${typeId}?limit=100&sortOrder=${order}${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`, { credentials: 'include' });
+          res = await fetch(`${base}limit=100&sortOrder=${order}${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`, { credentials: 'include' });
         } catch {}
+        if (res && res.status === 429 && tries < 4) {
+          tries++;
+          page--;
+          await new Promise(w => setTimeout(w, 1500 * tries));
+          continue;
+        }
+        tries = 0;
         if (!res) return { failed: true };
         if (res.status === 403) return { private: true };
         if (!res.ok) return { failed: true };
@@ -94,7 +162,7 @@
         if (!cursor) break;
       }
       const byAsset = new Map();
-      const fakes = window.RoUtilityFun ? await window.RoUtilityFun.inventory(s.userId, typeId) : [];
+      const fakes = window.RoUtilityFun && typeId !== ALL ? await window.RoUtilityFun.inventory(s.userId, typeId) : [];
       const real = new Set(out.map(a => Number(a.assetId)));
       const extra = fakes.filter(x => x.listing || !real.has(x.id)).map(x => ({ assetId: x.id, assetName: x.name, serialNumber: x.listing ? x.listing.serial : null }));
       for (const a of asc ? out.concat(extra.reverse()) : extra.concat(out)) {
@@ -104,7 +172,7 @@
           hit.count++;
           if (a.serialNumber) hit.serials.push(a.serialNumber);
         } else {
-          byAsset.set(key, { id: key, name: a.assetName || '', count: 1, serials: a.serialNumber ? [a.serialNumber] : [] });
+          byAsset.set(key, { id: key, name: a.assetName || a.name || '', count: 1, serials: a.serialNumber ? [a.serialNumber] : [] });
         }
       }
       return { list: [...byAsset.values()], complete: !cursor };
@@ -170,7 +238,7 @@
   async function ensureBox() {
     const s = state;
     if (!s || s.ensuring) return;
-    const header = document.querySelector('#inventory-container assets-explorer .container-header');
+    const header = document.querySelector(':is(#inventory-container, #favorites-container) assets-explorer .container-header');
     if (!header) return;
     const key = crumbs().join('/');
     const existing = header.parentElement.querySelector(':scope > .routility-inv-toolbar');
@@ -181,15 +249,17 @@
       if (state !== s) return;
       s.key = key;
       if (s.type?.id !== type?.id) {
+        const was = active(s)?.id;
         s.type = type;
         s.shown = PAGE;
-        if (!sortsFor(type).some(x => x[0] === s.sort)) s.sort = 'newest';
-        run(s.query);
+        if (!sortsFor(active(s)).some(x => x[0] === s.sort)) s.sort = 'newest';
+        if (active(s)?.id !== was) run(s.query);
       }
       existing?.remove();
       if (!type) return;
       const bar = el('div', 'routility-injected routility-inv-toolbar');
-      bar.appendChild(searchBox(lt('Search {type}', { type: type.label })));
+      bar.appendChild(scopeSelect());
+      bar.appendChild(searchBox(s.scope === ALL ? (s.fav ? lt('Search all favorites') : lt('Search all your items')) : lt('Search {type}', { type: type.label })));
       bar.appendChild(sortSelect());
       header.after(bar);
     } finally {
@@ -210,11 +280,12 @@
     s.result = { loading: true };
     s.loaded = 0;
     render();
-    const typeId = s.type.id;
+    const typeId = active(s).id;
     const asc = s.sort === 'oldest';
     const desc = asc && s.items.has(typeId) ? await s.items.get(typeId) : null;
     const data = desc && desc.complete ? { ...desc, list: desc.list.slice().reverse() } : await loadAll(typeId, asc);
-    if (state !== s || s.query !== query || s.type?.id !== typeId || (!query && s.sort === 'newest') || (s.sort === 'oldest') !== asc) return;
+    if (query) await acronyms();
+    if (state !== s || s.query !== query || active(s)?.id !== typeId || (!query && s.sort === 'newest') || (s.sort === 'oldest') !== asc) return;
     s.result = data;
     render();
   }
@@ -383,16 +454,37 @@
 
   function sortSelect() {
     const s = state;
+    const options = sortsFor(active(s));
+    if (!options.some(x => x[0] === s.sort)) s.sort = 'newest';
+    return menuButton(lt('Sort'), options, () => s.sort, (key) => {
+      s.sort = key;
+      run(s.query);
+    });
+  }
+
+  function scopeSelect() {
+    const s = state;
+    const title = window.RoUtilityI18n.lang() === 'en' ? s.type.label.replace(/(^|\s)(\S)/g, (m, a, c) => a + c.toUpperCase()) : s.type.label.charAt(0).toUpperCase() + s.type.label.slice(1);
+    return menuButton(lt('In'), [['type', title], [ALL, s.fav ? LT('All Favorites') : LT('All Items')]], () => (s.scope === ALL ? ALL : 'type'), (key) => {
+      if ((s.scope === ALL) === (key === ALL)) return;
+      s.scope = key === ALL ? ALL : 'type';
+      if (!sortsFor(active(s)).some(x => x[0] === s.sort)) s.sort = 'newest';
+      s.key = '';
+      document.querySelector(':is(#inventory-container, #favorites-container) assets-explorer .routility-inv-toolbar')?.remove();
+      ensureBox().then(() => document.querySelector('.routility-inv-search input')?.focus());
+      run(s.query);
+    });
+  }
+
+  function menuButton(prefix, options, current, pick) {
     const btn = el('button', 'relative clip group/interactable cursor-pointer flex items-center gap-small shrink-0 stroke-standard stroke-contrast-alpha bg-none height-1000 radius-medium padding-x-medium content-emphasis text-label-medium routility-inv-sort');
     btn.type = 'button';
     btn.setAttribute('aria-haspopup', 'menu');
     const layer = el('div', STATE_LAYER);
     layer.setAttribute('aria-hidden', 'true');
     btn.appendChild(layer);
-    btn.appendChild(el('span', 'content-muted', lt('Sort')));
-    const options = sortsFor(s.type);
-    if (!options.some(x => x[0] === s.sort)) s.sort = 'newest';
-    const label = el('span', null, lt(options.find(x => x[0] === s.sort)[1]));
+    btn.appendChild(el('span', 'content-muted', prefix));
+    const label = el('span', null, lt(options.find(x => x[0] === current())[1]));
     btn.appendChild(label);
     btn.appendChild(el('span', 'icon routility-calc-icon routility-calc-icon-chevron size-400 content-emphasis'));
     btn.addEventListener('click', () => {
@@ -404,16 +496,15 @@
         const item = el('button', 'relative clip group/interactable foundation-web-menu-item flex items-center content-default cursor-pointer stroke-none bg-none text-align-x-left width-full text-body-medium padding-x-medium padding-y-small radius-medium');
         item.type = 'button';
         item.setAttribute('role', 'menuitemradio');
-        item.setAttribute('aria-checked', String(key === s.sort));
+        item.setAttribute('aria-checked', String(key === current()));
         const l = el('div', STATE_LAYER);
         l.setAttribute('aria-hidden', 'true');
         item.appendChild(l);
         item.appendChild(el('span', 'grow-1 content-emphasis', lt(text)));
         item.addEventListener('click', () => {
           closeMenu();
-          s.sort = key;
           label.textContent = lt(text);
-          run(s.query);
+          pick(key);
         });
         list.appendChild(item);
       }
@@ -432,7 +523,7 @@
   function render() {
     const s = state;
     if (!s) return;
-    const explorer = document.querySelector('#inventory-container assets-explorer');
+    const explorer = document.querySelector(':is(#inventory-container, #favorites-container) assets-explorer');
     if (!explorer) return;
     let host = explorer.querySelector('.routility-inv-results');
     const searching = !!s.result;
@@ -463,9 +554,10 @@
     if (r.private) return host.appendChild(el('p', 'text-secondary routility-inv-status', lt('This inventory is private.')));
     if (r.failed) return host.appendChild(el('p', 'text-secondary routility-inv-status', lt('Couldn’t search right now. Try again in a minute.')));
     const words = s.query ? s.query.split(/\s+/) : [];
-    let hits = r.list.filter(i => words.every(w => i.name.toLowerCase().includes(w) || i.id === w));
+    const squashed = words.join('');
+    let hits = r.list.filter(i => words.every(w => i.name.toLowerCase().includes(w) || i.id === w) || shortMatch(squashed, i));
     const count = s.query ? ltn(hits.length, '{count} result', '{count} results', { count: formatNumber(hits.length) }) : ltn(hits.length, '{count} item', '{count} items', { count: formatNumber(hits.length) });
-    host.appendChild(el('p', 'text-secondary routility-inv-status', hits.length ? (r.complete ? count : lt('{results} (first 2,000 items)', { results: count })) : s.query ? lt('No items match "{query}".', { query: s.query }) : lt('Nothing here yet.')));
+    host.appendChild(el('p', 'text-secondary routility-inv-status', hits.length ? (r.missed ? lt('{results} (some categories couldn’t load)', { results: count }) : r.complete ? count : lt('{results} (first 2,000 items)', { results: count })) : s.query ? lt('No items match "{query}".', { query: s.query }) : lt('Nothing here yet.')));
     if (!hits.length) return;
     if (s.sort !== 'newest' && s.sort !== 'oldest') {
       const missing = s.sort === 'name' ? [] : hits.map(i => 'id:' + i.id).filter(k => window.RoUtilityUI.priceNow(k) === undefined);
@@ -496,15 +588,16 @@
     }
   }
 
-  function setup(userId) {
-    if (state && state.userId === String(userId)) return;
+  function setup(userId, opts) {
+    const fav = !!(opts && opts.favorites);
+    if (state && state.userId === String(userId) && state.fav === fav) return;
     teardown();
-    state = { userId: String(userId), raw: '', query: '', sort: 'newest', type: null, key: '', items: new Map(), thumbs: new Map(), meta: new Map(), result: null, shown: PAGE, loaded: 0, categories: null };
+    state = { userId: String(userId), fav, raw: '', query: '', sort: 'newest', type: null, scope: 'type', key: '', items: new Map(), thumbs: new Map(), meta: new Map(), result: null, shown: PAGE, loaded: 0, categories: null };
     const s = state;
     s.observer = new MutationObserver(onFrame(() => {
       if (state !== s) return;
       ensureBox();
-      const explorer = document.querySelector('#inventory-container assets-explorer');
+      const explorer = document.querySelector(':is(#inventory-container, #favorites-container) assets-explorer');
       if (explorer && s.result && !explorer.querySelector('.routility-inv-results')) render();
     }));
     s.observer.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true });

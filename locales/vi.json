@@ -409,7 +409,7 @@
  "A row of limiteds worth about the same, above Recommendations on item pages.": "Một hàng limited có giá trị tương đương, phía trên Đề xuất trên trang vật phẩm.",
  "A row on Home with the experiences your friends are in right now, most friends first, with their avatars on each tile. Updates every minute.": "Một hàng trên Trang chủ với các trải nghiệm bạn bè bạn đang chơi, nhiều bạn bè nhất trước, kèm hình đại diện của họ trên mỗi ô. Cập nhật mỗi phút.",
  "A search box above the trade list that finds every trade with the item you type, loading older trades as it goes.": "Ô tìm kiếm phía trên danh sách giao dịch, tìm mọi giao dịch có vật phẩm bạn nhập, vừa tìm vừa tải các giao dịch cũ hơn.",
- "A search box above your items, by name or asset ID. Its label follows the section you’re in.": "Ô tìm kiếm phía trên vật phẩm của bạn, theo tên hoặc ID tài sản. Nhãn của nó thay đổi theo mục bạn đang xem.",
+ "A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.": "Ô tìm kiếm phía trên vật phẩm của bạn, theo tên, ID tài sản hoặc tên viết tắt của đồ limited như CWHP. Nhãn của nó thay đổi theo mục bạn đang xem.",
  "A search box in the Members list. Type a username to see if they’re in the community and what their role is, even in communities with millions of members.": "Ô tìm kiếm trong danh sách Thành viên. Nhập tên người dùng để xem họ có trong cộng đồng không và vai trò của họ, kể cả ở cộng đồng có hàng triệu thành viên.",
  "a server we couldn’t place yet": "một máy chủ chưa định vị được",
  "A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.": "Dòng Kích thước trên trang phụ kiện cho biết phụ kiện thật sự lớn bao nhiêu stud, như 1,6 × 0,6 × 1,6 stud, để bạn nhận ra món quá khổ trước khi mua.",
@@ -2028,7 +2028,7 @@
  "Roblox’s Buy window shows how many Robux you’ll have left after the purchase, right above the Buy button.": "Cửa sổ Mua của Roblox hiển thị số Robux bạn còn lại sau khi mua, ngay phía trên nút Mua.",
  "Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.": "Phông chữ hiện tại của Roblox, Builder Sans (phông trước đây), phông chữ của máy bạn, hoặc một tệp phông chữ bạn chọn. Phông chữ của bạn chỉ được lưu trong trình duyệt này.",
  "Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.": "Thanh cuộn của Roblox theo chế độ sáng hoặc tối của máy tính bạn thay vì giao diện của Roblox. Tùy chọn này làm nó hợp với giao diện và làm nền trong suốt.",
- "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, up to 10 accessories.": "Mặc thử của Roblox trên trang vật phẩm giữ lại mũ và phụ kiện bạn đang mặc thay vì tháo hết, tối đa 10 phụ kiện.",
+ "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, even past 3 hats, up to 10 accessories.": "Mặc thử của Roblox trên trang vật phẩm giữ lại mũ và phụ kiện bạn đang mặc thay vì tháo hết, kể cả khi quá 3 mũ, tối đa 10 phụ kiện.",
  "Robux": "Robux",
  "Robux & Credit": "Robux & Tín dụng",
  "Robux & Transactions": "Robux & Giao dịch",
@@ -2122,7 +2122,7 @@
  "Search {query}": "Tìm {query}",
  "Search {type}": "Tìm {type}",
  "Search a game’s badges and sort them by rarity, newest or most won yesterday, or show only the ones you don’t own yet. Lists every badge, not just the first few.": "Tìm huy hiệu của game và sắp xếp theo độ hiếm, mới nhất hoặc nhận nhiều nhất hôm qua, hoặc chỉ hiện những cái bạn chưa có. Liệt kê mọi huy hiệu, không chỉ vài cái đầu.",
- "Search a whole inventory category by name or asset ID, not just the current page.": "Tìm trong toàn bộ danh mục kho đồ theo tên hoặc ID tài sản, không chỉ trang hiện tại.",
+ "Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.": "Tìm trong toàn bộ danh mục kho đồ theo tên, ID tài sản hoặc tên viết tắt của đồ limited như RSTF, không chỉ trang hiện tại.",
  "Search all limiteds": "Tìm mọi limited",
  "Search badges": "Tìm huy hiệu",
  "Search Badges": "Tìm Huy Hiệu",
@@ -2790,5 +2790,39 @@
  "Your Robux Rate": "Tỷ giá Robux của bạn",
  "Your Settings": "Cài đặt của bạn",
  "Your Slots": "Ô của bạn",
- "Your Status": "Trạng thái của bạn"
+ "Your Status": "Trạng thái của bạn",
+ "Real Items First": "Đồ thật lên trước",
+ "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora lên trước",
+ "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "Khi bạn tìm trong Marketplace, các vật phẩm chính hãng của Roblox khớp với tìm kiếm sẽ hiện trước, kể cả món đã ngừng bán, thay vì bị chôn dưới các bản sao. Tên viết tắt của đồ limited như RSTF hay Emp cũng tìm ra món thật.",
+ "{count} Owners": {
+  "other": "{count} chủ sở hữu"
+ },
+ "{n} following": "Đang theo dõi {n}",
+ "{n} sold": {
+  "other": "Đã bán {n}"
+ },
+ "{results} (some categories couldn’t load)": "{results} (một số danh mục không tải được)",
+ "1 Year": "1 năm",
+ "All Favorites": "Tất cả mục yêu thích",
+ "all items": "tất cả vật phẩm",
+ "All Items": "Tất cả vật phẩm",
+ "Couldn’t load who you follow right now.": "Không tải được danh sách bạn theo dõi.",
+ "Editing {game}": "Đang chỉnh sửa {game}",
+ "In": "Trong",
+ "No one matches this filter.": "Không ai khớp với bộ lọc này.",
+ "No one matches your search.": "Không ai khớp với tìm kiếm của bạn.",
+ "Search all favorites": "Tìm trong tất cả mục yêu thích",
+ "Search all your items": "Tìm trong tất cả vật phẩm của bạn",
+ "Search Following": "Tìm trong Đang theo dõi",
+ "Select people to unfollow them": "Chọn người để bỏ theo dõi",
+ "Unfollow {n} People?": {
+  "other": "Bỏ theo dõi {n} người?"
+ },
+ "Unfollow Selected": "Bỏ theo dõi người đã chọn",
+ "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "Đã bỏ theo dõi {n} · {failed} không thành công. Họ vẫn đang được chọn, hãy thử lại.",
+ "Unfollowed {n} people.": {
+  "other": "Đã bỏ theo dõi {n} người."
+ },
+ "Unfollowing {done} of {total}": "Đang bỏ theo dõi {done}/{total}",
+ "You don’t follow anyone yet.": "Bạn chưa theo dõi ai."
 }

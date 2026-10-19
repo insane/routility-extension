@@ -409,7 +409,7 @@
  "A row of limiteds worth about the same, above Recommendations on item pages.": "アイテムページの「おすすめ」の上に、ほぼ同じ価値のリミテッドの列を表示します。",
  "A row on Home with the experiences your friends are in right now, most friends first, with their avatars on each tile. Updates every minute.": "フレンドが今いるエクスペリエンスの列をホームに追加します。フレンドが多い順に並び、各タイルにアバターが表示されます。1分ごとに更新されます。",
  "A search box above the trade list that finds every trade with the item you type, loading older trades as it goes.": "トレード一覧の上に検索ボックスを追加し、入力したアイテムを含むトレードを、過去のトレードを読み込みながらすべて見つけます。",
- "A search box above your items, by name or asset ID. Its label follows the section you’re in.": "アイテムの上に名前やアセットIDで検索できるボックスを追加します。ラベルは表示中のセクションに合わせて変わります。",
+ "A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.": "アイテムの上に、名前、アセットID、または CWHP のようなリミテッドの略称で検索できるボックスを追加します。ラベルは表示中のセクションに合わせて変わります。",
  "A search box in the Members list. Type a username to see if they’re in the community and what their role is, even in communities with millions of members.": "メンバー一覧に検索ボックスを追加します。ユーザー名を入力すると、メンバー数が何百万人のコミュニティでも、その人が参加しているかと役職を確認できます。",
  "a server we couldn’t place yet": "まだ場所を特定できていないサーバー",
  "A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.": "アクセサリーのページに、実際の大きさを「1.6 × 0.6 × 1.6 スタッド」のようにスタッドで示す「サイズ」行を追加します。購入前に大きすぎるものを見分けられます。",
@@ -2028,7 +2028,7 @@
  "Roblox’s Buy window shows how many Robux you’ll have left after the purchase, right above the Buy button.": "Roblox の購入ウィンドウで、購入後に残る Robux を「購入」ボタンのすぐ上に表示します。",
  "Roblox’s current font, Builder Sans (the one Roblox used before), your computer’s own font, or a font file you pick. Your font is saved in this browser only.": "Robloxの現在のフォント、Builder Sans（以前のフォント）、パソコンのフォント、または選んだフォントファイル。フォントはこのブラウザにだけ保存されます。",
  "Roblox’s scrollbar follows your computer’s light or dark mode instead of Roblox’s theme. This makes it match the theme, with a see-through track.": "Roblox のスクロールバーは、Roblox のテーマではなくパソコンのライトモード・ダークモードに従います。これでテーマに合った色になり、背景が透明になります。",
- "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, up to 10 accessories.": "アイテムページの Roblox の「試着」で、着用中の帽子やアクセサリーを全部外さずにそのまま残します(最大10個)。",
+ "Roblox’s Try On on item pages keeps the hats and accessories you’re wearing instead of taking them all off, even past 3 hats, up to 10 accessories.": "アイテムページの Roblox の「試着」で、着用中の帽子やアクセサリーを全部外さずにそのまま残します。帽子が3個を超えても残し、最大10個までです。",
  "Robux": "Robux",
  "Robux & Credit": "Robux とクレジット",
  "Robux & Transactions": "Robux と取引",
@@ -2122,7 +2122,7 @@
  "Search {query}": "{query}を検索",
  "Search {type}": "{type}を検索",
  "Search a game’s badges and sort them by rarity, newest or most won yesterday, or show only the ones you don’t own yet. Lists every badge, not just the first few.": "ゲームのバッジを検索し、レア度、新しい順、昨日の獲得数順で並べ替えたり、未所有のものだけを表示したりできます。最初の数個だけでなく、すべてのバッジを表示します。",
- "Search a whole inventory category by name or asset ID, not just the current page.": "現在のページだけでなく、インベントリのカテゴリー全体を名前やアセットIDで検索します。",
+ "Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.": "現在のページだけでなく、インベントリのカテゴリー全体を名前、アセットID、または RSTF のようなリミテッドの略称で検索します。",
  "Search all limiteds": "すべてのリミテッドを検索",
  "Search badges": "バッジを検索",
  "Search Badges": "バッジを検索",
@@ -2790,5 +2790,39 @@
  "Your Robux Rate": "あなたの Robux レート",
  "Your Settings": "あなたの設定",
  "Your Slots": "あなたのスロット",
- "Your Status": "あなたのステータス"
+ "Your Status": "あなたのステータス",
+ "Real Items First": "本物のアイテムを先頭に",
+ "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora が先頭",
+ "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "マーケットプレイスで検索すると、一致する Roblox 公式のアイテムが販売終了のものも含めて先頭に表示され、コピー品に埋もれません。RSTF や Emp のようなリミテッドの略称でも本物のアイテムが見つかります。",
+ "{count} Owners": {
+  "other": "所有者 {count}人"
+ },
+ "{n} following": "{n}人をフォロー中",
+ "{n} sold": {
+  "other": "{n}件販売"
+ },
+ "{results} (some categories couldn’t load)": "{results}(一部のカテゴリーを読み込めませんでした)",
+ "1 Year": "1年",
+ "All Favorites": "すべてのお気に入り",
+ "all items": "すべてのアイテム",
+ "All Items": "すべてのアイテム",
+ "Couldn’t load who you follow right now.": "フォロー中のユーザーを読み込めませんでした。",
+ "Editing {game}": "{game} を編集中",
+ "In": "範囲",
+ "No one matches this filter.": "このフィルターに一致する人はいません。",
+ "No one matches your search.": "検索に一致する人はいません。",
+ "Search all favorites": "すべてのお気に入りを検索",
+ "Search all your items": "すべてのアイテムを検索",
+ "Search Following": "フォロー中を検索",
+ "Select people to unfollow them": "フォローを解除する人を選んでください",
+ "Unfollow {n} People?": {
+  "other": "{n}人のフォローを解除しますか?"
+ },
+ "Unfollow Selected": "選択した人のフォローを解除",
+ "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "{n}人のフォローを解除しました・{failed}人は失敗しました。選択されたままなので、もう一度お試しください。",
+ "Unfollowed {n} people.": {
+  "other": "{n}人のフォローを解除しました。"
+ },
+ "Unfollowing {done} of {total}": "フォロー解除中 {done}/{total}",
+ "You don’t follow anyone yet.": "まだ誰もフォローしていません。"
 }

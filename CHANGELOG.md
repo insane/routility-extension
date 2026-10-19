@@ -30,6 +30,12 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 + Fun Outfits: in Fun Mode, save looks with items you don't own yet, wear them again later, and see what they'd cost to buy for real.
 + Turn Off Values: one button under Quick Setup turns off every price, RAP and value RoUtility adds, and leaves everything else as it is.
 + Price and R$ Value on the Wearing panel can now be turned off on its own.
++ Real Items First: Marketplace searches show Roblox’s own matching items first, offsale ones included, instead of burying them under copies. Limited acronyms like RSTF or Emp put the real item on top.
++ Inventory Search can search All Items at once: pick All Items next to the search box instead of going category by category.
++ Favorites pages get the same search box, by category or across All Favorites, with limited acronyms too.
++ Limited item pages get an Owners chip next to Friends own that jumps straight to the full owners list. Hidden owners show as your friend when the copy is theirs.
++ Price charts can show 7 Days, 1 Year and All Time, with volume, on top of Roblox’s 30, 90 and 180 days.
++ Manage on the Following tab: pick people and unfollow them all at once.
 ```
 
 **Improved**
@@ -40,6 +46,10 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 ~ Greyed out settings now say which setting to turn on first.
 ~ An Open Source on GitHub link on the About page.
 ~ Banned profiles show a red Banned tag next to the username and a ban badge on the avatar, like Roblox's app.
+~ Limited acronyms like RSTF, CWHP or Emp now work in Inventory Search and the avatar editor’s item search.
+~ Hovering a friend on Home adds their friend and follower counts, join date and how long you’ve been friends to Roblox’s Chat and View Profile menu.
+~ The 2022 profile says which game someone is playing or editing in Studio, under their name.
+~ The Emotes menu in Item Preview lists every emote you own, not just the ones you have equipped.
 ```
 
 **Fixed**
@@ -67,6 +77,11 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 - Hovering a big number in the avatar Wearing totals no longer spills into the next box.
 - Server regions show up on the servers you can see within a few seconds, instead of sometimes waiting behind the map's background sample, and the map no longer goes missing on games RoUtility hasn't counted yet.
 - Searching someone's old username puts them first again when Roblox is slow to answer, instead of sometimes dropping the "formerly" match.
+- Try On keeps every hat you’re wearing (up to 10 accessories) instead of taking one off when you try a hat with 3 already on.
+- The USD price under items in the avatar editor no longer gets cut off when an item has a Value and a long name.
+- Favorites pages no longer shuffle their items around when you change page.
+- Clicking an item in Similar Price on a limited’s page opens it properly instead of a broken page without the item’s ID.
+- Inventory cards with RAP, Value and price lines no longer spill into the row below when the item has a long name.
 - A lot of smaller fixes from a full bug sweep.
 ```
 

@@ -41,7 +41,7 @@
         "src/core/i18n.js",
         "src/core/skeleton.js",
         "src/features/classic-roblox/classicnames.js",
-        "src/features/fun/fun.js"
+        "src/features/fun/fun.js", "src/features/items/catalogsearch.js"
       ],
       "run_at": "document_start"
     },
