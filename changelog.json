@@ -5,6 +5,14 @@
   },
   "releases": [
     {
+      "version": "1.1.6",
+      "date": "2026-10-19",
+      "summary": "Fixes the store build of 1.1.5, where the settings page stayed empty.",
+      "changes": [
+        { "type": "fixed", "text": "In the store version of 1.1.5, the settings page stayed empty and features that rely on RoUtility’s background work (values, prices, notifications and more) didn’t load. Everything works again." }
+      ]
+    },
+    {
       "version": "1.1.5",
       "date": "2026-10-16",
       "summary": "Every Roblox Plus theme for free, when you joined each community, Fun Outfits, and Try On that keeps your hats.",

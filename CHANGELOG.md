@@ -7,6 +7,16 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 - Code: [@reqonn](https://github.com/reqonn), [@awkward222](https://github.com/awkward222)
 - Bug reports and ideas: [@reqonn](https://github.com/reqonn), api_cats
 
+## 1.1.6 · October 19, 2026
+
+Fixes the store build of 1.1.5, where the settings page stayed empty.
+
+**Fixed**
+
+```diff
+- In the store version of 1.1.5, the settings page stayed empty and features that rely on RoUtility’s background work (values, prices, notifications and more) didn’t load. Everything works again.
+```
+
 ## 1.1.5 · October 16, 2026
 
 Every Roblox Plus theme for free, when you joined each community, Fun Outfits, and Try On that keeps your hats.
