@@ -223,8 +223,12 @@
     document.documentElement.classList.add(PROXY_CLASS);
     const opened = await openNativeMenu();
     const target = opened && [...opened.dlg.querySelectorAll('button, a')].find(n => n.textContent.trim() === label);
-    document.documentElement.classList.remove(PROXY_CLASS);
     target?.click();
+    await wait(80);
+    const more = nativeMore();
+    if (more && more.getAttribute('aria-expanded') === 'true') more.click();
+    await wait(50);
+    document.documentElement.classList.remove(PROXY_CLASS);
   }
 
   function closeMenu() {

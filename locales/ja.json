@@ -36,6 +36,9 @@
  },
  "{count} of {max}": "{count} / {max}",
  "{count} of {max} ads up": "{count} / {max} 件の広告を掲載中",
+ "{count} Owners": {
+  "other": "所有者 {count}人"
+ },
  "{count} playing": {
   "other": "{count}人がプレイ中"
  },
@@ -114,6 +117,7 @@
   "other": "{n}人のフォロワー"
  },
  "{n} Followers": "フォロワー {n}",
+ "{n} following": "{n}人をフォロー中",
  "{n} Following": "フォロー中 {n}",
  "{n} found": {
   "other": "{n}件見つかりました"
@@ -211,6 +215,9 @@
  "{n} purchases · {spent} Robux spent": {
   "other": "{n}件の購入 · {spent} Robux 使用"
  },
+ "{n} purchases in this experience": {
+  "other": "このエクスペリエンスで{n}件の購入"
+ },
  "{n} regions": {
   "other": "{n}地域"
  },
@@ -246,6 +253,9 @@
  },
  "{n} servers • {regions}": {
   "other": "{n}台のサーバー • {regions}"
+ },
+ "{n} sold": {
+  "other": "{n}件販売"
  },
  "{n} to buy": {
   "other": "{n}個 要購入"
@@ -303,6 +313,7 @@
   "other": "{n}年"
  },
  "{name} ({count})": "{name} ({count})",
+ "{name} • {robux} Robux": "{name} • {robux} Robux",
  "{name} accessories": "{name}のアクセサリー",
  "{name} audit log.csv": "{name} 監査ログ.csv",
  "{name} color": "{name}の色",
@@ -346,6 +357,7 @@
  "{rating} • {n} playing": "{rating} • {n}人がプレイ中",
  "{region} isn’t in the region list anymore. Joining any server…": "{region}は地域リストにありません。任意のサーバーに参加します…",
  "{results} (first 2,000 items)": "{results}(最初の2,000アイテム)",
+ "{results} (some categories couldn’t load)": "{results}(一部のカテゴリーを読み込めませんでした)",
  "{robux} Robux at the DevEx rate": "DevEx レートで {robux} Robux",
  "{robux} Robux at your rate ({rate}/1k)": "あなたのレートで {robux} Robux（{rate}/1k）",
  "{role} · Rank {rank}": "{role} · ランク {rank}",
@@ -361,6 +373,7 @@
  "{x} × {y} × {z} studs": "{x} × {y} × {z} スタッド",
  "≈ {usd} at the DevEx rate": "DevEx レートで ≈ {usd}",
  "≈ {usd} at your rate ({rate}/1k)": "あなたのレートで ≈ {usd}({rate}/1k)",
+ "1 Year": "1年",
  "1,000 Robux": "1,000 Robux",
  "10,000 Robux": "10,000 Robux",
  "10% more": "10%増し",
@@ -407,6 +420,7 @@
  "A RoUtility chat at the top of your Chat list. Ask it what a limited is worth, paste a trade to see if it’s a win, or ask how to do something and it finds the right feature. Only you can see it.": "チャットリストの一番上に RoUtility チャットを追加します。リミテッドの価値を聞いたり、トレードを貼り付けて勝ちか確認したり、やり方を聞けば最適な機能を見つけてくれます。あなたにしか見えません。",
  "A RoUtility item above Settings in the gear menu at the top right, straight to this page.": "右上の歯車メニューの「設定」の上に、このページへ直接移動する RoUtility 項目を追加します。",
  "A row of limiteds worth about the same, above Recommendations on item pages.": "アイテムページの「おすすめ」の上に、ほぼ同じ価値のリミテッドの列を表示します。",
+ "A row on an experience’s page with how many Robux you’ve spent in it, from the purchases Spending Breakdown has read on My Transactions.": "エクスペリエンスのページに、そこで使った Robux を表示する行を追加します。「支出の内訳」が取引ページで読み込んだ購入をもとに計算します。",
  "A row on Home with the experiences your friends are in right now, most friends first, with their avatars on each tile. Updates every minute.": "フレンドが今いるエクスペリエンスの列をホームに追加します。フレンドが多い順に並び、各タイルにアバターが表示されます。1分ごとに更新されます。",
  "A search box above the trade list that finds every trade with the item you type, loading older trades as it goes.": "トレード一覧の上に検索ボックスを追加し、入力したアイテムを含むトレードを、過去のトレードを読み込みながらすべて見つけます。",
  "A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.": "アイテムの上に、名前、アセットID、または CWHP のようなリミテッドの略称で検索できるボックスを追加します。ラベルは表示中のセクションに合わせて変わります。",
@@ -415,6 +429,7 @@
  "A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.": "アクセサリーのページに、実際の大きさを「1.6 × 0.6 × 1.6 スタッド」のようにスタッドで示す「サイズ」行を追加します。購入前に大きすぎるものを見分けられます。",
  "A small button under the Play button that shows where Play takes you, a region or Roblox picks. Click it to change.": "「プレイ」ボタンの下に、プレイ時の参加先(地域、または Roblox におまかせ)を示す小さなボタンを表示します。クリックで変更できます。",
  "A soft tick for each hop and a little chime when it lands.": "ホップごとに小さなクリック音、着地するとかわいいチャイムが鳴ります。",
+ "A Spending button next to Buy Robux on My Transactions. It opens your total spent and what you’ve spent on each creator, experience, item type and month, for all time or a date range, with search. RoUtility reads your purchases while it’s open and saves them on this device, so later visits only check for new ones. Roblox only sends about 500 a minute, so a long history takes a few minutes the first time.": "取引ページの「Robux を購入」の横に「支出」ボタンを追加します。合計支出と、クリエイター、エクスペリエンス、アイテムタイプ、月ごとの支出を、全期間または指定した期間で、検索付きで表示します。RoUtility は開いている間に購入を読み込んでこのデバイスに保存するので、次回以降は新しい購入だけを確認します。Roblox は1分あたり約500件しか送らないため、履歴が長いと初回は数分かかります。",
  "A switch between Robux and your currency on the Price Chart.": "価格チャートで Robux とあなたの通貨を切り替えます。",
  "A Trade Ads link in the left menu, under Trade.": "左メニューの「トレード」の下に「トレード広告」リンクを追加します。",
  "A Trade Ads page at roblox.com/trade-ads: see what people are offering and asking for, with values, and send them a trade in one click. Post your own ad from your limiteds after signing in with Roblox.": "roblox.com/trade-ads にトレード広告ページを追加します。みんなが何を出して何を求めているかを価値付きで確認し、ワンクリックでトレードを送れます。Roblox でサインインすると、自分のリミテッドから広告を投稿できます。",
@@ -479,8 +494,11 @@
  "All caught up": "すべて確認済み",
  "All Days": "全期間",
  "All Experiences": "すべての体験",
+ "All Favorites": "すべてのお気に入り",
  "All Genres": "すべてのジャンル",
+ "all items": "すべてのアイテム",
  "All items": "すべてのアイテム",
+ "All Items": "すべてのアイテム",
  "All Read": "すべて既読",
  "All shown": "すべて表示中",
  "All Things Roblox": "Roblox のすべて",
@@ -490,6 +508,7 @@
  "Also in {names}.": "{names}にもあります。",
  "Always first": "常に最初",
  "Amazing": "最高",
+ "Amount": "金額",
  "Amount (R$)": "金額 (R$)",
  "Amount of Robux": "Robuxの金額",
  "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "所有しているアイテムのページに、「2026年10月1日 · 9日前」のような「入手日」行を表示します。",
@@ -654,6 +673,7 @@
   "other": "{region}の{n}台のサーバーを確認中…"
  },
  "Checking {region}…": "{region}を確認中…",
+ "Checking for new purchases since your last visit…": "前回以降の新しい購入を確認中…",
  "Checking open servers for {region}…": "{region}の空いているサーバーを確認中…",
  "Checking trades · {done} of {total}": "トレードを確認中 · {done} / {total}",
  "Checking what you already own… {done} of {total}": "所有済みのものを確認中… {done} / {total}",
@@ -790,6 +810,7 @@
  "Couldn’t load transactions right now. Try again in a minute.": "現在取引を読み込めません。1分後にもう一度お試しください。",
  "Couldn’t load what you’re wearing.": "着用中のアイテムを読み込めませんでした。",
  "Couldn’t load what’s being worn.": "着用中のアイテムを読み込めませんでした。",
+ "Couldn’t load who you follow right now.": "フォロー中のユーザーを読み込めませんでした。",
  "Couldn’t load your avatar right now. Try again in a minute.": "現在アバターを読み込めません。1分後にもう一度お試しください。",
  "Couldn’t load your badges right now. Try again in a minute.": "バッジを読み込めませんでした。1分後にもう一度お試しください。",
  "Couldn’t load your characters right now. Try again in a minute.": "キャラクターを読み込めませんでした。1分後にもう一度お試しください。",
@@ -814,6 +835,14 @@
  "Couldn’t start signing in. Try again in a moment.": "サインインを開始できませんでした。少ししてからもう一度お試しください。",
  "Couldn’t Start, Try Again": "開始できませんでした。もう一度試す",
  "Couldn’t update Joins to match. Try changing it again.": "参加を合わせられませんでした。もう一度変更してください。",
+ "Counted from all {n} of your purchases.": {
+  "other": "{n}件すべての購入から集計しました。"
+ },
+ "Counted from all your purchases.": "すべての購入から集計しました。",
+ "Counted from your {n} most recent purchases, back to {date}.": {
+  "other": "最新の{n}件の購入から集計しました（{date}まで）。"
+ },
+ "Counted from your purchases back to {date}. Spending on My Transactions can read older ones.": "{date}までの購入から集計しました。取引ページの「支出」でさらに古い購入を読み込めます。",
  "Counts": "数",
  "Create": "作成",
  "Create in the top bar is called Develop.": "トップバーの「作成」は「開発」と表示されます。",
@@ -821,9 +850,11 @@
  "Created {date}": "{date} に作成",
  "Created Date": "作成日",
  "Creations": "作品",
+ "Creator": "クリエイター",
  "Creator Hub": "クリエイターハブ",
  "Creator Store": "クリエイターストア",
  "Creator’s Avatar Items": "クリエイターのアバターアイテム",
+ "Creators": "クリエイター",
  "Crimson": "クリムゾン",
  "Currency": "通貨",
  "Currency, exact Robux, safer buying, transactions": "通貨、正確な Robux、安全な購入、取引",
@@ -927,6 +958,7 @@
  "Easy": "簡単",
  "Edit": "編集",
  "Edit About": "自己紹介を編集",
+ "Editing {game}": "{game} を編集中",
  "Electric Lime": "Electric Lime",
  "Email": "メール",
  "Email, phone, birthday, location, names, previous usernames, social links and the locations of your logged-in devices in Settings.": "設定内のメールアドレス、電話番号、誕生日、所在地、名前、以前のユーザー名、ソーシャルリンク、ログイン中のデバイスの場所。",
@@ -959,6 +991,7 @@
  "Every open server has a friend in it": "空いているすべてのサーバーにフレンドがいます",
  "Every outbound trade": "すべての送信トレード",
  "Every purchase": "すべての購入",
+ "Every purchase in this date range is counted.": "この期間のすべての購入を集計しました。",
  "Every update, what changed and who helped make it.": "すべての更新内容と、手伝ってくれた人たち。",
  "Everyone": "全員",
  "Everyone joins as {type}, whatever their avatar is set to": "アバターの設定に関係なく、全員 {type} で参加します",
@@ -1242,6 +1275,7 @@
  "Import": "インポート",
  "Impossible": "不可能",
  "Improved": "改善",
+ "In": "範囲",
  "in {n} days": {
   "other": "{n}日後"
  },
@@ -1274,6 +1308,7 @@
  "In Studio": "Studio 使用中",
  "In Studio • {game}": "Studio 使用中 • {game}",
  "in under a minute": "1分以内",
+ "In-Experience Purchases": "エクスペリエンス内購入",
  "Inappropriate": "不適切",
  "Inbound": "受信",
  "Includes people who unfriended you, people you removed on Roblox, and deleted accounts.": "フレンドを解除した人、Roblox で削除した人、削除されたアカウントも含みます。",
@@ -1303,6 +1338,8 @@
  "Item Page Values": "アイテムページの価値",
  "Item Search": "アイテム検索",
  "Item search, wearing panel, 10 accessories": "アイテム検索、着用パネル、アクセサリー10個",
+ "Item Type": "アイテムタイプ",
+ "Item Types": "アイテムタイプ",
  "Item Values": "アイテムの価値",
  "Item: {name}": "アイテム:{name}",
  "Items": "アイテム",
@@ -1437,6 +1474,7 @@
  "Mark All as Read": "すべて既読にする",
  "Mark All as Read and Archive All Read on your Messages page, for every page of your inbox at once, plus your unread count next to the title. Archived messages stay in the Archive tab.": "メッセージページに「すべて既読にする」と「既読をすべてアーカイブ」を追加し、受信トレイの全ページに一度に適用します。タイトルの横に未読数も表示します。アーカイブしたメッセージはアーカイブタブに残ります。",
  "Marketplace": "マーケットプレイス",
+ "Marketplace Items": "マーケットプレイスのアイテム",
  "Marketplace Prices": "マーケットプレイスの価格",
  "Marketplace Search": "マーケットプレイス検索",
  "Massive Loss": "大負け",
@@ -1469,6 +1507,8 @@
  "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "モダン、またはクラシック 2017:昔のフォーラムの青いヘッダーバー、大きく細いタイトル、Source Sans を、Roblox のテーマカラーで。フォーラムの「カスタマイズ」からも変更できます。",
  "Money": "お金",
  "Money Amounts": "通貨換算",
+ "Month": "月",
+ "Months": "月別",
  "more": "もっと見る",
  "More": "もっと見る",
  "More chips next to All and Trusted on your friends list: Verified, Roblox Plus, Admin and Online, across all your friends, not just one page.": "フレンドリストの「すべて」と「信頼済み」の横にチップを追加します:認証済み、Roblox Plus、管理者、オンライン。1ページだけでなくすべてのフレンドが対象です。",
@@ -1478,6 +1518,9 @@
  "Most Common First": "よくある順",
  "Most Members": "メンバーが多い順",
  "Most Played": "プレイ数が多い順",
+ "Most Purchases": "購入数が多い順",
+ "Most Spent": "支出が多い順",
+ "Most Spent On": "支出が多い項目",
  "Most Valuable": "最も価値が高い",
  "Most Won Yesterday": "昨日の獲得数が多い順",
  "Move": "移動",
@@ -1554,6 +1597,8 @@
  "No longer owned": "もう所有していません",
  "No One": "なし",
  "No one has posted here lately. Try a longer range.": "最近ここには投稿がありません。期間を広げてみてください。",
+ "No one matches this filter.": "このフィルターに一致する人はいません。",
+ "No one matches your search.": "検索に一致する人はいません。",
  "No open servers in {region}. Joining {other}…": "{region}に空いているサーバーはありません。{other}に参加します…",
  "No open servers in {region}. Looking for the closest region…": "{region}に空いているサーバーはありません。最寄りの地域を探しています…",
  "No open servers in or near {region}. Joining any server…": "{region}とその周辺に空いているサーバーはありません。任意のサーバーに参加します…",
@@ -1567,6 +1612,7 @@
  "No posts in this thread.": "このスレッドには投稿がありません。",
  "no price": "価格なし",
  "No price": "価格なし",
+ "No purchases in this date range.": "この期間の購入はありません。",
  "No requests match these filters.": "このフィルターに一致するリクエストはありません。",
  "No requests match your search.": "検索に一致するリクエストはありません。",
  "No results for “{query}”": "「{query}」の結果はありません",
@@ -1616,6 +1662,7 @@
  "Nothing in {forum} matches. Try other words, or search every forum.": "{forum}に一致するものはありません。別の言葉で試すか、すべてのフォーラムを検索してください。",
  "Nothing in this time range": "この期間には何もありません",
  "Nothing is marked {title} right now.": "現在「{title}」のものはありません。",
+ "Nothing matches your search.": "検索に一致するものはありません。",
  "Nothing on this page": "このページには何もありません",
  "Nothing played in the past 30 days.": "過去30日間にプレイしたものはありません。",
  "Nothing played in the past 7 days.": "過去7日間にプレイしたものはありません。",
@@ -1843,6 +1890,7 @@
  "Privacy": "プライバシー",
  "Private": "非公開",
  "Private inventory": "非公開のインベントリ",
+ "Private Servers": "プライベートサーバー",
  "Profile": "プロフィール",
  "Profile Page": "プロフィールページ",
  "Profile Previews": "プロフィールのプレビュー",
@@ -1900,13 +1948,20 @@
  "Re: {title}": "Re: {title}",
  "Read every line of RoUtility’s code": "RoUtility のコードを1行ずつ読めます",
  "Read More": "続きを読む",
+ "Read Older Purchases": "古い購入を読み込む",
  "Reading {done} of {total}": "既読にしています {done} / {total}",
+ "Reading your purchases…": "購入を読み込み中…",
+ "Reading your purchases… {n} so far, back to {date}.": {
+  "other": "購入を読み込み中… これまでに{n}件（{date}まで）。"
+ },
+ "Real Items First": "本物のアイテムを先頭に",
  "Recent": "最近",
  "Recent average price of the limiteds you’re wearing": "着用中のリミテッドの最近の平均価格",
  "recent items": "最近のアイテム",
  "Recent Servers": "最近のサーバー",
  "Recently Updated": "最近更新",
  "Recommended": "おすすめ",
+ "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora が先頭",
  "Refill Robux": "Robux を補充",
  "Refresh": "更新",
  "Refresh the page to try again.": "ページを更新してもう一度お試しください。",
@@ -1969,8 +2024,12 @@
  "Right-click a profile, item, model, bundle, experience, community or badge (or an empty spot on its page) for Copy User ID, Copy Asset ID and so on, with a quick confirmation.": "プロフィール、アイテム、モデル、バンドル、エクスペリエンス、コミュニティ、バッジ(またはそのページの空いている場所)を右クリックすると、「ユーザーIDをコピー」「アセットIDをコピー」などが使え、コピーするとすぐに確認が表示されます。",
  "Rising": "上昇中",
  "Roblox admin": "Roblox 管理者",
+ "Roblox asked RoUtility to slow down, carrying on in a moment.": "Roblox から RoUtility に速度を落とすよう求められました。まもなく再開します。",
  "Roblox asked RoUtility to slow down, carrying on in a moment. {found} so far in the {total} most recent (back to {date}).": "Roblox から速度を落とすよう求められたので、少ししてから続行します。最新{total}件中これまでに{found}({date}まで)。",
  "Roblox asked RoUtility to slow down, carrying on in a moment. {found} so far in the {total} most recent.": "Roblox から速度を落とすよう求められたので、少ししてから続行します。最新{total}件中これまでに{found}。",
+ "Roblox asked RoUtility to slow down, carrying on in a moment. {n} purchases so far, back to {date}.": {
+  "other": "Roblox から RoUtility に速度を落とすよう求められました。まもなく再開します。これまでに{n}件の購入（{date}まで）。"
+ },
  "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox から速度制限 · {total} 件中 {done} 件確認済み、{s} 秒後に再開",
  "Roblox Badges": "Roblox バッジ",
  "Roblox couldn’t send it. Check your balance before you try again.": "Robloxが送信できませんでした。もう一度試す前に残高を確認してください。",
@@ -1987,6 +2046,7 @@
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox からトレードが届きませんでした。少ししてからもう一度お試しください。",
  "Roblox doesn’t share this file, so it can’t be checked.": "Roblox がこのファイルを公開していないため、確認できません。",
  "Roblox doesn’t share this item’s file.": "Roblox はこのアイテムのファイルを公開していません。",
+ "Roblox Fees": "Roblox 手数料",
  "Roblox hides friend lists for some accounts, like accounts in the UK, so this list doesn’t show on Roblox. RoUtility loads it from Roblox’s official API.": "Roblox は英国のアカウントなど一部のアカウントのフレンドリストを非表示にしているため、このリストは Roblox 上に表示されません。RoUtility は Roblox の公式 API から読み込んでいます。",
  "Roblox hides this friend, usually because their account is in the UK. Shown via RoUtility.": "Roblox はこのフレンドを非表示にしています。通常はアカウントが英国にあるためです。RoUtility 経由で表示しています。",
  "Roblox hides this friends list.": "Roblox はこのフレンドリストを非表示にしています。",
@@ -2000,6 +2060,7 @@
  "Roblox leaves equipped gear out of Currently Wearing when the player’s inventory is public. RoUtility adds it back. The classic layout already shows it.": "プレイヤーのインベントリが公開されていると、Roblox は装備中のギアを「着用中」から除外します。RoUtility がそれを戻します。クラシックレイアウトではすでに表示されます。",
  "Roblox limits who can play this place.": "Roblox がこのプレイスをプレイできる人を制限しています。",
  "Roblox limits who can upload to this place.": "Roblox がこのプレイスにアップロードできる人を制限しています。",
+ "Roblox only sends about 500 purchases a minute, so a long history takes a few minutes. Close this to pause, and it carries on from there next time.": "Roblox は1分あたり約500件の購入しか送らないため、履歴が長いと数分かかります。閉じると一時停止し、次回はそこから再開します。",
  "Roblox picks": "Roblox におまかせ",
  "Roblox Plus": "Roblox Plus",
  "Roblox Plus subscriber": "Roblox Plus 加入者",
@@ -2016,6 +2077,10 @@
  },
  "Roblox stopped answering. {found} in the {total} most recent (back to {date}).": "Roblox が応答を停止しました。最新{total}件中{found}({date}まで)。",
  "Roblox stopped answering. {found} in the {total} most recent.": "Roblox が応答を停止しました。最新{total}件中{found}。",
+ "Roblox stopped answering. Counted from your {n} most recent purchases, back to {date}.": {
+  "other": "Roblox が応答を停止しました。最新の{n}件の購入から集計しました（{date}まで）。"
+ },
+ "Roblox stopped answering. Try again in a minute.": "Roblox が応答を停止しました。1分後にもう一度お試しください。",
  "Roblox Studio is open, so Roblox shows you as “in Studio” and we can’t see which server you joined. Close Studio to see it next time.": "Roblox Studio が開いているため、Roblox 上では「Studio 使用中」と表示され、参加したサーバーを確認できません。次回確認するには Studio を閉じてください。",
  "Roblox terminated this account. Shown via RoUtility.": "Roblox がこのアカウントを停止しました。RoUtility 経由で表示しています。",
  "Roblox username or user ID": "Roblox のユーザー名またはユーザーID",
@@ -2097,7 +2162,6 @@
  "Saved.": "保存しました。",
  "Saved. Roblox is drawing your new thumbnail.": "保存しました。Roblox が新しいサムネイルを作成中です。",
  "Saved. Roblox pages you already have open pick this up when they reload.": "保存しました。すでに開いている Roblox のページは、再読み込みすると反映されます。",
- "Saved. The editor reloads when you close this so it keeps your changes.": "保存しました。閉じるとエディターが再読み込みされ、変更が保持されます。",
  "Saved. Your new thumbnail can take a minute to show up.": "保存しました。新しいサムネイルが表示されるまで1分ほどかかることがあります。",
  "Saves your current colors and background here": "現在の色と背景をここに保存します",
  "Saving": "保存中",
@@ -2123,13 +2187,16 @@
  "Search {type}": "{type}を検索",
  "Search a game’s badges and sort them by rarity, newest or most won yesterday, or show only the ones you don’t own yet. Lists every badge, not just the first few.": "ゲームのバッジを検索し、レア度、新しい順、昨日の獲得数順で並べ替えたり、未所有のものだけを表示したりできます。最初の数個だけでなく、すべてのバッジを表示します。",
  "Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.": "現在のページだけでなく、インベントリのカテゴリー全体を名前、アセットID、または RSTF のようなリミテッドの略称で検索します。",
+ "Search all favorites": "すべてのお気に入りを検索",
  "Search all limiteds": "すべてのリミテッドを検索",
+ "Search all your items": "すべてのアイテムを検索",
  "Search badges": "バッジを検索",
  "Search Badges": "バッジを検索",
  "Search Box": "検索ボックス",
  "Search by item name": "アイテム名で検索",
  "Search Communities": "コミュニティを検索",
  "Search every forum": "すべてのフォーラムを検索",
+ "Search Following": "フォロー中を検索",
  "Search friend requests": "フレンドリクエストを検索",
  "Search Friends": "フレンドを検索",
  "Search head accessories": "頭のアクセサリーを検索",
@@ -2161,6 +2228,7 @@
  "Select badges to delete them": "削除するバッジを選んでください",
  "Select communities to leave them": "脱退するコミュニティを選択",
  "Select friends to unfriend them": "フレンド解除するフレンドを選択",
+ "Select people to unfollow them": "フォローを解除する人を選んでください",
  "Selected Tab": "選択中のタブ",
  "Send": "送る",
  "Send Offer Summary": "オファーの概要を送信",
@@ -2214,6 +2282,7 @@
  "Show Joins": "参加を表示",
  "Show Less": "閉じる",
  "Show more": "もっと見る",
+ "Show More": "もっと見る",
  "Show Online Status": "オンライン状態を表示",
  "Show Outfit Rotator": "コーデローテーションを表示",
  "Show preview": "プレビューを表示",
@@ -2270,6 +2339,8 @@
  "Spam": "スパム",
  "Spam / advertising": "スパム / 宣伝",
  "Special": "スペシャル",
+ "Spending": "支出",
+ "Spending Breakdown": "支出の内訳",
  "Sponsored": "スポンサー",
  "Stable": "安定",
  "Staff": "スタッフ",
@@ -2439,6 +2510,7 @@
  "Total Posts:": "総投稿数:",
  "Total RAP": "RAP 合計",
  "Total Robux of every match found so far. Pending Robux is included.": "これまでに見つかったすべての一致の Robux 合計。保留中の Robux も含まれます。",
+ "Total Spent": "合計支出",
  "Total Value:": "合計価値:",
  "Total visits across {n} public experiences": {
   "other": "{n}個の公開エクスペリエンスの総訪問数"
@@ -2521,6 +2593,15 @@
  "Under review by Roblox": "Roblox が審査中",
  "Under the Menu": "メニューの下",
  "Undo": "元に戻す",
+ "Unfollow {n} People?": {
+  "other": "{n}人のフォローを解除しますか?"
+ },
+ "Unfollow Selected": "選択した人のフォローを解除",
+ "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "{n}人のフォローを解除しました・{failed}人は失敗しました。選択されたままなので、もう一度お試しください。",
+ "Unfollowed {n} people.": {
+  "other": "{n}人のフォローを解除しました。"
+ },
+ "Unfollowing {done} of {total}": "フォロー解除中 {done}/{total}",
  "Unfriend": "フレンド解除",
  "Unfriend {n}": "{n}人をフレンド解除",
  "Unfriend {n} Friends?": {
@@ -2536,7 +2617,9 @@
  "Unfriending {done} of {total}": "フレンド解除中 {done} / {total}",
  "Universe ID": "ユニバースID",
  "Universe ID and Place ID with one-click copy on every experience overview, plus a Servers button.": "すべてのエクスペリエンスの概要に、ワンクリックでコピーできるユニバースIDとプレイスID、さらにサーバーボタンを追加します。",
+ "Unknown Creator": "不明なクリエイター",
  "Unknown experience": "不明なエクスペリエンス",
+ "Unknown Experience": "不明なエクスペリエンス",
  "Unknown region": "不明な地域",
  "Unnamed item": "名前のないアイテム",
  "Unpriced": "価格未設定",
@@ -2637,6 +2720,7 @@
  "What the item is worth in your currency, next to its Robux price. Hover it for the RoUtility Value when the item has one.": "アイテムのあなたの通貨での価値を Robux 価格の横に表示。価値があるアイテムはカーソルを合わせると RoUtility の価値が見られます。",
  "what you want": "探したいもの",
  "What You’re Wearing": "着用中のアイテム",
+ "What you’ve spent on each creator, experience, item type and month": "クリエイター、エクスペリエンス、アイテムタイプ、月ごとの支出",
  "What your avatar has on, under the preview, with the price and R$ value of worn limiteds. Click an item to take it off.": "プレビューの下に、アバターが着用しているものを、着用中のリミテッドの価格と R$ の価値付きで表示します。アイテムをクリックすると外せます。",
  "What your limiteds are worth": "あなたのリミテッドの価値",
  "What’s New": "新機能",
@@ -2653,6 +2737,7 @@
  "When you press Make Offer, the confirm window shows what each side is worth (value and RAP) and the difference. If you’d overpay past your warning level, you tick “I’ve reviewed this trade” before Send works.": "「オファーを送る」を押すと、確認ウィンドウに各側の価値(価値と RAP)と差額が表示されます。警告レベルを超えて払いすぎる場合は、「このトレードを確認しました」にチェックを入れないと送信できません。",
  "When you press Play, join a server in this region and see its details. Closest to me estimates your region from your time zone (it never leaves your browser). Off lets Roblox pick inside the app, so there are no server details.": "プレイを押したとき、この地域のサーバーに参加し、その詳細を表示します。「最寄り」はタイムゾーンから地域を推定します(ブラウザの外には送信されません)。オフにすると Roblox がアプリ内で選ぶため、サーバーの詳細は表示されません。",
  "When you press Play, join a server none of your online friends are in. Also in the menu under the Play button.": "プレイを押したとき、オンラインのフレンドが誰もいないサーバーに参加します。プレイボタンの下のメニューにもあります。",
+ "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "マーケットプレイスで検索すると、一致する Roblox 公式のアイテムが販売終了のものも含めて先頭に表示され、コピー品に埋もれません。RSTF や Emp のようなリミテッドの略称でも本物のアイテムが見つかります。",
  "When your 2-Step Verification backup codes were made, next to how many you have left.": "2段階認証のバックアップコードが作成された日時を、残りの数の横に表示します。",
  "Where each server is, a world map of every server in the game, and lists of servers per region. Sends the game and the server ids on screen to RoUtility to look them up, and the server you join when you press Play so the launch window can show its region. No account details are sent.": "各サーバーの場所、ゲーム内のすべてのサーバーの世界地図、地域ごとのサーバー一覧。調べるためにゲームと画面上のサーバー ID を RoUtility に送信し、起動ウィンドウに地域を表示するためにプレイで参加したサーバーも送信します。アカウント情報は送信されません。",
  "Whether its value is Raising, Stable or Lowering.": "価値が上昇中・安定・下降中のどれか。",
@@ -2688,6 +2773,7 @@
  "You can post a new ad every 15 minutes, with up to 5 up at once.": "新しい広告は15分ごとに投稿でき、同時に5件まで掲載できます。",
  "You can send up to {n} Robux right now": "今は最大 {n} Robux まで送れます",
  "You can’t report your own post.": "自分の投稿は報告できません。",
+ "You don’t follow anyone yet.": "まだ誰もフォローしていません。",
  "You don’t have any badges yet.": "まだバッジがありません。",
  "You don’t have any characters yet. Use Create New Character to save your current look, then pick it here.": "まだキャラクターがありません。「新しいキャラクターを作成」で今のコーデを保存してから、ここで選んでください。",
  "You don’t have any limiteds to offer.": "提供できるリミテッドがありません。",
@@ -2742,6 +2828,7 @@
  "You’re posting too fast. Try again in {n} seconds.": {
   "other": "投稿が速すぎます。{n}秒後にもう一度お試しください。"
  },
+ "You’ve Spent": "あなたの支出",
  "Your": "あなた",
  "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "このアカウントはまだRobuxを送れません。先に年齢確認か保護者の許可が必要です。Robloxアプリで行えます。",
  "Your ad is up on Trade Ads and routility.io.": "広告がトレード広告と routility.io に掲載されました。",
@@ -2790,39 +2877,5 @@
  "Your Robux Rate": "あなたの Robux レート",
  "Your Settings": "あなたの設定",
  "Your Slots": "あなたのスロット",
- "Your Status": "あなたのステータス",
- "Real Items First": "本物のアイテムを先頭に",
- "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora が先頭",
- "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "マーケットプレイスで検索すると、一致する Roblox 公式のアイテムが販売終了のものも含めて先頭に表示され、コピー品に埋もれません。RSTF や Emp のようなリミテッドの略称でも本物のアイテムが見つかります。",
- "{count} Owners": {
-  "other": "所有者 {count}人"
- },
- "{n} following": "{n}人をフォロー中",
- "{n} sold": {
-  "other": "{n}件販売"
- },
- "{results} (some categories couldn’t load)": "{results}(一部のカテゴリーを読み込めませんでした)",
- "1 Year": "1年",
- "All Favorites": "すべてのお気に入り",
- "all items": "すべてのアイテム",
- "All Items": "すべてのアイテム",
- "Couldn’t load who you follow right now.": "フォロー中のユーザーを読み込めませんでした。",
- "Editing {game}": "{game} を編集中",
- "In": "範囲",
- "No one matches this filter.": "このフィルターに一致する人はいません。",
- "No one matches your search.": "検索に一致する人はいません。",
- "Search all favorites": "すべてのお気に入りを検索",
- "Search all your items": "すべてのアイテムを検索",
- "Search Following": "フォロー中を検索",
- "Select people to unfollow them": "フォローを解除する人を選んでください",
- "Unfollow {n} People?": {
-  "other": "{n}人のフォローを解除しますか?"
- },
- "Unfollow Selected": "選択した人のフォローを解除",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "{n}人のフォローを解除しました・{failed}人は失敗しました。選択されたままなので、もう一度お試しください。",
- "Unfollowed {n} people.": {
-  "other": "{n}人のフォローを解除しました。"
- },
- "Unfollowing {done} of {total}": "フォロー解除中 {done}/{total}",
- "You don’t follow anyone yet.": "まだ誰もフォローしていません。"
+ "Your Status": "あなたのステータス"
 }

@@ -36,6 +36,9 @@
  },
  "{count} of {max}": "{count} / {max}",
  "{count} of {max} ads up": "광고 {count} / {max}개 게시 중",
+ "{count} Owners": {
+  "other": "소유자 {count}명"
+ },
  "{count} playing": {
   "other": "{count}명 플레이 중"
  },
@@ -114,6 +117,7 @@
   "other": "팔로워 {n}명"
  },
  "{n} Followers": "팔로워 {n}",
+ "{n} following": "{n}명 팔로우 중",
  "{n} Following": "팔로잉 {n}",
  "{n} found": {
   "other": "{n}건 찾음"
@@ -211,6 +215,9 @@
  "{n} purchases · {spent} Robux spent": {
   "other": "구매 {n}건 · {spent} Robux 사용"
  },
+ "{n} purchases in this experience": {
+  "other": "이 경험에서 구매 {n}건"
+ },
  "{n} regions": {
   "other": "지역 {n}곳"
  },
@@ -246,6 +253,9 @@
  },
  "{n} servers • {regions}": {
   "other": "서버 {n}개 • {regions}"
+ },
+ "{n} sold": {
+  "other": "{n}개 판매"
  },
  "{n} to buy": {
   "other": "{n}개 구매 필요"
@@ -303,6 +313,7 @@
   "other": "{n}년"
  },
  "{name} ({count})": "{name} ({count})",
+ "{name} • {robux} Robux": "{name} • {robux} Robux",
  "{name} accessories": "{name} 액세서리",
  "{name} audit log.csv": "{name} 감사 로그.csv",
  "{name} color": "{name} 색상",
@@ -346,6 +357,7 @@
  "{rating} • {n} playing": "{rating} • {n}명 플레이 중",
  "{region} isn’t in the region list anymore. Joining any server…": "{region}은(는) 더 이상 지역 목록에 없습니다. 아무 서버에나 참여하는 중…",
  "{results} (first 2,000 items)": "{results} (처음 2,000개 아이템)",
+ "{results} (some categories couldn’t load)": "{results} (일부 카테고리를 불러오지 못했어요)",
  "{robux} Robux at the DevEx rate": "DevEx 환율로 {robux} Robux",
  "{robux} Robux at your rate ({rate}/1k)": "내 환율로 {robux} Robux ({rate}/1k)",
  "{role} · Rank {rank}": "{role} · 랭크 {rank}",
@@ -361,6 +373,7 @@
  "{x} × {y} × {z} studs": "{x} × {y} × {z} 스터드",
  "≈ {usd} at the DevEx rate": "DevEx 환율로 ≈ {usd}",
  "≈ {usd} at your rate ({rate}/1k)": "내 환율로 ≈ {usd} ({rate}/1k)",
+ "1 Year": "1년",
  "1,000 Robux": "1,000 Robux",
  "10,000 Robux": "10,000 Robux",
  "10% more": "10% 더",
@@ -407,6 +420,7 @@
  "A RoUtility chat at the top of your Chat list. Ask it what a limited is worth, paste a trade to see if it’s a win, or ask how to do something and it finds the right feature. Only you can see it.": "채팅 목록 맨 위에 RoUtility 채팅을 추가합니다. 한정판의 가치를 묻거나, 거래를 붙여 넣어 이득인지 확인하거나, 방법을 물으면 알맞은 기능을 찾아 줍니다. 나만 볼 수 있습니다.",
  "A RoUtility item above Settings in the gear menu at the top right, straight to this page.": "오른쪽 위 톱니바퀴 메뉴의 설정 위에 이 페이지로 바로 가는 RoUtility 항목을 추가합니다.",
  "A row of limiteds worth about the same, above Recommendations on item pages.": "아이템 페이지의 추천 위에 가치가 비슷한 한정판 줄을 표시합니다.",
+ "A row on an experience’s page with how many Robux you’ve spent in it, from the purchases Spending Breakdown has read on My Transactions.": "경험 페이지에 그 경험에서 사용한 Robux를 보여 주는 줄을 추가합니다. 지출 내역이 거래 내역에서 읽은 구매를 기준으로 합니다.",
  "A row on Home with the experiences your friends are in right now, most friends first, with their avatars on each tile. Updates every minute.": "친구들이 지금 있는 경험을 친구가 많은 순으로 보여 주는 줄을 홈에 추가하고, 각 타일에 아바타를 표시합니다. 1분마다 업데이트됩니다.",
  "A search box above the trade list that finds every trade with the item you type, loading older trades as it goes.": "거래 목록 위에 검색창을 추가해 입력한 아이템이 포함된 모든 거래를 이전 거래를 불러오며 찾습니다.",
  "A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.": "아이템 위에 이름, 에셋 ID 또는 CWHP 같은 리미티드 약어로 찾는 검색창을 추가합니다. 라벨은 현재 섹션에 맞게 바뀝니다.",
@@ -415,6 +429,7 @@
  "A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.": "액세서리 페이지에 실제 크기를 “1.6 × 0.6 × 1.6 스터드”처럼 스터드 단위로 보여 주는 크기 줄을 추가해, 구매 전에 너무 큰 아이템을 알아볼 수 있습니다.",
  "A small button under the Play button that shows where Play takes you, a region or Roblox picks. Click it to change.": "플레이 버튼 아래에 플레이 시 이동할 곳(지역 또는 Roblox 자동 선택)을 보여 주는 작은 버튼을 표시합니다. 클릭하면 변경할 수 있습니다.",
  "A soft tick for each hop and a little chime when it lands.": "이동할 때마다 부드러운 틱 소리가 나고, 도착하면 작은 차임이 울립니다.",
+ "A Spending button next to Buy Robux on My Transactions. It opens your total spent and what you’ve spent on each creator, experience, item type and month, for all time or a date range, with search. RoUtility reads your purchases while it’s open and saves them on this device, so later visits only check for new ones. Roblox only sends about 500 a minute, so a long history takes a few minutes the first time.": "거래 내역의 Robux 구매 옆에 지출 버튼을 추가합니다. 총 지출과 제작자, 경험, 아이템 유형, 월별 지출을 전체 기간 또는 지정한 기간으로 검색과 함께 보여 줍니다. RoUtility는 열려 있는 동안 구매를 읽어 이 기기에 저장하므로 다음 방문부터는 새 구매만 확인합니다. Roblox는 1분에 약 500건만 보내므로 내역이 길면 처음에는 몇 분 걸립니다.",
  "A switch between Robux and your currency on the Price Chart.": "가격 차트에서 Robux와 내 통화를 전환합니다.",
  "A Trade Ads link in the left menu, under Trade.": "왼쪽 메뉴의 거래 아래에 거래 광고 링크를 추가합니다.",
  "A Trade Ads page at roblox.com/trade-ads: see what people are offering and asking for, with values, and send them a trade in one click. Post your own ad from your limiteds after signing in with Roblox.": "roblox.com/trade-ads에 거래 광고 페이지를 추가합니다. 사람들이 무엇을 내놓고 무엇을 원하는지 가치와 함께 보고, 클릭 한 번으로 거래를 보낼 수 있습니다. Roblox로 로그인하면 내 한정판으로 광고를 올릴 수 있습니다.",
@@ -479,8 +494,11 @@
  "All caught up": "모두 확인함",
  "All Days": "전체 기간",
  "All Experiences": "모든 경험",
+ "All Favorites": "모든 즐겨찾기",
  "All Genres": "모든 장르",
+ "all items": "모든 아이템",
  "All items": "모든 아이템",
+ "All Items": "모든 아이템",
  "All Read": "모두 읽음",
  "All shown": "모두 표시됨",
  "All Things Roblox": "Roblox의 모든 것",
@@ -490,6 +508,7 @@
  "Also in {names}.": "{names}에도 있습니다.",
  "Always first": "항상 맨 앞",
  "Amazing": "최고",
+ "Amount": "금액",
  "Amount (R$)": "금액 (R$)",
  "Amount of Robux": "Robux 금액",
  "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "가지고 있는 아이템 페이지에 “2026년 10월 1일 · 9일 전”처럼 획득일 줄을 표시합니다.",
@@ -654,6 +673,7 @@
   "other": "{region} 서버 {n}개 확인하는 중…"
  },
  "Checking {region}…": "{region} 확인하는 중…",
+ "Checking for new purchases since your last visit…": "지난 방문 이후의 새 구매 확인 중…",
  "Checking open servers for {region}…": "{region}의 열린 서버 확인하는 중…",
  "Checking trades · {done} of {total}": "거래 확인하는 중 · {done} / {total}",
  "Checking what you already own… {done} of {total}": "이미 가진 아이템 확인하는 중… {done} / {total}",
@@ -790,6 +810,7 @@
  "Couldn’t load transactions right now. Try again in a minute.": "지금은 거래 내역을 불러올 수 없습니다. 1분 후 다시 시도하세요.",
  "Couldn’t load what you’re wearing.": "착용 중인 아이템을 불러오지 못했습니다.",
  "Couldn’t load what’s being worn.": "착용 중인 아이템을 불러오지 못했습니다.",
+ "Couldn’t load who you follow right now.": "팔로우 중인 사람을 불러오지 못했어요.",
  "Couldn’t load your avatar right now. Try again in a minute.": "지금은 아바타를 불러올 수 없습니다. 1분 후 다시 시도하세요.",
  "Couldn’t load your badges right now. Try again in a minute.": "지금은 배지를 불러올 수 없어요. 1분 후에 다시 시도해 주세요.",
  "Couldn’t load your characters right now. Try again in a minute.": "지금은 캐릭터를 불러올 수 없어요. 1분 후에 다시 시도해 주세요.",
@@ -814,6 +835,14 @@
  "Couldn’t start signing in. Try again in a moment.": "로그인을 시작하지 못했습니다. 잠시 후 다시 시도하세요.",
  "Couldn’t Start, Try Again": "시작하지 못했어요, 다시 시도",
  "Couldn’t update Joins to match. Try changing it again.": "참여를 맞추지 못했어요. 다시 바꿔 주세요.",
+ "Counted from all {n} of your purchases.": {
+  "other": "구매 {n}건 전체를 기준으로 계산했습니다."
+ },
+ "Counted from all your purchases.": "모든 구매를 기준으로 계산했습니다.",
+ "Counted from your {n} most recent purchases, back to {date}.": {
+  "other": "최근 구매 {n}건을 기준으로 계산했습니다({date}까지)."
+ },
+ "Counted from your purchases back to {date}. Spending on My Transactions can read older ones.": "{date}까지의 구매를 기준으로 계산했습니다. 거래 내역의 지출에서 더 오래된 구매를 읽을 수 있습니다.",
  "Counts": "수",
  "Create": "만들기",
  "Create in the top bar is called Develop.": "상단 바의 만들기는 “개발”로 표시됩니다.",
@@ -821,9 +850,11 @@
  "Created {date}": "{date} 생성",
  "Created Date": "생성일",
  "Creations": "창작물",
+ "Creator": "제작자",
  "Creator Hub": "크리에이터 허브",
  "Creator Store": "크리에이터 스토어",
  "Creator’s Avatar Items": "제작자의 아바타 아이템",
+ "Creators": "제작자",
  "Crimson": "크림슨",
  "Currency": "통화",
  "Currency, exact Robux, safer buying, transactions": "통화, 정확한 Robux, 안전한 구매, 거래",
@@ -927,6 +958,7 @@
  "Easy": "쉬움",
  "Edit": "수정",
  "Edit About": "자기소개 편집",
+ "Editing {game}": "{game} 편집 중",
  "Electric Lime": "Electric Lime",
  "Email": "이메일",
  "Email, phone, birthday, location, names, previous usernames, social links and the locations of your logged-in devices in Settings.": "설정의 이메일, 전화번호, 생일, 위치, 이름, 이전 사용자 이름, 소셜 링크, 로그인된 기기의 위치.",
@@ -959,6 +991,7 @@
  "Every open server has a friend in it": "열린 모든 서버에 친구가 있습니다",
  "Every outbound trade": "모든 보낸 거래",
  "Every purchase": "모든 구매",
+ "Every purchase in this date range is counted.": "이 기간의 모든 구매를 계산했습니다.",
  "Every update, what changed and who helped make it.": "모든 업데이트와 바뀐 점, 그리고 도와준 사람들.",
  "Everyone": "모두",
  "Everyone joins as {type}, whatever their avatar is set to": "아바타 설정과 관계없이 모두 {type}(으)로 참가해요",
@@ -1242,6 +1275,7 @@
  "Import": "가져오기",
  "Impossible": "불가능",
  "Improved": "개선",
+ "In": "범위",
  "in {n} days": {
   "other": "{n}일 후"
  },
@@ -1274,6 +1308,7 @@
  "In Studio": "Studio 사용 중",
  "In Studio • {game}": "Studio 사용 중 • {game}",
  "in under a minute": "1분 이내",
+ "In-Experience Purchases": "경험 내 구매",
  "Inappropriate": "부적절함",
  "Inbound": "받은 거래",
  "Includes people who unfriended you, people you removed on Roblox, and deleted accounts.": "나를 친구에서 삭제한 사람, 내가 Roblox에서 삭제한 사람, 삭제된 계정을 포함합니다.",
@@ -1303,6 +1338,8 @@
  "Item Page Values": "아이템 페이지 가치",
  "Item Search": "아이템 검색",
  "Item search, wearing panel, 10 accessories": "아이템 검색, 착용 패널, 액세서리 10개",
+ "Item Type": "아이템 유형",
+ "Item Types": "아이템 유형",
  "Item Values": "아이템 가치",
  "Item: {name}": "아이템: {name}",
  "Items": "아이템",
@@ -1437,6 +1474,7 @@
  "Mark All as Read": "모두 읽음으로 표시",
  "Mark All as Read and Archive All Read on your Messages page, for every page of your inbox at once, plus your unread count next to the title. Archived messages stay in the Archive tab.": "메시지 페이지에 모두 읽음으로 표시와 읽은 메시지 모두 보관을 추가해 받은 편지함의 모든 페이지에 한 번에 적용하고, 제목 옆에 읽지 않은 수를 표시합니다. 보관한 메시지는 보관함 탭에 남습니다.",
  "Marketplace": "마켓플레이스",
+ "Marketplace Items": "마켓플레이스 아이템",
  "Marketplace Prices": "마켓플레이스 가격",
  "Marketplace Search": "마켓플레이스 검색",
  "Massive Loss": "큰 손해",
@@ -1469,6 +1507,8 @@
  "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "모던 또는 클래식 2017: 예전 포럼의 파란 헤더 바, 크고 가는 제목, Source Sans를 Roblox 테마 색상으로. 포럼의 사용자 지정에서도 바꿀 수 있습니다.",
  "Money": "돈",
  "Money Amounts": "통화 금액",
+ "Month": "월",
+ "Months": "월별",
  "more": "더 보기",
  "More": "더 보기",
  "More chips next to All and Trusted on your friends list: Verified, Roblox Plus, Admin and Online, across all your friends, not just one page.": "친구 목록의 전체 및 신뢰하는 친구 옆에 인증됨, Roblox Plus, 관리자, 온라인 칩을 추가합니다. 한 페이지가 아니라 모든 친구가 대상입니다.",
@@ -1478,6 +1518,9 @@
  "Most Common First": "흔한 순",
  "Most Members": "멤버 많은 순",
  "Most Played": "가장 많이 플레이한 순",
+ "Most Purchases": "구매 많은 순",
+ "Most Spent": "지출 많은 순",
+ "Most Spent On": "가장 많이 쓴 곳",
  "Most Valuable": "가장 가치 높은",
  "Most Won Yesterday": "어제 가장 많이 획득한 순",
  "Move": "이동",
@@ -1554,6 +1597,8 @@
  "No longer owned": "더 이상 보유하지 않음",
  "No One": "없음",
  "No one has posted here lately. Try a longer range.": "최근 이곳에 올라온 게시물이 없습니다. 기간을 늘려 보세요.",
+ "No one matches this filter.": "이 필터에 맞는 사람이 없어요.",
+ "No one matches your search.": "검색에 맞는 사람이 없어요.",
  "No open servers in {region}. Joining {other}…": "{region}에 열린 서버가 없습니다. {other}에 참여하는 중…",
  "No open servers in {region}. Looking for the closest region…": "{region}에 열린 서버가 없습니다. 가장 가까운 지역을 찾는 중…",
  "No open servers in or near {region}. Joining any server…": "{region} 및 근처에 열린 서버가 없습니다. 아무 서버에나 참여하는 중…",
@@ -1567,6 +1612,7 @@
  "No posts in this thread.": "이 스레드에 게시물이 없습니다.",
  "no price": "가격 없음",
  "No price": "가격 없음",
+ "No purchases in this date range.": "이 기간에는 구매가 없습니다.",
  "No requests match these filters.": "이 필터에 맞는 요청이 없습니다.",
  "No requests match your search.": "검색과 일치하는 요청이 없습니다.",
  "No results for “{query}”": "“{query}” 결과 없음",
@@ -1616,6 +1662,7 @@
  "Nothing in {forum} matches. Try other words, or search every forum.": "{forum}에 일치하는 것이 없습니다. 다른 단어로 시도하거나 모든 포럼을 검색하세요.",
  "Nothing in this time range": "이 기간에는 아무것도 없습니다",
  "Nothing is marked {title} right now.": "지금 {title} 표시된 것이 없어요.",
+ "Nothing matches your search.": "검색과 일치하는 항목이 없습니다.",
  "Nothing on this page": "이 페이지에는 아무것도 없습니다",
  "Nothing played in the past 30 days.": "지난 30일 동안 플레이한 것이 없습니다.",
  "Nothing played in the past 7 days.": "지난 7일 동안 플레이한 것이 없습니다.",
@@ -1843,6 +1890,7 @@
  "Privacy": "개인정보",
  "Private": "비공개",
  "Private inventory": "비공개 인벤토리",
+ "Private Servers": "비공개 서버",
  "Profile": "프로필",
  "Profile Page": "프로필 페이지",
  "Profile Previews": "프로필 미리 보기",
@@ -1900,13 +1948,20 @@
  "Re: {title}": "Re: {title}",
  "Read every line of RoUtility’s code": "RoUtility 코드를 한 줄씩 직접 읽어 보세요",
  "Read More": "더 읽기",
+ "Read Older Purchases": "이전 구매 읽기",
  "Reading {done} of {total}": "읽음 처리 중 {done} / {total}",
+ "Reading your purchases…": "구매 읽는 중…",
+ "Reading your purchases… {n} so far, back to {date}.": {
+  "other": "구매 읽는 중… 지금까지 {n}건, {date}까지."
+ },
+ "Real Items First": "진짜 아이템 먼저",
  "Recent": "최근",
  "Recent average price of the limiteds you’re wearing": "착용 중인 한정판의 최근 평균 가격",
  "recent items": "최근 아이템",
  "Recent Servers": "최근 서버",
  "Recently Updated": "최근 업데이트",
  "Recommended": "추천",
+ "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora 먼저",
  "Refill Robux": "Robux 채우기",
  "Refresh": "새로고침",
  "Refresh the page to try again.": "페이지를 새로고침해서 다시 시도하세요.",
@@ -1969,8 +2024,12 @@
  "Right-click a profile, item, model, bundle, experience, community or badge (or an empty spot on its page) for Copy User ID, Copy Asset ID and so on, with a quick confirmation.": "프로필, 아이템, 모델, 번들, 경험, 커뮤니티, 배지(또는 그 페이지의 빈 곳)를 우클릭하면 사용자 ID 복사, 에셋 ID 복사 등을 쓸 수 있고, 간단한 확인이 표시됩니다.",
  "Rising": "상승 중",
  "Roblox admin": "Roblox 관리자",
+ "Roblox asked RoUtility to slow down, carrying on in a moment.": "Roblox에서 RoUtility에 속도를 줄이라고 요청했습니다. 잠시 후 계속합니다.",
  "Roblox asked RoUtility to slow down, carrying on in a moment. {found} so far in the {total} most recent (back to {date}).": "Roblox가 RoUtility에 속도를 줄이라고 요청해 잠시 후 계속합니다. 최근 {total}건 중 지금까지 {found} ({date}까지).",
  "Roblox asked RoUtility to slow down, carrying on in a moment. {found} so far in the {total} most recent.": "Roblox가 RoUtility에 속도를 줄이라고 요청해 잠시 후 계속합니다. 최근 {total}건 중 지금까지 {found}.",
+ "Roblox asked RoUtility to slow down, carrying on in a moment. {n} purchases so far, back to {date}.": {
+  "other": "Roblox에서 RoUtility에 속도를 줄이라고 요청했습니다. 잠시 후 계속합니다. 지금까지 구매 {n}건, {date}까지."
+ },
  "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox가 속도를 늦춰 달래요 · {total}개 중 {done}개 확인, {s}초 후 다시 시작",
  "Roblox Badges": "Roblox 배지",
  "Roblox couldn’t send it. Check your balance before you try again.": "Roblox가 보내지 못했어요. 다시 시도하기 전에 잔액을 확인하세요.",
@@ -1987,6 +2046,7 @@
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox에서 거래를 보내지 않았습니다. 잠시 후 다시 시도하세요.",
  "Roblox doesn’t share this file, so it can’t be checked.": "Roblox에서 이 파일을 공유하지 않아 확인할 수 없습니다.",
  "Roblox doesn’t share this item’s file.": "Roblox에서 이 아이템의 파일을 공유하지 않습니다.",
+ "Roblox Fees": "Roblox 수수료",
  "Roblox hides friend lists for some accounts, like accounts in the UK, so this list doesn’t show on Roblox. RoUtility loads it from Roblox’s official API.": "Roblox는 영국 계정 등 일부 계정의 친구 목록을 숨기기 때문에 이 목록이 Roblox에 표시되지 않습니다. RoUtility는 Roblox 공식 API에서 불러옵니다.",
  "Roblox hides this friend, usually because their account is in the UK. Shown via RoUtility.": "Roblox가 이 친구를 숨기고 있습니다. 보통 계정이 영국에 있기 때문입니다. RoUtility를 통해 표시합니다.",
  "Roblox hides this friends list.": "Roblox가 이 친구 목록을 숨기고 있습니다.",
@@ -2000,6 +2060,7 @@
  "Roblox leaves equipped gear out of Currently Wearing when the player’s inventory is public. RoUtility adds it back. The classic layout already shows it.": "플레이어의 인벤토리가 공개일 때 Roblox는 장착한 기어를 착용 중에서 빼 버립니다. RoUtility가 다시 추가합니다. 클래식 레이아웃에서는 이미 표시됩니다.",
  "Roblox limits who can play this place.": "Roblox가 이 장소를 플레이할 수 있는 사람을 제한해요.",
  "Roblox limits who can upload to this place.": "Roblox가 이 장소에 업로드할 수 있는 사람을 제한해요.",
+ "Roblox only sends about 500 purchases a minute, so a long history takes a few minutes. Close this to pause, and it carries on from there next time.": "Roblox는 1분에 구매를 약 500건만 보내므로 내역이 길면 몇 분 걸립니다. 닫으면 일시 정지되고 다음에 거기서부터 계속합니다.",
  "Roblox picks": "Roblox 자동 선택",
  "Roblox Plus": "Roblox Plus",
  "Roblox Plus subscriber": "Roblox Plus 구독자",
@@ -2016,6 +2077,10 @@
  },
  "Roblox stopped answering. {found} in the {total} most recent (back to {date}).": "Roblox가 응답을 멈췄습니다. 최근 {total}건 중 {found} ({date}까지).",
  "Roblox stopped answering. {found} in the {total} most recent.": "Roblox가 응답을 멈췄습니다. 최근 {total}건 중 {found}.",
+ "Roblox stopped answering. Counted from your {n} most recent purchases, back to {date}.": {
+  "other": "Roblox가 응답을 멈췄습니다. 최근 구매 {n}건을 기준으로 계산했습니다({date}까지)."
+ },
+ "Roblox stopped answering. Try again in a minute.": "Roblox가 응답을 멈췄습니다. 1분 후 다시 시도하세요.",
  "Roblox Studio is open, so Roblox shows you as “in Studio” and we can’t see which server you joined. Close Studio to see it next time.": "Roblox Studio가 열려 있어 Roblox에서 “Studio 사용 중”으로 표시되므로 어느 서버에 참여했는지 볼 수 없습니다. 다음에 확인하려면 Studio를 닫으세요.",
  "Roblox terminated this account. Shown via RoUtility.": "Roblox가 이 계정을 정지했습니다. RoUtility를 통해 표시합니다.",
  "Roblox username or user ID": "Roblox 사용자 이름 또는 사용자 ID",
@@ -2097,7 +2162,6 @@
  "Saved.": "저장됨.",
  "Saved. Roblox is drawing your new thumbnail.": "저장했습니다. Roblox가 새 썸네일을 그리는 중입니다.",
  "Saved. Roblox pages you already have open pick this up when they reload.": "저장했습니다. 이미 열려 있는 Roblox 페이지는 새로고침하면 반영됩니다.",
- "Saved. The editor reloads when you close this so it keeps your changes.": "저장했습니다. 이 창을 닫으면 편집기가 새로고침되어 변경 사항이 유지됩니다.",
  "Saved. Your new thumbnail can take a minute to show up.": "저장했습니다. 새 썸네일이 표시되기까지 1분 정도 걸릴 수 있습니다.",
  "Saves your current colors and background here": "현재 색상과 배경을 여기에 저장합니다",
  "Saving": "저장하는 중",
@@ -2123,13 +2187,16 @@
  "Search {type}": "{type} 검색",
  "Search a game’s badges and sort them by rarity, newest or most won yesterday, or show only the ones you don’t own yet. Lists every badge, not just the first few.": "게임 배지를 검색하고 희귀도, 최신순, 어제 가장 많이 획득한 순으로 정렬하거나 아직 없는 배지만 볼 수 있습니다. 처음 몇 개가 아니라 모든 배지를 보여 줍니다.",
  "Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.": "현재 페이지뿐 아니라 인벤토리 카테고리 전체를 이름, 에셋 ID 또는 RSTF 같은 리미티드 약어로 검색합니다.",
+ "Search all favorites": "모든 즐겨찾기 검색",
  "Search all limiteds": "모든 한정판 검색",
+ "Search all your items": "내 모든 아이템 검색",
  "Search badges": "배지 검색",
  "Search Badges": "배지 검색",
  "Search Box": "검색창",
  "Search by item name": "아이템 이름으로 검색",
  "Search Communities": "커뮤니티 검색",
  "Search every forum": "모든 포럼 검색",
+ "Search Following": "팔로잉 검색",
  "Search friend requests": "친구 요청 검색",
  "Search Friends": "친구 검색",
  "Search head accessories": "머리 액세서리 검색",
@@ -2161,6 +2228,7 @@
  "Select badges to delete them": "삭제할 배지를 고르세요",
  "Select communities to leave them": "탈퇴할 커뮤니티 선택",
  "Select friends to unfriend them": "친구 삭제할 친구 선택",
+ "Select people to unfollow them": "팔로우를 취소할 사람을 선택하세요",
  "Selected Tab": "선택한 탭",
  "Send": "보내기",
  "Send Offer Summary": "제안 요약 보내기",
@@ -2214,6 +2282,7 @@
  "Show Joins": "참여 표시",
  "Show Less": "간단히 보기",
  "Show more": "더 보기",
+ "Show More": "더 보기",
  "Show Online Status": "온라인 상태 표시",
  "Show Outfit Rotator": "코디 로테이터 표시",
  "Show preview": "미리 보기 표시",
@@ -2270,6 +2339,8 @@
  "Spam": "스팸",
  "Spam / advertising": "스팸 / 광고",
  "Special": "특별한",
+ "Spending": "지출",
+ "Spending Breakdown": "지출 내역",
  "Sponsored": "스폰서",
  "Stable": "안정",
  "Staff": "스태프",
@@ -2439,6 +2510,7 @@
  "Total Posts:": "총 게시물:",
  "Total RAP": "총 RAP",
  "Total Robux of every match found so far. Pending Robux is included.": "지금까지 찾은 모든 일치 항목의 Robux 합계. 대기 중인 Robux도 포함됩니다.",
+ "Total Spent": "총 지출",
  "Total Value:": "총 가치:",
  "Total visits across {n} public experiences": {
   "other": "공개 경험 {n}개의 총 방문 수"
@@ -2521,6 +2593,15 @@
  "Under review by Roblox": "Roblox에서 검토 중",
  "Under the Menu": "메뉴 아래",
  "Undo": "실행 취소",
+ "Unfollow {n} People?": {
+  "other": "{n}명 팔로우를 취소할까요?"
+ },
+ "Unfollow Selected": "선택한 사람 팔로우 취소",
+ "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "{n}명 팔로우 취소 · {failed}명은 실패했어요. 아직 선택되어 있으니 다시 시도하세요.",
+ "Unfollowed {n} people.": {
+  "other": "{n}명 팔로우를 취소했어요."
+ },
+ "Unfollowing {done} of {total}": "팔로우 취소 중 {done}/{total}",
  "Unfriend": "친구 삭제",
  "Unfriend {n}": "{n}명 친구 삭제",
  "Unfriend {n} Friends?": {
@@ -2536,7 +2617,9 @@
  "Unfriending {done} of {total}": "친구 삭제하는 중 {done} / {total}",
  "Universe ID": "유니버스 ID",
  "Universe ID and Place ID with one-click copy on every experience overview, plus a Servers button.": "모든 경험 개요에 클릭 한 번으로 복사할 수 있는 유니버스 ID와 플레이스 ID, 그리고 서버 버튼을 추가합니다.",
+ "Unknown Creator": "알 수 없는 제작자",
  "Unknown experience": "알 수 없는 경험",
+ "Unknown Experience": "알 수 없는 경험",
  "Unknown region": "알 수 없는 지역",
  "Unnamed item": "이름 없는 아이템",
  "Unpriced": "가격 없음",
@@ -2637,6 +2720,7 @@
  "What the item is worth in your currency, next to its Robux price. Hover it for the RoUtility Value when the item has one.": "아이템의 내 통화 가치를 Robux 가격 옆에 보여줘요. 가치가 있는 아이템은 마우스를 올리면 RoUtility 가치가 보여요.",
  "what you want": "원하는 것",
  "What You’re Wearing": "착용 중인 아이템",
+ "What you’ve spent on each creator, experience, item type and month": "제작자, 경험, 아이템 유형, 월별 지출",
  "What your avatar has on, under the preview, with the price and R$ value of worn limiteds. Click an item to take it off.": "미리 보기 아래에 아바타가 착용 중인 것을 착용한 한정판의 가격 및 R$ 가치와 함께 표시합니다. 아이템을 클릭하면 벗을 수 있습니다.",
  "What your limiteds are worth": "내 한정판의 가치",
  "What’s New": "새로운 기능",
@@ -2653,6 +2737,7 @@
  "When you press Make Offer, the confirm window shows what each side is worth (value and RAP) and the difference. If you’d overpay past your warning level, you tick “I’ve reviewed this trade” before Send works.": "제안하기를 누르면 확인 창에 각 쪽의 가치(가치 및 RAP)와 차이가 표시됩니다. 경고 기준을 넘어 과지불하게 되면 “이 거래를 검토했습니다”에 체크해야 보내기가 작동합니다.",
  "When you press Play, join a server in this region and see its details. Closest to me estimates your region from your time zone (it never leaves your browser). Off lets Roblox pick inside the app, so there are no server details.": "플레이를 누르면 이 지역의 서버에 참여하고 세부 정보를 보여 줍니다. 나와 가장 가까운 곳은 시간대로 지역을 추정합니다(브라우저 밖으로 나가지 않습니다). 끄면 Roblox가 앱 안에서 고르므로 서버 세부 정보가 없습니다.",
  "When you press Play, join a server none of your online friends are in. Also in the menu under the Play button.": "플레이를 누르면 온라인 친구가 아무도 없는 서버에 참여합니다. 플레이 버튼 아래 메뉴에도 있습니다.",
+ "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "마켓플레이스에서 검색하면 일치하는 Roblox 공식 아이템이 판매 종료된 것까지 맨 앞에 나와 복제품에 묻히지 않습니다. RSTF나 Emp 같은 리미티드 약어로도 진짜 아이템을 찾을 수 있습니다.",
  "When your 2-Step Verification backup codes were made, next to how many you have left.": "2단계 인증 백업 코드를 만든 날짜를 남은 개수 옆에 보여 줘요.",
  "Where each server is, a world map of every server in the game, and lists of servers per region. Sends the game and the server ids on screen to RoUtility to look them up, and the server you join when you press Play so the launch window can show its region. No account details are sent.": "각 서버의 위치, 게임 내 모든 서버의 세계 지도, 지역별 서버 목록. 조회를 위해 게임과 화면의 서버 ID를 RoUtility로 보내고, 실행 창에 지역을 보여 주기 위해 플레이로 참여한 서버도 보냅니다. 계정 정보는 보내지 않습니다.",
  "Whether its value is Raising, Stable or Lowering.": "가치가 상승세, 안정, 하락세 중 무엇인지.",
@@ -2688,6 +2773,7 @@
  "You can post a new ad every 15 minutes, with up to 5 up at once.": "새 광고는 15분마다 올릴 수 있으며, 한 번에 5개까지 게시할 수 있습니다.",
  "You can send up to {n} Robux right now": "지금은 최대 {n} Robux까지 보낼 수 있어요",
  "You can’t report your own post.": "내 게시물은 신고할 수 없습니다.",
+ "You don’t follow anyone yet.": "아직 아무도 팔로우하지 않았어요.",
  "You don’t have any badges yet.": "아직 배지가 없어요.",
  "You don’t have any characters yet. Use Create New Character to save your current look, then pick it here.": "아직 캐릭터가 없어요. 새 캐릭터 만들기로 지금 모습을 저장한 뒤 여기서 고르세요.",
  "You don’t have any limiteds to offer.": "내놓을 한정판이 없습니다.",
@@ -2742,6 +2828,7 @@
  "You’re posting too fast. Try again in {n} seconds.": {
   "other": "너무 빠르게 게시하고 있습니다. {n}초 후 다시 시도하세요."
  },
+ "You’ve Spent": "지출한 금액",
  "Your": "나",
  "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "이 계정은 아직 Robux를 보낼 수 없어요. 먼저 연령 확인이나 보호자 동의가 필요하며, Roblox 앱에서 할 수 있어요.",
  "Your ad is up on Trade Ads and routility.io.": "광고가 거래 광고와 routility.io에 게시되었습니다.",
@@ -2790,39 +2877,5 @@
  "Your Robux Rate": "내 Robux 환율",
  "Your Settings": "내 설정",
  "Your Slots": "내 슬롯",
- "Your Status": "내 상태",
- "Real Items First": "진짜 아이템 먼저",
- "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora 먼저",
- "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "마켓플레이스에서 검색하면 일치하는 Roblox 공식 아이템이 판매 종료된 것까지 맨 앞에 나와 복제품에 묻히지 않습니다. RSTF나 Emp 같은 리미티드 약어로도 진짜 아이템을 찾을 수 있습니다.",
- "{count} Owners": {
-  "other": "소유자 {count}명"
- },
- "{n} following": "{n}명 팔로우 중",
- "{n} sold": {
-  "other": "{n}개 판매"
- },
- "{results} (some categories couldn’t load)": "{results} (일부 카테고리를 불러오지 못했어요)",
- "1 Year": "1년",
- "All Favorites": "모든 즐겨찾기",
- "all items": "모든 아이템",
- "All Items": "모든 아이템",
- "Couldn’t load who you follow right now.": "팔로우 중인 사람을 불러오지 못했어요.",
- "Editing {game}": "{game} 편집 중",
- "In": "범위",
- "No one matches this filter.": "이 필터에 맞는 사람이 없어요.",
- "No one matches your search.": "검색에 맞는 사람이 없어요.",
- "Search all favorites": "모든 즐겨찾기 검색",
- "Search all your items": "내 모든 아이템 검색",
- "Search Following": "팔로잉 검색",
- "Select people to unfollow them": "팔로우를 취소할 사람을 선택하세요",
- "Unfollow {n} People?": {
-  "other": "{n}명 팔로우를 취소할까요?"
- },
- "Unfollow Selected": "선택한 사람 팔로우 취소",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "{n}명 팔로우 취소 · {failed}명은 실패했어요. 아직 선택되어 있으니 다시 시도하세요.",
- "Unfollowed {n} people.": {
-  "other": "{n}명 팔로우를 취소했어요."
- },
- "Unfollowing {done} of {total}": "팔로우 취소 중 {done}/{total}",
- "You don’t follow anyone yet.": "아직 아무도 팔로우하지 않았어요."
+ "Your Status": "내 상태"
 }

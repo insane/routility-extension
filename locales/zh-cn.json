@@ -36,6 +36,9 @@
  },
  "{count} of {max}": "{count}/{max}",
  "{count} of {max} ads up": "已发布 {count}/{max} 个广告",
+ "{count} Owners": {
+  "other": "{count} 位拥有者"
+ },
  "{count} playing": {
   "other": "{count} 人在玩"
  },
@@ -114,6 +117,7 @@
   "other": "{n} 位关注者"
  },
  "{n} Followers": "{n} 关注者",
+ "{n} following": "已关注 {n}",
  "{n} Following": "{n} 正在关注",
  "{n} found": {
   "other": "找到 {n} 个"
@@ -211,6 +215,9 @@
  "{n} purchases · {spent} Robux spent": {
   "other": "{n} 次购买 · 花费 {spent} Robux"
  },
+ "{n} purchases in this experience": {
+  "other": "在此体验中购买 {n} 次"
+ },
  "{n} regions": {
   "other": "{n} 个地区"
  },
@@ -246,6 +253,9 @@
  },
  "{n} servers • {regions}": {
   "other": "{n} 个服务器 • {regions}"
+ },
+ "{n} sold": {
+  "other": "售出 {n}"
  },
  "{n} to buy": {
   "other": "{n} 件待购"
@@ -303,6 +313,7 @@
   "other": "{n}年"
  },
  "{name} ({count})": "{name}（{count}）",
+ "{name} • {robux} Robux": "{name} • {robux} Robux",
  "{name} accessories": "{name}配饰",
  "{name} audit log.csv": "{name} 审核日志.csv",
  "{name} color": "{name}颜色",
@@ -346,6 +357,7 @@
  "{rating} • {n} playing": "{rating} • {n} 人在玩",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} 已不在地区列表中。正在加入任意服务器…",
  "{results} (first 2,000 items)": "{results}（前 2,000 个物品）",
+ "{results} (some categories couldn’t load)": "{results}(部分类别无法加载)",
  "{robux} Robux at the DevEx rate": "按 DevEx 汇率计 {robux} Robux",
  "{robux} Robux at your rate ({rate}/1k)": "按你的汇率计 {robux} Robux（{rate}/1k）",
  "{role} · Rank {rank}": "{role} · 等级 {rank}",
@@ -361,6 +373,7 @@
  "{x} × {y} × {z} studs": "{x} × {y} × {z} 格",
  "≈ {usd} at the DevEx rate": "按 DevEx 汇率约 {usd}",
  "≈ {usd} at your rate ({rate}/1k)": "按你的汇率约 {usd}（{rate}/1k）",
+ "1 Year": "1 年",
  "1,000 Robux": "1,000 Robux",
  "10,000 Robux": "10,000 Robux",
  "10% more": "多 10%",
@@ -407,6 +420,7 @@
  "A RoUtility chat at the top of your Chat list. Ask it what a limited is worth, paste a trade to see if it’s a win, or ask how to do something and it finds the right feature. Only you can see it.": "聊天列表顶部的 RoUtility 聊天。问它某个限量物品值多少、粘贴一笔交易看看是否划算，或者问它怎么做某件事，它会帮你找到对应的功能。只有你能看到它。",
  "A RoUtility item above Settings in the gear menu at the top right, straight to this page.": "右上角齿轮菜单中“设置”上方的 RoUtility 选项，直接打开此页面。",
  "A row of limiteds worth about the same, above Recommendations on item pages.": "物品页面“推荐”上方的一栏价值相近的限量物品。",
+ "A row on an experience’s page with how many Robux you’ve spent in it, from the purchases Spending Breakdown has read on My Transactions.": "在体验页面上显示一行，列出你在该体验中花费了多少 Robux，数据来自“消费明细”在交易记录中读取的购买。",
  "A row on Home with the experiences your friends are in right now, most friends first, with their avatars on each tile. Updates every minute.": "主页上的一栏，显示你的好友当前所在的体验，好友最多的排在前面，每个方块上都有他们的虚拟形象。每分钟更新一次。",
  "A search box above the trade list that finds every trade with the item you type, loading older trades as it goes.": "交易列表上方的搜索框，可找到包含你输入物品的所有交易，并会边搜索边加载更早的交易。",
  "A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.": "物品上方的搜索框，可按名称、资产 ID 或限量物品缩写（如 CWHP）搜索。其标签会随你所在的版块而变化。",
@@ -415,6 +429,7 @@
  "A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.": "配饰页面上的“尺寸”一行，以格为单位显示配饰的实际大小，例如 1.6 × 0.6 × 1.6 格，让你在购买前就能发现过大的配饰。",
  "A small button under the Play button that shows where Play takes you, a region or Roblox picks. Click it to change.": "“开始游戏”按钮下方的小按钮，显示点击“开始游戏”会带你去哪里：某个地区或由 Roblox 选择。点击即可更改。",
  "A soft tick for each hop and a little chime when it lands.": "每次跳转时轻轻的“嘀”声，落地时一声小铃响。",
+ "A Spending button next to Buy Robux on My Transactions. It opens your total spent and what you’ve spent on each creator, experience, item type and month, for all time or a date range, with search. RoUtility reads your purchases while it’s open and saves them on this device, so later visits only check for new ones. Roblox only sends about 500 a minute, so a long history takes a few minutes the first time.": "在交易记录的“购买 Robux”旁边添加“消费”按钮。打开后显示你的总花费，以及在每个创作者、体验、物品类型和月份上的花费，可查看全部时间或指定日期范围，并支持搜索。打开期间 RoUtility 会读取你的购买并保存在此设备上，之后访问时只检查新的购买。Roblox 每分钟只发送约 500 条，所以记录较长时首次需要几分钟。",
  "A switch between Robux and your currency on the Price Chart.": "价格图表上的 Robux 和你的货币切换。",
  "A Trade Ads link in the left menu, under Trade.": "左侧菜单中“交易”下方的“交易广告”链接。",
  "A Trade Ads page at roblox.com/trade-ads: see what people are offering and asking for, with values, and send them a trade in one click. Post your own ad from your limiteds after signing in with Roblox.": "位于 roblox.com/trade-ads 的交易广告页面：查看大家在出什么、想要什么，附带价值，一键向他们发送交易。使用 Roblox 登录后，可以用你的限量物品发布自己的广告。",
@@ -479,8 +494,11 @@
  "All caught up": "已全部看完",
  "All Days": "全部日期",
  "All Experiences": "所有体验",
+ "All Favorites": "所有收藏",
  "All Genres": "所有类型",
+ "all items": "所有物品",
  "All items": "所有物品",
+ "All Items": "所有物品",
  "All Read": "全部已读",
  "All shown": "已全部显示",
  "All Things Roblox": "Roblox 综合",
@@ -490,6 +508,7 @@
  "Also in {names}.": "也在{names}中。",
  "Always first": "始终置顶",
  "Amazing": "极高",
+ "Amount": "金额",
  "Amount (R$)": "金额 (R$)",
  "Amount of Robux": "Robux 数量",
  "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "你拥有的物品页面上的“获得时间”一行，例如 2026 年 10 月 1 日 · 9 天前。",
@@ -654,6 +673,7 @@
   "other": "正在检查 {region} 的 {n} 个服务器…"
  },
  "Checking {region}…": "正在检查 {region}…",
+ "Checking for new purchases since your last visit…": "正在检查自上次访问以来的新购买…",
  "Checking open servers for {region}…": "正在检查 {region} 的开放服务器…",
  "Checking trades · {done} of {total}": "正在检查交易 · {done}/{total}",
  "Checking what you already own… {done} of {total}": "正在检查你已拥有的物品… {done}/{total}",
@@ -790,6 +810,7 @@
  "Couldn’t load transactions right now. Try again in a minute.": "目前无法加载交易记录，请一分钟后再试。",
  "Couldn’t load what you’re wearing.": "无法加载你正在穿戴的物品。",
  "Couldn’t load what’s being worn.": "无法加载正在穿戴的物品。",
+ "Couldn’t load who you follow right now.": "无法加载你关注的人。",
  "Couldn’t load your avatar right now. Try again in a minute.": "目前无法加载你的虚拟形象，请一分钟后再试。",
  "Couldn’t load your badges right now. Try again in a minute.": "暂时无法加载你的徽章，请一分钟后再试。",
  "Couldn’t load your characters right now. Try again in a minute.": "暂时无法加载你的角色，请一分钟后再试。",
@@ -814,6 +835,14 @@
  "Couldn’t start signing in. Try again in a moment.": "目前无法开始登录，请稍后再试。",
  "Couldn’t Start, Try Again": "无法开始，重试",
  "Couldn’t update Joins to match. Try changing it again.": "无法同步调整加入，请再改一次。",
+ "Counted from all {n} of your purchases.": {
+  "other": "基于你全部 {n} 次购买统计。"
+ },
+ "Counted from all your purchases.": "基于你的全部购买统计。",
+ "Counted from your {n} most recent purchases, back to {date}.": {
+  "other": "基于你最近的 {n} 次购买统计，追溯至 {date}。"
+ },
+ "Counted from your purchases back to {date}. Spending on My Transactions can read older ones.": "基于追溯至 {date} 的购买统计。交易记录中的“消费”可以读取更早的购买。",
  "Counts": "数量",
  "Create": "创建",
  "Create in the top bar is called Develop.": "顶部栏中的“创建”改称为“开发”。",
@@ -821,9 +850,11 @@
  "Created {date}": "创建于 {date}",
  "Created Date": "创建日期",
  "Creations": "作品",
+ "Creator": "创作者",
  "Creator Hub": "创作者中心",
  "Creator Store": "创作者商店",
  "Creator’s Avatar Items": "创作者的虚拟形象物品",
+ "Creators": "创作者",
  "Crimson": "绯红",
  "Currency": "货币",
  "Currency, exact Robux, safer buying, transactions": "货币、精确 Robux、更安全的购买、交易记录",
@@ -927,6 +958,7 @@
  "Easy": "简单",
  "Edit": "编辑",
  "Edit About": "编辑简介",
+ "Editing {game}": "正在编辑 {game}",
  "Electric Lime": "Electric Lime",
  "Email": "电子邮件",
  "Email, phone, birthday, location, names, previous usernames, social links and the locations of your logged-in devices in Settings.": "设置中的电子邮件、电话、生日、位置、姓名、曾用用户名、社交链接以及已登录设备的位置。",
@@ -959,6 +991,7 @@
  "Every open server has a friend in it": "每个开放的服务器里都有你的好友",
  "Every outbound trade": "所有发出的交易",
  "Every purchase": "每次购买",
+ "Every purchase in this date range is counted.": "已统计此日期范围内的所有购买。",
  "Every update, what changed and who helped make it.": "每次更新的内容，以及帮忙的人。",
  "Everyone": "所有人",
  "Everyone joins as {type}, whatever their avatar is set to": "无论虚拟形象如何设置，所有人都以 {type} 加入",
@@ -1242,6 +1275,7 @@
  "Import": "导入",
  "Impossible": "不可能",
  "Improved": "改进",
+ "In": "范围",
  "in {n} days": {
   "other": "{n} 天后"
  },
@@ -1274,6 +1308,7 @@
  "In Studio": "在 Studio 中",
  "In Studio • {game}": "在 Studio 中 • {game}",
  "in under a minute": "不到一分钟",
+ "In-Experience Purchases": "体验内购买",
  "Inappropriate": "不当内容",
  "Inbound": "收到的",
  "Includes people who unfriended you, people you removed on Roblox, and deleted accounts.": "包括解除与你好友关系的人、你在 Roblox 上删除的人以及已删除的账户。",
@@ -1303,6 +1338,8 @@
  "Item Page Values": "物品页面价值",
  "Item Search": "物品搜索",
  "Item search, wearing panel, 10 accessories": "物品搜索、穿戴面板、10 个配饰",
+ "Item Type": "物品类型",
+ "Item Types": "物品类型",
  "Item Values": "物品价值",
  "Item: {name}": "物品：{name}",
  "Items": "物品",
@@ -1437,6 +1474,7 @@
  "Mark All as Read": "全部标为已读",
  "Mark All as Read and Archive All Read on your Messages page, for every page of your inbox at once, plus your unread count next to the title. Archived messages stay in the Archive tab.": "在消息页面添加“全部标为已读”和“归档全部已读”，一次处理收件箱的每一页，并在标题旁显示未读数。已归档的消息会保留在“归档”标签页中。",
  "Marketplace": "商城",
+ "Marketplace Items": "商城物品",
  "Marketplace Prices": "商城价格",
  "Marketplace Search": "商城搜索",
  "Massive Loss": "血亏",
@@ -1469,6 +1507,8 @@
  "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "现代，或经典 2017：旧论坛的蓝色标题栏、大号浅色标题和 Source Sans 字体，使用你 Roblox 主题的颜色。也可以在论坛的“自定义”中设置。",
  "Money": "金额",
  "Money Amounts": "金额换算",
+ "Month": "月份",
+ "Months": "月份",
  "more": "更多",
  "More": "更多",
  "More chips next to All and Trusted on your friends list: Verified, Roblox Plus, Admin and Online, across all your friends, not just one page.": "在好友列表的“全部”和“受信任”旁边添加更多标签：已验证、Roblox Plus、管理员和在线，覆盖你的所有好友，而不只是一页。",
@@ -1478,6 +1518,9 @@
  "Most Common First": "最常见的优先",
  "Most Members": "成员最多",
  "Most Played": "最多人玩",
+ "Most Purchases": "购买最多",
+ "Most Spent": "花费最多",
+ "Most Spent On": "花费最多的",
  "Most Valuable": "最值钱",
  "Most Won Yesterday": "昨日获得最多",
  "Move": "移动",
@@ -1554,6 +1597,8 @@
  "No longer owned": "已不再拥有",
  "No One": "没有人",
  "No one has posted here lately. Try a longer range.": "最近没有人在这里发帖。试试更长的时间范围。",
+ "No one matches this filter.": "没有人符合此筛选条件。",
+ "No one matches your search.": "没有人符合你的搜索。",
  "No open servers in {region}. Joining {other}…": "{region} 没有开放的服务器。正在加入 {other}…",
  "No open servers in {region}. Looking for the closest region…": "{region} 没有开放的服务器。正在寻找最近的地区…",
  "No open servers in or near {region}. Joining any server…": "{region} 及其附近没有开放的服务器。正在加入任意服务器…",
@@ -1567,6 +1612,7 @@
  "No posts in this thread.": "此主题中没有帖子。",
  "no price": "无价格",
  "No price": "无价格",
+ "No purchases in this date range.": "此日期范围内没有购买。",
  "No requests match these filters.": "没有请求符合这些筛选条件。",
  "No requests match your search.": "没有请求符合你的搜索。",
  "No results for “{query}”": "没有“{query}”的结果",
@@ -1616,6 +1662,7 @@
  "Nothing in {forum} matches. Try other words, or search every forum.": "{forum}中没有匹配的内容。试试其他关键词，或搜索所有论坛。",
  "Nothing in this time range": "此时间范围内没有内容",
  "Nothing is marked {title} right now.": "目前没有标记为{title}的物品。",
+ "Nothing matches your search.": "没有与搜索匹配的结果。",
  "Nothing on this page": "此页面上没有内容",
  "Nothing played in the past 30 days.": "过去 30 天没有玩过任何游戏。",
  "Nothing played in the past 7 days.": "过去 7 天没有玩过任何游戏。",
@@ -1843,6 +1890,7 @@
  "Privacy": "隐私",
  "Private": "私密",
  "Private inventory": "私密物品栏",
+ "Private Servers": "私人服务器",
  "Profile": "个人资料",
  "Profile Page": "个人资料页面",
  "Profile Previews": "个人资料预览",
@@ -1900,13 +1948,20 @@
  "Re: {title}": "回复：{title}",
  "Read every line of RoUtility’s code": "逐行阅读 RoUtility 的代码",
  "Read More": "阅读更多",
+ "Read Older Purchases": "读取更早的购买",
  "Reading {done} of {total}": "正在读取 {done}/{total}",
+ "Reading your purchases…": "正在读取你的购买…",
+ "Reading your purchases… {n} so far, back to {date}.": {
+  "other": "正在读取你的购买… 目前 {n} 条，追溯至 {date}。"
+ },
+ "Real Items First": "正品优先",
  "Recent": "最近",
  "Recent average price of the limiteds you’re wearing": "你正在穿戴的限量物品的近期平均价格",
  "recent items": "最近的物品",
  "Recent Servers": "最近的服务器",
  "Recently Updated": "最近更新",
  "Recommended": "推荐",
+ "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora 排在最前",
  "Refill Robux": "补满 Robux",
  "Refresh": "刷新",
  "Refresh the page to try again.": "请刷新页面后重试。",
@@ -1969,8 +2024,12 @@
  "Right-click a profile, item, model, bundle, experience, community or badge (or an empty spot on its page) for Copy User ID, Copy Asset ID and so on, with a quick confirmation.": "右键点击个人资料、物品、模型、套装、体验、社群或徽章（或其页面上的空白处），即可使用“复制用户 ID”“复制资产 ID”等选项，并会快速显示确认。",
  "Rising": "上涨",
  "Roblox admin": "Roblox 管理员",
+ "Roblox asked RoUtility to slow down, carrying on in a moment.": "Roblox 要求 RoUtility 放慢速度，稍后继续。",
  "Roblox asked RoUtility to slow down, carrying on in a moment. {found} so far in the {total} most recent (back to {date}).": "Roblox 要求 RoUtility 放慢速度，稍后会继续。目前在最近的 {total} 个中找到 {found}（追溯至 {date}）。",
  "Roblox asked RoUtility to slow down, carrying on in a moment. {found} so far in the {total} most recent.": "Roblox 要求 RoUtility 放慢速度，稍后会继续。目前在最近的 {total} 个中找到 {found}。",
+ "Roblox asked RoUtility to slow down, carrying on in a moment. {n} purchases so far, back to {date}.": {
+  "other": "Roblox 要求 RoUtility 放慢速度，稍后继续。目前 {n} 次购买，追溯至 {date}。"
+ },
  "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox 要求放慢速度 · 已检查 {done}/{total}，{s} 秒后继续",
  "Roblox Badges": "Roblox 徽章",
  "Roblox couldn’t send it. Check your balance before you try again.": "Roblox 未能发送。请先检查余额再重试。",
@@ -1987,6 +2046,7 @@
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox 没有发送你的交易。请稍后再试。",
  "Roblox doesn’t share this file, so it can’t be checked.": "Roblox 不提供此文件，所以无法检查。",
  "Roblox doesn’t share this item’s file.": "Roblox 不提供此物品的文件。",
+ "Roblox Fees": "Roblox 费用",
  "Roblox hides friend lists for some accounts, like accounts in the UK, so this list doesn’t show on Roblox. RoUtility loads it from Roblox’s official API.": "Roblox 会隐藏某些账户的好友列表（例如英国的账户），所以此列表不会显示在 Roblox 上。RoUtility 通过 Roblox 的官方 API 加载它。",
  "Roblox hides this friend, usually because their account is in the UK. Shown via RoUtility.": "Roblox 隐藏了这位好友，通常是因为对方的账户在英国。通过 RoUtility 显示。",
  "Roblox hides this friends list.": "Roblox 隐藏了此好友列表。",
@@ -2000,6 +2060,7 @@
  "Roblox leaves equipped gear out of Currently Wearing when the player’s inventory is public. RoUtility adds it back. The classic layout already shows it.": "当玩家的物品栏公开时，Roblox 不会在“当前穿戴”中显示已装备的装备。RoUtility 会把它加回来。经典布局本来就会显示。",
  "Roblox limits who can play this place.": "Roblox 限制了可以游玩此地点的人。",
  "Roblox limits who can upload to this place.": "Roblox 限制了可以上传到此地点的人。",
+ "Roblox only sends about 500 purchases a minute, so a long history takes a few minutes. Close this to pause, and it carries on from there next time.": "Roblox 每分钟只发送约 500 次购买，所以记录较长时需要几分钟。关闭即可暂停，下次会从中断处继续。",
  "Roblox picks": "由 Roblox 选择",
  "Roblox Plus": "Roblox Plus",
  "Roblox Plus subscriber": "Roblox Plus 订阅者",
@@ -2016,6 +2077,10 @@
  },
  "Roblox stopped answering. {found} in the {total} most recent (back to {date}).": "Roblox 停止响应。在最近的 {total} 个中找到 {found}（追溯至 {date}）。",
  "Roblox stopped answering. {found} in the {total} most recent.": "Roblox 停止响应。在最近的 {total} 个中找到 {found}。",
+ "Roblox stopped answering. Counted from your {n} most recent purchases, back to {date}.": {
+  "other": "Roblox 停止响应。基于你最近的 {n} 次购买统计，追溯至 {date}。"
+ },
+ "Roblox stopped answering. Try again in a minute.": "Roblox 停止响应。请一分钟后再试。",
  "Roblox Studio is open, so Roblox shows you as “in Studio” and we can’t see which server you joined. Close Studio to see it next time.": "Roblox Studio 已打开，所以 Roblox 会把你显示为“在 Studio 中”，我们无法看到你加入了哪个服务器。关闭 Studio 后，下次就能看到。",
  "Roblox terminated this account. Shown via RoUtility.": "Roblox 已封禁此账户。通过 RoUtility 显示。",
  "Roblox username or user ID": "Roblox 用户名或用户 ID",
@@ -2097,7 +2162,6 @@
  "Saved.": "已保存。",
  "Saved. Roblox is drawing your new thumbnail.": "已保存。Roblox 正在生成你的新缩略图。",
  "Saved. Roblox pages you already have open pick this up when they reload.": "已保存。你已经打开的 Roblox 页面会在重新加载时应用此设置。",
- "Saved. The editor reloads when you close this so it keeps your changes.": "已保存。关闭此窗口后编辑器会重新加载，以保留你的更改。",
  "Saved. Your new thumbnail can take a minute to show up.": "已保存。你的新缩略图可能需要一分钟才会显示。",
  "Saves your current colors and background here": "将你当前的颜色和背景保存到这里",
  "Saving": "正在保存",
@@ -2123,13 +2187,16 @@
  "Search {type}": "搜索{type}",
  "Search a game’s badges and sort them by rarity, newest or most won yesterday, or show only the ones you don’t own yet. Lists every badge, not just the first few.": "搜索游戏的徽章，并按稀有度、最新或昨日获得最多排序，或只显示你还没拥有的徽章。会列出每一个徽章，而不只是前几个。",
  "Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.": "按名称、资产 ID 或限量物品缩写（如 RSTF）搜索整个物品栏类别，而不只是当前页面。",
+ "Search all favorites": "搜索所有收藏",
  "Search all limiteds": "搜索所有限量物品",
+ "Search all your items": "搜索你的所有物品",
  "Search badges": "搜索徽章",
  "Search Badges": "搜索徽章",
  "Search Box": "搜索框",
  "Search by item name": "按物品名称搜索",
  "Search Communities": "搜索社群",
  "Search every forum": "搜索所有论坛",
+ "Search Following": "搜索关注",
  "Search friend requests": "搜索好友请求",
  "Search Friends": "搜索好友",
  "Search head accessories": "搜索头部配饰",
@@ -2161,6 +2228,7 @@
  "Select badges to delete them": "选择要删除的徽章",
  "Select communities to leave them": "选择社群以退出",
  "Select friends to unfriend them": "选择好友以解除好友关系",
+ "Select people to unfollow them": "选择要取消关注的人",
  "Selected Tab": "选中的标签",
  "Send": "发送",
  "Send Offer Summary": "发送报价摘要",
@@ -2214,6 +2282,7 @@
  "Show Joins": "显示加入",
  "Show Less": "收起",
  "Show more": "显示更多",
+ "Show More": "显示更多",
  "Show Online Status": "显示在线状态",
  "Show Outfit Rotator": "显示换装轮换",
  "Show preview": "显示预览",
@@ -2270,6 +2339,8 @@
  "Spam": "垃圾信息",
  "Spam / advertising": "垃圾信息 / 广告",
  "Special": "特别",
+ "Spending": "消费",
+ "Spending Breakdown": "消费明细",
  "Sponsored": "赞助",
  "Stable": "稳定",
  "Staff": "工作人员",
@@ -2439,6 +2510,7 @@
  "Total Posts:": "帖子总数：",
  "Total RAP": "总 RAP",
  "Total Robux of every match found so far. Pending Robux is included.": "目前找到的所有匹配项的 Robux 总额。包括待处理的 Robux。",
+ "Total Spent": "总花费",
  "Total Value:": "总价值：",
  "Total visits across {n} public experiences": {
   "other": "{n} 个公开体验的总访问量"
@@ -2521,6 +2593,15 @@
  "Under review by Roblox": "Roblox 正在审核",
  "Under the Menu": "菜单下方",
  "Undo": "撤销",
+ "Unfollow {n} People?": {
+  "other": "取消关注 {n} 人?"
+ },
+ "Unfollow Selected": "取消关注所选",
+ "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "已取消关注 {n} 人 · {failed} 人失败。他们仍处于选中状态，请重试。",
+ "Unfollowed {n} people.": {
+  "other": "已取消关注 {n} 人。"
+ },
+ "Unfollowing {done} of {total}": "正在取消关注 {done}/{total}",
  "Unfriend": "删除好友",
  "Unfriend {n}": "删除 {n} 位好友",
  "Unfriend {n} Friends?": {
@@ -2536,7 +2617,9 @@
  "Unfriending {done} of {total}": "正在删除好友 {done}/{total}",
  "Universe ID": "宇宙 ID",
  "Universe ID and Place ID with one-click copy on every experience overview, plus a Servers button.": "在每个体验概览上显示可一键复制的宇宙 ID 和地点 ID，并附带“服务器”按钮。",
+ "Unknown Creator": "未知创作者",
  "Unknown experience": "未知体验",
+ "Unknown Experience": "未知体验",
  "Unknown region": "未知地区",
  "Unnamed item": "未命名物品",
  "Unpriced": "未定价",
@@ -2637,6 +2720,7 @@
  "What the item is worth in your currency, next to its Robux price. Hover it for the RoUtility Value when the item has one.": "物品折合你的货币的价值，显示在 Robux 价格旁。物品有 RoUtility 价值时，悬停即可查看。",
  "what you want": "你想要的",
  "What You’re Wearing": "你正在穿戴的",
+ "What you’ve spent on each creator, experience, item type and month": "你在每个创作者、体验、物品类型和月份上的花费",
  "What your avatar has on, under the preview, with the price and R$ value of worn limiteds. Click an item to take it off.": "在预览下方显示你的虚拟形象正在穿戴的物品，以及所穿限量物品的价格和 R$ 价值。点击物品即可脱下。",
  "What your limiteds are worth": "你的限量物品值多少",
  "What’s New": "新内容",
@@ -2653,6 +2737,7 @@
  "When you press Make Offer, the confirm window shows what each side is worth (value and RAP) and the difference. If you’d overpay past your warning level, you tick “I’ve reviewed this trade” before Send works.": "当你点击“发出报价”时，确认窗口会显示每一方的价值（价值和 RAP）以及差额。如果你多付超过了警告标准，需要先勾选“我已检查过这笔交易”才能发送。",
  "When you press Play, join a server in this region and see its details. Closest to me estimates your region from your time zone (it never leaves your browser). Off lets Roblox pick inside the app, so there are no server details.": "当你点击“开始游戏”时，加入此地区的服务器并查看其详细信息。“离我最近”会根据你的时区估算你的地区（该信息绝不会离开你的浏览器）。关闭则让 Roblox 在应用内选择，因此没有服务器详细信息。",
  "When you press Play, join a server none of your online friends are in. Also in the menu under the Play button.": "当你点击“开始游戏”时，加入一个没有任何在线好友的服务器。也可以在“开始游戏”按钮下方的菜单中找到。",
+ "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "在市场中搜索时，匹配的 Roblox 官方物品会排在最前，包括已下架的物品，不会被仿品淹没。用 RSTF 或 Emp 这样的限量物品缩写也能找到正品。",
  "When your 2-Step Verification backup codes were made, next to how many you have left.": "显示两步验证备用代码的创建时间，位于剩余数量旁边。",
  "Where each server is, a world map of every server in the game, and lists of servers per region. Sends the game and the server ids on screen to RoUtility to look them up, and the server you join when you press Play so the launch window can show its region. No account details are sent.": "每个服务器的位置、游戏中所有服务器的世界地图，以及按地区划分的服务器列表。会将游戏和屏幕上的服务器 ID 发送给 RoUtility 进行查询，并在你点击“开始游戏”时发送你加入的服务器，以便启动窗口显示其地区。不会发送任何账户信息。",
  "Whether its value is Raising, Stable or Lowering.": "其价值是上升、稳定还是下降。",
@@ -2688,6 +2773,7 @@
  "You can post a new ad every 15 minutes, with up to 5 up at once.": "你每 15 分钟可以发布一个新广告，最多同时发布 5 个。",
  "You can send up to {n} Robux right now": "你目前最多可以发送 {n} Robux",
  "You can’t report your own post.": "你不能举报自己的帖子。",
+ "You don’t follow anyone yet.": "你还没有关注任何人。",
  "You don’t have any badges yet.": "你还没有徽章。",
  "You don’t have any characters yet. Use Create New Character to save your current look, then pick it here.": "你还没有角色。先用“创建新角色”保存当前造型，再在这里选择。",
  "You don’t have any limiteds to offer.": "你没有任何可提供的限量物品。",
@@ -2742,6 +2828,7 @@
  "You’re posting too fast. Try again in {n} seconds.": {
   "other": "你发帖太快了。请在 {n} 秒后再试。"
  },
+ "You’ve Spent": "你已花费",
  "Your": "你",
  "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "你的账户暂时无法发送 Robux。需要先完成年龄验证或获得家长许可，可以在 Roblox 应用中进行。",
  "Your ad is up on Trade Ads and routility.io.": "你的广告已在交易广告和 routility.io 上发布。",
@@ -2790,39 +2877,5 @@
  "Your Robux Rate": "你的 Robux 汇率",
  "Your Settings": "你的设置",
  "Your Slots": "你的槽位",
- "Your Status": "你的状态",
- "Real Items First": "正品优先",
- "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora 排在最前",
- "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "在市场中搜索时，匹配的 Roblox 官方物品会排在最前，包括已下架的物品，不会被仿品淹没。用 RSTF 或 Emp 这样的限量物品缩写也能找到正品。",
- "{count} Owners": {
-  "other": "{count} 位拥有者"
- },
- "{n} following": "已关注 {n}",
- "{n} sold": {
-  "other": "售出 {n}"
- },
- "{results} (some categories couldn’t load)": "{results}(部分类别无法加载)",
- "1 Year": "1 年",
- "All Favorites": "所有收藏",
- "all items": "所有物品",
- "All Items": "所有物品",
- "Couldn’t load who you follow right now.": "无法加载你关注的人。",
- "Editing {game}": "正在编辑 {game}",
- "In": "范围",
- "No one matches this filter.": "没有人符合此筛选条件。",
- "No one matches your search.": "没有人符合你的搜索。",
- "Search all favorites": "搜索所有收藏",
- "Search all your items": "搜索你的所有物品",
- "Search Following": "搜索关注",
- "Select people to unfollow them": "选择要取消关注的人",
- "Unfollow {n} People?": {
-  "other": "取消关注 {n} 人?"
- },
- "Unfollow Selected": "取消关注所选",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "已取消关注 {n} 人 · {failed} 人失败。他们仍处于选中状态，请重试。",
- "Unfollowed {n} people.": {
-  "other": "已取消关注 {n} 人。"
- },
- "Unfollowing {done} of {total}": "正在取消关注 {done}/{total}",
- "You don’t follow anyone yet.": "你还没有关注任何人。"
+ "Your Status": "你的状态"
 }

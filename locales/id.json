@@ -36,6 +36,9 @@
  },
  "{count} of {max}": "{count} dari {max}",
  "{count} of {max} ads up": "{count} dari {max} iklan aktif",
+ "{count} Owners": {
+  "other": "{count} Pemilik"
+ },
  "{count} playing": {
   "other": "{count} bermain"
  },
@@ -114,6 +117,7 @@
   "other": "{n} pengikut"
  },
  "{n} Followers": "{n} Pengikut",
+ "{n} following": "{n} diikuti",
  "{n} Following": "{n} Mengikuti",
  "{n} found": {
   "other": "{n} ditemukan"
@@ -211,6 +215,9 @@
  "{n} purchases · {spent} Robux spent": {
   "other": "{n} pembelian · {spent} Robux dibelanjakan"
  },
+ "{n} purchases in this experience": {
+  "other": "{n} pembelian di pengalaman ini"
+ },
  "{n} regions": {
   "other": "{n} wilayah"
  },
@@ -246,6 +253,9 @@
  },
  "{n} servers • {regions}": {
   "other": "{n} server • {regions}"
+ },
+ "{n} sold": {
+  "other": "{n} terjual"
  },
  "{n} to buy": {
   "other": "{n} untuk dibeli"
@@ -303,6 +313,7 @@
   "other": "{n}thn"
  },
  "{name} ({count})": "{name} ({count})",
+ "{name} • {robux} Robux": "{name} • {robux} Robux",
  "{name} accessories": "Aksesori {name}",
  "{name} audit log.csv": "log audit {name}.csv",
  "{name} color": "Warna {name}",
@@ -346,6 +357,7 @@
  "{rating} • {n} playing": "{rating} • {n} bermain",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} sudah tidak ada di daftar wilayah. Bergabung ke server mana saja…",
  "{results} (first 2,000 items)": "{results} (2.000 item pertama)",
+ "{results} (some categories couldn’t load)": "{results} (beberapa kategori gagal dimuat)",
  "{robux} Robux at the DevEx rate": "{robux} Robux dengan kurs DevEx",
  "{robux} Robux at your rate ({rate}/1k)": "{robux} Robux dengan kursmu ({rate}/1k)",
  "{role} · Rank {rank}": "{role} · Peringkat {rank}",
@@ -361,6 +373,7 @@
  "{x} × {y} × {z} studs": "{x} × {y} × {z} stud",
  "≈ {usd} at the DevEx rate": "≈ {usd} dengan kurs DevEx",
  "≈ {usd} at your rate ({rate}/1k)": "≈ {usd} dengan kursmu ({rate}/1rb)",
+ "1 Year": "1 Tahun",
  "1,000 Robux": "1.000 Robux",
  "10,000 Robux": "10.000 Robux",
  "10% more": "10% lebih banyak",
@@ -407,6 +420,7 @@
  "A RoUtility chat at the top of your Chat list. Ask it what a limited is worth, paste a trade to see if it’s a win, or ask how to do something and it finds the right feature. Only you can see it.": "Chat RoUtility di bagian atas daftar Chat-mu. Tanyakan berapa nilai sebuah limited, tempel perdagangan untuk melihat apakah untung, atau tanyakan cara melakukan sesuatu dan dia akan menemukan fitur yang tepat. Hanya kamu yang bisa melihatnya.",
  "A RoUtility item above Settings in the gear menu at the top right, straight to this page.": "Item RoUtility di atas Pengaturan di menu roda gigi kanan atas, langsung ke halaman ini.",
  "A row of limiteds worth about the same, above Recommendations on item pages.": "Baris limited dengan nilai yang kurang lebih sama, di atas Rekomendasi di halaman item.",
+ "A row on an experience’s page with how many Robux you’ve spent in it, from the purchases Spending Breakdown has read on My Transactions.": "Baris di halaman pengalaman yang menunjukkan berapa Robux yang sudah kamu belanjakan di sana, dari pembelian yang dibaca Rincian Pengeluaran di Transaksi Saya.",
  "A row on Home with the experiences your friends are in right now, most friends first, with their avatars on each tile. Updates every minute.": "Baris di Beranda dengan pengalaman yang sedang dimainkan temanmu, yang paling banyak teman duluan, dengan avatar mereka di tiap ubin. Diperbarui setiap menit.",
  "A search box above the trade list that finds every trade with the item you type, loading older trades as it goes.": "Kotak pencarian di atas daftar perdagangan yang menemukan setiap perdagangan berisi item yang kamu ketik, sambil memuat perdagangan lama.",
  "A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.": "Kotak pencarian di atas item-mu, berdasarkan nama, ID aset, atau singkatan limited seperti CWHP. Labelnya mengikuti bagian yang sedang kamu buka.",
@@ -415,6 +429,7 @@
  "A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.": "Baris Ukuran di halaman aksesori yang menunjukkan seberapa besar aksesori itu sebenarnya dalam stud, seperti 1,6 × 0,6 × 1,6 stud, supaya kamu bisa melihat yang kebesaran sebelum membeli.",
  "A small button under the Play button that shows where Play takes you, a region or Roblox picks. Click it to change.": "Tombol kecil di bawah tombol Main yang menunjukkan ke mana Main akan membawamu, ke suatu wilayah atau pilihan Roblox. Klik untuk mengubah.",
  "A soft tick for each hop and a little chime when it lands.": "Detak pelan di setiap lompatan dan bunyi lonceng kecil saat mendarat.",
+ "A Spending button next to Buy Robux on My Transactions. It opens your total spent and what you’ve spent on each creator, experience, item type and month, for all time or a date range, with search. RoUtility reads your purchases while it’s open and saves them on this device, so later visits only check for new ones. Roblox only sends about 500 a minute, so a long history takes a few minutes the first time.": "Tombol Pengeluaran di sebelah Beli Robux di Transaksi Saya. Membuka total pengeluaranmu dan berapa yang kamu belanjakan untuk tiap kreator, pengalaman, jenis item, dan bulan, sepanjang waktu atau dalam rentang tanggal, dengan pencarian. RoUtility membaca pembelianmu selama jendela ini terbuka dan menyimpannya di perangkat ini, jadi kunjungan berikutnya hanya memeriksa yang baru. Roblox hanya mengirim sekitar 500 per menit, jadi riwayat yang panjang butuh beberapa menit saat pertama kali.",
  "A switch between Robux and your currency on the Price Chart.": "Ganti Robux dan mata uangmu di Grafik Harga.",
  "A Trade Ads link in the left menu, under Trade.": "Tautan Iklan Perdagangan di menu kiri, di bawah Perdagangan.",
  "A Trade Ads page at roblox.com/trade-ads: see what people are offering and asking for, with values, and send them a trade in one click. Post your own ad from your limiteds after signing in with Roblox.": "Halaman Iklan Perdagangan di roblox.com/trade-ads: lihat apa yang ditawarkan dan dicari orang, dengan nilainya, dan kirim perdagangan dengan sekali klik. Pasang iklanmu sendiri dari limited-mu setelah masuk dengan Roblox.",
@@ -479,8 +494,11 @@
  "All caught up": "Sudah terbaca semua",
  "All Days": "Semua Hari",
  "All Experiences": "Semua Pengalaman",
+ "All Favorites": "Semua Favorit",
  "All Genres": "Semua Genre",
+ "all items": "semua item",
  "All items": "Semua item",
+ "All Items": "Semua Item",
  "All Read": "Semua Dibaca",
  "All shown": "Semua ditampilkan",
  "All Things Roblox": "Semua Hal Roblox",
@@ -490,6 +508,7 @@
  "Also in {names}.": "Juga ada di {names}.",
  "Always first": "Selalu pertama",
  "Amazing": "Luar Biasa",
+ "Amount": "Jumlah",
  "Amount (R$)": "Jumlah (R$)",
  "Amount of Robux": "Jumlah Robux",
  "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "Baris Diperoleh di halaman item untuk barang milikmu, seperti 1 Okt 2026 · 9 hari lalu.",
@@ -654,6 +673,7 @@
   "other": "Memeriksa {n} server di {region}…"
  },
  "Checking {region}…": "Memeriksa {region}…",
+ "Checking for new purchases since your last visit…": "Memeriksa pembelian baru sejak kunjungan terakhirmu…",
  "Checking open servers for {region}…": "Memeriksa server terbuka untuk {region}…",
  "Checking trades · {done} of {total}": "Memeriksa perdagangan · {done} dari {total}",
  "Checking what you already own… {done} of {total}": "Memeriksa yang sudah kamu punya… {done} dari {total}",
@@ -790,6 +810,7 @@
  "Couldn’t load transactions right now. Try again in a minute.": "Tidak bisa memuat transaksi sekarang. Coba lagi dalam semenit.",
  "Couldn’t load what you’re wearing.": "Tidak bisa memuat yang sedang kamu pakai.",
  "Couldn’t load what’s being worn.": "Tidak bisa memuat yang sedang dipakai.",
+ "Couldn’t load who you follow right now.": "Tidak bisa memuat siapa yang kamu ikuti.",
  "Couldn’t load your avatar right now. Try again in a minute.": "Tidak bisa memuat avatarmu sekarang. Coba lagi dalam semenit.",
  "Couldn’t load your badges right now. Try again in a minute.": "Lencanamu tidak bisa dimuat sekarang. Coba lagi dalam semenit.",
  "Couldn’t load your characters right now. Try again in a minute.": "Karaktermu tidak bisa dimuat sekarang. Coba lagi dalam semenit.",
@@ -814,6 +835,14 @@
  "Couldn’t start signing in. Try again in a moment.": "Tidak bisa mulai masuk. Coba lagi sebentar lagi.",
  "Couldn’t Start, Try Again": "Gagal Memulai, Coba Lagi",
  "Couldn’t update Joins to match. Try changing it again.": "Tidak bisa menyesuaikan Gabung. Coba ubah lagi.",
+ "Counted from all {n} of your purchases.": {
+  "other": "Dihitung dari semua {n} pembelianmu."
+ },
+ "Counted from all your purchases.": "Dihitung dari semua pembelianmu.",
+ "Counted from your {n} most recent purchases, back to {date}.": {
+  "other": "Dihitung dari {n} pembelian terbarumu, sampai {date}."
+ },
+ "Counted from your purchases back to {date}. Spending on My Transactions can read older ones.": "Dihitung dari pembelianmu sampai {date}. Pengeluaran di Transaksi Saya bisa membaca yang lebih lama.",
  "Counts": "Jumlah",
  "Create": "Buat",
  "Create in the top bar is called Develop.": "Buat di bilah atas disebut Kembangkan.",
@@ -821,9 +850,11 @@
  "Created {date}": "Dibuat {date}",
  "Created Date": "Tanggal Dibuat",
  "Creations": "Kreasi",
+ "Creator": "Kreator",
  "Creator Hub": "Creator Hub",
  "Creator Store": "Creator Store",
  "Creator’s Avatar Items": "Item Avatar Kreator",
+ "Creators": "Kreator",
  "Crimson": "Merah Tua",
  "Currency": "Mata Uang",
  "Currency, exact Robux, safer buying, transactions": "Mata uang, Robux pasti, beli lebih aman, transaksi",
@@ -927,6 +958,7 @@
  "Easy": "Mudah",
  "Edit": "Ubah",
  "Edit About": "Edit Tentang",
+ "Editing {game}": "Mengedit {game}",
  "Electric Lime": "Electric Lime",
  "Email": "Email",
  "Email, phone, birthday, location, names, previous usernames, social links and the locations of your logged-in devices in Settings.": "Email, nomor HP, tanggal lahir, lokasi, nama, username sebelumnya, tautan sosial, dan lokasi perangkat yang sedang login di Pengaturan.",
@@ -959,6 +991,7 @@
  "Every open server has a friend in it": "Setiap server terbuka ada temanmu di dalamnya",
  "Every outbound trade": "Semua perdagangan keluar",
  "Every purchase": "Setiap pembelian",
+ "Every purchase in this date range is counted.": "Semua pembelian dalam rentang tanggal ini dihitung.",
  "Every update, what changed and who helped make it.": "Setiap pembaruan, apa yang berubah, dan siapa yang membantu.",
  "Everyone": "Semua orang",
  "Everyone joins as {type}, whatever their avatar is set to": "Semua masuk sebagai {type}, apa pun pengaturan avatar mereka",
@@ -1242,6 +1275,7 @@
  "Import": "Impor",
  "Impossible": "Mustahil",
  "Improved": "Ditingkatkan",
+ "In": "Di",
  "in {n} days": {
   "other": "dalam {n} hari"
  },
@@ -1274,6 +1308,7 @@
  "In Studio": "Di Studio",
  "In Studio • {game}": "Di Studio • {game}",
  "in under a minute": "dalam kurang dari semenit",
+ "In-Experience Purchases": "Pembelian Dalam Pengalaman",
  "Inappropriate": "Tidak pantas",
  "Inbound": "Masuk",
  "Includes people who unfriended you, people you removed on Roblox, and deleted accounts.": "Termasuk orang yang membatalkan pertemanan denganmu, orang yang kamu hapus di Roblox, dan akun yang dihapus.",
@@ -1303,6 +1338,8 @@
  "Item Page Values": "Nilai di Halaman Item",
  "Item Search": "Pencarian Item",
  "Item search, wearing panel, 10 accessories": "Pencarian item, panel yang dipakai, 10 aksesori",
+ "Item Type": "Jenis Item",
+ "Item Types": "Jenis Item",
  "Item Values": "Nilai Item",
  "Item: {name}": "Item: {name}",
  "Items": "Item",
@@ -1437,6 +1474,7 @@
  "Mark All as Read": "Tandai Semua Sudah Dibaca",
  "Mark All as Read and Archive All Read on your Messages page, for every page of your inbox at once, plus your unread count next to the title. Archived messages stay in the Archive tab.": "Tandai Semua Sudah Dibaca dan Arsipkan Semua yang Dibaca di halaman Pesan, untuk semua halaman kotak masukmu sekaligus, plus jumlah belum dibaca di sebelah judul. Pesan yang diarsipkan tetap ada di tab Arsip.",
  "Marketplace": "Marketplace",
+ "Marketplace Items": "Item Marketplace",
  "Marketplace Prices": "Harga Marketplace",
  "Marketplace Search": "Pencarian Marketplace",
  "Massive Loss": "Rugi Besar",
@@ -1469,6 +1507,8 @@
  "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "Modern, atau Klasik 2017: bilah header biru forum lama, judul besar yang tipis, dan Source Sans, dalam warna tema Roblox-mu. Juga ada di Sesuaikan di forum.",
  "Money": "Uang",
  "Money Amounts": "Nominal Uang",
+ "Month": "Bulan",
+ "Months": "Bulan",
  "more": "selengkapnya",
  "More": "Lainnya",
  "More chips next to All and Trusted on your friends list: Verified, Roblox Plus, Admin and Online, across all your friends, not just one page.": "Lebih banyak chip di sebelah Semua dan Tepercaya di daftar temanmu: Terverifikasi, Roblox Plus, Admin, dan Online, di semua temanmu, bukan hanya satu halaman.",
@@ -1478,6 +1518,9 @@
  "Most Common First": "Paling Umum Duluan",
  "Most Members": "Anggota Terbanyak",
  "Most Played": "Paling Banyak Dimainkan",
+ "Most Purchases": "Pembelian Terbanyak",
+ "Most Spent": "Pengeluaran Terbanyak",
+ "Most Spent On": "Paling Banyak Dibelanjakan",
  "Most Valuable": "Paling Berharga",
  "Most Won Yesterday": "Paling Banyak Didapat Kemarin",
  "Move": "Pindahkan",
@@ -1554,6 +1597,8 @@
  "No longer owned": "Sudah tidak dimiliki",
  "No One": "Tidak Ada",
  "No one has posted here lately. Try a longer range.": "Belum ada yang memposting di sini akhir-akhir ini. Coba rentang yang lebih panjang.",
+ "No one matches this filter.": "Tidak ada yang cocok dengan filter ini.",
+ "No one matches your search.": "Tidak ada yang cocok dengan pencarianmu.",
  "No open servers in {region}. Joining {other}…": "Tidak ada server terbuka di {region}. Bergabung ke {other}…",
  "No open servers in {region}. Looking for the closest region…": "Tidak ada server terbuka di {region}. Mencari wilayah terdekat…",
  "No open servers in or near {region}. Joining any server…": "Tidak ada server terbuka di atau dekat {region}. Bergabung ke server mana saja…",
@@ -1567,6 +1612,7 @@
  "No posts in this thread.": "Tidak ada postingan di thread ini.",
  "no price": "tanpa harga",
  "No price": "Tanpa harga",
+ "No purchases in this date range.": "Tidak ada pembelian dalam rentang tanggal ini.",
  "No requests match these filters.": "Tidak ada permintaan yang cocok dengan filter ini.",
  "No requests match your search.": "Tidak ada permintaan yang cocok dengan pencarianmu.",
  "No results for “{query}”": "Tidak ada hasil untuk “{query}”",
@@ -1616,6 +1662,7 @@
  "Nothing in {forum} matches. Try other words, or search every forum.": "Tidak ada yang cocok di {forum}. Coba kata lain, atau cari di semua forum.",
  "Nothing in this time range": "Tidak ada apa-apa di rentang waktu ini",
  "Nothing is marked {title} right now.": "Tidak ada yang ditandai {title} saat ini.",
+ "Nothing matches your search.": "Tidak ada yang cocok dengan pencarianmu.",
  "Nothing on this page": "Tidak ada apa-apa di halaman ini",
  "Nothing played in the past 30 days.": "Tidak ada yang dimainkan dalam 30 hari terakhir.",
  "Nothing played in the past 7 days.": "Tidak ada yang dimainkan dalam 7 hari terakhir.",
@@ -1843,6 +1890,7 @@
  "Privacy": "Privasi",
  "Private": "Privat",
  "Private inventory": "Inventaris privat",
+ "Private Servers": "Server Pribadi",
  "Profile": "Profil",
  "Profile Page": "Halaman Profil",
  "Profile Previews": "Pratinjau Profil",
@@ -1900,13 +1948,20 @@
  "Re: {title}": "Re: {title}",
  "Read every line of RoUtility’s code": "Baca setiap baris kode RoUtility",
  "Read More": "Baca Selengkapnya",
+ "Read Older Purchases": "Baca Pembelian Lama",
  "Reading {done} of {total}": "Membaca {done} dari {total}",
+ "Reading your purchases…": "Membaca pembelianmu…",
+ "Reading your purchases… {n} so far, back to {date}.": {
+  "other": "Membaca pembelianmu… {n} sejauh ini, sampai {date}."
+ },
+ "Real Items First": "Item Asli Duluan",
  "Recent": "Terbaru",
  "Recent average price of the limiteds you’re wearing": "Harga rata-rata terbaru dari limited yang kamu pakai",
  "recent items": "item terbaru",
  "Recent Servers": "Server Terbaru",
  "Recently Updated": "Baru Diperbarui",
  "Recommended": "Rekomendasi",
+ "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora duluan",
  "Refill Robux": "Isi Ulang Robux",
  "Refresh": "Muat Ulang",
  "Refresh the page to try again.": "Muat ulang halaman untuk mencoba lagi.",
@@ -1969,8 +2024,12 @@
  "Right-click a profile, item, model, bundle, experience, community or badge (or an empty spot on its page) for Copy User ID, Copy Asset ID and so on, with a quick confirmation.": "Klik kanan profil, item, model, bundel, pengalaman, komunitas, atau lencana (atau area kosong di halamannya) untuk Salin User ID, Salin ID Aset, dan sebagainya, dengan konfirmasi singkat.",
  "Rising": "Naik",
  "Roblox admin": "Admin Roblox",
+ "Roblox asked RoUtility to slow down, carrying on in a moment.": "Roblox meminta RoUtility memperlambat, lanjut sebentar lagi.",
  "Roblox asked RoUtility to slow down, carrying on in a moment. {found} so far in the {total} most recent (back to {date}).": "Roblox meminta RoUtility memperlambat, lanjut sebentar lagi. {found} sejauh ini di {total} terbaru (sampai {date}).",
  "Roblox asked RoUtility to slow down, carrying on in a moment. {found} so far in the {total} most recent.": "Roblox meminta RoUtility memperlambat, lanjut sebentar lagi. {found} sejauh ini di {total} terbaru.",
+ "Roblox asked RoUtility to slow down, carrying on in a moment. {n} purchases so far, back to {date}.": {
+  "other": "Roblox meminta RoUtility memperlambat, lanjut sebentar lagi. {n} pembelian sejauh ini, sampai {date}."
+ },
  "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox meminta kami melambat · {done} dari {total} dicek, lanjut dalam {s} dtk",
  "Roblox Badges": "Lencana Roblox",
  "Roblox couldn’t send it. Check your balance before you try again.": "Roblox tidak bisa mengirimnya. Periksa saldomu sebelum mencoba lagi.",
@@ -1987,6 +2046,7 @@
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox tidak mengirim perdaganganmu. Coba lagi sebentar lagi.",
  "Roblox doesn’t share this file, so it can’t be checked.": "Roblox tidak membagikan file ini, jadi tidak bisa diperiksa.",
  "Roblox doesn’t share this item’s file.": "Roblox tidak membagikan file item ini.",
+ "Roblox Fees": "Biaya Roblox",
  "Roblox hides friend lists for some accounts, like accounts in the UK, so this list doesn’t show on Roblox. RoUtility loads it from Roblox’s official API.": "Roblox menyembunyikan daftar teman untuk beberapa akun, seperti akun di Inggris, jadi daftar ini tidak tampil di Roblox. RoUtility memuatnya dari API resmi Roblox.",
  "Roblox hides this friend, usually because their account is in the UK. Shown via RoUtility.": "Roblox menyembunyikan teman ini, biasanya karena akunnya di Inggris. Ditampilkan lewat RoUtility.",
  "Roblox hides this friends list.": "Roblox menyembunyikan daftar teman ini.",
@@ -2000,6 +2060,7 @@
  "Roblox leaves equipped gear out of Currently Wearing when the player’s inventory is public. RoUtility adds it back. The classic layout already shows it.": "Roblox tidak menampilkan gear yang dipakai di Sedang Dipakai saat inventaris pemain publik. RoUtility menambahkannya kembali. Tata letak klasik sudah menampilkannya.",
  "Roblox limits who can play this place.": "Roblox membatasi siapa yang bisa memainkan tempat ini.",
  "Roblox limits who can upload to this place.": "Roblox membatasi siapa yang bisa mengunggah ke tempat ini.",
+ "Roblox only sends about 500 purchases a minute, so a long history takes a few minutes. Close this to pause, and it carries on from there next time.": "Roblox hanya mengirim sekitar 500 pembelian per menit, jadi riwayat yang panjang butuh beberapa menit. Tutup ini untuk menjeda, dan lain kali akan dilanjutkan dari situ.",
  "Roblox picks": "Roblox yang pilih",
  "Roblox Plus": "Roblox Plus",
  "Roblox Plus subscriber": "Pelanggan Roblox Plus",
@@ -2016,6 +2077,10 @@
  },
  "Roblox stopped answering. {found} in the {total} most recent (back to {date}).": "Roblox berhenti merespons. {found} di {total} terbaru (sampai {date}).",
  "Roblox stopped answering. {found} in the {total} most recent.": "Roblox berhenti merespons. {found} di {total} terbaru.",
+ "Roblox stopped answering. Counted from your {n} most recent purchases, back to {date}.": {
+  "other": "Roblox berhenti merespons. Dihitung dari {n} pembelian terbarumu, sampai {date}."
+ },
+ "Roblox stopped answering. Try again in a minute.": "Roblox berhenti merespons. Coba lagi dalam semenit.",
  "Roblox Studio is open, so Roblox shows you as “in Studio” and we can’t see which server you joined. Close Studio to see it next time.": "Roblox Studio terbuka, jadi Roblox menampilkanmu sebagai “di Studio” dan kami tidak bisa melihat server mana yang kamu masuki. Tutup Studio untuk melihatnya lain kali.",
  "Roblox terminated this account. Shown via RoUtility.": "Roblox memblokir permanen akun ini. Ditampilkan lewat RoUtility.",
  "Roblox username or user ID": "Username atau user ID Roblox",
@@ -2097,7 +2162,6 @@
  "Saved.": "Tersimpan.",
  "Saved. Roblox is drawing your new thumbnail.": "Tersimpan. Roblox sedang menggambar thumbnail barumu.",
  "Saved. Roblox pages you already have open pick this up when they reload.": "Tersimpan. Halaman Roblox yang sudah terbuka akan menerapkannya saat dimuat ulang.",
- "Saved. The editor reloads when you close this so it keeps your changes.": "Tersimpan. Editor akan dimuat ulang saat kamu menutup ini agar perubahanmu tetap ada.",
  "Saved. Your new thumbnail can take a minute to show up.": "Tersimpan. Thumbnail barumu bisa butuh semenit untuk muncul.",
  "Saves your current colors and background here": "Menyimpan warna dan latar belakangmu saat ini di sini",
  "Saving": "Menyimpan",
@@ -2123,13 +2187,16 @@
  "Search {type}": "Cari {type}",
  "Search a game’s badges and sort them by rarity, newest or most won yesterday, or show only the ones you don’t own yet. Lists every badge, not just the first few.": "Cari lencana game dan urutkan berdasarkan kelangkaan, terbaru, atau paling banyak didapat kemarin, atau tampilkan hanya yang belum kamu punya. Menampilkan semua lencana, bukan hanya beberapa yang pertama.",
  "Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.": "Cari di seluruh kategori inventaris berdasarkan nama, ID aset, atau singkatan limited seperti RSTF, bukan hanya halaman saat ini.",
+ "Search all favorites": "Cari semua favorit",
  "Search all limiteds": "Cari semua limited",
+ "Search all your items": "Cari semua item-mu",
  "Search badges": "Cari lencana",
  "Search Badges": "Cari Lencana",
  "Search Box": "Kotak Pencarian",
  "Search by item name": "Cari berdasarkan nama item",
  "Search Communities": "Cari Komunitas",
  "Search every forum": "Cari di semua forum",
+ "Search Following": "Cari yang Diikuti",
  "Search friend requests": "Cari permintaan pertemanan",
  "Search Friends": "Cari Teman",
  "Search head accessories": "Cari aksesori kepala",
@@ -2161,6 +2228,7 @@
  "Select badges to delete them": "Pilih lencana untuk dihapus",
  "Select communities to leave them": "Pilih komunitas untuk keluar darinya",
  "Select friends to unfriend them": "Pilih teman untuk membatalkan pertemanan",
+ "Select people to unfollow them": "Pilih orang untuk berhenti mengikuti mereka",
  "Selected Tab": "Tab yang Dipilih",
  "Send": "Kirim",
  "Send Offer Summary": "Ringkasan Saat Kirim Tawaran",
@@ -2214,6 +2282,7 @@
  "Show Joins": "Tampilkan Gabung",
  "Show Less": "Tampilkan Lebih Sedikit",
  "Show more": "Tampilkan lebih banyak",
+ "Show More": "Tampilkan Lebih Banyak",
  "Show Online Status": "Tampilkan Status Online",
  "Show Outfit Rotator": "Tampilkan Rotasi Outfit",
  "Show preview": "Tampilkan pratinjau",
@@ -2270,6 +2339,8 @@
  "Spam": "Spam",
  "Spam / advertising": "Spam / iklan",
  "Special": "Spesial",
+ "Spending": "Pengeluaran",
+ "Spending Breakdown": "Rincian Pengeluaran",
  "Sponsored": "Bersponsor",
  "Stable": "Stabil",
  "Staff": "Staf",
@@ -2439,6 +2510,7 @@
  "Total Posts:": "Total Postingan:",
  "Total RAP": "Total RAP",
  "Total Robux of every match found so far. Pending Robux is included.": "Total Robux dari semua yang cocok sejauh ini. Robux yang tertunda ikut dihitung.",
+ "Total Spent": "Total Pengeluaran",
  "Total Value:": "Total Nilai:",
  "Total visits across {n} public experiences": {
   "other": "Total kunjungan di {n} pengalaman publik"
@@ -2521,6 +2593,15 @@
  "Under review by Roblox": "Sedang ditinjau oleh Roblox",
  "Under the Menu": "Di Bawah Menu",
  "Undo": "Urungkan",
+ "Unfollow {n} People?": {
+  "other": "Berhenti mengikuti {n} orang?"
+ },
+ "Unfollow Selected": "Berhenti Mengikuti yang Dipilih",
+ "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "Berhenti mengikuti {n} · {failed} gagal. Mereka masih dipilih, coba lagi.",
+ "Unfollowed {n} people.": {
+  "other": "Berhenti mengikuti {n} orang."
+ },
+ "Unfollowing {done} of {total}": "Berhenti mengikuti {done} dari {total}",
  "Unfriend": "Batalkan Pertemanan",
  "Unfriend {n}": "Batalkan pertemanan {n}",
  "Unfriend {n} Friends?": {
@@ -2536,7 +2617,9 @@
  "Unfriending {done} of {total}": "Membatalkan pertemanan {done} dari {total}",
  "Universe ID": "Universe ID",
  "Universe ID and Place ID with one-click copy on every experience overview, plus a Servers button.": "Universe ID dan Place ID dengan salin sekali klik di setiap ringkasan pengalaman, plus tombol Server.",
+ "Unknown Creator": "Kreator Tidak Dikenal",
  "Unknown experience": "Pengalaman tidak dikenal",
+ "Unknown Experience": "Pengalaman Tidak Dikenal",
  "Unknown region": "Wilayah tidak diketahui",
  "Unnamed item": "Item tanpa nama",
  "Unpriced": "Tanpa harga",
@@ -2637,6 +2720,7 @@
  "What the item is worth in your currency, next to its Robux price. Hover it for the RoUtility Value when the item has one.": "Nilai item dalam mata uangmu, di samping harga Robux-nya. Arahkan kursor untuk melihat Nilai RoUtility jika item punya.",
  "what you want": "yang kamu mau",
  "What You’re Wearing": "Yang Kamu Pakai",
+ "What you’ve spent on each creator, experience, item type and month": "Berapa yang kamu belanjakan untuk tiap kreator, pengalaman, jenis item, dan bulan",
  "What your avatar has on, under the preview, with the price and R$ value of worn limiteds. Click an item to take it off.": "Yang dipakai avatarmu, di bawah pratinjau, dengan harga dan nilai R$ dari limited yang dipakai. Klik item untuk melepasnya.",
  "What your limiteds are worth": "Nilai limited milikmu",
  "What’s New": "Yang Baru",
@@ -2653,6 +2737,7 @@
  "When you press Make Offer, the confirm window shows what each side is worth (value and RAP) and the difference. If you’d overpay past your warning level, you tick “I’ve reviewed this trade” before Send works.": "Saat kamu menekan Ajukan Tawaran, jendela konfirmasi menampilkan nilai setiap sisi (nilai dan RAP) dan selisihnya. Kalau kamu akan bayar lebih melewati batas peringatanmu, centang “Aku sudah meninjau perdagangan ini” sebelum Kirim bisa ditekan.",
  "When you press Play, join a server in this region and see its details. Closest to me estimates your region from your time zone (it never leaves your browser). Off lets Roblox pick inside the app, so there are no server details.": "Saat kamu menekan Main, bergabung ke server di wilayah ini dan lihat detailnya. Terdekat denganku memperkirakan wilayahmu dari zona waktumu (tidak pernah keluar dari browsermu). Nonaktif membiarkan Roblox memilih di dalam aplikasi, jadi tidak ada detail server.",
  "When you press Play, join a server none of your online friends are in. Also in the menu under the Play button.": "Saat kamu menekan Main, bergabung ke server yang tidak ada temanmu yang sedang online. Juga ada di menu di bawah tombol Main.",
+ "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "Saat kamu mencari di Marketplace, item buatan Roblox sendiri yang cocok muncul paling atas, termasuk yang sudah tidak dijual, bukannya tertimbun di bawah tiruan. Singkatan limited seperti RSTF atau Emp juga menemukan item aslinya.",
  "When your 2-Step Verification backup codes were made, next to how many you have left.": "Kapan kode cadangan Verifikasi 2 Langkah dibuat, di samping jumlah yang tersisa.",
  "Where each server is, a world map of every server in the game, and lists of servers per region. Sends the game and the server ids on screen to RoUtility to look them up, and the server you join when you press Play so the launch window can show its region. No account details are sent.": "Lokasi setiap server, peta dunia semua server di game, dan daftar server per wilayah. Mengirim ID game dan server yang ada di layar ke RoUtility untuk dicari, serta server yang kamu masuki saat menekan Main agar jendela peluncuran bisa menampilkan wilayahnya. Tidak ada detail akun yang dikirim.",
  "Whether its value is Raising, Stable or Lowering.": "Apakah nilainya Naik, Stabil, atau Turun.",
@@ -2688,6 +2773,7 @@
  "You can post a new ad every 15 minutes, with up to 5 up at once.": "Kamu bisa memasang iklan baru setiap 15 menit, dengan maksimal 5 yang aktif sekaligus.",
  "You can send up to {n} Robux right now": "Kamu bisa mengirim hingga {n} Robux sekarang",
  "You can’t report your own post.": "Kamu tidak bisa melaporkan postinganmu sendiri.",
+ "You don’t follow anyone yet.": "Kamu belum mengikuti siapa pun.",
  "You don’t have any badges yet.": "Kamu belum punya lencana.",
  "You don’t have any characters yet. Use Create New Character to save your current look, then pick it here.": "Kamu belum punya karakter. Pakai Buat Karakter Baru untuk menyimpan tampilanmu sekarang, lalu pilih di sini.",
  "You don’t have any limiteds to offer.": "Kamu tidak punya limited untuk ditawarkan.",
@@ -2742,6 +2828,7 @@
  "You’re posting too fast. Try again in {n} seconds.": {
   "other": "Kamu memposting terlalu cepat. Coba lagi dalam {n} detik."
  },
+ "You’ve Spent": "Pengeluaranmu",
  "Your": "Kamu",
  "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "Akunmu belum bisa mengirim Robux. Perlu verifikasi usia atau izin orang tua dulu, yang bisa kamu lakukan di aplikasi Roblox.",
  "Your ad is up on Trade Ads and routility.io.": "Iklanmu sudah tayang di Iklan Perdagangan dan routility.io.",
@@ -2790,39 +2877,5 @@
  "Your Robux Rate": "Kurs Robux Kamu",
  "Your Settings": "Pengaturanmu",
  "Your Slots": "Slot-mu",
- "Your Status": "Statusmu",
- "Real Items First": "Item Asli Duluan",
- "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora duluan",
- "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "Saat kamu mencari di Marketplace, item buatan Roblox sendiri yang cocok muncul paling atas, termasuk yang sudah tidak dijual, bukannya tertimbun di bawah tiruan. Singkatan limited seperti RSTF atau Emp juga menemukan item aslinya.",
- "{count} Owners": {
-  "other": "{count} Pemilik"
- },
- "{n} following": "{n} diikuti",
- "{n} sold": {
-  "other": "{n} terjual"
- },
- "{results} (some categories couldn’t load)": "{results} (beberapa kategori gagal dimuat)",
- "1 Year": "1 Tahun",
- "All Favorites": "Semua Favorit",
- "all items": "semua item",
- "All Items": "Semua Item",
- "Couldn’t load who you follow right now.": "Tidak bisa memuat siapa yang kamu ikuti.",
- "Editing {game}": "Mengedit {game}",
- "In": "Di",
- "No one matches this filter.": "Tidak ada yang cocok dengan filter ini.",
- "No one matches your search.": "Tidak ada yang cocok dengan pencarianmu.",
- "Search all favorites": "Cari semua favorit",
- "Search all your items": "Cari semua item-mu",
- "Search Following": "Cari yang Diikuti",
- "Select people to unfollow them": "Pilih orang untuk berhenti mengikuti mereka",
- "Unfollow {n} People?": {
-  "other": "Berhenti mengikuti {n} orang?"
- },
- "Unfollow Selected": "Berhenti Mengikuti yang Dipilih",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "Berhenti mengikuti {n} · {failed} gagal. Mereka masih dipilih, coba lagi.",
- "Unfollowed {n} people.": {
-  "other": "Berhenti mengikuti {n} orang."
- },
- "Unfollowing {done} of {total}": "Berhenti mengikuti {done} dari {total}",
- "You don’t follow anyone yet.": "Kamu belum mengikuti siapa pun."
+ "Your Status": "Statusmu"
 }

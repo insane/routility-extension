@@ -14,6 +14,8 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 **New**
 
 ```diff
++ Spending: a button next to Buy Robux on My Transactions opens your total spent and what you’ve spent on each creator, experience, item type and month, for all time or a date range, with search. Your purchases are saved on this device, so later visits only check for new ones.
++ You’ve Spent: experience pages show how many Robux you’ve spent in that experience, next to the other stats.
 + RoUtility Values everywhere: the item page, Marketplace, inventories, Make Offer, the Trade Calculator, Trade Ads, search, the avatar editor and item hover cards now show Value next to RAP and price. One switch turns them all off: Settings > Robux & Transactions > RoUtility Values.
 + One icon for each number everywhere: the RoUtility logo means Value, the green dollar icon means price, and the Robux icon means RAP. Marketplace tiles, Similar Price and the Collectibles window show Value on its own line.
 + Trade Proof shows RoUtility Value too: on every item, in each side's totals and in the difference, with a Value switch next to RAP and Prices.
@@ -56,6 +58,8 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 **Fixed**
 
 ```diff
+- Unfriending someone from a classic profile no longer leaves Roblox’s menu stuck at the top left of the page.
+- The three dots on Home game tiles sit in the middle of their button.
 - The Trade Calculator sits centered with room on both sides instead of running into the menu and the window edge on wide screens, and its loading skeleton matches.
 - Joining a friend from their profile no longer says you're in the game before Roblox even opens, and the join window now shows their server's players, ping and performance instead of dashes.
 - Robux you add to an offer now count in the overpay warning and the Send summary.

@@ -36,6 +36,9 @@
  },
  "{count} of {max}": "{count}/{max}",
  "{count} of {max} ads up": "{count}/{max} quảng cáo đang đăng",
+ "{count} Owners": {
+  "other": "{count} chủ sở hữu"
+ },
  "{count} playing": {
   "other": "{count} đang chơi"
  },
@@ -114,6 +117,7 @@
   "other": "{n} người theo dõi"
  },
  "{n} Followers": "{n} Người theo dõi",
+ "{n} following": "Đang theo dõi {n}",
  "{n} Following": "{n} Đang theo dõi",
  "{n} found": {
   "other": "Tìm thấy {n}"
@@ -211,6 +215,9 @@
  "{n} purchases · {spent} Robux spent": {
   "other": "{n} giao dịch mua · đã chi {spent} Robux"
  },
+ "{n} purchases in this experience": {
+  "other": "{n} giao dịch mua trong trải nghiệm này"
+ },
  "{n} regions": {
   "other": "{n} khu vực"
  },
@@ -246,6 +253,9 @@
  },
  "{n} servers • {regions}": {
   "other": "{n} máy chủ • {regions}"
+ },
+ "{n} sold": {
+  "other": "Đã bán {n}"
  },
  "{n} to buy": {
   "other": "{n} cần mua"
@@ -303,6 +313,7 @@
   "other": "{n} năm"
  },
  "{name} ({count})": "{name} ({count})",
+ "{name} • {robux} Robux": "{name} • {robux} Robux",
  "{name} accessories": "Phụ kiện {name}",
  "{name} audit log.csv": "nhật ký kiểm tra {name}.csv",
  "{name} color": "Màu {name}",
@@ -346,6 +357,7 @@
  "{rating} • {n} playing": "{rating} • {n} đang chơi",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} không còn trong danh sách khu vực. Đang tham gia máy chủ bất kỳ…",
  "{results} (first 2,000 items)": "{results} (2.000 vật phẩm đầu tiên)",
+ "{results} (some categories couldn’t load)": "{results} (một số danh mục không tải được)",
  "{robux} Robux at the DevEx rate": "{robux} Robux theo tỷ giá DevEx",
  "{robux} Robux at your rate ({rate}/1k)": "{robux} Robux theo tỷ giá của bạn ({rate}/1k)",
  "{role} · Rank {rank}": "{role} · Hạng {rank}",
@@ -361,6 +373,7 @@
  "{x} × {y} × {z} studs": "{x} × {y} × {z} stud",
  "≈ {usd} at the DevEx rate": "≈ {usd} theo tỷ giá DevEx",
  "≈ {usd} at your rate ({rate}/1k)": "≈ {usd} theo tỷ giá của bạn ({rate}/1k)",
+ "1 Year": "1 năm",
  "1,000 Robux": "1.000 Robux",
  "10,000 Robux": "10.000 Robux",
  "10% more": "Thêm 10%",
@@ -407,6 +420,7 @@
  "A RoUtility chat at the top of your Chat list. Ask it what a limited is worth, paste a trade to see if it’s a win, or ask how to do something and it finds the right feature. Only you can see it.": "Một cuộc trò chuyện RoUtility ở đầu danh sách Trò chuyện. Hỏi giá trị một limited, dán một giao dịch để xem có lời không, hoặc hỏi cách làm gì đó và nó sẽ tìm đúng tính năng. Chỉ bạn mới thấy được.",
  "A RoUtility item above Settings in the gear menu at the top right, straight to this page.": "Một mục RoUtility phía trên Cài đặt trong menu bánh răng ở góc trên bên phải, dẫn thẳng đến trang này.",
  "A row of limiteds worth about the same, above Recommendations on item pages.": "Một hàng limited có giá trị tương đương, phía trên Đề xuất trên trang vật phẩm.",
+ "A row on an experience’s page with how many Robux you’ve spent in it, from the purchases Spending Breakdown has read on My Transactions.": "Một dòng trên trang trải nghiệm cho biết bạn đã chi bao nhiêu Robux trong đó, dựa trên các giao dịch mua mà Phân tích chi tiêu đã đọc trong Giao dịch của tôi.",
  "A row on Home with the experiences your friends are in right now, most friends first, with their avatars on each tile. Updates every minute.": "Một hàng trên Trang chủ với các trải nghiệm bạn bè bạn đang chơi, nhiều bạn bè nhất trước, kèm hình đại diện của họ trên mỗi ô. Cập nhật mỗi phút.",
  "A search box above the trade list that finds every trade with the item you type, loading older trades as it goes.": "Ô tìm kiếm phía trên danh sách giao dịch, tìm mọi giao dịch có vật phẩm bạn nhập, vừa tìm vừa tải các giao dịch cũ hơn.",
  "A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.": "Ô tìm kiếm phía trên vật phẩm của bạn, theo tên, ID tài sản hoặc tên viết tắt của đồ limited như CWHP. Nhãn của nó thay đổi theo mục bạn đang xem.",
@@ -415,6 +429,7 @@
  "A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.": "Dòng Kích thước trên trang phụ kiện cho biết phụ kiện thật sự lớn bao nhiêu stud, như 1,6 × 0,6 × 1,6 stud, để bạn nhận ra món quá khổ trước khi mua.",
  "A small button under the Play button that shows where Play takes you, a region or Roblox picks. Click it to change.": "Một nút nhỏ bên dưới nút Chơi cho biết Chơi sẽ đưa bạn đến đâu, một khu vực hay để Roblox chọn. Bấm vào để đổi.",
  "A soft tick for each hop and a little chime when it lands.": "Tiếng tích nhẹ mỗi lần chuyển và một tiếng chuông nhỏ khi vào được.",
+ "A Spending button next to Buy Robux on My Transactions. It opens your total spent and what you’ve spent on each creator, experience, item type and month, for all time or a date range, with search. RoUtility reads your purchases while it’s open and saves them on this device, so later visits only check for new ones. Roblox only sends about 500 a minute, so a long history takes a few minutes the first time.": "Nút Chi tiêu cạnh Mua Robux trong Giao dịch của tôi. Nút này mở ra tổng số bạn đã chi và số bạn đã chi cho từng người tạo, trải nghiệm, loại vật phẩm và tháng, cho mọi thời điểm hoặc một khoảng ngày, có tìm kiếm. RoUtility đọc các giao dịch mua của bạn khi cửa sổ này mở và lưu chúng trên thiết bị này, nên những lần sau chỉ kiểm tra giao dịch mới. Roblox chỉ gửi khoảng 500 mục mỗi phút, nên lịch sử dài sẽ mất vài phút ở lần đầu.",
  "A switch between Robux and your currency on the Price Chart.": "Chuyển giữa Robux và tiền tệ của bạn trên Biểu đồ giá.",
  "A Trade Ads link in the left menu, under Trade.": "Liên kết Quảng cáo giao dịch ở menu bên trái, bên dưới Giao dịch.",
  "A Trade Ads page at roblox.com/trade-ads: see what people are offering and asking for, with values, and send them a trade in one click. Post your own ad from your limiteds after signing in with Roblox.": "Trang Quảng cáo giao dịch tại roblox.com/trade-ads: xem mọi người đang đưa ra và tìm gì, kèm giá trị, và gửi giao dịch chỉ với một cú bấm. Đăng quảng cáo của riêng bạn từ limited của bạn sau khi đăng nhập bằng Roblox.",
@@ -479,8 +494,11 @@
  "All caught up": "Đã xem hết",
  "All Days": "Mọi ngày",
  "All Experiences": "Tất Cả Trải Nghiệm",
+ "All Favorites": "Tất cả mục yêu thích",
  "All Genres": "Tất cả thể loại",
+ "all items": "tất cả vật phẩm",
  "All items": "Tất cả vật phẩm",
+ "All Items": "Tất cả vật phẩm",
  "All Read": "Đã đọc hết",
  "All shown": "Đã hiện tất cả",
  "All Things Roblox": "Mọi thứ về Roblox",
@@ -490,6 +508,7 @@
  "Also in {names}.": "Cũng có trong {names}.",
  "Always first": "Luôn đứng đầu",
  "Amazing": "Tuyệt vời",
+ "Amount": "Số tiền",
  "Amount (R$)": "Số tiền (R$)",
  "Amount of Robux": "Số Robux",
  "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "Dòng Ngày có trên trang vật phẩm cho những món bạn sở hữu, như 1 thg 10, 2026 · 9 ngày trước.",
@@ -654,6 +673,7 @@
   "other": "Đang kiểm tra {n} máy chủ ở {region}…"
  },
  "Checking {region}…": "Đang kiểm tra {region}…",
+ "Checking for new purchases since your last visit…": "Đang kiểm tra giao dịch mua mới kể từ lần truy cập trước…",
  "Checking open servers for {region}…": "Đang kiểm tra máy chủ còn chỗ ở {region}…",
  "Checking trades · {done} of {total}": "Đang kiểm tra giao dịch · {done}/{total}",
  "Checking what you already own… {done} of {total}": "Đang kiểm tra những gì bạn đã có… {done}/{total}",
@@ -790,6 +810,7 @@
  "Couldn’t load transactions right now. Try again in a minute.": "Hiện không tải được giao dịch. Hãy thử lại sau một phút.",
  "Couldn’t load what you’re wearing.": "Không tải được đồ bạn đang mặc.",
  "Couldn’t load what’s being worn.": "Không tải được đồ đang mặc.",
+ "Couldn’t load who you follow right now.": "Không tải được danh sách bạn theo dõi.",
  "Couldn’t load your avatar right now. Try again in a minute.": "Hiện không tải được hình đại diện của bạn. Hãy thử lại sau một phút.",
  "Couldn’t load your badges right now. Try again in a minute.": "Không tải được huy hiệu của bạn lúc này. Thử lại sau một phút.",
  "Couldn’t load your characters right now. Try again in a minute.": "Không tải được nhân vật của bạn lúc này. Thử lại sau một phút.",
@@ -814,6 +835,14 @@
  "Couldn’t start signing in. Try again in a moment.": "Không bắt đầu đăng nhập được. Hãy thử lại sau giây lát.",
  "Couldn’t Start, Try Again": "Không thể bắt đầu, thử lại",
  "Couldn’t update Joins to match. Try changing it again.": "Không chỉnh được Tham Gia cho khớp. Thử đổi lại.",
+ "Counted from all {n} of your purchases.": {
+  "other": "Tính từ tất cả {n} giao dịch mua của bạn."
+ },
+ "Counted from all your purchases.": "Tính từ tất cả giao dịch mua của bạn.",
+ "Counted from your {n} most recent purchases, back to {date}.": {
+  "other": "Tính từ {n} giao dịch mua gần nhất của bạn, đến {date}."
+ },
+ "Counted from your purchases back to {date}. Spending on My Transactions can read older ones.": "Tính từ các giao dịch mua của bạn đến {date}. Chi tiêu trong Giao dịch của tôi có thể đọc các giao dịch cũ hơn.",
  "Counts": "Số lượng",
  "Create": "Tạo",
  "Create in the top bar is called Develop.": "Tạo trên thanh trên cùng được gọi là Phát triển.",
@@ -821,9 +850,11 @@
  "Created {date}": "Tạo vào {date}",
  "Created Date": "Ngày tạo",
  "Creations": "Sáng tạo",
+ "Creator": "Người tạo",
  "Creator Hub": "Creator Hub",
  "Creator Store": "Creator Store",
  "Creator’s Avatar Items": "Vật phẩm hình đại diện của người tạo",
+ "Creators": "Người tạo",
  "Crimson": "Đỏ thẫm",
  "Currency": "Tiền tệ",
  "Currency, exact Robux, safer buying, transactions": "Tiền tệ, Robux chính xác, mua an toàn hơn, giao dịch",
@@ -927,6 +958,7 @@
  "Easy": "Dễ",
  "Edit": "Sửa",
  "Edit About": "Sửa giới thiệu",
+ "Editing {game}": "Đang chỉnh sửa {game}",
  "Electric Lime": "Electric Lime",
  "Email": "Email",
  "Email, phone, birthday, location, names, previous usernames, social links and the locations of your logged-in devices in Settings.": "Email, số điện thoại, ngày sinh, vị trí, tên, tên người dùng trước đây, liên kết mạng xã hội và vị trí các thiết bị đã đăng nhập trong Cài đặt.",
@@ -959,6 +991,7 @@
  "Every open server has a friend in it": "Mọi máy chủ còn chỗ đều có bạn bè của bạn",
  "Every outbound trade": "Mọi giao dịch đi",
  "Every purchase": "Mọi giao dịch mua",
+ "Every purchase in this date range is counted.": "Mọi giao dịch mua trong khoảng ngày này đều được tính.",
  "Every update, what changed and who helped make it.": "Mọi bản cập nhật, những gì đã thay đổi và ai đã giúp.",
  "Everyone": "Mọi người",
  "Everyone joins as {type}, whatever their avatar is set to": "Mọi người vào game dưới dạng {type}, bất kể avatar được đặt thế nào",
@@ -1242,6 +1275,7 @@
  "Import": "Nhập",
  "Impossible": "Bất khả thi",
  "Improved": "Cải thiện",
+ "In": "Trong",
  "in {n} days": {
   "other": "sau {n} ngày"
  },
@@ -1274,6 +1308,7 @@
  "In Studio": "Trong Studio",
  "In Studio • {game}": "Trong Studio • {game}",
  "in under a minute": "trong chưa đầy một phút",
+ "In-Experience Purchases": "Mua trong trải nghiệm",
  "Inappropriate": "Không phù hợp",
  "Inbound": "Đến",
  "Includes people who unfriended you, people you removed on Roblox, and deleted accounts.": "Gồm những người đã hủy kết bạn với bạn, những người bạn đã xóa trên Roblox và tài khoản đã bị xóa.",
@@ -1303,6 +1338,8 @@
  "Item Page Values": "Giá trị trên trang vật phẩm",
  "Item Search": "Tìm kiếm vật phẩm",
  "Item search, wearing panel, 10 accessories": "Tìm vật phẩm, bảng đang mặc, 10 phụ kiện",
+ "Item Type": "Loại vật phẩm",
+ "Item Types": "Loại vật phẩm",
  "Item Values": "Giá trị vật phẩm",
  "Item: {name}": "Vật phẩm: {name}",
  "Items": "Vật phẩm",
@@ -1437,6 +1474,7 @@
  "Mark All as Read": "Đánh dấu tất cả là đã đọc",
  "Mark All as Read and Archive All Read on your Messages page, for every page of your inbox at once, plus your unread count next to the title. Archived messages stay in the Archive tab.": "Đánh dấu tất cả là đã đọc và Lưu trữ tất cả đã đọc trên trang Tin nhắn, cho mọi trang hộp thư cùng lúc, kèm số tin chưa đọc cạnh tiêu đề. Tin nhắn đã lưu trữ vẫn nằm trong tab Lưu trữ.",
  "Marketplace": "Chợ",
+ "Marketplace Items": "Vật phẩm trong Chợ",
  "Marketplace Prices": "Giá trong Chợ",
  "Marketplace Search": "Tìm kiếm trong Chợ",
  "Massive Loss": "Lỗ nặng",
@@ -1469,6 +1507,8 @@
  "Modern, or Classic 2017: the old forum’s blue header bars, big light titles and Source Sans, in your Roblox theme’s colors. Also under Customize on the forum.": "Hiện đại, hoặc Cổ điển 2017: thanh tiêu đề xanh của diễn đàn cũ, tiêu đề lớn nét mảnh và phông Source Sans, theo màu giao diện Roblox của bạn. Cũng có trong Tùy chỉnh trên diễn đàn.",
  "Money": "Tiền",
  "Money Amounts": "Số tiền",
+ "Month": "Tháng",
+ "Months": "Tháng",
  "more": "xem thêm",
  "More": "Thêm",
  "More chips next to All and Trusted on your friends list: Verified, Roblox Plus, Admin and Online, across all your friends, not just one page.": "Thêm chip cạnh Tất cả và Tin cậy trên danh sách bạn bè: Đã xác minh, Roblox Plus, Admin và Trực tuyến, trên toàn bộ bạn bè chứ không chỉ một trang.",
@@ -1478,6 +1518,9 @@
  "Most Common First": "Phổ biến nhất trước",
  "Most Members": "Nhiều thành viên nhất",
  "Most Played": "Chơi nhiều nhất",
+ "Most Purchases": "Mua nhiều nhất",
+ "Most Spent": "Chi nhiều nhất",
+ "Most Spent On": "Chi nhiều nhất cho",
  "Most Valuable": "Giá trị nhất",
  "Most Won Yesterday": "Nhận nhiều nhất hôm qua",
  "Move": "Di chuyển",
@@ -1554,6 +1597,8 @@
  "No longer owned": "Không còn sở hữu",
  "No One": "Không ai",
  "No one has posted here lately. Try a longer range.": "Gần đây chưa ai đăng ở đây. Hãy thử khoảng thời gian dài hơn.",
+ "No one matches this filter.": "Không ai khớp với bộ lọc này.",
+ "No one matches your search.": "Không ai khớp với tìm kiếm của bạn.",
  "No open servers in {region}. Joining {other}…": "Không có máy chủ còn chỗ ở {region}. Đang vào {other}…",
  "No open servers in {region}. Looking for the closest region…": "Không có máy chủ còn chỗ ở {region}. Đang tìm khu vực gần nhất…",
  "No open servers in or near {region}. Joining any server…": "Không có máy chủ còn chỗ ở trong hoặc gần {region}. Đang vào máy chủ bất kỳ…",
@@ -1567,6 +1612,7 @@
  "No posts in this thread.": "Không có bài viết nào trong chủ đề này.",
  "no price": "chưa có giá",
  "No price": "Chưa có giá",
+ "No purchases in this date range.": "Không có giao dịch mua nào trong khoảng ngày này.",
  "No requests match these filters.": "Không có lời mời nào khớp với các bộ lọc này.",
  "No requests match your search.": "Không có lời mời nào khớp với tìm kiếm của bạn.",
  "No results for “{query}”": "Không có kết quả cho “{query}”",
@@ -1616,6 +1662,7 @@
  "Nothing in {forum} matches. Try other words, or search every forum.": "Không có gì trong {forum} khớp. Thử từ khác, hoặc tìm trong mọi diễn đàn.",
  "Nothing in this time range": "Không có gì trong khoảng thời gian này",
  "Nothing is marked {title} right now.": "Hiện không có món nào được đánh dấu {title}.",
+ "Nothing matches your search.": "Không có kết quả phù hợp với tìm kiếm của bạn.",
  "Nothing on this page": "Không có gì trên trang này",
  "Nothing played in the past 30 days.": "Không chơi gì trong 30 ngày qua.",
  "Nothing played in the past 7 days.": "Không chơi gì trong 7 ngày qua.",
@@ -1843,6 +1890,7 @@
  "Privacy": "Quyền riêng tư",
  "Private": "Riêng tư",
  "Private inventory": "Kho đồ riêng tư",
+ "Private Servers": "Máy chủ riêng",
  "Profile": "Hồ sơ",
  "Profile Page": "Trang hồ sơ",
  "Profile Previews": "Xem trước hồ sơ",
@@ -1900,13 +1948,20 @@
  "Re: {title}": "Re: {title}",
  "Read every line of RoUtility’s code": "Đọc từng dòng mã của RoUtility",
  "Read More": "Đọc thêm",
+ "Read Older Purchases": "Đọc giao dịch mua cũ hơn",
  "Reading {done} of {total}": "Đang đọc {done}/{total}",
+ "Reading your purchases…": "Đang đọc giao dịch mua của bạn…",
+ "Reading your purchases… {n} so far, back to {date}.": {
+  "other": "Đang đọc giao dịch mua của bạn… đến giờ có {n}, đến {date}."
+ },
+ "Real Items First": "Đồ thật lên trước",
  "Recent": "Gần đây",
  "Recent average price of the limiteds you’re wearing": "Giá trung bình gần đây của các limited bạn đang mặc",
  "recent items": "vật phẩm gần đây",
  "Recent Servers": "Máy Chủ Gần Đây",
  "Recently Updated": "Mới cập nhật",
  "Recommended": "Đề Xuất",
+ "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora lên trước",
  "Refill Robux": "Nạp lại Robux",
  "Refresh": "Làm mới",
  "Refresh the page to try again.": "Tải lại trang để thử lại.",
@@ -1969,8 +2024,12 @@
  "Right-click a profile, item, model, bundle, experience, community or badge (or an empty spot on its page) for Copy User ID, Copy Asset ID and so on, with a quick confirmation.": "Bấm chuột phải vào hồ sơ, vật phẩm, mô hình, gói, trải nghiệm, cộng đồng hoặc huy hiệu (hoặc chỗ trống trên trang của nó) để Sao chép ID người dùng, Sao chép ID tài sản, v.v., kèm xác nhận nhanh.",
  "Rising": "Đang tăng",
  "Roblox admin": "Admin Roblox",
+ "Roblox asked RoUtility to slow down, carrying on in a moment.": "Roblox yêu cầu RoUtility chậm lại, sẽ tiếp tục sau giây lát.",
  "Roblox asked RoUtility to slow down, carrying on in a moment. {found} so far in the {total} most recent (back to {date}).": "Roblox yêu cầu RoUtility chậm lại, sẽ tiếp tục sau giây lát. Đến giờ có {found} trong {total} mục gần nhất (đến {date}).",
  "Roblox asked RoUtility to slow down, carrying on in a moment. {found} so far in the {total} most recent.": "Roblox yêu cầu RoUtility chậm lại, sẽ tiếp tục sau giây lát. Đến giờ có {found} trong {total} mục gần nhất.",
+ "Roblox asked RoUtility to slow down, carrying on in a moment. {n} purchases so far, back to {date}.": {
+  "other": "Roblox yêu cầu RoUtility chậm lại, sẽ tiếp tục sau giây lát. Đến giờ có {n} giao dịch mua, đến {date}."
+ },
  "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox yêu cầu chậm lại · đã kiểm tra {done}/{total}, tiếp tục sau {s} giây",
  "Roblox Badges": "Huy hiệu Roblox",
  "Roblox couldn’t send it. Check your balance before you try again.": "Roblox không gửi được. Hãy kiểm tra số dư trước khi thử lại.",
@@ -1987,6 +2046,7 @@
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox không gửi các giao dịch của bạn. Hãy thử lại sau giây lát.",
  "Roblox doesn’t share this file, so it can’t be checked.": "Roblox không chia sẻ tệp này nên không thể kiểm tra.",
  "Roblox doesn’t share this item’s file.": "Roblox không chia sẻ tệp của vật phẩm này.",
+ "Roblox Fees": "Phí Roblox",
  "Roblox hides friend lists for some accounts, like accounts in the UK, so this list doesn’t show on Roblox. RoUtility loads it from Roblox’s official API.": "Roblox ẩn danh sách bạn bè của một số tài khoản, như tài khoản ở Anh, nên danh sách này không hiện trên Roblox. RoUtility tải nó từ API chính thức của Roblox.",
  "Roblox hides this friend, usually because their account is in the UK. Shown via RoUtility.": "Roblox ẩn người bạn này, thường vì tài khoản của họ ở Anh. Hiển thị qua RoUtility.",
  "Roblox hides this friends list.": "Roblox ẩn danh sách bạn bè này.",
@@ -2000,6 +2060,7 @@
  "Roblox leaves equipped gear out of Currently Wearing when the player’s inventory is public. RoUtility adds it back. The classic layout already shows it.": "Roblox không đưa gear đang trang bị vào Đang mặc khi kho đồ của người chơi công khai. RoUtility thêm lại. Bố cục cổ điển vốn đã hiện nó.",
  "Roblox limits who can play this place.": "Roblox giới hạn ai có thể chơi nơi này.",
  "Roblox limits who can upload to this place.": "Roblox giới hạn ai có thể tải lên nơi này.",
+ "Roblox only sends about 500 purchases a minute, so a long history takes a few minutes. Close this to pause, and it carries on from there next time.": "Roblox chỉ gửi khoảng 500 giao dịch mua mỗi phút, nên lịch sử dài sẽ mất vài phút. Đóng cửa sổ này để tạm dừng, lần sau sẽ tiếp tục từ chỗ đó.",
  "Roblox picks": "Roblox chọn",
  "Roblox Plus": "Roblox Plus",
  "Roblox Plus subscriber": "Người đăng ký Roblox Plus",
@@ -2016,6 +2077,10 @@
  },
  "Roblox stopped answering. {found} in the {total} most recent (back to {date}).": "Roblox ngừng phản hồi. {found} trong {total} mục gần nhất (đến {date}).",
  "Roblox stopped answering. {found} in the {total} most recent.": "Roblox ngừng phản hồi. {found} trong {total} mục gần nhất.",
+ "Roblox stopped answering. Counted from your {n} most recent purchases, back to {date}.": {
+  "other": "Roblox ngừng phản hồi. Tính từ {n} giao dịch mua gần nhất của bạn, đến {date}."
+ },
+ "Roblox stopped answering. Try again in a minute.": "Roblox ngừng phản hồi. Hãy thử lại sau một phút.",
  "Roblox Studio is open, so Roblox shows you as “in Studio” and we can’t see which server you joined. Close Studio to see it next time.": "Roblox Studio đang mở nên Roblox hiển thị bạn là “trong Studio” và chúng tôi không thấy được bạn đã vào máy chủ nào. Đóng Studio để thấy vào lần sau.",
  "Roblox terminated this account. Shown via RoUtility.": "Roblox đã khóa tài khoản này. Hiển thị qua RoUtility.",
  "Roblox username or user ID": "Tên người dùng hoặc ID người dùng Roblox",
@@ -2097,7 +2162,6 @@
  "Saved.": "Đã lưu.",
  "Saved. Roblox is drawing your new thumbnail.": "Đã lưu. Roblox đang vẽ ảnh thu nhỏ mới của bạn.",
  "Saved. Roblox pages you already have open pick this up when they reload.": "Đã lưu. Các trang Roblox bạn đang mở sẽ áp dụng khi tải lại.",
- "Saved. The editor reloads when you close this so it keeps your changes.": "Đã lưu. Trình chỉnh sửa sẽ tải lại khi bạn đóng cửa sổ này để giữ thay đổi.",
  "Saved. Your new thumbnail can take a minute to show up.": "Đã lưu. Ảnh thu nhỏ mới có thể mất một phút để hiện.",
  "Saves your current colors and background here": "Lưu màu và nền hiện tại của bạn vào đây",
  "Saving": "Đang lưu",
@@ -2123,13 +2187,16 @@
  "Search {type}": "Tìm {type}",
  "Search a game’s badges and sort them by rarity, newest or most won yesterday, or show only the ones you don’t own yet. Lists every badge, not just the first few.": "Tìm huy hiệu của game và sắp xếp theo độ hiếm, mới nhất hoặc nhận nhiều nhất hôm qua, hoặc chỉ hiện những cái bạn chưa có. Liệt kê mọi huy hiệu, không chỉ vài cái đầu.",
  "Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.": "Tìm trong toàn bộ danh mục kho đồ theo tên, ID tài sản hoặc tên viết tắt của đồ limited như RSTF, không chỉ trang hiện tại.",
+ "Search all favorites": "Tìm trong tất cả mục yêu thích",
  "Search all limiteds": "Tìm mọi limited",
+ "Search all your items": "Tìm trong tất cả vật phẩm của bạn",
  "Search badges": "Tìm huy hiệu",
  "Search Badges": "Tìm Huy Hiệu",
  "Search Box": "Ô tìm kiếm",
  "Search by item name": "Tìm theo tên vật phẩm",
  "Search Communities": "Tìm cộng đồng",
  "Search every forum": "Tìm trong mọi diễn đàn",
+ "Search Following": "Tìm trong Đang theo dõi",
  "Search friend requests": "Tìm lời mời kết bạn",
  "Search Friends": "Tìm bạn bè",
  "Search head accessories": "Tìm phụ kiện đầu",
@@ -2161,6 +2228,7 @@
  "Select badges to delete them": "Chọn huy hiệu để xóa",
  "Select communities to leave them": "Chọn cộng đồng để rời",
  "Select friends to unfriend them": "Chọn bạn bè để hủy kết bạn",
+ "Select people to unfollow them": "Chọn người để bỏ theo dõi",
  "Selected Tab": "Tab đang chọn",
  "Send": "Gửi",
  "Send Offer Summary": "Tóm tắt khi gửi đề nghị",
@@ -2214,6 +2282,7 @@
  "Show Joins": "Hiện Tham Gia",
  "Show Less": "Thu gọn",
  "Show more": "Hiện thêm",
+ "Show More": "Hiện thêm",
  "Show Online Status": "Hiện Trạng Thái Trực Tuyến",
  "Show Outfit Rotator": "Hiện Xoay Vòng Trang Phục",
  "Show preview": "Hiện xem trước",
@@ -2270,6 +2339,8 @@
  "Spam": "Spam",
  "Spam / advertising": "Spam / quảng cáo",
  "Special": "Đặc biệt",
+ "Spending": "Chi tiêu",
+ "Spending Breakdown": "Phân tích chi tiêu",
  "Sponsored": "Được tài trợ",
  "Stable": "Ổn định",
  "Staff": "Nhân viên",
@@ -2439,6 +2510,7 @@
  "Total Posts:": "Tổng số bài viết:",
  "Total RAP": "Tổng RAP",
  "Total Robux of every match found so far. Pending Robux is included.": "Tổng Robux của mọi mục khớp tìm được đến giờ. Có tính Robux đang chờ.",
+ "Total Spent": "Tổng đã chi",
  "Total Value:": "Tổng giá trị:",
  "Total visits across {n} public experiences": {
   "other": "Tổng lượt truy cập trên {n} trải nghiệm công khai"
@@ -2521,6 +2593,15 @@
  "Under review by Roblox": "Roblox đang xét duyệt",
  "Under the Menu": "Dưới menu",
  "Undo": "Hoàn tác",
+ "Unfollow {n} People?": {
+  "other": "Bỏ theo dõi {n} người?"
+ },
+ "Unfollow Selected": "Bỏ theo dõi người đã chọn",
+ "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "Đã bỏ theo dõi {n} · {failed} không thành công. Họ vẫn đang được chọn, hãy thử lại.",
+ "Unfollowed {n} people.": {
+  "other": "Đã bỏ theo dõi {n} người."
+ },
+ "Unfollowing {done} of {total}": "Đang bỏ theo dõi {done}/{total}",
  "Unfriend": "Hủy kết bạn",
  "Unfriend {n}": "Hủy kết bạn {n}",
  "Unfriend {n} Friends?": {
@@ -2536,7 +2617,9 @@
  "Unfriending {done} of {total}": "Đang hủy kết bạn {done}/{total}",
  "Universe ID": "Universe ID",
  "Universe ID and Place ID with one-click copy on every experience overview, plus a Servers button.": "Universe ID và ID địa điểm sao chép bằng một cú bấm trên mọi trang tổng quan trải nghiệm, cùng nút Máy chủ.",
+ "Unknown Creator": "Người tạo không xác định",
  "Unknown experience": "Trải nghiệm không xác định",
+ "Unknown Experience": "Trải nghiệm không xác định",
  "Unknown region": "Khu vực không xác định",
  "Unnamed item": "Vật phẩm không tên",
  "Unpriced": "Chưa định giá",
@@ -2637,6 +2720,7 @@
  "What the item is worth in your currency, next to its Robux price. Hover it for the RoUtility Value when the item has one.": "Giá trị vật phẩm theo tiền tệ của bạn, cạnh giá Robux. Di chuột lên để xem Giá trị RoUtility nếu vật phẩm có.",
  "what you want": "thứ bạn muốn",
  "What You’re Wearing": "Đồ bạn đang mặc",
+ "What you’ve spent on each creator, experience, item type and month": "Số bạn đã chi cho từng người tạo, trải nghiệm, loại vật phẩm và tháng",
  "What your avatar has on, under the preview, with the price and R$ value of worn limiteds. Click an item to take it off.": "Những gì hình đại diện đang mặc, bên dưới bản xem trước, kèm giá và giá trị R$ của các limited đang mặc. Bấm vào vật phẩm để tháo ra.",
  "What your limiteds are worth": "Giá trị limited của bạn",
  "What’s New": "Có gì mới",
@@ -2653,6 +2737,7 @@
  "When you press Make Offer, the confirm window shows what each side is worth (value and RAP) and the difference. If you’d overpay past your warning level, you tick “I’ve reviewed this trade” before Send works.": "Khi bạn bấm Gửi đề nghị, cửa sổ xác nhận hiện giá trị mỗi bên (giá trị và RAP) và chênh lệch. Nếu bạn sẽ trả dư vượt mức cảnh báo, bạn phải tích “Tôi đã xem kỹ giao dịch này” thì nút Gửi mới hoạt động.",
  "When you press Play, join a server in this region and see its details. Closest to me estimates your region from your time zone (it never leaves your browser). Off lets Roblox pick inside the app, so there are no server details.": "Khi bạn bấm Chơi, vào một máy chủ ở khu vực này và xem chi tiết. Gần tôi nhất ước tính khu vực của bạn từ múi giờ (không bao giờ rời khỏi trình duyệt). Tắt thì để Roblox chọn trong ứng dụng, nên không có chi tiết máy chủ.",
  "When you press Play, join a server none of your online friends are in. Also in the menu under the Play button.": "Khi bạn bấm Chơi, vào máy chủ không có người bạn trực tuyến nào. Cũng có trong menu bên dưới nút Chơi.",
+ "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "Khi bạn tìm trong Marketplace, các vật phẩm chính hãng của Roblox khớp với tìm kiếm sẽ hiện trước, kể cả món đã ngừng bán, thay vì bị chôn dưới các bản sao. Tên viết tắt của đồ limited như RSTF hay Emp cũng tìm ra món thật.",
  "When your 2-Step Verification backup codes were made, next to how many you have left.": "Thời điểm tạo mã dự phòng Xác minh 2 bước, bên cạnh số mã còn lại.",
  "Where each server is, a world map of every server in the game, and lists of servers per region. Sends the game and the server ids on screen to RoUtility to look them up, and the server you join when you press Play so the launch window can show its region. No account details are sent.": "Vị trí của từng máy chủ, bản đồ thế giới của mọi máy chủ trong game và danh sách máy chủ theo khu vực. Gửi game và ID các máy chủ trên màn hình đến RoUtility để tra cứu, cùng máy chủ bạn vào khi bấm Chơi để cửa sổ khởi chạy hiện được khu vực. Không gửi thông tin tài khoản nào.",
  "Whether its value is Raising, Stable or Lowering.": "Giá trị của nó Đang tăng, Ổn định hay Đang giảm.",
@@ -2688,6 +2773,7 @@
  "You can post a new ad every 15 minutes, with up to 5 up at once.": "Bạn có thể đăng quảng cáo mới mỗi 15 phút, tối đa 5 cái cùng lúc.",
  "You can send up to {n} Robux right now": "Hiện bạn có thể gửi tối đa {n} Robux",
  "You can’t report your own post.": "Bạn không thể báo cáo bài viết của chính mình.",
+ "You don’t follow anyone yet.": "Bạn chưa theo dõi ai.",
  "You don’t have any badges yet.": "Bạn chưa có huy hiệu nào.",
  "You don’t have any characters yet. Use Create New Character to save your current look, then pick it here.": "Bạn chưa có nhân vật nào. Dùng Tạo nhân vật mới để lưu diện mạo hiện tại, rồi chọn ở đây.",
  "You don’t have any limiteds to offer.": "Bạn không có limited nào để đưa ra.",
@@ -2742,6 +2828,7 @@
  "You’re posting too fast. Try again in {n} seconds.": {
   "other": "Bạn đăng quá nhanh. Hãy thử lại sau {n} giây."
  },
+ "You’ve Spent": "Bạn đã chi",
  "Your": "bạn",
  "Your account can’t send Robux yet. It needs an age check or a parent’s permission first, which you can do in the Roblox app.": "Tài khoản của bạn chưa thể gửi Robux. Trước tiên cần xác minh tuổi hoặc sự cho phép của phụ huynh, bạn có thể làm trong ứng dụng Roblox.",
  "Your ad is up on Trade Ads and routility.io.": "Quảng cáo của bạn đã lên Quảng cáo giao dịch và routility.io.",
@@ -2790,39 +2877,5 @@
  "Your Robux Rate": "Tỷ giá Robux của bạn",
  "Your Settings": "Cài đặt của bạn",
  "Your Slots": "Ô của bạn",
- "Your Status": "Trạng thái của bạn",
- "Real Items First": "Đồ thật lên trước",
- "Red Sparkle Time Fedora first": "Red Sparkle Time Fedora lên trước",
- "When you search the Marketplace, Roblox’s own items that match show first, even offsale ones, instead of being buried under copies. Limited acronyms like RSTF or Emp find the real item too.": "Khi bạn tìm trong Marketplace, các vật phẩm chính hãng của Roblox khớp với tìm kiếm sẽ hiện trước, kể cả món đã ngừng bán, thay vì bị chôn dưới các bản sao. Tên viết tắt của đồ limited như RSTF hay Emp cũng tìm ra món thật.",
- "{count} Owners": {
-  "other": "{count} chủ sở hữu"
- },
- "{n} following": "Đang theo dõi {n}",
- "{n} sold": {
-  "other": "Đã bán {n}"
- },
- "{results} (some categories couldn’t load)": "{results} (một số danh mục không tải được)",
- "1 Year": "1 năm",
- "All Favorites": "Tất cả mục yêu thích",
- "all items": "tất cả vật phẩm",
- "All Items": "Tất cả vật phẩm",
- "Couldn’t load who you follow right now.": "Không tải được danh sách bạn theo dõi.",
- "Editing {game}": "Đang chỉnh sửa {game}",
- "In": "Trong",
- "No one matches this filter.": "Không ai khớp với bộ lọc này.",
- "No one matches your search.": "Không ai khớp với tìm kiếm của bạn.",
- "Search all favorites": "Tìm trong tất cả mục yêu thích",
- "Search all your items": "Tìm trong tất cả vật phẩm của bạn",
- "Search Following": "Tìm trong Đang theo dõi",
- "Select people to unfollow them": "Chọn người để bỏ theo dõi",
- "Unfollow {n} People?": {
-  "other": "Bỏ theo dõi {n} người?"
- },
- "Unfollow Selected": "Bỏ theo dõi người đã chọn",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "Đã bỏ theo dõi {n} · {failed} không thành công. Họ vẫn đang được chọn, hãy thử lại.",
- "Unfollowed {n} people.": {
-  "other": "Đã bỏ theo dõi {n} người."
- },
- "Unfollowing {done} of {total}": "Đang bỏ theo dõi {done}/{total}",
- "You don’t follow anyone yet.": "Bạn chưa theo dõi ai."
+ "Your Status": "Trạng thái của bạn"
 }

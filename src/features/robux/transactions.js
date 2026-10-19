@@ -44,7 +44,7 @@
   }
 
   function paintNet(s) {
-    const table = document.querySelector('.user-transactions-container .table.summary');
+    const table = document.querySelector('.user-transactions-container > .summary > .table.summary');
     if (!table) return;
     const old = table.querySelector('.routility-tx-net');
     const totals = [...table.querySelectorAll('tr')].filter(tr => !tr.classList.contains('routility-tx-net') && tr.querySelector('td.summary-transaction-label.font-bold'));
@@ -157,13 +157,17 @@
     return { completedHit, known };
   }
 
+  function alive(s) {
+    return s.live ? s.live() : st === s;
+  }
+
   function pump(c, s, need, onPage) {
-    if (c.busy) return c.busy.then(() => (st === s && !c.failed && (!c.headDone || (!c.done && need())) ? pump(c, s, need, onPage) : null));
+    if (c.busy) return c.busy.then(() => (alive(s) && !c.failed && (!c.headDone || (!c.done && need())) ? pump(c, s, need, onPage) : null));
     c.busy = (async () => {
       await c.loaded;
       const url = new URL(c.base);
       url.searchParams.set('limit', '100');
-      while (st === s && !c.failed && !s.stopped) {
+      while (alive(s) && !c.failed && !s.stopped) {
         const fresh = !c.hadSaved || c.rescan;
         let phase = null;
         if (!c.headDone && (!fresh || need())) phase = 'head';
@@ -174,7 +178,7 @@
         url.searchParams.set('cursor', phase === 'head' ? c.headCursor : c.tail);
         let data = null;
         let status = 0;
-        for (let tries = 0, limited = 0; st === s; tries++) {
+        for (let tries = 0, limited = 0; alive(s); tries++) {
           const res = await fetch(url.href, { credentials: 'include' }).catch(() => null);
           status = res ? res.status : 0;
           if (res && res.ok) {
@@ -196,7 +200,7 @@
           c.waiting = false;
           onPage && onPage();
         }
-        if (st !== s) break;
+        if (!alive(s)) break;
         if (phase === 'deep' && status === 400) {
           c.rescan = true;
           c.headDone = false;
@@ -839,5 +843,10 @@
     document.querySelectorAll('.routility-tx-filtered').forEach(n => n.classList.remove('routility-tx-filtered'));
   }
 
-  window.RoUtilityTransactions = { setup, teardown };
+  function purchases() {
+    const me = document.querySelector('meta[name="user-data"]')?.dataset.userid || '';
+    return cacheFor({ base: `https://apis.roblox.com/transaction-records/v1/users/${me}/transactions?transactionType=Purchase&itemPricingType=PaidAndLimited&limit=100`, key: 'Purchase|PaidAndLimited', type: 'Purchase' });
+  }
+
+  window.RoUtilityTransactions = { setup, teardown, purchases, scan: pump };
 })();

@@ -448,6 +448,8 @@
     window.RoUtilityFriends.stopFriendFilters();
     window.RoUtilityRequests.teardown();
     window.RoUtilityTransactions.teardown();
+    window.RoUtilitySpending.teardown();
+    window.RoUtilitySpending.stopGame();
     window.RoUtilityInventory.teardown();
     window.RoUtilityTrades.teardown();
     window.RoUtilityAvatar.teardown();
@@ -614,7 +616,9 @@
     }
     if (/^\/transactions\/?$/i.test(path)) {
       chrome.storage.local.get('routilitySettings', (stored) => {
-        if (window.location.pathname === path) window.RoUtilityTransactions.setup(stored.routilitySettings || {});
+        if (window.location.pathname !== path) return;
+        window.RoUtilityTransactions.setup(stored.routilitySettings || {});
+        if ((stored.routilitySettings || {}).txSpending !== false) window.RoUtilitySpending.setup(stored.routilitySettings || {});
       });
       return;
     }
@@ -655,6 +659,11 @@
         if (settings.playtime !== false && window.location.pathname === path) {
           waitForElement('#game-detail-meta-data[data-universe-id]', () => {
             if (window.location.pathname === path) window.RoUtilityGames.setupPlaytime(document.querySelector('#game-detail-meta-data').dataset.universeId);
+          }, 15000);
+        }
+        if (settings.gameSpent !== false && window.location.pathname === path) {
+          waitForElement('#game-detail-meta-data[data-universe-id]', () => {
+            if (window.location.pathname === path) window.RoUtilitySpending.gameStat(document.querySelector('#game-detail-meta-data').dataset.universeId);
           }, 15000);
         }
         if (!(settings.badgeProgress || settings.badgeTools || settings.gameStats || settings.gameAvatarType) || window.location.pathname !== path) return;
