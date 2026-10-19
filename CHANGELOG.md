@@ -41,6 +41,7 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 **Improved**
 
 ```diff
+~ Apply in Adjust Accessories updates your avatar right away instead of reloading the avatar editor, and the editor keeps your adjustments when it saves later. (by @reqonn)
 ~ Classic profiles show your nicknames for friends, and avatars Roblox hasn't approved show a gray silhouette everywhere instead of a broken file icon. (by @reqonn)
 ~ Roblox's Try On on item pages keeps the hats and accessories you're wearing instead of taking them all off.
 ~ Greyed out settings now say which setting to turn on first.
@@ -58,6 +59,7 @@ Every Roblox Plus theme for free, when you joined each community, Fun Outfits, a
 - The Trade Calculator sits centered with room on both sides instead of running into the menu and the window edge on wide screens, and its loading skeleton matches.
 - Joining a friend from their profile no longer says you're in the game before Roblox even opens, and the join window now shows their server's players, ping and performance instead of dashes.
 - Robux you add to an offer now count in the overpay warning and the Send summary.
+- Classic profiles update their friends and count in place when you or a friend unfriends someone, instead of showing the old list, and no longer get stuck loading. (by @reqonn)
 - Avatar changes show up right away instead of after a day. (by @reqonn)
 - The device and location filters on Charts no longer drop to the bottom of the page.
 - Other Extensions forgets extensions you've uninstalled.

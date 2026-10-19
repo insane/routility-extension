@@ -20,6 +20,8 @@
         { "type": "new", "text": "Hidden Item Details: when an item's page is hidden, like an archived or unreleased item, RoUtility rebuilds it with its picture, creator, type, dates, favorites and description instead of a 404." },
         { "type": "new", "text": "Smarter Inventory Search: when you make or counter a trade, searching an inventory also finds items by acronym, like CWS for Clockwork's Shades, and shows suggestions as you type." },
         { "type": "fixed", "text": "Robux you add to an offer now count in the overpay warning and the Send summary." },
+        { "type": "improved", "text": "Apply in Adjust Accessories updates your avatar right away instead of reloading the avatar editor, and the editor keeps your adjustments when it saves later.", "by": ["reqonn"] },
+        { "type": "fixed", "text": "Classic profiles update their friends and count in place when you or a friend unfriends someone, instead of showing the old list, and no longer get stuck loading.", "by": ["reqonn"] },
         { "type": "new", "text": "Quick Settings Style: List, Tiles or Compact, a single line with your online status that opens the settings when you click it. Quick Settings also looks quieter and lines up with the menu.", "by": ["reqonn"] },
         { "type": "improved", "text": "Classic profiles show your nicknames for friends, and avatars Roblox hasn't approved show a gray silhouette everywhere instead of a broken file icon.", "by": ["reqonn"] },
         { "type": "fixed", "text": "Avatar changes show up right away instead of after a day.", "by": ["reqonn"] },
