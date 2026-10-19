@@ -5,6 +5,18 @@
   },
   "releases": [
     {
+      "version": "1.1.7",
+      "date": "2026-10-19",
+      "summary": "Smaller fixes for Home and the classic profile.",
+      "changes": [
+        { "type": "fixed", "text": "Search suggestions only highlight one row at a time: the one under your mouse, or the one you picked with the arrow keys." },
+        { "type": "fixed", "text": "Home section titles like Continue and Recently Updated are only clickable on the title and arrow now, not across the whole empty row." },
+        { "type": "fixed", "text": "Classic Profile Layout: the profile’s primary community shows first in Communities again." },
+        { "type": "fixed", "text": "Classic Profile Layout: turning the page in Favorites on Two Columns shows the next favorites instead of an empty box." },
+        { "type": "fixed", "text": "Classic Profile Layout: on Two Columns, people with no experiences or favorites get an Experiences or Favorites box that says so, instead of those sections just disappearing." }
+      ]
+    },
+    {
       "version": "1.1.6",
       "date": "2026-10-19",
       "summary": "Fixes the store build of 1.1.5, where the settings page stayed empty.",

@@ -333,6 +333,7 @@
 
   function onKey(e) {
     if (e.target?.id !== 'navbar-search-input' || e.altKey || e.ctrlKey || e.metaKey) return;
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') document.documentElement.classList.add('routility-search-kbd');
     const m = menu();
     const rows = ourRows();
     if (!m || !rows.length || !m.offsetParent) { sel = -1; return; }
@@ -359,6 +360,15 @@
       paint();
       location.assign(a.href);
     }
+  }
+
+  let mouseAt = '';
+
+  function onMouseMove(e) {
+    const at = e.screenX + ',' + e.screenY;
+    if (at === mouseAt) return;
+    mouseAt = at;
+    document.documentElement.classList.remove('routility-search-kbd');
   }
 
   let swallowEnter = false;
@@ -438,6 +448,7 @@
       document.addEventListener('submit', (e) => { if (swallowEnter && e.target?.querySelector?.('#navbar-search-input')) stop(e); }, true);
       document.addEventListener('keydown', onSlash);
       document.addEventListener('mouseover', onHover, true);
+      document.addEventListener('mousemove', onMouseMove, { capture: true, passive: true });
       document.addEventListener('focusout', (e) => { if (e.target?.id === 'navbar-search-input') { sel = -1; paint(); } }, true);
       document.addEventListener('focusin', (e) => { if (enabled && e.target?.id === 'navbar-search-input' && (prefs.friends || prefs.people)) myFriends(); }, true);
       observer = new MutationObserver(window.RoUtilityUI.onFrame(place));

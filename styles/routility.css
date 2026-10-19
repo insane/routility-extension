@@ -626,6 +626,12 @@ html.routility-settings-mode .settings-left-navigation .tab-content > .tab-pane:
   background: rgba(208, 217, 251, 0.08);
 }
 
+html:not(.routility-search-kbd) ul.dropdown-menu:has(> .navbar-search-option:not(.routility-search-loading):hover) > .navbar-search-option.new-selected:not(:hover),
+html:not(.routility-search-kbd) ul.dropdown-menu:has(> .navbar-search-option:not(.routility-search-loading):hover) > .navbar-search-option.new-selected:not(:hover) .routility-search-link,
+html.routility-search-kbd ul.dropdown-menu > .navbar-search-option:hover:not(.new-selected) {
+  background: transparent !important;
+}
+
 .navbar-search-option.routility-search-loading,
 .navbar-search-option.routility-search-loading:hover,
 .navbar-search-option.routility-search-loading.new-selected {
@@ -3740,7 +3746,7 @@ html.routility-layout-editing [data-routility-hidden="1"] {
   justify-content: flex-start;
 }
 
-[data-testid="section-header"]:has(> .routility-home-tools) > [data-testid="section-header-title-subtitle-container"] {
+[data-testid="section-header"] > [data-testid="section-header-title-subtitle-container"] {
   flex: 0 1 auto !important;
   width: auto !important;
   min-width: 0;

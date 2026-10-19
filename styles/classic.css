@@ -2044,6 +2044,26 @@ html.routility-themed .routility-classic .rbx-tabs-horizontal .nav-tabs {
   flex: 1;
 }
 
+.routility-columns > .routility-column-right:has(> .routility-classic-favorites-empty) {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.routility-column-right > .routility-classic-favorites-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.routility-column-right > .routility-classic-favorites-empty > .section-content,
+.routility-columns-games > .routility-column-creations > .routility-classic-creations-empty > .section-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .routility-columns-games > :is(.profile-about, .routility-column-creations) .section-content.routility-columns-about,
 .routility-columns-games > .routility-column-creations .profile-slide-container {
   flex: 1;
@@ -2280,10 +2300,6 @@ html .routility-classic :is(.routility-classic-items-toggle, .routility-classic-
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0 12px;
-}
-
-.routility-classic-columns .favorite-games-container .routility-classic-game:nth-child(n+7) {
-  display: none !important;
 }
 
 .routility-classic-columns .favorite-games-container .routility-classic-game,

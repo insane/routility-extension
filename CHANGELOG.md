@@ -7,6 +7,20 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 - Code: [@reqonn](https://github.com/reqonn), [@awkward222](https://github.com/awkward222)
 - Bug reports and ideas: [@reqonn](https://github.com/reqonn), api_cats
 
+## 1.1.7 · October 19, 2026
+
+Smaller fixes for Home and the classic profile.
+
+**Fixed**
+
+```diff
+- Search suggestions only highlight one row at a time: the one under your mouse, or the one you picked with the arrow keys.
+- Home section titles like Continue and Recently Updated are only clickable on the title and arrow now, not across the whole empty row.
+- Classic Profile Layout: the profile’s primary community shows first in Communities again.
+- Classic Profile Layout: turning the page in Favorites on Two Columns shows the next favorites instead of an empty box.
+- Classic Profile Layout: on Two Columns, people with no experiences or favorites get an Experiences or Favorites box that says so, instead of those sections just disappearing.
+```
+
 ## 1.1.6 · October 19, 2026
 
 Fixes the store build of 1.1.5, where the settings page stayed empty.

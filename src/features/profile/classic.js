@@ -982,7 +982,7 @@
   }
 
   function buildGroups(s) {
-    const items = s.data.groups.map(({ group, role }) => ({
+    const items = s.data.groups.map(({ group, role, isPrimaryGroup }) => ({
       thumb: 'group:' + group.id,
       name: group.name,
       href: `/communities/${group.id}`,
@@ -990,7 +990,8 @@
       stats: [[lt('Members'), formatNumber(group.memberCount || 0)], [lt('Rank'), role?.name || '']],
       owner: Number(group.owner?.userId) === Number(s.userId),
       verified: !!group.hasVerifiedBadge,
-    })).sort((a, b) => b.owner - a.owner);
+      primary: !!isPrimaryGroup,
+    })).sort((a, b) => (b.primary - a.primary) || (b.owner - a.owner));
     return showcase(s, { key: 'groups', title: lt('Groups'), kind: 'groups', items, gridItem: groupTile, extraClass: 'routility-classic-groups' });
   }
 
@@ -1517,6 +1518,11 @@
     cards.replaceWith(panel);
     panel.appendChild(cards);
     panel.appendChild(window.RoUtilityUI.pager(cards, 2));
+    if (!data.favorites.length) {
+      favorites.hidden = false;
+      favorites.classList.add('routility-classic-favorites-empty');
+      panel.replaceChildren(el('p', 'text-secondary routility-classic-empty', lt('No favorites yet.')));
+    }
     right.append(buildFriends(s), favorites);
     grid.append(buildColumnsAbout(s), s.panes.creations, left, right);
     root.appendChild(grid);
@@ -1583,7 +1589,14 @@
       pane.appendChild(assetSection(lt('Models'), seeAll(`https://create.roblox.com/store/models?keyword=${encodeURIComponent(s.data.user.name)}`, lt('See All')), models, 'routility-classic-models'));
       pane.appendChild(assetSection(lt('Clothing'), seeAll(`/catalog?CreatorName=${encodeURIComponent(s.data.user.name)}&CreatorType=User`, lt('See All')), items, 'routility-classic-clothing'));
     }
-    if (s.columns) s.root.querySelector('.routility-columns')?.classList.toggle('routility-columns-games', games.length > 0);
+    if (s.columns && !games.length) {
+      const empty = el('div', 'section routility-classic-creations-empty');
+      const box = el('div', 'section-content');
+      box.appendChild(el('p', 'text-secondary routility-classic-empty', lt('No experiences yet.')));
+      empty.append(header(lt('Experiences')), box);
+      pane.appendChild(empty);
+    }
+    if (s.columns) s.root.querySelector('.routility-columns')?.classList.add('routility-columns-games');
     else if (!games.length && !models.length && !items.length) pane.appendChild(el('p', 'section-content-off routility-classic-empty', lt('No creations yet.')));
     applyThumbs(s, pane);
   }
