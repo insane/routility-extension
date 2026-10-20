@@ -114,6 +114,20 @@
     for (const [k, v] of Object.entries(av.bodyColor3s || {})) bodyColors[k.replace(/3$/, '')] = String(v).toUpperCase();
     const avatarDefinition = { assets: av.assets.map(a => (a.meta ? { id: a.id, meta: a.meta } : { id: a.id })), bodyColors, scales: av.scales, playerAvatarType: { playerAvatarType: av.playerAvatarType } };
     const body = JSON.stringify({ thumbnailConfig: { thumbnailId: av.assets[0] ? av.assets[0].id : 1, thumbnailType: '2dWebp', size: '420x420' }, avatarDefinition });
+    const [flat, head] = await Promise.all([renderFlat(body), bannedHead(av)]);
+    return { flat, head };
+  }
+
+  async function bannedHead(av) {
+    try {
+      const [ui] = await Promise.all([import(chrome.runtime.getURL('src/preview/ui.js')), import(chrome.runtime.getURL('src/preview/mesh.js'))]);
+      return await ui.headshotImage([], { emote: 0, fov: 30, rot: 0, dist: -1 }, 150, false, av);
+    } catch {
+      return null;
+    }
+  }
+
+  async function renderFlat(body) {
     if (!renderToken) renderToken = document.querySelector('meta[name="csrf-token"]')?.dataset.token || '';
     for (let i = 0; i < 20; i++) {
       let res;
@@ -1866,12 +1880,15 @@
       reqs.push(img > 0 ? { requestId: 'badge:' + b.id, targetId: img, type: 'Asset', size: '420x420' } : { requestId: 'badge:' + b.id, targetId: b.id, type: 'BadgeIcon', size: '150x150' });
     }
     for (const g of data.groups) reqs.push({ requestId: 'group:' + g.group.id, targetId: g.group.id, type: 'GroupIcon', size: '420x420' });
-    const thumbsReady = Promise.all([thumbnails(reqs), s.terminated ? bannedAvatar(userId) : null]).then(([t, flat]) => {
+    const thumbsReady = Promise.all([thumbnails(reqs), s.terminated ? bannedAvatar(userId) : null]).then(([t, drawn]) => {
       t.forEach((v, k) => s.thumbs.set(k, v));
-      if (!flat) return;
-      s.thumbs.set('avatar:' + userId, flat);
-      s.thumbs.set('headshot:' + userId, flat);
-      s.renderedHead = true;
+      if (!drawn) return;
+      if (drawn.flat) s.thumbs.set('avatar:' + userId, drawn.flat);
+      if (drawn.head) s.thumbs.set('headshot:' + userId, drawn.head);
+      else if (drawn.flat) {
+        s.thumbs.set('headshot:' + userId, drawn.flat);
+        s.renderedHead = true;
+      }
     });
     s.recovering = data.wearingFailed || Object.values(data.counts).some(n => n == null);
     render(s);
