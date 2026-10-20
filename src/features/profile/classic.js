@@ -1497,12 +1497,8 @@
     cards.replaceWith(panel);
     panel.appendChild(cards);
     panel.appendChild(window.RoUtilityUI.pager(cards, 2));
-    if (!data.favorites.length) {
-      favorites.hidden = false;
-      favorites.classList.add('routility-classic-favorites-empty');
-      panel.replaceChildren(el('p', 'text-secondary routility-classic-empty', lt('No favorites yet.')));
-    }
-    right.append(buildFriends(s), favorites);
+    right.append(buildFriends(s));
+    if (data.favorites.length) right.appendChild(favorites);
     grid.append(buildColumnsAbout(s), s.panes.creations, left, right);
     root.appendChild(grid);
     if (!data.user.isBanned) root.appendChild(buildCollections(s));
@@ -1568,14 +1564,7 @@
       pane.appendChild(assetSection(lt('Models'), seeAll(`https://create.roblox.com/store/models?keyword=${encodeURIComponent(s.data.user.name)}`, lt('See All')), models, 'routility-classic-models'));
       pane.appendChild(assetSection(lt('Clothing'), seeAll(`/catalog?CreatorName=${encodeURIComponent(s.data.user.name)}&CreatorType=User`, lt('See All')), items, 'routility-classic-clothing'));
     }
-    if (s.columns && !games.length) {
-      const empty = el('div', 'section routility-classic-creations-empty');
-      const box = el('div', 'section-content');
-      box.appendChild(el('p', 'text-secondary routility-classic-empty', lt('No experiences yet.')));
-      empty.append(header(lt('Experiences')), box);
-      pane.appendChild(empty);
-    }
-    if (s.columns) s.root.querySelector('.routility-columns')?.classList.add('routility-columns-games');
+    if (s.columns && games.length) s.root.querySelector('.routility-columns')?.classList.add('routility-columns-games');
     else if (!games.length && !models.length && !items.length) pane.appendChild(el('p', 'section-content-off routility-classic-empty', lt('No creations yet.')));
     applyThumbs(s, pane);
   }

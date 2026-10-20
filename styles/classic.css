@@ -2044,26 +2044,6 @@ html.routility-themed .routility-classic .rbx-tabs-horizontal .nav-tabs {
   flex: 1;
 }
 
-.routility-columns > .routility-column-right:has(> .routility-classic-favorites-empty) {
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-}
-
-.routility-column-right > .routility-classic-favorites-empty {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.routility-column-right > .routility-classic-favorites-empty > .section-content,
-.routility-columns-games > .routility-column-creations > .routility-classic-creations-empty > .section-content {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .routility-columns-games > :is(.profile-about, .routility-column-creations) .section-content.routility-columns-about,
 .routility-columns-games > .routility-column-creations .profile-slide-container {
   flex: 1;
