@@ -9,7 +9,8 @@
       "date": "2026-10-20",
       "summary": "Customize Thumbnail fix.",
       "changes": [
-        { "type": "fixed", "text": "Customize Thumbnail: Field of View and Rotation now apply to your Full Body thumbnail too, so it faces the way the preview shows instead of Roblox’s default angle." }
+        { "type": "fixed", "text": "Customize Thumbnail: Field of View and Rotation now apply to your Full Body thumbnail too, so it faces the way the preview shows instead of Roblox’s default angle." },
+        { "type": "improved", "text": "Classic Profile Layout: no more status line under the username (like the orange In Studio). The status dot on the avatar still shows it." }
       ]
     },
     {

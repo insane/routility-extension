@@ -325,9 +325,6 @@
     if (avatar) statusIcon(avatar, map.get(String(s.userId)), 'profile-avatar-status');
     const line = s.root.querySelector('.routility-columns-presence');
     if (line) presenceLine(line, map.get(String(s.userId)));
-    const status = s.root.querySelector('.routility-classic-status');
-    if (status && line) status.hidden = true;
-    else if (status) headerStatus(status, map.get(String(s.userId)));
     s.root.querySelectorAll('.routility-classic-people .friend').forEach((li, i) => {
       const f = s.data.friends[i];
       const box = li.querySelector('.avatar-container');
@@ -574,7 +571,6 @@
       bannedBadge(avatar);
     }
     names.appendChild(handle);
-    names.appendChild(el('div', 'font-caption-body text-overflow routility-classic-status'));
     caption.appendChild(names);
     caption.appendChild(el('div', 'routility-classic-pill-slot'));
     const details = el('div', 'header-details');
@@ -1466,23 +1462,6 @@
   function realGame(p) {
     const loc = p && String(p.lastLocation || '').trim();
     return loc && !/^(studio|website|online|offline)$/i.test(loc) ? loc : '';
-  }
-
-  function headerStatus(line, p) {
-    line.textContent = '';
-    const type = p ? p.userPresenceType : null;
-    line.hidden = !(type === 3 || (type === 2 && realGame(p)));
-    line.classList.toggle('routility-classic-status-studio', type === 3);
-    if (line.hidden) return;
-    if (!realGame(p)) {
-      line.textContent = lt('In Studio');
-      return;
-    }
-    const place = p.rootPlaceId || p.placeId;
-    const game = el(place ? 'a' : 'span', 'text-link routility-classic-status-game', p.lastLocation);
-    if (place) game.href = `/games/${place}`;
-    const [before, after] = (type === 2 ? lt('Playing {game}') : lt('Editing {game}')).split('{game}');
-    line.append(before || '', game, after || '');
   }
 
   function presenceLine(line, p) {

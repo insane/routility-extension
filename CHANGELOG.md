@@ -11,6 +11,12 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 
 Customize Thumbnail fix.
 
+**Improved**
+
+```diff
+~ Classic Profile Layout: no more status line under the username (like the orange In Studio). The status dot on the avatar still shows it.
+```
+
 **Fixed**
 
 ```diff

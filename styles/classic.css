@@ -2418,21 +2418,3 @@ html .routility-classic.routility-classic-columns > .profile-collections.layer {
 html.routility-themed .routility-classic-columns > .profile-collections > .section-content {
   background-color: var(--color-surface-100) !important;
 }
-
-.routility-classic-status {
-  margin-top: 2px;
-  color: #02b757;
-}
-
-.routility-classic-status-studio {
-  color: #f68802;
-}
-
-.routility-classic-status .routility-classic-status-game {
-  color: inherit !important;
-  font-weight: 600;
-}
-
-.routility-classic-status .routility-classic-status-game:hover {
-  text-decoration: underline;
-}
