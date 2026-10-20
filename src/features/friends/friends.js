@@ -2106,10 +2106,22 @@
       else w.target = null;
       return;
     }
-    if (!w || w.status !== 'RequestSent') return;
+    if (!w) return;
     const head = document.querySelector('#content > .profile-platform-container .user-profile-header-info') || document.querySelector('#content .user-profile-header-info');
+    const pending = head && [...head.querySelectorAll('button.foundation-web-button:not(.routility-cancel-req)')].find(b => /^pending\b/i.test(b.textContent.trim()));
+    if (w.status !== 'RequestSent') {
+      if (w.status === undefined || !pending || w.checking || (w.checks || 0) >= 3) return;
+      w.checking = true;
+      w.checks = (w.checks || 0) + 1;
+      friendStatus(w.target).then((st) => {
+        w.checking = false;
+        if (reqWatch !== w) return;
+        if (st) w.status = st;
+        if (st === 'RequestSent') placeCancel();
+      });
+      return;
+    }
     if (!head) return;
-    const pending = [...head.querySelectorAll('button.foundation-web-button:not(.routility-cancel-req)')].find(b => /^pending\b/i.test(b.textContent.trim()));
     let btn = head.querySelector('.routility-cancel-req');
     if (!pending) {
       if (btn && !w.done) btn.remove();
