@@ -188,6 +188,11 @@
     const terminated = errorPage && (/routility-user=\d+/.test(location.hash) || recent);
     if (errorPage && !terminated) return;
     if (terminated ? !settings.revealTerminated : !settings.classicProfile) return;
+    const pending = terminated && !/routility-user=\d+/.test(location.hash) && (s.routilityLastProfile && Date.now() - s.routilityLastProfile.t < 20000 ? s.routilityLastProfile.id : shown);
+    if (pending && /^\d+$/.test(String(pending)) && document.readyState === 'loading') {
+      document.documentElement.dataset.routilityCheck = String(pending);
+      history.replaceState(history.state, '', `/users/${pending}/profile`);
+    }
     const modern = terminated && !settings.classicProfile;
     document.documentElement.classList.add('routility-classic-on');
     const place = () => {
