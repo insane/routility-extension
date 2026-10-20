@@ -1091,7 +1091,6 @@
   "other": "所有している{n}個のうち最初の1個"
  },
  "Fix Shuffled Order": "シャッフルされた順番を修正",
- "Fix Verified Badge Size": "認証バッジのサイズを修正",
  "Fixed": "修正",
  "Flags rare items and items whose RAP is pushed up by recent sales, on item pages, trades, the Marketplace and the calculator.": "アイテムページ、トレード、マーケットプレイス、計算機で、レアアイテムや最近の売買で RAP が釣り上げられたアイテムに印を付けます。",
  "Flat": "角ばり",
@@ -2073,7 +2072,6 @@
  "Roblox refused the rest, try them again in a minute.": "残りは Roblox に拒否されました。1分後にもう一度お試しください。",
  "Roblox says to slow down. Try again in a minute.": "Roblox から速度を落とすよう求められました。1分後にもう一度お試しください。",
  "Roblox Settings": "Roblox 設定",
- "Roblox shows the verified badge too big next to names in player search. This shrinks it to match the name, like everywhere else.": "Roblox ではプレイヤー検索で名前の横の認証バッジが大きすぎます。ほかの場所と同じように名前に合わせて小さくします。",
  "Roblox shut its forums down in 2017. RoUtility brings them back: threads, replies, Top Posters and moderators, right on roblox.com.": "Roblox は2017年にフォーラムを閉鎖しました。RoUtility がそれを復活させます:スレッド、返信、トップ投稿者、モデレーターを roblox.com 上で。",
  "Roblox Status": "Roblox のステータス",
  "Roblox Status Banner": "Roblox ステータスバナー",
@@ -2320,7 +2318,6 @@
  "Signing In…": "サインイン中…",
  "Similar Price": "近い価格",
  "Size": "サイズ",
- "Sized to the name": "名前に合わせたサイズ",
  "Skeleton Loading": "スケルトン読み込み",
  "Skin Tone Color Wheel": "肌の色のカラーホイール",
  "Skip R6 Warning": "R6 の警告をスキップ",
