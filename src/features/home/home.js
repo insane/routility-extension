@@ -1420,14 +1420,17 @@
     btn.hidden = true;
     const icon = el('span', 'icon icon-filled-circle-check routility-pt-backup-icon');
     icon.setAttribute('aria-hidden', 'true');
+    const logo = el('span', 'routility-pt-verify-logo');
+    logo.setAttribute('aria-hidden', 'true');
     const label = el('span');
-    btn.append(icon, label);
+    btn.append(icon, logo, label);
     let mode = 'off';
     let pairing = null;
     let pollTimer = 0;
-    const set = (next, text, tip) => {
+    const set = (next, text, tip, verify) => {
       mode = next;
       btn.hidden = next === 'off';
+      btn.classList.toggle('routility-pt-backup-verify', !!verify);
       btn.classList.toggle('routility-pt-backup-done', next === 'done');
       btn.classList.toggle('routility-pt-backup-busy', next === 'busy');
       label.textContent = text || '';
@@ -1439,6 +1442,11 @@
       const st = await askBg({ type: 'playtimeSyncState' });
       if (!btn.isConnected && mode !== 'off') return;
       if (!st) return set('off');
+      if (!st.signedIn || String(st.userId) !== String(id)) {
+        const [soc, saved] = await Promise.all([askBg({ type: 'socialState', me: id }), new Promise(r => chrome.storage.local.get('routilitySettings', x => r((x && x.routilitySettings) || {})))]);
+        if (pairing) return;
+        if (saved.socialBadge !== false && soc && soc.me && soc.minor === false && !soc.verified) return set('in', lt('Verify'), lt('Verify with Roblox to show your RoUtility badge to other RoUtility users, use friend request messages and back up your playtime. Signs in with Roblox in a popup, the same as the RoUtility Forum.'), true);
+      }
       if (!st.signedIn) return set('in', lt('Back Up'), lt('Keep your playtime if you reinstall or switch computers. Signs in with Roblox in a popup, the same as the RoUtility Forum.'));
       if (String(st.userId) !== String(id)) return set('off');
       const synced = st.sync && st.sync.syncedAt ? Date.parse(st.sync.syncedAt) : 0;
@@ -1492,7 +1500,7 @@
         chrome.storage.onChanged.removeListener(onStore);
         return;
       }
-      if (area === 'local' && (changes.routilityForumAuth || changes.routilityPlaytimeSync)) paint();
+      if (area === 'local' && (changes.routilityForumAuth || changes.routilityPlaytimeSync || changes.routilitySocialAccounts || changes.routilitySettings)) paint();
     };
     chrome.storage.onChanged.addListener(onStore);
     paint();

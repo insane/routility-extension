@@ -5,7 +5,7 @@
   const { lt, ltn, LT } = window.RoUtilityI18n;
   let langReady = false;
 
-  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, qsStyle: 'list', tradeListPills: 'rap-usd', keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, classicLayout: 'tabs', hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarWearingValues: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeSort: true, tradeSearch: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeProof: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, sessionIps: true, backupCodeDate: true, voiceStatus: true, groupCreated: true, groupJoined: true, groupCount: true, gameAvatarType: true, createSafety: true, gameUnavailable: true, oldLeftNav: false, calcRate: '3.80', currency: 'USD', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, recentServers: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, hiddenItems: true, showValues: true, profileUsd: true, profileValue: true, profileRap: true, profileShort: false, itemExplorer: true, gearFix: true, avatarPreview: true, tryOnKeepWorn: true, funOutfits: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, badgeSizeFix: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, plusTheme: '', groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, classicPremium: false, classicVerified: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true, friendsSince: true, fakeRequests: false, fakeRequestsAdd: 'amount', fakeRequestsAmount: '500', sendRobux: true, menuHighlight: 'fill' };
+  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, qsStyle: 'list', tradeListPills: 'rap-usd', keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, classicLayout: 'tabs', hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarWearingValues: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeSort: true, tradeSearch: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeProof: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, sessionIps: true, backupCodeDate: true, voiceStatus: true, groupCreated: true, groupJoined: true, groupCount: true, gameAvatarType: true, createSafety: true, gameUnavailable: true, oldLeftNav: false, calcRate: '3.80', currency: 'USD', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, recentServers: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, hiddenItems: true, showValues: true, profileUsd: true, profileValue: true, profileRap: true, profileShort: false, itemExplorer: true, gearFix: true, avatarPreview: true, tryOnKeepWorn: true, funOutfits: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, badgeSizeFix: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, plusTheme: '', groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, classicPremium: false, classicVerified: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true, friendsSince: true, fakeRequests: false, fakeRequestsAdd: 'amount', fakeRequestsAmount: '500', sendRobux: true, menuHighlight: 'fill', socialBadge: true, socialMessages: true, socialFilter: true };
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
 
   const TABS = [
@@ -562,6 +562,8 @@
     groupDetails: () => c([r([muted('570.2K+'), h('span', 'rt-m-arrow', '\u2192'), strong(ltn(570247, '{n} Member', '{n} Members', { n: '570,247' }))]), r([pill(lt('Founder · Rank {rank}', { rank: 255 })), pill([rb('144'), '\u00a0\u2248 $0.55'])])]),
     friendManage: () => c([r([strong(lt('My Friends')), muted(ltn(248, '{n} friend', '{n} friends'))]), r([pill(lt('Offline')), pill(lt('Terminated')), h('span', 'rt-m-pill rt-m-down', lt('Unfriend {n}', { n: 6 }))])]),
     cancelRequests: () => r([pill(lt('Pending')), h('span', 'rt-m-pill rt-m-down', lt('Cancel Request'))]),
+    socialBadge: () => r([face(U.shedletsky, 28), strong('Shedletsky'), verified(), h('span', 'rt-m-social-badge', [logoImg()])]),
+    socialMessages: () => c([r([face(U.builderman, 24), strong('builderman')]), h('span', 'rt-m-pill rt-m-social-note', lt('hey, we met in Adopt Me!'))]),
     unfriendDetector: () => c([r([h('span', 'rt-m-pill rt-m-down', '2'), strong(lt('No Longer Friends'))]), r([face(U.shedletsky, 22), muted('Shedletsky'), pill(lt('Noticed {date}', { date: 'Oct 12' }))])]),
     groupManage: () => c([r([strong(lt('My Communities')), muted(lt('{n} of {max}', { n: 80, max: 100 }))]), r([pill(lt('Owned')), pill(lt('Highest Rank')), h('span', 'rt-m-pill rt-m-down', lt('Leave {n}', { n: 5 }))])]),
     groupAdmin: () => r([strong(lt('Audit Log')), pill(lt('Export CSV'))]),
@@ -710,6 +712,10 @@
         ] },
         { title: LT('Your Status'), rows: [
           { key: 'studioStatus', title: LT('Appear In Studio'), desc: LT('Everyone sees your status as In Studio instead of Online or the game you’re in, while a Roblox tab is open. When you turn it off, your normal status comes back within a minute or two.') },
+        ] },
+        { title: LT('Privacy'), rows: [
+          { key: 'socialBadge', title: LT('RoUtility Badge'), desc: LT('A small RoUtility logo next to your name for other RoUtility users, once you verify with Roblox. Turn it off to hide that you use RoUtility. This also turns off friend request messages.') },
+          { custom: 'socialVerify', parent: 'socialBadge', title: LT('Verify with Roblox'), desc: LT('Your badge and friend request messages turn on once Roblox confirms this is your account. Roblox opens a window where you click Allow, the same sign-in as the RoUtility Forum. You only do this once.') },
         ] },
         { title: LT('Shortcuts'), rows: [
           { key: 'menuLink', title: LT('Settings Menu Link'), desc: LT('A RoUtility item above Settings in the gear menu at the top right, straight to this page.') },
@@ -875,6 +881,8 @@
         { title: LT('Requests'), rows: [
           { key: 'requestFilters', title: LT('Friend Request Filters'), desc: LT('A Filter button on Requests: badges (Verified, Roblox Plus, Premium, Admin), mutual friends, friend and follower counts and join date, across all your requests. Matches show as they are found, and Ignore Matches declines only the filtered ones.') },
           { key: 'cancelRequests', title: LT('Cancel Sent Requests'), desc: LT('A Cancel Request button next to Pending on the profile of someone you sent a friend request to. Click it twice to withdraw the request.') },
+          { key: 'socialMessages', parent: 'socialBadge', title: LT('Friend Request Messages'), desc: LT('When you add another RoUtility user, Add Friend lets you include a short message, and messages people send you show on your Requests page. Links and contact info aren’t allowed.') },
+          { key: 'socialFilter', parent: 'socialMessages', title: LT('Filter Strong Language'), desc: LT('Hides slurs in messages you get. Turn it off to see messages exactly as they were sent.') },
         ] },
         { title: LT('Alerts'), rows: [
           { key: 'unfriendDetector', title: LT('Unfriend Detector'), desc: LT('While Roblox is open, checks your friends list about once a minute and pops up a list when someone is no longer on it, with who and when it was noticed. Your friends page shows a banner too. People you remove through RoUtility are left out. Stored only on this device.') },
@@ -3446,6 +3454,49 @@
             };
             chrome.storage.onChanged.addListener(onAlerts);
             wrap.card.appendChild(box);
+            continue;
+          }
+          if (def.custom === 'socialVerify') {
+            const send = (msg) => new Promise(r => chrome.runtime.sendMessage(msg, (res) => { void chrome.runtime.lastError; r(res); }));
+            let busy = false;
+            let draw = () => {};
+            const verifyBtn = button(lt('Verify with Roblox'), async (btn, text) => {
+              if (busy) return;
+              busy = true;
+              btn.disabled = true;
+              text.textContent = lt('Waiting for Roblox…');
+              const res = await send({ type: 'forumSignIn' });
+              let ok = false;
+              if (res && res.pairing) {
+                const until = Date.now() + 180000;
+                while (Date.now() < until) {
+                  await new Promise(r => setTimeout(r, 1000));
+                  const c = await send({ type: 'forumClaim', pairing: res.pairing });
+                  if (c && c.status === 200) {
+                    send({ type: 'forumSignInClose', pairing: res.pairing });
+                    ok = true;
+                    break;
+                  }
+                  if (c && c.status && c.status !== 404) break;
+                }
+              }
+              if (ok) ok = !!((await send({ type: 'socialSync', force: true })) || {}).ok;
+              busy = false;
+              draw(ok ? '' : lt('Verifying didn’t finish. Try again.'));
+            });
+            const vRow = row(lt(def.title), lt(def.desc), verifyBtn, true);
+            vRow.classList.add('routility-set-row', 'routility-set-child');
+            vRow.dataset.key = 'socialVerify';
+            draw = async (err) => {
+              const st = await send({ type: 'socialState', me: document.querySelector('meta[name="user-data"]')?.dataset.userid });
+              const label = verifyBtn.querySelector('.text-truncate-end');
+              const done = !!(st && st.verified);
+              label.textContent = done ? lt('Verified') : lt('Verify with Roblox');
+              verifyBtn.disabled = done || !(st && st.me);
+              vRow.description.textContent = err || (st && !st.me ? lt('Sign in to Roblox first.') : lt(def.desc));
+            };
+            draw();
+            place(def, vRow);
             continue;
           }
           if (def.custom === 'notifyTest') {
