@@ -105,6 +105,36 @@
     return out;
   }
 
+  let renderToken = '';
+
+  async function bannedAvatar(userId) {
+    const av = await json(`https://avatar.roblox.com/v2/avatar/users/${userId}/avatar`);
+    if (!av || !Array.isArray(av.assets)) return null;
+    const bodyColors = {};
+    for (const [k, v] of Object.entries(av.bodyColor3s || {})) bodyColors[k.replace(/3$/, '')] = String(v).toUpperCase();
+    const avatarDefinition = { assets: av.assets.map(a => (a.meta ? { id: a.id, meta: a.meta } : { id: a.id })), bodyColors, scales: av.scales, playerAvatarType: { playerAvatarType: av.playerAvatarType } };
+    const body = JSON.stringify({ thumbnailConfig: { thumbnailId: av.assets[0] ? av.assets[0].id : 1, thumbnailType: '2dWebp', size: '420x420' }, avatarDefinition });
+    if (!renderToken) renderToken = document.querySelector('meta[name="csrf-token"]')?.dataset.token || '';
+    for (let i = 0; i < 20; i++) {
+      let res;
+      try {
+        res = await fetch('https://avatar.roblox.com/v1/avatar/render', { method: 'POST', credentials: 'include', headers: { 'content-type': 'application/json', 'x-csrf-token': renderToken }, body });
+      } catch {
+        return null;
+      }
+      if (res.status === 403 && res.headers.get('x-csrf-token')) {
+        renderToken = res.headers.get('x-csrf-token');
+        continue;
+      }
+      const d = res.ok ? await res.json().catch(() => null) : null;
+      if (!d) return null;
+      if (d.state === 'Completed' && d.imageUrl) return d.imageUrl;
+      if (d.state !== 'Pending') return null;
+      await pause(1200);
+    }
+    return null;
+  }
+
   function link(href, className, text) {
     const a = el('a', className, text);
     a.href = href;
@@ -1042,9 +1072,9 @@
       try { localStorage.setItem('routilityProfile3d', on ? '1' : '0'); } catch {}
     };
     toggle.addEventListener('click', () => set3d(holder.hidden));
-    left.appendChild(toggle);
+    if (!s.terminated) left.appendChild(toggle);
     let start = false;
-    try { start = localStorage.getItem('routilityProfile3d') === '1'; } catch {}
+    try { start = !s.terminated && localStorage.getItem('routilityProfile3d') === '1'; } catch {}
     if (start) setTimeout(() => set3d(true), 0);
     const right = el('div', 'section-content profile-avatar-right');
     right.appendChild(el('ul', 'routility-classic-accoutrements'));
@@ -1836,7 +1866,13 @@
       reqs.push(img > 0 ? { requestId: 'badge:' + b.id, targetId: img, type: 'Asset', size: '420x420' } : { requestId: 'badge:' + b.id, targetId: b.id, type: 'BadgeIcon', size: '150x150' });
     }
     for (const g of data.groups) reqs.push({ requestId: 'group:' + g.group.id, targetId: g.group.id, type: 'GroupIcon', size: '420x420' });
-    const thumbsReady = thumbnails(reqs).then((t) => { t.forEach((v, k) => s.thumbs.set(k, v)); });
+    const thumbsReady = Promise.all([thumbnails(reqs), s.terminated ? bannedAvatar(userId) : null]).then(([t, flat]) => {
+      t.forEach((v, k) => s.thumbs.set(k, v));
+      if (!flat) return;
+      s.thumbs.set('avatar:' + userId, flat);
+      s.thumbs.set('headshot:' + userId, flat);
+      s.renderedHead = true;
+    });
     s.recovering = data.wearingFailed || Object.values(data.counts).some(n => n == null);
     render(s);
     await thumbsReady;
@@ -1891,15 +1927,17 @@
   }
 
   function fillThumbs(s) {
-    const set = (sel, key) => {
+    const set = (sel, key, cls) => {
       const host = s.root.querySelector(sel);
       const src = s.thumbs.get(key);
       if (!host || !src) return;
       host.textContent = '';
-      host.appendChild(image(src, ''));
+      host.appendChild(image(src, cls || ''));
     };
-    set('.routility-classic-headshot', 'headshot:' + s.userId);
+    const head = s.renderedHead ? 'routility-render-head' : '';
+    set('.routility-classic-headshot', 'headshot:' + s.userId, head);
     set('.routility-classic-avatar', 'avatar:' + s.userId);
+    if (head) s.root.querySelectorAll(`img[data-thumb="headshot:${s.userId}"]`).forEach(img => img.classList.add(head));
     renderWearPage(s, s.wearPage);
     s.root.querySelectorAll('.routility-classic-people .friend').forEach((li, i) => { const f = s.data.friends[i]; const img = li.querySelector('.routility-classic-friend-avatar img'); if (f && img) setThumb(img, s.thumbs.get('head:' + f.id)); });
     s.root.querySelectorAll('.routility-classic-favorites .game-card-thumb').forEach((img, i) => { const g = s.data.favorites[i]; if (g) setThumb(img, s.thumbs.get('game:' + g.universeId)); });
