@@ -2429,3 +2429,7 @@ img.routility-render-head {
   transform: scale(2.3);
   transform-origin: 50% 20%;
 }
+
+html.routility-classic-on #content:has(> .routility-classic, > .routility-modern) {
+  max-width: 970px;
+}
