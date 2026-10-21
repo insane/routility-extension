@@ -16,6 +16,7 @@
         { "type": "new", "text": "Terminated players show their avatar on their profile, and pasted or outside links to terminated profiles open them too.", "by": ["reqonn"] },
         { "type": "improved", "text": "Your playtime on a game page sits under its name now, with Today, Past 7 Days, Past 30 Days or All Time. Hover the time for the exact minutes and when you last played." },
         { "type": "improved", "text": "Prices show a simple green $ (or your currency’s sign) before the amount instead of the round money icon." },
+        { "type": "fixed", "text": "Quick Settings in the Original Sidebar shows full names and values like Trusted Friends instead of cutting them off." },
         { "type": "fixed", "text": "Server Regions: Play with a region picked (like Miami) finds servers in that region that actually have room, instead of saying there are none or sending you to one that just filled up." },
         { "type": "fixed", "text": "Cancel Request shows right after you send a friend request.", "by": ["reqonn"] },
         { "type": "fixed", "text": "Home: the friends row no longer shows a loading placeholder when you have no friends, and the greeting shows your current avatar.", "by": ["reqonn"] },
