@@ -1169,7 +1169,7 @@
       if (!box) continue;
       const mark = box.querySelector(':scope > .routility-admin-badge');
       if (known && !mark) box.appendChild(adminMark());
-      else if (known && mark && mark !== box.lastElementChild) box.appendChild(mark);
+      else if (known && mark && mark.nextElementSibling && !mark.nextElementSibling.classList.contains('routility-user-badge')) box.insertBefore(mark, box.querySelector(':scope > .routility-user-badge'));
       else if (!known && mark) mark.remove();
     }
     if (!ask.length || adminQueued || Date.now() < adminRetryAt) return;

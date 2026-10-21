@@ -19,6 +19,129 @@ function forumAuth() {
   }));
 }
 
+const SOCIAL_API = SITE_API + '/social';
+const SOCIAL_SYNC_KEY = 'routilitySocialAccounts';
+const socialBadgeCache = new Map();
+
+let socialKeyJob = Promise.resolve();
+
+function socialKey(me) {
+  const job = socialKeyJob.then(async () => {
+    const st = await chrome.storage.local.get('routilitySocialKeys');
+    const keys = st.routilitySocialKeys && typeof st.routilitySocialKeys === 'object' ? st.routilitySocialKeys : {};
+    if (typeof keys[me] === 'string' && /^[0-9a-f]{64}$/.test(keys[me])) return keys[me];
+    keys[me] = [...crypto.getRandomValues(new Uint8Array(32))].map(b => b.toString(16).padStart(2, '0')).join('');
+    await chrome.storage.local.set({ routilitySocialKeys: keys });
+    return keys[me];
+  });
+  socialKeyJob = job.catch(() => {});
+  return job;
+}
+
+async function socialCall(path, method, body) {
+  const me = await signedInUser();
+  if (!me) return { status: 401, data: null };
+  const headers = { 'x-routility-user': String(me), 'x-routility-key': await socialKey(String(me)) };
+  const auth = await forumAuth();
+  if (auth && String(auth.userId) === String(me)) headers.authorization = 'Bearer ' + auth.token;
+  if (body) headers['content-type'] = 'application/json';
+  try {
+    const res = await fetch(SOCIAL_API + path, { method, credentials: 'omit', cache: 'no-store', headers, body: body ? JSON.stringify(body) : undefined });
+    let data = null;
+    try { data = await res.json(); } catch {}
+    if (res.status === 401 && data && data.error === 'not_verified' && !headers.authorization) {
+      const accounts = await socialAccounts();
+      if (accounts[me]) {
+        delete accounts[me];
+        await chrome.storage.local.set({ [SOCIAL_SYNC_KEY]: { accounts } });
+      }
+    }
+    const wait = Number(res.headers.get('Retry-After'));
+    return { status: res.status, data, retryAfter: Number.isFinite(wait) && wait > 0 ? wait : 0 };
+  } catch {
+    return { status: 0, data: null, retryAfter: 0 };
+  }
+}
+
+async function socialBadges(ids) {
+  const now = Date.now();
+  const out = {};
+  const need = [];
+  for (const id of ids) {
+    const hit = socialBadgeCache.get(id);
+    if (hit && now - hit.at < 600000) {
+      if (hit.v) out[id] = hit.v;
+    } else need.push(id);
+  }
+  for (let i = 0; i < need.length; i += 100) {
+    const part = need.slice(i, i + 100);
+    const data = await getJson(`${SOCIAL_API}/badges?ids=${part.join(',')}`);
+    if (!data || !data.users || typeof data.users !== 'object') return null;
+    for (const id of part) {
+      const u = data.users[id];
+      const v = u ? { messages: !!u.messages } : null;
+      socialBadgeCache.set(id, { at: now, v });
+      if (v) out[id] = v;
+    }
+  }
+  if (socialBadgeCache.size > 5000) socialBadgeCache.clear();
+  return out;
+}
+
+async function socialMinor() {
+  const r = await authJson('https://users.roblox.com/v1/users/authenticated/age-bracket');
+  if (!r || !r.data || typeof r.data.ageBracket !== 'number') return null;
+  return r.data.ageBracket !== 0;
+}
+
+async function socialAccounts() {
+  const st = (await chrome.storage.local.get(SOCIAL_SYNC_KEY))[SOCIAL_SYNC_KEY];
+  return st && typeof st === 'object' && st.accounts && typeof st.accounts === 'object' ? st.accounts : {};
+}
+
+async function socialState() {
+  const me = await signedInUser();
+  const minor = me ? await socialMinor() : null;
+  const accounts = await socialAccounts();
+  return { me, minor, verified: !!me && !!accounts[me] };
+}
+
+async function socialSync(force) {
+  const me = await signedInUser();
+  if (!me) return { ok: false, reason: 'signedOut' };
+  const minor = await socialMinor();
+  if (minor === null) return { ok: false, reason: 'age' };
+  const accounts = await socialAccounts();
+  const prev = accounts[me];
+  const auth = await forumAuth();
+  const signed = !!auth && String(auth.userId) === String(me);
+  if (!prev && !signed) return { ok: false, reason: 'unverified' };
+  const s = (await chrome.storage.local.get('routilitySettings')).routilitySettings || {};
+  const want = { showBadge: s.socialBadge !== false, allowMessages: s.socialBadge !== false && s.socialMessages !== false && !minor };
+  const key = JSON.stringify(want);
+  if (!force && prev && prev.key === key && Date.now() - prev.at < 864e5) return { ok: true };
+  const r = await socialCall('/me', 'PUT', want);
+  if (r.status === 401) {
+    const next = await socialAccounts();
+    delete next[me];
+    await chrome.storage.local.set({ [SOCIAL_SYNC_KEY]: { accounts: next } });
+    return { ok: false, status: 401, reason: 'unverified' };
+  }
+  if (r.status !== 200) return { ok: false, status: r.status };
+  const next = await socialAccounts();
+  next[me] = { key, at: Date.now() };
+  await chrome.storage.local.set({ [SOCIAL_SYNC_KEY]: { accounts: next } });
+  socialBadgeCache.delete(String(me));
+  return { ok: true };
+}
+
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area !== 'local') return;
+  const a = changes.routilitySettings;
+  const flip = a && ['socialBadge', 'socialMessages'].some(k => ((a.oldValue || {})[k] !== false) !== ((a.newValue || {})[k] !== false));
+  if (flip || (changes[FORUM_AUTH_KEY] && changes[FORUM_AUTH_KEY].newValue)) socialSync(true);
+});
+
 const ADMIN_KEY = 'routilityAdminCache';
 const ADMIN_TTL = 7 * 24 * 60 * 60 * 1000;
 const adminInFlight = new Map();
@@ -1068,6 +1191,51 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       }
       sendResponse({ n });
     });
+    return true;
+  }
+
+  if (msg.type === 'socialBadges') {
+    const ids = [...new Set((msg.ids || []).map(String).filter(id => /^\d+$/.test(id)))].slice(0, 300);
+    if (!ids.length) { sendResponse({}); return; }
+    socialBadges(ids).then(sendResponse, () => sendResponse(null));
+    return true;
+  }
+
+  if (msg.type === 'socialState') {
+    const stale = msg.me && String(msg.me) !== String(meCache.id);
+    (stale ? signedInUser(true) : Promise.resolve()).then(socialState).then(sendResponse, () => sendResponse(null));
+    return true;
+  }
+
+  if (msg.type === 'socialSync') {
+    socialSync(!!msg.force).then(sendResponse, () => sendResponse({ ok: false }));
+    return true;
+  }
+
+  if (msg.type === 'socialSendNote') {
+    const to = String(msg.toUserId || '');
+    const text = String(msg.text || '').replace(/[\u0000-\u001f\u007f]+/g, ' ').trim().slice(0, 200);
+    if (!/^\d+$/.test(to) || !text) { sendResponse({ ok: false, status: 400 }); return; }
+    socialCall('/notes', 'POST', { toUserId: Number(to), text }).then(r => sendResponse({ ok: r.status === 200 || r.status === 201, status: r.status, error: r.data && r.data.error, retryAfter: r.retryAfter || (r.data && r.data.retryAfter) }));
+    return true;
+  }
+
+  if (msg.type === 'socialNotes') {
+    socialCall('/notes', 'GET').then(r => sendResponse(r.status === 200 && r.data && Array.isArray(r.data.notes) ? r.data.notes : null));
+    return true;
+  }
+
+  if (msg.type === 'socialReport') {
+    const id = String(msg.id || '');
+    if (!/^[\w-]{1,64}$/.test(id)) { sendResponse({ ok: false }); return; }
+    socialCall('/notes/' + id + '/report', 'POST').then(r => sendResponse({ ok: r.status >= 200 && r.status < 300 }));
+    return true;
+  }
+
+  if (msg.type === 'socialBlock') {
+    const id = String(msg.userId || '');
+    if (!/^\d+$/.test(id)) { sendResponse({ ok: false }); return; }
+    socialCall('/blocks', 'POST', { userId: Number(id) }).then(r => sendResponse({ ok: r.status >= 200 && r.status < 300 }));
     return true;
   }
 

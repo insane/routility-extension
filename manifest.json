@@ -59,6 +59,7 @@
         "src/features/trading/trades.js",
         "src/features/friends/friends.js",
         "src/features/friends/requests.js",
+        "src/features/friends/social.js",
         "src/features/robux/transactions.js",
         "src/features/robux/spending.js",
         "src/features/profile/early.js",
