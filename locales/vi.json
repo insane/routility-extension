@@ -59,8 +59,6 @@
  "{d}d {h}h": "{d} ngày {h} giờ",
  "{date} for": "{date} với giá",
  "{date} for ": "{date} với giá",
- "{date}: {time}": "{date}: {time}",
- "{date}: not played": "{date}: không chơi",
  "{demand} demand": "Nhu cầu {demand}",
  "{diff} ({pct}%) in {n} days": {
   "other": "{diff} ({pct}%) trong {n} ngày"

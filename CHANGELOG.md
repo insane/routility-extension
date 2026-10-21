@@ -24,7 +24,7 @@ RoUtility badges and friend request messages, plus server region and profile fix
 **Improved**
 
 ```diff
-~ Your playtime on a game page sits under its name now, with Today, Past 7 Days, Past 30 Days or All Time, your last 14 days as bars and the exact minutes when you hover the time.
+~ Your playtime on a game page sits under its name now, with Today, Past 7 Days, Past 30 Days or All Time. Hover the time for the exact minutes and when you last played.
 ~ Prices show a simple green $ (or your currency’s sign) before the amount instead of the round money icon.
 ```
 

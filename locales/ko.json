@@ -59,8 +59,6 @@
  "{d}d {h}h": "{d}일 {h}시간",
  "{date} for": "{date}:",
  "{date} for ": "{date}: ",
- "{date}: {time}": "{date}: {time}",
- "{date}: not played": "{date}: 플레이 안 함",
  "{demand} demand": "수요: {demand}",
  "{diff} ({pct}%) in {n} days": {
   "other": "{n}일 동안 {diff} ({pct}%)"

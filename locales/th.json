@@ -59,8 +59,6 @@
  "{d}d {h}h": "{d} วัน {h} ชม.",
  "{date} for": "{date} ในราคา",
  "{date} for ": "{date} ในราคา ",
- "{date}: {time}": "{date}: {time}",
- "{date}: not played": "{date}: ไม่ได้เล่น",
  "{demand} demand": "ความต้องการ{demand}",
  "{diff} ({pct}%) in {n} days": {
   "other": "{diff} ({pct}%) ใน {n} วัน"

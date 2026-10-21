@@ -59,8 +59,6 @@
  "{d}d {h}h": "{d}天 {h}小时",
  "{date} for": "{date}，价格",
  "{date} for ": "{date}，价格 ",
- "{date}: {time}": "{date}：{time}",
- "{date}: not played": "{date}：未玩",
  "{demand} demand": "需求{demand}",
  "{diff} ({pct}%) in {n} days": {
   "other": "{n} 天内 {diff}（{pct}%）"

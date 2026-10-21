@@ -199,7 +199,6 @@
   }
 
   const PT_RANGES = [['day', LT('Today'), 1], ['week', LT('Past 7 Days'), 7], ['month', LT('Past 30 Days'), 30], ['all', LT('All Time'), 0]];
-  const PT_BARS = 14;
 
   function ptRange() {
     try {
@@ -215,44 +214,13 @@
     return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: d.getFullYear() === new Date().getFullYear() ? undefined : 'numeric' });
   }
 
-  function clockIcon() {
-    const ns = 'http://www.w3.org/2000/svg';
-    const svg = document.createElementNS(ns, 'svg');
-    svg.setAttribute('viewBox', '0 0 24 24');
-    svg.setAttribute('class', 'routility-pt-clock');
-    svg.setAttribute('aria-hidden', 'true');
-    const circle = document.createElementNS(ns, 'circle');
-    circle.setAttribute('cx', '12');
-    circle.setAttribute('cy', '12');
-    circle.setAttribute('r', '8.5');
-    const hands = document.createElementNS(ns, 'path');
-    hands.setAttribute('d', 'M12 7.5V12l3 2');
-    for (const n of [circle, hands]) {
-      n.setAttribute('fill', 'none');
-      n.setAttribute('stroke', 'currentColor');
-      n.setAttribute('stroke-width', '2');
-      n.setAttribute('stroke-linecap', 'round');
-      n.setAttribute('stroke-linejoin', 'round');
-      svg.appendChild(n);
-    }
-    return svg;
-  }
-
   function buildPlayLine() {
     const row = el('div', 'routility-injected routility-pt-line');
-    const main = el('span', 'routility-pt-line-main');
-    main.append(clockIcon(), el('span', 'text-body-medium content-default', lt('Your Playtime')), el('span', 'text-label-large content-emphasis routility-pt-line-time'));
-    const bars = el('span', 'routility-pt-bars');
-    bars.setAttribute('aria-hidden', 'true');
-    for (let i = 0; i < PT_BARS; i++) bars.appendChild(el('span', 'routility-pt-bar'));
     const picker = window.RoUtilityUI.dropdown(PT_RANGES.map(([value, label]) => ({ value, label: lt(label) })), ptRange(), (v) => {
       try { localStorage.setItem('routilityPlayRange', v); } catch {}
       placePlaytime();
     }, 'routility-pt-range');
-    main.appendChild(picker);
-    const days = el('div', 'routility-pt-line-days');
-    days.append(bars, el('span', 'text-caption-medium content-muted routility-pt-line-last'));
-    row.append(main, days);
+    row.append(el('span', 'text-label', lt('Your Playtime')), el('span', 'routility-pt-line-time'), picker);
     return row;
   }
 
@@ -270,40 +238,20 @@
     const range = ptRange();
     const span = (PT_RANGES.find(r => r[0] === range) || PT_RANGES[1])[2];
     const since = span ? dayKey(Date.now() - (span - 1) * 86400000) : '';
-    const byDay = new Map();
     let total = 0;
     let last = '';
     for (const [day, games] of Object.entries(p.data.days || {})) {
       const m = Number(games && games[p.universeId]) || 0;
       if (!m) continue;
-      byDay.set(day, m);
       if (day >= since) total += m;
       if (day > last) last = day;
     }
     const time = row.querySelector('.routility-pt-line-time');
     const text = last ? playText(total) : lt('Not played yet');
     if (time.textContent !== text) time.textContent = text;
-    time.classList.toggle('content-muted', !last);
-    time.classList.toggle('content-emphasis', !!last);
-    const tip = last ? [ltn(total, '{n} minute', '{n} minutes', { n: formatNumber(total) }), lt('Tracked by RoUtility while a Roblox tab is open.')].join(' • ') : lt('Tracked by RoUtility while a Roblox tab is open.');
+    time.classList.toggle('routility-pt-line-none', !last);
+    const tip = [last && ltn(total, '{n} minute', '{n} minutes', { n: formatNumber(total) }), last && lt('Last played {date}', { date: shortDate(last) }), lt('Tracked by RoUtility while a Roblox tab is open.')].filter(Boolean).join(' • ');
     if (time.dataset.rtTip !== tip) time.dataset.rtTip = tip;
-    const lastLine = row.querySelector('.routility-pt-line-days');
-    lastLine.hidden = !last;
-    const lastText = last ? lt('Last played {date}', { date: shortDate(last) }) : '';
-    const lastNode = row.querySelector('.routility-pt-line-last');
-    if (lastNode.textContent !== lastText) lastNode.textContent = lastText;
-    const bars = row.querySelector('.routility-pt-bars');
-    const days = [];
-    for (let i = PT_BARS - 1; i >= 0; i--) days.push(dayKey(Date.now() - i * 86400000));
-    const most = Math.max(1, ...days.map(d => byDay.get(d) || 0));
-    [...bars.children].forEach((bar, i) => {
-      const m = byDay.get(days[i]) || 0;
-      bar.style.height = m ? Math.max(4, Math.round(Math.sqrt(m / most) * 20)) + 'px' : '';
-      bar.classList.toggle('routility-pt-bar-on', !!m);
-      bar.classList.toggle('routility-pt-bar-in', !!m && days[i] >= since);
-      const t = m ? lt('{date}: {time}', { date: shortDate(days[i]), time: playText(m) }) : lt('{date}: not played', { date: shortDate(days[i]) });
-      if (bar.dataset.rtTip !== t) bar.dataset.rtTip = t;
-    });
   }
 
   function setupPlaytime(universeId) {

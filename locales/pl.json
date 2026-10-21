@@ -101,8 +101,6 @@
  "{d}d {h}h": "{d} d. {h} godz.",
  "{date} for": "{date} za",
  "{date} for ": "{date} za ",
- "{date}: {time}": "{date}: {time}",
- "{date}: not played": "{date}: bez gry",
  "{demand} demand": "Popyt: {demand}",
  "{diff} ({pct}%) in {n} days": {
   "one": "{diff} ({pct}%) w {n} dzień",

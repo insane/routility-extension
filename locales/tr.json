@@ -73,8 +73,6 @@
  "{d}d {h}h": "{d}g {h}sa",
  "{date} for": "{date} tarihinde",
  "{date} for ": "{date} tarihinde",
- "{date}: {time}": "{date}: {time}",
- "{date}: not played": "{date}: oynanmadı",
  "{demand} demand": "{demand} talep",
  "{diff} ({pct}%) in {n} days": {
   "one": "{n} günde {diff} ({pct}%)",

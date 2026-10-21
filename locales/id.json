@@ -59,8 +59,6 @@
  "{d}d {h}h": "{d}hr {h}j",
  "{date} for": "{date} seharga",
  "{date} for ": "{date} seharga ",
- "{date}: {time}": "{date}: {time}",
- "{date}: not played": "{date}: tidak dimainkan",
  "{demand} demand": "Permintaan {demand}",
  "{diff} ({pct}%) in {n} days": {
   "other": "{diff} ({pct}%) dalam {n} hari"

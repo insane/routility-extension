@@ -101,8 +101,6 @@
  "{d}d {h}h": "{d} д {h} ч",
  "{date} for": "{date} за",
  "{date} for ": "{date} за",
- "{date}: {time}": "{date}: {time}",
- "{date}: not played": "{date}: не играли",
  "{demand} demand": "спрос: {demand}",
  "{diff} ({pct}%) in {n} days": {
   "one": "{diff} ({pct}%) за {n} день",

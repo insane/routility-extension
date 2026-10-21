@@ -73,8 +73,6 @@
  "{d}d {h}h": "{d} j {h} h",
  "{date} for": "{date} pour",
  "{date} for ": "{date} pour ",
- "{date}: {time}": "{date} : {time}",
- "{date}: not played": "{date} : pas joué",
  "{demand} demand": "Demande {demand}",
  "{diff} ({pct}%) in {n} days": {
   "one": "{diff} ({pct} %) en {n} jour",

@@ -14,7 +14,7 @@
         { "type": "new", "text": "RoUtility Badge and Friend Request Messages: verify with Roblox once and other RoUtility users see a small RoUtility logo next to your name. When you add a RoUtility user, you can include a short message, and messages people send you show on your Requests page. Links and contact info aren’t allowed, and you can report or block anyone.", "by": ["reqonn"] },
         { "type": "new", "text": "Hover a verified, Roblox Plus, Premium or admin badge next to a name to see what it is.", "by": ["reqonn"] },
         { "type": "new", "text": "Terminated players show their avatar on their profile, and pasted or outside links to terminated profiles open them too.", "by": ["reqonn"] },
-        { "type": "improved", "text": "Your playtime on a game page sits under its name now, with Today, Past 7 Days, Past 30 Days or All Time, your last 14 days as bars and the exact minutes when you hover the time." },
+        { "type": "improved", "text": "Your playtime on a game page sits under its name now, with Today, Past 7 Days, Past 30 Days or All Time. Hover the time for the exact minutes and when you last played." },
         { "type": "improved", "text": "Prices show a simple green $ (or your currency’s sign) before the amount instead of the round money icon." },
         { "type": "fixed", "text": "Server Regions: Play with a region picked (like Miami) finds servers in that region that actually have room, instead of saying there are none or sending you to one that just filled up." },
         { "type": "fixed", "text": "Cancel Request shows right after you send a friend request.", "by": ["reqonn"] },
