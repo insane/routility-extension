@@ -131,6 +131,7 @@
         "https://www.roblox.com/request-error*"
       ],
       "js": [
+        "src/core/i18n.js",
         "src/features/profile/early.js"
       ],
       "run_at": "document_start"
