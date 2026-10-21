@@ -1502,14 +1502,19 @@
 }
 
 .routility-terminated-chip {
-  gap: 6px;
-  height: 28px;
-  padding: 0 12px 0 10px;
-  border-radius: calc(8px * var(--routility-round, 1));
-  background: rgba(240, 72, 72, 0.18);
+  gap: 4px;
+  height: 20px;
+  padding: 0 8px 0 6px;
+  border-radius: calc(6px * var(--routility-round, 1));
+  background: rgba(240, 72, 72, 0.16);
   color: #f26b6b;
-  font-size: 14px;
-  line-height: 28px;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.routility-terminated-chip .routility-ban-icon {
+  width: 12px;
+  height: 12px;
 }
 
 .routility-ban-icon {
@@ -1526,7 +1531,7 @@
 .routility-classic-handle {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   min-width: 0;
 }
 
@@ -2417,4 +2422,14 @@ html .routility-classic.routility-classic-columns > .profile-collections.layer {
 
 html.routility-themed .routility-classic-columns > .profile-collections > .section-content {
   background-color: var(--color-surface-100) !important;
+}
+
+img.routility-render-head {
+  object-fit: cover;
+  transform: scale(2.3);
+  transform-origin: 50% 20%;
+}
+
+html.routility-classic-on #content:has(> .routility-classic, > .routility-modern) {
+  max-width: 970px;
 }

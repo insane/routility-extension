@@ -400,7 +400,7 @@ async function thumbBuild(scene, canvas) {
   };
 }
 
-export async function headshotImage(extra, cam, size, circular) {
+export async function headshotImage(extra, cam, size, circular, who) {
   const canvas = document.createElement('canvas');
   canvas.width = canvas.height = size;
   const scene = new AvatarScene(canvas, { controls: false });
@@ -411,7 +411,7 @@ export async function headshotImage(extra, cam, size, circular) {
   scene.ground.visible = false;
   scene.shadow.visible = false;
   try {
-    const data = await myAvatar();
+    const data = who || await myAvatar();
     const kind = data.playerAvatarType === 'R15' ? 'R15' : 'R6';
     const assets = (data.assets || []).map(a => ({ id: String(a.id), type: a.assetType && a.assetType.id, meta: a.meta }));
     for (const x of extra) if (!assets.some(a => a.id === String(x.id))) assets.push({ id: String(x.id), type: x.type });
