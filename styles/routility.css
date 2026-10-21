@@ -10526,6 +10526,97 @@ html.routility-classic-premium .icon-regular-roblox-plus:has(+ :is(h1, h2, h3, h
   white-space: nowrap;
 }
 
+.routility-pt-line {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 340px;
+  margin: 10px 0 2px;
+}
+
+.routility-pt-line-main {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.routility-pt-line-main .routility-pt-range {
+  margin-left: auto;
+}
+
+.routility-pt-line .routility-pt-range .input-dropdown-btn {
+  height: 24px !important;
+  padding: 0 2px 0 8px !important;
+  line-height: 24px !important;
+  border-color: transparent !important;
+  background: transparent !important;
+}
+
+.routility-pt-line .routility-pt-range .input-dropdown-btn:hover {
+  background: var(--color-state-hover) !important;
+}
+
+.routility-pt-line .routility-pt-range .rbx-selection-label {
+  font-size: 12px !important;
+  color: var(--color-content-default) !important;
+}
+
+.routility-pt-line-days {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding-left: 22px;
+}
+
+.routility-pt-line-days[hidden] {
+  display: none;
+}
+
+.routility-pt-line-last {
+  line-height: 14px;
+  white-space: nowrap;
+}
+
+.routility-pt-clock {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  color: var(--color-content-muted);
+}
+
+.routility-pt-line-time {
+  cursor: default;
+  white-space: nowrap;
+}
+
+.routility-pt-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 20px;
+}
+
+.routility-pt-bar {
+  width: 5px;
+  height: 3px;
+  flex: none;
+  border-radius: 2px;
+  background: var(--color-content-muted);
+  opacity: 0.25;
+  cursor: default;
+}
+
+.routility-pt-bar-on {
+  opacity: 0.55;
+}
+
+.routility-pt-bar-in {
+  background: var(--color-system-success, #00b06f);
+  opacity: 1;
+}
+
 .routility-pt-row {
   position: relative;
   display: flex;
