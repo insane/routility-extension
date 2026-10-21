@@ -687,7 +687,7 @@ html.routility-search-kbd ul.dropdown-menu > .navbar-search-option:hover:not(.ne
 }
 
 .routility-search-name {
-  color: rgb(247, 247, 248);
+  color: var(--color-content-emphasis, rgb(247, 247, 248));
   overflow: hidden;
   font-size: 18px;
   font-weight: 500;
