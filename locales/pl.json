@@ -3343,5 +3343,12 @@
  "Your badge and friend request messages turn on once Roblox confirms this is your account. Roblox opens a window where you click Allow, the same sign-in as the RoUtility Forum. You only do this once.": "Twoja odznaka i wiadomości w zaproszeniach do znajomych włączą się, gdy Roblox potwierdzi, że to twoje konto. Roblox otworzy okno, w którym klikniesz Zezwól, tak samo jak przy logowaniu na Forum RoUtility. Robisz to tylko raz.",
  "You’ve sent a lot of messages. Try again in {n} minutes, or clear the message to just add them.": "Wysłano dużo wiadomości. Spróbuj ponownie za {n} min albo usuń wiadomość, żeby po prostu dodać tę osobę.",
  "hey, we met in Adopt Me!": "hej, poznaliśmy się w Adopt Me!",
- "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} używa RoUtility, więc możesz dodać wiadomość, którą zobaczy razem z zaproszeniem. Bez linków i danych kontaktowych."
+ "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} używa RoUtility, więc możesz dodać wiadomość, którą zobaczy razem z zaproszeniem. Bez linków i danych kontaktowych.",
+ "Click to add a note": "Kliknij, aby dodać notatkę",
+ "Profile Notes": "Notatki profilu",
+ "met in Adopt Me, good trader": "poznani w Adopt Me, dobry trader",
+ "Only visible to you": "Widoczne tylko dla ciebie",
+ "Add private notes to anyone’s profile, like on Discord. Only you can see them.": "Dodawaj prywatne notatki do dowolnego profilu, jak na Discordzie. Tylko ty je widzisz.",
+ "Back Up Notes": "Kopia zapasowa notatek",
+ "Once you verify with Roblox, your notes are saved to your RoUtility account so they come back on other browsers. They’re encrypted and only you can get them. Turning this off deletes the backup.": "Po weryfikacji przez Roblox twoje notatki zapisują się na koncie RoUtility, więc wrócą w innych przeglądarkach. Są zaszyfrowane i tylko ty możesz je odzyskać. Wyłączenie tej opcji usuwa kopię."
 }

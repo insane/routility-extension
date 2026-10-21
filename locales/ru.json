@@ -3343,5 +3343,12 @@
  "Your badge and friend request messages turn on once Roblox confirms this is your account. Roblox opens a window where you click Allow, the same sign-in as the RoUtility Forum. You only do this once.": "Значок и сообщения в запросах в друзья включатся, как только Roblox подтвердит, что это твой аккаунт. Roblox откроет окно, где нужно нажать «Разрешить», — тот же вход, что и на форуме RoUtility. Это нужно сделать только один раз.",
  "You’ve sent a lot of messages. Try again in {n} minutes, or clear the message to just add them.": "Слишком много сообщений. Попробуй ещё раз через {n} мин. или сотри сообщение, чтобы просто добавить в друзья.",
  "hey, we met in Adopt Me!": "привет, мы познакомились в Adopt Me!",
- "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} пользуется RoUtility, так что можно добавить сообщение, которое будет видно вместе с запросом. Без ссылок и контактов."
+ "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} пользуется RoUtility, так что можно добавить сообщение, которое будет видно вместе с запросом. Без ссылок и контактов.",
+ "Click to add a note": "Нажми, чтобы добавить заметку",
+ "Profile Notes": "Заметки к профилям",
+ "met in Adopt Me, good trader": "познакомились в Adopt Me, хороший трейдер",
+ "Only visible to you": "Видно только вам",
+ "Add private notes to anyone’s profile, like on Discord. Only you can see them.": "Добавляйте личные заметки к любому профилю, как в Discord. Их видите только вы.",
+ "Back Up Notes": "Резервная копия заметок",
+ "Once you verify with Roblox, your notes are saved to your RoUtility account so they come back on other browsers. They’re encrypted and only you can get them. Turning this off deletes the backup.": "После подтверждения через Roblox ваши заметки сохраняются в аккаунте RoUtility и появятся в других браузерах. Они зашифрованы, и получить их можете только вы. Если выключить, резервная копия удалится."
 }
