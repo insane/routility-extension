@@ -3061,5 +3061,12 @@
  "Your badge and friend request messages turn on once Roblox confirms this is your account. Roblox opens a window where you click Allow, the same sign-in as the RoUtility Forum. You only do this once.": "Ton badge et les messages des demandes d’ami s’activent dès que Roblox confirme que c’est bien ton compte. Roblox ouvre une fenêtre où tu cliques sur Autoriser, la même connexion que pour le forum RoUtility. Tu ne le fais qu’une fois.",
  "You’ve sent a lot of messages. Try again in {n} minutes, or clear the message to just add them.": "Tu as envoyé beaucoup de messages. Réessaie dans {n} minutes, ou efface le message pour juste envoyer la demande.",
  "hey, we met in Adopt Me!": "salut, on s’est croisés dans Adopt Me!",
- "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} utilise RoUtility, alors tu peux ajouter un message qui s’affichera avec ta demande. Pas de liens ni de coordonnées."
+ "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} utilise RoUtility, alors tu peux ajouter un message qui s’affichera avec ta demande. Pas de liens ni de coordonnées.",
+ "Click to add a note": "Clique pour ajouter une note",
+ "Profile Notes": "Notes de profil",
+ "met in Adopt Me, good trader": "rencontré dans Adopt Me, bon trader",
+ "Only visible to you": "Visible uniquement par toi",
+ "Add private notes to anyone’s profile, like on Discord. Only you can see them.": "Ajoute des notes privées sur le profil de n’importe qui, comme sur Discord. Toi seul peux les voir.",
+ "Back Up Notes": "Sauvegarder les notes",
+ "Once you verify with Roblox, your notes are saved to your RoUtility account so they come back on other browsers. They’re encrypted and only you can get them. Turning this off deletes the backup.": "Une fois vérifié avec Roblox, tes notes sont enregistrées sur ton compte RoUtility pour revenir sur d’autres navigateurs. Elles sont chiffrées et toi seul peux les récupérer. Désactiver ceci supprime la sauvegarde."
 }

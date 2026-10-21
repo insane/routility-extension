@@ -46,15 +46,38 @@
     return row;
   }
 
+  let skNote = false;
+  let skOwn = false;
+
+  function note() {
+    const box = el('div', 'routility-sk-note');
+    box.append(bar(130, 14), bar('100%', 38, 'routility-sk-note-input'));
+    return box;
+  }
+
+  function slot(height, top, child) {
+    const box = el('div', 'routility-sk-slot');
+    box.style.height = height + 'px';
+    if (top) box.style.marginTop = top + 'px';
+    box.appendChild(child);
+    return box;
+  }
+
+  function footer() {
+    const box = el('div', 'routility-sk-foot' + (skOwn ? ' routility-sk-foot-own' : ''));
+    if (!skOwn) box.appendChild(bar(80, 12));
+    return box;
+  }
+
   function columnsBody() {
     const grid = el('div', 'routility-columns routility-columns-games');
     const about = el('div', 'section profile-about');
-    const lines = el('div', 'routility-sk-lines');
-    lines.append(bar('70%', 14), bar('50%', 14));
     const stats = el('div', 'routility-sk-row');
     stats.classList.add('routility-sk-stats');
     stats.append(bar(90, 34), bar(90, 34), bar(90, 34));
-    about.append(heading(70), panel([bar(180, 242, 'routility-sk-body'), lines, stats]));
+    const info = panel([slot(22, 0, bar(80, 14)), slot(300, 6, bar(180, 260, 'routility-sk-body')), skOwn ? slot(101, 12, bar('100%', 101, 'routility-sk-note-input')) : slot(29, 12, bar('45%', 14)), ...(skNote ? [note()] : []), stats, footer()]);
+    info.classList.add('routility-sk-about');
+    about.append(heading(70), info);
     const creations = el('div', 'routility-column-creations');
     const games = el('div', 'section');
     games.append(heading(130), panel([bar('100%', 440, 'routility-sk-tile')]));
@@ -121,9 +144,14 @@
     const pane = el('div', 'tab-content rbx-tab-content');
     const about = el('div', 'section');
     about.appendChild(heading(70));
-    const lines = el('div', 'routility-sk-lines');
-    lines.append(bar('92%', 14), bar('78%', 14), bar('55%', 14));
-    about.appendChild(lines);
+    if (skOwn) about.appendChild(bar('100%', 53, 'routility-sk-note-input'));
+    else {
+      const lines = el('div', 'routility-sk-lines routility-sk-bio');
+      lines.append(bar('80%', 12), bar('55%', 12));
+      about.appendChild(lines);
+    }
+    if (skNote) about.appendChild(note());
+    about.appendChild(footer());
     pane.appendChild(about);
     const wearing = el('div', 'section');
     wearing.appendChild(heading(190));
@@ -198,6 +226,9 @@
     const place = () => {
       const content = document.getElementById('content');
       if (!content) return false;
+      const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+      skOwn = !errorPage && !!me && location.pathname.split('/')[2] === me;
+      skNote = !errorPage && !skOwn && settings.profileNotes !== false;
       if (!content.querySelector(':scope > .routility-classic, :scope > .routility-modern')) content.prepend(modern ? buildModern() : build(settings.classicLayout === 'columns'));
       return true;
     };

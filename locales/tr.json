@@ -3061,5 +3061,12 @@
  "Your badge and friend request messages turn on once Roblox confirms this is your account. Roblox opens a window where you click Allow, the same sign-in as the RoUtility Forum. You only do this once.": "Roblox bu hesabın sana ait olduğunu onayladığında rozetin ve arkadaşlık isteği mesajların açılır. Roblox, İzin ver'e tıklayacağın bir pencere açar; RoUtility Forumu'ndakiyle aynı giriş. Bunu yalnızca bir kez yaparsın.",
  "You’ve sent a lot of messages. Try again in {n} minutes, or clear the message to just add them.": "Çok fazla mesaj gönderdin. {n} dakika sonra tekrar dene ya da sadece eklemek için mesajı sil.",
  "hey, we met in Adopt Me!": "selam, Adopt Me!'da tanışmıştık",
- "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} RoUtility kullanıyor, bu yüzden isteğinle birlikte göreceği bir mesaj ekleyebilirsin. Bağlantı veya iletişim bilgisi yok."
+ "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} RoUtility kullanıyor, bu yüzden isteğinle birlikte göreceği bir mesaj ekleyebilirsin. Bağlantı veya iletişim bilgisi yok.",
+ "Click to add a note": "Not eklemek için tıkla",
+ "Profile Notes": "Profil notları",
+ "met in Adopt Me, good trader": "Adopt Me'de tanıştık, iyi takasçı",
+ "Only visible to you": "Yalnızca sen görebilirsin",
+ "Add private notes to anyone’s profile, like on Discord. Only you can see them.": "Discord’daki gibi herkesin profiline özel notlar ekle. Bunları yalnızca sen görebilirsin.",
+ "Back Up Notes": "Notları Yedekle",
+ "Once you verify with Roblox, your notes are saved to your RoUtility account so they come back on other browsers. They’re encrypted and only you can get them. Turning this off deletes the backup.": "Roblox ile doğruladığında notların RoUtility hesabına kaydedilir, böylece başka tarayıcılarda da geri gelir. Şifrelenirler ve yalnızca sen geri alabilirsin. Bunu kapatmak yedeği siler."
 }

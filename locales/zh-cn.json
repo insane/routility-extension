@@ -2920,5 +2920,12 @@
  "Your badge and friend request messages turn on once Roblox confirms this is your account. Roblox opens a window where you click Allow, the same sign-in as the RoUtility Forum. You only do this once.": "Roblox 确认这是你的账号后，你的徽章和好友请求消息就会开启。Roblox 会打开一个窗口，点击“允许”即可，与 RoUtility 论坛的登录方式相同。只需操作一次。",
  "You’ve sent a lot of messages. Try again in {n} minutes, or clear the message to just add them.": "你发送的消息太多了。请在 {n} 分钟后重试，或清空消息直接添加好友。",
  "hey, we met in Adopt Me!": "嘿，我们在 Adopt Me! 里认识的",
- "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} 在使用 RoUtility，你可以添加一条随请求显示给对方的消息。不能包含链接或联系方式。"
+ "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} 在使用 RoUtility，你可以添加一条随请求显示给对方的消息。不能包含链接或联系方式。",
+ "Click to add a note": "点击添加备注",
+ "Profile Notes": "个人资料备注",
+ "met in Adopt Me, good trader": "在 Adopt Me 认识，交易靠谱",
+ "Only visible to you": "仅你可见",
+ "Add private notes to anyone’s profile, like on Discord. Only you can see them.": "像 Discord 一样，给任何人的个人资料添加私人备注。只有你能看到。",
+ "Back Up Notes": "备份备注",
+ "Once you verify with Roblox, your notes are saved to your RoUtility account so they come back on other browsers. They’re encrypted and only you can get them. Turning this off deletes the backup.": "用 Roblox 验证后，你的备注会保存到你的 RoUtility 账户，在其他浏览器上也能恢复。备注经过加密，只有你能取回。关闭此项会删除备份。"
 }
