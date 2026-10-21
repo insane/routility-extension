@@ -894,6 +894,19 @@
   border-radius: calc(14px * var(--routility-round, 1));
 }
 
+.routility-sk-value {
+  border-radius: calc(8px * var(--routility-round, 1));
+}
+
+.routility-classic-loading .header-caption > .routility-sk-values {
+  margin: 7px 0 -7px;
+}
+
+.routility-sk-actions {
+  gap: 14px;
+  padding-right: 15px;
+}
+
 .routility-sk-button {
   border-radius: calc(8px * var(--routility-round, 1));
 }
