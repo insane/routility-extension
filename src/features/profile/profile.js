@@ -168,7 +168,12 @@
 
   const LOGO_URL = chrome.runtime.getURL('assets/icons/logo.png');
   let shortOn = false;
-  chrome.storage.local.get('routilitySettings', (s) => { shortOn = (s.routilitySettings || {}).profileShort === true; });
+  let pillStyle = 'joined';
+  chrome.storage.local.get('routilitySettings', (s) => {
+    const st = s.routilitySettings || {};
+    shortOn = st.profileShort === true;
+    if (/^(separate|gray)$/.test(st.profilePills)) pillStyle = st.profilePills;
+  });
 
   function pillNumber(n, more) {
     if (!shortOn || n < 1000) return formatNumber(n) + (more ? '+' : '');
@@ -180,7 +185,7 @@
 
 
   function pillText(summary) {
-    if (summary.private) return lt('Private');
+    if (summary.private) return lt('Private Inventory');
     const { symbol } = window.RoUtilityUI.cash();
     return symbol + pillNumber(Math.round(window.RoUtilityUI.toCash(summary.usd)), !summary.complete);
   }
@@ -204,9 +209,11 @@
     const layer = el('div', STATE_LAYER);
     layer.setAttribute('aria-hidden', 'true');
     a.appendChild(layer);
-    const icon = el('span', 'routility-usd-ic routility-value-usd-ic');
-    icon.setAttribute('aria-hidden', 'true');
-    a.appendChild(icon);
+    if (summary.private) {
+      const icon = el('span', 'routility-lock-ic');
+      icon.setAttribute('aria-hidden', 'true');
+      a.appendChild(icon);
+    }
     a.appendChild(el('span', 'padding-y-xsmall text-no-wrap text-truncate-end', pillText(summary)));
     return a;
   }
@@ -466,22 +473,29 @@
 
   function pillSet(userId, summary, name) {
     const out = [];
-    if (showing.usd && hasWorth(summary)) {
+    const worth = hasWorth(summary) ? makeWorthPill(userId, summary, name) : null;
+    const rap = showing.rap && !summary.private ? makeRapPill(userId, summary, name) : null;
+    if (worth && rap && pillStyle === 'joined') {
       const split = el('div', 'flex routility-split-pill');
-      split.append(makePill(userId, summary, name), makeWorthPill(userId, summary, name));
+      split.append(worth, rap);
       out.push(split);
     } else {
-      if (showing.usd || summary.private) out.push(makePill(userId, summary, name));
-      if (hasWorth(summary)) out.push(makeWorthPill(userId, summary, name));
+      out.push(...[worth, rap].filter(Boolean));
     }
-    if (showing.rap && !summary.private) out.push(makeRapPill(userId, summary, name));
+    if (showing.usd || summary.private) out.push(makePill(userId, summary, name));
     return out;
   }
 
   function skeletonPills() {
-    const both = showing.usd && showing.value;
-    return [both && 'routility-value-pill routility-split-skeleton', !both && showing.usd && 'routility-value-pill', !both && showing.value && 'routility-worth-pill', showing.rap && 'routility-rap-pill']
-      .filter(Boolean).map(c => el('span', PILL_CLASS + ' ' + c + ' routility-pill-skeleton'));
+    const both = pillStyle === 'joined' && showing.value && showing.rap;
+    const w = shortOn ? { both: 164, worth: 85, rap: 80, usd: 67 } : { both: 200, worth: 104, rap: 96, usd: 72 };
+    const big = pillPlace !== 'TradeWindow' && !(state && state.mode === 'classic');
+    return [both && ['routility-worth-pill routility-split-skeleton', w.both], !both && showing.value && ['routility-worth-pill', w.worth], !both && showing.rap && ['routility-rap-pill', w.rap], showing.usd && ['routility-value-pill', w.usd]]
+      .filter(Boolean).map(([c, width]) => {
+        const pill = el('span', PILL_CLASS + ' ' + c + ' routility-pill-skeleton');
+        pill.style.width = Math.round(width * (big ? 1.1 : 1)) + 'px';
+        return pill;
+      });
   }
 
   function makeRapPill(userId, summary, name) {
@@ -531,7 +545,7 @@
     document.querySelectorAll('.routility-value-row .rovalra-profile-button-container').forEach(n => row.after(n));
     document.querySelectorAll('.routility-value-row').forEach(n => n.remove());
     const modeClass = { inventory: 'flex-nowrap gap-small flex routility-inventory-pills', classic: 'flex-nowrap gap-small flex routility-classic-pills' }[s.mode];
-    const wrap = el('div', (modeClass || row.className) + ' routility-injected routility-value-row');
+    const wrap = el('div', (modeClass || row.className) + ` routility-injected routility-value-row routility-pills-${pillStyle}`);
     wrap.dataset.state = want;
     pillPlace = s.mode === 'inventory' ? 'Inventory' : 'Profile';
     if (s.summary) {
@@ -566,7 +580,7 @@
       const existing = header.querySelector('.routility-trade-inv-pills');
       if (existing && existing.dataset.state === want) return;
       existing?.remove();
-      const wrap = el('div', 'flex-nowrap gap-small flex routility-injected routility-trade-inv-pills');
+      const wrap = el('div', `flex-nowrap gap-small flex routility-injected routility-trade-inv-pills routility-pills-${pillStyle}`);
       wrap.dataset.state = want;
       pillPlace = 'TradeWindow';
       if (summary) {

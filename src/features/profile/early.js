@@ -3,6 +3,7 @@
 
   if (window.RoUtilityClassicSkeleton) return;
   const { lt, ltn, LT } = window.RoUtilityI18n;
+  let skSettings = {};
 
   function el(tag, className, text) {
     const node = document.createElement(tag);
@@ -99,6 +100,21 @@
     return grid;
   }
 
+  function valuePills() {
+    const s = skSettings;
+    const worth = s.profileValue !== false && s.showValues !== false;
+    const rap = s.profileRap !== false;
+    const w = s.profileShort === true ? { both: 164, worth: 85, rap: 80, usd: 67 } : { both: 200, worth: 104, rap: 96, usd: 72 };
+    const pills = el('div', 'routility-sk-row routility-sk-values');
+    if (worth && rap && !/^(separate|gray)$/.test(s.profilePills)) pills.appendChild(bar(w.both, 28, 'routility-sk-value'));
+    else {
+      if (worth) pills.appendChild(bar(w.worth, 28, 'routility-sk-value'));
+      if (rap) pills.appendChild(bar(w.rap, 28, 'routility-sk-value'));
+    }
+    if (s.profileUsd !== false) pills.appendChild(bar(w.usd, 28, 'routility-sk-value'));
+    return pills;
+  }
+
   function build(columns) {
     const root = el('div', 'routility-classic routility-injected routility-classic-loading' + (columns ? ' routility-classic-columns' : ''));
     const card = el('div', 'section-content profile-header-content');
@@ -109,16 +125,13 @@
     names.appendChild(bar(240, 32, 'routility-sk-name'));
     names.appendChild(bar(90, 12, 'routility-sk-line'));
     caption.appendChild(names);
-    if (!/routility-user=/.test(location.hash)) {
-      const pills = el('div', 'routility-sk-row');
-      pills.append(bar(120, 28, 'routility-sk-pill'), bar(110, 28, 'routility-sk-pill'));
-      caption.appendChild(pills);
-    }
+    if (!/routility-user=/.test(location.hash) && skSettings.inventoryValues !== false) caption.appendChild(valuePills());
     const details = el('div', 'header-details');
     const counts = el('div', 'routility-sk-row');
     counts.append(bar(80, 16), bar(110, 16), bar(100, 16));
     const buttons = el('div', 'routility-sk-row');
-    buttons.append(bar(70, 36, 'routility-sk-button'), bar(130, 36, 'routility-sk-button'));
+    buttons.classList.add('routility-sk-actions');
+    buttons.append(bar(100, 36, 'routility-sk-button'), bar(155, 36, 'routility-sk-button'));
     details.append(counts, buttons);
     caption.appendChild(details);
     top.appendChild(caption);
@@ -209,6 +222,7 @@
   if (!errorPage && !/^\/users\/\d+\/profile\/?$/i.test(location.pathname)) return;
   chrome.storage.local.get(['routilitySettings', 'routilityLastProfile'], (s) => {
     const settings = { revealTerminated: true, classicProfile: true, ...(s.routilitySettings || {}) };
+    skSettings = settings;
     let shown = null;
     try { shown = sessionStorage.getItem('routilityTerminated'); } catch {}
     const nav = performance.getEntriesByType('navigation')[0]?.type;
