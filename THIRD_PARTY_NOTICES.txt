@@ -17,3 +17,9 @@ flag-icons
   Files: flags/*.svg
   Source: https://github.com/lipis/flag-icons
   License: MIT, full text in flags/LICENSE
+
+Material Icons
+  Files: the dollar sign icon in styles/routility.css and src/features/trading/trades.js ("attach_money")
+  Source: https://github.com/google/material-design-icons
+  License: Apache License 2.0, full text in vendor/draco.LICENSE
+  Copyright Google LLC

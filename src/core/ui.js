@@ -140,6 +140,7 @@
     const code = rate > 0 ? want : 'USD';
     fiat = { code, symbol: FIAT[code][0], rate: rate > 0 ? rate : 1, rates };
     document.documentElement.style.setProperty('--routility-cash-sign', JSON.stringify(fiat.symbol));
+    document.documentElement.classList.toggle('routility-cash-text', fiat.symbol !== '$');
     const stale = !store || !(Date.now() - Number(store.ts) < FIAT_STALE);
     const need = want !== 'USD' || (s && s.calcRobux === 'custom' && s.calcRateCurrency && s.calcRateCurrency !== 'USD');
     if (need && stale && !fiatAsked) {
@@ -167,8 +168,16 @@
       }
       if (!n || n.nodeType !== 3) continue;
       const lead = n.nodeValue.match(/^\s*/)[0];
-      const m = n.nodeValue.slice(lead.length).match(CASH_SIGN);
-      if (m) n.nodeValue = lead + n.nodeValue.slice(lead.length + m[0].length);
+      const rest = n.nodeValue.slice(lead.length);
+      const pre = rest.match(/^[+\-−]/);
+      const m = rest.slice(pre ? 1 : 0).match(CASH_SIGN);
+      if (!m) continue;
+      if (pre) {
+        ic.dataset.rtPre = pre[0];
+        continue;
+      }
+      delete ic.dataset.rtPre;
+      n.nodeValue = lead + rest.slice(m[0].length);
     }
   }
   new MutationObserver(onFrame(bareCash)).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
