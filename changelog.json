@@ -17,7 +17,10 @@
         { "type": "fixed", "text": "Cancel Request shows right after you send a friend request.", "by": ["reqonn"] },
         { "type": "fixed", "text": "Home: the friends row no longer shows a loading placeholder when you have no friends, and the greeting shows your current avatar.", "by": ["reqonn"] },
         { "type": "fixed", "text": "Search: names in the search box are readable in light mode.", "by": ["reqonn"] },
-        { "type": "fixed", "text": "A startup error on some profiles is gone.", "by": ["reqonn"] }
+        { "type": "fixed", "text": "A startup error on some profiles is gone.", "by": ["reqonn"] },
+        { "type": "fixed", "text": "Fun Mode: heads from bundles you bought, like Headless, now show on your headshot on Home and everywhere else, and replace the head you really wear." },
+        { "type": "fixed", "text": "Fun Mode: limiteds you bought now add to the RAP, Value and USD under your name on your profile." },
+        { "type": "fixed", "text": "Fun Mode: limited bundles you bought, like Dynamic Heads, show as Owned Items on the item page." }
       ]
     },
     {

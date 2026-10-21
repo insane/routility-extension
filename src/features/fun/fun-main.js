@@ -166,8 +166,10 @@
     return fakeAccessories().filter(x => worn.has(x.id));
   }
 
+  const slotOf = (type) => (Number(type) === 79 ? 17 : Number(type));
+
   function takenSlots(worn) {
-    return new Set(worn.filter(x => SINGLE_SLOT.has(x.type)).map(x => x.type));
+    return new Set(worn.filter(x => SINGLE_SLOT.has(x.type)).map(x => slotOf(x.type)));
   }
 
   function rememberReal(list) {
@@ -201,11 +203,11 @@
     const objects = list.some(a => a && typeof a === 'object');
     const keep = list.filter((a, i) => !fakes.has(ids[i]));
     const keptIds = new Set(keep.map(a => Number(a && typeof a === 'object' ? a.id : a)));
-    const keptTypes = new Set([...keptIds].map(id => realAssets.get(id)).filter(Boolean));
+    const keptTypes = new Set([...keptIds].map(id => realAssets.get(id)).filter(Boolean).map(slotOf));
     for (const type of takenSlots(all.filter(x => ids.includes(x.id)))) {
       if (keptTypes.has(type)) continue;
       for (const [id, t] of realAssets) {
-        if (t !== type || keptIds.has(id)) continue;
+        if (slotOf(t) !== type || keptIds.has(id)) continue;
         keep.push(objects ? { id } : id);
         keptIds.add(id);
         break;
@@ -226,7 +228,7 @@
       const worn = wornFakes();
       if (!worn.length) return t;
       const taken = takenSlots(worn);
-      const keep = list.filter(a => !taken.has(Number(a && a.assetType && a.assetType.id)));
+      const keep = list.filter(a => !taken.has(slotOf(a && a.assetType && a.assetType.id)));
       const have = new Set(keep.map(a => Number(a.id)));
       for (const x of worn) if (!have.has(x.id)) keep.push({ id: x.id, name: x.name, assetType: { id: x.type, name: WEAR_NAMES[x.type] || 'Hat' }, currentVersionId: 0 });
       list.length = 0;
@@ -250,7 +252,7 @@
     if (!v1 || !Array.isArray(v1.assets)) return null;
     rememberReal(v1.assets);
     const taken = takenSlots(worn);
-    const assets = v1.assets.filter(a => !taken.has(Number(a.assetType && a.assetType.id))).map(a => (a.meta ? { id: a.id, meta: a.meta } : { id: a.id }));
+    const assets = v1.assets.filter(a => !taken.has(slotOf(a.assetType && a.assetType.id))).map(a => (a.meta ? { id: a.id, meta: a.meta } : { id: a.id }));
     const have = new Set(assets.map(a => a.id));
     for (const x of worn) if (!have.has(x.id)) assets.push({ id: x.id });
     const avatarDefinition = { assets, bodyColors: (v4 && v4.avatarModel && v4.avatarModel.bodyColors) || {}, scales: v1.scales, playerAvatarType: { playerAvatarType: v1.playerAvatarType } };
@@ -322,8 +324,8 @@
     const id = Number(assetId) || 0;
     for (const x of cfg.items) {
       const l = x.listing;
-      if (!l || x.kind !== 'asset') continue;
-      if (!((cid && (l.cid === cid || x.cid === cid)) || (id && x.id === id))) continue;
+      if (!l || !(x.kind === 'asset' || (x.kind === 'bundle' && cid))) continue;
+      if (!((cid && (l.cid === cid || x.cid === cid)) || (id && x.kind === 'asset' && x.id === id))) continue;
       out.recs.push(x);
       if (l.instance) out.instances.add(l.instance);
       if (l.uaid) out.uaids.add(Number(l.uaid));
@@ -576,7 +578,7 @@
     const hit = c && !id ? known.item.get(c) || known.item.get(String(cid)) : null;
     if (hit && hit.kind === 'asset' && hit.id) return sales(hit.id, c);
     return cfg.items
-      .filter(x => x.kind === 'asset' && x.price > 0 && ((c && (x.cid === c || (x.listing && x.listing.cid === c))) || (id && x.id === id)))
+      .filter(x => (x.kind === 'asset' || (c && x.kind === 'bundle')) && x.price > 0 && ((c && (x.cid === c || (x.listing && x.listing.cid === c))) || (id && x.kind === 'asset' && x.id === id)))
       .sort((a, b) => a.at - b.at);
   }
 
@@ -799,7 +801,7 @@
       try { owner = Number(new URL(req.url).searchParams.get('ownerId')); } catch {}
       if (owner !== me()) return null;
       const cid = m[1].toLowerCase();
-      const mine = cfg.items.filter(x => x.kind === 'asset' && (x.listing || x.limited) && (x.cid === cid || (x.listing && x.listing.cid === cid)));
+      const mine = cfg.items.filter(x => (x.kind === 'asset' || x.kind === 'bundle') && (x.listing || x.limited) && (x.cid === cid || (x.listing && x.listing.cid === cid)));
       if (!mine.length) return null;
       return { edit: (t) => {
         const d = parse(t);
@@ -856,7 +858,7 @@
         const worn = wornFakes();
         if (!worn.length) return t;
         const taken = takenSlots(worn);
-        const keep = cw.assets.filter(a => !(a && a.itemType === 'Asset' && taken.has(realAssets.get(Number(a.assetId)))));
+        const keep = cw.assets.filter(a => !(a && a.itemType === 'Asset' && taken.has(slotOf(realAssets.get(Number(a.assetId))))));
         const have = new Set(keep.map(a => Number(a && a.assetId)));
         for (const x of worn) if (!have.has(x.id)) keep.unshift({ assetId: x.id, itemType: 'Asset' });
         cw.assets = keep;
@@ -870,7 +872,7 @@
         const d = parse(t);
         if (!d || !Array.isArray(d.assetIds) || !worn.length) return t;
         const taken = takenSlots(worn);
-        d.assetIds = d.assetIds.filter(id => !taken.has(realAssets.get(Number(id))));
+        d.assetIds = d.assetIds.filter(id => !taken.has(slotOf(realAssets.get(Number(id)))));
         for (const x of worn) if (!d.assetIds.includes(x.id)) d.assetIds.push(x.id);
         return JSON.stringify(d);
       } };

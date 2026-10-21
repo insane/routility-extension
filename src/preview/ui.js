@@ -400,6 +400,8 @@ async function thumbBuild(scene, canvas) {
   };
 }
 
+const ONE_SLOT = new Set([2, 11, 12, 17, 18, 19, 27, 28, 29, 30, 31, 48, 49, 50, 51, 52, 53, 54, 55, 56, 78, 79]);
+
 export async function headshotImage(extra, cam, size, circular, who) {
   const canvas = document.createElement('canvas');
   canvas.width = canvas.height = size;
@@ -413,7 +415,9 @@ export async function headshotImage(extra, cam, size, circular, who) {
   try {
     const data = who || await myAvatar();
     const kind = data.playerAvatarType === 'R15' ? 'R15' : 'R6';
-    const assets = (data.assets || []).map(a => ({ id: String(a.id), type: a.assetType && a.assetType.id, meta: a.meta }));
+    const slot = (t) => (Number(t) === 79 ? 17 : Number(t));
+    const taken = new Set(extra.filter(x => ONE_SLOT.has(Number(x.type))).map(x => slot(x.type)));
+    const assets = (data.assets || []).filter(a => !taken.has(slot(a.assetType && a.assetType.id))).map(a => ({ id: String(a.id), type: a.assetType && a.assetType.id, meta: a.meta }));
     for (const x of extra) if (!assets.some(a => a.id === String(x.id))) assets.push({ id: String(x.id), type: x.type });
     const avatar = await buildAvatar(scene, { kind, colors: data.bodyColor3s, scales: data.scales, assets });
     const animator = new Animator(avatar);

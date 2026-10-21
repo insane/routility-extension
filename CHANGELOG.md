@@ -33,6 +33,9 @@ RoUtility badges and friend request messages, plus server region and profile fix
 - Home: the friends row no longer shows a loading placeholder when you have no friends, and the greeting shows your current avatar. (by @reqonn)
 - Search: names in the search box are readable in light mode. (by @reqonn)
 - A startup error on some profiles is gone. (by @reqonn)
+- Fun Mode: heads from bundles you bought, like Headless, now show on your headshot on Home and everywhere else, and replace the head you really wear.
+- Fun Mode: limiteds you bought now add to the RAP, Value and USD under your name on your profile.
+- Fun Mode: limited bundles you bought, like Dynamic Heads, show as Owned Items on the item page.
 ```
 
 ## 1.1.6 · October 20, 2026

@@ -114,8 +114,41 @@
     return state.items.filter(x => x.kind === 'asset' && state.worn.includes(x.id) && !seen.has(x.id) && seen.add(x.id)).map(x => ({ id: x.id, name: x.name, type: x.type }));
   }
 
+  const wearing = () => buying() && state.worn.length > 0;
+  const bundleParts = new Map();
+
+  function partsOf(id) {
+    if (!bundleParts.has(id)) {
+      const job = (async () => {
+        const d = await getJson(`https://catalog.roblox.com/v1/bundles/${id}/details`);
+        const out = [];
+        for (const p of ((d && d.items) || []).filter(i => i && i.type === 'Asset' && Number(i.id)).slice(0, 12)) {
+          let type = Number(p.assetType) || 0;
+          if (!type) {
+            const a = await getJson(`https://economy.roblox.com/v2/assets/${p.id}/details`);
+            type = a ? Number(a.AssetTypeId) || 0 : 0;
+          }
+          if (TYPE_NAMES[type]) out.push({ id: Number(p.id), name: typeof p.name === 'string' ? p.name : '', type });
+        }
+        return out;
+      })().catch(() => []);
+      bundleParts.set(id, job);
+      job.then((list) => { if (!list.length && bundleParts.get(id) === job) bundleParts.delete(id); });
+    }
+    return bundleParts.get(id);
+  }
+
+  async function wornAll() {
+    const out = wornList();
+    if (!wearing() || out.length >= state.worn.length) return out;
+    const have = new Set(out.map(x => x.id));
+    const parts = (await Promise.all(state.items.filter(x => x.kind === 'bundle').map(b => partsOf(b.id)))).flat();
+    for (const p of parts) if (state.worn.includes(p.id) && !have.has(p.id) && have.add(p.id)) out.push(p);
+    return out;
+  }
+
   async function headshot(circular) {
-    const worn = wornList();
+    const worn = await wornAll();
     if (!worn.length) return null;
     const [av, custom] = await Promise.all([
       getJson('https://avatar.roblox.com/v2/avatar/avatar'),
@@ -124,7 +157,7 @@
     if (!av) return null;
     const c = ((custom && custom.avatarThumbnailCustomizations) || []).find(x => x.thumbnailType === 1) || {};
     const cam = { emote: Number(c.emoteAssetId) || 0, fov: Number(c.camera && c.camera.fieldOfViewDeg) || 30, rot: Number(c.camera && c.camera.yRotDeg) || 0, dist: Number(c.camera && c.camera.distanceScale) || -1 };
-    const sig = JSON.stringify([3, av.playerAvatarType, av.scales, av.bodyColor3s, (av.assets || []).map(a => [a.id, a.meta || null]), worn.map(x => x.id), cam, !!circular]);
+    const sig = JSON.stringify([4, av.playerAvatarType, av.scales, av.bodyColor3s, (av.assets || []).map(a => [a.id, a.meta || null]), worn.map(x => x.id), cam, !!circular]);
     const stored = await new Promise(r => chrome.storage.local.get(HEADSHOT_KEY, st => r(Array.isArray(st[HEADSHOT_KEY]) ? st[HEADSHOT_KEY] : [])));
     const hit = stored.find(x => x && x.sig === sig && typeof x.url === 'string');
     if (hit) return hit.url;
@@ -216,7 +249,7 @@
     if (!res.ok) return res;
     let data;
     try { data = await res.clone().json(); } catch { return res; }
-    const worn = wornList();
+    const worn = await wornAll();
     if (kind === 'currently-wearing' && data && Array.isArray(data.assetIds)) {
       for (const x of worn) if (!data.assetIds.includes(x.id)) data.assetIds.push(x.id);
     } else if (kind === 'avatar' && data && Array.isArray(data.assets)) {
@@ -229,7 +262,7 @@
   window.fetch = function (input, init) {
     let url = '';
     try { url = typeof input === 'string' ? input : input instanceof URL ? input.href : (input && input.url) || ''; } catch {}
-    if (!settings || !buying() || !wornList().length || location.pathname.startsWith('/my/avatar')) return nativeFetch.apply(this, arguments);
+    if (!settings || !wearing() || location.pathname.startsWith('/my/avatar')) return nativeFetch.apply(this, arguments);
     if (THUMBS.test(url)) return swapThumbs(url, nativeFetch.apply(this, arguments), init);
     const w = url.match(WEARING);
     if (w && w[1] === myId()) return swapWearing(w[2].toLowerCase(), nativeFetch.apply(this, arguments));
@@ -363,8 +396,9 @@
     copies: (id) => (buying() ? state.items.filter(x => x.kind === 'asset' && x.id === Number(id)).map(x => (x.listing && x.listing.serial != null ? x.listing.serial : null)) : []),
     ready,
     worn: () => wornList(),
-    headshot: (circular) => ready.then(() => (wornList().length ? headshotFor(circular) : null)),
+    headshot: (circular) => ready.then(() => (wearing() ? headshotFor(circular) : null)),
     typeName: (type) => TYPE_NAMES[type] || '',
+    limiteds: (userId) => ready.then(() => (buying() && String(userId) === myId() ? state.items.filter(x => x.limited && (x.kind === 'asset' || x.kind === 'bundle')) : [])),
     inventory: (userId, type) => ready.then(() => (buying() && String(userId) === myId() ? state.items.filter(x => x.kind === 'asset' && x.type === Number(type)).sort((a, b) => b.at - a.at) : [])),
     render: (size) => ready.then(() => {
       if (!buying() || !state.worn.length) return null;

@@ -112,6 +112,33 @@
   }
 
   async function summarize(userId) {
+    return withFun(userId, await realSummary(userId));
+  }
+
+  async function withFun(userId, summary) {
+    const fun = window.RoUtilityFun;
+    if (!summary || summary.private || summary.invalid || !fun || !fun.limiteds) return summary;
+    const list = await fun.limiteds(userId);
+    if (!list.length) return summary;
+    const ids = [...new Set(list.filter(x => x.kind === 'asset').map(x => String(x.id)))];
+    const bundles = list.filter(x => x.kind === 'bundle').map(x => x.id + ':' + String(x.name || '').trim().toLowerCase());
+    const res = await send({ type: 'getPrices', ids, bundles });
+    const out = { ...summary };
+    for (const x of list) {
+      const p = x.kind === 'bundle' ? res && res.bundles && res.bundles[x.id + ':' + String(x.name || '').trim().toLowerCase()] : res && res.ids && res.ids[String(x.id)];
+      if (!p) continue;
+      const v = itemValue(p);
+      if (v) out.valued++;
+      out.worth += v || p.rap || 0;
+      out.usd += p.usd || 0;
+      out.rap += p.rap || 0;
+      out.rapTotal += p.rap || 0;
+      out.count++;
+    }
+    return out;
+  }
+
+  async function realSummary(userId) {
     const known = await recall(userId);
     if (known) return known;
     const s = await scan(userId);
