@@ -279,7 +279,7 @@
     chat: '<svg viewBox="0 0 24 24"><path d="M5.2 3.6h13.6c1.5 0 2.6 1.1 2.6 2.6v8.4c0 1.5-1.1 2.6-2.6 2.6h-6.6l-4.6 3.6c-.6.5-1.4 0-1.4-.7v-2.9h-1c-1.5 0-2.6-1.1-2.6-2.6V6.2c0-1.5 1.1-2.6 2.6-2.6z" fill="currentColor"/><circle cx="8.2" cy="10.4" r="1.4" fill="var(--rt-cat-cut)"/><circle cx="12" cy="10.4" r="1.4" fill="var(--rt-cat-cut)"/><circle cx="15.8" cy="10.4" r="1.4" fill="var(--rt-cat-cut)"/></svg>',
     streamer: '<svg viewBox="0 0 24 24"><path d="M12 5.2c-5 0-8.6 4.2-9.8 6-.3.5-.3 1.1 0 1.6 1.2 1.8 4.8 6 9.8 6s8.6-4.2 9.8-6c.3-.5.3-1.1 0-1.6-1.2-1.8-4.8-6-9.8-6z" fill="currentColor"/><circle cx="12" cy="12" r="3.6" fill="var(--rt-cat-cut)"/><path d="M4 20.4 20.4 4" stroke="var(--rt-cat-cut)" stroke-width="4.4" stroke-linecap="round"/><path d="M4 20.4 20.4 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
     robux: '<svg viewBox="0 0 23.5 24"><path d="M19.78 4.897A4.369 4.369 0 0122 8.69v6.62a4.37 4.37 0 01-2.22 3.792l-5.812 3.311a4.487 4.487 0 01-4.437 0l-5.813-3.31A4.37 4.37 0 011.5 15.31V8.69c0-1.565.846-3.011 2.218-3.793l5.813-3.31a4.487 4.487 0 014.437 0l5.813 3.31zM10.31 3.09L4.648 6.313a2.836 2.836 0 00-1.44 2.463v6.448c0 1.015.548 1.954 1.44 2.463l5.66 3.223c.892.508 1.99.508 2.882 0l5.66-3.223a2.838 2.838 0 001.442-2.463V8.776c0-1.017-.55-1.955-1.441-2.463L13.19 3.09a2.914 2.914 0 00-2.882 0zm2.624 1.801l4.466 2.543a2.33 2.33 0 011.184 2.024v5.087a2.33 2.33 0 01-1.184 2.023l-4.466 2.544a2.394 2.394 0 01-2.367 0L6.1 16.568a2.33 2.33 0 01-1.183-2.023V9.458c0-.835.451-1.606 1.183-2.024l4.466-2.543a2.394 2.394 0 012.367 0zM9.188 14.53h5.124V9.473H9.189v5.057z" fill="currentColor" fill-rule="evenodd"/></svg>',
-    badges: '<svg viewBox="0 0 24 24"><path d="M7.4 13.6 5 21.2c-.2.6.4 1.1 1 .9l3-1.2 1.8 2.6c.4.5 1.2.4 1.4-.2l1.2-4z" fill="currentColor" opacity="0.6"/><path d="M16.6 13.6l2.4 7.6c.2.6-.4 1.1-1 .9l-3-1.2-1.8 2.6c-.4.5-1.2.4-1.4-.2l-1.2-4z" fill="currentColor" opacity="0.6"/><circle cx="12" cy="9.4" r="7" fill="currentColor"/><path d="M12 5.6l1.2 2.5 2.7.4-2 1.9.5 2.7-2.4-1.3-2.4 1.3.5-2.7-2-1.9 2.7-.4z" fill="var(--rt-cat-cut)"/></svg>',
+    badges: '<svg viewBox="0 0 24 24"><path d="M7.4 13.6 5 21.2c-.2.6.4 1.1 1 .9l3-1.2 1.8 2.6c.4.5 1.2.4 1.4-.2l1.2-4z" fill="currentColor" opacity="0.6"/><path d="M16.6 13.6l2.4 7.6c.2.6-.4 1.1-1 .9l-3-1.2-1.8 2.6c-.4.5-1.2.4-1.4-.2l-1.2-4z" fill="currentColor" opacity="0.6"/><circle cx="12" cy="9.4" r="7" fill="currentColor"/><path d="M12 5.6l1.2 2.5 2.7.4-2 1.9.5 2.7-2.4-1.3-2.4 1.3.5-2.7-2-1.9 2.7-.4z" fill="var(--rt-cat-cut)"/></svg>',
     classic: '<svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.8a9.2 9.2 0 1 1 0 18.4 9.2 9.2 0 0 1 0-18.4zM11 7v5.6l4.2 2.5 1-1.6-3.2-1.9V7z" fill="currentColor"/></svg>',
     account: '<svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.4 4.6 5.3c-.6.2-1 .8-1 1.4v4.7c0 4.6 3.2 8.6 7.8 9.9.4.1.8.1 1.2 0 4.6-1.3 7.8-5.3 7.8-9.9V6.7c0-.6-.4-1.2-1-1.4zm-1.1 12.4-3-3 1.4-1.4 1.6 1.6 4.2-4.2 1.4 1.4z" fill="currentColor"/></svg>',
     inventory: '<svg viewBox="0 0 24 24"><path d="M9 6.8V5.2c0-1 .8-1.8 1.8-1.8h2.4c1 0 1.8.8 1.8 1.8v1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill-rule="evenodd" d="M7 6.8h10a3.4 3.4 0 0 1 3.4 3.4v8.4c0 1.3-1.1 2.4-2.4 2.4H6c-1.3 0-2.4-1.1-2.4-2.4v-8.4A3.4 3.4 0 0 1 7 6.8zm2 6.2v1.8h6V13z" fill="currentColor"/></svg>',
@@ -2786,10 +2786,11 @@
         holder.appendChild(thanks);
       }
       const current = chrome.runtime.getManifest().version;
+      const installed = log.releases.find(r => r.version.localeCompare(current, undefined, { numeric: true }) <= 0);
       for (const r of log.releases) {
         const wrap = group(lt('Version {version}', { version: r.version }), logDate(r.date));
         wrap.classList.add('routility-log-group');
-        if (r.version === current) wrap.querySelector('.routility-set-group-head').appendChild(el('span', 'routility-set-chip routility-log-current', lt('Installed')));
+        if (r === installed) wrap.querySelector('.routility-set-group-head').appendChild(el('span', 'routility-set-chip routility-log-current', lt('Installed')));
         const card = wrap.card;
         card.classList.add('routility-log-card');
         if (r.summary) card.appendChild(el('p', 'text-body-medium content-emphasis margin-none routility-log-summary', r.summary));

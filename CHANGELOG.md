@@ -7,44 +7,21 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 - Code: [@reqonn](https://github.com/reqonn), [@awkward222](https://github.com/awkward222)
 - Bug reports and ideas: [@reqonn](https://github.com/reqonn), api_cats
 
-## 1.1.8 · October 20, 2026
+## 1.1.6 · October 20, 2026
 
-Customize Thumbnail fix.
-
-**Improved**
-
-```diff
-~ Classic Profile Layout: no more status line under the username (like the orange In Studio). The status dot on the avatar still shows it.
-```
-
-**Fixed**
-
-```diff
-- Customize Thumbnail: Field of View and Rotation now apply to your Full Body thumbnail too, so it faces the way the preview shows instead of Roblox’s default angle.
-```
-
-## 1.1.7 · October 19, 2026
-
-Smaller fixes for Home and the classic profile.
-
-**Fixed**
-
-```diff
-- Search suggestions only highlight one row at a time: the one under your mouse, or the one you picked with the arrow keys.
-- Home section titles like Continue and Recently Updated are only clickable on the title and arrow now, not across the whole empty row.
-- Classic Profile Layout: the profile’s primary community shows first in Communities again.
-- Classic Profile Layout: turning the page in Favorites on Two Columns shows the next favorites instead of an empty box.
-- Classic Profile Layout: on Two Columns, people with no experiences or favorites get an Experiences or Favorites box that says so, instead of those sections just disappearing.
-```
-
-## 1.1.6 · October 19, 2026
-
-Fixes the store build of 1.1.5, where the settings page stayed empty.
+Fixes the store build of 1.1.5, plus fixes for search, Home, the classic profile and Customize Thumbnail.
 
 **Fixed**
 
 ```diff
 - In the store version of 1.1.5, the settings page stayed empty and features that rely on RoUtility’s background work (values, prices, notifications and more) didn’t load. Everything works again.
+- Search suggestions only highlight one row at a time: the one under your mouse, or the one you picked with the arrow keys.
+- Home section titles like Continue and Recently Updated are only clickable on the title and arrow now, not across the whole empty row.
+- Classic Profile Layout: the profile’s primary community shows first in Communities again.
+- Classic Profile Layout: turning the page in Favorites on Two Columns shows the next favorites instead of an empty box.
+- Classic Profile Layout: on Two Columns, people with no experiences or favorites get an Experiences or Favorites box that says so, instead of those sections just disappearing.
+- Customize Thumbnail: Field of View and Rotation now apply to your Full Body thumbnail too, so it faces the way the preview shows instead of Roblox’s default angle.
+- Server Regions: Play with a region picked (like Miami) finds servers in that region that actually have room, instead of saying there are none or sending you to one that just filled up.
 ```
 
 ## 1.1.5 · October 16, 2026

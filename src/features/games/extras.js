@@ -1863,32 +1863,48 @@
       const openNow = async (list) => {
         if (!list || !list.length) return [];
         const now = await liveServers();
-        return list.filter(sv => now.has(sv.id)).map(sv => {
+        return list.filter(sv => sv.fresh || now.has(sv.id)).map(sv => {
+          if (sv.fresh) return sv;
           const l = now.get(sv.id);
           return { ...sv, playing: Number(l.playing) || 0, maxPlayers: Number(l.maxPlayers) || sv.maxPlayers, ping: Number.isFinite(l.ping) ? l.ping : sv.ping };
         });
       };
+      const roomy = (list) => bestOpen((list || []).filter(sv => free(sv) >= 2));
       let quickPool = null;
       const quickList = async (ids, label) => {
         if (!quickPool) {
           modal.status(lt('Checking open servers for {region}…', { region: label }));
-          const d = await json(`https://games.roblox.com/v1/games/${placeId}/servers/Public?sortOrder=Desc&excludeFullGames=true&limit=100`);
-          const servers = ((d && d.data) || []).filter(sv => sv && typeof sv.id === 'string');
-          quickPool = { servers, dc: new Map() };
-          for (let i = 0; i < servers.length && !cancelled; i += 30) {
-            const chunk = servers.slice(i, i + 30);
-            const r = await window.RoUtilityUI.request({ type: 'serverRegions', placeId, ids: chunk.map(x => x.id) }, x => x !== undefined);
-            for (const sv of chunk) {
-              const dcId = r && r.regions ? r.regions[sv.id] : null;
-              if (Number.isFinite(dcId)) quickPool.dc.set(sv.id, dcId);
-              const det = r && r.details && r.details[sv.id];
-              if (det) Object.assign(sv, det);
+          const pool = new Map();
+          for (const order of ['Desc', 'Asc']) {
+            let cursor = '';
+            for (let i = 0; i < 3 && !cancelled; i++) {
+              const d = await json(`https://games.roblox.com/v1/games/${placeId}/servers/Public?sortOrder=${order}&excludeFullGames=true&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`);
+              for (const sv of (d && d.data) || []) if (sv && typeof sv.id === 'string' && !pool.has(sv.id)) pool.set(sv.id, sv);
+              cursor = d && d.nextPageCursor;
+              if (!cursor) break;
             }
-            modal.status(lt('Checked {done} of {total} servers…', { done: formatNumber(Math.min(i + 30, servers.length)), total: formatNumber(servers.length) }));
-            if (servers.some(sv => ids.includes(quickPool.dc.get(sv.id)) && sv.maxPlayers - sv.playing >= 1)) break;
           }
+          const servers = [...pool.values()]
+            .filter(sv => sv.maxPlayers > 0 && free(sv) >= 1 && !friendServers.has(String(sv.id)))
+            .sort((a, b) => (free(a) >= 2 ? 0 : 1) - (free(b) >= 2 ? 0 : 1) || b.playing - a.playing);
+          quickPool = { servers, dc: new Map(), checked: 0 };
         }
-        return quickPool.servers.filter(sv => ids.includes(quickPool.dc.get(sv.id))).map(sv => ({ ...sv, datacenterId: quickPool.dc.get(sv.id) }));
+        const limit = Math.min(quickPool.servers.length, 360);
+        const found = () => quickPool.servers.some(sv => ids.includes(quickPool.dc.get(sv.id)) && free(sv) >= 2);
+        while (!found() && quickPool.checked < limit && !cancelled) {
+          const chunk = quickPool.servers.slice(quickPool.checked, quickPool.checked + 30);
+          quickPool.checked += chunk.length;
+          const r = await window.RoUtilityUI.request({ type: 'serverRegions', placeId, ids: chunk.map(x => x.id) }, x => x !== undefined);
+          if (!r || r.retryAfter) break;
+          for (const sv of chunk) {
+            const dcId = r.regions ? r.regions[sv.id] : null;
+            if (Number.isFinite(dcId)) quickPool.dc.set(sv.id, dcId);
+            const det = r.details && r.details[sv.id];
+            if (det) Object.assign(sv, det);
+          }
+          modal.status(lt('Checked {done} of {total} servers…', { done: formatNumber(quickPool.checked), total: formatNumber(limit) }));
+        }
+        return quickPool.servers.filter(sv => ids.includes(quickPool.dc.get(sv.id))).map(sv => ({ ...sv, datacenterId: quickPool.dc.get(sv.id), fresh: true }));
       };
       const regionList = async (ids, label) => {
         if (cancelled) return null;
@@ -1934,8 +1950,10 @@
         await wait(450);
         if (cancelled) return;
         modal.status(lt('Checking which {region} servers have room right now…', { region: wantLabel }));
-        let pick = bestOpen(await openNow(list));
-        if (!pick && !cancelled) pick = bestOpen(await openNow(await quickList(ids, wantLabel)));
+        const listed = await openNow(list);
+        let pick = roomy(listed);
+        if (!pick && !cancelled) pick = bestOpen(await quickList(ids, wantLabel));
+        if (!pick && !cancelled) pick = bestOpen(listed);
         if (cancelled) return;
         if (pick) {
           modal.status(lt('Picking the best one…'));
@@ -1962,7 +1980,8 @@
           if (cancelled) return;
           modal.status(lt('Checking {region}…', { region: niceName(g.name) }));
           const l = await regionList(g.ids, niceName(g.name));
-          const alt = l && bestOpen(await openNow(l));
+          const nearby = l ? await openNow(l) : [];
+          const alt = roomy(nearby) || bestOpen(await quickList(g.ids, niceName(g.name))) || bestOpen(nearby);
           if (alt) {
             if (!auto) {
               modal.status(lt('No open servers in {region}. Joining {other}…', { region: wantLabel, other: niceName(g.name) }));
