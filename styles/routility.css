@@ -9435,12 +9435,12 @@ img.routility-outfit-img[src]:not(.routility-outfit-wait):not(.routility-outfit-
   overflow-y: auto;
 }
 
-html.routility-badge-fix img.player-search-verified-badge {
+img.player-search-verified-badge {
   width: 1em !important;
   height: 1em !important;
 }
 
-html.routility-badge-fix .player-search-card-name [data-rblx-verified-badge-icon] {
+.player-search-card-name [data-rblx-verified-badge-icon] {
   display: inline-flex;
   align-items: center;
   margin-left: 4px;
