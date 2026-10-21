@@ -592,6 +592,8 @@ html.routility-settings-mode .settings-left-navigation .tab-content > .tab-pane:
 .routility-tip .tooltip-inner {
   max-width: 260px;
   padding: 6px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.4em;
