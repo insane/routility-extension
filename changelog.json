@@ -5,6 +5,22 @@
   },
   "releases": [
     {
+      "version": "1.1.8",
+      "date": "2026-10-21",
+      "summary": "RoUtility badges and friend request messages, plus server region and profile fixes.",
+      "changes": [
+        { "type": "new", "text": "RoUtility Badge and Friend Request Messages: verify with Roblox once and other RoUtility users see a small RoUtility logo next to your name. When you add a RoUtility user, you can include a short message, and messages people send you show on your Requests page. Links and contact info aren’t allowed, and you can report or block anyone.", "by": ["reqonn"] },
+        { "type": "new", "text": "Hover a verified, Roblox Plus, Premium or admin badge next to a name to see what it is.", "by": ["reqonn"] },
+        { "type": "new", "text": "Terminated players show their avatar on their profile, and pasted or outside links to terminated profiles open them too.", "by": ["reqonn"] },
+        { "type": "improved", "text": "Prices show a simple green $ (or your currency’s sign) before the amount instead of the round money icon." },
+        { "type": "fixed", "text": "Server Regions: Play with a region picked (like Miami) finds servers in that region that actually have room, instead of saying there are none or sending you to one that just filled up." },
+        { "type": "fixed", "text": "Cancel Request shows right after you send a friend request.", "by": ["reqonn"] },
+        { "type": "fixed", "text": "Home: the friends row no longer shows a loading placeholder when you have no friends, and the greeting shows your current avatar.", "by": ["reqonn"] },
+        { "type": "fixed", "text": "Search: names in the search box are readable in light mode.", "by": ["reqonn"] },
+        { "type": "fixed", "text": "A startup error on some profiles is gone.", "by": ["reqonn"] }
+      ]
+    },
+    {
       "version": "1.1.6",
       "date": "2026-10-20",
       "summary": "Fixes the store build of 1.1.5, plus fixes for search, Home, the classic profile and Customize Thumbnail.",
@@ -15,8 +31,7 @@
         { "type": "fixed", "text": "Classic Profile Layout: the profile’s primary community shows first in Communities again." },
         { "type": "fixed", "text": "Classic Profile Layout: turning the page in Favorites on Two Columns shows the next favorites instead of an empty box." },
         { "type": "fixed", "text": "Classic Profile Layout: on Two Columns, people with no experiences or favorites get an Experiences or Favorites box that says so, instead of those sections just disappearing." },
-        { "type": "fixed", "text": "Customize Thumbnail: Field of View and Rotation now apply to your Full Body thumbnail too, so it faces the way the preview shows instead of Roblox’s default angle." },
-        { "type": "fixed", "text": "Server Regions: Play with a region picked (like Miami) finds servers in that region that actually have room, instead of saying there are none or sending you to one that just filled up." }
+        { "type": "fixed", "text": "Customize Thumbnail: Field of View and Rotation now apply to your Full Body thumbnail too, so it faces the way the preview shows instead of Roblox’s default angle." }
       ]
     },
     {

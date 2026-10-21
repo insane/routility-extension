@@ -7,6 +7,34 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 - Code: [@reqonn](https://github.com/reqonn), [@awkward222](https://github.com/awkward222)
 - Bug reports and ideas: [@reqonn](https://github.com/reqonn), api_cats
 
+## 1.1.8 · October 21, 2026
+
+RoUtility badges and friend request messages, plus server region and profile fixes.
+
+**New**
+
+```diff
++ RoUtility Badge and Friend Request Messages: verify with Roblox once and other RoUtility users see a small RoUtility logo next to your name. When you add a RoUtility user, you can include a short message, and messages people send you show on your Requests page. Links and contact info aren’t allowed, and you can report or block anyone. (by @reqonn)
++ Hover a verified, Roblox Plus, Premium or admin badge next to a name to see what it is. (by @reqonn)
++ Terminated players show their avatar on their profile, and pasted or outside links to terminated profiles open them too. (by @reqonn)
+```
+
+**Improved**
+
+```diff
+~ Prices show a simple green $ (or your currency’s sign) before the amount instead of the round money icon.
+```
+
+**Fixed**
+
+```diff
+- Server Regions: Play with a region picked (like Miami) finds servers in that region that actually have room, instead of saying there are none or sending you to one that just filled up.
+- Cancel Request shows right after you send a friend request. (by @reqonn)
+- Home: the friends row no longer shows a loading placeholder when you have no friends, and the greeting shows your current avatar. (by @reqonn)
+- Search: names in the search box are readable in light mode. (by @reqonn)
+- A startup error on some profiles is gone. (by @reqonn)
+```
+
 ## 1.1.6 · October 20, 2026
 
 Fixes the store build of 1.1.5, plus fixes for search, Home, the classic profile and Customize Thumbnail.
@@ -21,7 +49,6 @@ Fixes the store build of 1.1.5, plus fixes for search, Home, the classic profile
 - Classic Profile Layout: turning the page in Favorites on Two Columns shows the next favorites instead of an empty box.
 - Classic Profile Layout: on Two Columns, people with no experiences or favorites get an Experiences or Favorites box that says so, instead of those sections just disappearing.
 - Customize Thumbnail: Field of View and Rotation now apply to your Full Body thumbnail too, so it faces the way the preview shows instead of Roblox’s default angle.
-- Server Regions: Play with a region picked (like Miami) finds servers in that region that actually have room, instead of saying there are none or sending you to one that just filled up.
 ```
 
 ## 1.1.5 · October 16, 2026

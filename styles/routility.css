@@ -12913,7 +12913,9 @@ html.routility-calc-page #content { padding-left: max(22px, 2%) !important; padd
 .routility-val-r .routility-logo { width: 1em; height: 1em; margin: 0; flex: none; }
 .routility-card-worth .routility-val-r .routility-logo { width: 14px; height: 14px; }
 .routility-trade-val .routility-val-r .routility-logo { width: 18px; height: 18px; }
-.routility-usd-ic { display: inline-block; width: 1em; height: 1em; flex: none; background-color: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='black' stroke-width='2.2'/%3E%3Cpath d='M15.2 8.6c-.6-1-1.8-1.6-3.2-1.6-1.8 0-3.1.9-3.1 2.3 0 3.3 6.3 1.8 6.3 5 0 1.4-1.4 2.4-3.2 2.4-1.5 0-2.7-.6-3.3-1.7M12 5v14' fill='none' stroke='black' stroke-width='2.1' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='black' stroke-width='2.2'/%3E%3Cpath d='M15.2 8.6c-.6-1-1.8-1.6-3.2-1.6-1.8 0-3.1.9-3.1 2.3 0 3.3 6.3 1.8 6.3 5 0 1.4-1.4 2.4-3.2 2.4-1.5 0-2.7-.6-3.3-1.7M12 5v14' fill='none' stroke='black' stroke-width='2.1' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+.routility-usd-ic { display: inline-flex; align-items: center; justify-content: center; flex: none; font-weight: 700; font-style: normal; line-height: 1; }
+.routility-usd-ic::before { content: var(--routility-cash-sign, "$"); }
+.routility-usd-ic:not(#routility-a):not(#routility-b) { width: auto !important; height: auto !important; margin: 0 1px 0 0 !important; background: none !important; }
 .routility-card-usd .routility-usd-ic { width: 14px; height: 14px; margin-right: 5px; }
 .routility-usd-total { display: inline-flex; align-items: center; gap: 6px; }
 .routility-usd-total .routility-usd-ic { width: 18px; height: 18px; }

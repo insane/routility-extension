@@ -1817,7 +1817,7 @@
       ? { bg: '#121215', tile: '#24262c', text: '#f7f7f8', muted: '#a3a6ad', line: 'rgba(255,255,255,0.12)', price: '#3aa0ff', value: '#5cb2ff', win: '#3fc679', over: '#f35b5b' }
       : { bg: '#ffffff', tile: '#ececef', text: '#202227', muted: '#666a72', line: 'rgba(0,0,0,0.12)', price: '#0a79e0', value: '#0a72c2', win: '#178d4b', over: '#d23439' };
     const ROBUX_PATH = new Path2D('M19.78 4.897A4.369 4.369 0 0122 8.69v6.62a4.37 4.37 0 01-2.22 3.792l-5.812 3.311a4.487 4.487 0 01-4.437 0l-5.813-3.31A4.37 4.37 0 011.5 15.31V8.69c0-1.565.846-3.011 2.218-3.793l5.813-3.31a4.487 4.487 0 014.437 0l5.813 3.31zM10.31 3.09L4.648 6.313a2.836 2.836 0 00-1.44 2.463v6.448c0 1.015.548 1.954 1.44 2.463l5.66 3.223c.892.508 1.99.508 2.882 0l5.66-3.223a2.838 2.838 0 001.442-2.463V8.776c0-1.017-.55-1.955-1.441-2.463L13.19 3.09a2.914 2.914 0 00-2.882 0zm2.624 1.801l4.466 2.543a2.33 2.33 0 011.184 2.024v5.087a2.33 2.33 0 01-1.184 2.023l-4.466 2.544a2.394 2.394 0 01-2.367 0L6.1 16.568a2.33 2.33 0 01-1.183-2.023V9.458c0-.835.451-1.606 1.183-2.024l4.466-2.543a2.394 2.394 0 012.367 0zM9.188 14.53h5.124V9.473H9.189v5.057z');
-    const USD_PATH = new Path2D('M15.2 8.6c-.6-1-1.8-1.6-3.2-1.6-1.8 0-3.1.9-3.1 2.3 0 3.3 6.3 1.8 6.3 5 0 1.4-1.4 2.4-3.2 2.4-1.5 0-2.7-.6-3.3-1.7M12 5v14');
+    const USD_PATH = new Path2D('M16.4 7.6c-.8-1.5-2.4-2.3-4.4-2.3-2.6 0-4.3 1.4-4.3 3.3 0 4.7 8.9 2.6 8.9 7.3 0 2-1.9 3.4-4.6 3.4-2.1 0-3.9-.9-4.8-2.5M12 3v18');
     const lines = (opts.rap ? 1 : 0) + (opts.value ? 1 : 0) + (opts.prices ? 1 : 0);
     const PAD = 28;
     const TILE = 140;
@@ -1899,12 +1899,9 @@
         g.fill(ROBUX_PATH);
       } else {
         g.strokeStyle = color;
-        g.lineWidth = 2.2;
+        g.lineWidth = 3;
         g.lineCap = 'round';
-        g.beginPath();
-        g.arc(12, 12, 10, 0, Math.PI * 2);
-        g.stroke();
-        g.lineWidth = 2.1;
+        g.lineJoin = 'round';
         g.stroke(USD_PATH);
       }
       g.restore();
@@ -1912,6 +1909,16 @@
     };
     const iconText = (kind, s, x, base, f, color, size, align = 'left', iconColor = color) => {
       g.font = f;
+      const sign = kind === 'usd' && s.match(/^(MX\$|R\$|C\$|A\$|\$|€|£|¥|₩|₹|₺)/);
+      if (sign) {
+        const rest = s.slice(sign[0].length);
+        const sw = g.measureText(sign[0]).width;
+        const rw = g.measureText(rest).width;
+        const begin = align === 'right' ? x - sw - rw - 1 : x;
+        text(sign[0], begin, base, f, iconColor);
+        text(rest, begin + sw + 1, base, f, color);
+        return sw + rw + 1;
+      }
       const w = g.measureText(s).width;
       const start = align === 'right' ? x - w - size - 4 : x;
       icon(kind, start, base, size, iconColor);

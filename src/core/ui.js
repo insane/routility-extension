@@ -139,6 +139,7 @@
     const rate = want === 'USD' ? 1 : Number(rates && rates[want]);
     const code = rate > 0 ? want : 'USD';
     fiat = { code, symbol: FIAT[code][0], rate: rate > 0 ? rate : 1, rates };
+    document.documentElement.style.setProperty('--routility-cash-sign', JSON.stringify(fiat.symbol));
     const stale = !store || !(Date.now() - Number(store.ts) < FIAT_STALE);
     const need = want !== 'USD' || (s && s.calcRobux === 'custom' && s.calcRateCurrency && s.calcRateCurrency !== 'USD');
     if (need && stale && !fiatAsked) {
@@ -151,6 +152,26 @@
     const early = JSON.parse(localStorage.getItem('routilityEarly')) || {};
     setFiat(early.routilitySettings, early.routilityFiatRates);
   } catch {}
+
+  const CASH_SIGN = /^(MX\$|R\$|C\$|A\$|\$|€|£|¥|₩|₹|₺)/;
+
+  function bareCash() {
+    document.documentElement.style.setProperty('--routility-cash-sign', JSON.stringify(fiat.symbol));
+    for (const ic of document.querySelectorAll('.routility-usd-ic')) {
+      let n = ic.nextSibling;
+      while (n && n.nodeType === 3 && !n.nodeValue.trim()) n = n.nextSibling;
+      if (n && n.nodeType === 1) {
+        const w = document.createTreeWalker(n, NodeFilter.SHOW_TEXT);
+        n = w.nextNode();
+        while (n && !n.nodeValue.trim()) n = w.nextNode();
+      }
+      if (!n || n.nodeType !== 3) continue;
+      const lead = n.nodeValue.match(/^\s*/)[0];
+      const m = n.nodeValue.slice(lead.length).match(CASH_SIGN);
+      if (m) n.nodeValue = lead + n.nodeValue.slice(lead.length + m[0].length);
+    }
+  }
+  new MutationObserver(onFrame(bareCash)).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
   let fiatSettings = null;
   let fiatStore = null;
   chrome.storage.local.get(['routilitySettings', 'routilityFiatRates'], (st) => {

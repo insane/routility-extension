@@ -1141,20 +1141,6 @@
         ctx.stroke();
       }
     };
-    const dollar = (x, y, size, color) => {
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.scale(size / 24, size / 24);
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 2.2;
-      ctx.lineCap = 'round';
-      ctx.beginPath();
-      ctx.arc(12, 12, 10, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.lineWidth = 2.1;
-      ctx.stroke(new Path2D('M15.2 8.6c-.6-1-1.8-1.6-3.2-1.6-1.8 0-3.1.9-3.1 2.3 0 3.3 6.3 1.8 6.3 5 0 1.4-1.4 2.4-3.2 2.4-1.5 0-2.7-.6-3.3-1.7M12 5v14'));
-      ctx.restore();
-    };
     const robux = (x, y, size, color) => {
       const c = size / 2;
       const r = size * 0.46;
@@ -1242,8 +1228,10 @@
       const rw = type(rapText, x + 346, m + 16, 10, T.text, 700, 'right');
       robux(x + 346 - rw - 15, m + 7, 11, T.text);
       type(lt('Price Est.'), x + 14, m + 34, 10, T.muted, 400);
-      const pw = type(usdText(t.usd), x + 346, m + 34, 10, T.text, 700, 'right');
-      dollar(x + 346 - pw - 15, m + 25, 11, '#3fc679');
+      const price = usdText(t.usd);
+      const sign = price.match(/^(MX\$|R\$|C\$|A\$|\$|€|£|¥|₩|₹|₺)/);
+      const pw = type(sign ? price.slice(sign[0].length) : price, x + 346, m + 34, 10, T.text, 700, 'right');
+      if (sign) type(sign[0], x + 346 - pw - 1, m + 34, 10, '#3fc679', 700, 'right');
     };
     const tg = totals('give');
     const tr = totals('get');
