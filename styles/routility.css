@@ -13021,9 +13021,8 @@ ul.routility-list-ordered {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px 12px;
-  padding: 0 4px 12px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+  padding: 0 4px;
+  margin-bottom: 12px;
   box-sizing: border-box;
 }
 
