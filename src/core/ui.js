@@ -46,10 +46,22 @@
     const open = () => {
       if (openDropdown && openDropdown !== close) openDropdown();
       wrap.classList.remove('routility-dropdown-up');
+      menu.style.maxHeight = '';
+      menu.style.overflowY = '';
       menu.style.display = 'block';
       btn.setAttribute('aria-expanded', 'true');
       const r = menu.getBoundingClientRect();
-      if (r.bottom > window.innerHeight - 8 && wrap.getBoundingClientRect().top > r.height + 12) wrap.classList.add('routility-dropdown-up');
+      const w = wrap.getBoundingClientRect();
+      const below = window.innerHeight - r.top - 8;
+      const above = w.top - 12;
+      if (r.height > below) {
+        const up = above > below;
+        if (up) wrap.classList.add('routility-dropdown-up');
+        if (r.height > (up ? above : below)) {
+          menu.style.maxHeight = Math.max(120, Math.floor(up ? above : below)) + 'px';
+          menu.style.overflowY = 'auto';
+        }
+      }
       const outside = (e) => { if (!wrap.contains(e.target)) close(); };
       const keys = (e) => {
         if (e.key === 'Escape') {

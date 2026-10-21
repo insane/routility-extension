@@ -7611,6 +7611,12 @@ html.routility-streamer-account .routility-devices-list > li:not(:first-child) .
   min-width: 170px;
 }
 
+.routility-quick-row .routility-quick-dd .dropdown-menu > li > button {
+  padding: 7px 10px !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+
 .routility-quick-row.routility-quick-busy {
   opacity: 0.6;
   pointer-events: none;
@@ -11267,7 +11273,9 @@ html.routility-skeleton .friend-carousel-container:not(:has(.react-friends-carou
 .routility-dropdown > .dropdown-menu {
   padding: 4px !important;
   border-radius: var(--radius-medium, 8px) !important;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .routility-dropdown > .dropdown-menu > li {
@@ -12806,6 +12814,7 @@ li.routility-recent-item .routility-recent-forget .icon {
 .rbx-left-col .routility-quick .routility-quick-label {
   flex: 0 0 100%;
   min-width: 0;
+  text-align: center;
   overflow: hidden;
   font-size: 14px !important;
   font-weight: 600 !important;
