@@ -244,8 +244,28 @@
     arrow.style.left = Math.round(r.left + r.width / 2 - left - 5) + 'px';
   }
 
+  const NAME_ROW = '#profile-header-title-container-name ~ *, .routility-name-badges, .avatar-name-container, .player-search-card-name, .friends-carousel-tile-name, .routility-friend-name-row';
+  const BADGE_NAMES = [
+    ['.icon-filled-verified-backplate, .icon-filled-verified-check', () => lt('Verified')],
+    ['.icon-regular-roblox-plus', () => lt('Roblox Plus')],
+    ['.icon-filled-premium, [class*="icon-premium"]', () => lt('Premium')],
+    ['.icon-filled-tilt', () => lt('Roblox Admin')],
+  ];
+
+  function badgeName(node) {
+    if (!node.closest?.(NAME_ROW)) return null;
+    for (const [sel, name] of BADGE_NAMES) {
+      const icon = node.closest(sel);
+      if (!icon) continue;
+      const host = icon.matches('.icon-filled-verified-check, .icon-filled-verified-backplate') ? icon.parentElement : icon;
+      host.dataset.rtTip = name();
+      return host;
+    }
+    return null;
+  }
+
   document.addEventListener('mouseover', (e) => {
-    const t = e.target.closest?.('[data-rt-tip]');
+    const t = e.target.closest?.('[data-rt-tip]') || badgeName(e.target);
     if (t) showTip(t);
     else if (tipFor) hideTip();
   }, true);
