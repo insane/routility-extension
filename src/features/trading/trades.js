@@ -1899,7 +1899,11 @@
         g.fill(ROBUX_PATH);
       } else {
         g.fillStyle = color;
+        g.strokeStyle = color;
+        g.lineWidth = 0.9;
+        g.lineJoin = 'round';
         g.fill(USD_PATH);
+        g.stroke(USD_PATH);
       }
       g.restore();
       return size + 4;
