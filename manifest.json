@@ -79,6 +79,7 @@
         "src/features/profile/listorder.js",
         "src/features/games/games.js",
         "src/features/profile/hovercard.js",
+        "src/features/profile/notes.js",
         "src/features/general/misc.js",
         "src/features/robux/plus.js",
         "src/features/robux/sendrobux.js",

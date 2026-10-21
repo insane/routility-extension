@@ -712,6 +712,14 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     playtimeSync('full').then(sendResponse, () => sendResponse({ ok: false }));
     return true;
   }
+  if (msg.type === 'notesSync') {
+    notesSync(!!msg.force).then(sendResponse, () => sendResponse({ ok: false }));
+    return true;
+  }
+  if (msg.type === 'notesSyncState') {
+    Promise.all([forumAuth(), signedInUser(), chrome.storage.local.get(NOTES_SYNC_KEY)]).then(([auth, me, st]) => sendResponse({ signedIn: !!auth && String(auth.userId) === String(me), sync: ((st[NOTES_SYNC_KEY] || {})[me]) || null }), () => sendResponse(null));
+    return true;
+  }
   if (msg.type === 'rotatorState') {
     rotatorState().then(sendResponse, () => sendResponse(null));
     return true;
@@ -1062,6 +1070,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         chrome.storage.local.set({ [FORUM_AUTH_KEY]: auth }, () => {
           sendResponse({ status: 200, user: forumUser(auth) });
           playtimeSync('full').catch(() => {});
+          notesSync(true);
         });
         return;
       }
@@ -2333,6 +2342,102 @@ function playtimeSync(mode, playing) {
   })().catch(() => ({ ok: false, reason: 'error' })).finally(() => { playSyncing = null; });
   return playSyncing;
 }
+
+const NOTES_API = SITE_API + '/notes';
+const NOTES_SYNC_KEY = 'routilityNotesSync';
+const NOTES_PULL_EVERY = 5 * 60 * 1000;
+let notesTimer = 0;
+
+function cleanNotes(list) {
+  const out = {};
+  for (const [id, n] of Object.entries(list || {})) {
+    if (/^\d+$/.test(id) && n && typeof n.text === 'string' && Number.isFinite(n.at)) out[id] = { text: n.text.slice(0, 500), at: n.at };
+  }
+  return out;
+}
+
+function mergeNotes(a, b) {
+  const out = { ...a };
+  for (const [id, n] of Object.entries(b)) if (!out[id] || n.at > out[id].at) out[id] = n;
+  return out;
+}
+
+function sameNotes(a, b) {
+  const keys = Object.keys(a);
+  return keys.length === Object.keys(b).length && keys.every(id => b[id] && b[id].at === a[id].at && b[id].text === a[id].text);
+}
+
+async function notesCall(auth, method, body) {
+  const res = await fetch(NOTES_API, { method, credentials: 'omit', cache: 'no-store', headers: Object.assign({ authorization: 'Bearer ' + auth.token }, body ? { 'content-type': 'application/json' } : {}), body: body ? JSON.stringify(body) : undefined });
+  const data = res.status === 204 ? null : await res.json().catch(() => null);
+  return { status: res.status, data, retry: Number(res.headers.get('retry-after')) };
+}
+
+function notesSync(force) {
+  return serial('notes', async () => {
+    const s = (await chrome.storage.local.get('routilitySettings')).routilitySettings || {};
+    if (s.profileNotes === false || s.notesBackup === false) return { ok: false, reason: 'off' };
+    const auth = await forumAuth();
+    if (!auth) return { ok: false, reason: 'signedOut' };
+    const me = await signedInUser();
+    if (!me || String(me) !== String(auth.userId)) return { ok: false, reason: 'otherAccount' };
+    const key = 'routilityNotes:' + me;
+    const all = (await chrome.storage.local.get(NOTES_SYNC_KEY))[NOTES_SYNC_KEY] || {};
+    const sync = all[me] || {};
+    const save = (patch) => chrome.storage.local.set({ [NOTES_SYNC_KEY]: { ...all, [me]: { ...sync, ...patch, at: Date.now() } } });
+    const wait = (r) => save({ wait: Date.now() + (r.retry > 0 ? r.retry * 1000 : 60000) }).then(() => ({ ok: false, reason: 'wait' }));
+    if (sync.wait && Date.now() < sync.wait) return { ok: false, reason: 'wait' };
+    const local = cleanNotes((await chrome.storage.local.get(key))[key]);
+    if (!force && sameNotes(local, sync.notes || {}) && Date.now() - (sync.at || 0) < NOTES_PULL_EVERY) return { ok: true };
+    for (let tries = 0; tries < 3; tries++) {
+      const got = await notesCall(auth, 'GET');
+      if (got.status === 429) return wait(got);
+      if (got.status !== 200 && got.status !== 404) return { ok: false, reason: 'http' };
+      const remote = got.status === 200 ? cleanNotes(got.data && got.data.notes) : {};
+      const rev = got.status === 200 ? Number(got.data && got.data.rev) || 0 : 0;
+      const cur = cleanNotes((await chrome.storage.local.get(key))[key]);
+      const merged = mergeNotes(cur, remote);
+      if (!sameNotes(merged, cur)) await chrome.storage.local.set({ [key]: merged });
+      if (sameNotes(merged, remote)) {
+        await save({ rev, notes: merged, wait: 0 });
+        return { ok: true };
+      }
+      const put = await notesCall(auth, 'PUT', { notes: merged, rev });
+      if (put.status === 409) continue;
+      if (put.status === 429) return wait(put);
+      if (put.status !== 200) return { ok: false, reason: put.status === 413 ? 'tooBig' : 'http' };
+      await save({ rev: Number(put.data && put.data.rev) || rev + 1, notes: merged, wait: 0 });
+      return { ok: true };
+    }
+    return { ok: false, reason: 'stale' };
+  }).catch(() => ({ ok: false, reason: 'error' }));
+}
+
+function notesDelete() {
+  return serial('notes', async () => {
+    const auth = await forumAuth();
+    if (!auth) return;
+    const res = await notesCall(auth, 'DELETE');
+    if (res.status !== 204 && res.status !== 404) return;
+    const all = (await chrome.storage.local.get(NOTES_SYNC_KEY))[NOTES_SYNC_KEY] || {};
+    delete all[auth.userId];
+    await chrome.storage.local.set({ [NOTES_SYNC_KEY]: all });
+  }).catch(() => {});
+}
+
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area !== 'local') return;
+  if (Object.keys(changes).some(k => k.startsWith('routilityNotes:'))) {
+    clearTimeout(notesTimer);
+    notesTimer = setTimeout(() => notesSync(false), 3000);
+  }
+  const st = changes.routilitySettings;
+  if (!st) return;
+  const was = (st.oldValue || {}).notesBackup !== false;
+  const now = (st.newValue || {}).notesBackup !== false;
+  if (was && !now) notesDelete();
+  if (!was && now) notesSync(true);
+});
 
 chrome.notifications.onClicked.addListener(async (id) => {
   const links = (await chrome.storage.session.get(NOTIFY_LINKS))[NOTIFY_LINKS] || {};

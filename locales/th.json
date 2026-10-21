@@ -2920,5 +2920,12 @@
  "Your badge and friend request messages turn on once Roblox confirms this is your account. Roblox opens a window where you click Allow, the same sign-in as the RoUtility Forum. You only do this once.": "ตราสัญลักษณ์และข้อความคำขอเป็นเพื่อนของคุณจะเปิดใช้งานเมื่อ Roblox ยืนยันว่านี่คือบัญชีของคุณ Roblox จะเปิดหน้าต่างให้คุณคลิกอนุญาต เป็นการลงชื่อเข้าใช้แบบเดียวกับฟอรัม RoUtility ทำแค่ครั้งเดียวเท่านั้น",
  "You’ve sent a lot of messages. Try again in {n} minutes, or clear the message to just add them.": "คุณส่งข้อความไปเยอะแล้ว ลองอีกครั้งในอีก {n} นาที หรือลบข้อความเพื่อเพิ่มเพื่อนโดยไม่มีข้อความ",
  "hey, we met in Adopt Me!": "หวัดดี เราเจอกันใน Adopt Me!",
- "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} ใช้ RoUtility คุณจึงเพิ่มข้อความที่เขาจะเห็นพร้อมคำขอของคุณได้ ห้ามใส่ลิงก์หรือข้อมูลติดต่อ"
+ "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} ใช้ RoUtility คุณจึงเพิ่มข้อความที่เขาจะเห็นพร้อมคำขอของคุณได้ ห้ามใส่ลิงก์หรือข้อมูลติดต่อ",
+ "Click to add a note": "คลิกเพื่อเพิ่มโน้ต",
+ "Profile Notes": "โน้ตโปรไฟล์",
+ "met in Adopt Me, good trader": "เจอกันใน Adopt Me เทรดเดอร์ดี",
+ "Only visible to you": "เห็นได้เฉพาะคุณ",
+ "Add private notes to anyone’s profile, like on Discord. Only you can see them.": "เพิ่มโน้ตส่วนตัวในโปรไฟล์ของใครก็ได้ เหมือนใน Discord มีแค่คุณที่เห็น",
+ "Back Up Notes": "สำรองโน้ต",
+ "Once you verify with Roblox, your notes are saved to your RoUtility account so they come back on other browsers. They’re encrypted and only you can get them. Turning this off deletes the backup.": "เมื่อยืนยันตัวตนกับ Roblox แล้ว โน้ตของคุณจะถูกบันทึกไว้ในบัญชี RoUtility และกลับมาในเบราว์เซอร์อื่นได้ โน้ตถูกเข้ารหัสและมีแค่คุณที่เรียกดูได้ ปิดตัวเลือกนี้จะลบข้อมูลสำรอง"
 }
