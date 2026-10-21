@@ -12814,6 +12814,7 @@ li.routility-recent-item .routility-recent-forget .icon {
 .rbx-left-col .routility-quick .routility-quick-label {
   flex: 0 0 100%;
   min-width: 0;
+  margin: 0 !important;
   text-align: center;
   overflow: hidden;
   font-size: 14px !important;
