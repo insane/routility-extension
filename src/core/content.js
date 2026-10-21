@@ -498,18 +498,25 @@
     window.RoUtilityMisc.setup();
     window.RoUtilityHome.setup();
     window.RoUtilityExtras.setup();
-    if (path === '/request-error' && !/routility-user=\d+/.test(window.location.hash)) {
+    const checking = document.documentElement.dataset.routilityCheck;
+    delete document.documentElement.dataset.routilityCheck;
+    if (checking || (path === '/request-error' && !/routility-user=\d+/.test(window.location.hash))) {
       chrome.storage.local.get(['routilitySettings', 'routilityLastProfile'], async (stored) => {
         const settings = { revealTerminated: true, ...(stored.routilitySettings || {}) };
         const last = stored.routilityLastProfile;
         const clear = () => {
           document.documentElement.classList.remove('routility-classic-on');
           document.querySelectorAll('#content > .routility-classic-loading').forEach(n => n.remove());
+          if (checking && window.location.pathname === path) {
+            history.replaceState(history.state, '', '/request-error?code=404');
+            currentURL = window.location.href;
+            currentPath = window.location.pathname;
+          }
         };
         const nav = performance.getEntriesByType('navigation')[0]?.type;
         let shown = null;
         try { shown = sessionStorage.getItem('routilityTerminated'); } catch {}
-        const candidate = last && Date.now() - last.t < 20000 ? last.id : (nav === 'reload' || nav === 'back_forward') && shown ? shown : null;
+        const candidate = checking || (last && Date.now() - last.t < 20000 ? last.id : (nav === 'reload' || nav === 'back_forward') && shown ? shown : null);
         if (!settings.revealTerminated || !candidate) return clear();
         chrome.storage.local.remove('routilityLastProfile');
         let banned = false;

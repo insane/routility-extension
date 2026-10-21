@@ -567,6 +567,11 @@ chrome.tabs.onUpdated.addListener((tabId, info) => {
   if (m) chrome.storage.session.set({ ['routilityItemNav:' + tabId]: { kind: m[1].toLowerCase(), id: m[2], t: Date.now() } }).catch(() => {});
 });
 
+chrome.webRequest.onBeforeRedirect.addListener((d) => {
+  const m = d.url.match(/^https:\/\/www\.roblox\.com\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?users\/(\d+)\/profile/i);
+  if (m && /\/request-error/.test(d.redirectUrl)) chrome.storage.local.set({ routilityLastProfile: { id: m[1], t: Date.now() } });
+}, { urls: ['https://www.roblox.com/*'], types: ['main_frame'] });
+
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.type === 'itemNav') {
     const key = 'routilityItemNav:' + (sender.tab && sender.tab.id);
