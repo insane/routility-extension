@@ -10693,7 +10693,7 @@ a.routility-pt-item:hover .routility-pt-name {
   z-index: 1;
 }
 
-html.routility-skeleton .friend-carousel-container:not(:has(.react-friends-carousel-container)) {
+html.routility-skeleton .friend-carousel-container:not(:has(.react-friends-carousel-container, .friends-carousel-0-friends)) {
   min-height: 190px;
   background:
     radial-gradient(circle at 45px 45px, var(--routility-sk, rgba(127, 127, 127, 0.18)) 44.5px, transparent 45.5px) 21px 43px / 108px 90px repeat-x,

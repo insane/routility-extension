@@ -1347,8 +1347,6 @@
     const fun = window.RoUtilityFun;
     if (fun && fun.ready) await fun.ready;
     const wearing = !!(fun && fun.worn && fun.worn().length);
-    const cached = wearing ? null : greetingCache();
-    if (cached && cached.id === id && Date.now() - cached.at < 3600000) return cached;
     const get = (u) => fetch(u, { credentials: 'include' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
     const thumb = await get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${id}&size=150x150&format=Webp&isCircular=true`);
     const d = thumb && thumb.data && thumb.data[0];
