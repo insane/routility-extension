@@ -659,9 +659,10 @@ html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) but
   height: 16px !important;
   margin: 0 0 0 12px !important;
   padding: 0 !important;
-  background: url("https://static.rbxcdn.com/images/Shared/generic_09132018.svg") 0 -272px / 32px auto no-repeat !important;
-  -webkit-mask: none !important;
-  mask: none !important;
+  background: currentColor !important;
+  -webkit-mask: url("https://static.rbxcdn.com/images/Shared/generic_09132018.svg") 0 -272px / 32px auto no-repeat !important;
+  mask: url("https://static.rbxcdn.com/images/Shared/generic_09132018.svg") 0 -272px / 32px auto no-repeat !important;
+  opacity: .7 !important;
   transform: none !important;
 }
 
@@ -1739,11 +1740,14 @@ html.routility-2017 .catalog-revamp .catalog-item-container :is(.item-card-thumb
 }
 
 html.routility-2017 .catalog-revamp .catalog-item-container .item-card-caption {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 93px !important;
   padding: 6px 6px 0 !important;
 }
 
 html.routility-2017 .catalog-revamp .catalog-item-container .item-card-name {
-  height: 45px !important;
+  height: auto !important;
   max-height: 45px !important;
   min-height: 0 !important;
   overflow: hidden !important;
@@ -1751,14 +1755,15 @@ html.routility-2017 .catalog-revamp .catalog-item-container .item-card-name {
 }
 
 html.routility-2017 .catalog-revamp .catalog-item-container .item-card-price {
-  margin-top: 20px !important;
+  margin-top: auto !important;
 }
 
 html.routility-2017 .catalog-revamp .catalog-item-container .item-card-price .icon-robux-16x16 {
-  width: 16px !important;
-  height: 16px !important;
-  margin: 1px 5px 0 0 !important;
-  background-size: 16px 16px !important;
+  margin: 0 1px 0 0 !important;
+}
+
+html.routility-2017 .catalog-revamp .catalog-search-options-top-bar {
+  overflow: visible !important;
 }
 
 html.routility-2017 .catalog-item-container .item-card-name {
@@ -2082,4 +2087,23 @@ html.routility-2017 .item-details-info-content .item-info-row-container > .row-l
   display: inline-flex !important;
   max-width: 100% !important;
   overflow: hidden !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .routility-classic-pills + .header-details {
+  margin-top: 10px !important;
+}
+
+html.routility-2017 #avatar-web-app .item-card .item-card-name {
+  display: block !important;
+  height: auto !important;
+  max-height: 22.4px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  line-height: 22.4px !important;
+}
+
+html.routility-2017 #avatar-web-app .item-card .item-card-name > span {
+  display: inline !important;
+  white-space: nowrap !important;
 }

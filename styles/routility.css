@@ -10531,6 +10531,13 @@ html.routility-classic-premium .icon-regular-roblox-plus:has(+ :is(h1, h2, h3, h
   white-space: nowrap;
 }
 
+.routility-pt-range .input-dropdown-btn > .icon-down-16x16 {
+  flex: none;
+  align-self: center;
+  margin: 0 !important;
+  vertical-align: middle;
+}
+
 .routility-pt-range .dropdown-menu {
   left: auto !important;
   right: 0 !important;
