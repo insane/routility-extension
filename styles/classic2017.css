@@ -2107,3 +2107,98 @@ html.routility-2017 #avatar-web-app .item-card .item-card-name > span {
   display: inline !important;
   white-space: nowrap !important;
 }
+
+html.routility-2017 #assetsItems li.list-item.item-card {
+  height: auto !important;
+}
+
+html.routility-2017 #assetsItems li.list-item.item-card .item-card-container {
+  height: auto !important;
+}
+
+html.routility-2017 #assetsItems .item-card :is(.item-card-label, .item-card-creator) {
+  height: 18px !important;
+  margin: 0 !important;
+  font-size: 12px !important;
+  line-height: 18px !important;
+}
+
+html.routility-2017 #assetsItems .item-card :is(.item-card-label, .item-card-creator) > span:not(.routility-injected) {
+  color: var(--c17-label) !important;
+  font-weight: 500 !important;
+}
+
+html.routility-2017 #assetsItems .item-card :is(.item-card-label, .item-card-creator) a {
+  color: var(--c17-link) !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+}
+
+html.routility-2017 #assetsItems .item-card .item-card-price {
+  height: 20px !important;
+}
+
+html.routility-2017 .menu-vertical .menu-option > .menu-option-content {
+  line-height: 22px !important;
+}
+
+html.routility-2017 .current-items .header-content .btn-more {
+  padding: 9px !important;
+  font-size: 16px !important;
+  line-height: 100% !important;
+}
+
+html.routility-2017 #assetsItems .item-card .item-card-name {
+  margin-bottom: 0 !important;
+}
+
+html.routility-2017 #assetsItems .item-card .item-card-link {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+html.routility-2017 .group-profile-header .group-profile-header-info {
+  align-items: flex-start !important;
+}
+
+html.routility-2017 .group-profile-header .profile-header-details-container {
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+
+html.routility-2017 .group-profile-header .profile-header-details-avatar-container,
+html.routility-2017 .group-profile-header .profile-header-details-avatar {
+  width: 126px !important;
+  height: 126px !important;
+  border-radius: 0 !important;
+}
+
+html.routility-2017 .group-profile-header .profile-header-details-community-name {
+  padding: 5px 0 !important;
+  color: var(--c17-text) !important;
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  line-height: 1em !important;
+}
+
+html.routility-2017 .group-profile-header .profile-header-details-owner-name {
+  color: var(--c17-label) !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 22px !important;
+}
+
+html.routility-2017 .group-profile-header .profile-header-details-owner-name a {
+  color: var(--c17-link) !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html.routility-2017 .group-profile-header .actions-container {
+  align-self: flex-end !important;
+}
+
+html.routility-2017 .group-profile-header .description-container pre {
+  color: var(--c17-text) !important;
+  font-size: 16px !important;
+}
