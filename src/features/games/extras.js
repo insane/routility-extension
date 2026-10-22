@@ -2666,10 +2666,14 @@
         const body = el('div', 'section-content remove-panel');
         const ul = el('ul', 'hlist collections-list item-list routility-classic-collection-list');
         for (let i = 0; i < 6; i++) {
-          const li = el('li', 'list-item asset-item collections-item routility-classic-item routility-outfits-sk-tile');
+          const li = el('li', 'list-item asset-item collections-item routility-classic-item routility-outfit-tile routility-outfits-sk-tile');
+          const a = el('span', 'collections-link');
           const box = el('div', 'img-container');
-          box.appendChild(el('span', 'routility-sk routility-outfits-sk-thumb'));
-          li.append(box, el('span', 'routility-sk routility-outfits-sk-name'));
+          box.appendChild(el('span', 'asset-thumb-container routility-sk routility-outfits-sk-thumb'));
+          const name = el('span', 'font-header-2 text-overflow item-name');
+          name.appendChild(el('span', 'routility-sk routility-outfits-sk-name'));
+          a.append(box, name);
+          li.appendChild(a);
           ul.appendChild(li);
         }
         body.appendChild(ul);

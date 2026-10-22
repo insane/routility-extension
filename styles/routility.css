@@ -11392,10 +11392,11 @@ html.routility-nav-hold #wrap.logged-in.left-nav-new-width #container-main {
 }
 
 .routility-outfits-sk-name {
-  display: block;
+  display: inline-block;
   width: 70%;
   height: 14px;
-  margin-top: 6px;
+  vertical-align: middle;
+  margin-top: 4px;
   border-radius: calc(6px * var(--routility-round, 1));
 }
 
