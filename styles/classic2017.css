@@ -145,3 +145,92 @@ html.routility-2017 :is(.btn-control-md, .btn-control-sm, .btn-control-xs) {
 html.routility-2017 .section-content {
   background-color: #ffffff;
 }
+
+html.routility-2017 #content {
+  padding: 12px 0 0 !important;
+  line-height: 1.4;
+}
+
+html.routility-2017 .game-card-container {
+  position: relative !important;
+  height: 100% !important;
+  background-color: #ffffff !important;
+  border-radius: 0 !important;
+  text-align: left !important;
+}
+
+html.routility-2017 .game-card-link {
+  display: block !important;
+}
+
+html.routility-2017 :is(.game-card-thumb-container, .game-card-thumb, .game-card-thumb img) {
+  border-radius: 0 !important;
+  background-color: transparent !important;
+}
+
+html.routility-2017 .game-card-thumb-container {
+  display: block !important;
+}
+
+html.routility-2017 .game-card-name {
+  width: 100% !important;
+  max-height: 45px !important;
+  margin: 6px 0 3px !important;
+  padding: 0 6px !important;
+  overflow: hidden !important;
+  color: #191919 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.4em !important;
+  white-space: normal !important;
+  text-overflow: clip !important;
+  word-break: break-word;
+}
+
+html.routility-2017 .game-card-info {
+  position: absolute !important;
+  bottom: 6px !important;
+  width: 100% !important;
+  margin: 0 6px !important;
+  line-height: 1.4em !important;
+}
+
+html.routility-2017 .game-card-info .info-label {
+  display: inline-block !important;
+  padding: 0 !important;
+  color: #191919 !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 18px !important;
+  vertical-align: middle;
+}
+
+html.routility-2017 .game-card-info .info-label + .info-label {
+  margin-left: 5.1px !important;
+}
+
+html.routility-2017 .game-card-info .info-label + .icon-playing-counts-gray {
+  margin-left: 17.2px !important;
+}
+
+html.routility-2017 .game-card-info :is(.vote-percentage-label, .playing-counts-label) {
+  vertical-align: baseline !important;
+}
+
+html.routility-2017 .game-card-info :is(.icon-votes-gray, .icon-playing-counts-gray) {
+  width: 16px !important;
+  height: 16px !important;
+  background-image: url("https://static.rbxcdn.com/images/Shared/games_08302018.svg") !important;
+  background-repeat: no-repeat !important;
+  background-size: 32px auto !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+}
+
+html.routility-2017 .game-card-info .icon-votes-gray {
+  background-position: 0 -480px !important;
+}
+
+html.routility-2017 .game-card-info .icon-playing-counts-gray {
+  background-position: 0 -496px !important;
+}
