@@ -493,7 +493,29 @@
     handlePage();
   }
 
+  const ITEM_ID_HOST = '#item-info-container-frontend[data-target-id], #item-thumbnail-container-frontend[data-target-id]';
+
+  function restoreItemId() {
+    const slug = window.location.pathname.match(/^\/catalog\/([^/\d][^/]*)\/?$/i);
+    if (!slug) return false;
+    const id = document.querySelector(ITEM_ID_HOST)?.dataset.targetId;
+    if (!/^\d+$/.test(id || '')) {
+      const path = window.location.pathname;
+      waitForElement(ITEM_ID_HOST, () => {
+        if (window.location.pathname !== path || !restoreItemId()) return;
+        teardownAll();
+        handlePage();
+      }, 15000);
+      return false;
+    }
+    history.replaceState(history.state, '', `/catalog/${id}/${slug[1]}${window.location.search}${window.location.hash}`);
+    currentURL = window.location.href;
+    currentPath = window.location.pathname;
+    return true;
+  }
+
   function handlePage() {
+    restoreItemId();
     const path = window.location.pathname;
     window.RoUtilityMisc.setup();
     window.RoUtilityHome.setup();

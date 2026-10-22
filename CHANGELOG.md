@@ -33,6 +33,8 @@ RoUtility badges and friend request messages, plus server region and profile fix
 
 ```diff
 - Quick Settings in the Original Sidebar shows full names and values like Trusted Friends instead of cutting them off, and its option lists fit on screen. Dropdown lists that are too long now scroll.
+- Item pages whose address ends up with only the item’s name (no number) show RoUtility’s values and tools again.
+- The 2022 profile shows friends who are in a game, in Studio or online first, with their status icons, like Roblox does.
 - Server Regions: Play with a region picked (like Miami) finds servers in that region that actually have room, instead of saying there are none or sending you to one that just filled up.
 - Cancel Request shows right after you send a friend request. (by @reqonn)
 - Home: the friends row no longer shows a loading placeholder when you have no friends, and the greeting shows your current avatar. (by @reqonn)

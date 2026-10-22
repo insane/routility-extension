@@ -348,6 +348,17 @@
     return window.RoUtilityUI.presence(ids);
   }
 
+  const LIVE_FIRST = { 2: 0, 3: 1, 1: 2 };
+
+  async function liveFirst(ids) {
+    if (!ids.length) return ids;
+    const live = await presence(ids.map(String)).catch(() => new Map());
+    return ids.map((id, i) => ({ id, i, rank: LIVE_FIRST[(live.get(String(id)) || {}).userPresenceType] ?? 3 }))
+      .sort((a, b) => a.rank - b.rank || a.i - b.i)
+      .slice(0, 9)
+      .map(x => x.id);
+  }
+
   function statusIcon(host, p, extra) {
     host.querySelector(':scope > .avatar-status')?.remove();
     const kind = p && PRESENCE[p.userPresenceType];
@@ -1679,12 +1690,12 @@
       quick(`${base}badges.roblox.com/v1/users/${userId}/badges?limit=${columns ? 50 : 10}&sortOrder=Desc`),
       quick(`${base}games.roblox.com/v2/users/${userId}/favorite/games?limit=${columns ? 50 : 10}&sortOrder=Desc`),
       quick(`${base}games.roblox.com/v2/users/${userId}/games?accessFilter=Public&limit=50&sortOrder=Asc`),
-      jsonStatus(`${base}friends.roblox.com/v1/users/${userId}/friends/find?limit=9`, 3),
+      jsonStatus(`${base}friends.roblox.com/v1/users/${userId}/friends/find?limit=50`, 3),
       quick(`${base}groups.roblox.com/v1/users/${userId}/groups/roles?includeLocked=true`),
       quick(`${base}accountinformation.roblox.com/v1/users/${userId}/promotion-channels?alwaysReturnUrls=true`),
     ]);
     if (!user || !user.name) return null;
-    const friendIds = ((find.body && find.body.PageItems) || []).map(f => Number(f.id)).filter(id => Number.isSafeInteger(id) && id > 0).slice(0, 9);
+    const friendIds = await liveFirst(((find.body && find.body.PageItems) || []).map(f => Number(f.id)).filter(id => Number.isSafeInteger(id) && id > 0));
     const friendsHidden = find.status === 403 && (friendsCount?.count || 0) > 0;
     const hiddenSlots = Math.max(0, Math.min(9 - friendIds.length, ((find.body && find.body.PageItems) || []).filter(f => !(Number(f.id) > 0)).length));
     const favorites = ((favs && favs.data) || []).slice(0, columns ? 50 : 6).map(x => ({ universeId: x.id, placeId: x.rootPlace?.id, name: x.name }));
@@ -1981,9 +1992,10 @@
     s.friendsStale = false;
     try {
       const base = `https://friends.roblox.com/v1/users/${s.userId}/`;
-      const [count, find] = await Promise.all([json(base + 'friends/count'), jsonStatus(base + 'friends/find?limit=9', 2)]);
+      const [count, find] = await Promise.all([json(base + 'friends/count'), jsonStatus(base + 'friends/find?limit=50', 2)]);
       if (state !== s || !find.body) return;
-      const ids = (find.body.PageItems || []).map(f => Number(f.id)).filter(id => Number.isSafeInteger(id) && id > 0).slice(0, 9);
+      const ids = await liveFirst((find.body.PageItems || []).map(f => Number(f.id)).filter(id => Number.isSafeInteger(id) && id > 0));
+      if (state !== s) return;
       const total = count && count.count != null ? count.count : s.data.counts.friends;
       if (total === s.data.counts.friends && ids.join() === s.data.friends.map(f => f.id).join()) return;
       const known = new Map(s.data.friends.map(f => [f.id, f]));
