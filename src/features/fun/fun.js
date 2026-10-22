@@ -439,6 +439,54 @@
     (verified || name).after(ours);
   }
 
+  function badgeGroup(list) {
+    const wrap = document.createElement('span');
+    wrap.className = 'items-center gap-xxsmall inline-flex shrink-0 [--icon-size-small:1em] routility-injected routility-fb-group';
+    wrap.dataset.badges = list.join(',');
+    for (const k of list) {
+      if (k === 'verified') {
+        const box = document.createElement('span');
+        box.className = 'relative inline-flex items-center justify-center shrink-0 verified-badge';
+        box.setAttribute('role', 'img');
+        box.setAttribute('aria-label', lt('Verified Badge Icon'));
+        const plate = document.createElement('span');
+        plate.className = 'grow-0 shrink-0 basis-auto icon icon-filled-verified-backplate size-[var(--icon-size-small)] content-system-emphasis';
+        const check = document.createElement('span');
+        check.className = 'grow-0 shrink-0 basis-auto icon icon-filled-verified-check size-[var(--icon-size-small)] absolute content-[white]';
+        box.append(plate, check);
+        wrap.appendChild(box);
+        continue;
+      }
+      const icon = document.createElement('span');
+      icon.className = 'grow-0 shrink-0 basis-auto icon size-[var(--icon-size-small)] content-system-contrast ' + NAV_ICONS[k];
+      icon.setAttribute('role', 'img');
+      icon.setAttribute('aria-label', lt(NAV_LABELS[k]));
+      wrap.appendChild(icon);
+    }
+    return wrap;
+  }
+
+  function sideBadges() {
+    const badges = badgeSet();
+    const want = badges ? ['verified', 'plus', 'premium', 'admin'].filter(k => badges[k]) : [];
+    const key = want.join(',');
+    const names = [...document.querySelectorAll('nav a[data-rt-profile="/users/profile"] .text-truncate-end')].filter(n => n.closest('a').querySelector('.thumbnail-2d-container'));
+    for (const name of names) {
+      const host = name.parentElement;
+      const ours = host.querySelector(':scope > .routility-fb-group');
+      if (!badges) {
+        ours?.remove();
+        host.classList.remove('routility-fb-row');
+        continue;
+      }
+      host.classList.add('routility-fb-row');
+      if (ours && ours.dataset.badges === key && ours.previousElementSibling === name) continue;
+      ours?.remove();
+      if (want.length) name.after(badgeGroup(want));
+    }
+    if (!badges) document.querySelectorAll('.routility-fb-row').forEach(n => n.classList.remove('routility-fb-row'));
+  }
+
   let navQueued = false;
   const navObserver = new MutationObserver(() => {
     if (navQueued) return;
@@ -446,6 +494,7 @@
     requestAnimationFrame(() => {
       navQueued = false;
       navBadges();
+      sideBadges();
     });
   });
 
@@ -453,6 +502,7 @@
     navObserver.disconnect();
     if (badgeSet()) navObserver.observe(document, { childList: true, subtree: true });
     navBadges();
+    sideBadges();
   }
 
   function patch() {
