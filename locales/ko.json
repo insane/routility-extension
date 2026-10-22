@@ -2938,5 +2938,7 @@
  "Opens Avatar Sandbox with this on your avatar": "이 아이템을 착용한 상태로 Avatar Sandbox를 엽니다",
  "A Try In-Game button on item and bundle pages. It opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy.": "아이템과 번들 페이지에 게임에서 착용해 보기 버튼을 추가합니다. 아이템을 착용한 상태로 Avatar Sandbox가 열려서, 사기 전에 실제 게임에서 확인할 수 있어요.",
  "Online Friends First": "온라인 친구 먼저",
- "The friends row shows who’s in a game, in Studio or online first, like Roblox’s own profile. Otherwise it shows the first 9 friends in Roblox’s list order.": "친구 줄에 게임 중, Studio 사용 중, 온라인인 친구를 먼저 보여 줍니다. Roblox 기본 프로필과 같아요. 끄면 Roblox 목록 순서대로 처음 9명을 보여 줍니다."
+ "The friends row shows who’s in a game, in Studio or online first, like Roblox’s own profile. Otherwise it shows the first 9 friends in Roblox’s list order.": "친구 줄에 게임 중, Studio 사용 중, 온라인인 친구를 먼저 보여 줍니다. Roblox 기본 프로필과 같아요. 끄면 Roblox 목록 순서대로 처음 9명을 보여 줍니다.",
+ "Classic Admin Badge": "클래식 관리자 배지",
+ "The old red R logo as the Roblox admin badge next to names, and the old Administrator badge in Roblox Badges.": "이름 옆의 Roblox 관리자 배지를 예전 빨간 R 로고로, Roblox 배지의 관리자 배지를 예전 디자인으로 보여 줍니다."
 }

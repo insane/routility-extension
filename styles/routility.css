@@ -13747,3 +13747,29 @@ a.routility-spend-link:hover {
   flex: none;
   white-space: nowrap;
 }
+
+html.routility-classic-admin :is(.routility-name-badges, span.inline-flex.shrink-0.gap-xxsmall) > .icon-filled-tilt {
+  -webkit-mask: none !important;
+  mask: none !important;
+  background: url("chrome-extension://__MSG_@@extension_id__/assets/icons/classic/admin-r.png") center / 82% no-repeat !important;
+}
+
+html.routility-classic-admin :is(.routility-name-badges, span.inline-flex.shrink-0.gap-xxsmall) > .icon-filled-tilt::before {
+  content: none !important;
+}
+
+html.routility-classic-admin .routility-admin-badge,
+.rt-m-admin-old {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  -webkit-mask: none !important;
+  mask: none !important;
+  background: url("chrome-extension://__MSG_@@extension_id__/assets/icons/classic/admin-r.png") center / 82% no-repeat !important;
+}
+
+html.routility-classic-admin .routility-admin-badge::before,
+html.routility-classic-admin .routility-admin-badge::after {
+  content: none !important;
+  display: none !important;
+}

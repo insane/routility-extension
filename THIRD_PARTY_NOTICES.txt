@@ -26,6 +26,7 @@ Material Icons
 
 Roblox badge images
   Files: assets/icons/roblox-badges/*.svg (except 905bd722ee0a6ceda3caacde54c0b081.svg, drawn for RoUtility)
+  Also: assets/icons/classic/admin-badge.png (Administrator Badge 2015) and assets/icons/classic/admin-r.png (the R cut out of it)
   Source: the Roblox Wiki, https://roblox.fandom.com/wiki/Roblox_badge
   License: CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/
   The badge designs belong to Roblox Corporation. The files were minified (comments and line breaks removed, size attributes dropped).

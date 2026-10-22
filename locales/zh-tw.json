@@ -2938,5 +2938,7 @@
  "Opens Avatar Sandbox with this on your avatar": "開啟 Avatar Sandbox，讓你的虛擬人偶穿上它",
  "A Try In-Game button on item and bundle pages. It opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy.": "在物品和套裝頁面新增「在遊戲中試穿」按鈕。它會開啟 Avatar Sandbox，你的虛擬人偶已經穿上該物品，購買前就能在真實遊戲中看到效果。",
  "Online Friends First": "線上好友優先",
- "The friends row shows who’s in a game, in Studio or online first, like Roblox’s own profile. Otherwise it shows the first 9 friends in Roblox’s list order.": "好友列會先顯示正在遊戲、在 Studio 中或在線上的好友，和 Roblox 自己的個人檔案一樣。關閉時依 Roblox 的順序顯示前 9 位好友。"
+ "The friends row shows who’s in a game, in Studio or online first, like Roblox’s own profile. Otherwise it shows the first 9 friends in Roblox’s list order.": "好友列會先顯示正在遊戲、在 Studio 中或在線上的好友，和 Roblox 自己的個人檔案一樣。關閉時依 Roblox 的順序顯示前 9 位好友。",
+ "Classic Admin Badge": "經典管理員徽章",
+ "The old red R logo as the Roblox admin badge next to names, and the old Administrator badge in Roblox Badges.": "名字旁的 Roblox 管理員徽章改為舊版紅色 R 標誌，Roblox 徽章中的管理員徽章也改為舊版。"
 }

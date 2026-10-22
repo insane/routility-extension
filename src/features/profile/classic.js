@@ -1388,6 +1388,7 @@
   const SHARP_BADGES = new Set(['def12ef9c8501334987a642eb11b7c91', '01044aca1d917eb20bfbdc5e25af1294', '0a010c31a8b482731114810590553be3', '139a7b3acfeb0b881b93a40134766048', '45710972c9c8d556805f8bee89389648', '49f3d30f5c16a1c25ea0f97ea8ef150e', '5eb20917cf530583e2641c0e1f7ba95e', '6c2a598114231066a386fa716ac099c4', '8d77254fc1e6d904fd3ded29dfca28cb', '905bd722ee0a6ceda3caacde54c0b081', 'b66bc601e2256546c5dd6188fce7a8d1', 'b7e6cabb5a1600d813f5843f37181fa3', 'b853909efc7fdcf590363d01f5894f09']);
 
   function sharpBadge(src) {
+    if (/def12ef9c8501334987a642eb11b7c91\.png$/.test(String(src || '')) && document.documentElement.classList.contains('routility-classic-admin')) return chrome.runtime.getURL('assets/icons/classic/admin-badge.png');
     const hash = (String(src || '').match(/^https:\/\/images\.rbxcdn\.com\/([0-9a-f]{32})\.png$/) || [])[1];
     return hash && SHARP_BADGES.has(hash) ? chrome.runtime.getURL(`assets/icons/roblox-badges/${hash}.svg`) : src;
   }

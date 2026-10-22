@@ -2938,5 +2938,7 @@
  "Opens Avatar Sandbox with this on your avatar": "このアイテムを着けた状態でAvatar Sandboxを開きます",
  "A Try In-Game button on item and bundle pages. It opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy.": "アイテムとバンドルのページに「ゲームで試す」ボタンを追加します。アイテムを着けた状態でAvatar Sandboxが開くので、買う前に実際のゲームで確認できます。",
  "Online Friends First": "オンラインのフレンドを先に表示",
- "The friends row shows who’s in a game, in Studio or online first, like Roblox’s own profile. Otherwise it shows the first 9 friends in Roblox’s list order.": "フレンドの列で、ゲーム中・Studio中・オンラインの人を先に表示します（Roblox本来のプロフィールと同じ）。オフにすると、Robloxの順番で最初の9人を表示します。"
+ "The friends row shows who’s in a game, in Studio or online first, like Roblox’s own profile. Otherwise it shows the first 9 friends in Roblox’s list order.": "フレンドの列で、ゲーム中・Studio中・オンラインの人を先に表示します（Roblox本来のプロフィールと同じ）。オフにすると、Robloxの順番で最初の9人を表示します。",
+ "Classic Admin Badge": "クラシック管理者バッジ",
+ "The old red R logo as the Roblox admin badge next to names, and the old Administrator badge in Roblox Badges.": "名前の横のRoblox管理者バッジを昔の赤いRロゴにし、Robloxバッジの管理者バッジも昔のデザインにします。"
 }
