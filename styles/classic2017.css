@@ -378,16 +378,16 @@ html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-info .i
   background-position: 0 -496px !important;
 }
 
-html.routility-2017 .games-list-container:has(> .horizontal-scroller.games-list) {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper):has(> .horizontal-scroller.games-list) {
   display: flex !important;
   flex-direction: column !important;
-  margin: 0 0 -51px !important;
+  margin: 0 !important;
   padding: 5px 0 0 1px !important;
   background-color: #e3e3e3 !important;
   overflow: hidden !important;
 }
 
-html.routility-2017 .games-list-container > .home-sort-header-container {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .home-sort-header-container {
   display: flex !important;
   align-items: flex-start !important;
   justify-content: space-between !important;
@@ -395,18 +395,18 @@ html.routility-2017 .games-list-container > .home-sort-header-container {
   margin: 3px 0 6px !important;
 }
 
-html.routility-2017 .games-list-container > .home-sort-header-container > [data-testid="section-header"] {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .home-sort-header-container > [data-testid="section-header"] {
   flex: 0 1 auto !important;
   width: auto !important;
   min-width: 0 !important;
 }
 
-html.routility-2017 .games-list-container > .home-sort-header-container [data-testid="section-header-title-subtitle-container"] {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .home-sort-header-container [data-testid="section-header-title-subtitle-container"] {
   pointer-events: none !important;
   text-decoration: none !important;
 }
 
-html.routility-2017 .games-list-container > .home-sort-header-container [data-testid="text-icon-row-text"] {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .home-sort-header-container [data-testid="text-icon-row-text"] {
   padding: 0 0 5px !important;
   color: #191919 !important;
   font-size: 20px !important;
@@ -414,7 +414,7 @@ html.routility-2017 .games-list-container > .home-sort-header-container [data-te
   line-height: 20px !important;
 }
 
-html.routility-2017 .games-list-container > .home-sort-header-container :is([data-testid="icon-component"], .info-tooltip-container) {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .home-sort-header-container :is([data-testid="icon-component"], .info-tooltip-container) {
   display: none !important;
 }
 
@@ -438,18 +438,18 @@ html.routility-2017 .routility-2017-more:hover {
   text-decoration: underline;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list {
   box-sizing: border-box !important;
   width: auto !important;
-  height: 293px !important;
+  height: 242px !important;
   margin: 8px 36px !important;
   padding: 0 0 5px !important;
   overflow: visible !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list .scroller-new,
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::before,
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::before {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new,
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::before,
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::before {
   content: "" !important;
   display: block !important;
   position: absolute !important;
@@ -470,37 +470,37 @@ html.routility-2017 .games-list-container > .horizontal-scroller.games-list:not(
   user-select: none;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list .scroller-new {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new {
   cursor: pointer !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list .scroller-new:focus {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new:focus {
   background-color: #f2f2f2 !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list .scroller-new.prev,
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::before {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new.prev,
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::before {
   right: auto !important;
   left: -36px !important;
   border-radius: 3px 0 0 3px !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list .scroller-new.next,
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::before {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new.next,
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::before {
   right: -36px !important;
   left: auto !important;
   border-radius: 0 3px 3px 0 !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::before,
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::before {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::before,
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::before {
   border-color: #e3e3e3 !important;
   opacity: .3 !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list .scroller-new > span,
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::after,
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::after {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new > span,
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::after,
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::after {
   content: "" !important;
   display: block !important;
   position: absolute !important;
@@ -517,40 +517,40 @@ html.routility-2017 .games-list-container > .horizontal-scroller.games-list:not(
   opacity: .5 !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list .scroller-new > span::before {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new > span::before {
   content: none !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list .scroller-new > span {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new > span {
   top: 100px !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list .scroller-new.prev > span {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new.prev > span {
   left: 0 !important;
   background-position: 0 -980px !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list .scroller-new.next > span {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new.next > span {
   left: -2px !important;
   background-position: 0 -952px !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list .scroller-new.prev > span:hover {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new.prev > span:hover {
   background-position: -28px -980px !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list .scroller-new.next > span:hover {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new.next > span:hover {
   background-position: -28px -952px !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::after {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::after {
   top: 101px !important;
   left: -35px !important;
   background-position: 0 -980px !important;
   opacity: .15 !important;
 }
 
-html.routility-2017 .games-list-container > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::after {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::after {
   top: 101px !important;
   right: -33px !important;
   left: auto !important;
@@ -563,7 +563,7 @@ html.routility-2017 #game-carousel-web-app .games-page-container {
   padding: 0 12px !important;
 }
 
-html.routility-2017 .games-list-container > .home-sort-header-container [data-testid="section-header-title-subtitle-container"] > :not(:first-child) {
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .home-sort-header-container [data-testid="section-header-title-subtitle-container"] > :not(:first-child) {
   display: none !important;
 }
 
@@ -575,7 +575,7 @@ html.routility-2017 .filters-container .filter-items-container > * {
   margin: 0 8px 6px 0 !important;
 }
 
-html.routility-2017 .filters-container button.filter-select {
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) button.filter-select {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -590,12 +590,12 @@ html.routility-2017 .filters-container button.filter-select {
   color: #191919 !important;
 }
 
-html.routility-2017 .filters-container button.filter-select:hover {
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) button.filter-select:hover {
   border-color: #b8b8b8 !important;
   background-color: #ffffff !important;
 }
 
-html.routility-2017 .filters-container button.filter-select .filter-display-text {
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) button.filter-select .filter-display-text {
   padding: 0 !important;
   color: #191919 !important;
   font-size: 16px !important;
@@ -604,7 +604,7 @@ html.routility-2017 .filters-container button.filter-select .filter-display-text
   text-align: left !important;
 }
 
-html.routility-2017 .filters-container button.filter-select :is(.icon-expand-arrow, .icon-expand-arrow-selected) {
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) button.filter-select :is(.icon-expand-arrow, .icon-expand-arrow-selected) {
   flex: none !important;
   width: 16px !important;
   height: 16px !important;
@@ -621,7 +621,7 @@ html.routility-2017 .games-list-header h1 {
   font-weight: 700 !important;
 }
 
-html.routility-2017 .games-list-header .foundation-web-button {
+html.routility-2017 :is(.games-list-header, .routility-home-edit) .foundation-web-button {
   border: 1px solid #b8b8b8 !important;
   border-radius: 3px !important;
   background-color: #ffffff !important;
@@ -629,11 +629,11 @@ html.routility-2017 .games-list-header .foundation-web-button {
   font-weight: 500 !important;
 }
 
-html.routility-2017 .games-list-header .foundation-web-button:hover {
+html.routility-2017 :is(.games-list-header, .routility-home-edit) .foundation-web-button:hover {
   border-color: #191919 !important;
 }
 
-html.routility-2017 .games-list-header .foundation-web-button > .absolute {
+html.routility-2017 :is(.games-list-header, .routility-home-edit) .foundation-web-button > .absolute {
   display: none !important;
 }
 
@@ -645,11 +645,11 @@ html.routility-2017 .games-page-container .games-list-header {
   margin: 3px 4px 6px !important;
 }
 
-html.routility-2017 .filters-container .filter-items-container > div {
+html.routility-2017 :is(.filters-container .filter-items-container, .catalog-search-options-top-bar) > div {
   position: relative !important;
 }
 
-html.routility-2017 .filters-container .filters-modal-container {
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container {
   position: absolute !important;
   top: 100% !important;
   left: 0 !important;
@@ -668,21 +668,21 @@ html.routility-2017 .filters-container .filters-modal-container {
   overflow-y: auto !important;
 }
 
-html.routility-2017 .filters-container .filters-modal-container > .header-container,
-html.routility-2017 .filters-container .filters-modal-container > .action-buttons-container,
-html.routility-2017 .filters-container .filters-modal-container .filter-option-divider,
-html.routility-2017 .filters-container .filters-modal-container .filter-option :is([class*="icon-radio"], .foundation-web-badge) {
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container > .header-container,
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container > .action-buttons-container,
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container .filter-option-divider,
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container .filter-option :is([class*="icon-radio"], .foundation-web-badge) {
   display: none !important;
 }
 
-html.routility-2017 .filters-container .filters-modal-container .filter-options-container {
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container .filter-options-container {
   max-height: none !important;
   margin: 0 !important;
   padding: 0 !important;
   overflow: visible !important;
 }
 
-html.routility-2017 .filters-container .filters-modal-container .filter-option {
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container .filter-option {
   display: block !important;
   width: 100% !important;
   height: auto !important;
@@ -700,13 +700,13 @@ html.routility-2017 .filters-container .filters-modal-container .filter-option {
   white-space: nowrap !important;
 }
 
-html.routility-2017 .filters-container .filters-modal-container .filter-option .filter-option-name {
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container .filter-option .filter-option-name {
   color: #191919 !important;
   font-size: 16px !important;
   font-weight: 300 !important;
 }
 
-html.routility-2017 .filters-container .filters-modal-container .filter-option:is(:hover, :focus, .selected-option) {
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container .filter-option:is(:hover, :focus, .selected-option) {
   background-color: #f2f2f2 !important;
   box-shadow: 4px 0 0 0 #00a2ff inset !important;
   outline: 0 none !important;
@@ -796,22 +796,22 @@ html.routility-2017 .routility-classic .profile-header .details-actions .btn-con
   line-height: 100% !important;
 }
 
-html.routility-2017 .routility-classic .rbx-tabs-horizontal .rbx-tab .rbx-tab-heading {
+html.routility-2017 .rbx-tabs-horizontal .rbx-tab .rbx-tab-heading {
   border: 0 !important;
   background-color: #ffffff !important;
   box-shadow: none !important;
 }
 
-html.routility-2017 .routility-classic .rbx-tabs-horizontal .rbx-tab .rbx-tab-heading::after,
-html.routility-2017 .routility-classic .rbx-tabs-horizontal .rbx-tab .rbx-tab-heading::before {
+html.routility-2017 .rbx-tabs-horizontal .rbx-tab .rbx-tab-heading::after,
+html.routility-2017 .rbx-tabs-horizontal .rbx-tab .rbx-tab-heading::before {
   display: none !important;
 }
 
-html.routility-2017 .routility-classic .rbx-tabs-horizontal .rbx-tab.active .rbx-tab-heading {
+html.routility-2017 .rbx-tabs-horizontal .rbx-tab.active .rbx-tab-heading {
   box-shadow: inset 0 -4px 0 0 #00a2ff !important;
 }
 
-html.routility-2017 .routility-classic .rbx-tabs-horizontal .rbx-tab:not(.active) .rbx-tab-heading:hover {
+html.routility-2017 .rbx-tabs-horizontal .rbx-tab:not(.active) .rbx-tab-heading:hover {
   box-shadow: inset 0 -4px 0 0 #b8b8b8 !important;
 }
 
@@ -908,4 +908,146 @@ html.routility-2017 .routility-classic .profile-header .profile-header-content {
 
 html.routility-2017 .routility-classic .profile-about > .routility-profile-note {
   border-top: 0 !important;
+}
+
+html.routility-2017 #game-detail-page .game-main-content {
+  box-sizing: border-box !important;
+  height: auto !important;
+  padding: 12px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 #game-detail-page .game-calls-to-action {
+  box-sizing: border-box !important;
+  width: 306px !important;
+  padding: 0 12px 0 18px !important;
+}
+
+html.routility-2017 #game-detail-page .game-creator .text-label {
+  color: #b8b8b8 !important;
+}
+
+html.routility-2017 #game-detail-page .game-creator a.text-name {
+  color: #00a2ff !important;
+}
+
+html.routility-2017 #game-detail-page .game-details-play-button-container {
+  padding: 20px 0 5px !important;
+  border-top: 1px solid #e3e3e3 !important;
+  border-bottom: 1px solid #e3e3e3 !important;
+}
+
+html.routility-2017 #game-detail-page .game-details-play-button-container > button {
+  height: 46px !important;
+  border-radius: 3px !important;
+}
+
+html.routility-2017 #game-detail-page .game-description-container {
+  padding: 0 15px 15px !important;
+  background: linear-gradient(#ffffff, #ffffff) 0 39px / 100% 100% no-repeat !important;
+}
+
+html.routility-2017 #game-detail-page .game-description-container > .container-header {
+  margin: 0 -15px 6px !important;
+}
+
+html.routility-2017 #game-detail-page .game-description-container > .game-description {
+  margin-top: 15px !important;
+}
+
+html.routility-2017 #game-detail-page .game-stat .text-label {
+  color: #b8b8b8 !important;
+}
+
+html.routility-2017 :is(#game-detail-page, .routility-classic) :is(.text-report, .abuse-report-link .text-error) {
+  color: #d86868 !important;
+}
+
+html.routility-2017 #content a.text-link {
+  color: #00a2ff !important;
+}
+
+html.routility-2017 .page-content .clearfix:has(> #item-thumbnail-container-frontend) {
+  margin: 0 -12px !important;
+  padding: 12px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .item-details-thumbnail-container .thumbnail-holder {
+  background-color: transparent !important;
+}
+
+html.routility-2017 .item-details-info-content .item-info-row-container > :first-child,
+html.routility-2017 .item-details-info-content .item-info-row-container > :first-child * {
+  color: #b8b8b8 !important;
+}
+
+html.routility-2017 .item-details-creator-container a {
+  color: #00a2ff !important;
+}
+
+html.routility-2017 #asset-resale-data-container .tab-pane.price-chart-section,
+html.routility-2017 #asset-resale-data-container #item-details-limited-inventory-container {
+  padding: 15px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .item-details-creator-container {
+  color: #b8b8b8 !important;
+}
+
+html.routility-2017 .catalog-search-options-top-bar button.filter-select {
+  min-width: 0 !important;
+}
+
+html.routility-2017 .catalog-search-options-top-bar {
+  gap: 6px !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-container {
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-thumb-container {
+  border-radius: 0 !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-caption {
+  padding: 6px 8px 8px !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-name {
+  color: #191919 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.4em !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-price .text-robux-tile {
+  color: #02b757 !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-price .icon-robux-16x16 {
+  filter: brightness(0) saturate(100%) invert(52%) sepia(68%) saturate(2627%) hue-rotate(121deg) brightness(95%) contrast(98%) !important;
+}
+
+html.routility-2017 .catalog-header .search-container :is(input, .input-group, .input-group-btn > button) {
+  border-color: #b8b8b8 !important;
+  background-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+html.routility-2017 .home-container.expand-max-width {
+  max-width: 970px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+html.routility-2017 .friend-carousel-container .friends-carousel-container {
+  padding: 15px 12px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .friend-carousel-container .people-list-header {
+  margin: 3px 0 6px !important;
 }

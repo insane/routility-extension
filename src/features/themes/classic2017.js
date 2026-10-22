@@ -7,7 +7,7 @@
   let on = false;
 
   function seeAll() {
-    for (const head of document.querySelectorAll('.games-list-container > .home-sort-header-container')) {
+    for (const head of document.querySelectorAll(':is(.games-list-container, .game-sort-carousel-wrapper) > .home-sort-header-container')) {
       const link = head.querySelector('a[data-testid="section-header-title-subtitle-container"][href]');
       let more = head.querySelector(':scope > .routility-2017-more');
       if (!link) {
@@ -44,9 +44,10 @@
 
   document.addEventListener('click', (e) => {
     if (!on) return;
-    const opt = e.target.closest?.('.filters-container .filters-modal-container .filter-option');
+    const opt = e.target.closest?.(':is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container .filter-option');
     if (!opt) return;
     const modal = opt.closest('.filters-modal-container');
+    if (modal.querySelector('input')) return;
     setTimeout(() => modal.querySelector('.apply-button')?.click(), 0);
   }, true);
 
