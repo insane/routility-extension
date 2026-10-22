@@ -1807,21 +1807,20 @@ a.routility-hc-status:hover {
 }
 
 .routility-set-needs {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  display: block;
   color: var(--color-content-default, inherit);
   font-weight: 600;
 }
 
 .routility-set-needs::before {
   content: "";
+  display: inline-block;
   width: 6px;
   height: 6px;
-  margin-top: calc((1lh - 6px) / 2);
+  margin: 0 8px 0 0;
+  vertical-align: middle;
   border-radius: 50%;
   background: #f7b500;
-  flex-shrink: 0;
 }
 
 .routility-set-needs[hidden] {

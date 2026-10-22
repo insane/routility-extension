@@ -122,8 +122,14 @@
     const side = document.querySelector('nav a:is([href="/users/profile"], [data-rt-profile="/users/profile"]) .text-truncate-end');
     for (const name of [top, side]) {
       if (!name) continue;
-      const next = name.nextElementSibling;
-      const has = next && next.classList.contains('routility-nav-verified');
+      const mine = [...name.parentElement.querySelectorAll(':scope > .routility-nav-verified')];
+      if (fake && name === side) {
+        mine.forEach(n => n.remove());
+        continue;
+      }
+      mine.slice(1).forEach(n => n.remove());
+      const next = mine[0] || null;
+      const has = !!next;
       if (on && !has) {
         const badge = verifiedIcon();
         if (name === top) {
