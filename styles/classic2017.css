@@ -1457,3 +1457,79 @@ html.routility-2017 .MuiButton-root:is(.MuiButton-containedSecondary, .MuiButton
 html.routility-2017 .MuiButton-root .MuiTouchRipple-root {
   display: none !important;
 }
+
+html.routility-2017 .item-card .item-card-container {
+  padding: 0 0 5px !important;
+  border-radius: 0 !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .item-card .item-card-thumb-container {
+  border-radius: 0 !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .item-card :is(.item-card-name, .item-card-creator, .item-card-label, .item-card-price) {
+  padding: 0 5px !important;
+}
+
+html.routility-2017 .item-card .item-card-name {
+  color: #191919 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+html.routility-2017 .item-card .item-card-label {
+  color: #757575 !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+}
+
+html.routility-2017 .item-card .item-card-price :is(.text-robux, .text-robux-tile) {
+  color: #02b757 !important;
+}
+
+html.routility-2017 .item-card .item-card-price .icon-robux-16x16 {
+  filter: brightness(0) saturate(100%) invert(52%) sepia(68%) saturate(2627%) hue-rotate(121deg) brightness(95%) contrast(98%) !important;
+}
+
+html.routility-2017 .menu-vertical,
+html.routility-2017 .menu-vertical .menu-option .menu-secondary {
+  border-radius: 0 !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .menu-vertical .menu-option {
+  border-radius: 0 !important;
+}
+
+html.routility-2017 .menu-vertical .menu-option:is(.active, :hover, :focus),
+html.routility-2017 .menu-vertical .menu-option .menu-secondary-option:is(.active, :focus) {
+  box-shadow: inset 4px 0 0 0 #00a2ff !important;
+}
+
+html.routility-2017 .menu-vertical .menu-option:hover,
+html.routility-2017 .menu-vertical .menu-option .menu-secondary-option:hover {
+  background-color: #f2f2f2 !important;
+}
+
+html.routility-2017 .menu-vertical .menu-option .menu-secondary {
+  box-shadow: 0 1px 3px hsla(0, 0%, 58.8%, .74) !important;
+}
+
+html.routility-2017 .menu-vertical .menu-text {
+  color: #191919 !important;
+}
+
+html.routility-2017 .menu-vertical .menu-option-content {
+  border-radius: 0 !important;
+  background-color: transparent !important;
+}
+
+html.routility-2017 .menu-vertical .menu-option-content.active {
+  box-shadow: inset 4px 0 0 0 #00a2ff !important;
+}
+
+html.routility-2017 .menu-vertical .menu-option-content:hover {
+  background-color: #f2f2f2 !important;
+}
