@@ -246,6 +246,7 @@
       "resources": [
         "assets/icons/logo.png",
         "assets/icons/social.svg",
+        "assets/icons/roblox-badges/*",
         "assets/flags/*",
         "assets/icons/forum/*",
         "vendor/*",

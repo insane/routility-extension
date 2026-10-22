@@ -27,6 +27,7 @@ RoUtility badges and friend request messages, plus server region and profile fix
 
 ```diff
 ~ Your playtime on a game page sits under its name now, with Today, Past 7 Days, Past 30 Days or All Time. Hover the time for the exact minutes and when you last played.
+~ Roblox Badges on the 2022 profile are sharp instead of blurry.
 ~ Prices show a simple green $ (or your currency’s sign) before the amount instead of the round money icon.
 ```
 
