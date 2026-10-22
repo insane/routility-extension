@@ -122,6 +122,7 @@
         "https://www.roblox.com/my/account*"
       ],
       "js": [
+        "src/core/i18n.js",
         "src/settings/freeitems.js",
         "src/settings/settings.js"
       ],
