@@ -9,7 +9,7 @@
       "date": "2026-10-21",
       "summary": "RoUtility badges and friend request messages, plus server region and profile fixes.",
       "changes": [
-        { "type": "new", "text": "2017 Roblox Theme (Classic, off by default): the 2017 to 2019 Roblox look with the blue top bar, white sidebar, gray page, Gotham font, square corners and green Play buttons." },
+        { "type": "new", "text": "2017 Roblox Theme (Classic, off by default): the 2017 to 2019 Roblox look across Home, Games, game and item pages, the Catalog, profiles and more, with the blue top bar, old sidebar, Classic Names and green Play buttons. A Roblox Plus or custom theme keeps its colors." },
         { "type": "new", "text": "Custom Name Badges (Fun): pick Verified, Roblox Plus, Premium and Roblox Admin for your own name. They show everywhere Roblox shows badges, in Roblox’s order, and start with the ones you really have. Roblox Admin also adds the Administrator badge to your Roblox Badges." },
         { "type": "new", "text": "Classic Admin Badge (Classic, off by default): the old red R logo as the Roblox admin badge next to names, and the old Administrator badge in Roblox Badges." },
         { "type": "new", "text": "Try In-Game: a button on item and bundle pages that opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy." },

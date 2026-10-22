@@ -160,7 +160,7 @@
           if (!document.body) return;
           bodyWait.disconnect();
           bodyWait = null;
-          lightMode(!!(lastSettings || {}).classicSite);
+          sync2017();
         });
         bodyWait.observe(root, { childList: true });
       }
@@ -179,7 +179,7 @@
     if (on) {
       flip();
       if (!bodyWatch) {
-        bodyWatch = new MutationObserver(flip);
+        bodyWatch = new MutationObserver(() => sync2017());
         bodyWatch.observe(body, { attributes: true, attributeFilter: ['class'] });
       }
       return;
@@ -205,7 +205,19 @@
       classicLink.remove();
       classicLink = null;
     }
-    lightMode(on);
+    sync2017();
+  };
+  const themed2017 = () => {
+    const s = lastSettings || {};
+    if (s.customTheme || PLUS_THEMES.includes(s.plusTheme)) return true;
+    const b = document.body;
+    return !!b && PLUS_THEMES.some(k => b.classList.contains('theme-' + k));
+  };
+  const sync2017 = () => {
+    const on = !!(lastSettings || {}).classicSite;
+    const themed = on && themed2017();
+    root.classList.toggle('routility-2017-themed', themed);
+    lightMode(on && !themed);
   };
   let revealOn = true;
   const apply = (settings) => {
@@ -413,7 +425,7 @@
   const TILES = '.thumbnail-2d-container, .item-card-thumb-container, .game-card-thumb-container, .asset-thumb-container';
   const applyTheme = () => {
     let css = '';
-    if (themeOn && !(lastSettings || {}).classicSite) {
+    if (themeOn) {
       const decl = [];
       const pick = (id) => id === 'nav' && !safeColor(themeColors.nav) ? themeColors.bg : themeColors[id];
       const navColor = pick('nav');
@@ -433,6 +445,7 @@
       if (decl.length) {
         css = `:root, body, .dark-theme, .light-theme { ${decl.join(' ')} } body { background-color: var(--color-surface-0) !important; }`;
         if (safeColor(navColor)) css += ` #header.rbx-header, .rbx-header, .left-nav { background-image: none !important; background-color: ${navColor} !important; }`;
+        if (safeColor(navColor)) css += ` html.routility-2017, html.routility-2017 :is(body, .light-theme, .dark-theme) { --c17-header: ${navColor} !important; --c17-on-header: ${lightColor(navColor) ? '#191919' : '#ffffff'} !important; --c17-header-icons: ${lightColor(navColor) ? 'brightness(0.2)' : 'none'} !important; }`;
         if (safeColor(navColor)) css += ` html:not(.routility-classic-logo) ${lightColor(navColor) ? '.dark-theme' : '.light-theme'} #header .navbar-brand :is(.icon-logo, .icon-logo-r) { filter: ${lightColor(navColor) ? 'brightness(0.2)' : 'brightness(0) invert(1)'} !important; }`;
         css += ` .section-content:not(.remove-panel) { border-radius: var(--radius-large) !important; }`;
         css += ' [data-testid="text-icon-row-text"] { color: var(--color-content-emphasis) !important; }';
@@ -550,7 +563,7 @@
   let plusWatch = null;
   const plusTheme = () => {
     const s = lastSettings || {};
-    const want = !s.customTheme && !s.classicSite && PLUS_THEMES.includes(s.plusTheme) ? s.plusTheme : '';
+    const want = !s.customTheme && PLUS_THEMES.includes(s.plusTheme) ? s.plusTheme : '';
     const body = document.body;
     if (!body) {
       if (want && !plusWatch) {

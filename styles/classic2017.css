@@ -26,10 +26,10 @@
   font-display: swap;
 }
 
-html.routility-2017,
-html.routility-2017 body,
-html.routility-2017 .light-theme,
-html.routility-2017 .dark-theme {
+html.routility-2017:not(.routility-2017-themed),
+html.routility-2017:not(.routility-2017-themed) body,
+html.routility-2017:not(.routility-2017-themed) .light-theme,
+html.routility-2017:not(.routility-2017-themed) .dark-theme {
   --color-surface-0: #e3e3e3 !important;
   --color-surface-100: #ffffff !important;
   --color-surface-200: #f2f4f5 !important;
@@ -50,10 +50,55 @@ html.routility-2017 .dark-theme {
   --color-action-emphasis-foreground: #ffffff !important;
   --color-action-link-foreground: #00a2ff !important;
   --color-common-navigation-bar: #0074bd !important;
+}
+
+html.routility-2017,
+html.routility-2017 body,
+html.routility-2017 .light-theme,
+html.routility-2017 .dark-theme {
   --radius-xsmall: 2px !important;
   --radius-small: 3px !important;
   --radius-medium: 3px !important;
   --radius-large: 4px !important;
+}
+
+html.routility-2017 {
+  --c17-page: #e3e3e3;
+  --c17-card: #ffffff;
+  --c17-hover: #f2f2f2;
+  --c17-avatar: #d1d1d1;
+  --c17-off: #b8b8b8;
+  --c17-header: #0074bd;
+  --c17-on-header: #ffffff;
+  --c17-header-icons: none;
+  --c17-accent: #00a2ff;
+  --c17-accent-hover: #32b5ff;
+  --c17-text: #191919;
+  --c17-body: #393b3d;
+  --c17-muted: #757575;
+  --c17-label: #b8b8b8;
+  --c17-link: #00a2ff;
+  --c17-border: #b8b8b8;
+  --c17-divider: #e3e3e3;
+}
+
+html.routility-2017.routility-2017-themed,
+html.routility-2017.routility-2017-themed :is(body, .light-theme, .dark-theme) {
+  --c17-page: var(--color-surface-0);
+  --c17-card: var(--color-surface-100);
+  --c17-hover: var(--color-shift-200);
+  --c17-avatar: var(--color-shift-300);
+  --c17-off: var(--color-shift-300);
+  --c17-header: var(--color-navigation-background, var(--color-common-navigation-bar, #0074bd));
+  --c17-accent: var(--color-system-emphasis, #00a2ff);
+  --c17-accent-hover: color-mix(in srgb, var(--c17-accent) 80%, #ffffff);
+  --c17-text: var(--color-content-emphasis);
+  --c17-body: var(--color-content-default);
+  --c17-muted: var(--color-content-muted);
+  --c17-label: var(--color-content-muted);
+  --c17-link: var(--color-content-link, var(--c17-accent));
+  --c17-border: var(--color-stroke-default, var(--color-shift-400));
+  --c17-divider: var(--color-stroke-muted, var(--color-shift-300));
 }
 
 html.routility-2017 body,
@@ -62,12 +107,12 @@ html.routility-2017 body *:not([class*="icon"]):not(input[type="password"]) {
 }
 
 html.routility-2017 body {
-  background-color: #e3e3e3 !important;
-  color: #191919;
+  background-color: var(--c17-page) !important;
+  color: var(--c17-text);
 }
 
 html.routility-2017 #header.rbx-header {
-  background-color: #0074bd !important;
+  background-color: var(--c17-header) !important;
   border-bottom: 0 !important;
   box-shadow: 0 1px 3px rgba(25, 25, 25, 0.3);
 }
@@ -113,19 +158,19 @@ html.routility-2017 #header .navbar-search input#navbar-search-input {
   width: calc(100% - 33px) !important;
   height: 28px !important;
   padding: 5px 12px !important;
-  border: 1px solid #b8b8b8 !important;
+  border: 1px solid var(--c17-border) !important;
   border-right: 0 !important;
   border-radius: 3px 0 0 3px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
   box-shadow: none !important;
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   font-size: 16px !important;
   font-weight: 300 !important;
   line-height: 100% !important;
 }
 
 html.routility-2017 #header .navbar-search input#navbar-search-input::placeholder {
-  color: #b8b8b8 !important;
+  color: var(--c17-label) !important;
 }
 
 html.routility-2017 #header .navbar-search .input-addon-btn {
@@ -139,10 +184,10 @@ html.routility-2017 #header .navbar-search .input-addon-btn {
   width: 33px !important;
   height: 28px !important;
   padding: 0 !important;
-  border: 1px solid #b8b8b8 !important;
+  border: 1px solid var(--c17-border) !important;
   border-left: 0 !important;
   border-radius: 0 3px 3px 0 !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 #header .navbar-search .input-addon-btn > .icon {
@@ -196,6 +241,7 @@ html.routility-2017 #header #header-menu-icon > .menu-button [class*="hover"] {
 }
 
 html.routility-2017 #header :is(.icon-regular-three-bars-hori, #nav-robux, #nav-settings, #common-notification-bell) {
+  filter: var(--c17-header-icons) !important;
   width: 28px !important;
   height: 28px !important;
   background-color: transparent !important;
@@ -216,13 +262,13 @@ html.routility-2017 #header button:hover #nav-settings { background-position: -2
 html.routility-2017 #header button:hover #common-notification-bell { background-position: -28px -448px !important; }
 
 html.routility-2017 #header :is(#nav-robux-amount, .nav-credit-text, .rbx-text-navbar-right) {
-  color: #ffffff !important;
+  color: var(--c17-on-header) !important;
 }
 
 html.routility-2017 #header .navbar-brand .icon-logo-r {
   background-image: url("https://static.rbxcdn.com/images/Logo/logo_O_01302017.svg") !important;
   background-size: 30px 30px !important;
-  filter: none !important;
+  filter: var(--c17-header-icons) !important;
 }
 
 html.routility-2017:not(.routility-classic-logo) #header .navbar-brand .icon-logo {
@@ -230,7 +276,7 @@ html.routility-2017:not(.routility-classic-logo) #header .navbar-brand .icon-log
   height: 30px !important;
   background-image: url("https://static.rbxcdn.com/images/Logo/roblox_logo_11212016.svg") !important;
   background-size: 118px 30px !important;
-  filter: none !important;
+  filter: var(--c17-header-icons) !important;
 }
 
 html.routility-2017 #header ul.rbx-navbar {
@@ -255,13 +301,13 @@ html.routility-2017 #header ul.rbx-navbar > li > a.nav-menu-title {
 
 html.routility-2017 .left-nav,
 html.routility-2017 .rbx-left-col {
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
   box-shadow: 0 0 3px rgba(25, 25, 25, 0.3);
 }
 
 html.routility-2017 .left-nav a,
 html.routility-2017 .rbx-left-col .text-nav {
-  color: #191919 !important;
+  color: var(--c17-text) !important;
 }
 
 html.routility-2017 :is(.btn-common-play-game-lg, .btn-primary-md, .btn-primary-lg, .btn-growth-md, .btn-growth-lg) {
@@ -272,21 +318,21 @@ html.routility-2017 :is(.btn-common-play-game-lg, .btn-primary-md, .btn-primary-
 }
 
 html.routility-2017 :is(.btn-secondary-md, .btn-secondary-xs, .btn-secondary-lg) {
-  background-color: #00a2ff !important;
-  border-color: #00a2ff !important;
+  background-color: var(--c17-accent) !important;
+  border-color: var(--c17-accent) !important;
   color: #ffffff !important;
   border-radius: 3px !important;
 }
 
 html.routility-2017 :is(.btn-control-md, .btn-control-sm, .btn-control-xs) {
-  background-color: #ffffff !important;
-  border: 1px solid #b8b8b8 !important;
-  color: #191919 !important;
+  background-color: var(--c17-card) !important;
+  border: 1px solid var(--c17-border) !important;
+  color: var(--c17-text) !important;
   border-radius: 3px !important;
 }
 
 html.routility-2017 .section-content {
-  background-color: #ffffff;
+  background-color: var(--c17-card);
 }
 
 html.routility-2017 #content {
@@ -297,7 +343,7 @@ html.routility-2017 #content {
 html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-container {
   position: relative !important;
   height: 100% !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
   border-radius: 0 !important;
   text-align: left !important;
 }
@@ -321,7 +367,7 @@ html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-name {
   margin: 6px 0 3px !important;
   padding: 0 6px !important;
   overflow: hidden !important;
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   font-size: 16px !important;
   font-weight: 500 !important;
   line-height: 1.4em !important;
@@ -341,7 +387,7 @@ html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-info {
 html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-info .info-label {
   display: inline-block !important;
   padding: 0 !important;
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   font-size: 14px !important;
   font-weight: 400 !important;
   line-height: 18px !important;
@@ -383,7 +429,7 @@ html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper):has(
   flex-direction: column !important;
   margin: 0 !important;
   padding: 5px 0 0 1px !important;
-  background-color: #e3e3e3 !important;
+  background-color: var(--c17-page) !important;
   overflow: hidden !important;
 }
 
@@ -408,7 +454,7 @@ html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .h
 
 html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .home-sort-header-container [data-testid="text-icon-row-text"] {
   padding: 0 0 5px !important;
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   font-size: 20px !important;
   font-weight: 700 !important;
   line-height: 20px !important;
@@ -424,7 +470,7 @@ html.routility-2017 .routility-2017-more {
   padding: 4px;
   border: 0;
   background-color: transparent;
-  color: #00a2ff !important;
+  color: var(--c17-link) !important;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.4em;
@@ -461,8 +507,8 @@ html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .h
   height: 240px !important;
   margin: 0 !important;
   padding: 0 !important;
-  border: 1px solid #b8b8b8 !important;
-  background: #ffffff !important;
+  border: 1px solid var(--c17-border) !important;
+  background: var(--c17-card) !important;
   box-shadow: none !important;
   opacity: 1 !important;
   visibility: visible !important;
@@ -475,7 +521,7 @@ html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .h
 }
 
 html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new:focus {
-  background-color: #f2f2f2 !important;
+  background-color: var(--c17-hover) !important;
 }
 
 html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new.prev,
@@ -494,7 +540,7 @@ html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .h
 
 html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::before,
 html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::before {
-  border-color: #e3e3e3 !important;
+  border-color: var(--c17-divider) !important;
   opacity: .3 !important;
 }
 
@@ -583,21 +629,21 @@ html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) but
   min-width: 230px !important;
   height: 38px !important;
   padding: 5px 12px !important;
-  border: 1px solid #b8b8b8 !important;
+  border: 1px solid var(--c17-border) !important;
   border-radius: 3px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
   box-shadow: none !important;
-  color: #191919 !important;
+  color: var(--c17-text) !important;
 }
 
 html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) button.filter-select:hover {
-  border-color: #b8b8b8 !important;
-  background-color: #ffffff !important;
+  border-color: var(--c17-border) !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) button.filter-select .filter-display-text {
   padding: 0 !important;
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   font-size: 16px !important;
   font-weight: 300 !important;
   line-height: 26px !important;
@@ -622,15 +668,15 @@ html.routility-2017 .games-list-header h1 {
 }
 
 html.routility-2017 :is(.games-list-header, .routility-home-edit) .foundation-web-button {
-  border: 1px solid #b8b8b8 !important;
+  border: 1px solid var(--c17-border) !important;
   border-radius: 3px !important;
-  background-color: #ffffff !important;
-  color: #191919 !important;
+  background-color: var(--c17-card) !important;
+  color: var(--c17-text) !important;
   font-weight: 500 !important;
 }
 
 html.routility-2017 :is(.games-list-header, .routility-home-edit) .foundation-web-button:hover {
-  border-color: #191919 !important;
+  border-color: var(--c17-text) !important;
 }
 
 html.routility-2017 :is(.games-list-header, .routility-home-edit) .foundation-web-button > .absolute {
@@ -662,7 +708,7 @@ html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .fi
   padding: 0 !important;
   border: 0 !important;
   border-radius: 4px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
   box-shadow: 0 -5px 20px rgba(25, 25, 25, 0.15) !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
@@ -692,7 +738,7 @@ html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .fi
   border: 0 !important;
   border-radius: 0 !important;
   background-color: transparent !important;
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   font-size: 16px !important;
   font-weight: 300 !important;
   line-height: 1.42857 !important;
@@ -701,14 +747,14 @@ html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .fi
 }
 
 html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container .filter-option .filter-option-name {
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   font-size: 16px !important;
   font-weight: 300 !important;
 }
 
 html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container .filter-option:is(:hover, :focus, .selected-option) {
-  background-color: #f2f2f2 !important;
-  box-shadow: 4px 0 0 0 #00a2ff inset !important;
+  background-color: var(--c17-hover) !important;
+  box-shadow: 4px 0 0 0 var(--c17-accent) inset !important;
   outline: 0 none !important;
 }
 
@@ -717,7 +763,7 @@ html.routility-2017 .container-header .btn-more {
   padding: 4px !important;
   border: 0 !important;
   background-color: transparent !important;
-  color: #00a2ff !important;
+  color: var(--c17-link) !important;
   font-size: 16px !important;
   font-weight: 500 !important;
 }
@@ -733,7 +779,7 @@ html.routility-2017 :is(.btn-secondary-xs, .btn-secondary-md).see-all-link-icon:
 
 html.routility-2017 .routility-classic .profile-avatar-image .avatar-card-link,
 html.routility-2017 .routility-classic .profile-avatar-image .thumbnail-2d-container {
-  background-color: #d1d1d1 !important;
+  background-color: var(--c17-avatar) !important;
 }
 
 html.routility-2017 .routility-classic .profile-header .header-title h2 {
@@ -770,7 +816,7 @@ html.routility-2017 .routility-classic .profile-header .details-info > li {
 
 html.routility-2017 .routility-classic .profile-header .details-info .text-label {
   margin: 0 !important;
-  color: #b8b8b8 !important;
+  color: var(--c17-label) !important;
   font-size: 12px !important;
   font-weight: 500 !important;
   line-height: 17px !important;
@@ -778,7 +824,7 @@ html.routility-2017 .routility-classic .profile-header .details-info .text-label
 
 html.routility-2017 .routility-classic .profile-header .details-info a.text-name {
   padding: 5px 0 !important;
-  color: #00a2ff !important;
+  color: var(--c17-link) !important;
   font-size: 12px !important;
   font-weight: 400 !important;
   line-height: 12px !important;
@@ -798,7 +844,7 @@ html.routility-2017 .routility-classic .profile-header .details-actions .btn-con
 
 html.routility-2017 .rbx-tabs-horizontal .rbx-tab .rbx-tab-heading {
   border: 0 !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
   box-shadow: none !important;
 }
 
@@ -808,11 +854,11 @@ html.routility-2017 .rbx-tabs-horizontal .rbx-tab .rbx-tab-heading::before {
 }
 
 html.routility-2017 .rbx-tabs-horizontal .rbx-tab.active .rbx-tab-heading {
-  box-shadow: inset 0 -4px 0 0 #00a2ff !important;
+  box-shadow: inset 0 -4px 0 0 var(--c17-accent) !important;
 }
 
 html.routility-2017 .rbx-tabs-horizontal .rbx-tab:not(.active) .rbx-tab-heading:hover {
-  box-shadow: inset 0 -4px 0 0 #b8b8b8 !important;
+  box-shadow: inset 0 -4px 0 0 var(--c17-border) !important;
 }
 
 html.routility-2017 .routility-classic .profile-about {
@@ -824,7 +870,7 @@ html.routility-2017 .routility-classic .profile-about > .section-content.remove-
 html.routility-2017 .routility-classic .profile-about > .routility-profile-note {
   margin: 0 !important;
   padding: 0 15px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .routility-classic .profile-about > .container-header + .section-content.remove-panel {
@@ -841,7 +887,7 @@ html.routility-2017 .routility-classic .profile-about > .routility-profile-note 
 }
 
 html.routility-2017 .routility-classic .profile-about .profile-about-footer {
-  border-top: 1px solid #e3e3e3 !important;
+  border-top: 1px solid var(--c17-divider) !important;
 }
 
 html.routility-2017 .routility-classic .profile-about .text-error {
@@ -849,12 +895,12 @@ html.routility-2017 .routility-classic .profile-about .text-error {
 }
 
 html.routility-2017 .routility-classic .profile-avatar-right {
-  background: linear-gradient(rgba(117, 117, 117, 0.5), rgba(117, 117, 117, 0.5)), #0074bd !important;
+  background: linear-gradient(rgba(117, 117, 117, 0.5), rgba(117, 117, 117, 0.5)), var(--c17-header) !important;
 }
 
 html.routility-2017 .routility-classic .routility-classic-accoutrement .routility-classic-thumb {
   border-radius: 4px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .routility-classic .routility-classic-dot {
@@ -863,13 +909,13 @@ html.routility-2017 .routility-classic .routility-classic-dot {
 }
 
 html.routility-2017 .routility-classic .routility-classic-dot:is(.active, .page-active, :hover) {
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .routility-classic .routility-classic-roblox-badges > .section-content,
 html.routility-2017 .routility-classic :is(.profile-collections, .routility-classic-collections, .routility-classic-badges, .routility-classic-player-badges) > .section-content {
   padding: 15px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .routility-classic .section-content .hlist.badge-list > li.list-item.asset-item,
@@ -882,25 +928,25 @@ html.routility-2017 .routility-classic .section-content .hlist.collections-list 
 
 html.routility-2017 .routility-classic .asset-item .asset-thumb-container {
   box-sizing: border-box !important;
-  border: 1px solid #b8b8b8 !important;
+  border: 1px solid var(--c17-border) !important;
   border-radius: 0 !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .routility-classic .asset-item .item-name {
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   font-size: 16px !important;
   font-weight: 500 !important;
 }
 
 html.routility-2017 .routility-classic .profile-view-selector.btn-secondary-xs {
-  border-color: #00a2ff !important;
-  background-color: #00a2ff !important;
+  border-color: var(--c17-accent) !important;
+  background-color: var(--c17-accent) !important;
 }
 
 html.routility-2017 .routility-classic .profile-view-selector.btn-control-xs {
-  border: 1px solid #b8b8b8 !important;
-  background-color: #ffffff !important;
+  border: 1px solid var(--c17-border) !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .routility-classic .profile-header .profile-header-content {
@@ -916,7 +962,7 @@ html.routility-2017 #game-detail-page .game-main-content {
   box-sizing: border-box !important;
   height: auto !important;
   padding: 12px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 #game-detail-page .game-calls-to-action {
@@ -926,17 +972,17 @@ html.routility-2017 #game-detail-page .game-calls-to-action {
 }
 
 html.routility-2017 #game-detail-page .game-creator .text-label {
-  color: #b8b8b8 !important;
+  color: var(--c17-label) !important;
 }
 
 html.routility-2017 #game-detail-page .game-creator a.text-name {
-  color: #00a2ff !important;
+  color: var(--c17-link) !important;
 }
 
 html.routility-2017 #game-detail-page .game-details-play-button-container {
   padding: 20px 0 5px !important;
-  border-top: 1px solid #e3e3e3 !important;
-  border-bottom: 1px solid #e3e3e3 !important;
+  border-top: 1px solid var(--c17-divider) !important;
+  border-bottom: 1px solid var(--c17-divider) !important;
 }
 
 html.routility-2017 #game-detail-page .game-details-play-button-container > button {
@@ -946,7 +992,7 @@ html.routility-2017 #game-detail-page .game-details-play-button-container > butt
 
 html.routility-2017 #game-detail-page .game-description-container {
   padding: 0 15px 15px !important;
-  background: linear-gradient(#ffffff, #ffffff) 0 39px / 100% 100% no-repeat !important;
+  background: linear-gradient(var(--c17-card), var(--c17-card)) 0 39px / 100% 100% no-repeat !important;
 }
 
 html.routility-2017 #game-detail-page .game-description-container > .container-header {
@@ -958,7 +1004,7 @@ html.routility-2017 #game-detail-page .game-description-container > .game-descri
 }
 
 html.routility-2017 #game-detail-page .game-stat .text-label {
-  color: #b8b8b8 !important;
+  color: var(--c17-label) !important;
 }
 
 html.routility-2017 :is(#game-detail-page, .routility-classic) :is(.text-report, .abuse-report-link .text-error) {
@@ -966,13 +1012,13 @@ html.routility-2017 :is(#game-detail-page, .routility-classic) :is(.text-report,
 }
 
 html.routility-2017 #content a.text-link {
-  color: #00a2ff !important;
+  color: var(--c17-link) !important;
 }
 
 html.routility-2017 .page-content .clearfix:has(> #item-thumbnail-container-frontend) {
   margin: 0 -12px !important;
   padding: 12px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .item-details-thumbnail-container .thumbnail-holder {
@@ -981,21 +1027,21 @@ html.routility-2017 .item-details-thumbnail-container .thumbnail-holder {
 
 html.routility-2017 .item-details-info-content .item-info-row-container > :first-child,
 html.routility-2017 .item-details-info-content .item-info-row-container > :first-child * {
-  color: #b8b8b8 !important;
+  color: var(--c17-label) !important;
 }
 
 html.routility-2017 .item-details-creator-container a {
-  color: #00a2ff !important;
+  color: var(--c17-link) !important;
 }
 
 html.routility-2017 #asset-resale-data-container .tab-pane.price-chart-section,
 html.routility-2017 #asset-resale-data-container #item-details-limited-inventory-container {
   padding: 15px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .item-details-creator-container {
-  color: #b8b8b8 !important;
+  color: var(--c17-label) !important;
 }
 
 html.routility-2017 .catalog-search-options-top-bar button.filter-select {
@@ -1007,7 +1053,7 @@ html.routility-2017 .catalog-search-options-top-bar {
 }
 
 html.routility-2017 .catalog-item-container .item-card-container {
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .catalog-item-container .item-card-thumb-container {
@@ -1019,7 +1065,7 @@ html.routility-2017 .catalog-item-container .item-card-caption {
 }
 
 html.routility-2017 .catalog-item-container .item-card-name {
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   font-size: 16px !important;
   font-weight: 500 !important;
   line-height: 1.4em !important;
@@ -1034,8 +1080,8 @@ html.routility-2017 .catalog-item-container .item-card-price .icon-robux-16x16 {
 }
 
 html.routility-2017 .catalog-header .search-container :is(input, .input-group, .input-group-btn > button) {
-  border-color: #b8b8b8 !important;
-  background-color: #ffffff !important;
+  border-color: var(--c17-border) !important;
+  background-color: var(--c17-card) !important;
   box-shadow: none !important;
 }
 
@@ -1047,7 +1093,7 @@ html.routility-2017 .home-container.expand-max-width {
 
 html.routility-2017 .friend-carousel-container .friends-carousel-container {
   padding: 15px 12px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .friend-carousel-container .people-list-header {
@@ -1068,22 +1114,22 @@ html.routility-2017 :is(.btn-primary-xs, .btn-primary-sm, .btn-primary-md, .btn-
 }
 
 html.routility-2017 :is(.btn-secondary-xs, .btn-secondary-sm, .btn-secondary-md, .btn-secondary-lg):not(.see-all-link-icon):not(.btn-more):is(:hover, :focus-visible) {
-  border-color: #32b5ff !important;
-  background-color: #32b5ff !important;
+  border-color: var(--c17-accent-hover) !important;
+  background-color: var(--c17-accent-hover) !important;
 }
 
 html.routility-2017 :is(.btn-control-xs, .btn-control-sm, .btn-control-md, .btn-control-lg, .event-follow-button, .foundation-web-button.bg-action-standard) {
-  border: 1px solid #b8b8b8 !important;
+  border: 1px solid var(--c17-border) !important;
   border-radius: 3px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
   background-image: none !important;
-  color: #191919 !important;
+  color: var(--c17-text) !important;
 }
 
 html.routility-2017 :is(.btn-control-xs, .btn-control-sm, .btn-control-md, .btn-control-lg, .event-follow-button, .foundation-web-button.bg-action-standard):is(:hover, :focus-visible) {
-  border-color: #b8b8b8 !important;
-  background-color: #ffffff !important;
-  color: #191919 !important;
+  border-color: var(--c17-border) !important;
+  background-color: var(--c17-card) !important;
+  color: var(--c17-text) !important;
 }
 
 html.routility-2017 :is(.btn-primary-xs, .btn-primary-sm, .btn-primary-md, .btn-primary-lg, .btn-growth-xs, .btn-growth-sm, .btn-growth-md, .btn-growth-lg, .btn-secondary-xs, .btn-secondary-sm, .btn-secondary-md, .btn-secondary-lg, .btn-control-xs, .btn-control-sm, .btn-control-md, .btn-control-lg):is(.disabled, [disabled]) {
@@ -1096,14 +1142,14 @@ html.routility-2017 .foundation-web-button.bg-action-standard > .absolute.inset-
 
 html.routility-2017 .foundation-web-input:is(.stroke-standard, .stroke-contrast-alpha),
 html.routility-2017 #content :is(.form-control, .input-field):not(#navbar-search-input) {
-  border-color: #b8b8b8 !important;
+  border-color: var(--c17-border) !important;
   border-radius: 3px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 li.hover-game-tile .featured-game-container {
   border-radius: 0 !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 li.hover-game-tile :is(.featured-game-icon-container, .brief-game-icon, .brief-game-icon img) {
@@ -1116,14 +1162,14 @@ html.routility-2017 li.hover-game-tile .info-container {
 
 html.routility-2017 li.hover-game-tile .game-card-name {
   margin: 6px 0 3px !important;
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   font-size: 16px !important;
   font-weight: 500 !important;
 }
 
 html.routility-2017 li.hover-game-tile .base-metadata .game-card-info,
 html.routility-2017 li.hover-game-tile .base-metadata .info-label {
-  color: #757575 !important;
+  color: var(--c17-muted) !important;
   font-size: 14px !important;
   font-weight: 400 !important;
 }
@@ -1133,7 +1179,7 @@ html.routility-2017 li.hover-game-tile .game-card-text-pill {
 }
 
 html.routility-2017 #content .text-label {
-  color: #b8b8b8 !important;
+  color: var(--c17-label) !important;
 }
 
 html.routility-2017 .virtual-event-game-details-container > .notify-button {
@@ -1141,13 +1187,13 @@ html.routility-2017 .virtual-event-game-details-container > .notify-button {
 }
 
 html.routility-2017 .badge-row .badge-name {
-  color: #191919 !important;
+  color: var(--c17-text) !important;
 }
 
 html.routility-2017 .store-card {
-  border: 1px solid #b8b8b8 !important;
+  border: 1px solid var(--c17-border) !important;
   border-radius: 3px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .store-card :is(a, img) {
@@ -1156,12 +1202,12 @@ html.routility-2017 .store-card :is(a, img) {
 
 html.routility-2017 .store-card .store-card-caption {
   padding: 0 6px 6px !important;
-  border-top: 1px solid #b8b8b8 !important;
+  border-top: 1px solid var(--c17-border) !important;
 }
 
 html.routility-2017 .store-card .store-card-name {
   margin: 3px auto !important;
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   font-weight: 500 !important;
 }
 
@@ -1176,7 +1222,7 @@ html.routility-2017 :is(.store-card .store-card-price, .catalog-item-container .
 }
 
 html.routility-2017 .store-card .store-card-footer h5 {
-  color: #b8b8b8 !important;
+  color: var(--c17-label) !important;
 }
 
 html.routility-2017 :is(.btn-buy-xs, .btn-buy-sm, .btn-buy-md, .btn-buy-lg):not(.disabled):not([disabled]) {
@@ -1194,23 +1240,23 @@ html.routility-2017 :is(.btn-buy-xs, .btn-buy-sm, .btn-buy-md, .btn-buy-lg):not(
 html.routility-2017 #content .section-content-off {
   padding: 15px !important;
   border-radius: 0 !important;
-  background-color: #b8b8b8 !important;
-  color: #757575 !important;
+  background-color: var(--c17-off) !important;
+  color: var(--c17-muted) !important;
   text-align: center !important;
 }
 
 html.routility-2017 #content .section-content-off * {
-  color: #757575 !important;
+  color: var(--c17-muted) !important;
 }
 
 html.routility-2017 #content .card-item:is(.card-item-public-server, .card-item-friends-server, .card-item-private-server) {
   border: 0 !important;
   border-radius: 0 !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 #content .card-item .player-avatar .avatar-card-image {
-  background-color: #d1d1d1 !important;
+  background-color: var(--c17-avatar) !important;
 }
 
 html.routility-2017 #content .server-player-count-gauge {
@@ -1219,7 +1265,7 @@ html.routility-2017 #content .server-player-count-gauge {
 
 html.routility-2017 #content .server-player-count-gauge .gauge-inner-bar {
   border-radius: 0 !important;
-  background-color: #00a2ff !important;
+  background-color: var(--c17-accent) !important;
 }
 
 html.routility-2017 #content .server-list-header {
@@ -1228,9 +1274,9 @@ html.routility-2017 #content .server-list-header {
 }
 
 html.routility-2017 .subscription-card-item {
-  border: 1px solid #b8b8b8 !important;
+  border: 1px solid var(--c17-border) !important;
   border-radius: 3px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .subscription-card-item .subscription-card-price :is(.icon-filled-robux, .text-body-medium) {
@@ -1239,7 +1285,7 @@ html.routility-2017 .subscription-card-item .subscription-card-price :is(.icon-f
 
 html.routility-2017 .routility-classic .tab-pane .section > .section-content {
   padding: 15px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .routility-classic .profile-collections {
@@ -1251,7 +1297,7 @@ html.routility-2017 .routility-classic .profile-collections {
 
 html.routility-2017 .routility-classic .routility-classic-outfits {
   padding: 0 15px 15px !important;
-  background: linear-gradient(#ffffff, #ffffff) 0 39px / 100% 100% no-repeat !important;
+  background: linear-gradient(var(--c17-card), var(--c17-card)) 0 39px / 100% 100% no-repeat !important;
 }
 
 html.routility-2017 .routility-classic .routility-classic-outfits > .container-header {
@@ -1260,7 +1306,7 @@ html.routility-2017 .routility-classic .routility-classic-outfits > .container-h
 
 html.routility-2017 .routility-classic .routility-classic-people .text-overflow,
 html.routility-2017 .routility-classic .routility-classic-people a {
-  color: #191919 !important;
+  color: var(--c17-text) !important;
 }
 
 html.routility-2017 .routility-classic .tab-pane .section > .section-content:has(> .hlist) {
@@ -1290,7 +1336,7 @@ html.routility-2017 .routility-classic .section-content .routility-classic-peopl
 html.routility-2017 footer.container-footer {
   padding: 12px !important;
   border-top: 0 !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 footer.container-footer > .footer {
@@ -1304,22 +1350,22 @@ html.routility-2017 footer.container-footer .footer-links {
 }
 
 html.routility-2017 footer.container-footer .text-footer-nav {
-  color: #b8b8b8 !important;
+  color: var(--c17-label) !important;
   font-size: 16px !important;
   font-weight: 500 !important;
 }
 
 html.routility-2017 footer.container-footer .text-footer-nav:is(:hover, :focus) {
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   text-decoration: none !important;
 }
 
 html.routility-2017 footer.container-footer .text-footer-nav:is(.privacy, [href*="/info/privacy"]) {
-  color: #00a2ff !important;
+  color: var(--c17-link) !important;
 }
 
 html.routility-2017 footer.container-footer .text-footer {
-  color: #b8b8b8 !important;
+  color: var(--c17-label) !important;
   font-size: 10px !important;
   font-weight: 500 !important;
 }
@@ -1354,26 +1400,26 @@ html.routility-2017 .avatar-status {
 }
 
 html.routility-2017 .avatar-card-container {
-  border: 1px solid #b8b8b8 !important;
+  border: 1px solid var(--c17-border) !important;
   border-radius: 0 !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
   box-shadow: none !important;
 }
 
 html.routility-2017 .avatar-card-container .avatar-name {
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   font-weight: 500 !important;
 }
 
 html.routility-2017 :is(.avatar-card-fullbody, .avatar) .avatar-card-link {
-  background-color: #d1d1d1 !important;
+  background-color: var(--c17-avatar) !important;
 }
 
 html.routility-2017 #content button.radius-circle.height-800:is(.bg-shift-300, .bg-shift-200, .bg-inverse-surface-0) {
-  border: 1px solid #b8b8b8 !important;
+  border: 1px solid var(--c17-border) !important;
   border-radius: 3px !important;
-  background-color: #ffffff !important;
-  color: #191919 !important;
+  background-color: var(--c17-card) !important;
+  color: var(--c17-text) !important;
 }
 
 html.routility-2017 #content button.radius-circle.height-800:is(.bg-shift-300, .bg-shift-200, .bg-inverse-surface-0) * {
@@ -1381,8 +1427,8 @@ html.routility-2017 #content button.radius-circle.height-800:is(.bg-shift-300, .
 }
 
 html.routility-2017 #content button.radius-circle.height-800:is([aria-pressed="true"], .bg-inverse-surface-0) {
-  border-color: #00a2ff !important;
-  background-color: #00a2ff !important;
+  border-color: var(--c17-accent) !important;
+  background-color: var(--c17-accent) !important;
   color: #ffffff !important;
 }
 
@@ -1391,14 +1437,14 @@ html.routility-2017 #content button.radius-circle.height-800 > [data-testid="fou
 }
 
 html.routility-2017 #content .profile-insight-pill-button {
-  border: 1px solid #b8b8b8 !important;
+  border: 1px solid var(--c17-border) !important;
   border-radius: 3px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .group-details .group-profile-header {
   padding: 15px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .group-details .group-profile-header :is(h1, h2) {
@@ -1409,7 +1455,7 @@ html.routility-2017 .group-details .group-profile-header :is(h1, h2) {
 html.routility-2017 .group-details .section > .section-content,
 html.routility-2017 .group-details .group-announcements > .section-content {
   padding: 15px !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .groups-list-sidebar {
@@ -1418,12 +1464,12 @@ html.routility-2017 .groups-list-sidebar {
 
 html.routility-2017 #content .foundation-web-button.bg-action-emphasis:not(.game-details-play-button-container *) {
   border-radius: 3px !important;
-  background-color: #00a2ff !important;
+  background-color: var(--c17-accent) !important;
   color: #ffffff !important;
 }
 
 html.routility-2017 #content .foundation-web-button.bg-action-emphasis:not(.game-details-play-button-container *):hover {
-  background-color: #32b5ff !important;
+  background-color: var(--c17-accent-hover) !important;
 }
 
 html.routility-2017 #content .foundation-web-button.bg-action-emphasis > [data-testid="foundation-web-state-layer"] {
@@ -1438,20 +1484,20 @@ html.routility-2017 .MuiButton-root {
 }
 
 html.routility-2017 .MuiButton-root.MuiButton-containedPrimary {
-  border: 1px solid #00a2ff !important;
-  background-color: #00a2ff !important;
+  border: 1px solid var(--c17-accent) !important;
+  background-color: var(--c17-accent) !important;
   color: #ffffff !important;
 }
 
 html.routility-2017 .MuiButton-root.MuiButton-containedPrimary:hover {
-  border-color: #32b5ff !important;
-  background-color: #32b5ff !important;
+  border-color: var(--c17-accent-hover) !important;
+  background-color: var(--c17-accent-hover) !important;
 }
 
 html.routility-2017 .MuiButton-root:is(.MuiButton-containedSecondary, .MuiButton-outlined, .MuiButton-containedInherit) {
-  border: 1px solid #b8b8b8 !important;
-  background-color: #ffffff !important;
-  color: #191919 !important;
+  border: 1px solid var(--c17-border) !important;
+  background-color: var(--c17-card) !important;
+  color: var(--c17-text) !important;
 }
 
 html.routility-2017 .MuiButton-root .MuiTouchRipple-root {
@@ -1461,12 +1507,12 @@ html.routility-2017 .MuiButton-root .MuiTouchRipple-root {
 html.routility-2017 .item-card .item-card-container {
   padding: 0 0 5px !important;
   border-radius: 0 !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .item-card .item-card-thumb-container {
   border-radius: 0 !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .item-card :is(.item-card-name, .item-card-creator, .item-card-label, .item-card-price) {
@@ -1474,13 +1520,13 @@ html.routility-2017 .item-card :is(.item-card-name, .item-card-creator, .item-ca
 }
 
 html.routility-2017 .item-card .item-card-name {
-  color: #191919 !important;
+  color: var(--c17-text) !important;
   font-size: 16px !important;
   font-weight: 500 !important;
 }
 
 html.routility-2017 .item-card .item-card-label {
-  color: #757575 !important;
+  color: var(--c17-muted) !important;
   font-size: 12px !important;
   font-weight: 400 !important;
 }
@@ -1496,7 +1542,7 @@ html.routility-2017 .item-card .item-card-price .icon-robux-16x16 {
 html.routility-2017 .menu-vertical,
 html.routility-2017 .menu-vertical .menu-option .menu-secondary {
   border-radius: 0 !important;
-  background-color: #ffffff !important;
+  background-color: var(--c17-card) !important;
 }
 
 html.routility-2017 .menu-vertical .menu-option {
@@ -1505,12 +1551,12 @@ html.routility-2017 .menu-vertical .menu-option {
 
 html.routility-2017 .menu-vertical .menu-option:is(.active, :hover, :focus),
 html.routility-2017 .menu-vertical .menu-option .menu-secondary-option:is(.active, :focus) {
-  box-shadow: inset 4px 0 0 0 #00a2ff !important;
+  box-shadow: inset 4px 0 0 0 var(--c17-accent) !important;
 }
 
 html.routility-2017 .menu-vertical .menu-option:hover,
 html.routility-2017 .menu-vertical .menu-option .menu-secondary-option:hover {
-  background-color: #f2f2f2 !important;
+  background-color: var(--c17-hover) !important;
 }
 
 html.routility-2017 .menu-vertical .menu-option .menu-secondary {
@@ -1518,7 +1564,7 @@ html.routility-2017 .menu-vertical .menu-option .menu-secondary {
 }
 
 html.routility-2017 .menu-vertical .menu-text {
-  color: #191919 !important;
+  color: var(--c17-text) !important;
 }
 
 html.routility-2017 .menu-vertical .menu-option-content {
@@ -1527,9 +1573,9 @@ html.routility-2017 .menu-vertical .menu-option-content {
 }
 
 html.routility-2017 .menu-vertical .menu-option-content.active {
-  box-shadow: inset 4px 0 0 0 #00a2ff !important;
+  box-shadow: inset 4px 0 0 0 var(--c17-accent) !important;
 }
 
 html.routility-2017 .menu-vertical .menu-option-content:hover {
-  background-color: #f2f2f2 !important;
+  background-color: var(--c17-hover) !important;
 }

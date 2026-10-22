@@ -754,7 +754,7 @@
       intro: LT('Bring back the old Roblox look: the old logo and icons, the old names and classic faces.'),
       groups: [
         { title: LT('Logo & Icons'), rows: [
-          { key: 'classicSite', title: LT('2017 Roblox Theme'), desc: LT('The 2017 to 2019 Roblox look: the blue top bar, a white sidebar, the gray page, the Gotham font, square corners and green Play buttons. It uses light mode and pauses your Roblox Plus or custom theme while it’s on.') },
+          { key: 'classicSite', title: LT('2017 Roblox Theme'), desc: LT('The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.') },
           { key: 'classicLogo', title: LT('Classic Roblox Logo'), desc: LT('The old red and white ROBLOX logo in the top left corner instead of today’s logo.') },
           { key: 'classicPremium', title: LT('Classic Premium Icon'), desc: LT('The old Premium icon next to names instead of the Roblox Plus icon.') },
           { key: 'classicVerified', title: LT('Classic Verified Badge'), desc: LT('The original verified badge next to names, with sharp corners and the brighter blue.') },
