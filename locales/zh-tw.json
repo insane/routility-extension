@@ -2933,5 +2933,8 @@
  "Your Robux Rate": "你的 Robux 匯率",
  "Your Settings": "你的設定",
  "Your Slots": "你的欄位",
- "Your Status": "你的狀態"
+ "Your Status": "你的狀態",
+ "Try In-Game": "在遊戲中試穿",
+ "Opens Avatar Sandbox with this on your avatar": "開啟 Avatar Sandbox，讓你的虛擬人偶穿上它",
+ "A Try In-Game button on item and bundle pages. It opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy.": "在物品和套裝頁面新增「在遊戲中試穿」按鈕。它會開啟 Avatar Sandbox，你的虛擬人偶已經穿上該物品，購買前就能在真實遊戲中看到效果。"
 }

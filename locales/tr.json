@@ -3075,5 +3075,8 @@
  "Your Robux Rate": "Robux Kurun",
  "Your Settings": "Ayarların",
  "Your Slots": "Yuvaların",
- "Your Status": "Durumun"
+ "Your Status": "Durumun",
+ "Try In-Game": "Oyunda Dene",
+ "Opens Avatar Sandbox with this on your avatar": "Bu eşya avatarındayken Avatar Sandbox’ı açar",
+ "A Try In-Game button on item and bundle pages. It opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy.": "Eşya ve paket sayfalarına bir Oyunda Dene düğmesi ekler. Avatar Sandbox’ı eşya avatarının üstündeyken açar, böylece satın almadan önce gerçek bir oyunda görebilirsin."
 }

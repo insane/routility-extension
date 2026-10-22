@@ -557,7 +557,8 @@
       chrome.storage.local.get('routilitySettings', (stored) => {
         const id = getItemIdFromURL(window.location.href);
         if (window.location.pathname === path && id && (stored.routilitySettings || {}).itemExplorer !== false) window.RoUtilityExplorer.setup(id);
-        if (window.location.pathname === path && id && (stored.routilitySettings || {}).avatarPreview !== false) window.RoUtilityTryOn.setup(id);
+        const tryOpts = { preview: (stored.routilitySettings || {}).avatarPreview !== false, game: (stored.routilitySettings || {}).tryInGame !== false };
+        if (window.location.pathname === path && id && (tryOpts.preview || tryOpts.game)) window.RoUtilityTryOn.setup(id, tryOpts);
         if (window.location.pathname === path && id && (stored.routilitySettings || {}).priceAlerts !== false) window.RoUtilityPriceAlert.setup(id);
       });
       return;
@@ -576,7 +577,7 @@
           if (window.location.pathname !== path) return;
           if (s.friendsOwn !== false || s.classicFaceThumbs !== false) window.RoUtilityItemExtras.setup(bundlePage[1], { acquired: false, friends: s.friendsOwn !== false, bundle: true, classicFace: s.classicFaceThumbs !== false });
           if (s.itemExplorer !== false) window.RoUtilityExplorer.setup(bundlePage[1], { bundle: true });
-          if (s.avatarPreview !== false) window.RoUtilityTryOn.setupBundle(bundlePage[1]);
+          if (s.avatarPreview !== false || s.tryInGame !== false) window.RoUtilityTryOn.setupBundle(bundlePage[1], { preview: s.avatarPreview !== false, game: s.tryInGame !== false });
         });
       });
       return;

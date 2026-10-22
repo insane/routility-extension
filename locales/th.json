@@ -2933,5 +2933,8 @@
  "Your Robux Rate": "อัตรา Robux ของคุณ",
  "Your Settings": "การตั้งค่าของคุณ",
  "Your Slots": "ช่องของคุณ",
- "Your Status": "สถานะของคุณ"
+ "Your Status": "สถานะของคุณ",
+ "Try In-Game": "ลองในเกม",
+ "Opens Avatar Sandbox with this on your avatar": "เปิด Avatar Sandbox โดยสวมไอเท็มนี้ให้อวาตาร์ของคุณ",
+ "A Try In-Game button on item and bundle pages. It opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy.": "ปุ่มลองในเกมบนหน้าไอเท็มและบันเดิล จะเปิด Avatar Sandbox โดยสวมไอเท็มให้อวาตาร์ของคุณแล้ว เพื่อให้คุณเห็นในเกมจริงก่อนซื้อ"
 }

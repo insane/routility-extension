@@ -2933,5 +2933,8 @@
  "Your Robux Rate": "あなたの Robux レート",
  "Your Settings": "あなたの設定",
  "Your Slots": "あなたのスロット",
- "Your Status": "あなたのステータス"
+ "Your Status": "あなたのステータス",
+ "Try In-Game": "ゲームで試す",
+ "Opens Avatar Sandbox with this on your avatar": "このアイテムを着けた状態でAvatar Sandboxを開きます",
+ "A Try In-Game button on item and bundle pages. It opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy.": "アイテムとバンドルのページに「ゲームで試す」ボタンを追加します。アイテムを着けた状態でAvatar Sandboxが開くので、買う前に実際のゲームで確認できます。"
 }

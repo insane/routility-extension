@@ -13670,3 +13670,26 @@ a.routility-spend-link:hover {
 .user-profile-header > .routility-profile-note {
   margin-top: 0;
 }
+
+.item-details-thumbnail-container .bottom-align-container:has(.routility-ig-btn) > .left-align-container {
+  flex: 0 1 0;
+  width: auto !important;
+  min-width: 0 !important;
+}
+
+.item-details-thumbnail-container .right-align-container:has(> .thumbnail-button-container > .routility-ig-btn) {
+  flex: none;
+  width: max-content !important;
+  max-width: none !important;
+  margin-left: auto;
+}
+
+.item-details-thumbnail-container .thumbnail-button-container:has(> .routility-ig-btn) {
+  flex-wrap: nowrap !important;
+  column-gap: 8px !important;
+}
+
+.item-details-thumbnail-container .thumbnail-button-container > button {
+  flex: none;
+  white-space: nowrap;
+}
