@@ -68,11 +68,50 @@
     if (!reqs.length) return new Map();
     const res = await post('https://thumbnails.roblox.com/v1/batch', reqs.map(r => ({ format: 'Webp', isCircular: false, size: '150x150', ...r })));
     const out = new Map();
+    out.pending = [];
+    const byId = new Map(reqs.map(r => [r.requestId, r]));
     for (const t of (res && res.data) || []) {
       if (t.state === 'Completed' && t.imageUrl) out.set(t.requestId, t.imageUrl);
       else if (t.state === 'Blocked') out.set(t.requestId, window.RoUtilityUI.blockedThumb(t));
+      else if (t.state === 'Pending' && byId.has(t.requestId)) out.pending.push(byId.get(t.requestId));
     }
     return out;
+  }
+
+  async function latePics(pics) {
+    let left = pics.pending || [];
+    for (const wait of [700, 1500, 3000]) {
+      if (!left.length) break;
+      await new Promise(r => setTimeout(r, wait));
+      const more = await thumbs(left);
+      for (const [k, v] of more) {
+        pics.set(k, v);
+        fillThumb(k, v);
+      }
+      left = more.pending;
+    }
+    pics.pending = [];
+    for (const r of left) document.querySelectorAll(`.routility-search-thumb[data-rt-thumb="${r.requestId}"]`).forEach(n => n.classList.remove('routility-sk'));
+  }
+
+  function thumbImg(pic, src) {
+    if (src === 'blocked') {
+      pic.classList.add('icon-blocked');
+      return;
+    }
+    const img = el('img');
+    img.alt = '';
+    img.decoding = 'async';
+    img.addEventListener('load', () => img.classList.add('routility-loaded'));
+    img.src = src;
+    pic.appendChild(img);
+  }
+
+  function fillThumb(key, src) {
+    for (const pic of document.querySelectorAll(`.routility-search-thumb[data-rt-thumb="${key}"]`)) {
+      pic.classList.remove('routility-sk');
+      if (!pic.querySelector('img') && !pic.classList.contains('icon-blocked')) thumbImg(pic, src);
+    }
   }
 
   async function exactUser(name) {
@@ -138,6 +177,7 @@
         thumbs(reqs),
         presence(ranked.map(u => u.id)),
       ]);
+      latePics(pics);
       const failed = (prefs.people && (!people || gone === false)) || (prefs.games && !all);
       return { query, users: ranked, game, items: limiteds, pics, presence: pres, failed };
     })();
@@ -155,20 +195,14 @@
     return box ? box.querySelector('ul.dropdown-menu') : null;
   }
 
-  function row(href, thumbSrc, round, title, extras, sub) {
+  function row(href, pics, key, round, title, extras, sub) {
     const li = el('li', 'navbar-search-option rbx-clickable-li routility-injected routility-search-row');
     const a = el('a', 'routility-search-link');
     a.href = href;
     const pic = el('span', 'routility-search-thumb' + (round ? ' round' : ''));
-    if (thumbSrc === 'blocked') pic.classList.add('icon-blocked');
-    else if (thumbSrc) {
-      const img = el('img');
-      img.alt = '';
-      img.decoding = 'async';
-      img.addEventListener('load', () => img.classList.add('routility-loaded'));
-      img.src = thumbSrc;
-      pic.appendChild(img);
-    }
+    pic.dataset.rtThumb = key;
+    if (pics.get(key)) thumbImg(pic, pics.get(key));
+    else if ((pics.pending || []).some(r => r.requestId === key)) pic.classList.add('routility-sk');
     a.appendChild(pic);
     const text = el('span', 'routility-search-text');
     const line = el('span', 'routility-search-title');
@@ -223,7 +257,7 @@
       const tick = u.verified ? window.RoUtilityUI.verifiedBadge() : null;
       if (tick) delete tick.dataset.rtTip;
       const extras = tick ? [tick] : [];
-      const li = row(u.terminated ? `/users/${u.id}/profile#routility-user=${u.id}` : `/users/${u.id}/profile`, r.pics.get('u' + u.id), true, u.displayName || u.name, extras, sub);
+      const li = row(u.terminated ? `/users/${u.id}/profile#routility-user=${u.id}` : `/users/${u.id}/profile`, r.pics, 'u' + u.id, true, u.displayName || u.name, extras, sub);
       li.dataset.userId = u.id;
       if (p && [1, 2, 3].includes(p.userPresenceType)) li.querySelector('.routility-search-thumb').appendChild(el('span', 'routility-search-dot routility-search-dot-' + (p.userPresenceType === 2 ? 'game' : p.userPresenceType === 3 ? 'studio' : 'online')));
       const place = playing && (p.placeId || p.rootPlaceId);
@@ -258,7 +292,7 @@
       }
       sub.appendChild(el('span', 'info-label icon-playing-counts-gray'));
       sub.appendChild(el('span', null, short(g.playerCount || 0)));
-      const gameRow = row(g.canonicalUrlPath || `/games/${g.rootPlaceId}`, r.pics.get('g' + g.universeId), false, g.name, [], sub);
+      const gameRow = row(g.canonicalUrlPath || `/games/${g.rootPlaceId}`, r.pics, 'g' + g.universeId, false, g.name, [], sub);
       if (gameFirst(r)) rows.unshift(gameRow);
       else rows.push(gameRow);
     }
@@ -280,7 +314,7 @@
         rap.append(el('span', 'icon-robux-16x16 routility-rap-icon'), el('span', null, window.RoUtilityUI.formatNumber(i.rap)));
         sub.appendChild(rap);
       }
-      rows.push(row(`/catalog/${i.id}`, r.pics.get('i' + i.id), false, i.name, [], sub));
+      rows.push(row(`/catalog/${i.id}`, r.pics, 'i' + i.id, false, i.name, [], sub));
     }
     return rows;
   }

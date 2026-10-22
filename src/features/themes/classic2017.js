@@ -24,7 +24,29 @@
     }
   }
 
+  let searchLeft = '';
+  function placeSearch() {
+    const root = document.documentElement;
+    const input = document.getElementById('navbar-search-input');
+    if (!on || !input) {
+      if (searchLeft) {
+        root.style.removeProperty('--c17-search-left');
+        searchLeft = '';
+      }
+      return;
+    }
+    const r = input.closest('.navbar-search')?.getBoundingClientRect() || input.getBoundingClientRect();
+    if (!r.width) return;
+    const vw = root.clientWidth;
+    const w = Math.min(800, vw - 24);
+    const left = Math.round(Math.max(12, Math.min(r.left + r.width / 2 - w / 2, vw - w - 12))) + 'px';
+    if (left === searchLeft) return;
+    searchLeft = left;
+    root.style.setProperty('--c17-search-left', left);
+  }
+
   function run() {
+    placeSearch();
     if (!on) {
       document.querySelectorAll('.routility-2017-more').forEach(n => n.remove());
       return;
@@ -41,6 +63,9 @@
       run();
     });
   };
+
+  window.addEventListener('resize', placeSearch);
+  document.addEventListener('focusin', (e) => { if (e.target?.id === 'navbar-search-input') placeSearch(); });
 
   document.addEventListener('click', (e) => {
     if (!on) return;

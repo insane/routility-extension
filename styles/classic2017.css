@@ -280,13 +280,16 @@ html.routility-2017:not(.routility-classic-logo) #header .navbar-brand .icon-log
 }
 
 html.routility-2017 #header ul.rbx-navbar {
-  width: 25% !important;
+  flex: none !important;
+  width: max-content !important;
+  max-width: none !important;
   margin: 4px 0 !important;
 }
 
 html.routility-2017 #header ul.rbx-navbar > li {
   float: left !important;
-  width: 25% !important;
+  width: auto !important;
+  min-width: 76.8px !important;
   text-align: center !important;
 }
 
@@ -1709,4 +1712,36 @@ html.routility-2017 .catalog-revamp ul.item-cards-stackable.organic-items-wrappe
 html.routility-2017 .catalog-item-container .item-card-name {
   font-size: 16px !important;
   line-height: 1.4em !important;
+}
+
+html.routility-2017 #header .navbar-search :is(.search-landing-container, ul.dropdown-menu.new-dropdown-menu) {
+  left: var(--c17-search-left, 50%) !important;
+  width: min(800px, calc(100vw - 24px)) !important;
+  border: 1px solid var(--c17-border) !important;
+  border-radius: 0 0 3px 3px !important;
+  background-color: var(--c17-card) !important;
+  box-shadow: 0 -5px 20px rgba(25, 25, 25, 0.15) !important;
+  transform: none !important;
+}
+
+html.routility-2017 #header .navbar-search ul.dropdown-menu.new-dropdown-menu > li {
+  border-radius: 0 !important;
+  border-color: var(--c17-divider) !important;
+}
+
+html.routility-2017 #header .navbar-search ul.dropdown-menu.new-dropdown-menu:not(.routility-search-own-sel) > li:is(.new-selected, .selected, .active),
+html.routility-2017 #header .navbar-search ul.dropdown-menu.new-dropdown-menu.routility-search-own-sel > li.routility-search-row.new-selected,
+html.routility-2017 #header .navbar-search ul.dropdown-menu.new-dropdown-menu > li:hover {
+  background-color: var(--c17-hover) !important;
+  box-shadow: 4px 0 0 0 var(--c17-accent) inset !important;
+}
+
+html.routility-2017 #header .navbar-search ul.dropdown-menu.new-dropdown-menu > li :is(.routility-search-name, .navbar-search-string, b, strong) {
+  color: var(--c17-text) !important;
+}
+
+html.routility-2017 #header .navbar-search .search-landing-container .sort-header {
+  color: var(--c17-text) !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
 }
