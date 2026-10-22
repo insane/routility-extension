@@ -1286,3 +1286,174 @@ html.routility-2017 .routility-classic .section-content .routility-classic-peopl
   width: 11.111% !important;
   min-width: 0 !important;
 }
+
+html.routility-2017 footer.container-footer {
+  padding: 12px !important;
+  border-top: 0 !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 footer.container-footer > .footer {
+  max-width: 970px !important;
+  margin: 0 auto !important;
+}
+
+html.routility-2017 footer.container-footer .footer-links {
+  justify-content: space-around !important;
+  margin-top: 20px !important;
+}
+
+html.routility-2017 footer.container-footer .text-footer-nav {
+  color: #b8b8b8 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+html.routility-2017 footer.container-footer .text-footer-nav:is(:hover, :focus) {
+  color: #191919 !important;
+  text-decoration: none !important;
+}
+
+html.routility-2017 footer.container-footer .text-footer-nav:is(.privacy, [href*="/info/privacy"]) {
+  color: #00a2ff !important;
+}
+
+html.routility-2017 footer.container-footer .text-footer {
+  color: #b8b8b8 !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+}
+
+html.routility-2017 .avatar-status :is([data-testid="presence-icon"], .icon-online, .icon-game, .icon-studio, .online, .game, .studio) {
+  display: block !important;
+  width: 14px !important;
+  height: 14px !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+}
+
+html.routility-2017 .avatar-status :is(.icon-online, .online) {
+  background-color: #00a2ff !important;
+}
+
+html.routility-2017 .avatar-status :is(.icon-game, .game) {
+  background-color: #02b757 !important;
+}
+
+html.routility-2017 .avatar-status :is(.icon-studio, .studio) {
+  background-color: #f68802 !important;
+}
+
+html.routility-2017 .avatar-status {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html.routility-2017 .avatar-card-container {
+  border: 1px solid #b8b8b8 !important;
+  border-radius: 0 !important;
+  background-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+html.routility-2017 .avatar-card-container .avatar-name {
+  color: #191919 !important;
+  font-weight: 500 !important;
+}
+
+html.routility-2017 :is(.avatar-card-fullbody, .avatar) .avatar-card-link {
+  background-color: #d1d1d1 !important;
+}
+
+html.routility-2017 #content button.radius-circle.height-800:is(.bg-shift-300, .bg-shift-200, .bg-inverse-surface-0) {
+  border: 1px solid #b8b8b8 !important;
+  border-radius: 3px !important;
+  background-color: #ffffff !important;
+  color: #191919 !important;
+}
+
+html.routility-2017 #content button.radius-circle.height-800:is(.bg-shift-300, .bg-shift-200, .bg-inverse-surface-0) * {
+  color: inherit !important;
+}
+
+html.routility-2017 #content button.radius-circle.height-800:is([aria-pressed="true"], .bg-inverse-surface-0) {
+  border-color: #00a2ff !important;
+  background-color: #00a2ff !important;
+  color: #ffffff !important;
+}
+
+html.routility-2017 #content button.radius-circle.height-800 > [data-testid="foundation-web-state-layer"] {
+  display: none !important;
+}
+
+html.routility-2017 #content .profile-insight-pill-button {
+  border: 1px solid #b8b8b8 !important;
+  border-radius: 3px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .group-details .group-profile-header {
+  padding: 15px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .group-details .group-profile-header :is(h1, h2) {
+  font-size: 32px !important;
+  font-weight: 800 !important;
+}
+
+html.routility-2017 .group-details .section > .section-content,
+html.routility-2017 .group-details .group-announcements > .section-content {
+  padding: 15px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .groups-list-sidebar {
+  box-shadow: 0 0 3px rgba(25, 25, 25, 0.3) !important;
+}
+
+html.routility-2017 #content .foundation-web-button.bg-action-emphasis:not(.game-details-play-button-container *) {
+  border-radius: 3px !important;
+  background-color: #00a2ff !important;
+  color: #ffffff !important;
+}
+
+html.routility-2017 #content .foundation-web-button.bg-action-emphasis:not(.game-details-play-button-container *):hover {
+  background-color: #32b5ff !important;
+}
+
+html.routility-2017 #content .foundation-web-button.bg-action-emphasis > [data-testid="foundation-web-state-layer"] {
+  display: none !important;
+}
+
+html.routility-2017 .MuiButton-root {
+  border-radius: 3px !important;
+  box-shadow: none !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+}
+
+html.routility-2017 .MuiButton-root.MuiButton-containedPrimary {
+  border: 1px solid #00a2ff !important;
+  background-color: #00a2ff !important;
+  color: #ffffff !important;
+}
+
+html.routility-2017 .MuiButton-root.MuiButton-containedPrimary:hover {
+  border-color: #32b5ff !important;
+  background-color: #32b5ff !important;
+}
+
+html.routility-2017 .MuiButton-root:is(.MuiButton-containedSecondary, .MuiButton-outlined, .MuiButton-containedInherit) {
+  border: 1px solid #b8b8b8 !important;
+  background-color: #ffffff !important;
+  color: #191919 !important;
+}
+
+html.routility-2017 .MuiButton-root .MuiTouchRipple-root {
+  display: none !important;
+}
