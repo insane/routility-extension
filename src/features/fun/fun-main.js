@@ -31,6 +31,7 @@
       items: Array.isArray(o.items) ? o.items.filter(x => x && typeof x.kind === 'string' && Number.isFinite(x.id)) : [],
       worn: Array.isArray(o.worn) ? o.worn.filter(v => Number.isFinite(v)) : [],
       requests: n(o.requests),
+      badges: o.badges && typeof o.badges === 'object' ? { verified: o.badges.verified === true, plus: o.badges.plus === true, premium: o.badges.premium === true && o.badges.plus !== true, admin: o.badges.admin === true } : null,
     };
   }
 
@@ -188,6 +189,43 @@
     if (next.join(',') === cfg.worn.join(',')) return;
     cfg.worn = next;
     window.postMessage({ type: 'routility-fun-worn', ids: next }, ORIGIN);
+  }
+
+  const BADGE_FIELDS = { hasVerifiedBadge: 'verified', isVerified: 'verified', isRobloxPlus: 'plus', hasRobloxSubscription: 'plus', isPremium: 'premium', isRobloxAdmin: 'admin' };
+  const BADGE_ROUTES = [
+    ['GET', /^https:\/\/users\.roblox\.com\/v1\/users\/\d+(?:[?#]|$)/i],
+    ['POST', /^https:\/\/users\.roblox\.com\/v1\/(?:users|usernames\/users)(?:[?#]|$)/i],
+    ['GET', /^https:\/\/users\.roblox\.com\/v1\/users\/search(?:[?#]|$)/i],
+    ['POST', /^https:\/\/apis\.roblox\.com\/user-profile-api\/v1\/user\/profiles\/get-profiles(?:[?#]|$)/i],
+    ['POST', /^https:\/\/apis\.roblox\.com\/profile-platform-api\/v1\/profiles\/get(?:[?#]|$)/i],
+    ['GET', /^https:\/\/apis\.roblox\.com\/search-api\/omni-search(?:[?#]|$)/i],
+    ['GET', /^https:\/\/friends\.roblox\.com\/v1\/users\/\d+\/friends[^?#]*(?:[?#]|$)/i],
+  ];
+
+  function badgeEdit(text) {
+    const badges = cfg && cfg.badges;
+    const d = badges && parse(text);
+    if (!d) return text;
+    const id = String(me());
+    let changed = false;
+    const walk = (o, depth) => {
+      if (!o || typeof o !== 'object' || depth > 8) return;
+      if (Array.isArray(o)) {
+        for (const x of o) walk(x, depth + 1);
+        return;
+      }
+      if ([o.id, o.userId, o.contentId, o.targetId].some(v => v != null && String(v) === id)) {
+        for (const [key, badge] of Object.entries(BADGE_FIELDS)) {
+          if (typeof o[key] === 'boolean' && o[key] !== badges[badge]) {
+            o[key] = badges[badge];
+            changed = true;
+          }
+        }
+      }
+      for (const v of Object.values(o)) if (v && typeof v === 'object') walk(v, depth + 1);
+    };
+    walk(d, 0);
+    return changed ? JSON.stringify(d) : text;
   }
 
   function stripWear(b, getList, applies) {
@@ -924,6 +962,8 @@
         return JSON.stringify(d);
       } };
     }],
+    ...BADGE_ROUTES.map(([m, re]) => [m, re, () => (cfg.badges ? { edit: badgeEdit } : null)]),
+    ['GET', /^https:\/\/premiumfeatures\.roblox\.com\/v1\/users\/(\d+)\/validate-membership/i, (m) => (cfg.badges && Number(m[1]) === me() ? { edit: () => String(cfg.badges.plus || cfg.badges.premium) } : null)],
     ['PATCH', /^https:\/\/avatar\.roblox\.com\/v4\/avatar(?:[?#]|$)/, (m, req, b) => stripWear(b, d => d.avatarDefinition && d.avatarDefinition.updateAvatarModel && d.avatarDefinition.updateAvatarModel.assets, d => !Array.isArray(d.updateTypes) || d.updateTypes.includes('UpdateAssets'))],
     ['POST', /^https:\/\/avatar\.roblox\.com\/v1\/avatar\/set-wearing-assets(?:[?#]|$)/, (m, req, b) => stripWear(b, d => d.assetIds, () => true)],
     ['POST', /^https:\/\/avatar\.roblox\.com\/v2\/avatar\/set-wearing-assets(?:[?#]|$)/, (m, req, b) => stripWear(b, d => d.assets, () => true)],
@@ -1459,12 +1499,30 @@
   }]);
 
   function pick(method, url) {
+    const hits = [];
     for (const [m, re, fn] of ROUTES) {
       if (m !== method) continue;
       const hit = url.match(re);
-      if (hit) return (req, raw) => fn(hit, req, (typeof raw === 'string' && parse(raw)) || {});
+      if (hit) hits.push([fn, hit]);
     }
-    return null;
+    if (!hits.length) return null;
+    return (req, raw) => {
+      const body = (typeof raw === 'string' && parse(raw)) || {};
+      let out = null;
+      for (const [fn, hit] of hits) {
+        const p = fn(hit, req, body);
+        if (!p) continue;
+        if (!out) {
+          out = p;
+          continue;
+        }
+        if (out.fake || p.fake || !p.edit) continue;
+        const first = out.edit;
+        const waits = [out.wait, p.wait].filter(Boolean);
+        out = Object.assign({}, out, { edit: first ? (t) => p.edit(first(t)) : p.edit, wait: waits.length > 1 ? Promise.all(waits) : waits[0] });
+      }
+      return out;
+    };
   }
 
   function plan(route, req, raw) {

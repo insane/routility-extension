@@ -1808,8 +1808,8 @@ a.routility-hc-status:hover {
 
 .routility-set-needs {
   display: flex;
-  align-items: center;
-  gap: 6px;
+  align-items: flex-start;
+  gap: 8px;
   color: var(--color-content-default, inherit);
   font-weight: 600;
 }
@@ -1818,6 +1818,7 @@ a.routility-hc-status:hover {
   content: "";
   width: 6px;
   height: 6px;
+  margin-top: calc((1lh - 6px) / 2);
   border-radius: 50%;
   background: #f7b500;
   flex-shrink: 0;
@@ -13772,4 +13773,36 @@ html.routility-classic-admin .routility-admin-badge::before,
 html.routility-classic-admin .routility-admin-badge::after {
   content: none !important;
   display: none !important;
+}
+
+.routility-fb-hide {
+  display: none !important;
+}
+
+.routility-fb-icons {
+  --icon-size-small: 18px;
+  --icon-size-large: 18px;
+}
+
+.routility-fb-icons .routility-fb-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.routility-fb-current {
+  pointer-events: none;
+}
+
+.routility-fb-check {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--color-stroke-emphasis, rgba(127, 127, 127, 0.6));
+  border-radius: calc(5px * var(--routility-round, 1));
+  box-sizing: border-box;
+}
+
+.routility-fb-item[data-state="checked"] .routility-fb-check {
+  border-color: var(--color-system-emphasis, #335fff);
+  background: var(--color-system-emphasis, #335fff) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-6.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat;
 }

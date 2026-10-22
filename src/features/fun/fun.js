@@ -72,8 +72,58 @@
     return settings.fakeRequests === true && Number.isFinite(n) ? Math.min(Math.max(Math.floor(n), 0), 1e9) : 0;
   }
 
+  const BADGE_ORDER = ['verified', 'plus', 'premium', 'admin'];
+  const BADGE_FIELDS = { hasVerifiedBadge: 'verified', isVerified: 'verified', isRobloxPlus: 'plus', hasRobloxSubscription: 'plus', isPremium: 'premium', isRobloxAdmin: 'admin' };
+  const BADGE_URL = /^https:\/\/(?:users\.roblox\.com\/v1\/(?:users(?:\/\d+)?|usernames\/users|users\/search)|apis\.roblox\.com\/(?:user-profile-api\/v1\/user\/profiles\/get-profiles|profile-platform-api\/v1\/profiles\/get|search-api\/omni-search)|friends\.roblox\.com\/v1\/users\/\d+\/friends[^?#]*)(?:[?#]|$)/i;
+  const MEMBERSHIP_URL = /^https:\/\/premiumfeatures\.roblox\.com\/v1\/users\/(\d+)\/validate-membership/i;
+
+  function badgeSet() {
+    if (!settings || settings.fakeBadges !== true || typeof settings.fakeBadgeSet !== 'string') return null;
+    const picked = settings.fakeBadgeSet.split(',');
+    const out = {};
+    for (const k of BADGE_ORDER) out[k] = picked.includes(k);
+    if (out.plus) out.premium = false;
+    return out;
+  }
+
+  function badgeEdit(text, badges, me) {
+    let d;
+    try { d = JSON.parse(text); } catch { return text; }
+    let changed = false;
+    const walk = (o, depth) => {
+      if (!o || typeof o !== 'object' || depth > 8) return;
+      if (Array.isArray(o)) {
+        for (const x of o) walk(x, depth + 1);
+        return;
+      }
+      if ([o.id, o.userId, o.contentId, o.targetId].some(v => v != null && String(v) === me)) {
+        for (const [key, badge] of Object.entries(BADGE_FIELDS)) {
+          if (typeof o[key] === 'boolean' && o[key] !== badges[badge]) {
+            o[key] = badges[badge];
+            changed = true;
+          }
+        }
+      }
+      for (const v of Object.values(o)) if (v && typeof v === 'object') walk(v, depth + 1);
+    };
+    walk(d, 0);
+    return changed ? JSON.stringify(d) : text;
+  }
+
+  async function badgeFetch(pending, edit) {
+    const res = await pending;
+    if (!res.ok) return res;
+    try {
+      const text = await res.clone().text();
+      const out = edit(text);
+      return out === text ? res : new Response(out, { status: res.status, statusText: res.statusText, headers: res.headers });
+    } catch {
+      return res;
+    }
+  }
+
   function config() {
-    return { robux: settings.fakeRobux === true, amount: amount(), mult: multiplier(), buy: buying(), spent: state.spent, items: state.items, worn: state.worn, requests: requests() };
+    return { robux: settings.fakeRobux === true, amount: amount(), mult: multiplier(), buy: buying(), spent: state.spent, items: state.items, worn: state.worn, requests: requests(), badges: badgeSet() };
   }
 
   function post() {
@@ -262,6 +312,10 @@
   window.fetch = function (input, init) {
     let url = '';
     try { url = typeof input === 'string' ? input : input instanceof URL ? input.href : (input && input.url) || ''; } catch {}
+    const badges = badgeSet();
+    if (badges && BADGE_URL.test(url)) return badgeFetch(nativeFetch.apply(this, arguments), text => badgeEdit(text, badges, myId()));
+    const member = badges && url.match(MEMBERSHIP_URL);
+    if (member && member[1] === myId()) return badgeFetch(nativeFetch.apply(this, arguments), () => String(badges.plus || badges.premium));
     if (!settings || !wearing() || location.pathname.startsWith('/my/avatar')) return nativeFetch.apply(this, arguments);
     if (THUMBS.test(url)) return swapThumbs(url, nativeFetch.apply(this, arguments), init);
     const w = url.match(WEARING);
@@ -351,6 +405,56 @@
     action.replaceChildren(link);
   }
 
+  const NAV_ICONS = { plus: 'icon-regular-roblox-plus', premium: 'icon-regular-roblox-plus rt-m-premium', admin: 'icon-filled-tilt' };
+  const NAV_LABELS = { plus: 'Roblox Plus', premium: 'Premium', admin: 'Roblox Admin' };
+
+  function navBadges() {
+    const badges = badgeSet();
+    const name = document.querySelector('.age-bracket-label-username');
+    const native = document.querySelector('.age-bracket-label-plus-badge:not(.routility-fb-nav)');
+    if (native) native.classList.toggle('routility-fb-hide', !!badges);
+    const want = badges ? ['plus', 'premium', 'admin'].filter(k => badges[k]) : [];
+    let ours = document.querySelector('.routility-fb-nav');
+    if (!want.length || !name) {
+      ours?.remove();
+      return;
+    }
+    const key = want.join(',');
+    if (ours && ours.dataset.badges === key && ours.isConnected && name.parentElement === ours.parentElement) return;
+    ours?.remove();
+    ours = document.createElement('section');
+    ours.className = 'age-bracket-label-plus-badge routility-injected routility-fb-nav';
+    ours.dataset.badges = key;
+    const wrap = document.createElement('span');
+    wrap.className = 'items-center gap-xxsmall inline-flex shrink-0 [--icon-size-small:1em]';
+    for (const k of want) {
+      const icon = document.createElement('span');
+      icon.className = 'grow-0 shrink-0 basis-auto icon size-[var(--icon-size-small)] content-system-contrast ' + NAV_ICONS[k];
+      icon.setAttribute('role', 'img');
+      icon.setAttribute('aria-label', lt(NAV_LABELS[k]));
+      wrap.appendChild(icon);
+    }
+    ours.appendChild(wrap);
+    const verified = name.nextElementSibling && name.nextElementSibling.classList.contains('routility-nav-verified') ? name.nextElementSibling : null;
+    (verified || name).after(ours);
+  }
+
+  let navQueued = false;
+  const navObserver = new MutationObserver(() => {
+    if (navQueued) return;
+    navQueued = true;
+    requestAnimationFrame(() => {
+      navQueued = false;
+      navBadges();
+    });
+  });
+
+  function watchNav() {
+    navObserver.disconnect();
+    if (badgeSet()) navObserver.observe(document, { childList: true, subtree: true });
+    navBadges();
+  }
+
   function patch() {
     if (!settings) return;
     patchBalance();
@@ -372,6 +476,7 @@
     state = clean(st[KEY]);
     markReady();
     post();
+    watchNav();
     if (settings.fakeRobux === true || buying()) {
       observer.observe(document, { childList: true, subtree: true });
       window.addEventListener('load', () => setTimeout(() => observer.disconnect(), 4000), { once: true });
@@ -388,6 +493,7 @@
       bodies.clear();
       post();
       patch();
+      if (changes.routilitySettings) watchNav();
     }
   });
 
@@ -398,6 +504,7 @@
     worn: () => wornList(),
     headshot: (circular) => ready.then(() => (wearing() ? headshotFor(circular) : null)),
     typeName: (type) => TYPE_NAMES[type] || '',
+    badges: () => badgeSet(),
     limiteds: (userId) => ready.then(() => (buying() && String(userId) === myId() ? state.items.filter(x => x.limited && (x.kind === 'asset' || x.kind === 'bundle')) : [])),
     inventory: (userId, type) => ready.then(() => (buying() && String(userId) === myId() ? state.items.filter(x => x.kind === 'asset' && x.type === Number(type)).sort((a, b) => b.at - a.at) : [])),
     render: (size) => ready.then(() => {

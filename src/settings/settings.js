@@ -5,7 +5,7 @@
   const { lt, ltn, LT } = window.RoUtilityI18n;
   let langReady = false;
 
-  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, qsStyle: 'list', tradeListPills: 'rap-usd', keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, classicLayout: 'tabs', hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarWearingValues: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeSort: true, tradeSearch: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeProof: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, sessionIps: true, backupCodeDate: true, voiceStatus: true, groupCreated: true, groupJoined: true, groupCount: true, gameAvatarType: true, createSafety: true, gameUnavailable: true, oldLeftNav: false, calcRate: '3.80', currency: 'USD', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, recentServers: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, hiddenItems: true, showValues: true, profileUsd: true, profileValue: true, profileRap: true, profileShort: false, itemExplorer: true, gearFix: true, avatarPreview: true, tryOnKeepWorn: true, funOutfits: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, plusTheme: '', groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, classicPremium: false, classicVerified: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true, friendsSince: true, fakeRequests: false, fakeRequestsAdd: 'amount', fakeRequestsAmount: '500', sendRobux: true, menuHighlight: 'fill', socialBadge: true, socialMessages: true, socialFilter: true, profileNotes: true, notesBackup: true, profilePills: 'joined', tryInGame: true, friendsLiveFirst: false, classicAdmin: false };
+  const DEFAULTS = { contextCopy: true, skinWheel: true, buyBalance: true, messageTools: true, quickSettings: true, qsJoins: true, qsOnline: true, qsRotator: true, qsStreamer: false, qsStyle: 'list', tradeListPills: 'rap-usd', keepR6: false, itemPrices: true, usdChart: true, owners: true, inventoryValues: true, tradeValues: true, marketplaceValues: true, resellerDeals: true, classicProfile: true, classicLayout: 'tabs', hiddenFriends: true, revealTerminated: true, friendCardMenu: true, searchTerminated: true, mutualFriends: true, inventorySearch: true, listOrder: true, richSearch: true, searchPeople: true, searchFriends: true, searchGames: true, searchItems: true, searchSlash: true, skeletonLoading: true, hoverTips: true, hideSponsored: true, avatarSearch: true, avatarWearing: true, avatarWearingValues: true, avatarMoreAccessories: true, hideMakeup: true, badgeProgress: true, gameStats: true, profilePreviews: true, avatarRig: true, thumbCustomize: true, avatarSticky: true, tradeOwnership: true, tradeAge: true, exactRobux: false, badgeStats: true, privateServerToggle: true, streamerMode: false, streamerRobux: true, streamerAccount: true, streamerPayment: true, streamerName: false, streamerAvatar: false, streamerValues: false, menuLink: true, avatarRemember: true, tradeCalculator: true, itemHoardStats: true, itemTags: true, calcLinks: true, tradeFilter: true, tradeSort: true, tradeSearch: true, tradeCleanup: true, tradeKeys: true, randomGame: true, tradeItemCard: true, itemCardEverywhere: true, itemSimilar: true, tradePreview: true, tradeProof: true, tradeWarning: true, tradeWarnAt: '15', tradeSendSummary: true, calcNav: true, tradeAds: true, tradeAdsNav: true, calcRemember: true, calcEven: true, calcPercents: true, calcVerdict: 'usd', calcRobux: 'devex', calcRobuxRap: true, plusDetails: true, transferLimits: true, sessionIps: true, backupCodeDate: true, voiceStatus: true, groupCreated: true, groupJoined: true, groupCount: true, gameAvatarType: true, createSafety: true, gameUnavailable: true, oldLeftNav: false, calcRate: '3.80', currency: 'USD', robuxUsd: true, friendsPlaying: true, notInterested: true, homeLayout: true, siteFont: 'default', navVerified: true, rollSounds: true, serverStats: true, serverRegions: true, recentServers: true, preferredRegion: '', launchDetails: true, storeTotal: true, exactCounts: true, mutualGroups: true, hideChat: false, calcSort: 'usd-desc', calcSlots: '4', calcShot: 'preview', forum: true, forumTopLink: true, forumNav: true, homeGreeting: true, playtime: true, language: 'auto', adminBadge: true, friendFilters: true, friendManage: true, unfriendDetector: true, cancelRequests: true, ownedSince: true, badgeDates: true, itemAcquired: true, friendsOwn: true, hiddenItems: true, showValues: true, profileUsd: true, profileValue: true, profileRap: true, profileShort: false, itemExplorer: true, gearFix: true, avatarPreview: true, tryOnKeepWorn: true, funOutfits: true, requestFilters: true, createScanner: true, createIds: true, createDevItems: true, createUsd: true, groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, forumStyle: 'modern', forumDensity: 'comfortable', forumAvatars: 'full', forumStatJoined: true, forumStatPosts: true, forumStatRap: true, forumStatValue: true, forumStatGroup: true, txUsd: true, txExport: true, txFilters: true, badgeTools: true, badgeManage: true, badgeAutoDelete: false, exactPrices: true, recentlyUpdated: true, genreFilters: true, stopTrailers: true, placeVisits: true, avoidFriends: false, notifyInbound: true, notifyOutbound: true, notifyCompleted: true, notifyDeclined: true, notifyLimiteds: true, notifyUgc: false, priceAlerts: true, statusBanner: true, purchaseLock: true, purchaseLockAt: '1000', groupFullDesc: true, groupFind: true, chatBot: true, chatResize: true, navCollapse: true, scrollbarFix: true, scrollbarStyle: 'floating', customTheme: false, plusTheme: '', groupHiddenGames: true, userOutfits: true, creatorItems: true, classicFaceThumbs: true, itemSize: true, lastOnSale: true, classicNames: false, classicGames: true, classicCatalog: true, classicDevelop: true, classicGroups: true, classicPackages: true, devProducts: true, playRegionTag: true, studioStatus: false, catalogRobloxOnly: false, skipR6Warning: false, accessoryAdjust: true, outfitRotator: true, classicLogo: false, classicPremium: false, classicVerified: false, fakeRobux: false, fakeRobuxAmount: '1000000', fakeRobuxMode: 'amount', fakeBuy: false, itemUsd: true, itemDemand: true, itemTrend: true, itemCopies: true, itemChange: true, itemOwnedRow: true, friendsSince: true, fakeRequests: false, fakeRequestsAdd: 'amount', fakeRequestsAmount: '500', sendRobux: true, menuHighlight: 'fill', socialBadge: true, socialMessages: true, socialFilter: true, profileNotes: true, notesBackup: true, profilePills: 'joined', tryInGame: true, friendsLiveFirst: false, classicAdmin: false, fakeBadges: false };
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
 
   const TABS = [
@@ -587,6 +587,7 @@
     requestFilters: () => c([r([strong(lt('Requests')), pill(lt('Filter ({n})', { n: 2 }), 'active')]), r([pill(lt('Verified: Only')), pill(lt('Mutual Friends: {n}+', { n: 1 }))])]),
     adminBadge: () => r([face(U.builderman, 28), strong('Builderman'), verified(), h('span', 'icon icon-filled-tilt rt-m-admin')]),
     classicAdmin: () => r([face(U.builderman, 28), strong('Builderman'), h('span', 'rt-m-admin-old')]),
+    fakeBadges: () => r([face(U.linkmon, 28), strong('Linkmon99'), verified(), h('span', 'icon icon-regular-roblox-plus rt-m-admin'), h('span', 'icon icon-filled-tilt rt-m-admin')]),
     homeGreeting: () => r([h('span', 'rt-m-greet-avatar', [face(U.builderman, 40)]), h('span', 'rt-m-greet-text', lt('Hello, {name}!', { name: 'Builderman' }))]),
     playtime: () => c([r([strong(lt('Most Played')), pill(lt('7 Days'), 'active')], 'rt-m-spread'), r([muted('Adopt Me!'), muted(lt('{h}h {m}m', { h: 12, m: 40 }))], 'rt-m-spread'), r([muted('Jailbreak'), muted(lt('{h}h {m}m', { h: 3, m: 5 }))], 'rt-m-spread')], 'rt-m-w190'),
     forum: () => {
@@ -1213,6 +1214,10 @@
           { custom: 'funItems', parent: 'fakeBuy', title: LT('Your Fake Items'), desc: LT('Everything you’ve fake bought. Remove one to get its Robux back.') },
           { key: 'funOutfits', parent: 'fakeBuy', title: LT('Fun Outfits'), desc: LT('A Fun Outfits button in the avatar editor’s Creations: save looks with items you don’t own yet, wear them again in Fun Mode, and see what they’d cost to buy for real.') },
         ] },
+        { title: LT('Name Badges'), rows: [
+          { key: 'fakeBadges', title: LT('Custom Name Badges'), desc: LT('Pick the badges next to your own name. They show everywhere Roblox shows badges, like your profile, the top bar, friends lists and search.') },
+          { custom: 'funBadges', parent: 'fakeBadges', title: LT('Your Badges'), desc: LT('Starts with the badges you really have. Roblox shows Roblox Plus instead of Premium when you have both, so only one of them can be picked.') },
+        ] },
         { title: LT('Friends'), rows: [
           { key: 'fakeRequests', title: LT('Fake Friend Requests'), desc: LT('More friend requests on the Friends badge in the menu and the Add Friends tile on Home. Your real requests are added on top, so a new one still counts up by one. Like Roblox, the menu shows 500+ and Home shows 99+ once you go past them.') },
           { key: 'fakeRequestsAdd', parent: 'fakeRequests', title: LT('Extra Requests'), desc: LT('How many requests to add to your real ones.'), options: [['amount', LT('Pick an amount')], ['10', '+10'], ['50', '+50'], ['99', '+99'], ['500', '+500']], robuxInput: 'amount', amountKey: 'fakeRequestsAmount', amountLabel: LT('Extra Requests') },
@@ -1529,6 +1534,162 @@
     say('');
     idle();
     return box;
+  }
+
+  const FUN_BADGES = [['verified', LT('Verified')], ['plus', LT('Roblox Plus')], ['premium', LT('Premium')], ['admin', LT('Roblox Admin')]];
+
+  function badgeIcon(key) {
+    if (key === 'verified') {
+      const box = el('span', 'relative inline-flex items-center justify-center shrink-0 verified-badge routility-fb-icon');
+      box.append(el('span', 'grow-0 shrink-0 basis-auto icon icon-filled-verified-backplate size-[var(--icon-size-small)] content-system-emphasis'), el('span', 'grow-0 shrink-0 basis-auto icon icon-filled-verified-check size-[var(--icon-size-small)] absolute content-[white]'));
+      return box;
+    }
+    const cls = { plus: 'icon-regular-roblox-plus content-system-contrast', premium: 'icon-regular-roblox-plus rt-m-premium content-system-contrast', admin: 'icon-filled-tilt content-system-contrast' }[key];
+    return el('span', 'grow-0 shrink-0 basis-auto icon size-[var(--icon-size-small)] routility-fb-icon ' + cls);
+  }
+
+  async function realBadges() {
+    const meta = document.querySelector('meta[name="user-data"]');
+    const me = meta && meta.dataset.userid;
+    const plus = !!meta && meta.dataset.membership === 'blackbird';
+    const out = [];
+    if (meta && meta.dataset.hasverifiedbadge === 'true') out.push('verified');
+    if (plus) out.push('plus');
+    else if (meta && meta.dataset.ispremiumuser === 'true') out.push('premium');
+    const admins = me ? await new Promise(r => chrome.runtime.sendMessage({ type: 'robloxAdmins', ids: [me] }, (res) => { void chrome.runtime.lastError; r(res); })) : null;
+    if (admins && Array.isArray(admins.admins) && admins.admins.map(String).includes(me)) out.push('admin');
+    return out;
+  }
+
+  function funBadges(def, settings, save) {
+    const holder = el('div', 'relative routility-fb-picker');
+    const section = row(lt(def.title), lt(def.desc), holder);
+    section.classList.add('routility-set-row', 'routility-set-row-select', 'routility-set-child');
+    section.dataset.key = 'funBadges';
+    section.querySelector('h3')?.classList.replace('text-title-large', 'text-title-medium');
+    let picked = typeof settings.fakeBadgeSet === 'string' ? settings.fakeBadgeSet.split(',').filter(Boolean) : null;
+    const btn = el('button', 'relative clip group/interactable outline-none foundation-web-input flex items-center justify-between width-full cursor-pointer bg-none stroke-standard radius-medium height-1200 padding-x-large text-body-large stroke-contrast-alpha focus-within:stroke-system-emphasis content-default');
+    btn.type = 'button';
+    btn.setAttribute('aria-haspopup', 'listbox');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', lt(def.title));
+    btn.appendChild(stateLayer());
+    const current = el('span', 'grow-1 flex items-center gap-small min-width-0 routility-fb-current');
+    const chevron = el('span', 'size-600 icon icon-regular-chevron-large-down content-default');
+    chevron.setAttribute('aria-hidden', 'true');
+    btn.append(current, chevron);
+    holder.appendChild(btn);
+    const ordered = () => FUN_BADGES.map(([k]) => k).filter(k => picked && picked.includes(k));
+    const show = () => {
+      current.textContent = '';
+      if (!picked) {
+        current.appendChild(el('span', 'text-body-medium content-muted', lt('Loading…')));
+        return;
+      }
+      const list = ordered();
+      if (!list.length) {
+        current.appendChild(el('span', 'foundation-web-menu-item-title content-muted', lt('No badges')));
+        return;
+      }
+      const icons = el('span', 'inline-flex items-center gap-xxsmall shrink-0 routility-fb-icons');
+      for (const k of list) icons.appendChild(badgeIcon(k));
+      current.append(icons, el('span', 'foundation-web-menu-item-title text-no-wrap text-truncate-split content-emphasis', list.map(k => lt(FUN_BADGES.find(b => b[0] === k)[1])).join(', ')));
+    };
+    const commit = () => {
+      const value = ordered().join(',');
+      settings.fakeBadgeSet = value;
+      save({ fakeBadgeSet: value });
+      show();
+    };
+    if (!picked) {
+      realBadges().then((list) => {
+        if (typeof settings.fakeBadgeSet === 'string') picked = settings.fakeBadgeSet.split(',').filter(Boolean);
+        else {
+          picked = list;
+          commit();
+        }
+        show();
+      });
+    }
+    show();
+
+    let popover = null;
+    const close = () => {
+      if (!popover) return;
+      popover.remove();
+      popover = null;
+      btn.setAttribute('aria-expanded', 'false');
+      document.removeEventListener('mousedown', outside, true);
+      document.removeEventListener('keydown', esc, true);
+      window.removeEventListener('scroll', onScroll, true);
+      window.removeEventListener('resize', placePop);
+    };
+    const placePop = () => {
+      if (!popover) return;
+      const r = btn.getBoundingClientRect();
+      popover.style.cssText = `position: fixed; left: ${r.left}px; top: ${r.bottom + 4}px; width: ${r.width}px; z-index: 1050;`;
+    };
+    const outside = (e) => { if (!popover.contains(e.target) && !btn.contains(e.target)) close(); };
+    const esc = (e) => { if (e.key === 'Escape') close(); };
+    const onScroll = (e) => {
+      if (!popover || (e.target instanceof Node && popover.contains(e.target))) return;
+      const r = btn.getBoundingClientRect();
+      if (!btn.isConnected || r.bottom < 0 || r.top > innerHeight) return close();
+      placePop();
+    };
+    btn.addEventListener('click', () => {
+      if (popover) return close();
+      if (!picked) return;
+      popover = el('div', 'routility-popover');
+      placePop();
+      const list = el('div', 'padding-y-small foundation-web-portal-zindex');
+      list.setAttribute('role', 'listbox');
+      list.setAttribute('aria-multiselectable', 'true');
+      const menu = el('div', 'foundation-web-menu bg-surface-100 stroke-standard stroke-default shadow-transient-high radius-large');
+      const group = el('div', 'padding-small');
+      const items = new Map();
+      const paint = () => {
+        for (const [k, item] of items) {
+          const on = picked.includes(k);
+          item.setAttribute('aria-selected', String(on));
+          item.setAttribute('data-state', on ? 'checked' : 'unchecked');
+        }
+      };
+      for (const [k, label] of FUN_BADGES) {
+        const item = el('button', 'relative clip group/interactable focus-visible:outline-focus foundation-web-menu-item flex items-center content-default cursor-pointer stroke-none bg-none text-align-x-left width-full text-body-large padding-x-large padding-y-medium gap-x-large radius-medium routility-fb-item');
+        item.type = 'button';
+        item.setAttribute('role', 'option');
+        item.appendChild(stateLayer());
+        const icon = el('span', 'inline-flex items-center routility-fb-icons');
+        icon.appendChild(badgeIcon(k));
+        const text = el('div', 'grow-1 text-truncate-split');
+        text.appendChild(el('span', 'foundation-web-menu-item-title text-no-wrap content-emphasis', lt(label)));
+        item.append(icon, text, el('span', 'routility-fb-check'));
+        item.addEventListener('click', () => {
+          if (picked.includes(k)) picked = picked.filter(x => x !== k);
+          else {
+            picked = picked.concat(k);
+            if (k === 'plus') picked = picked.filter(x => x !== 'premium');
+            if (k === 'premium') picked = picked.filter(x => x !== 'plus');
+          }
+          paint();
+          commit();
+        });
+        items.set(k, item);
+        group.appendChild(item);
+      }
+      paint();
+      menu.appendChild(group);
+      list.appendChild(menu);
+      popover.appendChild(list);
+      document.body.appendChild(popover);
+      btn.setAttribute('aria-expanded', 'true');
+      document.addEventListener('mousedown', outside, true);
+      document.addEventListener('keydown', esc, true);
+      window.addEventListener('scroll', onScroll, true);
+      window.addEventListener('resize', placePop);
+    });
+    return section;
   }
 
   function funItems(def) {
@@ -3531,6 +3692,10 @@
           }
           if (def.custom === 'funItems') {
             place(def, funItems(def));
+            continue;
+          }
+          if (def.custom === 'funBadges') {
+            place(def, funBadges(def, settings, save));
             continue;
           }
           if (def.custom === 'freeItems') {

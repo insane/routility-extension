@@ -6,8 +6,8 @@
   const PAGE_SIZE = 10;
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
   const FILTERS = [
-    { value: 'premium', name: LT('Plus/Premium') },
     { value: 'all', name: LT('All') },
+    { value: 'premium', name: LT('Plus/Premium') },
     { value: 'hoards', name: LT('Hoards') },
   ];
 

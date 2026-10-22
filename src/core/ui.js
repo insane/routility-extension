@@ -758,8 +758,17 @@
     return url ? Object.assign({}, res, { [me]: url }) : res;
   }
 
+  function funAdmins(res, msg) {
+    const badges = window.RoUtilityFun && window.RoUtilityFun.badges && window.RoUtilityFun.badges();
+    const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+    if (!badges || !me || !res || !Array.isArray(res.admins) || !(msg.ids || []).map(String).includes(me)) return res;
+    const others = res.admins.filter(id => String(id) !== me);
+    return Object.assign({}, res, { admins: badges.admin ? others.concat(typeof res.admins[0] === 'number' ? Number(me) : me) : others });
+  }
+
   function request(msg, accept = (r) => r !== undefined) {
     if (msg && msg.type === 'getHeadshots') return send(msg, accept).then(res => myHeadshot(res, msg));
+    if (msg && msg.type === 'robloxAdmins') return send(msg, accept).then(res => funAdmins(res, msg));
     return send(msg, accept);
   }
 

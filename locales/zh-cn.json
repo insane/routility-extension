@@ -2940,5 +2940,10 @@
  "Online Friends First": "在线好友优先",
  "The friends row shows who’s in a game, in Studio or online first, like Roblox’s own profile. Otherwise it shows the first 9 friends in Roblox’s list order.": "好友栏会先显示正在游戏、在 Studio 中或在线的好友，和 Roblox 自己的个人资料一样。关闭时按 Roblox 的顺序显示前 9 位好友。",
  "Classic Admin Badge": "经典管理员徽章",
- "The old red R logo as the Roblox admin badge next to names, and the old Administrator badge in Roblox Badges.": "名字旁的 Roblox 管理员徽章改为旧版红色 R 标志，Roblox 徽章中的管理员徽章也改为旧版。"
+ "The old red R logo as the Roblox admin badge next to names, and the old Administrator badge in Roblox Badges.": "名字旁的 Roblox 管理员徽章改为旧版红色 R 标志，Roblox 徽章中的管理员徽章也改为旧版。",
+ "Custom Name Badges": "自定义名字徽章",
+ "No badges": "没有徽章",
+ "Pick the badges next to your own name. They show everywhere Roblox shows badges, like your profile, the top bar, friends lists and search.": "选择显示在你自己名字旁的徽章。它们会出现在 Roblox 显示徽章的所有地方，比如你的个人资料、顶部栏、好友列表和搜索。",
+ "Starts with the badges you really have. Roblox shows Roblox Plus instead of Premium when you have both, so only one of them can be picked.": "一开始会选中你实际拥有的徽章。两者都有时 Roblox 会显示 Roblox Plus 而不是 Premium，所以只能选其中一个。",
+ "Your Badges": "你的徽章"
 }

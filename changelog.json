@@ -9,6 +9,7 @@
       "date": "2026-10-21",
       "summary": "RoUtility badges and friend request messages, plus server region and profile fixes.",
       "changes": [
+        { "type": "new", "text": "Custom Name Badges (Fun): pick Verified, Roblox Plus, Premium and Roblox Admin for your own name. They show everywhere Roblox shows badges, in Roblox’s order, and start with the ones you really have." },
         { "type": "new", "text": "Classic Admin Badge (Classic, off by default): the old red R logo as the Roblox admin badge next to names, and the old Administrator badge in Roblox Badges." },
         { "type": "new", "text": "Try In-Game: a button on item and bundle pages that opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy." },
         { "type": "new", "text": "Profile Notes: write a private note on anyone’s profile, like on Discord. Only you can see it, and once you verify with Roblox it’s backed up so it comes back on your other browsers.", "by": ["reqonn"] },

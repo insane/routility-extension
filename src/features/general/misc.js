@@ -116,7 +116,8 @@
   }
 
   function placeBadges() {
-    const on = settings.navVerified !== false && meVerified === true;
+    const fake = window.RoUtilityFun && window.RoUtilityFun.badges && window.RoUtilityFun.badges();
+    const on = fake ? fake.verified : settings.navVerified !== false && meVerified === true;
     const top = document.querySelector('.age-bracket-label-username');
     const side = document.querySelector('nav a:is([href="/users/profile"], [data-rt-profile="/users/profile"]) .text-truncate-end');
     for (const name of [top, side]) {
