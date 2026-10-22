@@ -19,7 +19,7 @@
         { "type": "improved", "text": "Prices show a simple green $ (or your currency’s sign) before the amount instead of the round money icon." },
         { "type": "fixed", "text": "Quick Settings in the Original Sidebar shows full names and values like Trusted Friends instead of cutting them off, and its option lists fit on screen. Dropdown lists that are too long now scroll." },
         { "type": "fixed", "text": "Item pages whose address ends up with only the item’s name (no number) show RoUtility’s values and tools again." },
-        { "type": "fixed", "text": "The 2022 profile shows friends who are in a game, in Studio or online first, with their status icons, like Roblox does." },
+        { "type": "new", "text": "Online Friends First (Profiles, off by default): the 2022 profile’s friends row shows who’s in a game, in Studio or online first, like Roblox’s own profile." },
         { "type": "fixed", "text": "Server Regions: Play with a region picked (like Miami) finds servers in that region that actually have room, instead of saying there are none or sending you to one that just filled up." },
         { "type": "fixed", "text": "Cancel Request shows right after you send a friend request.", "by": ["reqonn"] },
         { "type": "fixed", "text": "Home: the friends row no longer shows a loading placeholder when you have no friends, and the greeting shows your current avatar.", "by": ["reqonn"] },

@@ -2936,5 +2936,7 @@
  "Your Status": "你的状态",
  "Try In-Game": "在游戏中试穿",
  "Opens Avatar Sandbox with this on your avatar": "打开 Avatar Sandbox，让你的虚拟形象穿上它",
- "A Try In-Game button on item and bundle pages. It opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy.": "在物品和套装页面添加“在游戏中试穿”按钮。它会打开 Avatar Sandbox，你的虚拟形象已经穿上该物品，购买前就能在真实游戏中看到效果。"
+ "A Try In-Game button on item and bundle pages. It opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy.": "在物品和套装页面添加“在游戏中试穿”按钮。它会打开 Avatar Sandbox，你的虚拟形象已经穿上该物品，购买前就能在真实游戏中看到效果。",
+ "Online Friends First": "在线好友优先",
+ "The friends row shows who’s in a game, in Studio or online first, like Roblox’s own profile. Otherwise it shows the first 9 friends in Roblox’s list order.": "好友栏会先显示正在游戏、在 Studio 中或在线的好友，和 Roblox 自己的个人资料一样。关闭时按 Roblox 的顺序显示前 9 位好友。"
 }

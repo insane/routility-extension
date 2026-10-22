@@ -351,7 +351,8 @@
   const LIVE_FIRST = { 2: 0, 3: 1, 1: 2 };
 
   async function liveFirst(ids) {
-    if (!ids.length) return ids;
+    const st = await new Promise(r => chrome.storage.local.get('routilitySettings', r));
+    if (!ids.length || (st.routilitySettings || {}).friendsLiveFirst !== true) return ids.slice(0, 9);
     const live = await presence(ids.map(String)).catch(() => new Map());
     return ids.map((id, i) => ({ id, i, rank: LIVE_FIRST[(live.get(String(id)) || {}).userPresenceType] ?? 3 }))
       .sort((a, b) => a.rank - b.rank || a.i - b.i)

@@ -3078,5 +3078,7 @@
  "Your Status": "Ton statut",
  "Try In-Game": "Essayer en jeu",
  "Opens Avatar Sandbox with this on your avatar": "Ouvre Avatar Sandbox avec cet objet sur ton avatar",
- "A Try In-Game button on item and bundle pages. It opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy.": "Un bouton Essayer en jeu sur les pages d’objets et de packs. Il ouvre Avatar Sandbox avec l’objet déjà sur ton avatar, pour le voir dans un vrai jeu avant de l’acheter."
+ "A Try In-Game button on item and bundle pages. It opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy.": "Un bouton Essayer en jeu sur les pages d’objets et de packs. Il ouvre Avatar Sandbox avec l’objet déjà sur ton avatar, pour le voir dans un vrai jeu avant de l’acheter.",
+ "Online Friends First": "Amis en ligne d’abord",
+ "The friends row shows who’s in a game, in Studio or online first, like Roblox’s own profile. Otherwise it shows the first 9 friends in Roblox’s list order.": "La rangée d’amis montre d’abord ceux qui sont en jeu, dans Studio ou en ligne, comme le profil de Roblox. Sinon, elle montre les 9 premiers amis dans l’ordre de Roblox."
 }
