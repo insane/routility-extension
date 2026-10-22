@@ -872,8 +872,10 @@ html.routility-2017 .routility-classic :is(.profile-collections, .routility-clas
   background-color: #ffffff !important;
 }
 
-html.routility-2017 .routility-classic .badge-list > li.asset-item,
-html.routility-2017 .routility-classic .collections-list > li.asset-item {
+html.routility-2017 .routility-classic .section-content .hlist.badge-list > li.list-item.asset-item,
+html.routility-2017 .routility-classic .section-content .hlist.collections-list > li.list-item.asset-item {
+  flex: none !important;
+  margin: 0 !important;
   box-sizing: border-box !important;
   width: 16.666% !important;
 }
@@ -1050,4 +1052,237 @@ html.routility-2017 .friend-carousel-container .friends-carousel-container {
 
 html.routility-2017 .friend-carousel-container .people-list-header {
   margin: 3px 0 6px !important;
+}
+
+html.routility-2017 :is(.btn-primary-xs, .btn-primary-sm, .btn-primary-md, .btn-primary-lg, .btn-growth-xs, .btn-growth-sm, .btn-growth-md, .btn-growth-lg, .btn-cta-xs, .btn-cta-sm, .btn-cta-md, .btn-cta-lg):not(.event-follow-button) {
+  border: 1px solid #02b757 !important;
+  border-radius: 3px !important;
+  background-color: #02b757 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+}
+
+html.routility-2017 :is(.btn-primary-xs, .btn-primary-sm, .btn-primary-md, .btn-primary-lg, .btn-growth-xs, .btn-growth-sm, .btn-growth-md, .btn-growth-lg, .btn-cta-xs, .btn-cta-sm, .btn-cta-md, .btn-cta-lg):not(.event-follow-button):is(:hover, :focus-visible) {
+  border-color: #3fc679 !important;
+  background-color: #3fc679 !important;
+}
+
+html.routility-2017 :is(.btn-secondary-xs, .btn-secondary-sm, .btn-secondary-md, .btn-secondary-lg):not(.see-all-link-icon):not(.btn-more):is(:hover, :focus-visible) {
+  border-color: #32b5ff !important;
+  background-color: #32b5ff !important;
+}
+
+html.routility-2017 :is(.btn-control-xs, .btn-control-sm, .btn-control-md, .btn-control-lg, .event-follow-button, .foundation-web-button.bg-action-standard) {
+  border: 1px solid #b8b8b8 !important;
+  border-radius: 3px !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  color: #191919 !important;
+}
+
+html.routility-2017 :is(.btn-control-xs, .btn-control-sm, .btn-control-md, .btn-control-lg, .event-follow-button, .foundation-web-button.bg-action-standard):is(:hover, :focus-visible) {
+  border-color: #b8b8b8 !important;
+  background-color: #ffffff !important;
+  color: #191919 !important;
+}
+
+html.routility-2017 :is(.btn-primary-xs, .btn-primary-sm, .btn-primary-md, .btn-primary-lg, .btn-growth-xs, .btn-growth-sm, .btn-growth-md, .btn-growth-lg, .btn-secondary-xs, .btn-secondary-sm, .btn-secondary-md, .btn-secondary-lg, .btn-control-xs, .btn-control-sm, .btn-control-md, .btn-control-lg):is(.disabled, [disabled]) {
+  opacity: .5 !important;
+}
+
+html.routility-2017 .foundation-web-button.bg-action-standard > .absolute.inset-\[0\] {
+  display: none !important;
+}
+
+html.routility-2017 .foundation-web-input:is(.stroke-standard, .stroke-contrast-alpha),
+html.routility-2017 #content :is(.form-control, .input-field):not(#navbar-search-input) {
+  border-color: #b8b8b8 !important;
+  border-radius: 3px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 li.hover-game-tile .featured-game-container {
+  border-radius: 0 !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 li.hover-game-tile :is(.featured-game-icon-container, .brief-game-icon, .brief-game-icon img) {
+  border-radius: 0 !important;
+}
+
+html.routility-2017 li.hover-game-tile .info-container {
+  padding: 0 6px !important;
+}
+
+html.routility-2017 li.hover-game-tile .game-card-name {
+  margin: 6px 0 3px !important;
+  color: #191919 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+html.routility-2017 li.hover-game-tile .base-metadata .game-card-info,
+html.routility-2017 li.hover-game-tile .base-metadata .info-label {
+  color: #757575 !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+html.routility-2017 li.hover-game-tile .game-card-text-pill {
+  border-radius: 3px !important;
+}
+
+html.routility-2017 #content .text-label {
+  color: #b8b8b8 !important;
+}
+
+html.routility-2017 .virtual-event-game-details-container > .notify-button {
+  margin-top: 6px !important;
+}
+
+html.routility-2017 .badge-row .badge-name {
+  color: #191919 !important;
+}
+
+html.routility-2017 .store-card {
+  border: 1px solid #b8b8b8 !important;
+  border-radius: 3px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .store-card :is(a, img) {
+  border-radius: 0 !important;
+}
+
+html.routility-2017 .store-card .store-card-caption {
+  padding: 0 6px 6px !important;
+  border-top: 1px solid #b8b8b8 !important;
+}
+
+html.routility-2017 .store-card .store-card-name {
+  margin: 3px auto !important;
+  color: #191919 !important;
+  font-weight: 500 !important;
+}
+
+html.routility-2017 .store-card .store-card-price .text-robux,
+html.routility-2017 .store-card .store-card-price .text-robux-tile {
+  color: #02b757 !important;
+  font-size: 14px !important;
+}
+
+html.routility-2017 :is(.store-card .store-card-price, .catalog-item-container .item-card-price) .icon-robux-16x16 {
+  filter: brightness(0) saturate(100%) invert(52%) sepia(68%) saturate(2627%) hue-rotate(121deg) brightness(95%) contrast(98%) !important;
+}
+
+html.routility-2017 .store-card .store-card-footer h5 {
+  color: #b8b8b8 !important;
+}
+
+html.routility-2017 :is(.btn-buy-xs, .btn-buy-sm, .btn-buy-md, .btn-buy-lg):not(.disabled):not([disabled]) {
+  border: 1px solid #02b757 !important;
+  border-radius: 3px !important;
+  background-color: #02b757 !important;
+  color: #ffffff !important;
+}
+
+html.routility-2017 :is(.btn-buy-xs, .btn-buy-sm, .btn-buy-md, .btn-buy-lg):not(.disabled):not([disabled]):hover {
+  border-color: #3fc679 !important;
+  background-color: #3fc679 !important;
+}
+
+html.routility-2017 #content .section-content-off {
+  padding: 15px !important;
+  border-radius: 0 !important;
+  background-color: #b8b8b8 !important;
+  color: #757575 !important;
+  text-align: center !important;
+}
+
+html.routility-2017 #content .section-content-off * {
+  color: #757575 !important;
+}
+
+html.routility-2017 #content .card-item:is(.card-item-public-server, .card-item-friends-server, .card-item-private-server) {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 #content .card-item .player-avatar .avatar-card-image {
+  background-color: #d1d1d1 !important;
+}
+
+html.routility-2017 #content .server-player-count-gauge {
+  border-radius: 0 !important;
+}
+
+html.routility-2017 #content .server-player-count-gauge .gauge-inner-bar {
+  border-radius: 0 !important;
+  background-color: #00a2ff !important;
+}
+
+html.routility-2017 #content .server-list-header {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+}
+
+html.routility-2017 .subscription-card-item {
+  border: 1px solid #b8b8b8 !important;
+  border-radius: 3px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .subscription-card-item .subscription-card-price :is(.icon-filled-robux, .text-body-medium) {
+  color: #02b757 !important;
+}
+
+html.routility-2017 .routility-classic .tab-pane .section > .section-content {
+  padding: 15px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .routility-classic .profile-collections {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html.routility-2017 .routility-classic .routility-classic-outfits {
+  padding: 0 15px 15px !important;
+  background: linear-gradient(#ffffff, #ffffff) 0 39px / 100% 100% no-repeat !important;
+}
+
+html.routility-2017 .routility-classic .routility-classic-outfits > .container-header {
+  margin: 0 -15px 6px !important;
+}
+
+html.routility-2017 .routility-classic .routility-classic-people .text-overflow,
+html.routility-2017 .routility-classic .routility-classic-people a {
+  color: #191919 !important;
+}
+
+html.routility-2017 .routility-classic .tab-pane .section > .section-content:has(> .hlist) {
+  overflow: hidden !important;
+}
+
+html.routility-2017 .routility-classic .section-content .routility-classic-item {
+  box-sizing: border-box !important;
+  width: 16.666% !important;
+}
+
+html.routility-2017 .routility-classic .section-content .routility-classic-item .img-container {
+  width: 140px !important;
+  height: 140px !important;
+}
+
+html.routility-2017 .routility-classic .section-content .routility-classic-item .item-name {
+  max-width: 140px !important;
+}
+
+html.routility-2017 .routility-classic .section-content .routility-classic-people > li.friend {
+  box-sizing: border-box !important;
+  width: 11.111% !important;
+  min-width: 0 !important;
 }
