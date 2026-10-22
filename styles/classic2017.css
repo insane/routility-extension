@@ -1025,7 +1025,7 @@ html.routility-2017 #content a.text-link {
 
 html.routility-2017 .page-content .clearfix:has(> #item-thumbnail-container-frontend) {
   margin: 0 -12px !important;
-  padding: 12px !important;
+  padding: 15px !important;
   background-color: var(--c17-card) !important;
 }
 
@@ -1688,7 +1688,13 @@ html.routility-2017 .price-container-text .price-info > .item-price-value:not(.r
 }
 
 html.routility-2017 .price-container-text .price-info > .item-price-value:not(.routility-injected) .icon-robux-16x16 {
-  filter: brightness(0) saturate(100%) invert(52%) sepia(68%) saturate(2627%) hue-rotate(121deg) brightness(95%) contrast(98%) !important;
+  width: 28px !important;
+  height: 28px !important;
+  margin: -3px 3px 0 0 !important;
+  background: url("https://images.rbxcdn.com/757f696cbfd2d8fcde61d219cead6a2c-branded_04182018.svg") 0 -112px / auto no-repeat !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+  filter: none !important;
 }
 
 html.routility-2017 .catalog-revamp {
@@ -1710,8 +1716,49 @@ html.routility-2017 .catalog-item-container .item-card-name {
 }
 
 html.routility-2017 .catalog-revamp ul.item-cards-stackable.organic-items-wrapper {
-  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-  gap: 12px 12px !important;
+  grid-template-columns: repeat(6, 161px) !important;
+  justify-content: center !important;
+  gap: 0 !important;
+}
+
+html.routility-2017 .catalog-revamp .catalog-item-container {
+  width: 161px !important;
+  padding: 5px !important;
+}
+
+html.routility-2017 .catalog-revamp .catalog-item-container .item-card-container {
+  width: 150px !important;
+  height: 248px !important;
+  overflow: hidden !important;
+}
+
+html.routility-2017 .catalog-revamp .catalog-item-container :is(.item-card-thumb-container, .item-card-thumb-container-inner, .thumbnail-2d-container) {
+  width: 150px !important;
+  height: 150px !important;
+  padding: 0 !important;
+}
+
+html.routility-2017 .catalog-revamp .catalog-item-container .item-card-caption {
+  padding: 6px 6px 0 !important;
+}
+
+html.routility-2017 .catalog-revamp .catalog-item-container .item-card-name {
+  height: 45px !important;
+  max-height: 45px !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  line-height: 22.4px !important;
+}
+
+html.routility-2017 .catalog-revamp .catalog-item-container .item-card-price {
+  margin-top: 20px !important;
+}
+
+html.routility-2017 .catalog-revamp .catalog-item-container .item-card-price .icon-robux-16x16 {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 1px 5px 0 0 !important;
+  background-size: 16px 16px !important;
 }
 
 html.routility-2017 .catalog-item-container .item-card-name {
@@ -1941,4 +1988,98 @@ html.routility-2017 #game-detail-page .games-detail .game-carousel > .game-card-
 
 html.routility-2017 #game-detail-page .games-detail .game-carousel {
   gap: 0 !important;
+}
+
+html.routility-2017 .item-details-info-header .item-details-name-row :is(h1, h2) {
+  margin: 0 !important;
+  padding: 5px 0 !important;
+  line-height: 1em !important;
+}
+
+html.routility-2017 .item-details-info-header .item-details-creator-container > .text-label {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+html.routility-2017 .item-details-info-header {
+  padding-bottom: 12px !important;
+}
+
+html.routility-2017 .item-details-info-content > .item-details-section {
+  margin-top: 12px !important;
+}
+
+html.routility-2017 .item-details-info-content .item-info-row-container > .row-label {
+  flex: 0 0 120px !important;
+  width: 120px !important;
+  min-width: 120px !important;
+  max-width: 120px !important;
+  padding-right: 9px !important;
+}
+
+html.routility-2017 .item-details-info-content .price-row-container {
+  position: relative !important;
+  min-height: 53px !important;
+  margin-bottom: 12px !important;
+}
+
+html.routility-2017 .item-details-info-content .price-row-container .price-info.row-content {
+  padding-right: 190px !important;
+}
+
+html.routility-2017 .item-details-info-content .price-row-container .item-purchase-btns-container {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 180px !important;
+  margin: 0 !important;
+}
+
+html.routility-2017 .item-details-info-content .price-row-container .item-purchase-btns-container .btn-container {
+  width: 180px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html.routility-2017 .item-details-info-content .price-row-container .item-purchase-btns-container .btn-container + .btn-container {
+  margin-top: 6px !important;
+}
+
+html.routility-2017 .item-details-info-content .price-row-container .item-purchase-btns-container button {
+  width: 180px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 15px !important;
+  font-size: 21px !important;
+  font-weight: 500 !important;
+  line-height: 100% !important;
+}
+
+html.routility-2017 .item-details-info-content .price-row-container .item-purchase-btns-container button.btn-primary-lg {
+  padding: 9px !important;
+  border-color: var(--c17-border) !important;
+  background-color: var(--c17-card) !important;
+  color: var(--c17-text) !important;
+  font-size: 18px !important;
+}
+
+html.routility-2017 .item-details-info-header .item-details-creator-container {
+  column-gap: 0 !important;
+}
+
+html.routility-2017 .item-details-info-header .item-details-creator-container > .verified-badge-icon-item-details {
+  margin-left: 4px !important;
+}
+
+html.routility-2017 .item-details-info-content .item-info-row-container > .row-label {
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+
+html.routility-2017 .item-details-info-content .item-info-row-container > .row-label > .item-details-info-tooltip-container {
+  display: inline-flex !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
 }
