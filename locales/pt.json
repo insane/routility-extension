@@ -3061,5 +3061,12 @@
  "Your badge and friend request messages turn on once Roblox confirms this is your account. Roblox opens a window where you click Allow, the same sign-in as the RoUtility Forum. You only do this once.": "Seu selo e as mensagens nos pedidos de amizade são ativados assim que o Roblox confirmar que esta é sua conta. O Roblox abre uma janela onde você clica em Permitir, o mesmo login do Fórum do RoUtility. Você só faz isso uma vez.",
  "You’ve sent a lot of messages. Try again in {n} minutes, or clear the message to just add them.": "Você enviou muitas mensagens. Tente de novo em {n} minutos ou apague a mensagem para só adicionar a pessoa.",
  "hey, we met in Adopt Me!": "oi, a gente se conheceu no Adopt Me!",
- "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} usa o RoUtility, então você pode adicionar uma mensagem que aparecerá com seu pedido. Sem links nem informações de contato."
+ "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} usa o RoUtility, então você pode adicionar uma mensagem que aparecerá com seu pedido. Sem links nem informações de contato.",
+ "Click to add a note": "Clique para adicionar uma nota",
+ "Profile Notes": "Notas de perfil",
+ "met in Adopt Me, good trader": "conheci no Adopt Me, bom trader",
+ "Only visible to you": "Visível só para você",
+ "Add private notes to anyone’s profile, like on Discord. Only you can see them.": "Adicione notas privadas ao perfil de qualquer pessoa, como no Discord. Só você pode vê-las.",
+ "Back Up Notes": "Fazer backup das notas",
+ "Once you verify with Roblox, your notes are saved to your RoUtility account so they come back on other browsers. They’re encrypted and only you can get them. Turning this off deletes the backup.": "Depois que você se verifica com o Roblox, suas notas são salvas na sua conta RoUtility e voltam em outros navegadores. Elas são criptografadas e só você pode recuperá-las. Desativar isso apaga o backup."
 }

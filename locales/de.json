@@ -3061,5 +3061,12 @@
  "Your badge and friend request messages turn on once Roblox confirms this is your account. Roblox opens a window where you click Allow, the same sign-in as the RoUtility Forum. You only do this once.": "Dein Abzeichen und Nachrichten bei Freundschaftsanfragen werden aktiviert, sobald Roblox bestätigt, dass das dein Konto ist. Roblox öffnet ein Fenster, in dem du auf „Zulassen“ klickst, dieselbe Anmeldung wie beim RoUtility-Forum. Das machst du nur einmal.",
  "You’ve sent a lot of messages. Try again in {n} minutes, or clear the message to just add them.": "Du hast viele Nachrichten gesendet. Versuch es in {n} Minuten noch mal oder lösch die Nachricht, um die Person einfach hinzuzufügen.",
  "hey, we met in Adopt Me!": "hey, wir haben uns in Adopt Me! getroffen",
- "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} nutzt RoUtility, also kannst du eine Nachricht hinzufügen, die mit deiner Anfrage angezeigt wird. Keine Links oder Kontaktdaten."
+ "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} nutzt RoUtility, also kannst du eine Nachricht hinzufügen, die mit deiner Anfrage angezeigt wird. Keine Links oder Kontaktdaten.",
+ "Click to add a note": "Klicke, um eine Notiz hinzuzufügen",
+ "Profile Notes": "Profilnotizen",
+ "met in Adopt Me, good trader": "in Adopt Me getroffen, guter Trader",
+ "Only visible to you": "Nur für dich sichtbar",
+ "Add private notes to anyone’s profile, like on Discord. Only you can see them.": "Füge private Notizen zu jedem Profil hinzu, wie auf Discord. Nur du kannst sie sehen.",
+ "Back Up Notes": "Notizen sichern",
+ "Once you verify with Roblox, your notes are saved to your RoUtility account so they come back on other browsers. They’re encrypted and only you can get them. Turning this off deletes the backup.": "Sobald du dich mit Roblox verifizierst, werden deine Notizen in deinem RoUtility-Konto gespeichert, damit sie in anderen Browsern wieder da sind. Sie sind verschlüsselt und nur du kannst sie abrufen. Wenn du das ausschaltest, wird die Sicherung gelöscht."
 }

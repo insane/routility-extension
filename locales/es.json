@@ -3061,5 +3061,12 @@
  "Your badge and friend request messages turn on once Roblox confirms this is your account. Roblox opens a window where you click Allow, the same sign-in as the RoUtility Forum. You only do this once.": "Tu insignia y los mensajes en solicitudes de amistad se activan cuando Roblox confirma que esta es tu cuenta. Roblox abre una ventana donde haces clic en Permitir, el mismo inicio de sesión que en el Foro de RoUtility. Solo lo haces una vez.",
  "You’ve sent a lot of messages. Try again in {n} minutes, or clear the message to just add them.": "Has enviado muchos mensajes. Inténtalo de nuevo en {n} minutos o borra el mensaje para enviar la solicitud sin él.",
  "hey, we met in Adopt Me!": "hola, nos conocimos en Adopt Me!",
- "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} usa RoUtility, así que puedes añadir un mensaje que verá con tu solicitud. Sin enlaces ni datos de contacto."
+ "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} usa RoUtility, así que puedes añadir un mensaje que verá con tu solicitud. Sin enlaces ni datos de contacto.",
+ "Click to add a note": "Haz clic para añadir una nota",
+ "Profile Notes": "Notas de perfil",
+ "met in Adopt Me, good trader": "nos conocimos en Adopt Me, buen tradeador",
+ "Only visible to you": "Solo visible para ti",
+ "Add private notes to anyone’s profile, like on Discord. Only you can see them.": "Añade notas privadas al perfil de cualquiera, como en Discord. Solo tú puedes verlas.",
+ "Back Up Notes": "Hacer copia de las notas",
+ "Once you verify with Roblox, your notes are saved to your RoUtility account so they come back on other browsers. They’re encrypted and only you can get them. Turning this off deletes the backup.": "Cuando te verificas con Roblox, tus notas se guardan en tu cuenta de RoUtility para que vuelvan en otros navegadores. Están cifradas y solo tú puedes recuperarlas. Si lo desactivas, se borra la copia."
 }
