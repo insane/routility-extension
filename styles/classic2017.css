@@ -1579,3 +1579,134 @@ html.routility-2017 .menu-vertical .menu-option-content.active {
 html.routility-2017 .menu-vertical .menu-option-content:hover {
   background-color: var(--c17-hover) !important;
 }
+
+html.routility-2017 :is(.favorite-follow-vote-share, #favorites-button, .favorite-button-container) .icon-favorite,
+html.routility-2017 .favorite-follow-vote-share .icon-notifications-bell,
+html.routility-2017 .voting-panel :is(.icon-like, .icon-dislike) {
+  width: 28px !important;
+  height: 28px !important;
+  background-color: transparent !important;
+  background-repeat: no-repeat !important;
+  background-size: auto !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+}
+
+html.routility-2017 :is(.favorite-follow-vote-share, #favorites-button, .favorite-button-container) .icon-favorite {
+  background-image: url("https://images.rbxcdn.com/6d89a812844283096c6c39935f02483d-branded_04182018.svg") !important;
+  background-position: 0 -84px !important;
+}
+
+html.routility-2017 :is(.favorite-follow-vote-share, #favorites-button, .favorite-button-container) :is(.icon-favorite.favorited, a:hover .icon-favorite) {
+  background-position: -28px -84px !important;
+}
+
+html.routility-2017 .favorite-follow-vote-share .icon-notifications-bell {
+  background-image: url("https://images.rbxcdn.com/6d89a812844283096c6c39935f02483d-branded_04182018.svg") !important;
+  background-position: 0 -252px !important;
+}
+
+html.routility-2017 .favorite-follow-vote-share :is(.icon-notifications-bell:is(.followed, .notifications-on, .selected), a:hover .icon-notifications-bell) {
+  background-position: -28px -252px !important;
+}
+
+html.routility-2017 .voting-panel .icon-like {
+  background-image: url("https://images.rbxcdn.com/d76ac184081a4d2969061c60861cd1fe-games.svg") !important;
+  background-position: 0 -84px !important;
+}
+
+html.routility-2017 .voting-panel :is(.icon-like.selected, .upvote:hover .icon-like) {
+  background-position: -28px -84px !important;
+}
+
+html.routility-2017 .voting-panel .icon-dislike {
+  background-image: url("https://images.rbxcdn.com/d76ac184081a4d2969061c60861cd1fe-games.svg") !important;
+  background-position: 0 -112px !important;
+}
+
+html.routility-2017 .voting-panel :is(.icon-dislike.selected, .downvote:hover .icon-dislike) {
+  background-position: -28px -112px !important;
+}
+
+html.routility-2017 .voting-panel .vote-container {
+  height: 2px !important;
+  border-radius: 0 !important;
+}
+
+html.routility-2017 .voting-panel .vote-container :is(.vote-background, .vote-percentage) {
+  border-radius: 0 !important;
+}
+
+html.routility-2017 .voting-panel .vote-container .vote-background {
+  background-color: #b8b8b8 !important;
+}
+
+html.routility-2017 .voting-panel .vote-container .vote-background.has-votes {
+  background-color: #e27676 !important;
+}
+
+html.routility-2017 .voting-panel .vote-container .vote-percentage {
+  background-color: #02b757 !important;
+}
+
+html.routility-2017 .voting-panel .vote-mask .segment {
+  background-color: var(--c17-card) !important;
+}
+
+html.routility-2017 .voting-panel .count-left,
+html.routility-2017 .voting-panel .count-left * {
+  color: #02b757 !important;
+}
+
+html.routility-2017 .voting-panel .count-right,
+html.routility-2017 .voting-panel .count-right * {
+  color: #e2231a !important;
+}
+
+html.routility-2017 .favorite-follow-vote-share .icon-label {
+  color: var(--c17-text) !important;
+  font-size: 12px !important;
+}
+
+html.routility-2017 #favorites-button .text-favorite,
+html.routility-2017 .favorite-button-container .text-favorite {
+  color: #f6b702 !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+html.routility-2017 .price-container-text .price-info > .item-price-value:not(.routility-injected) .text-robux-lg {
+  color: #02b757 !important;
+}
+
+html.routility-2017 .price-container-text .price-info > .item-price-value:not(.routility-injected) .icon-robux-16x16 {
+  filter: brightness(0) saturate(100%) invert(52%) sepia(68%) saturate(2627%) hue-rotate(121deg) brightness(95%) contrast(98%) !important;
+}
+
+html.routility-2017 .catalog-revamp {
+  max-width: 970px !important;
+  margin: 0 auto !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-thumb-container {
+  border-bottom: 1px solid var(--c17-divider) !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-container {
+  height: 100% !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-name {
+  min-height: 2.8em !important;
+  white-space: normal !important;
+}
+
+html.routility-2017 .catalog-revamp ul.item-cards-stackable.organic-items-wrapper {
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  gap: 12px 12px !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-name {
+  font-size: 16px !important;
+  line-height: 1.4em !important;
+}
