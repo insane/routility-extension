@@ -250,6 +250,8 @@
     const text = last ? playText(total) : lt('Not played yet');
     if (time.textContent !== text) time.textContent = text;
     time.classList.toggle('routility-pt-line-none', !last);
+    const picker = row.querySelector('.routility-pt-range');
+    if (picker) picker.hidden = !last;
     const tip = [last && ltn(total, '{n} minute', '{n} minutes', { n: formatNumber(total) }), last && lt('Last played {date}', { date: shortDate(last) }), lt('Tracked by RoUtility while a Roblox tab is open.')].filter(Boolean).join(' • ');
     if (time.dataset.rtTip !== tip) time.dataset.rtTip = tip;
   }

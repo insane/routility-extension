@@ -10552,6 +10552,14 @@ html.routility-classic-premium .icon-regular-roblox-plus:has(+ :is(h1, h2, h3, h
   line-height: 20px;
 }
 
+.routility-pt-line > .text-label {
+  white-space: nowrap;
+}
+
+.routility-pt-line .routility-pt-range[hidden] {
+  display: none !important;
+}
+
 .routility-pt-line-time {
   font-weight: 600;
   color: var(--color-content-emphasis);

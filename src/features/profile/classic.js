@@ -1675,7 +1675,9 @@
   }
 
   async function profileData(userId, columns) {
-    const key = userId + (columns ? ':columns' : '');
+    if (window.RoUtilityFun && window.RoUtilityFun.ready) await window.RoUtilityFun.ready;
+    const fake = window.RoUtilityFun && window.RoUtilityFun.badges && window.RoUtilityFun.badges();
+    const key = userId + (columns ? ':columns' : '') + (fake ? ':fb:' + Object.keys(fake).filter(k => fake[k]).join(',') : '');
     const changed = await new Promise(r => chrome.storage.local.get(FRIENDS_AT, st => r(((st && st[FRIENDS_AT]) || {}).at || 0)));
     const hit = cachedData(key, changed);
     if (hit) return hit;
