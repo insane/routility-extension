@@ -2341,6 +2341,10 @@ html .routility-classic :is(.routility-classic-items-toggle, .routility-classic-
 
 .routility-columns-nodesc {
   margin: 0;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 24px !important;
+  text-align: center;
 }
 
 .routility-columns-about .profile-stats-container {
