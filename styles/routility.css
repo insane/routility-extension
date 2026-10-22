@@ -13810,6 +13810,8 @@ html.routility-classic-admin .routility-admin-badge::after {
   display: none !important;
 }
 
-.routility-fb-row > .routility-fb-group {
-  --icon-size-small: 1em;
+.routility-fb-row > .routility-fb-group,
+.routility-fb-nav,
+.routility-fb-nav > span {
+  display: contents !important;
 }
