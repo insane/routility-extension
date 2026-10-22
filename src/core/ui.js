@@ -286,7 +286,7 @@
     arrow.style.left = Math.round(r.left + r.width / 2 - left - 5) + 'px';
   }
 
-  const NAME_ROW = '#profile-header-title-container-name ~ *, .routility-name-badges, .avatar-name-container, .player-search-card-name, .friends-carousel-tile-name, .routility-friend-name-row';
+  const NAME_ROW = '#profile-header-title-container-name ~ *, .routility-name-badges';
   const BADGE_NAMES = [
     ['.icon-filled-verified-backplate, .icon-filled-verified-check', () => lt('Verified')],
     ['.icon-regular-roblox-plus', () => lt('Roblox Plus')],

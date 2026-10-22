@@ -20,7 +20,7 @@ RoUtility badges and friend request messages, plus server region and profile fix
 + Profile Notes: write a private note on anyone’s profile, like on Discord. Only you can see it, and once you verify with Roblox it’s backed up so it comes back on your other browsers. (by @reqonn)
 + Profile Pill Style: show Value and RAP joined, in separate colors or all gray. Pills now go Value, RAP, then Price, and private inventories show a lock. (by @reqonn)
 + RoUtility Badge and Friend Request Messages: verify with Roblox once and other RoUtility users see a small RoUtility logo next to your name. When you add a RoUtility user, you can include a short message, and messages people send you show on your Requests page. Links and contact info aren’t allowed, and you can report or block anyone. (by @reqonn)
-+ Hover a verified, Roblox Plus, Premium or admin badge next to a name to see what it is. (by @reqonn)
++ Hover a verified, Roblox Plus, Premium or admin badge next to someone’s name on their profile to see what it is. (by @reqonn)
 + Terminated players show their avatar on their profile, and pasted or outside links to terminated profiles open them too. (by @reqonn)
 + Online Friends First (Profiles, off by default): the 2022 profile’s friends row shows who’s in a game, in Studio or online first, like Roblox’s own profile.
 ```
