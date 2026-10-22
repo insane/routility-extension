@@ -76,6 +76,17 @@
   const BADGE_FIELDS = { hasVerifiedBadge: 'verified', isVerified: 'verified', isRobloxPlus: 'plus', hasRobloxSubscription: 'plus', isPremium: 'premium', isRobloxAdmin: 'admin' };
   const BADGE_URL = /^https:\/\/(?:users\.roblox\.com\/v1\/(?:users(?:\/\d+)?|usernames\/users|users\/search)|apis\.roblox\.com\/(?:user-profile-api\/v1\/user\/profiles\/get-profiles|profile-platform-api\/v1\/profiles\/get|search-api\/omni-search)|friends\.roblox\.com\/v1\/users\/\d+\/friends[^?#]*)(?:[?#]|$)/i;
   const MEMBERSHIP_URL = /^https:\/\/premiumfeatures\.roblox\.com\/v1\/users\/(\d+)\/validate-membership/i;
+  const ROBLOX_BADGES_URL = /^https:\/\/accountinformation\.roblox\.com\/v1\/users\/(\d+)\/roblox-badges/i;
+  const ADMIN_BADGE = { id: 1, name: 'Administrator', description: 'This badge identifies an account as belonging to a Roblox administrator. Only official Roblox administrators will possess this badge. If someone claims to be an admin, but does not have this badge, they are potentially trying to mislead you. If this happens, please report abuse and we will delete the imposter\'s account.', imageUrl: 'https://images.rbxcdn.com/def12ef9c8501334987a642eb11b7c91.png' };
+
+  function adminBadgeList(text, on) {
+    let list;
+    try { list = JSON.parse(text); } catch { return text; }
+    if (!Array.isArray(list)) return text;
+    const has = list.some(b => b && b.id === 1);
+    if (has === on) return text;
+    return JSON.stringify(on ? [ADMIN_BADGE].concat(list) : list.filter(b => !(b && b.id === 1)));
+  }
 
   function badgeSet() {
     if (!settings || settings.fakeBadges !== true || typeof settings.fakeBadgeSet !== 'string') return null;
@@ -316,6 +327,8 @@
     if (badges && BADGE_URL.test(url)) return badgeFetch(nativeFetch.apply(this, arguments), text => badgeEdit(text, badges, myId()));
     const member = badges && url.match(MEMBERSHIP_URL);
     if (member && member[1] === myId()) return badgeFetch(nativeFetch.apply(this, arguments), () => String(badges.plus || badges.premium));
+    const rbx = badges && url.match(ROBLOX_BADGES_URL);
+    if (rbx && rbx[1] === myId()) return badgeFetch(nativeFetch.apply(this, arguments), text => adminBadgeList(text, badges.admin));
     if (!settings || !wearing() || location.pathname.startsWith('/my/avatar')) return nativeFetch.apply(this, arguments);
     if (THUMBS.test(url)) return swapThumbs(url, nativeFetch.apply(this, arguments), init);
     const w = url.match(WEARING);

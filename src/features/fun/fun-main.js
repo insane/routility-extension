@@ -202,6 +202,17 @@
     ['GET', /^https:\/\/friends\.roblox\.com\/v1\/users\/\d+\/friends[^?#]*(?:[?#]|$)/i],
   ];
 
+  const ADMIN_BADGE = { id: 1, name: 'Administrator', description: 'This badge identifies an account as belonging to a Roblox administrator. Only official Roblox administrators will possess this badge. If someone claims to be an admin, but does not have this badge, they are potentially trying to mislead you. If this happens, please report abuse and we will delete the imposter\'s account.', imageUrl: 'https://images.rbxcdn.com/def12ef9c8501334987a642eb11b7c91.png' };
+
+  function adminBadgeList(text) {
+    const list = parse(text);
+    if (!Array.isArray(list) || !cfg || !cfg.badges) return text;
+    const on = cfg.badges.admin;
+    const has = list.some(b => b && b.id === 1);
+    if (has === on) return text;
+    return JSON.stringify(on ? [ADMIN_BADGE].concat(list) : list.filter(b => !(b && b.id === 1)));
+  }
+
   function badgeEdit(text) {
     const badges = cfg && cfg.badges;
     const d = badges && parse(text);
@@ -963,6 +974,7 @@
       } };
     }],
     ...BADGE_ROUTES.map(([m, re]) => [m, re, () => (cfg.badges ? { edit: badgeEdit } : null)]),
+    ['GET', /^https:\/\/accountinformation\.roblox\.com\/v1\/users\/(\d+)\/roblox-badges/i, (m) => (cfg.badges && Number(m[1]) === me() ? { edit: adminBadgeList } : null)],
     ['GET', /^https:\/\/premiumfeatures\.roblox\.com\/v1\/users\/(\d+)\/validate-membership/i, (m) => (cfg.badges && Number(m[1]) === me() ? { edit: () => String(cfg.badges.plus || cfg.badges.premium) } : null)],
     ['PATCH', /^https:\/\/avatar\.roblox\.com\/v4\/avatar(?:[?#]|$)/, (m, req, b) => stripWear(b, d => d.avatarDefinition && d.avatarDefinition.updateAvatarModel && d.avatarDefinition.updateAvatarModel.assets, d => !Array.isArray(d.updateTypes) || d.updateTypes.includes('UpdateAssets'))],
     ['POST', /^https:\/\/avatar\.roblox\.com\/v1\/avatar\/set-wearing-assets(?:[?#]|$)/, (m, req, b) => stripWear(b, d => d.assetIds, () => true)],
