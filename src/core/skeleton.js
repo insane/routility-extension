@@ -148,6 +148,65 @@
     fontAsked = true;
     chrome.storage.local.get('routilityFont', (st) => useFont(st.routilityFont));
   };
+  let classicLink = null;
+  let bodyWatch = null;
+  let bodyWait = null;
+  let swapped = false;
+  const lightMode = (on) => {
+    const body = document.body;
+    if (!body) {
+      if (on && !bodyWait) {
+        bodyWait = new MutationObserver(() => {
+          if (!document.body) return;
+          bodyWait.disconnect();
+          bodyWait = null;
+          lightMode(!!(lastSettings || {}).classicSite);
+        });
+        bodyWait.observe(root, { childList: true });
+      }
+      return;
+    }
+    const flip = () => {
+      if (body.classList.contains('dark-theme')) {
+        body.classList.replace('dark-theme', 'light-theme');
+        swapped = true;
+      }
+      if (body.classList.contains('color-mode-dark')) {
+        body.classList.replace('color-mode-dark', 'color-mode-light');
+        swapped = true;
+      }
+    };
+    if (on) {
+      flip();
+      if (!bodyWatch) {
+        bodyWatch = new MutationObserver(flip);
+        bodyWatch.observe(body, { attributes: true, attributeFilter: ['class'] });
+      }
+      return;
+    }
+    bodyWatch?.disconnect();
+    bodyWatch = null;
+    if (swapped) {
+      body.classList.replace('light-theme', 'dark-theme');
+      body.classList.replace('color-mode-light', 'color-mode-dark');
+      swapped = false;
+    }
+  };
+  const classicSite = () => {
+    const on = !!(lastSettings || {}).classicSite;
+    root.classList.toggle('routility-2017', on);
+    if (on && !classicLink) {
+      classicLink = document.createElement('link');
+      classicLink.rel = 'stylesheet';
+      classicLink.href = chrome.runtime.getURL('styles/classic2017.css');
+      classicLink.className = 'routility-2017-css';
+      (document.head || root).appendChild(classicLink);
+    } else if (!on && classicLink) {
+      classicLink.remove();
+      classicLink = null;
+    }
+    lightMode(on);
+  };
   let revealOn = true;
   const apply = (settings) => {
     needFont(settings);
@@ -354,7 +413,7 @@
   const TILES = '.thumbnail-2d-container, .item-card-thumb-container, .game-card-thumb-container, .asset-thumb-container';
   const applyTheme = () => {
     let css = '';
-    if (themeOn) {
+    if (themeOn && !(lastSettings || {}).classicSite) {
       const decl = [];
       const pick = (id) => id === 'nav' && !safeColor(themeColors.nav) ? themeColors.bg : themeColors[id];
       const navColor = pick('nav');
@@ -491,7 +550,7 @@
   let plusWatch = null;
   const plusTheme = () => {
     const s = lastSettings || {};
-    const want = !s.customTheme && PLUS_THEMES.includes(s.plusTheme) ? s.plusTheme : '';
+    const want = !s.customTheme && !s.classicSite && PLUS_THEMES.includes(s.plusTheme) ? s.plusTheme : '';
     const body = document.body;
     if (!body) {
       if (want && !plusWatch) {
@@ -521,6 +580,7 @@
   };
   const boot = (s) => {
     lastSettings = s.routilitySettings || {};
+    classicSite();
     oldNav();
     plusTheme();
     watchRobloxOnly();
@@ -543,7 +603,7 @@
   });
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area === 'local' && EARLY_KEYS.some(k => changes[k])) remember(Object.fromEntries(EARLY_KEYS.filter(k => changes[k]).map(k => [k, changes[k].newValue])));
-    if (area === 'local' && changes.routilitySettings) { lastSettings = changes.routilitySettings.newValue || {}; oldNav(); plusTheme(); apply(changes.routilitySettings.newValue); applyNav(navLayout); applyCollapse(); watchRobloxOnly(); themeOn = !!lastSettings.customTheme; needImage(); applyTheme(); }
+    if (area === 'local' && changes.routilitySettings) { lastSettings = changes.routilitySettings.newValue || {}; classicSite(); oldNav(); plusTheme(); apply(changes.routilitySettings.newValue); applyNav(navLayout); applyCollapse(); watchRobloxOnly(); themeOn = !!lastSettings.customTheme; needImage(); applyTheme(); }
     if (area === 'local' && changes.routilityTheme) { const t = changes.routilityTheme.newValue || {}; themeColors = t.colors || {}; themeFx = typeof t.fx === 'string' ? t.fx : ''; themeLook = t; needImage(); applyTheme(); }
     if (area === 'local' && changes.routilityFont) { fontAsked = true; useFont(changes.routilityFont.newValue); }
     if (area === 'local' && changes.routilityThemeImage) { themeImage = IMAGE.test(changes.routilityThemeImage.newValue) ? changes.routilityThemeImage.newValue : ''; imageAsked = true; applyTheme(); }

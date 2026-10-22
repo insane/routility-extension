@@ -1,0 +1,147 @@
+@font-face {
+  font-family: "HCo Gotham SSm";
+  src: url("https://static.rbxcdn.com/fonts/Gotham/GothamSSm-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "HCo Gotham SSm";
+  src: url("https://static.rbxcdn.com/fonts/Gotham/GothamSSm-Book.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "HCo Gotham SSm";
+  src: url("https://static.rbxcdn.com/fonts/Gotham/GothamSSm-Medium.woff2") format("woff2");
+  font-weight: 500 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "HCo Gotham SSm";
+  src: url("https://static.rbxcdn.com/fonts/Gotham/GothamSSm-Bold.woff2") format("woff2");
+  font-weight: 700 900;
+  font-display: swap;
+}
+
+html.routility-2017,
+html.routility-2017 body,
+html.routility-2017 .light-theme,
+html.routility-2017 .dark-theme {
+  --color-surface-0: #e3e3e3 !important;
+  --color-surface-100: #ffffff !important;
+  --color-surface-200: #f2f4f5 !important;
+  --color-surface-300: #ffffff !important;
+  --color-content-emphasis: #191919 !important;
+  --color-content-default: #393b3d !important;
+  --color-content-muted: #757575 !important;
+  --color-content-link: #00a2ff !important;
+  --color-shift-100: rgba(25, 25, 25, 0.04) !important;
+  --color-shift-200: rgba(25, 25, 25, 0.08) !important;
+  --color-shift-300: rgba(25, 25, 25, 0.12) !important;
+  --color-shift-400: rgba(25, 25, 25, 0.16) !important;
+  --color-stroke-muted: #e3e3e3 !important;
+  --color-stroke-default: #b8b8b8 !important;
+  --color-stroke-emphasis: #757575 !important;
+  --color-system-emphasis: #00a2ff !important;
+  --color-action-emphasis-background: #00a2ff !important;
+  --color-action-emphasis-foreground: #ffffff !important;
+  --color-action-link-foreground: #00a2ff !important;
+  --color-common-navigation-bar: #0074bd !important;
+  --radius-xsmall: 2px !important;
+  --radius-small: 3px !important;
+  --radius-medium: 3px !important;
+  --radius-large: 4px !important;
+}
+
+html.routility-2017 body,
+html.routility-2017 body *:not([class*="icon"]):not(input[type="password"]) {
+  font-family: "HCo Gotham SSm", "Source Sans Pro", Arial, Helvetica, sans-serif !important;
+}
+
+html.routility-2017 body {
+  background-color: #e3e3e3 !important;
+  color: #191919;
+}
+
+html.routility-2017 #header.rbx-header {
+  background-color: #0074bd !important;
+  border-bottom: 0 !important;
+  box-shadow: 0 1px 3px rgba(25, 25, 25, 0.3);
+}
+
+html.routility-2017 #header .rbx-navbar a,
+html.routility-2017 #header .rbx-navbar .font-header-2,
+html.routility-2017 #header .rbx-navbar-right,
+html.routility-2017 #header .rbx-navbar-right a,
+html.routility-2017 #header .age-bracket-label,
+html.routility-2017 #header .age-bracket-label *:not(.verified-badge):not(.verified-badge *) {
+  color: #ffffff !important;
+}
+
+html.routility-2017 #header .icon-filled-verified-backplate {
+  color: #00a2ff !important;
+}
+
+html.routility-2017 #header .icon-filled-verified-check {
+  color: #ffffff !important;
+}
+
+html.routility-2017 #header .rbx-navbar a:hover {
+  background-color: rgba(25, 25, 25, 0.1) !important;
+  border-radius: 5px;
+}
+
+html.routility-2017 #header .rbx-navbar-right .icon:not(.icon-filled-verified-backplate):not(.icon-filled-verified-check),
+html.routility-2017 #header .rbx-nav-collapse .icon,
+html.routility-2017 #header #header-menu-icon [class*="icon"] {
+  color: #ffffff !important;
+  background-color: currentColor;
+}
+
+html.routility-2017 #header .navbar-search .input-group,
+html.routility-2017 #header .navbar-search input,
+html.routility-2017 #header .navbar-search [class*="foundation-web-input"] {
+  background-color: #ffffff !important;
+  color: #191919 !important;
+  border-color: transparent !important;
+  border-radius: 3px !important;
+}
+
+html.routility-2017 .left-nav,
+html.routility-2017 .rbx-left-col {
+  background-color: #ffffff !important;
+  box-shadow: 0 0 3px rgba(25, 25, 25, 0.3);
+}
+
+html.routility-2017 .left-nav a,
+html.routility-2017 .rbx-left-col .text-nav {
+  color: #191919 !important;
+}
+
+html.routility-2017 :is(.btn-common-play-game-lg, .btn-primary-md, .btn-primary-lg, .btn-growth-md, .btn-growth-lg) {
+  background-color: #02b757 !important;
+  border-color: #02b757 !important;
+  color: #ffffff !important;
+  border-radius: 3px !important;
+}
+
+html.routility-2017 :is(.btn-secondary-md, .btn-secondary-xs, .btn-secondary-lg) {
+  background-color: #00a2ff !important;
+  border-color: #00a2ff !important;
+  color: #ffffff !important;
+  border-radius: 3px !important;
+}
+
+html.routility-2017 :is(.btn-control-md, .btn-control-sm, .btn-control-xs) {
+  background-color: #ffffff !important;
+  border: 1px solid #b8b8b8 !important;
+  color: #191919 !important;
+  border-radius: 3px !important;
+}
+
+html.routility-2017 .section-content {
+  background-color: #ffffff;
+}

@@ -249,6 +249,7 @@
         "assets/icons/social.svg",
         "assets/icons/roblox-badges/*",
         "assets/icons/classic/*",
+        "styles/classic2017.css",
         "assets/flags/*",
         "assets/icons/forum/*",
         "vendor/*",
