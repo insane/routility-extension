@@ -86,6 +86,7 @@
         "src/features/account/account.js",
         "src/features/games/unavailable.js",
         "src/features/nav/oldnav.js",
+        "src/features/themes/classic2017.js",
         "src/features/trading/calc.js",
         "src/features/trading/tradeads.js",
         "src/features/items/itemcard.js",
