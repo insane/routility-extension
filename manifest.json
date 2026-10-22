@@ -200,6 +200,17 @@
     },
     {
       "matches": [
+        "https://www.roblox.com/catalog/*",
+        "https://www.roblox.com/bundles/*"
+      ],
+      "js": [
+        "src/features/avatar/launch-main.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
         "https://www.roblox.com/users/*/inventory*",
         "https://www.roblox.com/users/inventory*"
       ],

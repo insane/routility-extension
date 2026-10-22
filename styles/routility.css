@@ -7611,6 +7611,17 @@ html.routility-streamer-account .routility-devices-list > li:not(:first-child) .
   min-width: 170px;
 }
 
+.routility-quick-row .routility-quick-dd .dropdown-menu > li {
+  margin: 0 !important;
+}
+
+.rbx-left-col .routility-quick .routility-quick-row .routility-quick-dd .dropdown-menu {
+  left: 0 !important;
+  right: 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+}
+
 .routility-quick-row .routility-quick-dd .dropdown-menu > li > button {
   padding: 7px 10px !important;
   font-size: 14px !important;

@@ -7,9 +7,8 @@
   const GAME_PLACE = '124649447209956';
   let st = null;
 
-  function gameLink(s) {
-    const data = JSON.stringify(s.items ? { v: 1, b: [Number(s.itemId)] } : { v: 1, a: [Number(s.itemId)] });
-    return `roblox://experiences/start?placeId=${GAME_PLACE}&launchData=${encodeURIComponent(data)}`;
+  function gameJoin(s) {
+    return { placeId: GAME_PLACE, launchData: JSON.stringify(s.items ? { v: 1, b: [Number(s.itemId)] } : { v: 1, a: [Number(s.itemId)] }) };
   }
 
   function placeGame(box, model) {
@@ -20,7 +19,7 @@
     b.className = (model ? model.className : 'btn-control btn-control-md') + ' routility-injected routility-ig-btn';
     b.textContent = lt('Try In-Game');
     b.dataset.rtTip = lt('Opens Avatar Sandbox with this on your avatar');
-    b.addEventListener('click', () => window.RoUtilityTryOn.launch(gameLink(s)));
+    b.addEventListener('click', () => window.RoUtilityTryOn.launch(gameJoin(s)));
     box.appendChild(b);
   }
 
@@ -141,5 +140,5 @@
     }
   });
 
-  window.RoUtilityTryOn = { setup, setupBundle, teardown, launch: (url) => { location.href = url; } };
+  window.RoUtilityTryOn = { setup, setupBundle, teardown, launch: (join) => window.postMessage({ type: 'routility-try-game', placeId: join.placeId, launchData: join.launchData }, location.origin) };
 })();
