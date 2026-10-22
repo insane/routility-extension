@@ -14,7 +14,7 @@ RoUtility badges and friend request messages, plus server region and profile fix
 **New**
 
 ```diff
-+ 2017 Roblox Theme (Classic, off by default): the 2017 to 2019 Roblox look with the blue top bar, white sidebar, gray page, Gotham font, square corners and green Play buttons.
++ 2017 Roblox Theme, phase 1 (Classic, off by default): the 2017 to 2019 Roblox look on Home, Games, game and item pages, the Catalog and profiles, with the blue top bar, old sidebar, Classic Names and green Play buttons. A Roblox Plus or custom theme keeps its colors. More pages come in the next phases.
 + Custom Name Badges (Fun): pick Verified, Roblox Plus, Premium and Roblox Admin for your own name. They show everywhere Roblox shows badges, in Roblox’s order, and start with the ones you really have. Roblox Admin also adds the Administrator badge to your Roblox Badges.
 + Classic Admin Badge (Classic, off by default): the old red R logo as the Roblox admin badge next to names, and the old Administrator badge in Roblox Badges.
 + Try In-Game: a button on item and bundle pages that opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy.
