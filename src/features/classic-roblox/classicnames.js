@@ -17,6 +17,12 @@
   let titleWas = null;
   let classic = { words: {}, re: null, titles: [], develop: false, key: '' };
 
+  function withTheme(s) {
+    if (s.classicSite !== true) return s;
+    const on = s.classicNames === true;
+    return { ...s, classicNames: true, classicGames: true, classicCatalog: true, classicGroups: true, classicPackages: true, classicDevelop: on && s.classicDevelop !== false };
+  }
+
   function classicConfig() {
     const words = {};
     const titles = [];
@@ -152,15 +158,15 @@
     }
   }
 
-  try { settings = (JSON.parse(localStorage.getItem('routilityEarly')) || {}).routilitySettings || {}; } catch {}
+  try { settings = withTheme((JSON.parse(localStorage.getItem('routilityEarly')) || {}).routilitySettings || {}); } catch {}
   startClassicNames();
   chrome.storage.local.get('routilitySettings', (st) => {
-    settings = st.routilitySettings || {};
+    settings = withTheme(st.routilitySettings || {});
     startClassicNames();
   });
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== 'local' || !changes.routilitySettings) return;
-    settings = changes.routilitySettings.newValue || {};
+    settings = withTheme(changes.routilitySettings.newValue || {});
     startClassicNames();
   });
   window.RoUtilityI18n.ready?.then(() => { if (namesObserver) classicTitle(); });

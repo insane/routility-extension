@@ -222,6 +222,10 @@
   if (!errorPage && !/^\/users\/\d+\/profile\/?$/i.test(location.pathname)) return;
   chrome.storage.local.get(['routilitySettings', 'routilityLastProfile'], (s) => {
     const settings = { revealTerminated: true, classicProfile: true, ...(s.routilitySettings || {}) };
+    if (settings.classicSite) {
+      settings.classicProfile = true;
+      settings.classicLayout = 'tabs';
+    }
     skSettings = settings;
     let shown = null;
     try { shown = sessionStorage.getItem('routilityTerminated'); } catch {}

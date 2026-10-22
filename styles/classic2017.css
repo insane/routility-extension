@@ -294,7 +294,7 @@ html.routility-2017 #content {
   line-height: 1.4;
 }
 
-html.routility-2017 .game-card-container {
+html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-container {
   position: relative !important;
   height: 100% !important;
   background-color: #ffffff !important;
@@ -302,20 +302,20 @@ html.routility-2017 .game-card-container {
   text-align: left !important;
 }
 
-html.routility-2017 .game-card-link {
+html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-link {
   display: block !important;
 }
 
-html.routility-2017 :is(.game-card-thumb-container, .game-card-thumb, .game-card-thumb img) {
+html.routility-2017 li.game-card:not(.routility-classic-game) :is(.game-card-thumb-container, .game-card-thumb, .game-card-thumb img) {
   border-radius: 0 !important;
   background-color: transparent !important;
 }
 
-html.routility-2017 .game-card-thumb-container {
+html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-thumb-container {
   display: block !important;
 }
 
-html.routility-2017 .game-card-name {
+html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-name {
   width: 100% !important;
   max-height: 45px !important;
   margin: 6px 0 3px !important;
@@ -330,7 +330,7 @@ html.routility-2017 .game-card-name {
   word-break: break-word;
 }
 
-html.routility-2017 .game-card-info {
+html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-info {
   position: absolute !important;
   bottom: 6px !important;
   width: 100% !important;
@@ -338,7 +338,7 @@ html.routility-2017 .game-card-info {
   line-height: 1.4em !important;
 }
 
-html.routility-2017 .game-card-info .info-label {
+html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-info .info-label {
   display: inline-block !important;
   padding: 0 !important;
   color: #191919 !important;
@@ -348,19 +348,19 @@ html.routility-2017 .game-card-info .info-label {
   vertical-align: middle;
 }
 
-html.routility-2017 .game-card-info .info-label + .info-label {
+html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-info .info-label + .info-label {
   margin-left: 5.1px !important;
 }
 
-html.routility-2017 .game-card-info .info-label + .icon-playing-counts-gray {
+html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-info .info-label + .icon-playing-counts-gray {
   margin-left: 17.2px !important;
 }
 
-html.routility-2017 .game-card-info :is(.vote-percentage-label, .playing-counts-label) {
+html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-info :is(.vote-percentage-label, .playing-counts-label) {
   vertical-align: baseline !important;
 }
 
-html.routility-2017 .game-card-info :is(.icon-votes-gray, .icon-playing-counts-gray) {
+html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-info :is(.icon-votes-gray, .icon-playing-counts-gray) {
   width: 16px !important;
   height: 16px !important;
   background-image: url("https://static.rbxcdn.com/images/Shared/games_08302018.svg") !important;
@@ -370,11 +370,11 @@ html.routility-2017 .game-card-info :is(.icon-votes-gray, .icon-playing-counts-g
   mask: none !important;
 }
 
-html.routility-2017 .game-card-info .icon-votes-gray {
+html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-info .icon-votes-gray {
   background-position: 0 -480px !important;
 }
 
-html.routility-2017 .game-card-info .icon-playing-counts-gray {
+html.routility-2017 li.game-card:not(.routility-classic-game) .game-card-info .icon-playing-counts-gray {
   background-position: 0 -496px !important;
 }
 
@@ -729,4 +729,183 @@ html.routility-2017 .container-header .btn-more:hover {
 
 html.routility-2017 :is(.btn-secondary-xs, .btn-secondary-md).see-all-link-icon::after {
   display: none !important;
+}
+
+html.routility-2017 .routility-classic .profile-avatar-image .avatar-card-link,
+html.routility-2017 .routility-classic .profile-avatar-image .thumbnail-2d-container {
+  background-color: #d1d1d1 !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .header-title h2 {
+  font-size: 32px !important;
+  font-weight: 800 !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .header-caption {
+  height: auto !important;
+  min-height: 128px !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .header-details {
+  align-items: flex-end !important;
+  height: auto !important;
+  margin-top: 6px !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .details-info {
+  display: flex !important;
+  padding: 0 !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .details-info > li {
+  display: flex !important;
+  flex-direction: column-reverse !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  box-sizing: border-box !important;
+  width: 104px !important;
+  padding: 0 5px !important;
+  text-align: center !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .details-info .text-label {
+  margin: 0 !important;
+  color: #b8b8b8 !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 17px !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .details-info a.text-name {
+  padding: 5px 0 !important;
+  color: #00a2ff !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 12px !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .details-actions > li {
+  padding: 0 5px !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .details-actions .btn-control-md {
+  height: 38px !important;
+  padding: 9px !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  line-height: 100% !important;
+}
+
+html.routility-2017 .routility-classic .rbx-tabs-horizontal .rbx-tab .rbx-tab-heading {
+  border: 0 !important;
+  background-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+html.routility-2017 .routility-classic .rbx-tabs-horizontal .rbx-tab .rbx-tab-heading::after,
+html.routility-2017 .routility-classic .rbx-tabs-horizontal .rbx-tab .rbx-tab-heading::before {
+  display: none !important;
+}
+
+html.routility-2017 .routility-classic .rbx-tabs-horizontal .rbx-tab.active .rbx-tab-heading {
+  box-shadow: inset 0 -4px 0 0 #00a2ff !important;
+}
+
+html.routility-2017 .routility-classic .rbx-tabs-horizontal .rbx-tab:not(.active) .rbx-tab-heading:hover {
+  box-shadow: inset 0 -4px 0 0 #b8b8b8 !important;
+}
+
+html.routility-2017 .routility-classic .profile-about {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+html.routility-2017 .routility-classic .profile-about > .section-content.remove-panel,
+html.routility-2017 .routility-classic .profile-about > .routility-profile-note {
+  margin: 0 !important;
+  padding: 0 15px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .routility-classic .profile-about > .container-header + .section-content.remove-panel {
+  padding-top: 15px !important;
+}
+
+html.routility-2017 .routility-classic .profile-about > .section-content.remove-panel:last-child {
+  padding-bottom: 15px !important;
+  margin-bottom: 18px !important;
+}
+
+html.routility-2017 .routility-classic .profile-about > .routility-profile-note {
+  padding-bottom: 12px !important;
+}
+
+html.routility-2017 .routility-classic .profile-about .profile-about-footer {
+  border-top: 1px solid #e3e3e3 !important;
+}
+
+html.routility-2017 .routility-classic .profile-about .text-error {
+  color: #d86868 !important;
+}
+
+html.routility-2017 .routility-classic .profile-avatar-right {
+  background: linear-gradient(rgba(117, 117, 117, 0.5), rgba(117, 117, 117, 0.5)), #0074bd !important;
+}
+
+html.routility-2017 .routility-classic .routility-classic-accoutrement .routility-classic-thumb {
+  border-radius: 4px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .routility-classic .routility-classic-dot {
+  border: 1px solid #ffffff !important;
+  background-color: transparent !important;
+}
+
+html.routility-2017 .routility-classic .routility-classic-dot:is(.active, .page-active, :hover) {
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .routility-classic .routility-classic-roblox-badges > .section-content,
+html.routility-2017 .routility-classic :is(.profile-collections, .routility-classic-collections, .routility-classic-badges, .routility-classic-player-badges) > .section-content {
+  padding: 15px !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .routility-classic .badge-list > li.asset-item,
+html.routility-2017 .routility-classic .collections-list > li.asset-item {
+  box-sizing: border-box !important;
+  width: 16.666% !important;
+}
+
+html.routility-2017 .routility-classic .asset-item .asset-thumb-container {
+  box-sizing: border-box !important;
+  border: 1px solid #b8b8b8 !important;
+  border-radius: 0 !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .routility-classic .asset-item .item-name {
+  color: #191919 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+html.routility-2017 .routility-classic .profile-view-selector.btn-secondary-xs {
+  border-color: #00a2ff !important;
+  background-color: #00a2ff !important;
+}
+
+html.routility-2017 .routility-classic .profile-view-selector.btn-control-xs {
+  border: 1px solid #b8b8b8 !important;
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .profile-header-content {
+  height: auto !important;
+  min-height: 158px !important;
+}
+
+html.routility-2017 .routility-classic .profile-about > .routility-profile-note {
+  border-top: 0 !important;
 }

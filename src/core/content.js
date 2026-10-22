@@ -557,6 +557,10 @@
     if (terminated) {
       chrome.storage.local.get('routilitySettings', (stored) => {
         const settings = { revealTerminated: true, classicProfile: true, inventoryValues: true, ...(stored.routilitySettings || {}) };
+        if (settings.classicSite) {
+          settings.classicProfile = true;
+          settings.classicLayout = 'tabs';
+        }
         if (!settings.revealTerminated || window.location.pathname !== path) return;
         history.replaceState(history.state, '', `/users/${terminated}/profile`);
         try { sessionStorage.setItem('routilityTerminated', terminated); } catch {}
@@ -737,6 +741,10 @@
     if (!profile && !inventory) return;
     chrome.storage.local.get('routilitySettings', (stored) => {
       const settings = { inventoryValues: true, classicProfile: true, mutualFriends: true, hiddenFriends: true, ...(stored.routilitySettings || {}) };
+      if (settings.classicSite) {
+        settings.classicProfile = true;
+        settings.classicLayout = 'tabs';
+      }
       if (window.location.pathname !== path) return;
       if (profile && settings.mutualFriends) window.RoUtilityMutual.setup(profile[1], { hidden: settings.hiddenFriends });
       if (profile && settings.badgeDates !== false) window.RoUtilityOwned.setup(profile[1], { items: false, badges: true });

@@ -4,7 +4,6 @@
   if (location.hostname !== 'www.roblox.com') return;
   const { lt, LT } = window.RoUtilityI18n;
   const SEE_ALL = LT('See All');
-  const NAV = { 'nav-charts-md-link': LT('Games'), 'nav-marketplace-md-link': LT('Catalog') };
   let on = false;
 
   function seeAll() {
@@ -25,22 +24,7 @@
     }
   }
 
-  function navNames() {
-    for (const [id, name] of Object.entries(NAV)) {
-      const a = document.getElementById(id);
-      if (!a) continue;
-      if (on) {
-        if (a.dataset.rtName === undefined) a.dataset.rtName = a.textContent;
-        if (a.textContent !== lt(name)) a.textContent = lt(name);
-      } else if (a.dataset.rtName !== undefined) {
-        a.textContent = a.dataset.rtName;
-        delete a.dataset.rtName;
-      }
-    }
-  }
-
   function run() {
-    navNames();
     if (!on) {
       document.querySelectorAll('.routility-2017-more').forEach(n => n.remove());
       return;

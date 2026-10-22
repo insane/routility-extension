@@ -2063,7 +2063,8 @@
 
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== 'local' || !changes.routilitySettings || !state || state.modern) return;
-    const layout = (changes.routilitySettings.newValue || {}).classicLayout;
+    const next = changes.routilitySettings.newValue || {};
+    const layout = next.classicSite ? 'tabs' : next.classicLayout;
     if ((layout === 'columns') === !!state.columns) return;
     const { userId, terminated, reveal } = state;
     teardown();
