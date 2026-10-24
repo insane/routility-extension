@@ -2947,5 +2947,23 @@
  "Starts with the badges you really have. Roblox shows Roblox Plus instead of Premium when you have both, so only one of them can be picked.": "一开始会选中你实际拥有的徽章。两者都有时 Roblox 会显示 Roblox Plus 而不是 Premium，所以只能选其中一个。",
  "Your Badges": "你的徽章",
  "2017 Roblox Theme": "2017 年 Roblox 主题",
- "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017 到 2019 年的 Roblox 外观：蓝色顶栏、白色侧边栏、旧版页面和绿色的开始按钮，并使用经典名称和旧版侧边栏。Roblox Plus 主题或自定义主题会保留它们的颜色。"
+ "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017 到 2019 年的 Roblox 外观：蓝色顶栏、白色侧边栏、旧版页面和绿色的开始按钮，并使用经典名称和旧版侧边栏。Roblox Plus 主题或自定义主题会保留它们的颜色。",
+ "Friend History": "好友记录",
+ "Friend History - Roblox": "好友记录 - Roblox",
+ "Added You": "添加了你",
+ "Removed You": "删除了你",
+ "No new friends yet.": "还没有新好友。",
+ "Nobody has been removed yet.": "还没有人删除你。",
+ "While Roblox is open, RoUtility checks your friends list and records who was added and who was removed. Stored only on this device.": "Roblox 打开期间，RoUtility 会检查你的好友列表，并记录谁被添加、谁被删除。仅保存在此设备上。",
+ "Search friend history": "搜索好友记录",
+ "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. While Roblox is open, your friends list is checked about once a minute. Stored only on this device.": "位于 roblox.com/friend-history 的好友记录页面，分两栏显示：被添加到你好友列表的人，以及不再在列表中的人。Roblox 打开期间，大约每分钟检查一次你的好友列表。仅保存在此设备上。",
+ "Friend History in the Menu": "菜单中的好友记录",
+ "A Friend History link in the left menu, under Friends.": "左侧菜单中“好友”下方的“好友记录”链接。",
+ "Last checked {time}": "上次检查：{time}",
+ "Not checked yet": "尚未检查",
+ "{n} changes since you last looked": {
+  "other": "自上次查看以来有 {n} 项变化"
+ },
+ "Last checked {n}s ago": "上次检查：{n}秒前",
+ "Last checked {m}m {s}s ago": "上次检查：{m}分{s}秒前"
 }

@@ -58,6 +58,7 @@
         "src/features/inventory/inventory.js",
         "src/features/trading/trades.js",
         "src/features/friends/friends.js",
+        "src/features/friends/history.js",
         "src/features/friends/requests.js",
         "src/features/friends/social.js",
         "src/features/robux/transactions.js",

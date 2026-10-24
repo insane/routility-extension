@@ -1772,6 +1772,8 @@
 
   const SNAP_KEY = (me) => 'routilityFriendSnap:' + me;
   const GONE_KEY = (me) => 'routilityUnfriended:' + me;
+  const LOG_KEY = (me) => 'routilityFriendLog:' + me;
+  const LOG_CAP = 1000;
   const BY_ME_KEY = 'routilityUnfriendedByMe';
 
   async function stillFriends(me, ids) {
@@ -1803,7 +1805,7 @@
   async function ufScanNow(me, known) {
     const live = (await localIds(me, true))?.map(String);
     if (!live) return null;
-    const st = await chrome.storage.local.get([SNAP_KEY(me), GONE_KEY(me), BY_ME_KEY]);
+    const st = await chrome.storage.local.get([SNAP_KEY(me), GONE_KEY(me), LOG_KEY(me), BY_ME_KEY]);
     const prev = st[SNAP_KEY(me)];
     const now = new Set(live);
     const byMeList = (st[BY_ME_KEY] || []).map(String);
@@ -1815,8 +1817,17 @@
     const names = Object.assign({}, (prev && prev.names) || {});
     for (const x of known || []) names[String(x.id)] = { name: x.name, displayName: x.displayName };
     let fresh = [];
+    let added = [];
     let lagging = [];
+    let log = Array.isArray(st[LOG_KEY(me)]) ? st[LOG_KEY(me)] : null;
+    let logDirty = false;
+    if (!log) {
+      log = (st[GONE_KEY(me)] || []).map(g => ({ id: g.id, name: g.name || '', displayName: g.displayName || g.name || '', type: 'removed', at: g.at }));
+      logDirty = true;
+    }
     if (trusted) {
+      const was = new Set(prev.ids);
+      added = live.filter(id => !was.has(id));
       fresh = prev.ids.filter(id => !now.has(id) && !byMe.has(id));
       if (fresh.length) {
         const still = await stillFriends(me, fresh);
@@ -1828,7 +1839,7 @@
           fresh = [];
         }
       }
-      const unnamed = fresh.filter(id => !(names[id] && names[id].name)).map(Number);
+      const unnamed = [...fresh, ...added].filter(id => !(names[id] && names[id].name)).map(Number);
       for (let i = 0; i < unnamed.length; i += 100) {
         const res = await post('https://users.roblox.com/v1/users', { userIds: unnamed.slice(i, i + 100), excludeBannedUsers: false });
         for (const u of (res && res.data) || []) names[String(u.id)] = { name: u.name, displayName: u.displayName };
@@ -1837,18 +1848,27 @@
       const again = new Set(fresh);
       gone = gone.filter(g => !again.has(g.id));
       gone = [...fresh.map(id => ({ id, name: (names[id] || {}).name || '', displayName: (names[id] || {}).displayName || (names[id] || {}).name || '', at, seen: false })), ...gone].slice(0, 200);
+      const last = new Map();
+      for (const e of log) if (!last.has(e.id)) last.set(e.id, e.type);
+      const entry = (id, type) => ({ id, name: (names[id] || {}).name || '', displayName: (names[id] || {}).displayName || (names[id] || {}).name || '', type, at });
+      const news = [...fresh.filter(id => last.get(id) !== 'removed').map(id => entry(id, 'removed')), ...added.filter(id => last.get(id) !== 'added').map(id => entry(id, 'added'))];
+      if (news.length) {
+        const count = { added: 0, removed: 0 };
+        log = [...news, ...log].filter(e => ++count[e.type] <= LOG_CAP);
+        logDirty = true;
+      }
     }
     const miss = trusted || !prev ? 0 : (Number(prev.miss) || 0) + 1;
     if (trusted || !prev || miss >= 3) {
       const keep = {};
       const ids = [...live, ...lagging];
       for (const id of ids) if (names[id]) keep[id] = names[id];
-      await chrome.storage.local.set({ [SNAP_KEY(me)]: { ids, names: keep, at: Date.now() }, [GONE_KEY(me)]: gone });
+      await chrome.storage.local.set({ [SNAP_KEY(me)]: { ids, names: keep, at: Date.now() }, [GONE_KEY(me)]: gone, ...(logDirty ? { [LOG_KEY(me)]: log } : {}) });
     } else {
-      await chrome.storage.local.set({ [SNAP_KEY(me)]: { ...prev, miss } });
+      await chrome.storage.local.set({ [SNAP_KEY(me)]: { ...prev, miss }, ...(logDirty ? { [LOG_KEY(me)]: log } : {}) });
     }
     if (fresh.length) friendsChanged(fresh);
-    return { gone, fresh, count: live.length };
+    return { gone, fresh, added, count: live.length };
   }
 
   async function ufCheck(f) {
@@ -1888,16 +1908,16 @@
         ff.gone = r.gone;
         if (!r.fresh.length) ufPlace();
       }
-      if (r.fresh.length) ufOpen({ userId: w.me, gone: r.gone });
+      if (r.fresh.length && w.notify) ufOpen({ userId: w.me, gone: r.gone });
     } finally {
       w.busy = false;
     }
   }
 
-  function startUnfriendWatch() {
+  function startUnfriendWatch(notify) {
     const me = myId();
     if (!me || ufWatch || window.top !== window) return;
-    ufWatch = { me, busy: false };
+    ufWatch = { me, busy: false, notify };
     setTimeout(() => ufTick(true), 2500);
     ufWatch.timer = setInterval(() => ufTick(false), 60000);
     document.addEventListener('visibilitychange', () => { if (!document.hidden) setTimeout(() => ufTick(false), 1500); });
@@ -2177,10 +2197,10 @@
   if (location.hostname === 'www.roblox.com') {
     chrome.storage.local.get('routilitySettings', (st) => {
       const settings = st.routilitySettings || {};
-      if (settings.unfriendDetector !== false) startUnfriendWatch();
+      if (settings.unfriendDetector !== false || settings.friendHistory !== false) startUnfriendWatch(settings.unfriendDetector !== false);
       if (settings.cancelRequests !== false) startCancelRequests();
     });
   }
 
-  window.RoUtilityFriends = { friendDates, stopFriendDates, cardMenus, termedSearch, searchCardLinks, friendFilters, stopFriendFilters, adminBadges, stopAdminBadges, setup, teardown, load, hidden, revealDeleted, missing, hiddenBadge, fillUnavailable, headshots, plusSet, adminSet, robloxPost, plusIcon, skeletonCard, pagerButton };
+  window.RoUtilityFriends = { friendDates, stopFriendDates, cardMenus, termedSearch, searchCardLinks, friendFilters, stopFriendFilters, adminBadges, stopAdminBadges, setup, teardown, load, hidden, revealDeleted, missing, hiddenBadge, fillUnavailable, headshots, plusSet, adminSet, robloxPost, plusIcon, skeletonCard, pagerButton, friendLogKey: LOG_KEY, friendSnapKey: SNAP_KEY };
 })();

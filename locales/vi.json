@@ -2947,5 +2947,23 @@
  "Starts with the badges you really have. Roblox shows Roblox Plus instead of Premium when you have both, so only one of them can be picked.": "Bắt đầu với những huy hiệu bạn thật sự có. Roblox hiện Roblox Plus thay cho Premium khi bạn có cả hai, nên chỉ chọn được một trong hai.",
  "Your Badges": "Huy hiệu của bạn",
  "2017 Roblox Theme": "Giao diện Roblox 2017",
- "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "Giao diện Roblox từ 2017 đến 2019: thanh trên cùng màu xanh, thanh bên màu trắng, các trang cũ và nút Chơi màu xanh lá, cùng Tên cổ điển và thanh bên cũ. Chủ đề Roblox Plus hoặc chủ đề tùy chỉnh vẫn giữ màu của nó."
+ "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "Giao diện Roblox từ 2017 đến 2019: thanh trên cùng màu xanh, thanh bên màu trắng, các trang cũ và nút Chơi màu xanh lá, cùng Tên cổ điển và thanh bên cũ. Chủ đề Roblox Plus hoặc chủ đề tùy chỉnh vẫn giữ màu của nó.",
+ "Friend History": "Lịch sử bạn bè",
+ "Friend History - Roblox": "Lịch sử bạn bè - Roblox",
+ "Added You": "Đã thêm bạn",
+ "Removed You": "Đã xóa bạn",
+ "No new friends yet.": "Chưa có bạn mới.",
+ "Nobody has been removed yet.": "Chưa có ai xóa bạn.",
+ "While Roblox is open, RoUtility checks your friends list and records who was added and who was removed. Stored only on this device.": "Khi Roblox đang mở, RoUtility kiểm tra danh sách bạn bè của bạn và ghi lại ai được thêm, ai bị xóa. Chỉ lưu trên thiết bị này.",
+ "Search friend history": "Tìm trong lịch sử bạn bè",
+ "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. While Roblox is open, your friends list is checked about once a minute. Stored only on this device.": "Trang Lịch sử bạn bè tại roblox.com/friend-history với hai cột: những người được thêm vào danh sách bạn bè của bạn và những người không còn trong danh sách. Khi Roblox đang mở, danh sách bạn bè của bạn được kiểm tra khoảng một lần mỗi phút. Chỉ lưu trên thiết bị này.",
+ "Friend History in the Menu": "Lịch sử bạn bè trong menu",
+ "A Friend History link in the left menu, under Friends.": "Liên kết Lịch sử bạn bè ở menu bên trái, bên dưới Bạn bè.",
+ "Last checked {time}": "Kiểm tra lần cuối: {time}",
+ "Not checked yet": "Chưa kiểm tra",
+ "{n} changes since you last looked": {
+  "other": "{n} thay đổi kể từ lần cuối bạn xem"
+ },
+ "Last checked {n}s ago": "Kiểm tra lần cuối: {n} giây trước",
+ "Last checked {m}m {s}s ago": "Kiểm tra lần cuối: {m} phút {s} giây trước"
 }

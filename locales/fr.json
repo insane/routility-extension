@@ -3089,5 +3089,24 @@
  "Starts with the badges you really have. Roblox shows Roblox Plus instead of Premium when you have both, so only one of them can be picked.": "Commence avec les badges que tu as vraiment. Roblox affiche Roblox Plus au lieu de Premium quand tu as les deux, donc un seul des deux peut être choisi.",
  "Your Badges": "Tes badges",
  "2017 Roblox Theme": "Thème Roblox 2017",
- "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "L’apparence de Roblox de 2017 à 2019 : la barre supérieure bleue, la barre latérale blanche, les anciennes pages et les boutons Jouer verts, avec les Noms classiques et l’ancienne barre latérale. Un thème Roblox Plus ou personnalisé garde ses couleurs."
+ "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "L’apparence de Roblox de 2017 à 2019 : la barre supérieure bleue, la barre latérale blanche, les anciennes pages et les boutons Jouer verts, avec les Noms classiques et l’ancienne barre latérale. Un thème Roblox Plus ou personnalisé garde ses couleurs.",
+ "Friend History": "Historique des amis",
+ "Friend History - Roblox": "Historique des amis - Roblox",
+ "Added You": "T’ont ajouté",
+ "Removed You": "T’ont retiré",
+ "No new friends yet.": "Aucun nouvel ami pour l’instant.",
+ "Nobody has been removed yet.": "Personne ne t’a encore retiré.",
+ "While Roblox is open, RoUtility checks your friends list and records who was added and who was removed. Stored only on this device.": "Tant que Roblox est ouvert, RoUtility vérifie ta liste d’amis et note qui a été ajouté et qui a été retiré. Stocké uniquement sur cet appareil.",
+ "Search friend history": "Rechercher dans l’historique des amis",
+ "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. While Roblox is open, your friends list is checked about once a minute. Stored only on this device.": "Une page Historique des amis sur roblox.com/friend-history avec deux colonnes : les personnes ajoutées à ta liste d’amis et celles qui n’y sont plus. Tant que Roblox est ouvert, ta liste d’amis est vérifiée environ une fois par minute. Stocké uniquement sur cet appareil.",
+ "Friend History in the Menu": "Historique des amis dans le menu",
+ "A Friend History link in the left menu, under Friends.": "Un lien Historique des amis dans le menu de gauche, sous Amis.",
+ "Last checked {time}": "Dernière vérification : {time}",
+ "Not checked yet": "Pas encore vérifié",
+ "{n} changes since you last looked": {
+  "one": "{n} changement depuis ta dernière visite",
+  "other": "{n} changements depuis ta dernière visite"
+ },
+ "Last checked {n}s ago": "Dernière vérification : il y a {n} s",
+ "Last checked {m}m {s}s ago": "Dernière vérification : il y a {m} min {s} s"
 }

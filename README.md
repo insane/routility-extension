@@ -39,6 +39,7 @@ RoUtility adds the things Roblox doesn't show you to Roblox's own pages. There a
 - Profile value and RAP, plus inventory search and sorting
 - Mutual friends, friend filters and friend lists Roblox hides
 - Friend request filters by badges, mutuals, followers and join date
+- Friend History, a page of who was added to your friends list and who is no longer on it
 
 **Experiences and Communities**
 - Server regions with a preferred region, and exact visit counts

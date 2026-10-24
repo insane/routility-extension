@@ -7,6 +7,7 @@
     calc: { href: '/trades/calculator', label: LT('Trade Calculator'), icon: 'routility-calc-nav-icon', flags: ['tradeCalculator', 'calcNav'], after: 'trade', page: /^\/trades\/calculator\/?$/i },
     ads: { href: '/trade-ads', label: LT('Trade Ads'), icon: 'routility-ads-nav-icon', flags: ['tradeAds', 'tradeAdsNav'], after: 'calc', page: /^\/trade-ads\/?$/i },
     forum: { href: '/forum', label: LT('Forum'), icon: 'routility-forum-nav-icon', flags: ['forum', 'forumNav'], after: 'communities', page: /^\/forum(\/|$)/i },
+    history: { href: '/friend-history', label: LT('Friend History'), icon: 'routility-fh-nav-icon', flags: ['friendHistory', 'friendHistoryNav'], after: 'friends', page: /^\/friend-history\/?$/i },
   };
   const IDS = { home: 'nav-home', profile: 'nav-profile', messages: 'nav-message', friends: 'nav-friends', avatar: 'nav-character', inventory: 'nav-inventory', trade: 'nav-trade', communities: 'nav-group', newsroom: 'nav-blog', store: 'nav-shop', giftcards: 'nav-giftcards' };
   const DEFAULT_LAYOUT = { order: [], hidden: ['promo', 'store', 'newsroom', 'giftcards'] };

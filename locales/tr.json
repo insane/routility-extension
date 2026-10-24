@@ -3089,5 +3089,24 @@
  "Starts with the badges you really have. Roblox shows Roblox Plus instead of Premium when you have both, so only one of them can be picked.": "Gerçekten sahip olduğun rozetlerle başlar. İkisine birden sahipsen Roblox, Premium yerine Roblox Plus gösterir, bu yüzden yalnızca biri seçilebilir.",
  "Your Badges": "Rozetlerin",
  "2017 Roblox Theme": "2017 Roblox Teması",
- "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017–2019 Roblox görünümü: mavi üst çubuk, beyaz kenar çubuğu, eski sayfalar ve yeşil Oyna düğmeleri, Klasik Adlar ve eski kenar çubuğuyla birlikte. Roblox Plus veya özel tema renklerini korur."
+ "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017–2019 Roblox görünümü: mavi üst çubuk, beyaz kenar çubuğu, eski sayfalar ve yeşil Oyna düğmeleri, Klasik Adlar ve eski kenar çubuğuyla birlikte. Roblox Plus veya özel tema renklerini korur.",
+ "Friend History": "Arkadaş geçmişi",
+ "Friend History - Roblox": "Arkadaş geçmişi - Roblox",
+ "Added You": "Seni ekleyenler",
+ "Removed You": "Seni çıkaranlar",
+ "No new friends yet.": "Henüz yeni arkadaş yok.",
+ "Nobody has been removed yet.": "Henüz seni çıkaran olmadı.",
+ "While Roblox is open, RoUtility checks your friends list and records who was added and who was removed. Stored only on this device.": "Roblox açıkken RoUtility arkadaş listeni kontrol eder ve kimin eklendiğini, kimin çıkarıldığını kaydeder. Yalnızca bu cihazda saklanır.",
+ "Search friend history": "Arkadaş geçmişinde ara",
+ "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. While Roblox is open, your friends list is checked about once a minute. Stored only on this device.": "roblox.com/friend-history adresinde iki sütunlu bir Arkadaş geçmişi sayfası: arkadaş listene eklenenler ve artık listede olmayanlar. Roblox açıkken arkadaş listen yaklaşık dakikada bir kontrol edilir. Yalnızca bu cihazda saklanır.",
+ "Friend History in the Menu": "Menüde arkadaş geçmişi",
+ "A Friend History link in the left menu, under Friends.": "Sol menüde, Arkadaşlar'ın altında bir Arkadaş geçmişi bağlantısı.",
+ "Last checked {time}": "Son kontrol: {time}",
+ "Not checked yet": "Henüz kontrol edilmedi",
+ "{n} changes since you last looked": {
+  "one": "Son bakışından beri {n} değişiklik",
+  "other": "Son bakışından beri {n} değişiklik"
+ },
+ "Last checked {n}s ago": "Son kontrol: {n} sn önce",
+ "Last checked {m}m {s}s ago": "Son kontrol: {m} dk {s} sn önce"
 }
