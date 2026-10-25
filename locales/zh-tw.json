@@ -503,7 +503,6 @@
  "All Experiences": "所有體驗",
  "All Favorites": "所有收藏",
  "All Genres": "所有類型",
- "All Gray": "全部灰色",
  "all items": "所有物品",
  "All items": "所有物品",
  "All Items": "所有物品",
@@ -2282,7 +2281,6 @@
  "Sent": "已送出",
  "Sent {date}": "送出於 {date}",
  "Sent {time}": "{time}送出",
- "Separate Colors": "分開顯示顏色",
  "Serial #{serial}": "序號 #{serial}",
  "Serial N/A": "序號 不適用",
  "Server {id}": "伺服器 {id}",
@@ -2693,7 +2691,6 @@
  "Value": "價值",
  "Value {value}": "價值 {value}",
  "Value and Price": "價值和價格",
- "Value and RAP Joined": "價值與 RAP 合併",
  "Value difference": "價值差額",
  "Value it in the Trade Calculator": "在交易計算機中估值",
  "Value on Profiles": "個人檔案上的價值",
@@ -2947,5 +2944,8 @@
  "Starts with the badges you really have. Roblox shows Roblox Plus instead of Premium when you have both, so only one of them can be picked.": "一開始會選取你實際擁有的徽章。兩者都有時 Roblox 會顯示 Roblox Plus 而不是 Premium，所以只能選其中一個。",
  "Your Badges": "你的徽章",
  "2017 Roblox Theme": "2017 年 Roblox 主題",
- "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017 到 2019 年的 Roblox 外觀：藍色頂欄、白色側邊欄、舊版頁面和綠色的開始按鈕，並使用經典名稱和舊版側邊欄。Roblox Plus 主題或自訂主題會保留它們的顏色。"
+ "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017 到 2019 年的 Roblox 外觀：藍色頂欄、白色側邊欄、舊版頁面和綠色的開始按鈕，並使用經典名稱和舊版側邊欄。Roblox Plus 主題或自訂主題會保留它們的顏色。",
+ "Combined": "合併",
+ "Separate": "分開",
+ "Minimal": "簡約"
 }

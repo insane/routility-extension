@@ -503,7 +503,6 @@
  "All Experiences": "Semua Pengalaman",
  "All Favorites": "Semua Favorit",
  "All Genres": "Semua Genre",
- "All Gray": "Semua Abu-abu",
  "all items": "semua item",
  "All items": "Semua item",
  "All Items": "Semua Item",
@@ -2282,7 +2281,6 @@
  "Sent": "Terkirim",
  "Sent {date}": "Dikirim {date}",
  "Sent {time}": "Dikirim {time}",
- "Separate Colors": "Warna Terpisah",
  "Serial #{serial}": "Seri #{serial}",
  "Serial N/A": "Seri T/A",
  "Server {id}": "Server {id}",
@@ -2693,7 +2691,6 @@
  "Value": "Nilai",
  "Value {value}": "Nilai {value}",
  "Value and Price": "Nilai dan Harga",
- "Value and RAP Joined": "Nilai dan RAP Digabung",
  "Value difference": "Selisih nilai",
  "Value it in the Trade Calculator": "Nilai di Kalkulator Perdagangan",
  "Value on Profiles": "Nilai di Profil",
@@ -2947,5 +2944,8 @@
  "Starts with the badges you really have. Roblox shows Roblox Plus instead of Premium when you have both, so only one of them can be picked.": "Dimulai dengan lencana yang benar-benar kamu punya. Roblox menampilkan Roblox Plus, bukan Premium, saat kamu punya keduanya, jadi hanya satu yang bisa dipilih.",
  "Your Badges": "Lencanamu",
  "2017 Roblox Theme": "Tema Roblox 2017",
- "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "Tampilan Roblox 2017 sampai 2019: bilah atas biru, bilah samping putih, halaman lama, dan tombol Main hijau, dengan Nama Klasik dan bilah samping lama. Tema Roblox Plus atau tema kustom tetap memakai warnanya."
+ "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "Tampilan Roblox 2017 sampai 2019: bilah atas biru, bilah samping putih, halaman lama, dan tombol Main hijau, dengan Nama Klasik dan bilah samping lama. Tema Roblox Plus atau tema kustom tetap memakai warnanya.",
+ "Combined": "Gabungan",
+ "Separate": "Terpisah",
+ "Minimal": "Minimal"
 }

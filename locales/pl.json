@@ -767,7 +767,6 @@
  "All Experiences": "Wszystkie Gry",
  "All Favorites": "Wszystkie ulubione",
  "All Genres": "Wszystkie gatunki",
- "All Gray": "Wszystko szare",
  "all items": "wszystkie przedmioty",
  "All items": "Wszystkie przedmioty",
  "All Items": "Wszystkie przedmioty",
@@ -2678,7 +2677,6 @@
  "Sent": "Wysłane",
  "Sent {date}": "Wysłano {date}",
  "Sent {time}": "Wysłano {time}",
- "Separate Colors": "Osobne kolory",
  "Serial #{serial}": "Nr seryjny #{serial}",
  "Serial N/A": "Nr seryjny b.d.",
  "Server {id}": "Serwer {id}",
@@ -3107,7 +3105,6 @@
  "Value": "Wartość",
  "Value {value}": "Wartość {value}",
  "Value and Price": "Wartość i Cena",
- "Value and RAP Joined": "Wartość i RAP razem",
  "Value difference": "Różnica wartości",
  "Value it in the Trade Calculator": "Wyceń w kalkulatorze wymian",
  "Value on Profiles": "Wartość na Profilach",
@@ -3373,5 +3370,8 @@
  "Starts with the badges you really have. Roblox shows Roblox Plus instead of Premium when you have both, so only one of them can be picked.": "Zaczyna od odznak, które naprawdę masz. Roblox pokazuje Roblox Plus zamiast Premium, gdy masz oba, więc można wybrać tylko jedno z nich.",
  "Your Badges": "Twoje odznaki",
  "2017 Roblox Theme": "Motyw Roblox 2017",
- "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "Wygląd Roblox z lat 2017–2019: niebieski górny pasek, biały pasek boczny, stare strony i zielone przyciski Graj, razem z Klasycznymi nazwami i starym paskiem bocznym. Motyw Roblox Plus lub własny zachowuje swoje kolory."
+ "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "Wygląd Roblox z lat 2017–2019: niebieski górny pasek, biały pasek boczny, stare strony i zielone przyciski Graj, razem z Klasycznymi nazwami i starym paskiem bocznym. Motyw Roblox Plus lub własny zachowuje swoje kolory.",
+ "Combined": "Połączone",
+ "Separate": "Osobno",
+ "Minimal": "Minimalne"
 }
