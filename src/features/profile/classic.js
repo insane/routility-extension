@@ -320,10 +320,21 @@
     const natives = nativeButtons();
     const labels = natives.map(b => b.textContent.trim());
     const off = natives.map(nb => nb.disabled || nb.getAttribute('aria-disabled') === 'true' || /^pending\b/i.test(nb.textContent.trim()));
-    const key = labels.map((l, i) => l + (off[i] ? ':off' : '')).join('|');
+    const p = s.presence;
+    const mine = String(s.userId) === document.querySelector('meta[name="user-data"]')?.dataset.userid;
+    const follow = !mine && p && p.userPresenceType === 2 && p.placeId && p.gameId && !labels.some(l => /^join\b/i.test(l));
+    const key = labels.map((l, i) => l + (off[i] ? ':off' : '')).join('|') + (follow ? '|follow' : '');
     if (list.dataset.labels === key) return;
     list.dataset.labels = key;
     list.textContent = '';
+    if (follow) {
+      const li = el('li');
+      const b = el('button', 'btn-growth-md routility-join-game', lt('Join Game'));
+      b.type = 'button';
+      b.addEventListener('click', () => window.postMessage({ type: 'routility-follow', userId: Number(s.userId), placeId: Number(p.placeId), gameId: p.gameId }, location.origin));
+      li.appendChild(b);
+      list.appendChild(li);
+    }
     natives.forEach((nb, i) => {
       const li = el('li');
       const join = /^join\b/i.test(labels[i]);
@@ -377,6 +388,8 @@
     const ids = [s.userId, ...s.data.friends.map(f => f.id)].map(String);
     const map = await presence(ids);
     if (state !== s) return;
+    s.presence = map.get(String(s.userId));
+    syncActions();
     const avatar = s.root.querySelector('.profile-avatar-image');
     if (avatar) statusIcon(avatar, map.get(String(s.userId)), 'profile-avatar-status');
     const line = s.root.querySelector('.routility-columns-presence');
