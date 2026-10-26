@@ -1035,14 +1035,18 @@
   }
 
   function sinceLabel(card) {
+    const old = card.querySelector('.routility-since-label');
+    if (old && old.dataset.user === card.id) return;
+    old?.remove();
     const iso = fd.dates.get(card.id);
-    if (!iso || card.querySelector('.routility-since-label')) return;
+    if (!iso) return;
     const labels = card.querySelectorAll('.avatar-card-label');
     const last = labels[labels.length - 1];
     if (!last) return;
     const date = new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
     const label = el('div', 'avatar-card-label routility-injected routility-since-label', lt('Friends since {date}', { date }));
     label.dataset.rtTip = window.RoUtilityHoverCard?.age(iso) || '';
+    label.dataset.user = card.id;
     last.after(label);
   }
 
@@ -1075,7 +1079,7 @@
     fd = { owner: String(owner), dates: new Map(), spots: new Map(), cursor: null, pages: 0, done: false, busy: false };
     const again = onFrame(placeDates);
     fd.observer = new MutationObserver(again);
-    fd.observer.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true });
+    fd.observer.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['id'] });
     fd.onHash = again;
     window.addEventListener('hashchange', fd.onHash);
     placeDates();
