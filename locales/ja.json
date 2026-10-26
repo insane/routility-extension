@@ -466,6 +466,7 @@
  "Add a message (optional)": "メッセージを追加（任意）",
  "Add a username, like {example}.": "{example}のようにユーザー名を追加してください。",
  "Add an item, like {example1} or {example2}.": "{example1}や{example2}のようにアイテムを追加してください。",
+ "Add Friends": "フレンドを追加",
  "Add items to": "アイテムの追加先",
  "Add items to both sides": "両側にアイテムを追加してください",
  "Add private notes to anyone’s profile, like on Discord. Only you can see them.": "Discordのように、誰のプロフィールにも自分だけのメモを残せます。メモはあなたにしか見えません。",
