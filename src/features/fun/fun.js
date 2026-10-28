@@ -2,7 +2,8 @@
   'use strict';
 
   const { lt } = window.RoUtilityI18n;
-  const KEY = 'routilityFun';
+  const LEGACY = 'routilityFun';
+  let key = null;
   const KINDS = new Set(['asset', 'bundle', 'pass', 'product', 'other']);
   let settings = null;
   let state = { spent: 0, items: [] };
@@ -154,7 +155,7 @@
       items: state.items.filter(x => keep || !(x.kind === rec.kind && x.id === rec.id)).concat(rec).slice(-500),
       worn: state.worn,
     };
-    chrome.storage.local.set({ [KEY]: state });
+    if (key) chrome.storage.local.set({ [key]: state });
   }
 
   const HEADSHOT_KEY = 'routilityFunHeadshot';
@@ -352,7 +353,7 @@
       const next = clean({ spent: state.spent, items: state.items, worn: e.data.ids });
       if (next.worn.join(',') === state.worn.join(',')) return;
       state = next;
-      chrome.storage.local.set({ [KEY]: state });
+      if (key) chrome.storage.local.set({ [key]: state });
     }
   });
 
@@ -534,9 +535,30 @@
     });
   });
 
-  chrome.storage.local.get(['routilitySettings', KEY], (st) => {
+  function whenMe() {
+    return new Promise((resolve) => {
+      if (myId() || document.readyState !== 'loading') return resolve(myId());
+      const watch = new MutationObserver(() => {
+        if (!myId()) return;
+        watch.disconnect();
+        resolve(myId());
+      });
+      watch.observe(document, { childList: true, subtree: true });
+      document.addEventListener('DOMContentLoaded', () => { watch.disconnect(); resolve(myId()); }, { once: true });
+    });
+  }
+
+  whenMe().then(me => new Promise(r => {
+    key = me ? LEGACY + ':' + me : null;
+    chrome.storage.local.get(['routilitySettings', LEGACY, ...(key ? [key] : [])], r);
+  })).then((st) => {
     settings = st.routilitySettings || {};
-    state = clean(st[KEY]);
+    let saved = key ? st[key] : null;
+    if (key && saved === undefined && st[LEGACY]) {
+      saved = st[LEGACY];
+      chrome.storage.local.set({ [key]: saved }, () => chrome.storage.local.remove(LEGACY));
+    }
+    state = clean(saved);
     markReady();
     post();
     watchNav();
@@ -550,8 +572,9 @@
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== 'local' || !settings) return;
     if (changes.routilitySettings) settings = changes.routilitySettings.newValue || {};
-    if (changes[KEY]) state = clean(changes[KEY].newValue);
-    if (changes.routilitySettings || changes[KEY]) {
+    const mine = key && changes[key];
+    if (mine) state = clean(mine.newValue);
+    if (changes.routilitySettings || mine) {
       headshots.clear();
       bodies.clear();
       post();
