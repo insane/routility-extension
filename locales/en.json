@@ -3090,5 +3090,7 @@
  "Your Status": "Your Status",
  "Combined": "Combined",
  "Separate": "Separate",
- "Minimal": "Minimal"
+ "Minimal": "Minimal",
+ "Hide Download Button": "Hide Download Button",
+ "Hides the Download button in the top navigation bar.": "Hides the Download button in the top navigation bar."
 }
