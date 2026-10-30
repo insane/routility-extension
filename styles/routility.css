@@ -8328,6 +8328,35 @@ html.routility-ads-page:not(.routility-ads-ready) #content::after {
   width: 100%;
 }
 
+.routility-cm-online-place-field { display: flex; flex: 1 1 200px; flex-direction: column; gap: 6px; min-width: 0; }
+.routility-cm-online-place-field .routility-cm-search.form-control { flex: 0 0 auto; width: 100%; }
+.routility-cm-online-place-field input:disabled { opacity: 0.5; }
+.routility-cm-online-toggle { display: flex; align-items: center; gap: 8px; margin: 0; cursor: pointer; }
+.routility-cm-online-toggle input { width: 18px; height: 18px; margin: 0; accent-color: var(--color-system-emphasis, #335fff); }
+.routility-cm-online-list { margin: 0; padding: 0; list-style: none; }
+.routility-cm-online-list > li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--color-stroke-muted, rgba(208, 217, 251, 0.08));
+}
+.routility-cm-online-player { display: flex; flex: 1; min-width: 0; align-items: center; gap: 12px; }
+.routility-cm-online-avatar { width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%; background: var(--color-surface-300, #393b3d); }
+.routility-cm-online-names { display: flex; flex: 1; min-width: 0; flex-direction: column; }
+.routility-cm-online-names > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.routility-cm-online-names .routility-verified { margin-left: 4px; }
+.routility-cm-online-status { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; min-width: 0; max-width: 45%; overflow-wrap: anywhere; }
+.routility-cm-online-game { display: flex; align-items: center; justify-content: flex-end; gap: 8px; max-width: 100%; }
+.routility-cm-online-game-icon { display: block; width: 36px; height: 36px; flex-shrink: 0; overflow: hidden; border-radius: 8px; background: var(--color-surface-300, #393b3d); }
+.routility-cm-online-game-icon img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.routility-cm-online-game-icon img:not([src]) { visibility: hidden; }
+.routility-cm-online-game-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.routility-cm-online-join { flex-shrink: 0; padding: 6px 10px; border-radius: 8px; white-space: nowrap; }
+.routility-cm-online-join:disabled { opacity: 0.5; cursor: default; }
+.routility-cm-online-modal [role="status"] { margin-bottom: 12px; }
+.routility-cm-online-modal .routility-cm-foot { flex-wrap: wrap; }
+
 .routility-cm-find-field input[type="search"]::-webkit-search-cancel-button {
   cursor: pointer;
 }

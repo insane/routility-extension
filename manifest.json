@@ -65,6 +65,7 @@
         "src/features/profile/early.js",
         "src/features/profile/classic.js",
         "src/features/search/search.js",
+        "src/features/communities/online.js",
         "src/features/communities/communities.js",
         "src/features/avatar/avatar.js",
         "src/features/avatar/thumbcam.js",
