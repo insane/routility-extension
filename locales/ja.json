@@ -2948,5 +2948,23 @@
  "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017〜2019年のRobloxの見た目：青いトップバー、白いサイドバー、昔のページ、緑のプレイボタン。クラシックな名前と旧サイドバーも使います。Roblox Plusやカスタムのテーマは色がそのまま残ります。",
  "Combined": "まとめる",
  "Separate": "分ける",
- "Minimal": "シンプル"
+ "Minimal": "シンプル",
+ "Friend History": "フレンド履歴",
+ "Friend History - Roblox": "フレンド履歴 - Roblox",
+ "Added You": "追加された",
+ "Removed You": "削除された",
+ "No new friends yet.": "新しいフレンドはまだいません。",
+ "Nobody has been removed yet.": "まだ誰にも削除されていません。",
+ "While Roblox is open, RoUtility checks your friends list and records who was added and who was removed. Stored only on this device.": "Roblox を開いている間、RoUtility がフレンドリストを確認し、誰が追加され、誰が削除されたかを記録します。保存先はこの端末のみです。",
+ "Search friend history": "フレンド履歴を検索",
+ "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. While Roblox is open, your friends list is checked about once a minute. Stored only on this device.": "roblox.com/friend-history にフレンド履歴ページを追加します。2 つの列で、フレンドリストに追加された人と、リストからいなくなった人を表示します。Roblox を開いている間、フレンドリストを約 1 分ごとに確認します。保存先はこの端末のみです。",
+ "Friend History in the Menu": "メニューにフレンド履歴",
+ "A Friend History link in the left menu, under Friends.": "左メニューの「フレンド」の下に「フレンド履歴」リンクを追加します。",
+ "Last checked {time}": "最終確認：{time}",
+ "Not checked yet": "まだ確認していません",
+ "{n} changes since you last looked": {
+  "other": "前回の確認から {n} 件の変化"
+ },
+ "Last checked {n}s ago": "最終確認：{n}秒前",
+ "Last checked {m}m {s}s ago": "最終確認：{m}分{s}秒前"
 }

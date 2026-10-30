@@ -3090,5 +3090,24 @@
  "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "El aspecto de Roblox de 2017 a 2019: la barra superior azul, la barra lateral blanca, las páginas antiguas y los botones verdes de Jugar, con los Nombres clásicos y la barra lateral antigua. Un tema de Roblox Plus o personalizado mantiene sus colores.",
  "Combined": "Combinado",
  "Separate": "Separado",
- "Minimal": "Mínimo"
+ "Minimal": "Mínimo",
+ "Friend History": "Historial de amigos",
+ "Friend History - Roblox": "Historial de amigos - Roblox",
+ "Added You": "Te agregaron",
+ "Removed You": "Te eliminaron",
+ "No new friends yet.": "Aún no hay amigos nuevos.",
+ "Nobody has been removed yet.": "Todavía no te ha eliminado nadie.",
+ "While Roblox is open, RoUtility checks your friends list and records who was added and who was removed. Stored only on this device.": "Mientras Roblox está abierto, RoUtility revisa tu lista de amigos y registra quién se agregó y quién se eliminó. Se guarda solo en este dispositivo.",
+ "Search friend history": "Buscar en el historial de amigos",
+ "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. While Roblox is open, your friends list is checked about once a minute. Stored only on this device.": "Una página Historial de amigos en roblox.com/friend-history con dos columnas: las personas que se añadieron a tu lista de amigos y las que ya no están en ella. Mientras Roblox está abierto, tu lista de amigos se revisa cada minuto aproximadamente. Se guarda solo en este dispositivo.",
+ "Friend History in the Menu": "Historial de amigos en el menú",
+ "A Friend History link in the left menu, under Friends.": "Un enlace Historial de amigos en el menú izquierdo, debajo de Amigos.",
+ "Last checked {time}": "Última revisión: {time}",
+ "Not checked yet": "Aún sin revisar",
+ "{n} changes since you last looked": {
+  "one": "{n} cambio desde tu última visita",
+  "other": "{n} cambios desde tu última visita"
+ },
+ "Last checked {n}s ago": "Última revisión: hace {n} s",
+ "Last checked {m}m {s}s ago": "Última revisión: hace {m} min {s} s"
 }

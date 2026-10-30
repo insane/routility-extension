@@ -3374,5 +3374,26 @@
  "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "Wygląd Roblox z lat 2017–2019: niebieski górny pasek, biały pasek boczny, stare strony i zielone przyciski Graj, razem z Klasycznymi nazwami i starym paskiem bocznym. Motyw Roblox Plus lub własny zachowuje swoje kolory.",
  "Combined": "Połączone",
  "Separate": "Osobno",
- "Minimal": "Minimalne"
+ "Minimal": "Minimalne",
+ "Friend History": "Historia znajomych",
+ "Friend History - Roblox": "Historia znajomych - Roblox",
+ "Added You": "Dodali cię",
+ "Removed You": "Usunęli cię",
+ "No new friends yet.": "Brak nowych znajomych.",
+ "Nobody has been removed yet.": "Nikt jeszcze cię nie usunął.",
+ "While Roblox is open, RoUtility checks your friends list and records who was added and who was removed. Stored only on this device.": "Gdy Roblox jest otwarty, RoUtility sprawdza twoją listę znajomych i zapisuje, kto został dodany, a kto usunięty. Przechowywane tylko na tym urządzeniu.",
+ "Search friend history": "Szukaj w historii znajomych",
+ "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. While Roblox is open, your friends list is checked about once a minute. Stored only on this device.": "Strona Historia znajomych pod roblox.com/friend-history z dwiema kolumnami: osoby dodane do twojej listy znajomych i osoby, których już na niej nie ma. Gdy Roblox jest otwarty, twoja lista znajomych jest sprawdzana mniej więcej raz na minutę. Przechowywane tylko na tym urządzeniu.",
+ "Friend History in the Menu": "Historia znajomych w menu",
+ "A Friend History link in the left menu, under Friends.": "Link Historia znajomych w lewym menu, pod Znajomymi.",
+ "Last checked {time}": "Ostatnio sprawdzono: {time}",
+ "Not checked yet": "Jeszcze nie sprawdzono",
+ "{n} changes since you last looked": {
+  "one": "{n} zmiana od ostatniego wejścia",
+  "few": "{n} zmiany od ostatniego wejścia",
+  "many": "{n} zmian od ostatniego wejścia",
+  "other": "{n} zmiany od ostatniego wejścia"
+ },
+ "Last checked {n}s ago": "Ostatnio sprawdzono: {n} s temu",
+ "Last checked {m}m {s}s ago": "Ostatnio sprawdzono: {m} min {s} s temu"
 }

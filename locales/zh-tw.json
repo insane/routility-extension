@@ -2948,5 +2948,23 @@
  "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017 到 2019 年的 Roblox 外觀：藍色頂欄、白色側邊欄、舊版頁面和綠色的開始按鈕，並使用經典名稱和舊版側邊欄。Roblox Plus 主題或自訂主題會保留它們的顏色。",
  "Combined": "合併",
  "Separate": "分開",
- "Minimal": "簡約"
+ "Minimal": "簡約",
+ "Friend History": "好友紀錄",
+ "Friend History - Roblox": "好友紀錄 - Roblox",
+ "Added You": "加了你",
+ "Removed You": "移除了你",
+ "No new friends yet.": "還沒有新好友。",
+ "Nobody has been removed yet.": "還沒有人移除你。",
+ "While Roblox is open, RoUtility checks your friends list and records who was added and who was removed. Stored only on this device.": "Roblox 開啟期間，RoUtility 會檢查你的好友清單，並記錄誰被加入、誰被移除。僅儲存在這台裝置上。",
+ "Search friend history": "搜尋好友紀錄",
+ "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. While Roblox is open, your friends list is checked about once a minute. Stored only on this device.": "位於 roblox.com/friend-history 的好友紀錄頁面，分成兩欄顯示：被加入你好友清單的人，以及不再在清單中的人。Roblox 開啟期間，大約每分鐘檢查一次你的好友清單。僅儲存在這台裝置上。",
+ "Friend History in the Menu": "選單中的好友紀錄",
+ "A Friend History link in the left menu, under Friends.": "左側選單中「好友」下方的「好友紀錄」連結。",
+ "Last checked {time}": "上次檢查：{time}",
+ "Not checked yet": "尚未檢查",
+ "{n} changes since you last looked": {
+  "other": "自上次查看以來有 {n} 項變化"
+ },
+ "Last checked {n}s ago": "上次檢查：{n}秒前",
+ "Last checked {m}m {s}s ago": "上次檢查：{m}分{s}秒前"
 }

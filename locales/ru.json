@@ -3374,5 +3374,26 @@
  "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "Вид Roblox 2017–2019 годов: синяя верхняя панель, белая боковая панель, старые страницы и зелёные кнопки «Играть», вместе с классическими названиями и старой боковой панелью. Тема Roblox Plus или своя тема сохраняет свои цвета.",
  "Combined": "Вместе",
  "Separate": "Раздельно",
- "Minimal": "Минимализм"
+ "Minimal": "Минимализм",
+ "Friend History": "История друзей",
+ "Friend History - Roblox": "История друзей - Roblox",
+ "Added You": "Добавили тебя",
+ "Removed You": "Удалили тебя",
+ "No new friends yet.": "Новых друзей пока нет.",
+ "Nobody has been removed yet.": "Тебя пока никто не удалял.",
+ "While Roblox is open, RoUtility checks your friends list and records who was added and who was removed. Stored only on this device.": "Пока Roblox открыт, RoUtility проверяет твой список друзей и записывает, кто был добавлен, а кто удалён. Хранится только на этом устройстве.",
+ "Search friend history": "Поиск по истории друзей",
+ "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. While Roblox is open, your friends list is checked about once a minute. Stored only on this device.": "Страница «История друзей» на roblox.com/friend-history с двумя столбцами: люди, добавленные в твой список друзей, и люди, которых в нём больше нет. Пока Roblox открыт, твой список друзей проверяется примерно раз в минуту. Хранится только на этом устройстве.",
+ "Friend History in the Menu": "История друзей в меню",
+ "A Friend History link in the left menu, under Friends.": "Ссылка «История друзей» в левом меню, под «Друзья».",
+ "Last checked {time}": "Последняя проверка: {time}",
+ "Not checked yet": "Ещё не проверялось",
+ "{n} changes since you last looked": {
+  "one": "{n} изменение с последнего просмотра",
+  "few": "{n} изменения с последнего просмотра",
+  "many": "{n} изменений с последнего просмотра",
+  "other": "{n} изменения с последнего просмотра"
+ },
+ "Last checked {n}s ago": "Последняя проверка: {n} с назад",
+ "Last checked {m}m {s}s ago": "Последняя проверка: {m} мин {s} с назад"
 }

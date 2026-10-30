@@ -84,10 +84,10 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', settle, { once: true });
     else settle();
   }
-  const routed = location.pathname === '/charts' && location.search.match(/^\?routility=(\/(?:forum(?:\/[^&]*)?|trades\/calculator\/?|trade-ads\/?))&?(.*)$/);
+  const routed = location.pathname === '/charts' && location.search.match(/^\?routility=(\/(?:forum(?:\/[^&]*)?|trades\/calculator\/?|trade-ads\/?|friend-history\/?))&?(.*)$/);
   if (routed) {
     history.replaceState(history.state, '', routed[1] + (routed[2] ? '?' + routed[2] : '') + location.hash);
-    const titleKey = /^\/forum/.test(routed[1]) ? LT('Forum - Roblox') : /^\/trades/.test(routed[1]) ? LT('Trade Calculator - Roblox') : LT('Trade Ads - Roblox');
+    const titleKey = /^\/forum/.test(routed[1]) ? LT('Forum - Roblox') : /^\/trades/.test(routed[1]) ? LT('Trade Calculator - Roblox') : /^\/friend-history/.test(routed[1]) ? LT('Friend History - Roblox') : LT('Trade Ads - Roblox');
     root.dataset.rtTitle = lt(titleKey);
     const fixTitle = () => {
       const want = root.dataset.rtTitle;
@@ -250,6 +250,7 @@
     if (calcPage) root.classList.toggle('routility-calc-page', (settings || {}).tradeCalculator !== false);
     if (forumPage) root.classList.toggle('routility-forum-page', (settings || {}).forum !== false);
     if (adsPage) root.classList.toggle('routility-ads-page', (settings || {}).tradeAds !== false);
+    if (historyPage) root.classList.toggle('routility-fh-page', (settings || {}).friendHistory !== false);
     root.classList.toggle('routility-forum-topbar', (settings || {}).forum !== false && (settings || {}).forumTopLink !== false);
     root.classList.toggle('routility-streamer', streamer && (settings || {}).streamerRobux !== false);
     root.classList.toggle('routility-streamer-account', streamer && (settings || {}).streamerAccount !== false);
@@ -288,6 +289,8 @@
   if (forumPage) root.classList.add('routility-forum-page');
   const adsPage = /^\/trade-ads\/?$/i.test(location.pathname);
   if (adsPage) root.classList.add('routility-ads-page');
+  const historyPage = /^\/friend-history\/?$/i.test(location.pathname);
+  if (historyPage) root.classList.add('routility-fh-page');
   const NAV = [
     ['promo', 'li:has(> a[href*="/plus?referrals"], > a[href="/plus"], > button > .icon-regular-roblox-plus)'],
     ['home', 'li:has(> a[href$="roblox.com/home"])'],
@@ -295,6 +298,7 @@
     ['plus', 'li:has(> a[href$="roblox.com/plus"])'],
     ['messages', 'li:has(> a[href*="/my/messages"])'],
     ['friends', 'li:has(> a[href*="/users/friends"])'],
+    ['history', 'li.routility-fh-nav'],
     ['avatar', 'li:has(> a[href*="/my/avatar"])'],
     ['inventory', 'li:has(> a:is([href$="/users/inventory"], [data-rt-profile$="/users/inventory"]))'],
     ['trade', 'li:has(> a[href$="roblox.com/trades"])'],
@@ -307,7 +311,7 @@
     ['giftcards', 'li:has(> a[href*="/giftcards"])'],
   ];
   const NAV_FOLLOW = { newsroom: ':is(li, div):has(a[href*="blog.roblox.com"]):not(:has(> a[href*="blog.roblox.com"]))' };
-  const NAV_FLAGS = { calc: ['tradeCalculator', 'calcNav'], ads: ['tradeAds', 'tradeAdsNav'], forum: ['forum', 'forumNav'] };
+  const NAV_FLAGS = { calc: ['tradeCalculator', 'calcNav'], ads: ['tradeAds', 'tradeAdsNav'], forum: ['forum', 'forumNav'], history: ['friendHistory', 'friendHistoryNav'] };
   let navStyle = null;
   let navLayout = null;
   const applyNav = (v) => {

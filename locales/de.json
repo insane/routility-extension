@@ -3090,5 +3090,24 @@
  "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "Der Roblox-Look von 2017 bis 2019: die blaue obere Leiste, die weiße Seitenleiste, die alten Seiten und grüne Spielen-Buttons, mit Klassischen Namen und der alten Seitenleiste. Ein Roblox Plus- oder eigenes Design behält seine Farben.",
  "Combined": "Kombiniert",
  "Separate": "Getrennt",
- "Minimal": "Minimal"
+ "Minimal": "Minimal",
+ "Friend History": "Freundesverlauf",
+ "Friend History - Roblox": "Freundesverlauf - Roblox",
+ "Added You": "Haben dich hinzugefügt",
+ "Removed You": "Haben dich entfernt",
+ "No new friends yet.": "Noch keine neuen Freunde.",
+ "Nobody has been removed yet.": "Bisher hat dich noch niemand entfernt.",
+ "While Roblox is open, RoUtility checks your friends list and records who was added and who was removed. Stored only on this device.": "Solange Roblox geöffnet ist, prüft RoUtility deine Freundesliste und hält fest, wer hinzugekommen und wer entfernt worden ist. Wird nur auf diesem Gerät gespeichert.",
+ "Search friend history": "Freundesverlauf durchsuchen",
+ "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. While Roblox is open, your friends list is checked about once a minute. Stored only on this device.": "Eine Freundesverlauf-Seite unter roblox.com/friend-history mit zwei Spalten: Personen, die zu deiner Freundesliste hinzugekommen sind, und Personen, die nicht mehr darauf stehen. Solange Roblox geöffnet ist, wird deine Freundesliste etwa einmal pro Minute geprüft. Wird nur auf diesem Gerät gespeichert.",
+ "Friend History in the Menu": "Freundesverlauf im Menü",
+ "A Friend History link in the left menu, under Friends.": "Ein Freundesverlauf-Link im linken Menü, unter Freunde.",
+ "Last checked {time}": "Zuletzt geprüft: {time}",
+ "Not checked yet": "Noch nicht geprüft",
+ "{n} changes since you last looked": {
+  "one": "{n} Änderung seit deinem letzten Besuch",
+  "other": "{n} Änderungen seit deinem letzten Besuch"
+ },
+ "Last checked {n}s ago": "Zuletzt geprüft: vor {n} Sek.",
+ "Last checked {m}m {s}s ago": "Zuletzt geprüft: vor {m} Min. {s} Sek."
 }

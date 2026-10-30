@@ -2948,5 +2948,23 @@
  "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "หน้าตา Roblox ปี 2017 ถึง 2019: แถบด้านบนสีน้ำเงิน แถบด้านข้างสีขาว หน้าแบบเก่า และปุ่มเล่นสีเขียว พร้อมชื่อแบบคลาสสิกและแถบด้านข้างแบบเก่า ธีม Roblox Plus หรือธีมที่กำหนดเองจะยังคงใช้สีเดิม",
  "Combined": "รวมกัน",
  "Separate": "แยกกัน",
- "Minimal": "มินิมอล"
+ "Minimal": "มินิมอล",
+ "Friend History": "ประวัติเพื่อน",
+ "Friend History - Roblox": "ประวัติเพื่อน - Roblox",
+ "Added You": "เพิ่มคุณ",
+ "Removed You": "ลบคุณ",
+ "No new friends yet.": "ยังไม่มีเพื่อนใหม่",
+ "Nobody has been removed yet.": "ยังไม่มีใครลบคุณ",
+ "While Roblox is open, RoUtility checks your friends list and records who was added and who was removed. Stored only on this device.": "ขณะที่ Roblox เปิดอยู่ RoUtility จะตรวจสอบรายชื่อเพื่อนของคุณและบันทึกว่าใครถูกเพิ่มและใครถูกลบ เก็บไว้บนอุปกรณ์นี้เท่านั้น",
+ "Search friend history": "ค้นหาประวัติเพื่อน",
+ "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. While Roblox is open, your friends list is checked about once a minute. Stored only on this device.": "หน้าประวัติเพื่อนที่ roblox.com/friend-history แบ่งเป็นสองคอลัมน์: คนที่ถูกเพิ่มเข้ารายชื่อเพื่อนของคุณ และคนที่ไม่อยู่ในรายชื่อแล้ว ขณะที่ Roblox เปิดอยู่ รายชื่อเพื่อนของคุณจะถูกตรวจสอบประมาณนาทีละครั้ง เก็บไว้บนอุปกรณ์นี้เท่านั้น",
+ "Friend History in the Menu": "ประวัติเพื่อนในเมนู",
+ "A Friend History link in the left menu, under Friends.": "ลิงก์ประวัติเพื่อนในเมนูซ้าย ใต้เพื่อน",
+ "Last checked {time}": "ตรวจสอบล่าสุด: {time}",
+ "Not checked yet": "ยังไม่ได้ตรวจสอบ",
+ "{n} changes since you last looked": {
+  "other": "มีการเปลี่ยนแปลง {n} รายการตั้งแต่ที่คุณดูล่าสุด"
+ },
+ "Last checked {n}s ago": "ตรวจสอบล่าสุด: {n} วินาทีที่แล้ว",
+ "Last checked {m}m {s}s ago": "ตรวจสอบล่าสุด: {m} นาที {s} วินาทีที่แล้ว"
 }

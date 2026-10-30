@@ -3090,5 +3090,24 @@
  "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "Lo stile di Roblox dal 2017 al 2019: la barra superiore blu, la barra laterale bianca, le vecchie pagine e i pulsanti Gioca verdi, con i Nomi classici e la vecchia barra laterale. Un tema Roblox Plus o personalizzato mantiene i suoi colori.",
  "Combined": "Combinato",
  "Separate": "Separato",
- "Minimal": "Minimal"
+ "Minimal": "Minimal",
+ "Friend History": "Cronologia amici",
+ "Friend History - Roblox": "Cronologia amici - Roblox",
+ "Added You": "Ti hanno aggiunto",
+ "Removed You": "Ti hanno rimosso",
+ "No new friends yet.": "Ancora nessun nuovo amico.",
+ "Nobody has been removed yet.": "Nessuno ti ha ancora rimosso.",
+ "While Roblox is open, RoUtility checks your friends list and records who was added and who was removed. Stored only on this device.": "Finché Roblox è aperto, RoUtility controlla la tua lista amici e registra chi è stato aggiunto e chi è stato rimosso. Salvato solo su questo dispositivo.",
+ "Search friend history": "Cerca nella cronologia amici",
+ "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. While Roblox is open, your friends list is checked about once a minute. Stored only on this device.": "Una pagina Cronologia amici su roblox.com/friend-history con due colonne: le persone aggiunte alla tua lista amici e quelle che non ci sono più. Finché Roblox è aperto, la tua lista amici viene controllata circa una volta al minuto. Salvato solo su questo dispositivo.",
+ "Friend History in the Menu": "Cronologia amici nel menu",
+ "A Friend History link in the left menu, under Friends.": "Un link Cronologia amici nel menu a sinistra, sotto Amici.",
+ "Last checked {time}": "Ultimo controllo: {time}",
+ "Not checked yet": "Non ancora controllato",
+ "{n} changes since you last looked": {
+  "one": "{n} modifica dalla tua ultima visita",
+  "other": "{n} modifiche dalla tua ultima visita"
+ },
+ "Last checked {n}s ago": "Ultimo controllo: {n}s fa",
+ "Last checked {m}m {s}s ago": "Ultimo controllo: {m}m {s}s fa"
 }

@@ -2948,5 +2948,23 @@
  "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "Tampilan Roblox 2017 sampai 2019: bilah atas biru, bilah samping putih, halaman lama, dan tombol Main hijau, dengan Nama Klasik dan bilah samping lama. Tema Roblox Plus atau tema kustom tetap memakai warnanya.",
  "Combined": "Gabungan",
  "Separate": "Terpisah",
- "Minimal": "Minimal"
+ "Minimal": "Minimal",
+ "Friend History": "Riwayat Teman",
+ "Friend History - Roblox": "Riwayat Teman - Roblox",
+ "Added You": "Menambahkanmu",
+ "Removed You": "Menghapusmu",
+ "No new friends yet.": "Belum ada teman baru.",
+ "Nobody has been removed yet.": "Belum ada yang menghapusmu.",
+ "While Roblox is open, RoUtility checks your friends list and records who was added and who was removed. Stored only on this device.": "Selama Roblox terbuka, RoUtility memeriksa daftar temanmu dan mencatat siapa yang ditambahkan dan siapa yang dihapus. Disimpan hanya di perangkat ini.",
+ "Search friend history": "Cari riwayat teman",
+ "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. While Roblox is open, your friends list is checked about once a minute. Stored only on this device.": "Halaman Riwayat Teman di roblox.com/friend-history dengan dua kolom: orang yang ditambahkan ke daftar temanmu dan orang yang tidak ada lagi di daftar itu. Selama Roblox terbuka, daftar temanmu diperiksa sekitar sekali per menit. Disimpan hanya di perangkat ini.",
+ "Friend History in the Menu": "Riwayat Teman di Menu",
+ "A Friend History link in the left menu, under Friends.": "Tautan Riwayat Teman di menu kiri, di bawah Teman.",
+ "Last checked {time}": "Terakhir diperiksa: {time}",
+ "Not checked yet": "Belum diperiksa",
+ "{n} changes since you last looked": {
+  "other": "{n} perubahan sejak terakhir kamu lihat"
+ },
+ "Last checked {n}s ago": "Terakhir diperiksa: {n} dtk lalu",
+ "Last checked {m}m {s}s ago": "Terakhir diperiksa: {m} mnt {s} dtk lalu"
 }
