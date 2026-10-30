@@ -1843,7 +1843,8 @@
           fresh = [];
         }
       }
-      const unnamed = [...fresh, ...added].filter(id => !(names[id] && names[id].name)).map(Number);
+      const missing = log.filter(e => !e.name || !e.displayName).map(e => String(e.id));
+      const unnamed = [...new Set([...fresh, ...added, ...missing])].filter(id => !(names[id] && names[id].name)).map(Number);
       for (let i = 0; i < unnamed.length; i += 100) {
         const res = await post('https://users.roblox.com/v1/users', { userIds: unnamed.slice(i, i + 100), excludeBannedUsers: false });
         for (const u of (res && res.data) || []) names[String(u.id)] = { name: u.name, displayName: u.displayName };
@@ -1862,6 +1863,12 @@
         logDirty = true;
       }
     }
+    log = log.map(e => {
+      const user = names[String(e.id)];
+      if (!user?.name || (e.name && e.displayName)) return e;
+      logDirty = true;
+      return { ...e, name: e.name || user.name, displayName: e.displayName || user.displayName || user.name };
+    });
     const miss = trusted || !prev ? 0 : (Number(prev.miss) || 0) + 1;
     if (trusted || !prev || miss >= 3) {
       const keep = {};
