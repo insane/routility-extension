@@ -2566,9 +2566,10 @@ chrome.storage.onChanged.addListener((changes, area) => {
   const was = changes.routilitySettings.oldValue || {};
   const now = changes.routilitySettings.newValue || {};
   if (!['fakeRobux', 'fakeRobuxAmount', 'fakeRobuxMode'].some(k => String(was[k]) !== String(now[k]))) return;
-  chrome.storage.local.get('routilityFun', (st) => {
-    const fun = st.routilityFun;
-    if (fun && fun.spent) chrome.storage.local.set({ routilityFun: Object.assign({}, fun, { spent: 0 }) });
+  chrome.storage.local.get(null, (st) => {
+    const refill = {};
+    for (const [k, fun] of Object.entries(st)) if (/^routilityFun(:\d+)?$/.test(k) && fun && fun.spent) refill[k] = Object.assign({}, fun, { spent: 0 });
+    if (Object.keys(refill).length) chrome.storage.local.set(refill);
   });
 });
 

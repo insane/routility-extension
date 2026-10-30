@@ -977,7 +977,7 @@
       return;
     }
     if (!shell) shell = buildShell();
-    if (shell.parentElement !== host || host.lastElementChild !== shell) host.appendChild(shell);
+    if (shell.parentElement !== host) host.appendChild(shell);
     shell.classList.toggle('routility-bot-collapsed', state.collapsed);
     const sub = shell.querySelector('.routility-bot-sub');
     const subText = typing ? lt('Typing…') : lt('Values, trades and help');

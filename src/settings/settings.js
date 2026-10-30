@@ -485,6 +485,17 @@
     searchTerminated: () => r([circle(28), c([strong('ava_builds'), muted('@ava_builds'), h('span', 'rt-m-tiny rt-m-alert-text', lt('Terminated'))])]),
     revealTerminated: () => r([circle(28), c([h('span', 'rt-m-strike', lt('Account Deleted')), r([strong('ava_builds'), muted('• ' + lt('Banned'))])])]),
     inventoryValues: () => g([A.frigidus, A.stv, A.v3000].map(id => cell([thumb(id, 36), liveUsd(id, 'rt-m-tiny')])), 3, 'rt-m-full'),
+    profilePills: (s = {}) => {
+      const style = /^(separate|gray)$/.test(s.profilePills) ? s.profilePills : 'joined';
+      const logo = el('img', 'routility-worth-logo');
+      logo.src = LOGO;
+      logo.alt = '';
+      const cash = cashNow();
+      const worth = h('span', 'rt-m-vpill bg-shift-300 content-action-utility routility-worth-pill', [logo, '42M']);
+      const rap = h('span', 'rt-m-vpill bg-shift-300 content-action-utility routility-rap-pill', [el('span', 'icon-robux-16x16 routility-rap-icon'), '13.8M']);
+      const price = h('span', 'rt-m-vpill bg-shift-300 content-action-utility routility-value-pill', cash.symbol + Math.round(139734 * cash.rate / 1000) + 'K');
+      return r([...(style === 'joined' ? [h('span', 'flex routility-split-pill', [worth, rap])] : [worth, rap]), price], 'routility-value-row routility-pills-' + style);
+    },
     purchaseLock: () => c([h('span', 'rt-m-pill rt-m-hold', lt('Buy')), muted(lt('Hold to confirm'))]),
     buyBalance: () => c([r([muted(lt('Balance after purchase')), r([h('span', 'icon-robux-16x16'), strong('166,237')])], 'rt-m-spread')], 'rt-m-w190'),
     groupFullDesc: () => c([h('span', 'rt-m-line', null, { width: '150px' }), h('span', 'rt-m-line', null, { width: '130px' }), h('span', 'rt-m-line', null, { width: '160px' }), h('span', 'rt-m-line', null, { width: '90px' })]),
@@ -1070,7 +1081,7 @@
           { key: 'profileValue', parent: 'inventoryValues', title: LT('Value on Profiles'), desc: LT('Their RoUtility Value in Robux, counting RAP for items we haven’t valued yet.') },
           { key: 'profileRap', parent: 'inventoryValues', title: LT('RAP on Profiles'), desc: LT('The total RAP of their limiteds.') },
           { key: 'profileShort', parent: 'inventoryValues', title: LT('Short Numbers on Profiles'), desc: LT('Show the profile pills like 7.27M+ instead of 7,270,616. The + means it was rounded down. Hover a pill for the exact number.') },
-          { key: 'profilePills', parent: 'inventoryValues', title: LT('Profile Pill Style'), desc: LT('How the Value, RAP and Price pills look on profiles, inventories and trades.'), options: [['joined', LT('Value and RAP Joined')], ['separate', LT('Separate Colors')], ['gray', LT('All Gray')]] },
+          { key: 'profilePills', parent: 'inventoryValues', title: LT('Profile Pill Style'), desc: LT('How the Value, RAP and Price pills look on profiles, inventories and trades.'), options: [['joined', LT('Combined')], ['separate', LT('Separate')], ['gray', LT('Minimal')]] },
           { key: 'ownedSince', title: LT('How Long They’ve Owned It'), desc: LT('How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.') },
         ] },
         { title: LT('Finding Things'), rows: [
@@ -1700,30 +1711,31 @@
   function funItems(def) {
     const box = el('section', 'routility-set-row routility-set-child routility-fun-list');
     box.dataset.key = 'funItems';
+    const FUN = 'routilityFun:' + (document.querySelector('meta[name="user-data"]')?.getAttribute('data-userid') || '0');
     const head = el('div', 'routility-fun-head');
     const text = el('div', 'routility-set-text');
     text.appendChild(el('h3', 'text-title-medium content-emphasis padding-none', lt(def.title)));
     const sub = el('p', 'text-body-small content-muted margin-none', lt(def.desc));
     text.appendChild(sub);
     head.appendChild(text);
-    const refill = button(lt('Refill Robux'), () => chrome.storage.local.get('routilityFun', (st) => chrome.storage.local.set({ routilityFun: Object.assign({}, st.routilityFun || {}, { spent: 0 }) })));
+    const refill = button(lt('Refill Robux'), () => chrome.storage.local.get(FUN, (st) => chrome.storage.local.set({ [FUN]: Object.assign({}, st[FUN] || {}, { spent: 0 }) })));
     refill.dataset.rtTip = lt('Puts your fake balance back to full and keeps everything you bought.');
-    const reset = button(lt('Reset All'), () => chrome.storage.local.set({ routilityFun: { spent: 0, items: [], worn: [] } }));
+    const reset = button(lt('Reset All'), () => chrome.storage.local.set({ [FUN]: { spent: 0, items: [], worn: [] } }));
     head.append(refill, reset);
     const list = el('div', 'routility-fun-items');
     box.append(head, list);
-    const refund = (it) => chrome.storage.local.get('routilityFun', (st) => {
-      const fun = st.routilityFun || {};
+    const refund = (it) => chrome.storage.local.get(FUN, (st) => {
+      const fun = st[FUN] || {};
       const items = Array.isArray(fun.items) ? fun.items.slice() : [];
       const i = items.findIndex(x => x.at === it.at && x.id === it.id && x.kind === it.kind);
       if (i < 0) return;
       const spent = Math.max(0, (Number(fun.spent) || 0) - (Number(items[i].price) || 0));
       items.splice(i, 1);
       const worn = (Array.isArray(fun.worn) ? fun.worn : []).filter(id => items.some(x => x.kind === 'asset' && x.id === id));
-      chrome.storage.local.set({ routilityFun: { spent, items, worn } });
+      chrome.storage.local.set({ [FUN]: { spent, items, worn } });
     });
-    const draw = () => chrome.storage.local.get('routilityFun', (st) => {
-      const fun = st.routilityFun || {};
+    const draw = () => chrome.storage.local.get(FUN, (st) => {
+      const fun = st[FUN] || {};
       const items = (Array.isArray(fun.items) ? fun.items : []).slice().sort((a, b) => b.at - a.at);
       const spent = Number(fun.spent) || 0;
       sub.textContent = items.length ? ltn(items.length, '{n} purchase · {spent} Robux spent', '{n} purchases · {spent} Robux spent', { n: items.length.toLocaleString('en-US'), spent: spent.toLocaleString('en-US') }) : lt(def.desc);
@@ -1779,7 +1791,7 @@
         return;
       }
       onFunSeen = true;
-      if (area === 'local' && changes.routilityFun) draw();
+      if (area === 'local' && changes[FUN]) draw();
     };
     chrome.storage.onChanged.addListener(onFun);
     return box;
@@ -2863,10 +2875,11 @@
     text.appendChild(el('h3', (nested ? 'text-title-medium' : 'text-title-large') + ' content-emphasis padding-none', lt(def.title)));
     text.appendChild(el('p', 'text-body-small content-muted margin-none', lt(def.desc)));
     section.appendChild(text);
+    let mock = null;
     if (MOCKS[def.key]) {
-      const mock = el('div', 'routility-set-mock');
+      mock = el('div', 'routility-set-mock');
       mock.setAttribute('aria-hidden', 'true');
-      mock.appendChild(MOCKS[def.key]());
+      mock.appendChild(MOCKS[def.key](settings));
       section.appendChild(mock);
     }
     const side = el('div', 'routility-set-control');
@@ -2883,6 +2896,7 @@
       }
       side.appendChild(select(lt(def.title), opts, current, (v) => {
         save({ [def.key]: v });
+        if (mock) mock.replaceChildren(MOCKS[def.key]({ ...settings, [def.key]: v }));
         if (rate) {
           rate.hidden = v !== extraFor;
           if (!rate.hidden) rate.input.focus({ preventScroll: true });
@@ -3280,9 +3294,11 @@
     buttons.appendChild(button(lt('Export'), () => {
       const me = myId();
       const playKey = me ? 'routilityPlaytime:' + me : null;
-      chrome.storage.local.get(['routilitySettings', ...Object.keys(PREFS), ...(playKey ? [playKey] : [])], (st) => {
+      const funKey = me ? 'routilityFun:' + me : null;
+      chrome.storage.local.get(['routilitySettings', ...Object.keys(PREFS), ...(playKey ? [playKey] : []), ...(funKey ? [funKey] : [])], (st) => {
         const prefs = {};
         for (const k of Object.keys(PREFS)) if (st[k] !== undefined) prefs[k] = st[k];
+        if (funKey && st[funKey] !== undefined) prefs.routilityFun = st[funKey];
         const mine = st.routilitySettings || {};
         const settings = {};
         for (const k of Object.keys(DEFAULTS)) settings[k] = k in mine && typeof mine[k] === typeof DEFAULTS[k] ? mine[k] : DEFAULTS[k];
@@ -3318,6 +3334,10 @@
         const v = given[k];
         if (test(v) && JSON.stringify(v).length <= 200000) prefs[k] = v;
       }
+      if (prefs.routilityFun && myId()) {
+        prefs['routilityFun:' + myId()] = prefs.routilityFun;
+        delete prefs.routilityFun;
+      }
       const play = parsed && isObj(parsed.playtime) && /^\d+$/.test(String(parsed.playtime.userId)) && validPlay(parsed.playtime) ? parsed.playtime : null;
       if (!Object.keys(clean).length && !Object.keys(prefs).length && !play) return say(lt('That file isn’t a RoUtility settings file.'));
       const playKey = play ? 'routilityPlaytime:' + play.userId : null;
@@ -3340,9 +3360,9 @@
         return;
       }
       text.textContent = lt('Reset');
-      chrome.storage.local.remove(RESET_PREFS, () => {
+      chrome.storage.local.get(null, (all) => chrome.storage.local.remove([...RESET_PREFS, ...Object.keys(all).filter(k => k.startsWith('routilityFun:'))], () => {
         chrome.storage.local.set({ routilitySettings: { ...DEFAULTS } }, () => say(lt('Everything is back to the defaults. Your price alerts and hidden games are kept.')));
-      });
+      }));
     }));
     status.classList.add('routility-set-row');
     backup.card.appendChild(status);

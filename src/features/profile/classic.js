@@ -311,10 +311,19 @@
     if (native) for (const child of native.children) host.appendChild(child.cloneNode(true));
   }
 
+  function syncName(s) {
+    const shown = s.root.querySelector('.profile-name');
+    const name = document.querySelector('#content > .profile-platform-container #profile-header-title-container-name')?.textContent.trim();
+    if (!shown || !name || shown.textContent === name) return;
+    shown.textContent = name;
+    try { sessionStorage.removeItem(PROFILE_CACHE); } catch {}
+  }
+
   function syncActions() {
     const s = state;
     if (!s) return;
     syncBadges(s);
+    syncName(s);
     const list = s.root.querySelector('.details-actions');
     if (!list) return;
     const natives = nativeButtons();

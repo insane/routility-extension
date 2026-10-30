@@ -307,6 +307,69 @@
     return li;
   }
 
+  function addFriendsRow() {
+    const wrap = el('div', 'react-friends-carousel-container routility-injected routility-add-friends');
+    const head = el('div', 'container-header people-list-header');
+    const title = el('h2', null, lt('Friends'));
+    title.appendChild(el('span', 'friends-count', '(0)'));
+    const all = el('a', 'btn-secondary-xs btn-more see-all-link-icon', lt('See All'));
+    all.href = 'https://www.roblox.com/users/friends#!/friends';
+    head.append(title, all);
+    const icon = el('div', 'add-friends-icon-container');
+    icon.appendChild(el('span', 'grow-0 shrink-0 basis-auto icon icon-filled-plus-large size-[var(--icon-size-xlarge)] [vertical-align:middle] add-friends-icon content-secondary'));
+    const name = el('div', 'friends-carousel-tile-name');
+    name.appendChild(el('span', 'friends-carousel-display-name', lt('Add Friends')));
+    const label = el('div', 'friends-carousel-tile-label');
+    label.appendChild(name);
+    const labels = el('div', 'friends-carousel-tile-labels');
+    labels.appendChild(label);
+    const link = el('a');
+    link.href = '/users/friends#!/friend-requests';
+    link.append(icon, labels);
+    const btn = el('button');
+    btn.type = 'button';
+    btn.id = 'friend-tile-button';
+    btn.appendChild(link);
+    const tile = el('div', 'friends-carousel-tile');
+    tile.appendChild(btn);
+    const list = el('div', 'friends-carousel-list-container-not-full');
+    list.appendChild(tile);
+    const carousel = el('div', 'friends-carousel-container');
+    carousel.appendChild(list);
+    const body = el('div');
+    body.appendChild(carousel);
+    wrap.append(head, body);
+    return wrap;
+  }
+
+  function friendsRow(p) {
+    const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+    if (!me) return;
+    let count = lastRows().friends;
+    let done = false;
+    json(`https://friends.roblox.com/v1/users/${me}/friends/count`).then((data) => {
+      if (p !== page) return;
+      count = typeof data?.count === 'number' ? data.count : null;
+      if (count != null) saveRows('friends', count);
+      done = count == null;
+      p.friends();
+      if (count) setTimeout(() => {
+        done = true;
+        if (p === page) p.friends();
+      }, 15000);
+    });
+    p.friends = () => {
+      const box = document.querySelector('.game-home-page-container .friend-carousel-container');
+      if (!box) return;
+      const ours = box.querySelector(':scope > .routility-add-friends');
+      const empty = box.querySelector(':scope > .friends-carousel-0-friends');
+      box.classList.toggle('routility-fr-done', done || !empty);
+      if (empty && count === 0) {
+        if (!ours) box.appendChild(addFriendsRow());
+      } else ours?.remove();
+    };
+  }
+
   function friendsPlaying(p) {
     const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
     if (!me) return;
@@ -1677,6 +1740,7 @@
     if (!lists) return;
     const p = { timer: null, observer: null, render: null, place: null, playing: false };
     page = p;
+    if (home) friendsRow(p);
     if (home && settings.friendsPlaying !== false) friendsPlaying(p);
     if (home && settings.recentlyUpdated !== false) recentlyUpdated(p);
     if (!home && settings.genreFilters !== false) genreFilters(p);
@@ -1685,6 +1749,7 @@
       queued = false;
       if (p !== page) return;
       addHideButtons(document);
+      p.friends?.();
       p.place?.();
       p.placeRU?.();
       p.genre?.();
@@ -1718,6 +1783,7 @@
     page.observer?.disconnect();
     document.getElementById('routility-friends-playing')?.remove();
     document.getElementById('routility-recently-updated')?.remove();
+    document.querySelector('.routility-add-friends')?.remove();
     page.genreStop?.();
     document.querySelectorAll('.routility-genre-bar, .routility-genre-filter').forEach(n => n.remove());
     document.querySelectorAll('.routility-genre-off, .routility-genre-empty').forEach(n => n.classList.remove('routility-genre-off', 'routility-genre-empty'));

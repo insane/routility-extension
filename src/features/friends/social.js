@@ -11,9 +11,7 @@
   const STRONG = /\b(n+[i1!|]+[gq]{2,}[e3a@4]+[rh]*[sz]?|f+[a@4]+[gq]+(?:[o0]+[t7]+)?[sz]?|k+[i1!|]+k+[e3]+[sz]?|ch+[i1!|]+n+k+[sz]?|sp+[i1!|]+c+[sz]?|tr+[a@4]+nn+(?:y|[i1!|]e)[sz]?|w+[e3]+tb+[a@4]+c+k+[sz]?|g+[o0]{2,}k+[sz]?)\b/gi;
   const SPOTS = [
     { card: '#friends-web-app li.avatar-card, .routility-friends-grid li.avatar-card, li.routility-rf-card', box: '.avatar-name-container' },
-    { card: '.friends-carousel-tile', box: '.friends-carousel-tile-name' },
     { card: 'article.player-search-card', box: '.player-search-card-name' },
-    { card: 'li.routility-search-row', box: '.routility-search-title' },
     { card: '.routility-classic-people .friend, .routility-modern-friend', box: '.routility-friend-name-row' },
   ];
 

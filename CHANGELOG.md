@@ -7,7 +7,7 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 - Code: [@reqonn](https://github.com/reqonn), [@awkward222](https://github.com/awkward222)
 - Bug reports and ideas: [@reqonn](https://github.com/reqonn), api_cats
 
-## 1.1.8 · October 21, 2026
+## 1.1.8 · October 30, 2026
 
 RoUtility badges and friend request messages, plus server region and profile fixes.
 
@@ -15,12 +15,12 @@ RoUtility badges and friend request messages, plus server region and profile fix
 
 ```diff
 + Friend History (Friends): a page at roblox.com/friend-history with two columns, people who were added to your friends list and people who are no longer on it, saved on this device with when it happened. It has its own link in the left menu, under Friends.
-+ 2017 Roblox Theme, phase 1 (Classic, off by default): the 2017 to 2019 Roblox look on Home, Games, game and item pages, the Catalog and profiles, with the blue top bar, old sidebar, Classic Names and green Play buttons. A Roblox Plus or custom theme keeps its colors. More pages come in the next phases.
++ 2017 Roblox Theme, phase 1 (Classic, off by default): the 2017 to 2019 Roblox look on Home, Games, game and item pages, the Catalog, Inventory, communities and profiles, with the blue top bar, old sidebar, Classic Names and green Play buttons. A Roblox Plus or custom theme keeps its colors. More pages come in the next phases.
 + Custom Name Badges (Fun): pick Verified, Roblox Plus, Premium and Roblox Admin for your own name. They show everywhere Roblox shows badges, in Roblox’s order, and start with the ones you really have. Roblox Admin also adds the Administrator badge to your Roblox Badges.
 + Classic Admin Badge (Classic, off by default): the old red R logo as the Roblox admin badge next to names, and the old Administrator badge in Roblox Badges.
 + Try In-Game: a button on item and bundle pages that opens Avatar Sandbox with the item already on your avatar, so you can see it in a real game before you buy.
 + Profile Notes: write a private note on anyone’s profile, like on Discord. Only you can see it, and once you verify with Roblox it’s backed up so it comes back on your other browsers. (by @reqonn)
-+ Profile Pill Style: show Value and RAP joined, in separate colors or all gray. Pills now go Value, RAP, then Price, and private inventories show a lock. (by @reqonn)
++ Profile Pill Style: show the pills Combined, Separate or Minimal, with a preview in settings. Pills now go Value, RAP, then Price, and private inventories show a lock. (by @reqonn)
 + RoUtility Badge and Friend Request Messages: verify with Roblox once and other RoUtility users see a small RoUtility logo next to your name. When you add a RoUtility user, you can include a short message, and messages people send you show on your Requests page. Links and contact info aren’t allowed, and you can report or block anyone. (by @reqonn)
 + Hover a verified, Roblox Plus, Premium or admin badge next to someone’s name on their profile to see what it is. (by @reqonn)
 + Terminated players show their avatar on their profile, and pasted or outside links to terminated profiles open them too. (by @reqonn)
@@ -42,8 +42,14 @@ RoUtility badges and friend request messages, plus server region and profile fix
 - Item pages whose address ends up with only the item’s name (no number) show RoUtility’s values and tools again.
 - Server Regions: Play with a region picked (like Miami) finds servers in that region that actually have room, instead of saying there are none or sending you to one that just filled up.
 - Cancel Request shows right after you send a friend request. (by @reqonn)
-- Home: the friends row no longer shows a loading placeholder when you have no friends, and the greeting shows your current avatar. (by @reqonn)
+- Home: the friends row shows a loading placeholder until your friends are in, with Friends (0) and Add Friends if you have none, and the greeting shows your current avatar. (by @reqonn)
 - Search: names in the search box are readable in light mode. (by @reqonn)
+- Friends: going to the next page of a friends list shows each friend’s own Friends Since date, not the date from the page before. (by @reqonn)
+- Classic Profile Layout: a friend’s new nickname shows right after you save it. (by @reqonn)
+- Fun Mode: Fake Purchases and Fun Outfits are saved separately for each Roblox account, so what you fake buy on one no longer shows on another. (by @reqonn)
+- Chat: the RoUtility bot window stays where it is when Roblox’s chat updates, so your chat windows don’t shuffle when a message comes in. (by @reqonn)
+- The Shown via RoUtility label on hidden friends lists no longer draws on top of Roblox’s chat. (by @reqonn)
+- Profiles with no description show that text at the same size as a normal bio.
 - A startup error on some profiles is gone. (by @reqonn)
 - Fun Mode: heads from bundles you bought, like Headless, now show on your headshot on Home and everywhere else, and replace the head you really wear.
 - Fun Mode: limiteds you bought now add to the RAP, Value and USD under your name on your profile.

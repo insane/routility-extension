@@ -73,13 +73,26 @@
     };
   }
 
+  const mine = (base) => {
+    const me = document.querySelector('meta[name="user-data"]')?.getAttribute('data-userid');
+    return me ? base + ':' + me : null;
+  };
+
   async function loadLooks() {
-    const st = await store(KEY);
-    return (Array.isArray(st[KEY]) ? st[KEY] : []).map(cleanLook).filter(Boolean);
+    const k = mine(KEY);
+    if (!k) return [];
+    const st = await store([k, KEY]);
+    let list = st[k];
+    if (list === undefined && Array.isArray(st[KEY])) {
+      list = st[KEY];
+      chrome.storage.local.set({ [k]: list }, () => chrome.storage.local.remove(KEY));
+    }
+    return (Array.isArray(list) ? list : []).map(cleanLook).filter(Boolean);
   }
 
   function saveLooks(list) {
-    return new Promise(r => chrome.storage.local.set({ [KEY]: list.slice(0, MAX) }, r));
+    const k = mine(KEY);
+    return k ? new Promise(r => chrome.storage.local.set({ [k]: list.slice(0, MAX) }, r)) : Promise.resolve();
   }
 
   async function avatarThumb(me) {
@@ -112,9 +125,10 @@
 
   async function capture() {
     const me = document.querySelector('meta[name="user-data"]')?.getAttribute('data-userid');
-    const [av, st] = await Promise.all([getJson(API + 'v2/avatar/avatar'), store(FUN)]);
+    const funKey = FUN + ':' + me;
+    const [av, st] = await Promise.all([getJson(API + 'v2/avatar/avatar'), store(funKey)]);
     if (!me || !av || !Array.isArray(av.assets)) return null;
-    const fun = st[FUN] && typeof st[FUN] === 'object' ? st[FUN] : {};
+    const fun = st[funKey] && typeof st[funKey] === 'object' ? st[funKey] : {};
     const items = Array.isArray(fun.items) ? fun.items : [];
     const fake = (Array.isArray(fun.worn) ? fun.worn : []).filter(id => Number.isFinite(id));
     const fakeSet = new Set(fake);
@@ -147,9 +161,10 @@
     const av = await getJson(API + 'v2/avatar/avatar');
     if (av && av.playerAvatarType && av.playerAvatarType !== look.type) await send(API + 'v1/avatar/set-player-avatar-type', { playerAvatarType: look.type });
     const ok = await send(API + 'v2/avatar/set-wearing-assets', { assets: look.real });
-    const st = await store(FUN);
-    const fun = st[FUN] && typeof st[FUN] === 'object' ? st[FUN] : null;
-    if (fun) await new Promise(r => chrome.storage.local.set({ [FUN]: { ...fun, worn: look.fake.slice() } }, r));
+    const funKey = mine(FUN);
+    const st = funKey ? await store(funKey) : {};
+    const fun = funKey && st[funKey] && typeof st[funKey] === 'object' ? st[funKey] : null;
+    if (fun) await new Promise(r => chrome.storage.local.set({ [funKey]: { ...fun, worn: look.fake.slice() } }, r));
     send(API + 'v1/avatar/redraw-thumbnail');
     return ok;
   }
