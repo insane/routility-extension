@@ -1707,30 +1707,31 @@
   function funItems(def) {
     const box = el('section', 'routility-set-row routility-set-child routility-fun-list');
     box.dataset.key = 'funItems';
+    const FUN = 'routilityFun:' + (document.querySelector('meta[name="user-data"]')?.getAttribute('data-userid') || '0');
     const head = el('div', 'routility-fun-head');
     const text = el('div', 'routility-set-text');
     text.appendChild(el('h3', 'text-title-medium content-emphasis padding-none', lt(def.title)));
     const sub = el('p', 'text-body-small content-muted margin-none', lt(def.desc));
     text.appendChild(sub);
     head.appendChild(text);
-    const refill = button(lt('Refill Robux'), () => chrome.storage.local.get('routilityFun', (st) => chrome.storage.local.set({ routilityFun: Object.assign({}, st.routilityFun || {}, { spent: 0 }) })));
+    const refill = button(lt('Refill Robux'), () => chrome.storage.local.get(FUN, (st) => chrome.storage.local.set({ [FUN]: Object.assign({}, st[FUN] || {}, { spent: 0 }) })));
     refill.dataset.rtTip = lt('Puts your fake balance back to full and keeps everything you bought.');
-    const reset = button(lt('Reset All'), () => chrome.storage.local.set({ routilityFun: { spent: 0, items: [], worn: [] } }));
+    const reset = button(lt('Reset All'), () => chrome.storage.local.set({ [FUN]: { spent: 0, items: [], worn: [] } }));
     head.append(refill, reset);
     const list = el('div', 'routility-fun-items');
     box.append(head, list);
-    const refund = (it) => chrome.storage.local.get('routilityFun', (st) => {
-      const fun = st.routilityFun || {};
+    const refund = (it) => chrome.storage.local.get(FUN, (st) => {
+      const fun = st[FUN] || {};
       const items = Array.isArray(fun.items) ? fun.items.slice() : [];
       const i = items.findIndex(x => x.at === it.at && x.id === it.id && x.kind === it.kind);
       if (i < 0) return;
       const spent = Math.max(0, (Number(fun.spent) || 0) - (Number(items[i].price) || 0));
       items.splice(i, 1);
       const worn = (Array.isArray(fun.worn) ? fun.worn : []).filter(id => items.some(x => x.kind === 'asset' && x.id === id));
-      chrome.storage.local.set({ routilityFun: { spent, items, worn } });
+      chrome.storage.local.set({ [FUN]: { spent, items, worn } });
     });
-    const draw = () => chrome.storage.local.get('routilityFun', (st) => {
-      const fun = st.routilityFun || {};
+    const draw = () => chrome.storage.local.get(FUN, (st) => {
+      const fun = st[FUN] || {};
       const items = (Array.isArray(fun.items) ? fun.items : []).slice().sort((a, b) => b.at - a.at);
       const spent = Number(fun.spent) || 0;
       sub.textContent = items.length ? ltn(items.length, '{n} purchase · {spent} Robux spent', '{n} purchases · {spent} Robux spent', { n: items.length.toLocaleString('en-US'), spent: spent.toLocaleString('en-US') }) : lt(def.desc);
@@ -1786,7 +1787,7 @@
         return;
       }
       onFunSeen = true;
-      if (area === 'local' && changes.routilityFun) draw();
+      if (area === 'local' && changes[FUN]) draw();
     };
     chrome.storage.onChanged.addListener(onFun);
     return box;
@@ -3288,9 +3289,11 @@
     buttons.appendChild(button(lt('Export'), () => {
       const me = myId();
       const playKey = me ? 'routilityPlaytime:' + me : null;
-      chrome.storage.local.get(['routilitySettings', ...Object.keys(PREFS), ...(playKey ? [playKey] : [])], (st) => {
+      const funKey = me ? 'routilityFun:' + me : null;
+      chrome.storage.local.get(['routilitySettings', ...Object.keys(PREFS), ...(playKey ? [playKey] : []), ...(funKey ? [funKey] : [])], (st) => {
         const prefs = {};
         for (const k of Object.keys(PREFS)) if (st[k] !== undefined) prefs[k] = st[k];
+        if (funKey && st[funKey] !== undefined) prefs.routilityFun = st[funKey];
         const mine = st.routilitySettings || {};
         const settings = {};
         for (const k of Object.keys(DEFAULTS)) settings[k] = k in mine && typeof mine[k] === typeof DEFAULTS[k] ? mine[k] : DEFAULTS[k];
@@ -3326,6 +3329,10 @@
         const v = given[k];
         if (test(v) && JSON.stringify(v).length <= 200000) prefs[k] = v;
       }
+      if (prefs.routilityFun && myId()) {
+        prefs['routilityFun:' + myId()] = prefs.routilityFun;
+        delete prefs.routilityFun;
+      }
       const play = parsed && isObj(parsed.playtime) && /^\d+$/.test(String(parsed.playtime.userId)) && validPlay(parsed.playtime) ? parsed.playtime : null;
       if (!Object.keys(clean).length && !Object.keys(prefs).length && !play) return say(lt('That file isn’t a RoUtility settings file.'));
       const playKey = play ? 'routilityPlaytime:' + play.userId : null;
@@ -3348,9 +3355,9 @@
         return;
       }
       text.textContent = lt('Reset');
-      chrome.storage.local.remove(RESET_PREFS, () => {
+      chrome.storage.local.get(null, (all) => chrome.storage.local.remove([...RESET_PREFS, ...Object.keys(all).filter(k => k.startsWith('routilityFun:'))], () => {
         chrome.storage.local.set({ routilitySettings: { ...DEFAULTS } }, () => say(lt('Everything is back to the defaults. Your price alerts and hidden games are kept.')));
-      });
+      }));
     }));
     status.classList.add('routility-set-row');
     backup.card.appendChild(status);
