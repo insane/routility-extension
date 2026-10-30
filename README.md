@@ -43,6 +43,7 @@ RoUtility adds the things Roblox doesn't show you to Roblox's own pages. There a
 **Experiences and Communities**
 - Server regions with a preferred region, and exact visit counts
 - Friends in a community, exact members and funds
+- Find online community members, filter by in-game status or place ID, and join their servers with game titles and icons
 
 **Creator Hub**
 - Script Scan flags backdoors in Creator Store models before you insert them

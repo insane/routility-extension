@@ -6,7 +6,7 @@
   const DAY = 86400000;
   const FG_KEY = 'routilityFriendGroups';
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
-  const settings = { groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, groupFind: true, groupHiddenGames: true, groupCreated: true, groupJoined: true, groupCount: true };
+  const settings = { groupFriends: true, groupDetails: true, groupManage: true, groupAdmin: true, groupFind: true, groupOnline: true, groupHiddenGames: true, groupCreated: true, groupJoined: true, groupCount: true };
   let lastUrl = '';
   let page = null;
   let csrf = '';
@@ -166,6 +166,12 @@
       if (!s.asked) {
         s.asked = true;
         start(s);
+      }
+      if (settings.groupOnline && !row.querySelector('.routility-cm-online')) {
+        const button = el('button', pillClass() + ' routility-injected routility-cm-online', lt('Find Online Members'));
+        button.type = 'button';
+        button.addEventListener('click', () => window.RoUtilityGroupOnline.open(gid, button));
+        row.appendChild(button);
       }
       if (settings.groupDetails && s.info) {
         const members = [...row.querySelectorAll('.profile-insight-pill-button')].find(b => /Members?$/.test(b.textContent.trim()) && !b.classList.contains('routility-injected'));
@@ -805,6 +811,8 @@
 
   function route() {
     if (!/^\/communities/i.test(location.pathname)) {
+      window.RoUtilityGroupOnline.close();
+      document.querySelectorAll('.routility-cm-online').forEach(n => n.remove());
       if (page) { closePop(); page = null; }
       lastUrl = location.pathname + location.search;
       return;
@@ -812,8 +820,9 @@
     const key = location.pathname + location.search;
     if (key !== lastUrl) {
       lastUrl = key;
+      window.RoUtilityGroupOnline.close();
       closePop();
-      document.querySelectorAll('.routility-cm-friends, .routility-cm-funds, .routility-cm-created, .routility-cm-joined').forEach(n => n.remove());
+      document.querySelectorAll('.routility-cm-friends, .routility-cm-funds, .routility-cm-created, .routility-cm-joined, .routility-cm-online').forEach(n => n.remove());
       document.querySelectorAll('[data-rt-rank]').forEach(n => { delete n.dataset.rtRank; });
       const gid = groupId();
       if (/^\/communities\/configure/i.test(location.pathname) && gid) page = configurePage(gid);
