@@ -2948,5 +2948,7 @@
  "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "หน้าตา Roblox ปี 2017 ถึง 2019: แถบด้านบนสีน้ำเงิน แถบด้านข้างสีขาว หน้าแบบเก่า และปุ่มเล่นสีเขียว พร้อมชื่อแบบคลาสสิกและแถบด้านข้างแบบเก่า ธีม Roblox Plus หรือธีมที่กำหนดเองจะยังคงใช้สีเดิม",
  "Combined": "รวมกัน",
  "Separate": "แยกกัน",
- "Minimal": "มินิมอล"
+ "Minimal": "มินิมอล",
+ "Hide Download Button": "ซ่อนปุ่มดาวน์โหลด",
+ "Hides the Download button in the top navigation bar.": "ซ่อนปุ่มดาวน์โหลดในแถบนำทางด้านบน"
 }

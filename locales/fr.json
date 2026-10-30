@@ -3090,5 +3090,7 @@
  "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "L’apparence de Roblox de 2017 à 2019 : la barre supérieure bleue, la barre latérale blanche, les anciennes pages et les boutons Jouer verts, avec les Noms classiques et l’ancienne barre latérale. Un thème Roblox Plus ou personnalisé garde ses couleurs.",
  "Combined": "Combiné",
  "Separate": "Séparé",
- "Minimal": "Minimal"
+ "Minimal": "Minimal",
+ "Hide Download Button": "Masquer le bouton Télécharger",
+ "Hides the Download button in the top navigation bar.": "Masque le bouton Télécharger dans la barre de navigation supérieure."
 }

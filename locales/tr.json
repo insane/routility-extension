@@ -3090,5 +3090,7 @@
  "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017–2019 Roblox görünümü: mavi üst çubuk, beyaz kenar çubuğu, eski sayfalar ve yeşil Oyna düğmeleri, Klasik Adlar ve eski kenar çubuğuyla birlikte. Roblox Plus veya özel tema renklerini korur.",
  "Combined": "Birleşik",
  "Separate": "Ayrı",
- "Minimal": "Sade"
+ "Minimal": "Sade",
+ "Hide Download Button": "İndir Düğmesini Gizle",
+ "Hides the Download button in the top navigation bar.": "Üst gezinme çubuğundaki İndir düğmesini gizler."
 }
