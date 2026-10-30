@@ -10795,12 +10795,23 @@ a.routility-pt-item:hover .routility-pt-name {
   z-index: 1;
 }
 
-html.routility-skeleton .friend-carousel-container:not(:has(.react-friends-carousel-container, .friends-carousel-0-friends)) {
+html.routility-skeleton .friend-carousel-container:not(:has(.react-friends-carousel-container, .friends-carousel-0-friends)),
+html.routility-skeleton .game-home-page-container .friend-carousel-container:not(.routility-fr-done):not(:has(.react-friends-carousel-container)),
+html.routility-skeleton .game-home-page-container:has(> .game-home-page-loading-title)::before {
   min-height: 190px;
+  padding-left: 21px;
   background:
-    radial-gradient(circle at 45px 45px, var(--routility-sk, rgba(127, 127, 127, 0.18)) 44.5px, transparent 45.5px) 21px 43px / 108px 90px repeat-x,
-    linear-gradient(to right, var(--routility-sk, rgba(127, 127, 127, 0.18)) 64px, transparent 64px) 34px 145px / 108px 12px repeat-x;
+    linear-gradient(var(--routility-sk, rgba(127, 127, 127, 0.18)), var(--routility-sk, rgba(127, 127, 127, 0.18))) 0 3px / 110px 20px no-repeat,
+    radial-gradient(circle at 45px 45px, var(--routility-sk, rgba(127, 127, 127, 0.18)) 44.5px, transparent 45.5px) 21px 37px / 108px 90px repeat-x,
+    linear-gradient(to right, var(--routility-sk, rgba(127, 127, 127, 0.18)) 64px, transparent 64px) 34px 132px / 108px 12px repeat-x;
+  background-clip: border-box, content-box, content-box;
   animation: routility-shimmer 1.2s ease-in-out infinite;
+}
+
+html.routility-skeleton .game-home-page-container:has(> .game-home-page-loading-title)::before {
+  content: '';
+  display: block;
+  margin-bottom: 18px;
 }
 
 .routility-pt-prev {

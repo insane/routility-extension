@@ -466,6 +466,7 @@
  "Add a message (optional)": "메시지 추가 (선택)",
  "Add a username, like {example}.": "{example}처럼 사용자 이름을 추가해 주세요.",
  "Add an item, like {example1} or {example2}.": "{example1}이나 {example2}처럼 아이템을 추가해 주세요.",
+ "Add Friends": "친구 추가",
  "Add items to": "아이템 추가 위치",
  "Add items to both sides": "양쪽에 아이템을 추가하세요",
  "Add private notes to anyone’s profile, like on Discord. Only you can see them.": "Discord처럼 누구의 프로필에든 개인 메모를 남길 수 있어요. 나만 볼 수 있어요.",
