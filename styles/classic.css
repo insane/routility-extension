@@ -951,6 +951,11 @@
   border-top: 1px solid var(--color-stroke-default, rgba(127, 127, 127, 0.2));
 }
 
+.routility-sk-stats + .routility-sk-note {
+  padding-top: 0;
+  border-top: 0;
+}
+
 .routility-sk-note > :first-child {
   margin: 2px 0;
 }

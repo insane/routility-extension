@@ -13833,3 +13833,8 @@ html.routility-classic-admin .routility-admin-badge::after {
 .routility-fb-nav > span {
   display: contents !important;
 }
+
+.profile-stats-container + .routility-profile-note {
+  padding-top: 0;
+  border-top: 0;
+}

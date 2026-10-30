@@ -23,7 +23,7 @@
     const columns = document.querySelector('.routility-classic .routility-columns-about');
     if (columns) {
       const stats = columns.querySelector(':scope > .profile-stats-container');
-      return stats && stats.childElementCount ? { parent: columns, before: stats } : null;
+      return stats && stats.childElementCount ? { parent: columns, before: stats.nextElementSibling } : null;
     }
     const about = document.querySelector('.routility-classic .profile-about');
     if (about) {

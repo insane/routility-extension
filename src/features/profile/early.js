@@ -76,7 +76,7 @@
     const stats = el('div', 'routility-sk-row');
     stats.classList.add('routility-sk-stats');
     stats.append(bar(90, 34), bar(90, 34), bar(90, 34));
-    const info = panel([slot(22, 0, bar(80, 14)), slot(300, 6, bar(180, 260, 'routility-sk-body')), skOwn ? slot(101, 12, bar('100%', 101, 'routility-sk-note-input')) : slot(29, 12, bar('45%', 14)), ...(skNote ? [note()] : []), stats, footer()]);
+    const info = panel([slot(22, 0, bar(80, 14)), slot(300, 6, bar(180, 260, 'routility-sk-body')), skOwn ? slot(101, 12, bar('100%', 101, 'routility-sk-note-input')) : slot(29, 12, bar('45%', 14)), stats, ...(skNote ? [note()] : []), footer()]);
     info.classList.add('routility-sk-about');
     about.append(heading(70), info);
     const creations = el('div', 'routility-column-creations');
