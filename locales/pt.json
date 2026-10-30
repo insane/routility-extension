@@ -591,7 +591,6 @@
  "All Experiences": "Todas as Experiências",
  "All Favorites": "Todos os favoritos",
  "All Genres": "Todos os gêneros",
- "All Gray": "Tudo cinza",
  "all items": "todos os itens",
  "All items": "Todos os itens",
  "All Items": "Todos os itens",
@@ -2414,7 +2413,6 @@
  "Sent": "Enviada",
  "Sent {date}": "Enviada em {date}",
  "Sent {time}": "Enviada {time}",
- "Separate Colors": "Cores separadas",
  "Serial #{serial}": "Série nº {serial}",
  "Serial N/A": "Série N/D",
  "Server {id}": "Servidor {id}",
@@ -2831,7 +2829,6 @@
  "Value": "Valor",
  "Value {value}": "Valor {value}",
  "Value and Price": "Valor e Preço",
- "Value and RAP Joined": "Valor e RAP juntos",
  "Value difference": "Diferença de valor",
  "Value it in the Trade Calculator": "Avaliar na Calculadora de trocas",
  "Value on Profiles": "Valor nos Perfis",
@@ -3089,5 +3086,8 @@
  "Starts with the badges you really have. Roblox shows Roblox Plus instead of Premium when you have both, so only one of them can be picked.": "Começa com os emblemas que você realmente tem. O Roblox mostra Roblox Plus em vez de Premium quando você tem os dois, então só um deles pode ser escolhido.",
  "Your Badges": "Seus emblemas",
  "2017 Roblox Theme": "Tema Roblox 2017",
- "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "O visual do Roblox de 2017 a 2019: a barra superior azul, a barra lateral branca, as páginas antigas e os botões verdes de Jogar, com os Nomes Clássicos e a barra lateral antiga. Um tema do Roblox Plus ou personalizado mantém suas cores."
+ "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "O visual do Roblox de 2017 a 2019: a barra superior azul, a barra lateral branca, as páginas antigas e os botões verdes de Jogar, com os Nomes Clássicos e a barra lateral antiga. Um tema do Roblox Plus ou personalizado mantém suas cores.",
+ "Combined": "Combinado",
+ "Separate": "Separado",
+ "Minimal": "Minimalista"
 }

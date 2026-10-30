@@ -503,7 +503,6 @@
  "All Experiences": "모든 경험",
  "All Favorites": "모든 즐겨찾기",
  "All Genres": "모든 장르",
- "All Gray": "모두 회색",
  "all items": "모든 아이템",
  "All items": "모든 아이템",
  "All Items": "모든 아이템",
@@ -2282,7 +2281,6 @@
  "Sent": "보냄",
  "Sent {date}": "{date} 보냄",
  "Sent {time}": "{time} 보냄",
- "Separate Colors": "색상별로 나누기",
  "Serial #{serial}": "일련번호 #{serial}",
  "Serial N/A": "일련번호 없음",
  "Server {id}": "서버 {id}",
@@ -2693,7 +2691,6 @@
  "Value": "가치",
  "Value {value}": "가치 {value}",
  "Value and Price": "가치와 가격",
- "Value and RAP Joined": "가치와 RAP 합치기",
  "Value difference": "가치 차이",
  "Value it in the Trade Calculator": "거래 계산기에서 가치 확인",
  "Value on Profiles": "프로필의 가치",
@@ -2947,5 +2944,8 @@
  "Starts with the badges you really have. Roblox shows Roblox Plus instead of Premium when you have both, so only one of them can be picked.": "실제로 가진 배지로 시작해요. 둘 다 있으면 Roblox는 Premium 대신 Roblox Plus를 보여 주므로 둘 중 하나만 고를 수 있어요.",
  "Your Badges": "내 배지",
  "2017 Roblox Theme": "2017 Roblox 테마",
- "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017~2019년 Roblox 모습: 파란 상단 바, 흰색 사이드바, 예전 페이지와 초록색 플레이 버튼, 클래식 이름과 예전 사이드바까지. Roblox Plus 또는 커스텀 테마는 색상이 그대로 유지돼요."
+ "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017~2019년 Roblox 모습: 파란 상단 바, 흰색 사이드바, 예전 페이지와 초록색 플레이 버튼, 클래식 이름과 예전 사이드바까지. Roblox Plus 또는 커스텀 테마는 색상이 그대로 유지돼요.",
+ "Combined": "합치기",
+ "Separate": "나누기",
+ "Minimal": "심플"
 }

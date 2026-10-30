@@ -591,7 +591,6 @@
  "All Experiences": "Tüm Deneyimler",
  "All Favorites": "Tüm Favoriler",
  "All Genres": "Tüm türler",
- "All Gray": "Hepsi Gri",
  "all items": "tüm eşyalar",
  "All items": "Tüm eşyalar",
  "All Items": "Tüm Eşyalar",
@@ -2414,7 +2413,6 @@
  "Sent": "Gönderilen",
  "Sent {date}": "{date} gönderildi",
  "Sent {time}": "{time} gönderildi",
- "Separate Colors": "Ayrı Renkler",
  "Serial #{serial}": "Seri #{serial}",
  "Serial N/A": "Seri yok",
  "Server {id}": "Sunucu {id}",
@@ -2831,7 +2829,6 @@
  "Value": "Değer",
  "Value {value}": "Değer {value}",
  "Value and Price": "Değer ve Fiyat",
- "Value and RAP Joined": "Değer ve RAP Birleşik",
  "Value difference": "Değer farkı",
  "Value it in the Trade Calculator": "Takas hesaplayıcısında değerle",
  "Value on Profiles": "Profillerde Değer",
@@ -3089,5 +3086,8 @@
  "Starts with the badges you really have. Roblox shows Roblox Plus instead of Premium when you have both, so only one of them can be picked.": "Gerçekten sahip olduğun rozetlerle başlar. İkisine birden sahipsen Roblox, Premium yerine Roblox Plus gösterir, bu yüzden yalnızca biri seçilebilir.",
  "Your Badges": "Rozetlerin",
  "2017 Roblox Theme": "2017 Roblox Teması",
- "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017–2019 Roblox görünümü: mavi üst çubuk, beyaz kenar çubuğu, eski sayfalar ve yeşil Oyna düğmeleri, Klasik Adlar ve eski kenar çubuğuyla birlikte. Roblox Plus veya özel tema renklerini korur."
+ "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017–2019 Roblox görünümü: mavi üst çubuk, beyaz kenar çubuğu, eski sayfalar ve yeşil Oyna düğmeleri, Klasik Adlar ve eski kenar çubuğuyla birlikte. Roblox Plus veya özel tema renklerini korur.",
+ "Combined": "Birleşik",
+ "Separate": "Ayrı",
+ "Minimal": "Sade"
 }

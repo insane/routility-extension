@@ -503,7 +503,6 @@
  "All Experiences": "すべての体験",
  "All Favorites": "すべてのお気に入り",
  "All Genres": "すべてのジャンル",
- "All Gray": "すべてグレー",
  "all items": "すべてのアイテム",
  "All items": "すべてのアイテム",
  "All Items": "すべてのアイテム",
@@ -2282,7 +2281,6 @@
  "Sent": "送信済み",
  "Sent {date}": "{date}に送信",
  "Sent {time}": "{time}に送信",
- "Separate Colors": "色ごとに分ける",
  "Serial #{serial}": "シリアル #{serial}",
  "Serial N/A": "シリアルなし",
  "Server {id}": "サーバー {id}",
@@ -2693,7 +2691,6 @@
  "Value": "価値",
  "Value {value}": "価値 {value}",
  "Value and Price": "価値と価格",
- "Value and RAP Joined": "価値とRAPをつなげる",
  "Value difference": "価値の差",
  "Value it in the Trade Calculator": "トレード計算機で評価",
  "Value on Profiles": "プロフィールの価値",
@@ -2947,5 +2944,8 @@
  "Starts with the badges you really have. Roblox shows Roblox Plus instead of Premium when you have both, so only one of them can be picked.": "最初は実際に持っているバッジが選ばれています。両方ある場合RobloxはPremiumの代わりにRoblox Plusを表示するので、どちらか一方だけ選べます。",
  "Your Badges": "あなたのバッジ",
  "2017 Roblox Theme": "2017年のRobloxテーマ",
- "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017〜2019年のRobloxの見た目：青いトップバー、白いサイドバー、昔のページ、緑のプレイボタン。クラシックな名前と旧サイドバーも使います。Roblox Plusやカスタムのテーマは色がそのまま残ります。"
+ "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017〜2019年のRobloxの見た目：青いトップバー、白いサイドバー、昔のページ、緑のプレイボタン。クラシックな名前と旧サイドバーも使います。Roblox Plusやカスタムのテーマは色がそのまま残ります。",
+ "Combined": "まとめる",
+ "Separate": "分ける",
+ "Minimal": "シンプル"
 }

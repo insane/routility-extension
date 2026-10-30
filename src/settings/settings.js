@@ -485,6 +485,17 @@
     searchTerminated: () => r([circle(28), c([strong('ava_builds'), muted('@ava_builds'), h('span', 'rt-m-tiny rt-m-alert-text', lt('Terminated'))])]),
     revealTerminated: () => r([circle(28), c([h('span', 'rt-m-strike', lt('Account Deleted')), r([strong('ava_builds'), muted('• ' + lt('Banned'))])])]),
     inventoryValues: () => g([A.frigidus, A.stv, A.v3000].map(id => cell([thumb(id, 36), liveUsd(id, 'rt-m-tiny')])), 3, 'rt-m-full'),
+    profilePills: (s = {}) => {
+      const style = /^(separate|gray)$/.test(s.profilePills) ? s.profilePills : 'joined';
+      const logo = el('img', 'routility-worth-logo');
+      logo.src = LOGO;
+      logo.alt = '';
+      const cash = cashNow();
+      const worth = h('span', 'rt-m-vpill bg-shift-300 content-action-utility routility-worth-pill', [logo, '42M']);
+      const rap = h('span', 'rt-m-vpill bg-shift-300 content-action-utility routility-rap-pill', [el('span', 'icon-robux-16x16 routility-rap-icon'), '13.8M']);
+      const price = h('span', 'rt-m-vpill bg-shift-300 content-action-utility routility-value-pill', cash.symbol + Math.round(139734 * cash.rate / 1000) + 'K');
+      return r([...(style === 'joined' ? [h('span', 'flex routility-split-pill', [worth, rap])] : [worth, rap]), price], 'routility-value-row routility-pills-' + style);
+    },
     purchaseLock: () => c([h('span', 'rt-m-pill rt-m-hold', lt('Buy')), muted(lt('Hold to confirm'))]),
     buyBalance: () => c([r([muted(lt('Balance after purchase')), r([h('span', 'icon-robux-16x16'), strong('166,237')])], 'rt-m-spread')], 'rt-m-w190'),
     groupFullDesc: () => c([h('span', 'rt-m-line', null, { width: '150px' }), h('span', 'rt-m-line', null, { width: '130px' }), h('span', 'rt-m-line', null, { width: '160px' }), h('span', 'rt-m-line', null, { width: '90px' })]),
@@ -1066,7 +1077,7 @@
           { key: 'profileValue', parent: 'inventoryValues', title: LT('Value on Profiles'), desc: LT('Their RoUtility Value in Robux, counting RAP for items we haven’t valued yet.') },
           { key: 'profileRap', parent: 'inventoryValues', title: LT('RAP on Profiles'), desc: LT('The total RAP of their limiteds.') },
           { key: 'profileShort', parent: 'inventoryValues', title: LT('Short Numbers on Profiles'), desc: LT('Show the profile pills like 7.27M+ instead of 7,270,616. The + means it was rounded down. Hover a pill for the exact number.') },
-          { key: 'profilePills', parent: 'inventoryValues', title: LT('Profile Pill Style'), desc: LT('How the Value, RAP and Price pills look on profiles, inventories and trades.'), options: [['joined', LT('Value and RAP Joined')], ['separate', LT('Separate Colors')], ['gray', LT('All Gray')]] },
+          { key: 'profilePills', parent: 'inventoryValues', title: LT('Profile Pill Style'), desc: LT('How the Value, RAP and Price pills look on profiles, inventories and trades.'), options: [['joined', LT('Combined')], ['separate', LT('Separate')], ['gray', LT('Minimal')]] },
           { key: 'ownedSince', title: LT('How Long They’ve Owned It'), desc: LT('How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.') },
         ] },
         { title: LT('Finding Things'), rows: [
@@ -2858,10 +2869,11 @@
     text.appendChild(el('h3', (nested ? 'text-title-medium' : 'text-title-large') + ' content-emphasis padding-none', lt(def.title)));
     text.appendChild(el('p', 'text-body-small content-muted margin-none', lt(def.desc)));
     section.appendChild(text);
+    let mock = null;
     if (MOCKS[def.key]) {
-      const mock = el('div', 'routility-set-mock');
+      mock = el('div', 'routility-set-mock');
       mock.setAttribute('aria-hidden', 'true');
-      mock.appendChild(MOCKS[def.key]());
+      mock.appendChild(MOCKS[def.key](settings));
       section.appendChild(mock);
     }
     const side = el('div', 'routility-set-control');
@@ -2878,6 +2890,7 @@
       }
       side.appendChild(select(lt(def.title), opts, current, (v) => {
         save({ [def.key]: v });
+        if (mock) mock.replaceChildren(MOCKS[def.key]({ ...settings, [def.key]: v }));
         if (rate) {
           rate.hidden = v !== extraFor;
           if (!rate.hidden) rate.input.focus({ preventScroll: true });
