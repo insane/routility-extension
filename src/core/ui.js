@@ -256,6 +256,10 @@
     tipFor = null;
   }
 
+  function exactTime(when) {
+    return new Date(when).toLocaleString(undefined, { dateStyle: 'long', timeStyle: 'medium' });
+  }
+
   let tipsOn = true;
   chrome.storage.local.get('routilitySettings', (s) => { tipsOn = (s.routilitySettings || {}).hoverTips !== false; });
   chrome.storage.onChanged.addListener((changes, area) => {
@@ -1085,7 +1089,7 @@
     return Number(s) || 0;
   }
 
-  window.RoUtilityUI = { json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, usdIcon, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
+  window.RoUtilityUI = { json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, usdIcon, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, exactTime, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
 })();
 
 (function () {
