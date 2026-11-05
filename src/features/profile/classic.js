@@ -1851,10 +1851,12 @@
     for (const i of res) if (i.thumb) s.thumbs.set('asset:' + i.id, i.thumb);
     if (!res.length) { fillCollections(s, []); return; }
     const missing = res.filter(i => !s.thumbs.has('asset:' + i.id));
-    if (missing.length) {
-      const t = await thumbnails(missing.map(i => ({ requestId: 'asset:' + i.id, targetId: i.id, type: 'Asset', size: '420x420' })));
-      t.forEach((v, k) => s.thumbs.set(k, v));
-    }
+    const [t, meta] = await Promise.all([
+      missing.length ? thumbnails(missing.map(i => ({ requestId: 'asset:' + i.id, targetId: i.id, type: 'Asset', size: '420x420' }))) : new Map(),
+      wornInfo(res.map(i => i.id)).catch(() => new Map()),
+    ]);
+    t.forEach((v, k) => s.thumbs.set(k, v));
+    for (const i of res) if (meta.get(i.id)?.name) i.name = meta.get(i.id).name;
     if (state !== s) return;
     fillCollections(s, res);
   }
