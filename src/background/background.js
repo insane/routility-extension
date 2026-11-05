@@ -2455,7 +2455,7 @@ chrome.notifications.onButtonClicked.addListener(async (id, index) => {
   if (url) chrome.tabs.create({ url });
 });
 
-const PAGE_RULES = { forum: 1, tradeCalculator: 2, tradeAds: 3 };
+const PAGE_RULES = { forum: 1, tradeCalculator: 2, tradeAds: 3, friendHistory: 4 };
 
 function syncRulesets(s) {
   const want = { studio: !!(s && s.studioStatus === true), fun: !!(s && s.fakeBuy === true) };

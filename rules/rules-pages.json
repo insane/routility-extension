@@ -49,5 +49,22 @@
         "main_frame"
       ]
     }
+  },
+  {
+    "id": 4,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "regexSubstitution": "https://www.roblox.com/charts?routility=\\1&\\2\\3"
+      }
+    },
+    "condition": {
+      "regexFilter": "^https://www\\.roblox\\.com(/friend-history/?)(?:\\?([^#]*))?(#.*)?$",
+      "isUrlFilterCaseSensitive": true,
+      "resourceTypes": [
+        "main_frame"
+      ]
+    }
   }
 ]
