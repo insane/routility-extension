@@ -72,4 +72,15 @@
       }
     }
   }).observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['data-routility-3d'] });
+
+  window.addEventListener('message', (e) => {
+    if (e.source !== window || !e.data || e.data.type !== 'routility-follow') return;
+    const userId = Number(e.data.userId);
+    const placeId = Number(e.data.placeId);
+    const gameId = String(e.data.gameId || '');
+    const launcher = window.Roblox && window.Roblox.GameLauncher;
+    if (!launcher || !Number.isSafeInteger(userId) || userId <= 0) return;
+    if (Number.isSafeInteger(placeId) && placeId > 0 && /^[0-9a-f-]{36}$/i.test(gameId) && typeof launcher.joinGameInstance === 'function') launcher.joinGameInstance(placeId, gameId);
+    else if (typeof launcher.followPlayerIntoGame === 'function') launcher.followPlayerIntoGame(userId);
+  });
 })();
