@@ -2999,7 +2999,7 @@
  "{n} playing": {
   "other": "{n}人がプレイ中"
  },
- "A Play button on the top game’s icon, so you can join it straight from search.": "トップに出たゲームのアイコンにプレイボタンを表示し、検索から直接参加できるようにします。",
+ "A Play button next to the top game in search, so you can join it without opening its page.": "検索でトップに出たゲームの横にプレイボタンを表示し、ページを開かずに参加できるようにします。",
  "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "マーケットプレイスを見ているとき、すでに持っているアイテムやバンドルに「所持済み」タグを表示します。アバターアイテムは一度確認して数時間保存し、新しく手に入れたものは追加されます。",
  "Filter Servers by Players": "プレイヤー数でサーバーを絞り込む",
  "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "ゲームのサーバータブの「並べ替え」の横に最小・最大の入力欄を追加し、その人数のサーバーだけを表示します。",

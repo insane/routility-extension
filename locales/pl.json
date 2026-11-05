@@ -3434,7 +3434,7 @@
   "many": "{n} gra",
   "other": "{n} gra"
  },
- "A Play button on the top game’s icon, so you can join it straight from search.": "Przycisk Graj na ikonie najlepszej gry, żeby dołączyć prosto z wyszukiwania.",
+ "A Play button next to the top game in search, so you can join it without opening its page.": "Przycisk Graj obok najlepszej gry w wyszukiwaniu, żeby dołączyć bez otwierania jej strony.",
  "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Etykieta Posiadane na przedmiotach i zestawach, które już masz, gdy przeglądasz Rynek. Twoje przedmioty awatara są sprawdzane raz i zapisywane na kilka godzin, a nowe dochodzą, gdy je zdobędziesz.",
  "Filter Servers by Players": "Filtruj serwery według graczy",
  "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Pola Min i Maks obok Sortuj według w karcie Serwery gry, żeby pokazywać tylko serwery z taką liczbą graczy.",

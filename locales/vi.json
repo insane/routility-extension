@@ -2999,7 +2999,7 @@
  "{n} playing": {
   "other": "{n} đang chơi"
  },
- "A Play button on the top game’s icon, so you can join it straight from search.": "Nút Chơi trên biểu tượng trò chơi đầu tiên để bạn vào ngay từ tìm kiếm.",
+ "A Play button next to the top game in search, so you can join it without opening its page.": "Nút Chơi cạnh trò chơi đầu tiên trong tìm kiếm để bạn vào mà không cần mở trang của nó.",
  "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Nhãn Đã có trên vật phẩm và gói bạn đã sở hữu khi duyệt Chợ. Vật phẩm avatar của bạn được kiểm tra một lần và lưu vài giờ, vật phẩm mới được thêm khi bạn nhận được.",
  "Filter Servers by Players": "Lọc máy chủ theo người chơi",
  "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Ô Tối thiểu và Tối đa cạnh Sắp xếp theo trong tab Máy chủ của trò chơi, để chỉ hiện máy chủ có số người chơi đó.",

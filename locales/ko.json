@@ -2999,7 +2999,7 @@
  "{n} playing": {
   "other": "{n}명 플레이 중"
  },
- "A Play button on the top game’s icon, so you can join it straight from search.": "검색 결과 맨 위 게임 아이콘에 플레이 버튼을 표시해 검색에서 바로 참여할 수 있어요.",
+ "A Play button next to the top game in search, so you can join it without opening its page.": "검색 결과 맨 위 게임 옆에 플레이 버튼을 표시해 페이지를 열지 않고 바로 참여할 수 있어요.",
  "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "마켓플레이스를 둘러볼 때 이미 가진 아이템과 번들에 보유 중 태그를 표시합니다. 아바타 아이템은 한 번 확인한 뒤 몇 시간 동안 저장되고, 새로 얻은 아이템은 바로 추가됩니다.",
  "Filter Servers by Players": "플레이어 수로 서버 필터링",
  "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "게임의 서버 탭에서 정렬 옆에 최소·최대 입력란을 추가해 그만큼의 플레이어가 있는 서버만 보여 줍니다.",

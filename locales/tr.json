@@ -3144,7 +3144,7 @@
   "one": "{n} oynuyor",
   "other": "{n} oynuyor"
  },
- "A Play button on the top game’s icon, so you can join it straight from search.": "En üstteki oyunun simgesinde bir Oyna düğmesi, böylece aramadan doğrudan katılabilirsin.",
+ "A Play button next to the top game in search, so you can join it without opening its page.": "Aramadaki en üst oyunun yanında bir Oyna düğmesi, böylece sayfasını açmadan katılabilirsin.",
  "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Pazar Yeri’ne göz atarken zaten sahip olduğun eşyalarda ve paketlerde Sahipsin etiketi. Avatar eşyaların bir kez kontrol edilir ve birkaç saat saklanır, yenileri aldıkça eklenir.",
  "Filter Servers by Players": "Sunucuları oyuncuya göre filtrele",
  "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Bir oyunun Sunucular sekmesinde Sırala’nın yanına En az ve En çok kutuları ekler, sadece o kadar oyunculu sunucuları gösterir.",

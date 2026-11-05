@@ -17,7 +17,7 @@ Online Members, Friend History, Quick Play and server player filters, plus a Qui
 + Online Members (Communities): a Find Online Members button on community pages checks every member and lists who’s online, in a game or in Studio. Filter by In Game or a place ID, and join their server when Roblox shares it. (by @primary999)
 + Friend History (Friends): a page at roblox.com/friend-history with two columns, people who were added to your friends list and people who are no longer on it, saved on this device with when it happened. It uses Unfriend Detector’s checks and has its own link in the left menu, under Friends. (by @primary999)
 + Hide Download Button (General, on by default): hides the Download button Roblox is testing in the top bar. (by @primary999)
-+ Quick Play (Search): a Play button on the top game’s icon in the search bar, so you can join it straight from search.
++ Quick Play (Search): a blue Play button next to the top game in the search bar, so you can join it without opening its page.
 + Filter Servers by Players (Servers): Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.
 + Owned Tag in the Marketplace: items and bundles you already have show an Owned tag while you browse.
 ```

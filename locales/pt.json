@@ -3144,7 +3144,7 @@
   "one": "{n} jogando",
   "other": "{n} jogando"
  },
- "A Play button on the top game’s icon, so you can join it straight from search.": "Um botão Jogar no ícone do primeiro jogo, para você entrar direto da pesquisa.",
+ "A Play button next to the top game in search, so you can join it without opening its page.": "Um botão Jogar ao lado do primeiro jogo da pesquisa, para você entrar sem abrir a página dele.",
  "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Uma etiqueta Seu nos itens e pacotes que você já tem enquanto navega pelo Marketplace. Seus itens de avatar são verificados uma vez e salvos por algumas horas, e os novos entram assim que você os ganha.",
  "Filter Servers by Players": "Filtrar servidores por jogadores",
  "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Caixas de mínimo e máximo ao lado de Ordenar por na aba Servidores de um jogo, para mostrar só servidores com essa quantidade de jogadores.",

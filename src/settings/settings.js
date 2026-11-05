@@ -823,7 +823,7 @@
           { key: 'searchPeople', parent: 'richSearch', title: LT('People'), desc: LT('Matching players with their avatar and verified badge.') },
           { key: 'searchFriends', parent: 'richSearch', title: LT('Friends First'), desc: LT('Friends whose name contains what you type, shown first.') },
           { key: 'searchGames', parent: 'richSearch', title: LT('Top Game'), desc: LT('The best matching experience with its rating and players.') },
-          { key: 'searchQuickPlay', parent: 'searchGames', title: LT('Quick Play'), desc: LT('A Play button on the top game’s icon, so you can join it straight from search.') },
+          { key: 'searchQuickPlay', parent: 'searchGames', title: LT('Quick Play'), desc: LT('A Play button next to the top game in search, so you can join it without opening its page.') },
           { key: 'searchItems', parent: 'richSearch', title: LT('RoUtility Limiteds'), desc: LT('Matching limiteds with their price and RAP.') },
         ] },
         { title: LT('People Search'), rows: [

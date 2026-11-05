@@ -2999,7 +2999,7 @@
  "{n} playing": {
   "other": "{n} 人在玩"
  },
- "A Play button on the top game’s icon, so you can join it straight from search.": "在排名第一的遊戲圖示上顯示開始按鈕，直接從搜尋加入。",
+ "A Play button next to the top game in search, so you can join it without opening its page.": "在搜尋中排名第一的遊戲旁顯示開始按鈕，不必開啟頁面即可加入。",
  "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "瀏覽市集時，在你已擁有的物品和套裝上顯示「已擁有」標籤。你的虛擬人偶物品會檢查一次並保存幾小時，新取得的會自動加入。",
  "Filter Servers by Players": "依玩家數篩選伺服器",
  "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "在遊戲「伺服器」分頁的「排序方式」旁新增最小和最大輸入框，只顯示該人數範圍內的伺服器。",
