@@ -3009,5 +3009,6 @@
  "Show Inventory Privacy": "แสดงความเป็นส่วนตัวของคลัง",
  "Show Trade Privacy": "แสดงความเป็นส่วนตัวของการเทรด",
  "Who can see your inventory.": "ใครดูคลังของคุณได้",
- "Who can send you trades.": "ใครส่งเทรดให้คุณได้"
+ "Who can send you trades.": "ใครส่งเทรดให้คุณได้",
+ "A Play button on experience tiles in Home and Charts when you hover them, so you can join without opening the page.": "ปุ่มเล่นบนไทล์ประสบการณ์ในหน้าแรกและชาร์ตเมื่อวางเมาส์ เพื่อเข้าร่วมได้โดยไม่ต้องเปิดหน้า"
 }

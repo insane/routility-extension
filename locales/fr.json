@@ -3154,5 +3154,6 @@
  "Show Inventory Privacy": "Afficher la confidentialité de l’inventaire",
  "Show Trade Privacy": "Afficher la confidentialité des échanges",
  "Who can see your inventory.": "Qui peut voir ton inventaire.",
- "Who can send you trades.": "Qui peut t’envoyer des échanges."
+ "Who can send you trades.": "Qui peut t’envoyer des échanges.",
+ "A Play button on experience tiles in Home and Charts when you hover them, so you can join without opening the page.": "Un bouton Jouer sur les vignettes d’expériences de l’Accueil et des Classements au survol, pour les rejoindre sans ouvrir leur page."
 }

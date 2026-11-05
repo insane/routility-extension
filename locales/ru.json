@@ -3444,5 +3444,6 @@
  "Show Inventory Privacy": "Показывать приватность инвентаря",
  "Show Trade Privacy": "Показывать приватность обменов",
  "Who can see your inventory.": "Кто может видеть твой инвентарь.",
- "Who can send you trades.": "Кто может отправлять тебе обмены."
+ "Who can send you trades.": "Кто может отправлять тебе обмены.",
+ "A Play button on experience tiles in Home and Charts when you hover them, so you can join without opening the page.": "Кнопка «Играть» на плитках впечатлений на Главной и в Чартах при наведении, чтобы зайти, не открывая страницу."
 }

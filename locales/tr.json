@@ -3154,5 +3154,6 @@
  "Show Inventory Privacy": "Envanter Gizliliğini Göster",
  "Show Trade Privacy": "Takas Gizliliğini Göster",
  "Who can see your inventory.": "Envanterini kimler görebilir.",
- "Who can send you trades.": "Sana kimler takas gönderebilir."
+ "Who can send you trades.": "Sana kimler takas gönderebilir.",
+ "A Play button on experience tiles in Home and Charts when you hover them, so you can join without opening the page.": "Ana Sayfa ve Listelerdeki deneyim kutucuklarının üzerine gelince bir Oyna düğmesi, böylece sayfayı açmadan katılabilirsin."
 }

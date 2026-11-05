@@ -3009,5 +3009,6 @@
  "Show Inventory Privacy": "顯示物品欄隱私",
  "Show Trade Privacy": "顯示交易隱私",
  "Who can see your inventory.": "誰可以查看你的物品欄。",
- "Who can send you trades.": "誰可以向你傳送交易。"
+ "Who can send you trades.": "誰可以向你傳送交易。",
+ "A Play button on experience tiles in Home and Charts when you hover them, so you can join without opening the page.": "將滑鼠移到首頁和排行榜的體驗卡片上時顯示開始按鈕，不必開啟頁面即可加入。"
 }

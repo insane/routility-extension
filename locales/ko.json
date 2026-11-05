@@ -3009,5 +3009,6 @@
  "Show Inventory Privacy": "인벤토리 공개 설정 표시",
  "Show Trade Privacy": "거래 공개 설정 표시",
  "Who can see your inventory.": "내 인벤토리를 볼 수 있는 사람.",
- "Who can send you trades.": "나에게 거래를 보낼 수 있는 사람."
+ "Who can send you trades.": "나에게 거래를 보낼 수 있는 사람.",
+ "A Play button on experience tiles in Home and Charts when you hover them, so you can join without opening the page.": "홈과 차트의 체험 타일에 마우스를 올리면 플레이 버튼이 나타나 페이지를 열지 않고 바로 참여할 수 있어요."
 }

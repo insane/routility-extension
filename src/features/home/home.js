@@ -14,7 +14,7 @@
   let toastTimer = null;
   let ready = false;
   let wantSetup = false;
-  const PAGE_KEYS = ['friendsPlaying', 'recentlyUpdated', 'genreFilters', 'notInterested', 'homeGreeting', 'playtime'];
+  const PAGE_KEYS = ['friendsPlaying', 'recentlyUpdated', 'genreFilters', 'notInterested', 'homeGreeting', 'playtime', 'homeQuickPlay'];
 
   chrome.storage.local.get(['routilitySettings', HIDDEN_KEY, HIDDEN_NAMES], (st) => {
     settings = st.routilitySettings || {};
@@ -211,6 +211,35 @@
       li.appendChild(btn);
       const pad = parseFloat(getComputedStyle(li).paddingRight) || 0;
       if (pad) btn.style.right = pad + 6 + 'px';
+    }
+  }
+
+  function placeOf(li) {
+    const m = (li.querySelector('a.game-card-link')?.getAttribute('href') || '').match(/\/games\/(\d+)/);
+    return m ? Number(m[1]) : 0;
+  }
+
+  function addPlayButtons(root) {
+    if (settings.homeQuickPlay === false) {
+      document.querySelectorAll('.routility-tile-play').forEach(b => b.remove());
+      return;
+    }
+    for (const thumb of root.querySelectorAll(':is(li.game-card, li.hover-game-tile, li.game-tile) :is(.game-card-thumb-container, .featured-game-icon-container)')) {
+      if (thumb.querySelector(':scope > .routility-tile-play')) continue;
+      const placeId = placeOf(thumb.closest('li'));
+      if (!placeId) continue;
+      const b = el('button', 'routility-injected routility-tile-play');
+      b.type = 'button';
+      b.setAttribute('aria-label', lt('Play'));
+      b.dataset.rtTip = lt('Play');
+      b.appendChild(el('span', 'routility-search-play-icon'));
+      const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
+      b.addEventListener('mousedown', stop);
+      b.addEventListener('click', (e) => {
+        stop(e);
+        window.postMessage({ type: 'routility-quick-play', placeId }, location.origin);
+      });
+      thumb.appendChild(b);
     }
   }
 
@@ -1762,6 +1791,7 @@
       queued = false;
       if (p !== page) return;
       addHideButtons(document);
+      addPlayButtons(document);
       p.friends?.();
       p.place?.();
       p.placeRU?.();

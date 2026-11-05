@@ -14,6 +14,7 @@
         { "type": "new", "text": "Friend History (Friends): a page at roblox.com/friend-history with two columns, people who were added to your friends list and people who are no longer on it, saved on this device with when it happened. It uses Unfriend Detector’s checks and has its own link in the left menu, under Friends.", "by": ["primary999"] },
         { "type": "new", "text": "Hide Download Button (General, on by default): hides the Download button Roblox is testing in the top bar.", "by": ["primary999"] },
         { "type": "new", "text": "Quick Play (Search): a blue Play button next to the top game in the search bar, so you can join it without opening its page." },
+        { "type": "new", "text": "Quick Play (Home): a Play button on experience tiles in Home and Charts when you hover them, so you can join without opening the page." },
         { "type": "new", "text": "Filter Servers by Players (Servers): Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players." },
         { "type": "new", "text": "Owned Tag in the Marketplace: items and bundles you already have show an Owned tag while you browse." },
         { "type": "improved", "text": "Hover a Friends Since date on the friends list or a profile hover card to see the exact date and time.", "by": ["reqonn"] },
@@ -26,6 +27,7 @@
         { "type": "fixed", "text": "Quick Setup in the store version: Just Values always showed as Current and the presets said Didn’t Apply. They apply again, and the RoUtility chat bot can answer questions about features again." },
         { "type": "fixed", "text": "Avatar editor: items you’re wearing that the editor didn’t mark show the check again, and clicking one takes it off." },
         { "type": "fixed", "text": "Recently Updated on Home: the Not Interested button sits inside the game card instead of half off it." },
+        { "type": "fixed", "text": "Profile Collections show item names in your language instead of another one, like Vietnamese." },
         { "type": "fixed", "text": "Community pills that wrap onto two lines in a smaller window are no longer cut off." }
       ]
     },

@@ -3009,5 +3009,6 @@
  "Show Inventory Privacy": "インベントリのプライバシーを表示",
  "Show Trade Privacy": "トレードのプライバシーを表示",
  "Who can see your inventory.": "インベントリを見られる人。",
- "Who can send you trades.": "トレードを送れる人。"
+ "Who can send you trades.": "トレードを送れる人。",
+ "A Play button on experience tiles in Home and Charts when you hover them, so you can join without opening the page.": "ホームとチャートのエクスペリエンスタイルにカーソルを合わせるとプレイボタンが表示され、ページを開かずに参加できます。"
 }
