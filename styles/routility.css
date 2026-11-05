@@ -610,6 +610,10 @@ html.routility-settings-mode .settings-left-navigation .tab-content > .tab-pane:
   text-decoration: none;
 }
 
+.navbar-search .routility-search-row .routility-search-link {
+  padding: 14px 12px 12px !important;
+}
+
 .routility-search-row.new-selected:not(.routility-search-loading) .routility-search-link {
   background: rgba(208, 217, 251, 0.08);
 }
@@ -631,8 +635,8 @@ html.routility-search-kbd ul.dropdown-menu > .navbar-search-option:hover:not(.ne
 .routility-search-thumb {
   display: block;
   flex-shrink: 0;
-  width: 58px;
-  height: 58px;
+  width: 48px;
+  height: 48px;
   border-radius: calc(8px * var(--routility-round, 1));
   overflow: hidden;
   background: rgba(208, 217, 251, 0.12);
