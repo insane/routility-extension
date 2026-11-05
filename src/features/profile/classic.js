@@ -328,10 +328,11 @@
     if (!list) return;
     const natives = nativeButtons();
     const labels = natives.map(b => b.textContent.trim());
+    const joins = natives.map((b, i) => b.id === 'user-profile-header-JoinExperience' || /^join\b/i.test(labels[i]));
     const off = natives.map(nb => nb.disabled || nb.getAttribute('aria-disabled') === 'true' || /^pending\b/i.test(nb.textContent.trim()));
     const p = s.presence;
     const mine = String(s.userId) === document.querySelector('meta[name="user-data"]')?.dataset.userid;
-    const follow = !mine && p && p.userPresenceType === 2 && p.placeId && p.gameId && !labels.some(l => /^join\b/i.test(l));
+    const follow = !mine && p && p.userPresenceType === 2 && p.placeId && p.gameId && !joins.some(Boolean);
     const key = labels.map((l, i) => l + (off[i] ? ':off' : '')).join('|') + (follow ? '|follow' : '');
     if (list.dataset.labels === key) return;
     list.dataset.labels = key;
@@ -346,7 +347,7 @@
     }
     natives.forEach((nb, i) => {
       const li = el('li');
-      const join = /^join\b/i.test(labels[i]);
+      const join = joins[i];
       const b = el('button', join ? 'btn-growth-md routility-join-game' : 'btn-control-md', join ? lt('Join Game') : labels[i]);
       b.type = 'button';
       if (off[i]) {

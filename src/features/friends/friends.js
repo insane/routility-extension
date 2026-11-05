@@ -2208,7 +2208,7 @@
   if (location.hostname === 'www.roblox.com') {
     chrome.storage.local.get('routilitySettings', (st) => {
       const settings = st.routilitySettings || {};
-      if (settings.unfriendDetector !== false || settings.friendHistory !== false) startUnfriendWatch(settings.unfriendDetector !== false);
+      if (settings.unfriendDetector !== false) startUnfriendWatch(true);
       if (settings.cancelRequests !== false) startCancelRequests();
     });
   }

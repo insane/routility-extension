@@ -8,8 +8,8 @@
   const SEEN_KEY = (me) => 'routilityFriendLogSeen:' + me;
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
   const COLUMNS = [
-    { type: 'added', title: LT('Added You'), empty: LT('No new friends yet.'), sign: '+' },
-    { type: 'removed', title: LT('Removed You'), empty: LT('Nobody has been removed yet.'), sign: '−' },
+    { type: 'added', title: LT('Added'), empty: LT('No new friends yet.'), sign: '+' },
+    { type: 'removed', title: LT('No Longer Friends'), empty: LT('Nobody has been removed yet.'), sign: '−' },
   ];
 
   let settings = {};
@@ -47,7 +47,7 @@
     name.appendChild(el('span', 'text-truncate-end', e.displayName || e.name || String(e.id)));
     text.append(name, el('span', 'routility-cm-meta text-body-small content-muted', e.name ? '@' + e.name : ''));
     const when = el('span', 'routility-cm-role text-body-small', ago(e.at));
-    when.title = new Date(e.at).toLocaleString();
+    when.dataset.rtTip = new Date(e.at).toLocaleString();
     li.append(icon, text, when);
     return li;
   }
@@ -80,7 +80,7 @@
     else if (s.at && sec < 3600) text = lt('Last checked {m}m {s}s ago', { m: Math.floor(sec / 60), s: sec % 60 });
     else if (s.at) text = lt('Last checked {time}', { time: ago(s.at) });
     if (s.checked.textContent !== text) s.checked.textContent = text;
-    s.checked.title = s.at ? new Date(s.at).toLocaleString() : '';
+    s.checked.dataset.rtTip = s.at ? new Date(s.at).toLocaleString() : '';
   }
 
   function render() {
@@ -156,10 +156,10 @@
     let at = 0;
     if (mine.me) {
       const key = window.RoUtilityFriends.friendLogKey(mine.me);
-      const snap = window.RoUtilityFriends.friendSnapKey(mine.me);
-      const st = await chrome.storage.local.get([key, snap]);
+      const tick = 'routilityUfTick:' + mine.me;
+      const st = await chrome.storage.local.get([key, tick]);
       if (Array.isArray(st[key])) log = st[key];
-      at = Number(st[snap] && st[snap].at) || 0;
+      at = Number(st[tick] && st[tick].at) || 0;
     }
     if (s !== mine) return;
     s.log = log;
@@ -235,7 +235,7 @@
     const text = n > 99 ? '99+' : formatNumber(n);
     if (t.textContent !== text) t.textContent = text;
     const title = ltn(n, '{n} change since you last looked', '{n} changes since you last looked');
-    if (b.title !== title) b.title = title;
+    if (b.dataset.rtTip !== title) b.dataset.rtTip = title;
   }
 
   function badgeBox(badge, a) {
@@ -320,9 +320,9 @@
         s.log = Array.isArray(changes[key].newValue) ? changes[key].newValue : [];
         render();
       }
-      const snap = s && s.me && window.RoUtilityFriends.friendSnapKey(s.me);
-      if (snap && changes[snap]) {
-        s.at = Number(changes[snap].newValue && changes[snap].newValue.at) || s.at;
+      const tick = s && s.me && 'routilityUfTick:' + s.me;
+      if (tick && changes[tick]) {
+        s.at = Number(changes[tick].newValue && changes[tick].newValue.at) || s.at;
         paintChecked();
       }
     });

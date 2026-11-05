@@ -50,7 +50,6 @@
     throw new Error('Request failed');
   }
 
-  // Read every member page; a failed page must never look like a completed scan.
   async function scan(gid, signal, onProgress, onWait = () => {}) {
     const seen = new Set();
     const cursors = new Set();
@@ -69,7 +68,6 @@
         seen.add(id);
         return true;
       });
-      // The member endpoint allows 100; the presence endpoint only allows 50.
       for (let i = 0; i < batch.length; i += 50) {
         const part = batch.slice(i, i + 50);
         const data = await json('https://presence.roblox.com/v1/presence/users', {
@@ -164,7 +162,7 @@
     const gameToggle = el('label', 'text-label-medium routility-cm-online-toggle');
     const inGame = el('input');
     inGame.type = 'checkbox';
-    gameToggle.append(inGame, el('span', null, lt('In-game')));
+    gameToggle.append(inGame, el('span', null, lt('In Game')));
     const placeField = el('div', 'routility-cm-online-place-field');
     const label = el('label', 'text-label-medium routility-cm-online-label', lt('Place ID (optional)'));
     label.htmlFor = 'routility-cm-online-place';
@@ -187,8 +185,8 @@
     const list = el('ul', 'routility-cm-online-list');
     body.appendChild(list);
     const foot = el('div', 'routility-cm-foot');
-    const previous = el('button', 'btn-secondary-md', lt('Previous page'));
-    const next = el('button', 'btn-secondary-md', lt('Next page'));
+    const previous = el('button', 'btn-secondary-md', lt('Previous Page'));
+    const next = el('button', 'btn-secondary-md', lt('Next Page'));
     previous.type = next.type = 'button';
     const pageLabel = el('span', 'text-body-small content-muted');
     foot.append(previous, pageLabel, next);
@@ -250,7 +248,7 @@
       if (pic) image.src = pic;
       image.dataset.userId = String(member.user.userId);
       const names = el('span', 'routility-cm-online-names');
-      const name = el('span', 'text-label-medium', member.user.displayName || member.user.username);
+      const name = el('span', 'text-label-medium routility-cm-online-name', member.user.displayName || member.user.username);
       if (member.user.hasVerifiedBadge) name.appendChild(verifiedBadge());
       names.append(name, el('span', 'text-body-small content-muted', '@' + member.user.username));
       if (member.role?.name) names.appendChild(el('span', 'text-body-small content-muted', member.role.name));
@@ -258,7 +256,7 @@
       const status = p.userPresenceType === 2 ? lt('In Game') : p.userPresenceType === 3 ? lt('In Studio') : lt('Online');
       const detail = el('span', 'routility-cm-online-status');
       detail.appendChild(el('span', 'text-label-medium', status));
-      if (p.userPresenceType === 2) {
+      if (p.userPresenceType === 2 && (validId(p.universeId) || validId(p.rootPlaceId) || validId(p.placeId))) {
         const game = el(validId(p.rootPlaceId) || validId(p.placeId) ? 'a' : 'span', 'routility-cm-online-game');
         game.dataset.userId = String(member.user.userId);
         const icon = el('span', 'routility-cm-online-game-icon');
@@ -267,26 +265,20 @@
         image.loading = 'lazy';
         icon.appendChild(image);
         game.append(icon, el('span', 'text-body-small routility-cm-online-game-title'));
-        if (validId(p.placeId)) game.title = lt('Place {id}', { id: String(p.placeId) });
+        if (validId(p.placeId)) game.dataset.rtTip = lt('Place {id}', { id: String(p.placeId) });
         paintGame(game, member);
         detail.appendChild(game);
       }
       link.append(image, names);
       li.append(link, detail);
-      if (p.userPresenceType === 2) {
-        const url = joinUrl(member);
-        const join = el(url ? 'a' : 'button', 'btn-primary-sm routility-cm-online-join', lt('Join'));
+      const url = joinUrl(member);
+      if (url) {
+        const join = el('a', 'btn-primary-sm routility-cm-online-join', lt('Join'));
         join.setAttribute('aria-label', lt('Join {name}', { name: member.user.displayName || member.user.username }));
-        if (url) {
-          join.href = url;
-          join.target = '_blank';
-          join.rel = 'noopener';
-          join.title = lt('Join their server');
-        } else {
-          join.type = 'button';
-          join.disabled = true;
-          join.title = lt('Roblox hasn’t shared this server.');
-        }
+        join.href = url;
+        join.target = '_blank';
+        join.rel = 'noopener';
+        join.dataset.rtTip = lt('Join their server');
         li.appendChild(join);
       }
       return li;
