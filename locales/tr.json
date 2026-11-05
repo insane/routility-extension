@@ -3138,5 +3138,21 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Her üyeyi kontrol eder, bu yüzden büyük topluluklar biraz sürebilir. Durum her bölüm yüklendikçe kontrol edilir. Yer filtreleri yalnızca Roblox’un paylaştığı konumlarla eşleşir.",
  "Start a scan to find online members.": "Çevrimiçi üyeleri bulmak için bir tarama başlat.",
  "Stop Scan": "Taramayı Durdur",
- "Stopped · Partial results": "Durduruldu · Eksik sonuçlar"
+ "Stopped · Partial results": "Durduruldu · Eksik sonuçlar",
+ "{bound} players": "{bound} oyuncu",
+ "{n} playing": {
+  "one": "{n} oynuyor",
+  "other": "{n} oynuyor"
+ },
+ "A Play button on the top game’s icon, so you can join it straight from search.": "En üstteki oyunun simgesinde bir Oyna düğmesi, böylece aramadan doğrudan katılabilirsin.",
+ "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Pazar Yeri’ne göz atarken zaten sahip olduğun eşyalarda ve paketlerde Sahipsin etiketi. Avatar eşyaların bir kez kontrol edilir ve birkaç saat saklanır, yenileri aldıkça eklenir.",
+ "Filter Servers by Players": "Sunucuları oyuncuya göre filtrele",
+ "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Bir oyunun Sunucular sekmesinde Sırala’nın yanına En az ve En çok kutuları ekler, sadece o kadar oyunculu sunucuları gösterir.",
+ "No servers loaded so far have that many players. Press Load More to check more servers.": "Şu ana kadar yüklenen sunucuların hiçbirinde o kadar oyuncu yok. Daha fazla sunucuya bakmak için Daha fazla yükle’ye bas.",
+ "Owned Tag in the Marketplace": "Pazar Yeri’nde Sahipsin etiketi",
+ "Quick Play": "Hızlı Oyna",
+ "Show Inventory Privacy": "Envanter Gizliliğini Göster",
+ "Show Trade Privacy": "Takas Gizliliğini Göster",
+ "Who can see your inventory.": "Envanterini kimler görebilir.",
+ "Who can send you trades.": "Sana kimler takas gönderebilir."
 }

@@ -1631,7 +1631,7 @@
     const pane = s.panes.creations;
     pane.appendChild(el('span', 'spinner spinner-default routility-classic-spinner'));
     const base = (s.data.games || []).map(x => ({ universeId: x.id, placeId: x.rootPlace?.id, name: x.name, description: x.description || '', visits: Number(x.placeVisits) || 0 }));
-    const [games, models, items] = await Promise.all([gameDetails(base), s.columns ? [] : creatorModels(s.userId), s.columns ? [] : creatorItems(s.userId)]);
+    const [games, models, items] = await Promise.all([gameDetails(base), s.columns ? [] : creatorModels(s.userId), creatorItems(s.userId)]);
     const reqs = [];
     for (const g of games) {
       reqs.push({ requestId: 'gameicon:' + g.universeId, targetId: g.universeId, type: 'GameIcon', size: '512x512' });
@@ -1662,6 +1662,7 @@
       empty.append(header(lt('Experiences')), box);
       pane.appendChild(empty);
     }
+    if (s.columns && items.length) pane.appendChild(assetSection(lt('Clothing'), seeAll(`/catalog?CreatorName=${encodeURIComponent(s.data.user.name)}&CreatorType=User`, lt('See All')), items.slice(0, 5), 'routility-classic-clothing'));
     if (s.columns) s.root.querySelector('.routility-columns')?.classList.add('routility-columns-games');
     else if (!games.length && !models.length && !items.length) pane.appendChild(el('p', 'section-content-off routility-classic-empty', lt('No creations yet.')));
     applyThumbs(s, pane);

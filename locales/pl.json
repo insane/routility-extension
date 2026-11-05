@@ -3426,5 +3426,23 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Sprawdza każdego członka, więc duże społeczności mogą zająć trochę czasu. Status jest sprawdzany w miarę wczytywania kolejnych partii. Filtry miejsca pasują tylko do lokalizacji udostępnianych przez Roblox.",
  "Start a scan to find online members.": "Rozpocznij skanowanie, aby znaleźć członków online.",
  "Stop Scan": "Zatrzymaj skanowanie",
- "Stopped · Partial results": "Zatrzymano · Wyniki częściowe"
+ "Stopped · Partial results": "Zatrzymano · Wyniki częściowe",
+ "{bound} players": "{bound} graczy",
+ "{n} playing": {
+  "one": "{n} gra",
+  "few": "{n} grają",
+  "many": "{n} gra",
+  "other": "{n} gra"
+ },
+ "A Play button on the top game’s icon, so you can join it straight from search.": "Przycisk Graj na ikonie najlepszej gry, żeby dołączyć prosto z wyszukiwania.",
+ "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Etykieta Posiadane na przedmiotach i zestawach, które już masz, gdy przeglądasz Rynek. Twoje przedmioty awatara są sprawdzane raz i zapisywane na kilka godzin, a nowe dochodzą, gdy je zdobędziesz.",
+ "Filter Servers by Players": "Filtruj serwery według graczy",
+ "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Pola Min i Maks obok Sortuj według w karcie Serwery gry, żeby pokazywać tylko serwery z taką liczbą graczy.",
+ "No servers loaded so far have that many players. Press Load More to check more servers.": "Żaden z wczytanych serwerów nie ma takiej liczby graczy. Naciśnij Wczytaj więcej, żeby sprawdzić kolejne serwery.",
+ "Owned Tag in the Marketplace": "Etykieta Posiadane na Rynku",
+ "Quick Play": "Szybka gra",
+ "Show Inventory Privacy": "Pokaż prywatność ekwipunku",
+ "Show Trade Privacy": "Pokaż prywatność wymian",
+ "Who can see your inventory.": "Kto może widzieć twój ekwipunek.",
+ "Who can send you trades.": "Kto może wysyłać ci wymiany."
 }

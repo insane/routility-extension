@@ -109,7 +109,9 @@
         "src/features/chat/chatsize.js",
         "src/features/themes/scrollbar.js",
         "src/core/compat.js",
-        "src/core/content.js"
+        "src/core/content.js",
+        "src/features/items/catalogowned.js",
+        "src/features/games/serverfilter.js"
       ],
       "css": [
         "styles/routility.css",
@@ -158,6 +160,16 @@
       ],
       "js": [
         "src/features/robux/send-main.js"
+      ],
+      "run_at": "document_idle",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://www.roblox.com/*"
+      ],
+      "js": [
+        "src/features/search/play-main.js"
       ],
       "run_at": "document_idle",
       "world": "MAIN"

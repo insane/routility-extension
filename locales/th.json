@@ -2994,5 +2994,20 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "ตรวจสมาชิกทุกคน ชุมชนขนาดใหญ่จึงอาจใช้เวลาสักพัก สถานะจะถูกตรวจเมื่อโหลดแต่ละชุด ตัวกรองสถานที่จะตรงกับตำแหน่งที่ Roblox แชร์เท่านั้น",
  "Start a scan to find online members.": "เริ่มสแกนเพื่อค้นหาสมาชิกที่ออนไลน์",
  "Stop Scan": "หยุดสแกน",
- "Stopped · Partial results": "หยุดแล้ว · ผลลัพธ์ไม่ครบ"
+ "Stopped · Partial results": "หยุดแล้ว · ผลลัพธ์ไม่ครบ",
+ "{bound} players": "{bound}จำนวนผู้เล่น",
+ "{n} playing": {
+  "other": "กำลังเล่น {n} คน"
+ },
+ "A Play button on the top game’s icon, so you can join it straight from search.": "ปุ่มเล่นบนไอคอนเกมอันดับแรก เพื่อเข้าร่วมได้ทันทีจากการค้นหา",
+ "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "แท็กมีแล้วบนไอเท็มและบันเดิลที่คุณมีอยู่แล้วขณะดูมาร์เก็ตเพลส ไอเท็มอวาตาร์ของคุณจะถูกตรวจครั้งเดียวและเก็บไว้ไม่กี่ชั่วโมง และของใหม่จะถูกเพิ่มเมื่อคุณได้รับ",
+ "Filter Servers by Players": "กรองเซิร์ฟเวอร์ตามจำนวนผู้เล่น",
+ "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "ช่องต่ำสุดและสูงสุดข้างเรียงตามในแท็บเซิร์ฟเวอร์ของเกม เพื่อแสดงเฉพาะเซิร์ฟเวอร์ที่มีผู้เล่นจำนวนนั้น",
+ "No servers loaded so far have that many players. Press Load More to check more servers.": "ยังไม่มีเซิร์ฟเวอร์ที่โหลดมาที่มีผู้เล่นจำนวนนั้น กดโหลดเพิ่มเพื่อตรวจเซิร์ฟเวอร์อื่น",
+ "Owned Tag in the Marketplace": "แท็กมีแล้วในมาร์เก็ตเพลส",
+ "Quick Play": "เล่นด่วน",
+ "Show Inventory Privacy": "แสดงความเป็นส่วนตัวของคลัง",
+ "Show Trade Privacy": "แสดงความเป็นส่วนตัวของการเทรด",
+ "Who can see your inventory.": "ใครดูคลังของคุณได้",
+ "Who can send you trades.": "ใครส่งเทรดให้คุณได้"
 }

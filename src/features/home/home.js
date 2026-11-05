@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const { el, json, chunks } = window.RoUtilityUI;
+  const { el, json, chunks, formatNumber } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const HIDDEN_KEY = 'routilityHiddenGames';
   const HIDDEN_NAMES = 'routilityHiddenNames';
@@ -209,6 +209,8 @@
         openTileMenu(btn, li, id);
       });
       li.appendChild(btn);
+      const pad = parseFloat(getComputedStyle(li).paddingRight) || 0;
+      if (pad) btn.style.right = pad + 6 + 'px';
     }
   }
 
@@ -375,6 +377,8 @@
     if (!me) return;
     const icons = new Map();
     const heads = new Map();
+    const players = new Map();
+    const compact = new Intl.NumberFormat(undefined, { notation: 'compact', maximumFractionDigits: 1 });
     let games = [];
     let row = null;
     let loaded = false;
@@ -404,6 +408,9 @@
       const needIcons = games.map(g => g.universeId).filter(id => !icons.has(id));
       const needHeads = [...new Set(games.flatMap(g => g.friends))].filter(id => !heads.has(id));
       await Promise.all([
+        games.length && json(`https://games.roblox.com/v1/games?universeIds=${games.slice(0, 50).map(g => g.universeId).join(',')}`).then(r => {
+          for (const d of (r && r.data) || []) if (Number.isFinite(d.playing)) players.set(String(d.id), d.playing);
+        }),
         needIcons.length && json(`https://thumbnails.roblox.com/v1/games/icons?universeIds=${needIcons.slice(0, 100).join(',')}&returnPolicy=PlaceHolder&size=256x256&format=Webp&isCircular=false`).then(r => {
           for (const t of (r && r.data) || []) if (t.imageUrl) icons.set(String(t.targetId), t.imageUrl);
         }),
@@ -561,6 +568,12 @@
       info.addEventListener('click', open);
       info.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') open(e); });
       if (g.friends.length > 3) info.appendChild(el('span', 'text-label-small content-muted routility-fp-more', `+${g.friends.length - 3}`));
+      if (players.has(g.universeId)) {
+        const count = el('span', 'routility-fp-players');
+        count.append(el('span', 'info-label icon-playing-counts-gray'), el('span', 'info-label playing-counts-label', compact.format(players.get(g.universeId))));
+        count.dataset.rtTip = ltn(players.get(g.universeId), '{n} playing', '{n} playing', { n: formatNumber(players.get(g.universeId)) });
+        info.appendChild(count);
+      }
       a.appendChild(info);
       box.appendChild(a);
       li.appendChild(box);

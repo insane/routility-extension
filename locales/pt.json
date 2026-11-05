@@ -3138,5 +3138,21 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Verifica cada membro, então comunidades grandes podem demorar. O status é verificado conforme cada parte carrega. Os filtros de lugar só encontram locais que o Roblox compartilha.",
  "Start a scan to find online members.": "Inicie uma busca para encontrar membros online.",
  "Stop Scan": "Parar busca",
- "Stopped · Partial results": "Parada · Resultados parciais"
+ "Stopped · Partial results": "Parada · Resultados parciais",
+ "{bound} players": "{bound} de jogadores",
+ "{n} playing": {
+  "one": "{n} jogando",
+  "other": "{n} jogando"
+ },
+ "A Play button on the top game’s icon, so you can join it straight from search.": "Um botão Jogar no ícone do primeiro jogo, para você entrar direto da pesquisa.",
+ "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Uma etiqueta Seu nos itens e pacotes que você já tem enquanto navega pelo Marketplace. Seus itens de avatar são verificados uma vez e salvos por algumas horas, e os novos entram assim que você os ganha.",
+ "Filter Servers by Players": "Filtrar servidores por jogadores",
+ "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Caixas de mínimo e máximo ao lado de Ordenar por na aba Servidores de um jogo, para mostrar só servidores com essa quantidade de jogadores.",
+ "No servers loaded so far have that many players. Press Load More to check more servers.": "Nenhum dos servidores carregados tem essa quantidade de jogadores. Toque em Carregar mais para ver outros servidores.",
+ "Owned Tag in the Marketplace": "Etiqueta Seu no Marketplace",
+ "Quick Play": "Jogo rápido",
+ "Show Inventory Privacy": "Mostrar privacidade do inventário",
+ "Show Trade Privacy": "Mostrar privacidade das trocas",
+ "Who can see your inventory.": "Quem pode ver seu inventário.",
+ "Who can send you trades.": "Quem pode te enviar trocas."
 }

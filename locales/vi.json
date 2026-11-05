@@ -2994,5 +2994,20 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Kiểm tra từng thành viên nên cộng đồng lớn có thể mất một lúc. Trạng thái được kiểm tra khi mỗi đợt tải xong. Bộ lọc địa điểm chỉ khớp với vị trí mà Roblox chia sẻ.",
  "Start a scan to find online members.": "Bắt đầu quét để tìm thành viên trực tuyến.",
  "Stop Scan": "Dừng quét",
- "Stopped · Partial results": "Đã dừng · Kết quả chưa đầy đủ"
+ "Stopped · Partial results": "Đã dừng · Kết quả chưa đầy đủ",
+ "{bound} players": "{bound} người chơi",
+ "{n} playing": {
+  "other": "{n} đang chơi"
+ },
+ "A Play button on the top game’s icon, so you can join it straight from search.": "Nút Chơi trên biểu tượng trò chơi đầu tiên để bạn vào ngay từ tìm kiếm.",
+ "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Nhãn Đã có trên vật phẩm và gói bạn đã sở hữu khi duyệt Chợ. Vật phẩm avatar của bạn được kiểm tra một lần và lưu vài giờ, vật phẩm mới được thêm khi bạn nhận được.",
+ "Filter Servers by Players": "Lọc máy chủ theo người chơi",
+ "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Ô Tối thiểu và Tối đa cạnh Sắp xếp theo trong tab Máy chủ của trò chơi, để chỉ hiện máy chủ có số người chơi đó.",
+ "No servers loaded so far have that many players. Press Load More to check more servers.": "Chưa có máy chủ nào đã tải có số người chơi đó. Nhấn Tải thêm để kiểm tra thêm máy chủ.",
+ "Owned Tag in the Marketplace": "Nhãn Đã có trong Chợ",
+ "Quick Play": "Chơi nhanh",
+ "Show Inventory Privacy": "Hiện quyền riêng tư kho đồ",
+ "Show Trade Privacy": "Hiện quyền riêng tư giao dịch",
+ "Who can see your inventory.": "Ai có thể xem kho đồ của bạn.",
+ "Who can send you trades.": "Ai có thể gửi giao dịch cho bạn."
 }

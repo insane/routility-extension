@@ -3138,5 +3138,21 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Prüft jedes Mitglied, große Communitys können also eine Weile dauern. Der Status wird geprüft, sobald jeder Teil geladen ist. Place-Filter finden nur Orte, die Roblox teilt.",
  "Start a scan to find online members.": "Starte einen Scan, um Mitglieder zu finden, die online sind.",
  "Stop Scan": "Scan stoppen",
- "Stopped · Partial results": "Gestoppt · Unvollständige Ergebnisse"
+ "Stopped · Partial results": "Gestoppt · Unvollständige Ergebnisse",
+ "{bound} players": "{bound} Spieler",
+ "{n} playing": {
+  "one": "{n} spielt",
+  "other": "{n} spielen"
+ },
+ "A Play button on the top game’s icon, so you can join it straight from search.": "Ein Spielen-Button auf dem Symbol des obersten Spiels, damit du direkt aus der Suche beitreten kannst.",
+ "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Ein Besitzt-Tag auf Items und Bundles, die du schon hast, während du im Marktplatz stöberst. Deine Avatar-Items werden einmal geprüft und ein paar Stunden gespeichert, neue kommen dazu, sobald du sie bekommst.",
+ "Filter Servers by Players": "Server nach Spielern filtern",
+ "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Min- und Max-Felder neben „Sortieren nach“ im Server-Tab eines Spiels, um nur Server mit so vielen Spielern zu zeigen.",
+ "No servers loaded so far have that many players. Press Load More to check more servers.": "Keiner der bisher geladenen Server hat so viele Spieler. Drück auf „Mehr laden“, um weitere Server zu prüfen.",
+ "Owned Tag in the Marketplace": "Besitzt-Tag im Marktplatz",
+ "Quick Play": "Schnell spielen",
+ "Show Inventory Privacy": "Inventar-Privatsphäre anzeigen",
+ "Show Trade Privacy": "Handels-Privatsphäre anzeigen",
+ "Who can see your inventory.": "Wer dein Inventar sehen kann.",
+ "Who can send you trades.": "Wer dir Trades schicken kann."
 }

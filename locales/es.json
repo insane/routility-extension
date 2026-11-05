@@ -3138,5 +3138,21 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Revisa a cada miembro, así que las comunidades grandes pueden tardar un rato. El estado se revisa a medida que carga cada grupo. Los filtros de lugar solo encuentran ubicaciones que Roblox comparte.",
  "Start a scan to find online members.": "Inicia una búsqueda para encontrar miembros en línea.",
  "Stop Scan": "Detener búsqueda",
- "Stopped · Partial results": "Detenida · Resultados incompletos"
+ "Stopped · Partial results": "Detenida · Resultados incompletos",
+ "{bound} players": "{bound} de jugadores",
+ "{n} playing": {
+  "one": "{n} jugando",
+  "other": "{n} jugando"
+ },
+ "A Play button on the top game’s icon, so you can join it straight from search.": "Un botón Jugar en el icono del juego principal, para unirte directamente desde la búsqueda.",
+ "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Una etiqueta Tuyo en los artículos y paquetes que ya tienes mientras exploras el Mercado. Tus artículos de avatar se revisan una vez y se guardan unas horas, y los nuevos se añaden cuando los consigues.",
+ "Filter Servers by Players": "Filtrar servidores por jugadores",
+ "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Casillas de mínimo y máximo junto a Ordenar por en la pestaña Servidores de un juego, para mostrar solo servidores con esa cantidad de jugadores.",
+ "No servers loaded so far have that many players. Press Load More to check more servers.": "Ninguno de los servidores cargados tiene esa cantidad de jugadores. Pulsa Cargar más para revisar más servidores.",
+ "Owned Tag in the Marketplace": "Etiqueta Tuyo en el Mercado",
+ "Quick Play": "Juego rápido",
+ "Show Inventory Privacy": "Mostrar privacidad del inventario",
+ "Show Trade Privacy": "Mostrar privacidad de intercambios",
+ "Who can see your inventory.": "Quién puede ver tu inventario.",
+ "Who can send you trades.": "Quién puede enviarte intercambios."
 }

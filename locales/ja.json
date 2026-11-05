@@ -2994,5 +2994,20 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "すべてのメンバーを確認するため、大きなコミュニティでは時間がかかることがあります。状態は読み込みごとに確認されます。場所の絞り込みは、Roblox が共有している場所にのみ一致します。",
  "Start a scan to find online members.": "スキャンを開始してオンラインのメンバーを探しましょう。",
  "Stop Scan": "スキャンを停止",
- "Stopped · Partial results": "停止 · 結果は一部のみ"
+ "Stopped · Partial results": "停止 · 結果は一部のみ",
+ "{bound} players": "{bound}人数",
+ "{n} playing": {
+  "other": "{n}人がプレイ中"
+ },
+ "A Play button on the top game’s icon, so you can join it straight from search.": "トップに出たゲームのアイコンにプレイボタンを表示し、検索から直接参加できるようにします。",
+ "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "マーケットプレイスを見ているとき、すでに持っているアイテムやバンドルに「所持済み」タグを表示します。アバターアイテムは一度確認して数時間保存し、新しく手に入れたものは追加されます。",
+ "Filter Servers by Players": "プレイヤー数でサーバーを絞り込む",
+ "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "ゲームのサーバータブの「並べ替え」の横に最小・最大の入力欄を追加し、その人数のサーバーだけを表示します。",
+ "No servers loaded so far have that many players. Press Load More to check more servers.": "読み込んだサーバーにその人数のものはまだありません。「さらに読み込む」を押して他のサーバーを確認してください。",
+ "Owned Tag in the Marketplace": "マーケットプレイスの所持済みタグ",
+ "Quick Play": "クイックプレイ",
+ "Show Inventory Privacy": "インベントリのプライバシーを表示",
+ "Show Trade Privacy": "トレードのプライバシーを表示",
+ "Who can see your inventory.": "インベントリを見られる人。",
+ "Who can send you trades.": "トレードを送れる人。"
 }

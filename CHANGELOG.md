@@ -9,7 +9,7 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 
 ## 1.1.9 · November 5, 2026
 
-Online Members and Friend History, plus friend date and badge fixes.
+Online Members, Friend History, Quick Play and server player filters, plus a Quick Setup fix for the store version.
 
 **New**
 
@@ -17,12 +17,19 @@ Online Members and Friend History, plus friend date and badge fixes.
 + Online Members (Communities): a Find Online Members button on community pages checks every member and lists who’s online, in a game or in Studio. Filter by In Game or a place ID, and join their server when Roblox shares it. (by @primary999)
 + Friend History (Friends): a page at roblox.com/friend-history with two columns, people who were added to your friends list and people who are no longer on it, saved on this device with when it happened. It uses Unfriend Detector’s checks and has its own link in the left menu, under Friends. (by @primary999)
 + Hide Download Button (General, on by default): hides the Download button Roblox is testing in the top bar. (by @primary999)
++ Quick Play (Search): a Play button on the top game’s icon in the search bar, so you can join it straight from search.
++ Filter Servers by Players (Servers): Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.
++ Owned Tag in the Marketplace: items and bundles you already have show an Owned tag while you browse.
 ```
 
 **Improved**
 
 ```diff
 ~ Hover a Friends Since date on the friends list or a profile hover card to see the exact date and time. (by @reqonn)
+~ Quick Settings can show who can trade with you and who can see your inventory, next to Joins and Online Status.
+~ Friends Playing on Home shows how many people are in each game.
+~ Classic Profile Layout: Two Columns shows the avatar items someone made, under their experiences.
+~ Classic Names: the search bar says in Catalog and in Groups instead of in Marketplace and in Communities.
 ```
 
 **Fixed**
@@ -30,6 +37,9 @@ Online Members and Friend History, plus friend date and badge fixes.
 ```diff
 - Classic Profile Layout: Join Game shows when Roblox hides its own Join button, like after you block someone, as long as Roblox still lets you join them. (by @reqonn)
 - The RoUtility badge on friend cards is the same size as the icons next to it. (by @reqonn)
+- Quick Setup in the store version: Just Values always showed as Current and the presets said Didn’t Apply. They apply again, and the RoUtility chat bot can answer questions about features again.
+- Avatar editor: items you’re wearing that the editor didn’t mark show the check again, and clicking one takes it off.
+- Recently Updated on Home: the Not Interested button sits inside the game card instead of half off it.
 - Community pills that wrap onto two lines in a smaller window are no longer cut off.
 ```
 

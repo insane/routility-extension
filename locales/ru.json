@@ -3426,5 +3426,23 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Проверяет каждого участника, поэтому большие сообщества могут занять время. Статус проверяется по мере загрузки каждой части. Фильтр по месту находит только места, которые показывает Roblox.",
  "Start a scan to find online members.": "Начни проверку, чтобы найти участников в сети.",
  "Stop Scan": "Остановить",
- "Stopped · Partial results": "Остановлено · Неполные результаты"
+ "Stopped · Partial results": "Остановлено · Неполные результаты",
+ "{bound} players": "{bound} игроков",
+ "{n} playing": {
+  "one": "{n} играет",
+  "few": "{n} играют",
+  "many": "{n} играют",
+  "other": "{n} играют"
+ },
+ "A Play button on the top game’s icon, so you can join it straight from search.": "Кнопка «Играть» на значке первой игры, чтобы зайти прямо из поиска.",
+ "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Метка «Есть» на предметах и наборах, которые у тебя уже есть, пока ты смотришь Маркетплейс. Предметы аватара проверяются один раз и хранятся несколько часов, а новые добавляются, как только ты их получаешь.",
+ "Filter Servers by Players": "Фильтр серверов по игрокам",
+ "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Поля «Мин» и «Макс» рядом с «Сортировка» во вкладке «Серверы» игры, чтобы показывать только серверы с таким числом игроков.",
+ "No servers loaded so far have that many players. Press Load More to check more servers.": "Среди загруженных серверов нет таких с этим числом игроков. Нажми «Загрузить ещё», чтобы проверить другие серверы.",
+ "Owned Tag in the Marketplace": "Метка «Есть» в Маркетплейсе",
+ "Quick Play": "Быстрая игра",
+ "Show Inventory Privacy": "Показывать приватность инвентаря",
+ "Show Trade Privacy": "Показывать приватность обменов",
+ "Who can see your inventory.": "Кто может видеть твой инвентарь.",
+ "Who can send you trades.": "Кто может отправлять тебе обмены."
 }

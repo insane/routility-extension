@@ -2994,5 +2994,20 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "會檢查每位成員，所以大型社群可能需要一段時間。每批載入時都會檢查狀態。地點篩選只能比對 Roblox 分享的位置。",
  "Start a scan to find online members.": "開始掃描以尋找線上成員。",
  "Stop Scan": "停止掃描",
- "Stopped · Partial results": "已停止 · 結果不完整"
+ "Stopped · Partial results": "已停止 · 結果不完整",
+ "{bound} players": "{bound}玩家數",
+ "{n} playing": {
+  "other": "{n} 人在玩"
+ },
+ "A Play button on the top game’s icon, so you can join it straight from search.": "在排名第一的遊戲圖示上顯示開始按鈕，直接從搜尋加入。",
+ "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "瀏覽市集時，在你已擁有的物品和套裝上顯示「已擁有」標籤。你的虛擬人偶物品會檢查一次並保存幾小時，新取得的會自動加入。",
+ "Filter Servers by Players": "依玩家數篩選伺服器",
+ "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "在遊戲「伺服器」分頁的「排序方式」旁新增最小和最大輸入框，只顯示該人數範圍內的伺服器。",
+ "No servers loaded so far have that many players. Press Load More to check more servers.": "已載入的伺服器中還沒有這個人數的。點按「載入更多」查看更多伺服器。",
+ "Owned Tag in the Marketplace": "市集中的「已擁有」標籤",
+ "Quick Play": "快速開始",
+ "Show Inventory Privacy": "顯示物品欄隱私",
+ "Show Trade Privacy": "顯示交易隱私",
+ "Who can see your inventory.": "誰可以查看你的物品欄。",
+ "Who can send you trades.": "誰可以向你傳送交易。"
 }

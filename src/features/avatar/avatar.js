@@ -336,6 +336,32 @@
   const WRITE = /avatar\.roblox\.com\/v\d+\/avatar$|avatar\.roblox\.com\/v\d+\/outfits\/\d+\/wear|set-wearing|avatar\.roblox\.com\/v\d+\/avatar\/(set|remove|wear)/;
   let wear = null;
 
+  const NATIVE_WORN = '.item-card-equipped:not(.routility-av-worn)';
+
+  function cardId(li) {
+    return ((li.querySelector('a[href*="/catalog/"]')?.getAttribute('href') || '').match(/\/catalog\/(\d+)/) || [])[1] || '';
+  }
+
+  function markWorn() {
+    const w = wear;
+    const ids = new Set(w && w.assets ? w.assets.filter(a => !a.fake).map(a => a.id) : []);
+    for (const li of document.querySelectorAll('#avatar-web-app .avatar-item-list li.item-card')) {
+      if (li.closest('.routility-av-snapshot')) continue;
+      const ours = li.querySelector('.routility-av-worn');
+      const want = ids.has(cardId(li)) && !li.querySelector(NATIVE_WORN);
+      if (want && !ours) {
+        const caption = li.querySelector('.item-card-caption');
+        if (!caption) continue;
+        const mark = el('div', 'item-card-equipped routility-injected routility-av-worn');
+        mark.dataset.itemStatus = 'equipped';
+        const icon = el('span', 'grow-0 shrink-0 basis-auto icon icon-filled-circle-check size-[var(--icon-size-medium)] item-card-equipped-icon');
+        icon.setAttribute('aria-hidden', 'true');
+        mark.appendChild(icon);
+        caption.prepend(mark);
+      } else if (!want && ours) ours.remove();
+    }
+  }
+
   function cardFor(id) {
     const cards = [...document.querySelectorAll('.avatar-item-list li.item-card')].filter(l => !l.closest('.routility-av-snapshot') && (l.querySelector('a[href*="/catalog/"]')?.getAttribute('href') || '').includes(`/catalog/${id}/`));
     return cards.find(c => c.closest('.tab-pane.active')) || cards[0] || null;
@@ -610,6 +636,17 @@
 
   function onCardClick(e) {
     const w = wear;
+    const marked = w && e.isTrusted && e.button === 0 && e.target.closest?.('.avatar-item-list li.item-card');
+    if (marked && marked.querySelector('.routility-av-worn') && !e.target.closest('.item-card-menu')) {
+      const id = cardId(marked);
+      if (id) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        unequip(id);
+        return;
+      }
+    }
     if (!w || !w.more || !w.assets || w.advancedBusy || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey) return;
     if (document.documentElement.dataset.routilityAvHook === '1') return;
     const thumb = e.target.closest?.('.tab-pane.active .avatar-item-list li.item-card');
@@ -681,7 +718,7 @@
 
   function equippedCard() {
     const list = document.querySelector('#avatar-web-app .tab-pane.active .avatar-item-list');
-    const hit = list && [...list.querySelectorAll('li.item-card')].find(li => !li.closest('.routility-av-snapshot') && li.querySelector('.item-card-equipped'));
+    const hit = list && [...list.querySelectorAll('li.item-card')].find(li => !li.closest('.routility-av-snapshot') && li.querySelector(NATIVE_WORN));
     return hit || null;
   }
 
@@ -708,7 +745,7 @@
         list.scrollIntoView({ block: 'end' });
       } else if (++still > 15) break;
     }
-    for (let i = 0; card && i < 25 && !card.querySelector('.item-card-equipped'); i++) {
+    for (let i = 0; card && i < 25 && !card.querySelector(NATIVE_WORN); i++) {
       await wait(80);
       card = cardFor(id) || card;
     }
@@ -748,12 +785,13 @@
 
   async function takeOff(w, id) {
     if (wear !== w) return false;
-    const here = cardFor(id)?.querySelector('.item-card-thumb-container');
+    const item = (w.assets || []).find(a => a.id === id);
+    const card = cardFor(id);
+    const here = card && (item?.fake || card.querySelector(NATIVE_WORN)) ? card.querySelector('.item-card-thumb-container') : null;
     if (here) {
       here.click();
       return true;
     }
-    const item = (w.assets || []).find(a => a.id === id);
     const type = item?.type || '';
     const rigid = RIGID.test(type);
     const viaAdvanced = () => advanced(values => (values.includes(id) ? values.map(v => (v === id ? '' : v)) : null));
@@ -802,7 +840,7 @@
     w.assets = (data.assets || []).filter(a => !HIDDEN_TYPES.test(a.assetType?.name || '')).map(a => ({ id: String(a.id), name: a.name, type: a.assetType?.name || '', removable: !FIXED.test(a.assetType?.name || '') }));
     const FAKE_TYPES = { 8: 'Hat', 41: 'HairAccessory', 42: 'FaceAccessory', 43: 'NeckAccessory', 44: 'ShoulderAccessory', 45: 'FrontAccessory', 46: 'BackAccessory', 47: 'WaistAccessory', 57: 'EarAccessory', 58: 'EyeAccessory' };
     for (const f of window.RoUtilityFun ? window.RoUtilityFun.worn() : []) {
-      if (!w.assets.some(a => a.id === String(f.id))) w.assets.push({ id: String(f.id), name: f.name, type: (window.RoUtilityFun.typeName && window.RoUtilityFun.typeName(f.type)) || FAKE_TYPES[f.type] || 'Hat', removable: !FIXED.test((window.RoUtilityFun.typeName && window.RoUtilityFun.typeName(f.type)) || '') });
+      if (!w.assets.some(a => a.id === String(f.id))) w.assets.push({ id: String(f.id), name: f.name, type: (window.RoUtilityFun.typeName && window.RoUtilityFun.typeName(f.type)) || FAKE_TYPES[f.type] || 'Hat', removable: !FIXED.test((window.RoUtilityFun.typeName && window.RoUtilityFun.typeName(f.type)) || ''), fake: true });
     }
     const ids = new Set(w.assets.map(a => a.id));
     for (const id of [...w.pending]) if (!ids.has(id)) w.pending.delete(id);
@@ -954,7 +992,9 @@
     });
     w.perf.observe({ type: 'resource' });
     w.observer = new MutationObserver(onFrame(() => {
-      if (wear === w && !document.querySelector('#avatar-web-app .left-wrapper .routility-av-wearing')) renderWearing();
+      if (wear !== w) return;
+      if (!document.querySelector('#avatar-web-app .left-wrapper .routility-av-wearing')) renderWearing();
+      markWorn();
     }));
     w.observer.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true });
     renderWearing();
@@ -968,7 +1008,7 @@
     wear.perf.disconnect();
     wear.observer.disconnect();
     wear = null;
-    document.querySelectorAll('.routility-av-wearing').forEach(n => n.remove());
+    document.querySelectorAll('.routility-av-wearing, .routility-av-worn').forEach(n => n.remove());
   }
 
   const RIG_SOURCE = '#avatar-web-app .right-panel .avatar-type-toggle-scale button[role="switch"]';

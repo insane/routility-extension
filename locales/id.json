@@ -2994,5 +2994,20 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Memeriksa setiap anggota, jadi komunitas besar bisa butuh waktu. Status diperiksa saat setiap bagian dimuat. Filter tempat hanya cocok dengan lokasi yang dibagikan Roblox.",
  "Start a scan to find online members.": "Mulai pemindaian untuk mencari anggota yang online.",
  "Stop Scan": "Hentikan Pindai",
- "Stopped · Partial results": "Dihentikan · Hasil sebagian"
+ "Stopped · Partial results": "Dihentikan · Hasil sebagian",
+ "{bound} players": "{bound} pemain",
+ "{n} playing": {
+  "other": "{n} bermain"
+ },
+ "A Play button on the top game’s icon, so you can join it straight from search.": "Tombol Main di ikon game teratas, supaya kamu bisa langsung gabung dari pencarian.",
+ "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Tag Dimiliki di item dan bundel yang sudah kamu punya saat menjelajah Marketplace. Item avatarmu diperiksa sekali dan disimpan beberapa jam, dan yang baru ditambahkan saat kamu mendapatkannya.",
+ "Filter Servers by Players": "Filter Server berdasarkan Pemain",
+ "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Kotak Min dan Maks di samping Urutkan di tab Server sebuah game, untuk hanya menampilkan server dengan jumlah pemain itu.",
+ "No servers loaded so far have that many players. Press Load More to check more servers.": "Belum ada server yang dimuat dengan jumlah pemain itu. Tekan Muat Lebih Banyak untuk memeriksa server lain.",
+ "Owned Tag in the Marketplace": "Tag Dimiliki di Marketplace",
+ "Quick Play": "Main Cepat",
+ "Show Inventory Privacy": "Tampilkan Privasi Inventaris",
+ "Show Trade Privacy": "Tampilkan Privasi Trade",
+ "Who can see your inventory.": "Siapa yang bisa melihat inventarismu.",
+ "Who can send you trades.": "Siapa yang bisa mengirimimu trade."
 }

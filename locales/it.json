@@ -3138,5 +3138,21 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Controlla ogni membro, quindi le community grandi possono richiedere un po’. Lo stato viene controllato man mano che si carica ogni blocco. I filtri per luogo trovano solo i luoghi che Roblox condivide.",
  "Start a scan to find online members.": "Avvia una scansione per trovare i membri online.",
  "Stop Scan": "Ferma scansione",
- "Stopped · Partial results": "Interrotta · Risultati parziali"
+ "Stopped · Partial results": "Interrotta · Risultati parziali",
+ "{bound} players": "{bound} giocatori",
+ "{n} playing": {
+  "one": "{n} sta giocando",
+  "other": "{n} stanno giocando"
+ },
+ "A Play button on the top game’s icon, so you can join it straight from search.": "Un pulsante Gioca sull’icona del primo gioco, per entrare direttamente dalla ricerca.",
+ "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Un’etichetta Posseduto sugli oggetti e i pacchetti che hai già mentre sfogli il Marketplace. I tuoi oggetti avatar vengono controllati una volta e salvati per qualche ora, e quelli nuovi si aggiungono quando li ottieni.",
+ "Filter Servers by Players": "Filtra i server per giocatori",
+ "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Caselle Min e Max accanto a Ordina per nella scheda Server di un gioco, per mostrare solo i server con quel numero di giocatori.",
+ "No servers loaded so far have that many players. Press Load More to check more servers.": "Nessuno dei server caricati ha quel numero di giocatori. Premi Carica altro per controllare altri server.",
+ "Owned Tag in the Marketplace": "Etichetta Posseduto nel Marketplace",
+ "Quick Play": "Gioco rapido",
+ "Show Inventory Privacy": "Mostra privacy dell’inventario",
+ "Show Trade Privacy": "Mostra privacy degli scambi",
+ "Who can see your inventory.": "Chi può vedere il tuo inventario.",
+ "Who can send you trades.": "Chi può inviarti scambi."
 }

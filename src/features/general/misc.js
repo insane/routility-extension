@@ -767,9 +767,9 @@
   }
 
   const QS_URL = 'https://apis.roblox.com/user-settings-api/v1/user-settings';
-  const QS_ROWS = [['whoCanJoinMeInExperiences', LT('Joins'), 'qsJoins'], ['whoCanSeeMyOnlineStatus', LT('Online Status'), 'qsOnline']];
-  const QS_KEYS = ['quickSettings', 'qsJoins', 'qsOnline', 'qsRotator', 'qsStreamer', 'outfitRotator', 'streamerMode', 'qsStyle'];
-  const QS_ICONS = { whoCanJoinMeInExperiences: 'person-plus', whoCanSeeMyOnlineStatus: 'two-people' };
+  const QS_ROWS = [['whoCanJoinMeInExperiences', LT('Joins'), 'qsJoins'], ['whoCanSeeMyOnlineStatus', LT('Online Status'), 'qsOnline'], ['whoCanTradeWithMe', LT('Trades'), 'qsTrades'], ['whoCanSeeMyInventory', LT('Inventory'), 'qsInventory']];
+  const QS_KEYS = ['quickSettings', 'qsJoins', 'qsOnline', 'qsTrades', 'qsInventory', 'qsRotator', 'qsStreamer', 'outfitRotator', 'streamerMode', 'qsStyle'];
+  const QS_ICONS = { whoCanJoinMeInExperiences: 'person-plus', whoCanSeeMyOnlineStatus: 'two-people', whoCanTradeWithMe: 'hand-two-arrows-horizontal', whoCanSeeMyInventory: 'backpack' };
   let qsTried = false;
   const QS_LABELS = { All: LT('Everyone'), AllUsers: LT('Everyone'), Followers: LT('Followers'), Following: LT('People I Follow'), Friends: LT('Friends'), TrustedFriends: LT('Trusted Friends'), FriendsAndFollowing: LT('Friends & Following'), FriendsFollowingAndFollowers: LT('Friends & Follows'), NoOne: LT('No One') };
   const QS_JOIN_FOR = { AllUsers: 'All', FriendsFollowingAndFollowers: 'Followers', FriendsAndFollowing: 'Following', Friends: 'Friends', TrustedFriends: 'TrustedFriends', NoOne: 'NoOne' };

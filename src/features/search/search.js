@@ -11,7 +11,7 @@
   function readPrefs(st) {
     const s = st || {};
     enabled = s.richSearch !== false;
-    prefs = { people: s.searchPeople !== false, friends: s.searchFriends !== false, games: s.searchGames !== false, items: s.searchItems !== false, slash: s.searchSlash !== false, admin: s.adminBadge !== false, termed: s.searchTerminated !== false };
+    prefs = { people: s.searchPeople !== false, friends: s.searchFriends !== false, games: s.searchGames !== false, items: s.searchItems !== false, slash: s.searchSlash !== false, admin: s.adminBadge !== false, termed: s.searchTerminated !== false, play: s.searchQuickPlay !== false };
   }
   let timer = 0;
   let token = 0;
@@ -215,6 +215,23 @@
     return li;
   }
 
+  function playButton(li, placeId) {
+    const thumb = li.querySelector('.routility-search-thumb');
+    if (!thumb) return;
+    const b = el('button', 'routility-search-play');
+    b.type = 'button';
+    b.setAttribute('aria-label', lt('Play'));
+    b.dataset.rtTip = lt('Play');
+    b.appendChild(el('span', 'routility-search-play-icon'));
+    const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
+    b.addEventListener('mousedown', stop);
+    b.addEventListener('click', (e) => {
+      stop(e);
+      window.postMessage({ type: 'routility-quick-play', placeId }, location.origin);
+    });
+    thumb.appendChild(b);
+  }
+
   function skeletonRow(round) {
     const li = el('li', 'navbar-search-option routility-injected routility-search-row routility-search-loading');
     const a = el('span', 'routility-search-link');
@@ -293,6 +310,7 @@
       sub.appendChild(el('span', 'info-label icon-playing-counts-gray'));
       sub.appendChild(el('span', null, short(g.playerCount || 0)));
       const gameRow = row(g.canonicalUrlPath || `/games/${g.rootPlaceId}`, r.pics, 'g' + g.universeId, false, g.name, [], sub);
+      if (prefs.play && Number(g.rootPlaceId) > 0) playButton(gameRow, Number(g.rootPlaceId));
       if (gameFirst(r)) rows.unshift(gameRow);
       else rows.push(gameRow);
     }

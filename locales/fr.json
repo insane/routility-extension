@@ -3138,5 +3138,21 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Vérifie chaque membre, donc les grandes communautés peuvent prendre un moment. Le statut est vérifié à mesure que chaque lot se charge. Les filtres de lieu ne trouvent que les lieux que Roblox partage.",
  "Start a scan to find online members.": "Lance une analyse pour trouver les membres en ligne.",
  "Stop Scan": "Arrêter l’analyse",
- "Stopped · Partial results": "Arrêtée · Résultats partiels"
+ "Stopped · Partial results": "Arrêtée · Résultats partiels",
+ "{bound} players": "{bound} de joueurs",
+ "{n} playing": {
+  "one": "{n} en jeu",
+  "other": "{n} en jeu"
+ },
+ "A Play button on the top game’s icon, so you can join it straight from search.": "Un bouton Jouer sur l’icône du premier jeu, pour le rejoindre directement depuis la recherche.",
+ "An Owned tag on items and bundles you already have while you browse the Marketplace. Your avatar items are checked once and saved for a few hours, and new ones are added as you get them.": "Un badge Possédé sur les objets et lots que tu as déjà quand tu parcours le Marché. Tes objets d’avatar sont vérifiés une fois et gardés quelques heures, et les nouveaux s’ajoutent dès que tu les obtiens.",
+ "Filter Servers by Players": "Filtrer les serveurs par joueurs",
+ "Min and Max boxes next to Sort By in a game’s Servers tab, to only show servers with that many players.": "Des cases Min et Max à côté de Trier par dans l’onglet Serveurs d’un jeu, pour n’afficher que les serveurs avec ce nombre de joueurs.",
+ "No servers loaded so far have that many players. Press Load More to check more servers.": "Aucun des serveurs chargés n’a ce nombre de joueurs. Appuie sur Charger plus pour vérifier d’autres serveurs.",
+ "Owned Tag in the Marketplace": "Badge Possédé dans le Marché",
+ "Quick Play": "Jeu rapide",
+ "Show Inventory Privacy": "Afficher la confidentialité de l’inventaire",
+ "Show Trade Privacy": "Afficher la confidentialité des échanges",
+ "Who can see your inventory.": "Qui peut voir ton inventaire.",
+ "Who can send you trades.": "Qui peut t’envoyer des échanges."
 }

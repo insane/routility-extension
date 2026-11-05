@@ -37,7 +37,7 @@
       words,
       titles,
       develop,
-      re: names.length ? new RegExp('^((?:my|search|search my|join|leave|create|hidden|your|all|favorite|recent|popular|recommended|featured|related|similar|other|more|top|new) )?(' + names.join('|') + ')( \\([\\d,.]+[kmb+]*\\))?$', 'i') : null,
+      re: names.length ? new RegExp('^((?:in|my|search|search my|join|leave|create|hidden|your|all|favorite|recent|popular|recommended|featured|related|similar|other|more|top|new) )?(' + names.join('|') + ')( \\([\\d,.]+[kmb+]*\\))?$', 'i') : null,
       key: names.join(',') + '|' + develop,
     };
   }
