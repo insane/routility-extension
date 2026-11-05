@@ -1045,7 +1045,7 @@
     if (!last) return;
     const date = new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
     const label = el('div', 'avatar-card-label routility-injected routility-since-label', lt('Friends since {date}', { date }));
-    label.dataset.rtTip = window.RoUtilityHoverCard?.age(iso) || '';
+    label.dataset.rtTip = window.RoUtilityUI.exactTime(iso);
     label.dataset.user = card.id;
     last.after(label);
   }

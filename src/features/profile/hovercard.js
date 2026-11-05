@@ -161,6 +161,7 @@
     if (d.since) {
       const when = new Date(d.since);
       const meta = el('div', 'routility-hc-meta routility-hc-since', lt('Friends since {date} • {age}', { date: when.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }), age: age(d.since) }));
+      meta.dataset.rtTip = window.RoUtilityUI.exactTime(d.since);
       body.appendChild(meta);
     }
     const bio = (u.description || '').trim();
@@ -276,7 +277,7 @@
     if (d.friends !== null) cells.push(stat(lt('Friends'), formatNumber(d.friends)));
     if (d.followers !== null) cells.push(stat(lt('Followers'), formatNumber(d.followers)));
     if (!isNaN(new Date(d.user.created))) cells.push(stat(lt('Joined'), day(d.user.created), age(d.user.created)));
-    if (d.since) cells.push(stat(lt('Friends Since'), day(d.since), age(d.since)));
+    if (d.since) cells.push(stat(lt('Friends Since'), day(d.since), window.RoUtilityUI.exactTime(d.since)));
     return cells;
   }
 
