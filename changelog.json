@@ -1,15 +1,29 @@
 {
   "contributors": {
     "reqonn": { "github": "reqonn" },
-    "awkward222": { "github": "awkward222" }
+    "awkward222": { "github": "awkward222" },
+    "primary999": { "github": "primary999" }
   },
   "releases": [
+    {
+      "version": "1.1.9",
+      "date": "2026-11-05",
+      "summary": "Online Members and Friend History, plus friend date and badge fixes.",
+      "changes": [
+        { "type": "new", "text": "Online Members (Communities): a Find Online Members button on community pages checks every member and lists who’s online, in a game or in Studio. Filter by In Game or a place ID, and join their server when Roblox shares it.", "by": ["primary999"] },
+        { "type": "new", "text": "Friend History (Friends): a page at roblox.com/friend-history with two columns, people who were added to your friends list and people who are no longer on it, saved on this device with when it happened. It uses Unfriend Detector’s checks and has its own link in the left menu, under Friends.", "by": ["primary999"] },
+        { "type": "new", "text": "Hide Download Button (General, on by default): hides the Download button Roblox is testing in the top bar.", "by": ["primary999"] },
+        { "type": "improved", "text": "Hover a Friends Since date on the friends list or a profile hover card to see the exact date and time.", "by": ["reqonn"] },
+        { "type": "fixed", "text": "Classic Profile Layout: Join Game shows when Roblox hides its own Join button, like after you block someone, as long as Roblox still lets you join them.", "by": ["reqonn"] },
+        { "type": "fixed", "text": "The RoUtility badge on friend cards is the same size as the icons next to it.", "by": ["reqonn"] },
+        { "type": "fixed", "text": "Community pills that wrap onto two lines in a smaller window are no longer cut off." }
+      ]
+    },
     {
       "version": "1.1.8",
       "date": "2026-10-30",
       "summary": "RoUtility badges and friend request messages, plus server region and profile fixes.",
       "changes": [
-        { "type": "new", "text": "Friend History (Friends): a page at roblox.com/friend-history with two columns, people who were added to your friends list and people who are no longer on it, saved on this device with when it happened. It has its own link in the left menu, under Friends." },
         { "type": "new", "text": "2017 Roblox Theme, phase 1 (Classic, off by default): the 2017 to 2019 Roblox look on Home, Games, game and item pages, the Catalog, Inventory, communities and profiles, with the blue top bar, old sidebar, Classic Names and green Play buttons. A Roblox Plus or custom theme keeps its colors. More pages come in the next phases." },
         { "type": "new", "text": "Custom Name Badges (Fun): pick Verified, Roblox Plus, Premium and Roblox Admin for your own name. They show everywhere Roblox shows badges, in Roblox’s order, and start with the ones you really have. Roblox Admin also adds the Administrator badge to your Roblox Badges." },
         { "type": "new", "text": "Classic Admin Badge (Classic, off by default): the old red R logo as the Roblox admin badge next to names, and the old Administrator badge in Roblox Badges." },

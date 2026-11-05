@@ -4,8 +4,34 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 
 ## Everyone who helped
 
-- Code: [@reqonn](https://github.com/reqonn), [@awkward222](https://github.com/awkward222)
+- Code: [@primary999](https://github.com/primary999), [@reqonn](https://github.com/reqonn), [@awkward222](https://github.com/awkward222)
 - Bug reports and ideas: [@reqonn](https://github.com/reqonn), api_cats
+
+## 1.1.9 · November 5, 2026
+
+Online Members and Friend History, plus friend date and badge fixes.
+
+**New**
+
+```diff
++ Online Members (Communities): a Find Online Members button on community pages checks every member and lists who’s online, in a game or in Studio. Filter by In Game or a place ID, and join their server when Roblox shares it. (by @primary999)
++ Friend History (Friends): a page at roblox.com/friend-history with two columns, people who were added to your friends list and people who are no longer on it, saved on this device with when it happened. It uses Unfriend Detector’s checks and has its own link in the left menu, under Friends. (by @primary999)
++ Hide Download Button (General, on by default): hides the Download button Roblox is testing in the top bar. (by @primary999)
+```
+
+**Improved**
+
+```diff
+~ Hover a Friends Since date on the friends list or a profile hover card to see the exact date and time. (by @reqonn)
+```
+
+**Fixed**
+
+```diff
+- Classic Profile Layout: Join Game shows when Roblox hides its own Join button, like after you block someone, as long as Roblox still lets you join them. (by @reqonn)
+- The RoUtility badge on friend cards is the same size as the icons next to it. (by @reqonn)
+- Community pills that wrap onto two lines in a smaller window are no longer cut off.
+```
 
 ## 1.1.8 · October 30, 2026
 
@@ -14,7 +40,6 @@ RoUtility badges and friend request messages, plus server region and profile fix
 **New**
 
 ```diff
-+ Friend History (Friends): a page at roblox.com/friend-history with two columns, people who were added to your friends list and people who are no longer on it, saved on this device with when it happened. It has its own link in the left menu, under Friends.
 + 2017 Roblox Theme, phase 1 (Classic, off by default): the 2017 to 2019 Roblox look on Home, Games, game and item pages, the Catalog, Inventory, communities and profiles, with the blue top bar, old sidebar, Classic Names and green Play buttons. A Roblox Plus or custom theme keeps its colors. More pages come in the next phases.
 + Custom Name Badges (Fun): pick Verified, Roblox Plus, Premium and Roblox Admin for your own name. They show everywhere Roblox shows badges, in Roblox’s order, and start with the ones you really have. Roblox Admin also adds the Administrator badge to your Roblox Badges.
 + Classic Admin Badge (Classic, off by default): the old red R logo as the Roblox admin badge next to names, and the old Administrator badge in Roblox Badges.
