@@ -614,6 +614,12 @@ html.routility-settings-mode .settings-left-navigation .tab-content > .tab-pane:
   padding: 14px 12px 12px !important;
 }
 
+.navbar-search .routility-search-row .routility-search-stats {
+  position: static;
+  top: auto;
+  margin: 0;
+}
+
 .routility-search-row.new-selected:not(.routility-search-loading) .routility-search-link {
   background: rgba(208, 217, 251, 0.08);
 }
