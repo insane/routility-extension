@@ -227,6 +227,7 @@
     root.classList.toggle(CLASS, (settings || {}).skeletonLoading !== false);
     root.classList.toggle('routility-hide-makeup', (settings || {}).hideMakeup !== false);
     root.classList.toggle('routility-hide-sponsored', (settings || {}).hideSponsored !== false);
+    root.classList.toggle('routility-hide-download-button', (settings || {}).hideDownloadButton !== false);
     root.classList.toggle('routility-av-rig-on', (settings || {}).avatarRig !== false);
     root.classList.toggle('routility-av-more', (settings || {}).avatarMoreAccessories !== false);
     root.classList.toggle('routility-keep-r6', (settings || {}).keepR6 === true);

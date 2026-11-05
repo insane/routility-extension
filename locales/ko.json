@@ -2948,5 +2948,7 @@
  "The 2017 to 2019 Roblox look: the blue top bar, the white sidebar, the old pages and green Play buttons, with Classic Names and the old sidebar. A Roblox Plus or custom theme keeps its colors.": "2017~2019년 Roblox 모습: 파란 상단 바, 흰색 사이드바, 예전 페이지와 초록색 플레이 버튼, 클래식 이름과 예전 사이드바까지. Roblox Plus 또는 커스텀 테마는 색상이 그대로 유지돼요.",
  "Combined": "합치기",
  "Separate": "나누기",
- "Minimal": "심플"
+ "Minimal": "심플",
+ "Hide Download Button": "다운로드 버튼 숨기기",
+ "Hides the Download button in the top navigation bar.": "상단 탐색 바의 다운로드 버튼을 숨깁니다."
 }

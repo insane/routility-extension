@@ -1534,6 +1534,10 @@ assets-explorer.routility-inv-searching .section-content-off {
   margin: 12px auto 0;
 }
 
+html.routility-hide-download-button li.download-app-nav-item {
+  display: none !important;
+}
+
 html.routility-hide-sponsored li.list-item:has(.sponsored-ad-label),
 html.routility-hide-sponsored #sponsored-catalog-items,
 html.routility-hide-sponsored .routility-sponsored-section {
