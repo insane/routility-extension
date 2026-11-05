@@ -216,20 +216,16 @@
   }
 
   function playButton(li, placeId) {
-    const thumb = li.querySelector('.routility-search-thumb');
-    if (!thumb) return;
-    const b = el('button', 'routility-search-play');
+    const b = el('button', 'btn-primary-sm routility-search-play');
     b.type = 'button';
-    b.setAttribute('aria-label', lt('Play'));
-    b.dataset.rtTip = lt('Play');
-    b.appendChild(el('span', 'routility-search-play-icon'));
+    b.append(el('span', 'routility-search-play-icon'), el('span', null, lt('Play')));
     const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
     b.addEventListener('mousedown', stop);
     b.addEventListener('click', (e) => {
       stop(e);
       window.postMessage({ type: 'routility-quick-play', placeId }, location.origin);
     });
-    thumb.appendChild(b);
+    li.appendChild(b);
   }
 
   function skeletonRow(round) {

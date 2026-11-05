@@ -648,56 +648,41 @@ html.routility-search-kbd ul.dropdown-menu > .navbar-search-option:hover:not(.ne
   background: rgba(208, 217, 251, 0.12);
 }
 
-.routility-search-thumb:has(> .routility-search-play) {
-  position: relative;
-}
-
-.routility-search-thumb > .routility-search-play {
+.routility-search-row > .routility-search-play {
   position: absolute;
-  inset: 0;
-  display: flex !important;
+  top: 50%;
+  right: 12px;
+  left: auto !important;
+  z-index: 1;
+  display: inline-flex !important;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+  gap: 6px;
+  width: auto !important;
+  min-width: 0 !important;
+  height: 32px;
   margin: 0;
-  padding: 0 !important;
-  border: 0;
-  border-radius: inherit;
-  background: rgba(0, 0, 0, 0.45);
-  opacity: 0;
-  cursor: pointer;
-  transition: opacity 0.15s ease;
+  padding: 0 14px !important;
+  border: 0 !important;
+  border-radius: calc(8px * var(--routility-round, 1)) !important;
+  background: var(--color-system-emphasis, #335fff) !important;
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 600;
+  transform: translateY(-50%);
 }
 
-.routility-search-row:hover .routility-search-play,
-.routility-search-row.new-selected .routility-search-play,
-.routility-search-row.routility-search-own-sel .routility-search-play,
-.routility-search-play:focus-visible {
-  opacity: 1;
+.routility-search-row > .routility-search-play:hover {
+  background: color-mix(in srgb, var(--color-system-emphasis, #335fff) 85%, #fff) !important;
+}
+
+.navbar-search .routility-search-row:has(> .routility-search-play) .routility-search-link {
+  padding-right: 110px !important;
 }
 
 .routility-search-play-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--color-system-success, #00b06f);
-  transition: transform 0.15s ease;
-}
-
-.routility-search-play:hover .routility-search-play-icon {
-  transform: scale(1.1);
-}
-
-.routility-search-play-icon::before {
-  content: "";
-  width: 12px;
+  width: 10px;
   height: 12px;
-  margin-left: 2px;
-  background: #fff;
+  background: currentColor;
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 1.2v9.6a.8.8 0 0 0 1.2.7l7.6-4.8a.8.8 0 0 0 0-1.4L3.2.5A.8.8 0 0 0 2 1.2z'/%3E%3C/svg%3E") center / contain no-repeat;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 1.2v9.6a.8.8 0 0 0 1.2.7l7.6-4.8a.8.8 0 0 0 0-1.4L3.2.5A.8.8 0 0 0 2 1.2z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
