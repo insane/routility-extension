@@ -13519,6 +13519,12 @@ a.routility-spend-link:hover {
   margin-left: 0;
 }
 
+.avatar-name-container > .routility-user-badge {
+  width: var(--icon-size-small, 16px);
+  height: var(--icon-size-small, 16px);
+  margin-left: 4px;
+}
+
 :is(.routility-name-holder, #profile-header-title-container-name ~ *, .routility-name-badges) > .routility-user-badge {
   width: var(--icon-size-large, 24px);
   height: var(--icon-size-large, 24px);
