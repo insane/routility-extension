@@ -1456,8 +1456,23 @@
   function watchLaunchDialog() {
     if (watchLaunchDialog.on) return;
     watchLaunchDialog.on = true;
+    let studioAt = 0;
+    document.addEventListener('click', (e) => {
+      if (e.target.closest?.('[class*="VisitButtonEdit"], #game-context-menu li:first-child, .popover li:has([class*="VisitButtonEdit"])')) studioAt = Date.now();
+    }, true);
+    const studioDialog = (dialog) => {
+      if (dialog.dataset.routilityStudio) return true;
+      const text = dialog.textContent || '';
+      if (Date.now() - studioAt < 15000 || /Studio/.test(text)) {
+        dialog.dataset.routilityStudio = '1';
+        return true;
+      }
+      return false;
+    };
     const check = () => {
       if (settings.launchDetails === false) return;
+      const open = document.querySelector('.download-dialog');
+      if (open && !open.querySelector('.routility-launch') && studioDialog(open)) return;
       if (pendingJoin && Date.now() - pendingJoin.at > 20000) pendingJoin = null;
       if (!pendingJoin) {
         const plainDialog = document.querySelector('.download-dialog');

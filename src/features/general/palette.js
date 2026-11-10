@@ -231,8 +231,9 @@
     s = null;
   }
 
-  function open() {
-    if (s) return close();
+  function open(prefill) {
+    if (s && typeof prefill !== 'string') return close();
+    if (s) close();
     const overlay = el('div', 'foundation-web-dialog-overlay padding-medium foundation-web-portal-zindex bg-common-backdrop routility-injected routility-palette');
     overlay.dataset.state = 'open';
     const dialog = el('div', 'relative radius-large bg-surface-100 stroke-muted stroke-standard foundation-web-dialog-content shadow-transient-high routility-palette-dialog');
@@ -286,6 +287,7 @@
     });
     document.addEventListener('keydown', onKey, true);
     document.body.appendChild(overlay);
+    if (typeof prefill === 'string' && prefill.trim()) input.value = prefill.trim();
     input.focus();
     render();
     Promise.all([loadFeatures(), loadFriends()]).then(() => { if (s && s.input.value.trim()) render(); });
@@ -307,5 +309,21 @@
     else if (s) render();
   });
   window.addEventListener('keydown', onShortcut, true);
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest?.('button[data-testid="navigation-search-input-search-button"]');
+    if (!btn || settings.commandPalette === false) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const field = document.querySelector('#navbar-search-input');
+    const text = field ? field.value : '';
+    field?.blur();
+    open(text);
+  }, true);
+  document.addEventListener('pointerover', (e) => {
+    const btn = e.target.closest?.('button[data-testid="navigation-search-input-search-button"]');
+    if (!btn) return;
+    if (settings.commandPalette === false) delete btn.dataset.rtTip;
+    else if (!btn.dataset.rtTip) btn.dataset.rtTip = lt('Search pages, friends and settings') + ' (' + (/Mac/i.test(navigator.platform) ? '⌘K' : 'Ctrl K') + ')';
+  }, true);
   window.RoUtilityPalette = { open, close };
 })();

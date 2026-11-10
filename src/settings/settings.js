@@ -723,7 +723,7 @@
           { key: 'skeletonLoading', title: LT('Skeleton Loading'), desc: LT('Clean placeholders while Roblox pages load, instead of spinners and loading stripes.') },
           { key: 'statusBanner', title: LT('Roblox Status Banner'), desc: LT('A banner at the top of Roblox when something is down or slow, like game joins or the avatar shop, straight from Roblox’s status page. Dismiss it and it stays hidden until the status changes.') },
           { key: 'hoverTips', title: LT('Hover Hints'), desc: LT('Short explanations when you hover RoUtility pills, labels and badges.') },
-          { key: 'commandPalette', title: LT('Command Palette'), desc: LT('Press Ctrl K (Cmd K on a Mac) on any Roblox page to jump to a page, a friend or any RoUtility setting, and turn settings on or off right there.') },
+          { key: 'commandPalette', title: LT('Command Palette'), desc: LT('Press Ctrl K (Cmd K on a Mac) or click the magnifying glass in the search bar to jump to a page, a friend or any RoUtility setting, and turn settings on or off right there.') },
         ] },
         { title: LT('Name Badges'), rows: [
           { key: 'navVerified', title: LT('Verified Badge on Your Name'), desc: LT('If your account is verified, the blue check next to your name in the top bar and the side menu, before Roblox Plus like on your profile.') },
