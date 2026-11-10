@@ -14,7 +14,7 @@
   let toastTimer = null;
   let ready = false;
   let wantSetup = false;
-  const PAGE_KEYS = ['friendsPlaying', 'recentlyUpdated', 'genreFilters', 'notInterested', 'homeGreeting', 'playtime', 'homeQuickPlay'];
+  const PAGE_KEYS = ['friendsPlaying', 'recentlyUpdated', 'genreFilters', 'notInterested', 'homeGreeting', 'playtime', 'homeQuickPlay', 'friendsToday', 'wrapped'];
 
   chrome.storage.local.get(['routilitySettings', HIDDEN_KEY, HIDDEN_NAMES], (st) => {
     settings = st.routilitySettings || {};
@@ -227,20 +227,22 @@
     for (const thumb of root.querySelectorAll(':is(li.game-card, li.hover-game-tile, li.game-tile) :is(.game-card-thumb-container, .featured-game-icon-container)')) {
       if (thumb.querySelector(':scope > .routility-tile-play')) continue;
       const placeId = placeOf(thumb.closest('li'));
-      if (!placeId) continue;
-      const b = el('button', 'routility-injected routility-tile-play');
-      b.type = 'button';
-      b.setAttribute('aria-label', lt('Play'));
-      b.dataset.rtTip = lt('Play');
-      b.appendChild(el('span', 'routility-search-play-icon'));
-      const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
-      b.addEventListener('mousedown', stop);
-      b.addEventListener('click', (e) => {
-        stop(e);
-        window.postMessage({ type: 'routility-quick-play', placeId }, location.origin);
-      });
-      thumb.appendChild(b);
+      if (placeId) thumb.appendChild(playButton(placeId));
     }
+  }
+
+  function playButton(placeId) {
+    const b = el('button', 'routility-injected routility-tile-play');
+    b.type = 'button';
+    b.setAttribute('aria-label', lt('Play'));
+    b.appendChild(el('span', 'routility-search-play-icon'));
+    const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
+    b.addEventListener('mousedown', stop);
+    b.addEventListener('click', (e) => {
+      stop(e);
+      window.postMessage({ type: 'routility-quick-play', placeId: Number(placeId) }, location.origin);
+    });
+    return b;
   }
 
   function closeNativeOnBackdrop(e) {
@@ -673,6 +675,160 @@
     p.playing = true;
     load();
     p.timer = setInterval(load, 60000);
+  }
+
+  function fillTemplate(template, parts) {
+    const out = document.createDocumentFragment();
+    for (const piece of template.split(/(\{name\}|\{game\})/)) {
+      if (!piece) continue;
+      const key = piece === '{name}' ? 'name' : piece === '{game}' ? 'game' : '';
+      out.appendChild(key ? parts[key] : el('span', 'content-muted', piece));
+    }
+    return out;
+  }
+
+  function friendsToday(p) {
+    const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+    if (!me || !window.RoUtilityFriendsToday) return;
+    const key = window.RoUtilityFriendsToday.keyFor(me);
+    const heads = new Map();
+    const names = new Map();
+    const asked = new Set();
+    const SHOW = 5;
+    let log;
+    let row = null;
+    let expanded = false;
+
+    const anchor = () => document.getElementById('routility-recently-updated') || document.getElementById('routility-friends-playing') || document.querySelector('.game-home-page-container .friend-carousel-container');
+    const nameOf = (e) => names.get(e.id) || e.display || e.name || '';
+    const dur = (mins) => (mins < 60 ? lt('{n}m', { n: mins }) : lt('{h}h {m}m', { h: Math.floor(mins / 60), m: mins % 60 }));
+
+    const header = () => {
+      const model = document.querySelector('.game-sort-carousel-wrapper .home-sort-header-container');
+      const head = model ? model.cloneNode(true) : el('div', 'home-sort-header-container');
+      head.querySelectorAll('.routility-injected').forEach(n => n.remove());
+      const link = head.querySelector('a');
+      if (link) {
+        link.href = 'https://www.roblox.com/users/friends#!/friends';
+        link.setAttribute('aria-label', lt('Friends Today'));
+        link.querySelector('[aria-label]')?.setAttribute('aria-label', lt('Friends Today'));
+      }
+      const text = head.querySelector('[data-testid="text-icon-row-text"]') || head.querySelector('span');
+      if (text) text.textContent = lt('Friends Today');
+      else head.appendChild(el('h2', null, lt('Friends Today')));
+      return head;
+    };
+
+    const lookup = (events) => {
+      const ids = [...new Set(events.map(e => e.id))].filter(id => !asked.has(id));
+      if (!ids.length) return;
+      ids.forEach(id => asked.add(id));
+      const needNames = ids.filter(id => !events.find(e => e.id === id && (e.display || e.name)));
+      Promise.all([
+        needNames.length && json('https://users.roblox.com/v1/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userIds: needNames.slice(0, 100).map(Number), excludeBannedUsers: false }) }).then((r) => {
+          for (const u of (r && r.data) || []) names.set(String(u.id), u.displayName || u.name || '');
+        }),
+        json(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${ids.slice(0, 100).join(',')}&size=48x48&format=Webp&isCircular=true`).then((r) => {
+          for (const t of (r && r.data) || []) if (t.imageUrl) heads.set(String(t.targetId), t.imageUrl);
+        }),
+      ]).then(() => { if (p === page) render(); });
+    };
+
+    const item = (e) => {
+      const li = el('li', 'routility-ft-row');
+      const face = el('a', 'routility-ft-face thumbnail-2d-container');
+      face.href = `/users/${e.id}/profile`;
+      face.setAttribute('aria-hidden', 'true');
+      face.tabIndex = -1;
+      if (heads.get(e.id)) {
+        const img = el('img');
+        img.alt = '';
+        img.src = heads.get(e.id);
+        face.appendChild(img);
+      }
+      const who = el('a', 'routility-ft-name content-emphasis', nameOf(e) || lt('A friend'));
+      who.href = `/users/${e.id}/profile`;
+      const game = el(e.place ? 'a' : 'span', 'routility-ft-game', e.game || lt('an experience'));
+      if (e.place) game.href = `/games/${e.place}`;
+      const templates = {
+        online: lt('{name} came online'),
+        offline: lt('{name} went offline'),
+        play: lt('{name} started playing {game}'),
+        played: lt('{name} played {game} for {time}', { time: dur(e.mins || 1) }),
+      };
+      const text = el('span', 'routility-ft-text text-body-medium');
+      text.appendChild(fillTemplate(templates[e.t] || templates.online, { name: who, game }));
+      const when = el('span', 'routility-ft-when text-body-small content-muted', ago(e.at));
+      when.dataset.rtTip = new Date(e.at).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+      li.append(face, text, when);
+      return li;
+    };
+
+    const render = () => {
+      const after = anchor();
+      if (!after || settings.friendsToday === false) {
+        row?.remove();
+        row = null;
+        return;
+      }
+      const today = window.RoUtilityFriendsToday.dayOf(Date.now());
+      const events = log && log.day === today ? (log.events || []).slice().reverse() : [];
+      if (!row) {
+        row = el('div', 'game-sort-carousel-wrapper routility-injected routility-reveal routility-ft');
+        row.id = 'routility-friends-today';
+        row.appendChild(header());
+        row.appendChild(el('ul', 'routility-ft-list'));
+        const more = el('button', 'btn-control-xs routility-ft-more');
+        more.type = 'button';
+        more.addEventListener('click', () => {
+          expanded = !expanded;
+          render();
+        });
+        row.appendChild(more);
+      }
+      const ul = row.querySelector('.routility-ft-list');
+      const shown = expanded ? events.slice(0, 50) : events.slice(0, SHOW);
+      if (shown.length) ul.replaceChildren(...shown.map(item));
+      else ul.replaceChildren(el('li', 'routility-ft-empty text-body-medium content-muted', log ? lt('No friend activity yet today. It shows up here while you have Roblox open.') : lt('Watching your friends. Activity shows up here within a couple of minutes.')));
+      const more = row.querySelector('.routility-ft-more');
+      more.hidden = events.length <= SHOW;
+      more.textContent = expanded ? lt('Show Less') : lt('Show All {n}', { n: formatNumber(Math.min(events.length, 50)) });
+      lookup(shown);
+      if (!row.isConnected) {
+        after.after(row);
+        if (document.documentElement.classList.contains('routility-layout-on')) applyLayout();
+      }
+    };
+
+    const onStore = (changes, area) => {
+      if (area !== 'local' || !changes[key] || p !== page) return;
+      log = changes[key].newValue || null;
+      render();
+    };
+    chrome.storage.onChanged.addListener(onStore);
+    const timer = setInterval(() => { if (p === page && row) render(); }, 30000);
+    p.placeFT = () => { if (log !== undefined && (!row || !row.isConnected)) render(); };
+    p.ftStop = () => {
+      chrome.storage.onChanged.removeListener(onStore);
+      clearInterval(timer);
+      row?.remove();
+    };
+    chrome.storage.local.get(key).then((st) => {
+      if (p !== page) return;
+      log = st[key] || null;
+      render();
+      window.RoUtilityFriendsToday.tick();
+    });
+  }
+
+  function wrappedButton(id) {
+    const btn = el('button', 'routility-pt-backup routility-pt-wrapped text-label-small');
+    btn.type = 'button';
+    const logo = el('span', 'routility-pt-verify-logo');
+    logo.setAttribute('aria-hidden', 'true');
+    btn.append(logo, el('span', null, lt('{year} Wrapped', { year: new Date().getFullYear() })));
+    btn.addEventListener('click', () => window.RoUtilityWrapped?.open(id));
+    return btn;
   }
 
   const GAME_SEEN = 'routilityGameSeen';
@@ -1623,7 +1779,9 @@
       render();
     }, 'routility-pt-range');
     const tools = el('div', 'routility-pt-tools');
-    tools.append(backupButton(id), picker);
+    tools.append(backupButton(id));
+    if (settings.wrapped !== false && window.RoUtilityWrapped) tools.appendChild(wrappedButton(id));
+    tools.appendChild(picker);
     head.appendChild(tools);
     const row = el('div', 'routility-pt-row');
     const arrow = (side) => {
@@ -1692,6 +1850,7 @@
           img.src = g.icon;
           icon.appendChild(img);
         }
+        if (place && settings.homeQuickPlay !== false) icon.appendChild(playButton(place));
         const time = el('span', 'routility-pt-time text-body-small content-muted');
         time.append(el('span', 'routility-pt-clock'), el('span', null, ptTime(min)));
         item.append(icon, el('span', 'routility-pt-name text-label-medium content-emphasis', g.name || lt('Experience')), time);
@@ -1785,6 +1944,7 @@
     if (home) friendsRow(p);
     if (home && settings.friendsPlaying !== false) friendsPlaying(p);
     if (home && settings.recentlyUpdated !== false) recentlyUpdated(p);
+    if (home && settings.friendsToday !== false) friendsToday(p);
     if (!home && settings.genreFilters !== false) genreFilters(p);
     let queued = false;
     const tick = () => {
@@ -1795,6 +1955,7 @@
       p.friends?.();
       p.place?.();
       p.placeRU?.();
+      p.placeFT?.();
       p.genre?.();
       applyLayout();
       if (home) greeting();
@@ -1826,6 +1987,8 @@
     page.observer?.disconnect();
     document.getElementById('routility-friends-playing')?.remove();
     document.getElementById('routility-recently-updated')?.remove();
+    page.ftStop?.();
+    document.getElementById('routility-friends-today')?.remove();
     document.querySelector('.routility-add-friends')?.remove();
     page.genreStop?.();
     document.querySelectorAll('.routility-genre-bar, .routility-genre-filter').forEach(n => n.remove());

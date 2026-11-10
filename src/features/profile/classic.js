@@ -1662,7 +1662,13 @@
       empty.append(header(lt('Experiences')), box);
       pane.appendChild(empty);
     }
-    if (s.columns && items.length) pane.appendChild(assetSection(lt('Clothing'), seeAll(`/catalog?CreatorName=${encodeURIComponent(s.data.user.name)}&CreatorType=User`, lt('See All')), items.slice(0, 5), 'routility-classic-clothing'));
+    if (s.columns && items.length) {
+      const clothing = assetSection(lt('Clothing'), seeAll(`/catalog?CreatorName=${encodeURIComponent(s.data.user.name)}&CreatorType=User`, lt('See All')), items.slice(0, 5), 'routility-classic-clothing');
+      const right = s.root.querySelector('.routility-column-right');
+      if (right) right.prepend(clothing);
+      else pane.appendChild(clothing);
+      applyThumbs(s, clothing);
+    }
     if (s.columns) s.root.querySelector('.routility-columns')?.classList.add('routility-columns-games');
     else if (!games.length && !models.length && !items.length) pane.appendChild(el('p', 'section-content-off routility-classic-empty', lt('No creations yet.')));
     applyThumbs(s, pane);

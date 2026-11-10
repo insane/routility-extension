@@ -252,6 +252,7 @@
     if (forumPage) root.classList.toggle('routility-forum-page', (settings || {}).forum !== false);
     if (adsPage) root.classList.toggle('routility-ads-page', (settings || {}).tradeAds !== false);
     if (historyPage) root.classList.toggle('routility-fh-page', (settings || {}).friendHistory !== false);
+    if (serversPage) root.classList.toggle('routility-ps-page', (settings || {}).privateServers !== false);
     root.classList.toggle('routility-forum-topbar', (settings || {}).forum !== false && (settings || {}).forumTopLink !== false);
     root.classList.toggle('routility-streamer', streamer && (settings || {}).streamerRobux !== false);
     root.classList.toggle('routility-streamer-account', streamer && (settings || {}).streamerAccount !== false);
@@ -292,6 +293,8 @@
   if (adsPage) root.classList.add('routility-ads-page');
   const historyPage = /^\/friend-history\/?$/i.test(location.pathname);
   if (historyPage) root.classList.add('routility-fh-page');
+  const serversPage = /^\/private-servers\/?$/i.test(location.pathname);
+  if (serversPage) root.classList.add('routility-ps-page');
   const NAV = [
     ['promo', 'li:has(> a[href*="/plus?referrals"], > a[href="/plus"], > button > .icon-regular-roblox-plus)'],
     ['home', 'li:has(> a[href$="roblox.com/home"])'],
@@ -302,6 +305,7 @@
     ['history', 'li.routility-fh-nav'],
     ['avatar', 'li:has(> a[href*="/my/avatar"])'],
     ['inventory', 'li:has(> a:is([href$="/users/inventory"], [data-rt-profile$="/users/inventory"]))'],
+    ['servers', 'li.routility-ps-nav'],
     ['trade', 'li:has(> a[href$="roblox.com/trades"])'],
     ['calc', 'li.routility-calc-nav'],
     ['ads', 'li.routility-ads-nav'],
@@ -312,7 +316,7 @@
     ['giftcards', 'li:has(> a[href*="/giftcards"])'],
   ];
   const NAV_FOLLOW = { newsroom: ':is(li, div):has(a[href*="blog.roblox.com"]):not(:has(> a[href*="blog.roblox.com"]))' };
-  const NAV_FLAGS = { calc: ['tradeCalculator', 'calcNav'], ads: ['tradeAds', 'tradeAdsNav'], forum: ['forum', 'forumNav'], history: ['friendHistory', 'friendHistoryNav'] };
+  const NAV_FLAGS = { calc: ['tradeCalculator', 'calcNav'], ads: ['tradeAds', 'tradeAdsNav'], forum: ['forum', 'forumNav'], history: ['friendHistory', 'friendHistoryNav'], servers: ['privateServers'] };
   let navStyle = null;
   let navLayout = null;
   const applyNav = (v) => {

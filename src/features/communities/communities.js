@@ -158,6 +158,8 @@
     s.untrack = window.RoUtilityUI.trackPopover(pop, anchor, place, closePop);
   }
 
+  const onCommunity = (gid) => (location.pathname.match(/^\/communities\/(\d+)/i) || [])[1] === String(gid);
+
   function communityPage(gid) {
     const s = { gid, info: null, role: null, friends: null, pics: {}, funds: null, created: null, joined: null, asked: false };
     s.run = () => {
@@ -167,11 +169,35 @@
         s.asked = true;
         start(s);
       }
-      if (settings.groupOnline && !row.querySelector('.routility-cm-online')) {
-        const button = el('button', pillClass() + ' routility-injected routility-cm-online', lt('Find Online Members'));
-        button.type = 'button';
-        button.addEventListener('click', () => window.RoUtilityGroupOnline.open(gid, button));
-        row.appendChild(button);
+      row.querySelector('.routility-cm-online')?.remove();
+      if (settings.groupOnline && !s.menuHooked) {
+        s.menuHooked = true;
+        document.addEventListener('click', (e) => {
+          const btn = e.target.closest?.('button.contextual-menu-actions-btn, button.contextual-menu-actions-btn-mobile');
+          if (!btn || !settings.groupOnline || !onCommunity(gid)) return;
+          let tries = 0;
+          const add = () => {
+            const list = document.querySelector('.MuiMenu-list:has(> .contextual-menu-actions-menu-item)');
+            if (!list) {
+              if (++tries < 30) requestAnimationFrame(add);
+              return;
+            }
+            if (list.querySelector('.routility-cm-online-item')) return;
+            const tpl = list.querySelector(':scope > .contextual-menu-actions-menu-item');
+            const item = el('li', tpl.className + ' routility-injected routility-cm-online-item', lt('Find Online Members'));
+            item.setAttribute('role', 'menuitem');
+            item.tabIndex = -1;
+            item.dataset.actionKey = 'RoutilityFindOnline';
+            item.addEventListener('click', (ev) => {
+              ev.stopPropagation();
+              document.querySelector('.MuiPopover-root .MuiBackdrop-root, .MuiPopover-root .MuiModal-backdrop')?.click();
+              const anchor = document.querySelector('button.contextual-menu-actions-btn') || btn;
+              setTimeout(() => window.RoUtilityGroupOnline.open(gid, anchor), 0);
+            });
+            tpl.after(item);
+          };
+          requestAnimationFrame(add);
+        }, true);
       }
       if (settings.groupDetails && s.info) {
         const members = [...row.querySelectorAll('.profile-insight-pill-button')].find(b => /Members?$/.test(b.textContent.trim()) && !b.classList.contains('routility-injected'));

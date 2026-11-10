@@ -227,10 +227,24 @@
       show([(hsv[0] + m[0] + 360) % 360, Math.min(1, Math.max(0, hsv[1] + m[1])), hsv[2]]);
       commit();
     });
+    range.addEventListener('pointerdown', () => { dragging = true; });
     range.addEventListener('input', () => show([hsv[0], hsv[1], Number(range.value) / 100]));
-    range.addEventListener('change', commit);
+    const rangeEnd = () => {
+      if (!dragging) return;
+      dragging = false;
+      commit();
+    };
+    range.addEventListener('pointerup', rangeEnd);
+    range.addEventListener('pointercancel', rangeEnd);
+    range.addEventListener('change', () => {
+      dragging = false;
+      commit();
+    });
     input.addEventListener('input', () => fromInput());
-    const watch = new MutationObserver(onFrame(fromInput));
+    const queueInput = onFrame(fromInput);
+    const watch = new MutationObserver((records) => {
+      if (records.some(r => !panel.contains(r.target))) queueInput();
+    });
     watch.observe(dialog, { attributes: true, subtree: true, attributeFilter: ['style', 'class', 'aria-checked', 'checked'] });
     dialog.addEventListener('change', () => fromInput());
     panel.routilityWatch = watch;

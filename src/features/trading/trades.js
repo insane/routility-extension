@@ -1908,22 +1908,26 @@
       g.restore();
       return size + 4;
     };
-    const iconText = (kind, s, x, base, f, color, size, align = 'left', iconColor = color) => {
-      g.font = f;
-      const sign = kind === 'usd' && s.match(/^(MX\$|R\$|C\$|A\$|\$|€|£|¥|₩|₹|₺)/);
-      if (sign) {
-        const rest = s.slice(sign[0].length);
-        const sw = g.measureText(sign[0]).width;
-        const rw = g.measureText(rest).width;
-        const begin = align === 'right' ? x - sw - rw - 1 : x;
-        text(sign[0], begin, base, f, iconColor);
-        text(rest, begin + sw + 1, base, f, color);
-        return sw + rw + 1;
+    const splitSign = (kind, s) => {
+      const m = kind === 'usd' && s.match(/^(MX\$|R\$|C\$|A\$|\$|€|£|¥|₩|₹|₺)/);
+      return m ? [m[0], s.slice(m[0].length)] : [null, s];
+    };
+    const mark = (kind, sign, x, base, f, size, color) => {
+      if (!sign) {
+        icon(kind, x, base, size, color);
+        return;
       }
-      const w = g.measureText(s).width;
+      g.font = f;
+      const sw = g.measureText(sign).width;
+      text(sign, sw <= size ? x + (size - sw) / 2 : x + size - sw, base, f, color);
+    };
+    const iconText = (kind, s, x, base, f, color, size, align = 'left', iconColor = color) => {
+      const [sign, rest] = splitSign(kind, s);
+      g.font = f;
+      const w = g.measureText(rest).width;
       const start = align === 'right' ? x - w - size - 4 : x;
-      icon(kind, start, base, size, iconColor);
-      text(s, start + size + 4, base, f, color);
+      mark(kind, sign, start, base, f, size, iconColor);
+      text(rest, start + size + 4, base, f, color);
       return w + size + 4;
     };
     const round = (x, y, w, h, r) => {
@@ -1999,16 +2003,20 @@
       });
       y += Math.max(1, Math.ceil(cells.length / COLS)) * (tileH + GAP);
       const right = W - PAD;
-      let labeled = false;
-      const total = (kind, s2, color, iconColor = color) => {
-        y += labeled ? 26 : 22;
-        if (!labeled) text(lt('Total Value:'), PAD, y, font(600, 14), C.muted);
-        labeled = true;
-        iconText(kind, s2, right, y, font(700, 15), color, 16, 'right', iconColor);
-      };
-      if (opts.rap) total('rap', nf(s.rap + s.robux), C.text);
-      if (opts.value) total('value', nf(s.worth), C.text, C.value);
-      if (opts.prices) total('usd', money(s.usd) + (s.missing ? '+' : ''), C.text, C.win);
+      const rows = [];
+      if (opts.rap) rows.push(['rap', nf(s.rap + s.robux), C.text]);
+      if (opts.value) rows.push(['value', nf(s.worth), C.value]);
+      if (opts.prices) rows.push(['usd', money(s.usd) + (s.missing ? '+' : ''), C.win]);
+      const tf = font(700, 15);
+      g.font = tf;
+      const widest = Math.max(0, ...rows.map(r => g.measureText(splitSign(r[0], r[1])[1]).width));
+      rows.forEach(([kind, s2, iconColor], i) => {
+        y += i ? 26 : 22;
+        if (!i) text(lt('Total Value:'), PAD, y, font(600, 14), C.muted);
+        const [sign, rest] = splitSign(kind, s2);
+        mark(kind, sign, right - widest - 20, y, tf, 16, iconColor);
+        text(rest, right - widest, y, tf, C.text);
+      });
       y += 8;
     };
     section(lt('Items you gave'), p.mine);
@@ -2028,7 +2036,7 @@
     }
     if (opts.prices) {
       const d = p.theirs.usd - p.mine.usd;
-      parts.push({ k: 'usd', s: `${d >= 0 ? '+' : '-'}${money(Math.abs(d))}${pctOf(d, p.mine.usd)}`, c: Math.abs(d) < 1 ? C.muted : d > 0 ? C.win : C.over });
+      parts.push({ k: 'usd', s: `${d >= 0 ? '+' : '-'}${nf(Math.abs(d))}${pctOf(d, p.mine.usd)}`, c: Math.abs(d) < 1 ? C.muted : d > 0 ? C.win : C.over });
     }
     if (parts.length) {
       g.font = font(700, 13);

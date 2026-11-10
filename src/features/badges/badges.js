@@ -212,6 +212,8 @@
     const owned = Object.keys(s.data.earned).length;
     if (head && !head.querySelector('.routility-badge-progress')) {
       head.classList.add('routility-badge-head');
+      const h3 = head.querySelector('h3[data-testid="game-badges-heading"], h3');
+      if (h3 && s.data.total > 1) h3.textContent = lt('Badges');
       const wrap = el('div', 'routility-injected routility-badge-progress');
       wrap.appendChild(el('span', 'text-secondary routility-badge-progress-text', lt('{owned} of {total} owned', { owned: formatNumber(owned), total: formatNumber(s.data.total) })));
       const bar = el('span', 'routility-badge-bar');

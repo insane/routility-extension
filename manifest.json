@@ -92,6 +92,8 @@
         "src/features/trading/calc.js",
         "src/features/trading/tradeads.js",
         "src/features/items/itemcard.js",
+        "src/features/friends/today.js",
+        "src/features/home/wrapped.js",
         "src/features/home/home.js",
         "src/features/games/extras.js",
         "src/features/forum/forum.js",
@@ -111,7 +113,12 @@
         "src/core/compat.js",
         "src/core/content.js",
         "src/features/items/catalogowned.js",
-        "src/features/games/serverfilter.js"
+        "src/features/games/serverfilter.js",
+        "src/features/games/joinwait.js",
+        "src/features/games/changes.js",
+        "src/features/games/gamemenu.js",
+        "src/features/games/privateservers.js",
+        "src/features/general/palette.js"
       ],
       "css": [
         "styles/routility.css",

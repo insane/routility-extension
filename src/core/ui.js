@@ -1089,7 +1089,79 @@
     return Number(s) || 0;
   }
 
-  window.RoUtilityUI = { json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, usdIcon, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, exactTime, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request };
+  const DIALOG_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
+
+  function dialogButton(label, cls) {
+    const b = el('button', 'foundation-web-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center stroke-none padding-y-none select-none radius-medium text-label-medium height-1000 padding-x-medium grow basis-0 ' + cls);
+    b.type = 'button';
+    const layer = el('div', DIALOG_LAYER);
+    layer.setAttribute('aria-hidden', 'true');
+    b.append(layer, el('span', 'padding-y-xsmall text-truncate-end text-no-wrap', label));
+    return b;
+  }
+
+  function confirmDialog(opts) {
+    const steps = Array.isArray(opts.steps) && opts.steps.length ? opts.steps : [opts];
+    const danger = opts.danger !== false;
+    return new Promise((resolve) => {
+      document.querySelector('.routility-confirm-modal')?.remove();
+      const overlay = el('div', 'foundation-web-dialog-overlay padding-medium foundation-web-portal-zindex bg-common-backdrop routility-injected routility-block-modal routility-confirm-modal');
+      overlay.dataset.state = 'open';
+      const dialog = el('div', 'relative radius-large bg-surface-100 stroke-muted stroke-standard foundation-web-dialog-content shadow-transient-high routility-block-dialog');
+      dialog.setAttribute('role', 'alertdialog');
+      dialog.setAttribute('aria-modal', 'true');
+      dialog.setAttribute('aria-labelledby', 'routility-confirm-title');
+      dialog.dataset.size = 'Small';
+      const body = el('div', 'padding-x-xlarge padding-top-xlarge flex flex-col gap-medium');
+      const count = el('p', 'text-label-small content-muted margin-none routility-confirm-step');
+      const head = el('h2', 'text-heading-small', '');
+      head.id = 'routility-confirm-title';
+      const text = el('p', 'text-body-medium content-default', '');
+      body.append(count, head, text);
+      const actions = el('div', 'padding-x-xlarge padding-y-xlarge flex gap-small');
+      const no = dialogButton(opts.cancel || lt('Cancel'), 'bg-action-standard content-action-standard');
+      const yes = dialogButton('', danger ? 'bg-system-alert content-inverse-emphasis' : 'bg-action-emphasis content-action-emphasis');
+      actions.append(no, yes);
+      dialog.append(body, actions);
+      overlay.appendChild(dialog);
+      let at = 0;
+      const show = () => {
+        const st = steps[at];
+        count.hidden = steps.length < 2;
+        count.textContent = lt('Step {n} of {total}', { n: at + 1, total: steps.length });
+        head.textContent = st.title;
+        text.textContent = st.text || '';
+        text.hidden = !st.text;
+        yes.lastChild.textContent = st.confirm;
+        overlay.dataset.step = String(at + 1);
+      };
+      const done = (ok) => {
+        overlay.remove();
+        document.removeEventListener('keydown', key, true);
+        resolve(ok);
+      };
+      const key = (e) => {
+        if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); done(false); }
+      };
+      no.addEventListener('click', () => done(false));
+      yes.addEventListener('click', () => {
+        if (at < steps.length - 1) {
+          at++;
+          show();
+          no.focus();
+          return;
+        }
+        done(true);
+      });
+      overlay.addEventListener('mousedown', (e) => { if (e.target === overlay) done(false); });
+      document.addEventListener('keydown', key, true);
+      show();
+      document.body.appendChild(overlay);
+      no.focus();
+    });
+  }
+
+  window.RoUtilityUI = { json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, usdIcon, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, exactTime, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request, confirmDialog };
 })();
 
 (function () {

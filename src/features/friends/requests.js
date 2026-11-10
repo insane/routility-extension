@@ -874,4 +874,27 @@
   }
 
   window.RoUtilityRequests = { setup, teardown };
+  let passIgnoreAll = false;
+
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest?.('.request-tab-header button.ignore-button');
+    if (!btn) return;
+    if (passIgnoreAll) {
+      passIgnoreAll = false;
+      return;
+    }
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    const shown = (btn.closest('.request-tab-header')?.querySelector('h2')?.textContent.match(/\(([^)]+)\)/) || [])[1] || '';
+    const ok = await window.RoUtilityUI.confirmDialog({
+      steps: [
+        { title: lt('Ignore All Friend Requests?'), text: shown ? lt('This ignores every friend request you have ({count}), not just the ones on screen.', { count: shown }) : lt('This ignores every friend request you have, not just the ones on screen.'), confirm: lt('Continue') },
+        { title: lt('Are You Sure?'), text: lt('Ignored requests can’t be brought back. Each person would have to send you a new one.'), confirm: lt('Yes, Continue') },
+        { title: lt('Last Check'), text: lt('Press Ignore All to ignore them now.'), confirm: lt('Ignore All') },
+      ],
+    });
+    if (!ok || !btn.isConnected) return;
+    passIgnoreAll = true;
+    btn.click();
+  }, true);
 })();
