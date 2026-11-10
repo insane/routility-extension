@@ -252,6 +252,19 @@
   margin-top: -6px;
 }
 
+.routility-classic .routility-classic-pills + .header-details:has(.details-actions > li) {
+  height: 32px;
+  margin-top: 2px;
+}
+
+.routility-classic .routility-classic-pills + .header-details .details-actions .btn-control-md {
+  height: 32px;
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 30px;
+}
+
 .routility-classic-pills .routility-value-pill,
 .routility-classic-pills .routility-rap-pill {
   height: 28px;
