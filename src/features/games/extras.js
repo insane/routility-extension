@@ -547,7 +547,7 @@
       subplaces.list = out;
       p.tick();
     };
-    loadSubplaces(0);
+    let placesAsked = false;
     let gen = 0;
     let cursor = '';
     let pages = 0;
@@ -672,7 +672,7 @@
       const row = sec.querySelector('.server-list-container-header');
       let sel = sec.querySelector('.routility-subplace-dropdown');
       let note = sec.querySelector('.routility-subplace-note');
-      if (!row || subplaces.list.length < 2) {
+      if (!row || subplaces.list.length < 2 || settings.subplacePicker === false) {
         sel?.remove();
         note?.remove();
         return;
@@ -705,6 +705,12 @@
     };
 
     const regions = () => {
+      const pickerOn = settings.subplacePicker !== false && settings.serverRegions !== false;
+      if (!pickerOn && placeId !== rootPlaceId) switchPlace(rootPlaceId);
+      if (pickerOn && !placesAsked) {
+        placesAsked = true;
+        loadSubplaces(0);
+      }
       const on = settings.serverRegions !== false && centers.size > 0;
       const switched = placeId !== rootPlaceId;
       const tiles = [...document.querySelectorAll('li.rbx-public-game-server-item:not(.routility-region-item)')];
@@ -824,7 +830,7 @@
       const key = JSON.stringify([points.map(x => [x.key, x.servers, x.players]), selected, seen.size, emptyNote, headText, note, st ? [st.servers.length, st.loading, st.done, st.error, st.scanning] : null]);
       let card = document.querySelector('.routility-server-map');
       const anchor = document.querySelector('#rbx-public-running-games');
-      const picking = !!anchor && subplaces.list.length > 1;
+      const picking = !!anchor && pickerOn && subplaces.list.length > 1;
       if ((!points.length || !list) && !picking) {
         card?.remove();
         document.querySelector('.routility-server-regions')?.remove();
