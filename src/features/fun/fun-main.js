@@ -1510,7 +1510,457 @@
     return p;
   }]);
 
+  const SB_KEY = 'routilitySandbox';
+  const SB_V4 = 'https://avatar.roblox.com/v4/avatar?selectionTypes=0&selectionTypes=1&selectionTypes=2&selectionTypes=3&selectionTypes=4&selectionTypes=5';
+  const SB_TAX = {
+    8: 'thukPQUFe5EHxRrtsgq43u', 41: 'd6a7M7r9MMrpf7z7VxW9ZS', 42: 'b5rkQhGSfwhfTK177y6ERa', 43: 'tvckLAbtDAGwF9Y2sph2Ce',
+    44: '8i1sggNTrxoN799hpRrR1S', 45: 'kj535RzJxHTCnXPBLo5KaE', 46: '7yGywzp5JeDsNjhXWJqSw3', 47: '6jYQPDtkVwQZcKtvVpyYAN',
+    19: 'gUtxkR951g3VPgRkb5ay8u', 64: 'fLRqNzGqjX7MzcqeMro9hc', 65: 'pJ71PxerdfEuarTNRtSZYs', 66: '1MvRtnnsy2FJWmkErSBxBa',
+    67: 'kPZpEVNdProGcqMbj1jDKJ', 68: '31M6WgEMmyq9TTfk3pUUpZ', 69: 'etAPg889P243JyjdbZCXhw', 72: 'oSSCBSqkQPZu6HataAUAxB',
+    11: '2a2rf9qyeTd8W5iegK2Prc', 2: '43H35nJKHzCQM63q3wPaJG', 12: '49cFNAJWuwiJJVUSADG6DR', 61: 'ioNxAT977DFP2hMnAJbsbF',
+    18: 'mwkR3QvDBVzYk4o9RAVVa2', 76: '1cMbsG373EMD4ncRqGhtyZ', 77: '4zqsNnG4Tp7xZThAEpv2dN',
+    88: 'tm9VSS61JdHJGtKvbjKa4D', 89: 'c3PEmGVddwsc6bKqtuR7rC', 90: '1e7vNivWk2To6BdYJt5RGF',
+  };
+  const SB_PARTS = {
+    17: 'kfHzJwaNYM8s2CWRqYUhRa', 27: 'kfHzJwaNYM8s2CWRqYUhRa', 28: 'kfHzJwaNYM8s2CWRqYUhRa', 29: 'kfHzJwaNYM8s2CWRqYUhRa', 30: 'kfHzJwaNYM8s2CWRqYUhRa', 31: 'kfHzJwaNYM8s2CWRqYUhRa',
+    70: 'uLRgNoJ1awZkhpVw9WyvKo', 71: 'uLRgNoJ1awZkhpVw9WyvKo',
+    48: 'whf6kUVBwk2xdwKUmRYN6G', 50: 'whf6kUVBwk2xdwKUmRYN6G', 51: 'whf6kUVBwk2xdwKUmRYN6G', 52: 'whf6kUVBwk2xdwKUmRYN6G', 53: 'whf6kUVBwk2xdwKUmRYN6G', 54: 'whf6kUVBwk2xdwKUmRYN6G', 55: 'whf6kUVBwk2xdwKUmRYN6G',
+    78: 's5NLP7BS9PRLKvUVca4XKg', 79: 's5NLP7BS9PRLKvUVca4XKg',
+  };
+  const SB_GROUPS = [
+    ['wNYJso48d1XnhMyFWT3oX3', [8, 42, 43, 44, 45, 46, 47, 19]],
+    ['5G3bZScC9Hxp2D2EUtGSNm', [11, 2, 12, 64, 65, 66, 67, 68, 69, 72]],
+    ['dBM565GC3YYTdi9UKvr87Z', [76, 77, 88, 89, 90]],
+  ];
+  const SB_SORTS = { relevance: '', favorites: '1', bestselling: '2', updated: '3', low: '4', high: '5' };
+  const SB_COLOR3 = { headColor: 'headColor3', torsoColor: 'torsoColor3', rightArmColor: 'rightArmColor3', leftArmColor: 'leftArmColor3', rightLegColor: 'rightLegColor3', leftLegColor: 'leftLegColor3' };
+  const sbInfo = new Map();
+  let sb = null;
+  try { sb = JSON.parse(sessionStorage.getItem(SB_KEY) || 'null'); } catch {}
+  const SB_PAGE = /^\/my\/avatar\/?$/i.test(location.pathname) && new URLSearchParams(location.search).has('sandbox');
+  if (SB_PAGE && !(sb && sb.on)) {
+    sb = { on: true, filter: { mode: 'classic', q: '', sort: 'high' } };
+    try { sessionStorage.setItem(SB_KEY, JSON.stringify(sb)); } catch {}
+  }
+  if (sb && !sb.filter) sb.filter = { mode: 'classic', q: '', sort: 'high' };
+
+  function sbOn() {
+    return SB_PAGE && !!(sb && sb.on);
+  }
+
+  function sbState() {
+    return {
+      on: sbOn(),
+      filter: sb && sb.filter,
+      worn: sb && Array.isArray(sb.assets) ? sb.assets.map(a => Object.assign({ id: a.id, name: a.name || '', type: a.type || 0 }, sbInfo.get(a.id) || {})) : [],
+    };
+  }
+
+  function sbSave() {
+    try {
+      if (sb && sb.on) sessionStorage.setItem(SB_KEY, JSON.stringify(sb));
+      else sessionStorage.removeItem(SB_KEY);
+    } catch {}
+    window.postMessage({ type: 'routility-sandbox-state', state: sbState() }, ORIGIN);
+  }
+
+  function sbLearn(x) {
+    if (!x || !Number.isFinite(Number(x.id))) return;
+    const id = Number(x.id);
+    const prev = sbInfo.get(id) || {};
+    const r = Array.isArray(x.itemRestrictions) ? x.itemRestrictions : prev.restrictions || [];
+    const full = Array.isArray(x.itemRestrictions) || 'price' in x || 'lowestPrice' in x;
+    sbInfo.set(id, {
+      known: prev.known || full,
+      name: x.name || prev.name || '',
+      type: Number(x.assetType) || prev.type || 0,
+      price: Number.isFinite(x.price) ? x.price : prev.price ?? null,
+      lowest: Number.isFinite(x.lowestPrice) ? x.lowestPrice : Number.isFinite(x.lowestResalePrice) ? x.lowestResalePrice : prev.lowest ?? null,
+      restrictions: r,
+      creator: x.creatorName || prev.creator || '',
+    });
+  }
+
+  let sbJob = null;
+  function sbReady() {
+    if (!sbOn() || Array.isArray(sb.assets)) return Promise.resolve();
+    if (!sbJob) {
+      sbJob = (async () => {
+        const get = (u) => oFetch.call(window, u, { credentials: 'include' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
+        const [v1, v4] = await Promise.all([get('https://avatar.roblox.com/v1/avatar'), get(SB_V4)]);
+        if (!sb || !v1 || !Array.isArray(v1.assets)) return;
+        sb.assets = v1.assets.map(a => ({ id: Number(a.id), name: a.name || '', type: (a.assetType && a.assetType.id) || 0, meta: a.meta || undefined }));
+        for (const a of sb.assets) sbLearn({ id: a.id, name: a.name, assetType: a.type });
+        sb.scales = v1.scales || null;
+        sb.type = v1.playerAvatarType || 'R15';
+        sb.colors = (v4 && v4.avatarModel && v4.avatarModel.bodyColors) || null;
+        sb.recent = [];
+        sbSave();
+      })().finally(() => { sbJob = null; });
+    }
+    return sbJob;
+  }
+
+  let sbToken = '';
+  async function sbDetails(ids, full) {
+    const need = ids.filter(id => (full ? !(sbInfo.get(id) || {}).known : !sbInfo.has(id) || !sbInfo.get(id).type));
+    for (let i = 0; i < need.length; i += 100) {
+      const body = JSON.stringify({ items: need.slice(i, i + 100).map(id => ({ itemType: 'Asset', id })) });
+      for (let t = 0; t < 2; t++) {
+        let res;
+        try {
+          res = await oFetch.call(window, 'https://catalog.roblox.com/v1/catalog/items/details', { method: 'POST', credentials: 'include', headers: Object.assign({ 'content-type': 'application/json' }, sbToken ? { 'x-csrf-token': sbToken } : {}), body });
+        } catch {
+          break;
+        }
+        if (res.status === 403 && res.headers.get('x-csrf-token')) {
+          sbToken = res.headers.get('x-csrf-token');
+          continue;
+        }
+        const d = res.ok ? await res.json().catch(() => null) : null;
+        for (const x of (d && d.data) || []) sbLearn(x);
+        break;
+      }
+    }
+  }
+
+  function sbApply(def, types) {
+    if (!sb || !def) return;
+    const want = (t) => !Array.isArray(types) || !types.length || types.includes(t);
+    if (Array.isArray(def.assets) && want('UpdateAssets')) {
+      sb.assets = def.assets.map((a) => {
+        const id = Number(a && typeof a === 'object' ? a.id : a);
+        const info = sbInfo.get(id) || {};
+        return { id, name: info.name || '', type: info.type || 0, meta: (a && typeof a === 'object' && a.meta) || undefined };
+      }).filter(a => Number.isFinite(a.id) && a.id > 0);
+      const now = sb.assets.map(a => a.id);
+      sb.recent = [...new Set(now.concat(sb.recent || []))].slice(0, 60);
+    }
+    const colors = def.bodyColors || def.bodyColor3s;
+    if (colors && typeof colors === 'object' && want('UpdateBodyColors')) {
+      const next = Object.assign({}, sb.colors || {});
+      for (const [k, v] of Object.entries(colors)) {
+        if (typeof v !== 'string') continue;
+        const key = k.replace(/3$/, '');
+        if (SB_COLOR3[key]) next[key] = v.replace(/^#/, '');
+      }
+      sb.colors = next;
+    }
+    if (def.scales && typeof def.scales === 'object' && want('UpdateScales')) sb.scales = Object.assign({}, sb.scales || {}, def.scales);
+    const kind = def.playerAvatarType && typeof def.playerAvatarType === 'object' ? def.playerAvatarType.playerAvatarType : def.playerAvatarType;
+    if (typeof kind === 'string' && want('UpdatePlayerAvatarType')) sb.type = kind;
+    sbSave();
+    const missing = sb.assets ? sb.assets.filter(a => !a.type).map(a => a.id) : [];
+    if (missing.length) {
+      sbDetails(missing).then(() => {
+        if (!sb || !sb.assets) return;
+        for (const a of sb.assets) {
+          const info = sbInfo.get(a.id);
+          if (info && !a.type) {
+            a.type = info.type;
+            a.name = a.name || info.name;
+          }
+        }
+        sbSave();
+      });
+    }
+  }
+
+  function sbAssetOut(a) {
+    const info = sbInfo.get(a.id) || {};
+    const type = a.type || info.type || 8;
+    return Object.assign({ id: a.id, name: a.name || info.name || '', assetType: { id: type, name: WEAR_NAMES[type] || 'Hat' }, currentVersionId: 0 }, a.meta ? { meta: a.meta } : {});
+  }
+
+  function sbAvatar(kind) {
+    return { wait: sbReady(), edit: (t) => {
+      const d = parse(t);
+      if (!d || !sb || !Array.isArray(sb.assets)) return t;
+      const model = kind === 'v4' ? d.avatarModel : d;
+      if (!model || typeof model !== 'object') return t;
+      model.assets = sb.assets.map(sbAssetOut);
+      if (sb.scales) model.scales = Object.assign({}, model.scales || {}, sb.scales);
+      if (sb.type) model.playerAvatarType = sb.type;
+      if (sb.colors) {
+        if (kind === 'v4') model.bodyColors = Object.assign({}, model.bodyColors || {}, sb.colors);
+        if (kind === 'v2') {
+          const c3 = {};
+          for (const [k, v] of Object.entries(sb.colors)) if (SB_COLOR3[k]) c3[SB_COLOR3[k]] = v;
+          d.bodyColor3s = Object.assign({}, d.bodyColor3s || {}, c3);
+        }
+      }
+      return JSON.stringify(d);
+    } };
+  }
+
+  function sbWrite(apply) {
+    return { wait: sbReady().then(apply), fake: { now: true, body: { success: true } } };
+  }
+
+  const SB_LIMITED = new Set([8, 19, 41, 42, 43, 44, 45, 46, 47]);
+  const SB_OUTFITS = { 2: 's5NLP7BS9PRLKvUVca4XKg', 4: 'uLRgNoJ1awZkhpVw9WyvKo' };
+  const sbFiltered = (subs, heads) => heads === 2 || (subs.length > 0 && subs.every(s => SB_LIMITED.has(s)));
+
+  async function sbSearch(subs, cursor, heads) {
+    const base = (sb && sb.filter) || { mode: 'classic', q: '', sort: 'high' };
+    const f = sbFiltered(subs, heads) ? base : Object.assign({}, base, { mode: 'all' });
+    let tax = '';
+    let parts = false;
+    if (heads) {
+      tax = SB_OUTFITS[heads];
+    } else if (subs.every(s => SB_TAX[s])) {
+      const group = subs.length > 1 ? SB_GROUPS.find(([, types]) => subs.every(s => types.includes(s))) : null;
+      tax = group ? group[0] : SB_TAX[subs[0]];
+    } else if (subs.every(s => SB_PARTS[s]) && new Set(subs.map(s => SB_PARTS[s])).size === 1) {
+      tax = SB_PARTS[subs[0]];
+      parts = true;
+    }
+    if (!tax) return null;
+    const only = new Set(subs);
+    const out = [];
+    const seen = new Set();
+    let next = cursor || '';
+    for (let page = 0; page < 4; page++) {
+      const u = new URL('https://catalog.roblox.com/v2/search/items/details');
+      u.searchParams.set('taxonomy', tax);
+      u.searchParams.set('limit', '60');
+      u.searchParams.set('includeNotForSale', 'true');
+      if (f.mode === 'limited' || f.mode === 'classic') u.searchParams.set('salesTypeFilter', '2');
+      if (f.mode === 'classic') u.searchParams.set('creatorName', 'Roblox');
+      if (f.q) u.searchParams.set('keyword', String(f.q).slice(0, 50));
+      if (SB_SORTS[f.sort]) u.searchParams.set('SortType', SB_SORTS[f.sort]);
+      if (next) u.searchParams.set('cursor', next);
+      let d = null;
+      try {
+        const r = await oFetch.call(window, u.href, { credentials: 'include' });
+        d = r.ok ? await r.json() : null;
+      } catch {}
+      if (!d || !Array.isArray(d.data)) return out.length ? { items: out, next: '' } : null;
+      for (const x of d.data) {
+        if (heads) {
+          if (x.itemType !== 'Bundle') continue;
+          const items = Array.isArray(x.bundledItems) ? x.bundledItems : [];
+          const outfit = items.find(i => i.type === 'UserOutfit');
+          const assets = items.filter(i => i.type === 'Asset' && i.assetType);
+          if (!outfit || !assets.length || seen.has(outfit.id)) continue;
+          seen.add(outfit.id);
+          for (const a of assets) sbLearn({ id: a.id, name: a.name, assetType: a.assetType });
+          out.push({ outfit: Number(outfit.id), name: x.name || outfit.name || '', assets });
+        } else if (parts) {
+          if (x.itemType !== 'Bundle') continue;
+          for (const a of Array.isArray(x.bundledItems) ? x.bundledItems : []) {
+            if (a.type !== 'Asset' || !only.has(Number(a.assetType)) || seen.has(a.id)) continue;
+            seen.add(a.id);
+            sbLearn({ id: a.id, name: a.name, assetType: a.assetType });
+            out.push({ id: a.id, assetType: a.assetType, name: a.name || x.name || '' });
+          }
+        } else {
+          if (x.itemType !== 'Asset' || !only.has(Number(x.assetType)) || seen.has(x.id)) continue;
+          seen.add(x.id);
+          sbLearn(x);
+          out.push(x);
+        }
+      }
+      next = d.nextPageCursor || '';
+      if (!next || out.length >= 24) break;
+    }
+    return { items: out, next };
+  }
+
+  function sbInventory(req) {
+    let u;
+    try { u = new URL(req.url); } catch { return null; }
+    const subs = [];
+    let heads = 0;
+    let other = false;
+    for (const [k, v] of u.searchParams) {
+      const n = k.match(/^itemCategories\[(\d+)\]\.ItemSubType$/i);
+      if (!n) continue;
+      const kind = u.searchParams.get(`itemCategories[${n[1]}].ItemType`) || '';
+      if (/^(asset|1)$/i.test(kind)) subs.push(Number(v));
+      else if (/^(outfit|2)$/i.test(kind) && SB_OUTFITS[Number(v)]) heads = Number(v);
+      else other = true;
+    }
+    const token = u.searchParams.get('pageToken') || '';
+    if (!subs.length && !heads) {
+      if (other || token) return null;
+      return { wait: sbReady(), edit: (t) => {
+        const recent = (sb && sb.recent) || [];
+        if (!recent.length) return t;
+        const items = recent.map(id => sbInfo.get(id) ? [id, sbInfo.get(id)] : null).filter(x => x && x[1].type);
+        if (!items.length) return t;
+        return JSON.stringify({ avatarInventoryItems: items.map(([id, info]) => ({ itemId: id, itemCategory: { itemType: 1, itemSubType: info.type }, itemName: info.name, availabilityStatus: 'Available', acquisitionTime: new Date().toISOString() })), nextPageToken: null });
+      } };
+    }
+    if (other || (heads && subs.length)) return null;
+    if (!heads && !subs.every(s => SB_TAX[s] || SB_PARTS[s])) return null;
+    if (token && !token.startsWith('rtsb.')) return null;
+    const body = { avatarInventoryItems: [], nextPageToken: null };
+    const wait = sbReady().then(() => sbSearch(subs, token ? token.slice(5) : '', heads)).then((r) => {
+      if (!token) window.postMessage({ type: 'routility-sandbox-result', count: r ? r.items.length : 0, filtered: sbFiltered(subs, heads) }, ORIGIN);
+      if (!r) return;
+      const stamp = new Date().toISOString();
+      if (heads) {
+        const c3 = {};
+        for (const [k, v] of Object.entries((sb && sb.colors) || {})) if (SB_COLOR3[k]) c3[SB_COLOR3[k]] = v;
+        body.avatarInventoryItems = r.items.map(x => ({
+          itemId: x.outfit,
+          itemCategory: { itemType: 2, itemSubType: heads },
+          itemName: x.name,
+          availabilityStatus: 'Available',
+          acquisitionTime: stamp,
+          outfitDetail: { playerAvatarType: (sb && sb.type) || 'R15', bodyColor3s: c3, scales: (sb && sb.scales) || {}, assets: x.assets.map(a => ({ id: Number(a.id), assetType: { id: Number(a.assetType), name: WEAR_NAMES[a.assetType] || '' } })) },
+        }));
+      } else {
+        body.avatarInventoryItems = r.items.map(x => ({ itemId: Number(x.id), itemCategory: { itemType: 1, itemSubType: Number(x.assetType) }, itemName: x.name || '', availabilityStatus: 'Available', acquisitionTime: stamp }));
+      }
+      body.nextPageToken = r.next ? 'rtsb.' + r.next : null;
+    }, () => {});
+    return { wait, fake: { now: true, body } };
+  }
+
+  const sbRenders = new Map();
+  async function sbRender(size, type) {
+    await sbReady();
+    if (!sb || !Array.isArray(sb.assets)) return null;
+    const avatarDefinition = {
+      assets: sb.assets.map(a => (a.meta ? { id: a.id, meta: a.meta } : { id: a.id })),
+      bodyColors: sb.colors || {},
+      scales: sb.scales || {},
+      playerAvatarType: { playerAvatarType: sb.type || 'R15' },
+    };
+    const key = type + '|' + size + '|' + JSON.stringify(avatarDefinition);
+    if (sbRenders.has(key)) return sbRenders.get(key);
+    const job = (async () => {
+      const body = JSON.stringify({ thumbnailConfig: { thumbnailId: (avatarDefinition.assets[0] && avatarDefinition.assets[0].id) || 1, thumbnailType: type, size }, avatarDefinition });
+      for (let i = 0; i < 25; i++) {
+        let res;
+        try {
+          res = await oFetch.call(window, 'https://avatar.roblox.com/v1/avatar/render', { method: 'POST', credentials: 'include', headers: Object.assign({ 'content-type': 'application/json' }, renderToken ? { 'x-csrf-token': renderToken } : {}), body });
+        } catch {
+          return null;
+        }
+        if (res.status === 403 && res.headers.get('x-csrf-token')) {
+          renderToken = res.headers.get('x-csrf-token');
+          continue;
+        }
+        const d = res.ok ? await res.json().catch(() => null) : null;
+        if (!d) return null;
+        if (d.state === 'Completed' && d.imageUrl) return d.imageUrl;
+        if (d.state && d.state !== 'Pending') return null;
+        await new Promise(r => setTimeout(r, 1000));
+      }
+      return null;
+    })();
+    sbRenders.set(key, job);
+    job.then((u) => { if (!u) sbRenders.delete(key); });
+    return job;
+  }
+
+  async function sbOutfit(id) {
+    await sbReady();
+    let d = null;
+    try {
+      const r = await oFetch.call(window, `https://avatar.roblox.com/v4/outfits/${id}/details`, { credentials: 'include' });
+      d = r.ok ? await r.json() : null;
+    } catch {}
+    if (!d) return;
+    for (const a of d.assets || []) sbLearn({ id: a.id, name: a.name, assetType: a.assetType && a.assetType.id });
+    sbApply({ assets: d.assets || [], bodyColors: d.bodyColors || d.bodyColor3s, scales: d.scales, playerAvatarType: d.playerAvatarType });
+  }
+
+  const SB_ROUTES = [
+    ['GET', /^https:\/\/avatar\.roblox\.com\/v1\/avatar(?:[?#]|$)/, () => sbAvatar('v1')],
+    ['GET', /^https:\/\/avatar\.roblox\.com\/v2\/avatar\/avatar(?:[?#]|$)/, () => sbAvatar('v2')],
+    ['GET', /^https:\/\/avatar\.roblox\.com\/v4\/avatar(?:[?#]|$)/, () => sbAvatar('v4')],
+    ['GET', /^https:\/\/avatar\.roblox\.com\/v1\/avatar-inventory\?/i, (m, req) => sbInventory(req)],
+    ['PATCH', /^https:\/\/avatar\.roblox\.com\/v4\/avatar(?:[?#]|$)/, (m, req, b) => sbWrite(() => sbApply(b && b.avatarDefinition && b.avatarDefinition.updateAvatarModel, b && b.updateTypes))],
+    ['POST', /^https:\/\/avatar\.roblox\.com\/v1\/avatar\/set-wearing-assets(?:[?#]|$)/, (m, req, b) => sbWrite(() => sbApply({ assets: (b && b.assetIds) || [] }))],
+    ['POST', /^https:\/\/avatar\.roblox\.com\/v2\/avatar\/set-wearing-assets(?:[?#]|$)/, (m, req, b) => sbWrite(() => sbApply({ assets: (b && b.assets) || [] }))],
+    ['POST', /^https:\/\/avatar\.roblox\.com\/v\d\/avatar\/set-body-colors(?:[?#]|$)/, (m, req, b) => sbWrite(() => sbApply({ bodyColors: b }))],
+    ['POST', /^https:\/\/avatar\.roblox\.com\/v\d\/avatar\/set-scales(?:[?#]|$)/, (m, req, b) => sbWrite(() => sbApply({ scales: b }))],
+    ['POST', /^https:\/\/avatar\.roblox\.com\/v\d\/avatar\/set-player-avatar-type(?:[?#]|$)/, (m, req, b) => sbWrite(() => sbApply({ playerAvatarType: b && b.playerAvatarType }))],
+    ['POST', /^https:\/\/avatar\.roblox\.com\/v\d\/outfits\/(\d+)\/wear(?:[?#]|$)/, (m) => ({ wait: sbOutfit(m[1]), fake: { now: true, body: { success: true } } })],
+    ['POST', /^https:\/\/avatar\.roblox\.com\/v\d\/outfits\/(?:create|\d+\/(?:delete|update))(?:[?#]|$)/, () => ({ fake: { now: true, status: 400, body: { errors: [{ code: 0, message: 'Sandbox Mode doesn’t save outfits to your account. Exit Sandbox first.' }] } } })],
+    ['PATCH', /^https:\/\/avatar\.roblox\.com\/v\d\/outfits\/\d+(?:[?#]|$)/, () => ({ fake: { now: true, status: 400, body: { errors: [{ code: 0, message: 'Sandbox Mode doesn’t save outfits to your account. Exit Sandbox first.' }] } } })],
+    ['POST', /^https:\/\/thumbnails\.roblox\.com\/v1\/batch(?:[?#]|$)/, (m, req, b) => {
+      if (!Array.isArray(b)) return null;
+      const mine = b.filter(e => e && e.type === 'Avatar' && Number(e.targetId) === me());
+      if (!mine.length) return null;
+      const urls = new Map();
+      const wait = Promise.all([...new Set(mine.map(e => renderSize(e.size)))].map(size => sbRender(size, '2dWebp').then(u => urls.set(size, u))));
+      return { wait, edit: (t) => {
+        const d = parse(t);
+        if (!d || !Array.isArray(d.data)) return t;
+        let changed = false;
+        for (const x of d.data) {
+          const e = mine.find(q => q.requestId === x.requestId);
+          const url = e && urls.get(renderSize(e.size));
+          if (!url) continue;
+          Object.assign(x, { imageUrl: url, state: 'Completed', errorCode: 0, errorMessage: '' });
+          changed = true;
+        }
+        return changed ? JSON.stringify(d) : t;
+      } };
+    }],
+    ['GET', /^https:\/\/thumbnails\.roblox\.com\/v1\/users\/avatar-3d\?/i, (m, req) => {
+      let uid = 0;
+      try { uid = Number(new URL(req.url).searchParams.get('userId')); } catch {}
+      if (uid !== me()) return null;
+      let url = null;
+      const wait = sbRender('352x352', '3d').then((u) => { url = u; });
+      return { wait, edit: (t) => {
+        const d = parse(t);
+        if (!d || !url) return t;
+        d.imageUrl = url;
+        d.state = 'Completed';
+        return JSON.stringify(d);
+      } };
+    }],
+    ['POST', /^https:\/\/catalog\.roblox\.com\/v1\/catalog\/items\/details(?:[?#]|$)/, () => ({ edit: (t) => {
+      const d = parse(t);
+      for (const x of (d && d.data) || []) sbLearn(x);
+      return t;
+    } })],
+  ];
+
+  window.addEventListener('message', (e) => {
+    if (e.source !== window || !e.data || e.data.type !== 'routility-sandbox') return;
+    const a = e.data.action;
+    if (a === 'enable') {
+      sb = { on: true, filter: { mode: 'classic', q: '', sort: 'high' } };
+      sbSave();
+    } else if (a === 'exit') {
+      sb = null;
+      sbSave();
+    } else if (a === 'filter' && sb) {
+      const f = e.data.filter || {};
+      sb.filter = { mode: ['all', 'limited', 'classic'].includes(f.mode) ? f.mode : 'all', q: String(f.q || '').slice(0, 50), sort: SB_SORTS[f.sort] !== undefined ? f.sort : 'relevance' };
+      sbSave();
+    } else if (a === 'render' && sbOn()) {
+      const id = e.data.id;
+      sbRender(renderSize(e.data.size), '2dWebp').then(url => window.postMessage({ type: 'routility-sandbox-render', id, url: url || null }, ORIGIN));
+    } else if (a === 'state') {
+      const worn = sb && Array.isArray(sb.assets) ? sb.assets.map(x => x.id) : [];
+      (worn.length ? sbDetails(worn, true) : Promise.resolve()).then(() => window.postMessage({ type: 'routility-sandbox-state', state: sbState() }, ORIGIN));
+    }
+  });
+
   function pick(method, url) {
+    const own = sbOn() ? SB_ROUTES.filter(([m, re]) => m === method && re.test(url)).map(([, re, fn]) => [fn, url.match(re)]) : [];
+    const rest = pickFun(method, url);
+    if (!own.length) return rest;
+    return (req, raw) => {
+      const body = (typeof raw === 'string' && parse(raw)) || {};
+      for (const [fn, hit] of own) {
+        const p = fn(hit, req, body);
+        if (p) return p;
+      }
+      return rest ? rest(req, raw) : null;
+    };
+  }
+
+  function pickFun(method, url) {
     const hits = [];
     for (const [m, re, fn] of ROUTES) {
       if (m !== method) continue;
@@ -1557,8 +2007,8 @@
     setTimeout(() => {
       try { if (fake.done) fake.done(); } catch {}
       define(xhr, 'readyState', () => 4);
-      define(xhr, 'status', () => 200);
-      define(xhr, 'statusText', () => 'OK');
+      define(xhr, 'status', () => fake.status || 200);
+      define(xhr, 'statusText', () => (fake.status && fake.status !== 200 ? 'Bad Request' : 'OK'));
       define(xhr, 'responseURL', () => req.url);
       define(xhr, 'responseText', () => text);
       define(xhr, 'response', () => (xhr.responseType === 'json' ? parse(text) : text));
@@ -1642,6 +2092,10 @@
     const args = arguments;
     const go = () => {
       const p = plan(route, req, body);
+      if (p && p.fake && p.wait) {
+        p.wait.then(() => fakeXhr(this, req, p.fake), () => fakeXhr(this, req, p.fake));
+        return undefined;
+      }
       if (p && p.fake) return fakeXhr(this, req, p.fake);
       const fire = () => {
         if (p && p.edit) editXhr(this, p.edit);
@@ -1680,9 +2134,10 @@
       }
       const p = plan(route, { method, url }, body);
       if (p && p.fake) {
+        if (p.wait) await p.wait.catch(() => {});
         if (!p.fake.now) await new Promise(r => setTimeout(r, pause() + (p.fake.extra || 0)));
         try { if (p.fake.done) p.fake.done(); } catch {}
-        return new Response(JSON.stringify(p.fake.body), { status: 200, headers: { 'content-type': 'application/json; charset=utf-8' } });
+        return new Response(JSON.stringify(p.fake.body), { status: p.fake.status || 200, headers: { 'content-type': 'application/json; charset=utf-8' } });
       }
       if (p && p.wait) await p.wait.catch(() => {});
       const saved = () => {

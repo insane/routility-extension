@@ -69,6 +69,7 @@
         "src/features/communities/online.js",
         "src/features/communities/communities.js",
         "src/features/avatar/avatar.js",
+        "src/features/avatar/sandbox.js",
         "src/features/avatar/thumbcam.js",
         "src/features/avatar/accadjust.js",
         "src/features/avatar/rotator.js",

@@ -821,15 +821,30 @@
     });
   }
 
+  const SANDBOX_TYPES = { 2: 'TShirt', 8: 'Hat', 11: 'Shirt', 12: 'Pants', 17: 'Head', 18: 'Face', 19: 'Gear', 27: 'Torso', 28: 'RightArm', 29: 'LeftArm', 30: 'LeftLeg', 31: 'RightLeg', 41: 'HairAccessory', 42: 'FaceAccessory', 43: 'NeckAccessory', 44: 'ShoulderAccessory', 45: 'FrontAccessory', 46: 'BackAccessory', 47: 'WaistAccessory', 48: 'ClimbAnimation', 50: 'FallAnimation', 51: 'IdleAnimation', 52: 'JumpAnimation', 53: 'RunAnimation', 54: 'SwimAnimation', 55: 'WalkAnimation', 61: 'EmoteAnimation', 64: 'TShirtAccessory', 65: 'ShirtAccessory', 66: 'PantsAccessory', 67: 'JacketAccessory', 68: 'SweaterAccessory', 69: 'ShortsAccessory', 70: 'LeftShoeAccessory', 71: 'RightShoeAccessory', 72: 'DressSkirtAccessory', 76: 'EyebrowAccessory', 77: 'EyelashAccessory', 78: 'MoodAnimation', 79: 'DynamicHead' };
+
+  function sandboxAvatar() {
+    if (!document.documentElement.classList.contains('routility-sandbox')) return null;
+    try {
+      const s = JSON.parse(sessionStorage.getItem('routilitySandbox') || 'null');
+      return s && s.on && Array.isArray(s.assets) ? { assets: s.assets.map(a => ({ id: a.id, name: a.name || '', assetType: { id: a.type || 0, name: SANDBOX_TYPES[a.type] || '' } })) } : null;
+    } catch {
+      return null;
+    }
+  }
+
   async function loadWearing() {
     const w = wear;
     if (!w) return;
     const token = ++w.token;
-    let data = null;
-    try {
-      const res = await fetch('https://avatar.roblox.com/v1/avatar', { credentials: 'include' });
-      data = res.ok ? await res.json() : null;
-    } catch {}
+    let data = sandboxAvatar();
+    const sandbox = !!data;
+    if (!data) {
+      try {
+        const res = await fetch('https://avatar.roblox.com/v1/avatar', { credentials: 'include' });
+        data = res.ok ? await res.json() : null;
+      } catch {}
+    }
     if (wear !== w || token !== w.token) return;
     if (!data) {
       if (!w.assets) w.failed = true;
@@ -839,7 +854,7 @@
     w.failed = false;
     w.assets = (data.assets || []).filter(a => !HIDDEN_TYPES.test(a.assetType?.name || '')).map(a => ({ id: String(a.id), name: a.name, type: a.assetType?.name || '', removable: !FIXED.test(a.assetType?.name || '') }));
     const FAKE_TYPES = { 8: 'Hat', 41: 'HairAccessory', 42: 'FaceAccessory', 43: 'NeckAccessory', 44: 'ShoulderAccessory', 45: 'FrontAccessory', 46: 'BackAccessory', 47: 'WaistAccessory', 57: 'EarAccessory', 58: 'EyeAccessory' };
-    for (const f of window.RoUtilityFun ? window.RoUtilityFun.worn() : []) {
+    for (const f of window.RoUtilityFun && !sandbox ? window.RoUtilityFun.worn() : []) {
       if (!w.assets.some(a => a.id === String(f.id))) w.assets.push({ id: String(f.id), name: f.name, type: (window.RoUtilityFun.typeName && window.RoUtilityFun.typeName(f.type)) || FAKE_TYPES[f.type] || 'Hat', removable: !FIXED.test((window.RoUtilityFun.typeName && window.RoUtilityFun.typeName(f.type)) || ''), fake: true });
     }
     const ids = new Set(w.assets.map(a => a.id));
@@ -991,6 +1006,10 @@
       if (list.getEntries().some(e => WRITE.test(e.name.split('?')[0]))) refreshWearing();
     });
     w.perf.observe({ type: 'resource' });
+    w.onSandbox = (e) => {
+      if (e.source === window && e.data && e.data.type === 'routility-sandbox-state') refreshWearing();
+    };
+    window.addEventListener('message', w.onSandbox);
     w.observer = new MutationObserver(onFrame(() => {
       if (wear !== w) return;
       if (!document.querySelector('#avatar-web-app .left-wrapper .routility-av-wearing')) renderWearing();
@@ -1006,6 +1025,7 @@
     document.removeEventListener('click', onCardClick, true);
     document.documentElement.classList.remove('routility-av-adv-auto');
     wear.perf.disconnect();
+    window.removeEventListener('message', wear.onSandbox);
     wear.observer.disconnect();
     wear = null;
     document.querySelectorAll('.routility-av-wearing, .routility-av-worn').forEach(n => n.remove());

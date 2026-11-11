@@ -3089,5 +3089,21 @@
  "You don’t have any private servers yet.": "Bạn chưa có máy chủ riêng nào.",
  "Yours": "Của bạn",
  "hours": "giờ",
- "minutes": "phút"
+ "minutes": "phút",
+ "A Sandbox page in the sidebar that opens the avatar editor with every Marketplace item to try on, limiteds included, with filters for limiteds. Nothing you wear there changes your real avatar.": "Trang Sandbox ở thanh bên mở trình chỉnh sửa avatar với mọi vật phẩm trên Chợ để thử, kể cả limited, có bộ lọc cho limited. Những gì bạn mặc ở đó không thay đổi avatar thật của bạn.",
+ "Bestselling": "Bán chạy nhất",
+ "Classic Limiteds": "Limited cổ điển",
+ "Couldn’t render your avatar. Try again in a moment.": "Không thể hiển thị avatar của bạn. Hãy thử lại sau giây lát.",
+ "Enlarge": "Phóng to",
+ "Exit Sandbox": "Thoát Sandbox",
+ "Most Favorited": "Được yêu thích nhất",
+ "Price High to Low": "Giá cao đến thấp",
+ "Price Low to High": "Giá thấp đến cao",
+ "Relevance": "Liên quan nhất",
+ "Sandbox": "Sandbox",
+ "Sandbox Mode": "Chế độ Sandbox",
+ "Search the Marketplace": "Tìm trên Chợ",
+ "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Thử bất cứ thứ gì trên Chợ, kể cả limited. Những gì bạn thay đổi ở đây không đụng đến avatar thật của bạn.",
+ "Nothing in this category matches your filter.": "Không có gì trong danh mục này khớp với bộ lọc của bạn.",
+ "Show All Items": "Hiện tất cả vật phẩm"
 }

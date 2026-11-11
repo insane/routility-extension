@@ -3236,5 +3236,21 @@
  "You don’t have any private servers yet.": "Tu n’as encore aucun serveur privé.",
  "Yours": "Les tiens",
  "hours": "heures",
- "minutes": "minutes"
+ "minutes": "minutes",
+ "A Sandbox page in the sidebar that opens the avatar editor with every Marketplace item to try on, limiteds included, with filters for limiteds. Nothing you wear there changes your real avatar.": "Une page Bac à sable dans la barre latérale qui ouvre l’éditeur d’avatar avec tous les articles de la Boutique à essayer, limités compris, avec des filtres pour les limités. Rien de ce que tu y portes ne change ton vrai avatar.",
+ "Bestselling": "Meilleures ventes",
+ "Classic Limiteds": "Limités classiques",
+ "Couldn’t render your avatar. Try again in a moment.": "Impossible d’afficher ton avatar. Réessaie dans un instant.",
+ "Enlarge": "Agrandir",
+ "Exit Sandbox": "Quitter le bac à sable",
+ "Most Favorited": "Les plus favoris",
+ "Price High to Low": "Prix décroissant",
+ "Price Low to High": "Prix croissant",
+ "Relevance": "Pertinence",
+ "Sandbox": "Bac à sable",
+ "Sandbox Mode": "Mode bac à sable",
+ "Search the Marketplace": "Rechercher dans la Boutique",
+ "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Essaie n’importe quoi de la Boutique, limités compris. Rien de ce que tu changes ici ne touche ton vrai avatar.",
+ "Nothing in this category matches your filter.": "Rien dans cette catégorie ne correspond à ton filtre.",
+ "Show All Items": "Afficher tous les articles"
 }

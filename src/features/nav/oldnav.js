@@ -7,6 +7,7 @@
     calc: { href: '/trades/calculator', label: LT('Trade Calculator'), icon: 'routility-calc-nav-icon', flags: ['tradeCalculator', 'calcNav'], after: 'trade', page: /^\/trades\/calculator\/?$/i },
     ads: { href: '/trade-ads', label: LT('Trade Ads'), icon: 'routility-ads-nav-icon', flags: ['tradeAds', 'tradeAdsNav'], after: 'calc', page: /^\/trade-ads\/?$/i },
     forum: { href: '/forum', label: LT('Forum'), icon: 'routility-forum-nav-icon', flags: ['forum', 'forumNav'], after: 'communities', page: /^\/forum(\/|$)/i },
+    sandbox: { href: '/my/avatar?sandbox', label: LT('Sandbox'), icon: 'routility-sb-nav-icon', flags: ['avatarSandbox'], after: 'avatar', page: /^$/ },
     servers: { href: '/private-servers', label: LT('Private Servers'), icon: 'routility-ps-nav-icon', flags: ['privateServers'], after: 'inventory', page: /^\/private-servers\/?$/i },
     history: { href: '/friend-history', label: LT('Friend History'), icon: 'routility-fh-nav-icon', flags: ['friendHistory', 'friendHistoryNav'], after: 'friends', page: /^\/friend-history\/?$/i },
   };

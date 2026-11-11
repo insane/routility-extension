@@ -3089,5 +3089,21 @@
  "You don’t have any private servers yet.": "まだプライベートサーバーがありません。",
  "Yours": "自分",
  "hours": "時間",
- "minutes": "分"
+ "minutes": "分",
+ "A Sandbox page in the sidebar that opens the avatar editor with every Marketplace item to try on, limiteds included, with filters for limiteds. Nothing you wear there changes your real avatar.": "サイドバーに Sandbox ページを追加し、限定アイテムを含むマーケットプレイスの全アイテムをアバターエディターで試着できるようにします。限定アイテム用のフィルター付き。ここで着たものは本物のアバターを変えません。",
+ "Bestselling": "売れ筋",
+ "Classic Limiteds": "クラシック限定",
+ "Couldn’t render your avatar. Try again in a moment.": "アバターを表示できませんでした。少ししてからもう一度お試しください。",
+ "Enlarge": "拡大",
+ "Exit Sandbox": "Sandbox を終了",
+ "Most Favorited": "お気に入り数順",
+ "Price High to Low": "価格の高い順",
+ "Price Low to High": "価格の安い順",
+ "Relevance": "関連度",
+ "Sandbox": "Sandbox",
+ "Sandbox Mode": "Sandbox モード",
+ "Search the Marketplace": "マーケットプレイスを検索",
+ "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "限定アイテムも含め、マーケットプレイスのどんなアイテムでも試着できます。ここでの変更は本物のアバターに影響しません。",
+ "Nothing in this category matches your filter.": "このカテゴリーにはフィルターに合うアイテムがありません。",
+ "Show All Items": "すべてのアイテムを表示"
 }

@@ -3530,5 +3530,21 @@
  "You don’t have any private servers yet.": "У тебя пока нет частных серверов.",
  "Yours": "Твои",
  "hours": "ч",
- "minutes": "мин"
+ "minutes": "мин",
+ "A Sandbox page in the sidebar that opens the avatar editor with every Marketplace item to try on, limiteds included, with filters for limiteds. Nothing you wear there changes your real avatar.": "Страница «Песочница» в боковом меню, которая открывает редактор аватара со всеми предметами Маркетплейса для примерки, включая лимитки, с фильтрами для лимиток. Ничто из надетого там не меняет твой настоящий аватар.",
+ "Bestselling": "Бестселлеры",
+ "Classic Limiteds": "Классические лимитки",
+ "Couldn’t render your avatar. Try again in a moment.": "Не удалось отрисовать аватар. Попробуй ещё раз чуть позже.",
+ "Enlarge": "Увеличить",
+ "Exit Sandbox": "Выйти из песочницы",
+ "Most Favorited": "Больше всего в избранном",
+ "Price High to Low": "Цена по убыванию",
+ "Price Low to High": "Цена по возрастанию",
+ "Relevance": "Релевантность",
+ "Sandbox": "Песочница",
+ "Sandbox Mode": "Режим песочницы",
+ "Search the Marketplace": "Поиск по Маркетплейсу",
+ "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Примеряй что угодно из Маркетплейса, включая лимитки. Ничто из изменённого здесь не трогает твой настоящий аватар.",
+ "Nothing in this category matches your filter.": "В этой категории нет ничего под твой фильтр.",
+ "Show All Items": "Показать все предметы"
 }

@@ -3089,5 +3089,21 @@
  "You don’t have any private servers yet.": "你還沒有私人伺服器。",
  "Yours": "我的",
  "hours": "小時",
- "minutes": "分鐘"
+ "minutes": "分鐘",
+ "A Sandbox page in the sidebar that opens the avatar editor with every Marketplace item to try on, limiteds included, with filters for limiteds. Nothing you wear there changes your real avatar.": "在側邊欄新增 Sandbox 頁面，在虛擬人偶編輯器中試穿市集裡的所有物品，包括限量物品，並提供限量篩選。在那裡穿戴的任何東西都不會改變你真正的虛擬人偶。",
+ "Bestselling": "最暢銷",
+ "Classic Limiteds": "經典限量",
+ "Couldn’t render your avatar. Try again in a moment.": "無法算繪你的虛擬人偶，請稍後再試。",
+ "Enlarge": "放大",
+ "Exit Sandbox": "退出 Sandbox",
+ "Most Favorited": "收藏最多",
+ "Price High to Low": "價格由高到低",
+ "Price Low to High": "價格由低到高",
+ "Relevance": "相關性",
+ "Sandbox": "Sandbox",
+ "Sandbox Mode": "Sandbox 模式",
+ "Search the Marketplace": "搜尋市集",
+ "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "試穿市集裡的任何物品，包括限量物品。你在這裡做的變更不會影響你真正的虛擬人偶。",
+ "Nothing in this category matches your filter.": "此類別中沒有符合篩選條件的物品。",
+ "Show All Items": "顯示所有物品"
 }

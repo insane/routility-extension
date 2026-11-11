@@ -303,7 +303,8 @@
     ['messages', 'li:has(> a[href*="/my/messages"])'],
     ['friends', 'li:has(> a[href*="/users/friends"])'],
     ['history', 'li.routility-fh-nav'],
-    ['avatar', 'li:has(> a[href*="/my/avatar"])'],
+    ['avatar', 'li:has(> a[href*="/my/avatar"]):not(.routility-sb-nav)'],
+    ['sandbox', 'li.routility-sb-nav'],
     ['inventory', 'li:has(> a:is([href$="/users/inventory"], [data-rt-profile$="/users/inventory"]))'],
     ['servers', 'li.routility-ps-nav'],
     ['trade', 'li:has(> a[href$="roblox.com/trades"])'],
@@ -316,7 +317,7 @@
     ['giftcards', 'li:has(> a[href*="/giftcards"])'],
   ];
   const NAV_FOLLOW = { newsroom: ':is(li, div):has(a[href*="blog.roblox.com"]):not(:has(> a[href*="blog.roblox.com"]))' };
-  const NAV_FLAGS = { calc: ['tradeCalculator', 'calcNav'], ads: ['tradeAds', 'tradeAdsNav'], forum: ['forum', 'forumNav'], history: ['friendHistory', 'friendHistoryNav'], servers: ['privateServers'] };
+  const NAV_FLAGS = { calc: ['tradeCalculator', 'calcNav'], ads: ['tradeAds', 'tradeAdsNav'], forum: ['forum', 'forumNav'], history: ['friendHistory', 'friendHistoryNav'], servers: ['privateServers'], sandbox: ['avatarSandbox'] };
   let navStyle = null;
   let navLayout = null;
   const applyNav = (v) => {

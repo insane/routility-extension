@@ -3089,5 +3089,21 @@
  "You don’t have any private servers yet.": "아직 비공개 서버가 없습니다.",
  "Yours": "내 서버",
  "hours": "시간",
- "minutes": "분"
+ "minutes": "분",
+ "A Sandbox page in the sidebar that opens the avatar editor with every Marketplace item to try on, limiteds included, with filters for limiteds. Nothing you wear there changes your real avatar.": "사이드바에 Sandbox 페이지를 추가해 리미티드를 포함한 마켓플레이스의 모든 아이템을 아바타 편집기에서 입어 볼 수 있어요. 리미티드 필터도 있어요. 여기서 입은 것은 실제 아바타를 바꾸지 않아요.",
+ "Bestselling": "베스트셀러",
+ "Classic Limiteds": "클래식 리미티드",
+ "Couldn’t render your avatar. Try again in a moment.": "아바타를 렌더링하지 못했어요. 잠시 후 다시 시도해 주세요.",
+ "Enlarge": "크게 보기",
+ "Exit Sandbox": "Sandbox 나가기",
+ "Most Favorited": "즐겨찾기 많은 순",
+ "Price High to Low": "가격 높은 순",
+ "Price Low to High": "가격 낮은 순",
+ "Relevance": "관련도",
+ "Sandbox": "Sandbox",
+ "Sandbox Mode": "Sandbox 모드",
+ "Search the Marketplace": "마켓플레이스 검색",
+ "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "리미티드를 포함해 마켓플레이스의 무엇이든 입어 보세요. 여기서 바꾼 것은 실제 아바타에 영향을 주지 않아요.",
+ "Nothing in this category matches your filter.": "이 카테고리에는 필터와 맞는 아이템이 없어요.",
+ "Show All Items": "모든 아이템 보기"
 }

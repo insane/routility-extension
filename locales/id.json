@@ -3089,5 +3089,21 @@
  "You don’t have any private servers yet.": "Kamu belum punya server pribadi.",
  "Yours": "Milikmu",
  "hours": "jam",
- "minutes": "menit"
+ "minutes": "menit",
+ "A Sandbox page in the sidebar that opens the avatar editor with every Marketplace item to try on, limiteds included, with filters for limiteds. Nothing you wear there changes your real avatar.": "Halaman Sandbox di bilah samping yang membuka editor avatar dengan semua item Marketplace untuk dicoba, termasuk limited, dengan filter untuk limited. Apa pun yang kamu pakai di sana tidak mengubah avatar aslimu.",
+ "Bestselling": "Terlaris",
+ "Classic Limiteds": "Limited Klasik",
+ "Couldn’t render your avatar. Try again in a moment.": "Avatarmu tidak bisa dirender. Coba lagi sebentar lagi.",
+ "Enlarge": "Perbesar",
+ "Exit Sandbox": "Keluar dari Sandbox",
+ "Most Favorited": "Paling Difavoritkan",
+ "Price High to Low": "Harga Tertinggi ke Terendah",
+ "Price Low to High": "Harga Terendah ke Tertinggi",
+ "Relevance": "Relevansi",
+ "Sandbox": "Sandbox",
+ "Sandbox Mode": "Mode Sandbox",
+ "Search the Marketplace": "Cari di Marketplace",
+ "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Coba apa saja dari Marketplace, termasuk limited. Apa pun yang kamu ubah di sini tidak menyentuh avatar aslimu.",
+ "Nothing in this category matches your filter.": "Tidak ada di kategori ini yang cocok dengan filtermu.",
+ "Show All Items": "Tampilkan Semua Item"
 }

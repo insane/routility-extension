@@ -3089,5 +3089,21 @@
  "You don’t have any private servers yet.": "你还没有私人服务器。",
  "Yours": "我的",
  "hours": "小时",
- "minutes": "分钟"
+ "minutes": "分钟",
+ "A Sandbox page in the sidebar that opens the avatar editor with every Marketplace item to try on, limiteds included, with filters for limiteds. Nothing you wear there changes your real avatar.": "在侧边栏添加 Sandbox 页面，在头像编辑器中试穿市场里的所有物品，包括限量物品，并提供限量筛选。在那里穿戴的任何东西都不会改变你的真实头像。",
+ "Bestselling": "最畅销",
+ "Classic Limiteds": "经典限量",
+ "Couldn’t render your avatar. Try again in a moment.": "无法渲染你的头像，请稍后再试。",
+ "Enlarge": "放大",
+ "Exit Sandbox": "退出 Sandbox",
+ "Most Favorited": "收藏最多",
+ "Price High to Low": "价格从高到低",
+ "Price Low to High": "价格从低到高",
+ "Relevance": "相关度",
+ "Sandbox": "Sandbox",
+ "Sandbox Mode": "Sandbox 模式",
+ "Search the Marketplace": "搜索市场",
+ "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "试穿市场里的任何物品，包括限量物品。你在这里做的更改不会影响你的真实头像。",
+ "Nothing in this category matches your filter.": "此类别中没有符合筛选条件的物品。",
+ "Show All Items": "显示所有物品"
 }

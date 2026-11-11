@@ -3089,5 +3089,21 @@
  "You don’t have any private servers yet.": "คุณยังไม่มีเซิร์ฟเวอร์ส่วนตัว",
  "Yours": "ของคุณ",
  "hours": "ชั่วโมง",
- "minutes": "นาที"
+ "minutes": "นาที",
+ "A Sandbox page in the sidebar that opens the avatar editor with every Marketplace item to try on, limiteds included, with filters for limiteds. Nothing you wear there changes your real avatar.": "หน้า Sandbox ในแถบด้านข้างที่เปิดตัวแก้ไขอวาตาร์พร้อมไอเทมทุกชิ้นใน Marketplace ให้ลองสวม รวมถึงลิมิเต็ด พร้อมตัวกรองลิมิเต็ด สิ่งที่คุณสวมที่นั่นจะไม่เปลี่ยนอวาตาร์จริงของคุณ",
+ "Bestselling": "ขายดี",
+ "Classic Limiteds": "ลิมิเต็ดคลาสสิก",
+ "Couldn’t render your avatar. Try again in a moment.": "เรนเดอร์อวาตาร์ไม่สำเร็จ ลองใหม่อีกครั้งในอีกสักครู่",
+ "Enlarge": "ขยาย",
+ "Exit Sandbox": "ออกจาก Sandbox",
+ "Most Favorited": "ถูกใจมากที่สุด",
+ "Price High to Low": "ราคาสูงไปต่ำ",
+ "Price Low to High": "ราคาต่ำไปสูง",
+ "Relevance": "ความเกี่ยวข้อง",
+ "Sandbox": "Sandbox",
+ "Sandbox Mode": "โหมด Sandbox",
+ "Search the Marketplace": "ค้นหาใน Marketplace",
+ "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "ลองสวมอะไรก็ได้จาก Marketplace รวมถึงลิมิเต็ด สิ่งที่คุณเปลี่ยนที่นี่จะไม่แตะต้องอวาตาร์จริงของคุณ",
+ "Nothing in this category matches your filter.": "ไม่มีอะไรในหมวดหมู่นี้ที่ตรงกับตัวกรองของคุณ",
+ "Show All Items": "แสดงไอเทมทั้งหมด"
 }

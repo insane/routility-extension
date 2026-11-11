@@ -3236,5 +3236,21 @@
  "You don’t have any private servers yet.": "Henüz hiç özel sunucun yok.",
  "Yours": "Seninkiler",
  "hours": "saat",
- "minutes": "dakika"
+ "minutes": "dakika",
+ "A Sandbox page in the sidebar that opens the avatar editor with every Marketplace item to try on, limiteds included, with filters for limiteds. Nothing you wear there changes your real avatar.": "Kenar çubuğunda, sınırlılar dahil her Pazar Yeri ürününü denemek için avatar düzenleyicisini açan bir Sandbox sayfası, sınırlılar için filtrelerle. Orada giydiğin hiçbir şey gerçek avatarını değiştirmez.",
+ "Bestselling": "En çok satanlar",
+ "Classic Limiteds": "Klasik sınırlılar",
+ "Couldn’t render your avatar. Try again in a moment.": "Avatarın oluşturulamadı. Birazdan tekrar dene.",
+ "Enlarge": "Büyüt",
+ "Exit Sandbox": "Sandbox’tan çık",
+ "Most Favorited": "En çok favorilenen",
+ "Price High to Low": "Fiyat yüksekten düşüğe",
+ "Price Low to High": "Fiyat düşükten yükseğe",
+ "Relevance": "Alaka",
+ "Sandbox": "Sandbox",
+ "Sandbox Mode": "Sandbox Modu",
+ "Search the Marketplace": "Pazar Yeri’nde ara",
+ "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Sınırlılar dahil Pazar Yeri’ndeki her şeyi dene. Burada değiştirdiğin hiçbir şey gerçek avatarına dokunmaz.",
+ "Nothing in this category matches your filter.": "Bu kategoride filtrene uyan bir şey yok.",
+ "Show All Items": "Tüm ürünleri göster"
 }

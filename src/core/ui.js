@@ -249,8 +249,10 @@
 
   let tipEl = null;
   let tipFor = null;
+  let tipWatch = 0;
 
   function hideTip() {
+    clearInterval(tipWatch);
     tipEl?.remove();
     tipEl = null;
     tipFor = null;
@@ -288,6 +290,10 @@
     tipEl.style.left = Math.round(left) + 'px';
     tipEl.style.top = Math.round(above ? r.top - tipEl.offsetHeight - 2 : r.bottom + 2) + 'px';
     arrow.style.left = Math.round(r.left + r.width / 2 - left - 5) + 'px';
+    tipWatch = setInterval(() => {
+      const t = tipFor;
+      if (!t || !t.isConnected || (!t.matches(':hover') && !t.contains(document.activeElement))) hideTip();
+    }, 300);
   }
 
   const NAME_ROW = '#profile-header-title-container-name ~ *, .routility-name-badges';

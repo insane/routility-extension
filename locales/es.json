@@ -3236,5 +3236,21 @@
  "You don’t have any private servers yet.": "Todavía no tienes servidores privados.",
  "Yours": "Tuyos",
  "hours": "horas",
- "minutes": "minutos"
+ "minutes": "minutos",
+ "A Sandbox page in the sidebar that opens the avatar editor with every Marketplace item to try on, limiteds included, with filters for limiteds. Nothing you wear there changes your real avatar.": "Una página Sandbox en la barra lateral que abre el editor de avatar con todos los artículos del Mercado para probártelos, limitados incluidos, con filtros para limitados. Nada de lo que te pongas ahí cambia tu avatar real.",
+ "Bestselling": "Más vendidos",
+ "Classic Limiteds": "Limitados clásicos",
+ "Couldn’t render your avatar. Try again in a moment.": "No se pudo renderizar tu avatar. Inténtalo de nuevo en un momento.",
+ "Enlarge": "Ampliar",
+ "Exit Sandbox": "Salir del Sandbox",
+ "Most Favorited": "Más favoritos",
+ "Price High to Low": "Precio de mayor a menor",
+ "Price Low to High": "Precio de menor a mayor",
+ "Relevance": "Relevancia",
+ "Sandbox": "Sandbox",
+ "Sandbox Mode": "Modo Sandbox",
+ "Search the Marketplace": "Buscar en el Mercado",
+ "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Pruébate cualquier cosa del Mercado, limitados incluidos. Nada de lo que cambies aquí afecta a tu avatar real.",
+ "Nothing in this category matches your filter.": "Nada en esta categoría coincide con tu filtro.",
+ "Show All Items": "Mostrar todos los artículos"
 }
