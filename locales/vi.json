@@ -4,6 +4,7 @@
  "(no new posts)": "(không có bài viết mới)",
  "{a} and {b}": "{a} và {b}",
  "{amount} Robux": "{amount} Robux",
+ "{amount} to finish": "còn {amount} để hoàn thiện",
  "{amount}{pct} against you": "{amount}{pct} bất lợi cho bạn",
  "{amount}{pct} in your favor": "{amount}{pct} có lợi cho bạn",
  "{amount}{pct} RAP against you": "{amount}{pct} RAP bất lợi cho bạn",
@@ -202,6 +203,9 @@
  "{n} of {max} communities joined": "Đã tham gia {n}/{max} cộng đồng",
  "{n} of {max} people max": "{n}/{max} người tối đa",
  "{n} of {total} owned": "Sở hữu {n}/{total}",
+ "{n} off sale": {
+  "other": "{n} món ngừng bán"
+ },
  "{n} other extensions": {
   "other": "{n} tiện ích khác"
  },
@@ -1105,6 +1109,7 @@
  "first of your {n} copies": {
   "other": "bản đầu tiên trong {n} bản của bạn"
  },
+ "Fit {n}": "Trang phục {n}",
  "Fix Shuffled Order": "Sửa thứ tự bị xáo trộn",
  "Fixed": "Đã sửa",
  "Flags rare items and items whose RAP is pushed up by recent sales, on item pages, trades, the Marketplace and the calculator.": "Đánh dấu vật phẩm hiếm và vật phẩm có RAP bị đẩy lên bởi các lần bán gần đây, trên trang vật phẩm, giao dịch, Chợ và máy tính.",
@@ -1370,7 +1375,6 @@
  "Items you received": "Vật phẩm bạn đã nhận",
  "Items you’re watching.": "Vật phẩm bạn đang theo dõi.",
  "Its RAP is pushed up by recent sales above its usual price": "RAP của nó bị đẩy lên cao hơn giá thường lệ do các lần bán gần đây",
- "Its RAP is pushed up by recent sales above its usual price. Be careful trading for it at RAP.": "RAP của nó bị đẩy lên cao hơn giá thường lệ do các lần bán gần đây. Cẩn thận khi giao dịch lấy nó theo RAP.",
  "Jacket": "Áo khoác",
  "Japanese Yen": "Yên Nhật",
  "Join": "Tham gia",
@@ -1641,6 +1645,7 @@
  "No requests match these filters.": "Không có lời mời nào khớp với các bộ lọc này.",
  "No requests match your search.": "Không có lời mời nào khớp với tìm kiếm của bạn.",
  "No results for “{query}”": "Không có kết quả cho “{query}”",
+ "No saved fits yet. Use Save Fit to keep the outfit you’re trying on.": "Chưa có trang phục nào được lưu. Dùng Lưu trang phục để giữ bộ bạn đang thử.",
  "No saved looks yet. Put on the items you like, then press Save Current Look.": "Chưa có bộ đồ nào được lưu. Mặc những vật phẩm bạn thích, rồi nhấn Lưu bộ đồ hiện tại.",
  "No scripts in this model": "Không có script nào trong mô hình này",
  "No servers running in {region}…": "Không có máy chủ nào đang chạy ở {region}…",
@@ -1730,6 +1735,7 @@
  "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in your currency and what Plus has cost you so far.": "Trên trang Roblox Plus: khi nào Plus gia hạn, giá và nơi thanh toán, khi nào mở khóa mức giảm giá tiếp theo, số tiền tiết kiệm với Plus quy ra tiền tệ của bạn và số tiền Plus đã tốn đến nay.",
  "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.": "Đang bật. Huy hiệu bạn nhận từ giờ sẽ bị xóa trong khoảng 5 phút khi có tab Roblox đang mở. Huy hiệu bạn đã có vẫn giữ.",
  "Once you verify with Roblox, your notes are saved to your RoUtility account so they come back on other browsers. They’re encrypted and only you can get them. Turning this off deletes the backup.": "Sau khi xác minh với Roblox, ghi chú của bạn được lưu vào tài khoản RoUtility để hiện lại trên trình duyệt khác. Ghi chú được mã hóa và chỉ bạn lấy lại được. Tắt mục này sẽ xóa bản sao lưu.",
+ "One of the rarest limiteds, very few copies exist": "Một trong những limited hiếm nhất, còn rất ít bản",
  "Online": "Trực tuyến",
  "Online {time}": "Trực tuyến {time}",
  "Online Status": "Trạng thái trực tuyến",
@@ -1778,6 +1784,7 @@
  "Outfit Rotator saved. Pick at least 2 characters to start rotating.": "Đã lưu Xoay Vòng Trang Phục. Chọn ít nhất 2 nhân vật để bắt đầu.",
  "Outfit Rotator saved. Rotation is off.": "Đã lưu Xoay Vòng Trang Phục. Xoay vòng đang tắt.",
  "Outfit Rotator stopped. Turn it back on here or in the avatar editor.": "Đã dừng Xoay Vòng Trang Phục. Bật lại ở đây hoặc trong trình chỉnh sửa avatar.",
+ "Outfit Worth": "Giá trị trang phục",
  "Outfits": "Trang phục",
  "Outfits ({n})": "Trang phục ({n})",
  "Overpay Warning": "Cảnh báo trả dư",
@@ -2186,13 +2193,16 @@
  "Save Alert": "Lưu cảnh báo",
  "Save Current Look": "Lưu bộ đồ hiện tại",
  "Save current theme here": "Lưu giao diện hiện tại vào đây",
+ "Save Fit": "Lưu trang phục",
  "Save looks with items you don’t own yet. Wear them again in Fun Mode, and see what you’d need to buy to wear them for real.": "Lưu bộ đồ với vật phẩm bạn chưa có. Mặc lại trong Chế Độ Vui và xem bạn cần mua gì để mặc thật.",
  "Save them to a file, load them on another browser, or start over. The file also holds your left menu and home layouts, chat size, price alerts, hidden games and playtime history.": "Lưu vào tệp, tải lên ở trình duyệt khác, hoặc bắt đầu lại. Tệp cũng chứa bố cục menu bên trái và trang chủ, kích thước trò chuyện, cảnh báo giá và game đã ẩn và lịch sử thời gian chơi.",
  "Save to {slot}": "Lưu vào {slot}",
  "Save to apply your changes.": "Lưu để áp dụng thay đổi.",
+ "Saved": "Đã lưu",
  "Saved {file}.": "Đã lưu {file}.",
  "Saved by this player": "Được người chơi này lưu",
  "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.": "Thẻ đã lưu, PayPal, email và địa chỉ thanh toán, Tín dụng Roblox và chi tiết thẻ quà tặng trên trang Thanh toán.",
+ "Saved Fits": "Trang phục đã lưu",
  "Saved Outfits": "Trang phục đã lưu",
  "Saved Payment Method": "Phương thức thanh toán đã lưu",
  "Saved, in {currency}": "Đã tiết kiệm, tính bằng {currency}",
@@ -2200,6 +2210,9 @@
  "Saved. Roblox is drawing your new thumbnail.": "Đã lưu. Roblox đang vẽ ảnh thu nhỏ mới của bạn.",
  "Saved. Roblox pages you already have open pick this up when they reload.": "Đã lưu. Các trang Roblox bạn đang mở sẽ áp dụng khi tải lại.",
  "Saved. Your new thumbnail can take a minute to show up.": "Đã lưu. Ảnh thu nhỏ mới có thể mất một phút để hiện.",
+ "Saves the {n} items you’re trying on so you can wear them again later. They stay on this computer.": {
+  "other": "Lưu {n} món bạn đang thử để mặc lại sau. Được lưu trên máy tính này."
+ },
  "Saves your current colors and background here": "Lưu màu và nền hiện tại của bạn vào đây",
  "Saving": "Đang lưu",
  "Saving…": "Đang lưu…",
@@ -2606,6 +2619,10 @@
  "Try On": "Mặc thử",
  "Try On & Explore": "Mặc thử & Khám phá",
  "Try other words, or check the spelling.": "Thử từ khác, hoặc kiểm tra chính tả.",
+ "Try Their Fit": "Thử trang phục của họ",
+ "Try these items on in Sandbox": "Thử các món này trong Sandbox",
+ "Try this on in Sandbox": "Thử trong Sandbox",
+ "Try this outfit on in Sandbox": "Thử trang phục này trong Sandbox",
  "Trying on": "Đang mặc thử",
  "Turkish Lira": "Lira Thổ Nhĩ Kỳ",
  "Turn Off": "Tắt",
@@ -2628,6 +2645,7 @@
  "Type a username (or paste a user ID) above to see their limiteds.": "Nhập tên người dùng (hoặc dán ID người dùng) ở trên để xem limited của họ.",
  "Type a word or phrase in the search box to find threads and posts.": "Nhập từ hoặc cụm từ vào ô tìm kiếm để tìm chủ đề và bài viết.",
  "Typing…": "Đang gõ…",
+ "Ultra Rare": "Siêu hiếm",
  "Unavailable": "Không khả dụng",
  "Unavailable Game Details": "Chi tiết game không khả dụng",
  "Under each device on Settings > Security, the IP address it last used, so a login you don’t recognize is easier to spot. Streamer Mode blurs it with the rest of the list.": "Dưới mỗi thiết bị trong Cài đặt > Bảo mật, địa chỉ IP dùng gần nhất, để dễ phát hiện lần đăng nhập lạ. Chế độ Streamer làm mờ nó cùng phần còn lại của danh sách.",
@@ -2768,6 +2786,7 @@
  "What everything they own is worth in your currency.": "Giá trị mọi thứ họ sở hữu theo đơn vị tiền tệ của bạn.",
  "What Shows Up": "Những gì hiển thị",
  "What the item is worth in your currency, next to its Robux price. Hover it for the RoUtility Value when the item has one.": "Giá trị vật phẩm theo tiền tệ của bạn, cạnh giá Robux. Di chuột lên để xem Giá trị RoUtility nếu vật phẩm có.",
+ "What the pieces you don’t own cost right now, using the lowest resale price for limiteds": "Giá hiện tại của những món bạn chưa có, dùng giá bán lại thấp nhất cho limited",
  "what you want": "thứ bạn muốn",
  "What You’re Wearing": "Đồ bạn đang mặc",
  "What you’ve spent on each creator, experience, item type and month": "Số bạn đã chi cho từng người tạo, trải nghiệm, loại vật phẩm và tháng",
@@ -2856,6 +2875,7 @@
  "You own": "Bạn sở hữu",
  "You Own": "Bạn sở hữu",
  "You own {n}": "Bạn sở hữu {n}",
+ "You own {n} of {total}": "Bạn có {n}/{total} món",
  "You own {name}": "Bạn sở hữu {name}",
  "You played here for about {n} minutes": {
   "other": "Bạn đã chơi ở đây khoảng {n} phút"
@@ -3102,7 +3122,6 @@
  "Relevance": "Liên quan nhất",
  "Sandbox": "Sandbox",
  "Sandbox Mode": "Chế độ Sandbox",
- "Search the Marketplace": "Tìm trên Chợ",
  "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Thử bất cứ thứ gì trên Chợ, kể cả limited. Những gì bạn thay đổi ở đây không đụng đến avatar thật của bạn.",
  "Nothing in this category matches your filter.": "Không có gì trong danh mục này khớp với bộ lọc của bạn.",
  "Show All Items": "Hiện tất cả vật phẩm"

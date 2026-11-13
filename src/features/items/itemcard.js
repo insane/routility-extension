@@ -74,17 +74,8 @@
     }
     const names = el('div', 'flex flex-col min-width-0');
     names.appendChild(el('span', 'text-title-medium content-emphasis text-truncate-end', item.name));
-    const tags = el('span', 'flex items-center gap-xsmall');
-    if (item.projected) {
-      const t = el('span', 'foundation-web-badge inline-flex items-center radius-circle padding-x-small bg-system-alert content-inverse-emphasis routility-ic-tag');
-      t.appendChild(el('span', null, lt('Projected')));
-      tags.appendChild(t);
-    }
-    if (item.rare) {
-      const t = el('span', 'foundation-web-badge inline-flex items-center radius-circle padding-x-small bg-shift-300 content-emphasis routility-ic-tag');
-      t.appendChild(el('span', null, lt('Rare')));
-      tags.appendChild(t);
-    }
+    const tags = el('span', 'flex items-center gap-xsmall routility-ic-tags');
+    tags.append(...window.RoUtilityUI.tagIcons(item));
     if (tags.children.length) names.appendChild(tags);
     head.appendChild(names);
     body.appendChild(head);

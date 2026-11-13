@@ -401,17 +401,13 @@
     if (itemExtras.stats && item.hoarded && item.hoardShare > 0) rows.push(nativeRow(lt('Hoarded'), textValue(lt('{pct}% of copies', { pct: Math.round(item.hoardShare * 100) }))));
     if (itemExtras.tags && (item.rare || item.projected)) {
       const tags = el('span', 'flex items-center gap-small routility-item-tags');
-      if (item.projected) {
-        const p = el('span', 'foundation-web-badge inline-flex items-center radius-circle height-600 padding-x-small bg-system-alert content-inverse-emphasis');
-        p.appendChild(el('span', 'text-label-small text-no-wrap', lt('Projected')));
-        p.dataset.rtTip = lt('Its RAP is pushed up by recent sales above its usual price. Be careful trading for it at RAP.');
-        tags.appendChild(p);
-      }
-      if (item.rare) {
-        const r = el('span', 'foundation-web-badge inline-flex items-center radius-circle height-600 padding-x-small bg-shift-300 content-emphasis');
-        r.appendChild(el('span', 'text-label-small text-no-wrap', lt('Rare')));
-        r.dataset.rtTip = lt('Very few copies exist');
-        tags.appendChild(r);
+      for (const icon of window.RoUtilityUI.tagIcons(item)) {
+        const label = icon.classList.contains('routility-gem-projected') ? lt('Projected') : icon.classList.contains('routility-gem-ultra') ? lt('Ultra Rare') : lt('Rare');
+        const t = el('span', 'inline-flex items-center gap-xsmall routility-item-tag');
+        t.dataset.rtTip = icon.dataset.rtTip;
+        delete icon.dataset.rtTip;
+        t.append(icon, el('span', 'text-label-medium content-emphasis text-no-wrap', label));
+        tags.appendChild(t);
       }
       rows.push(nativeRow(lt('Tags'), tags));
     }
@@ -583,8 +579,8 @@
       chrome.storage.local.get('routilitySettings', (stored) => {
         const id = getItemIdFromURL(window.location.href);
         if (window.location.pathname === path && id && (stored.routilitySettings || {}).itemExplorer !== false) window.RoUtilityExplorer.setup(id);
-        const tryOpts = { preview: (stored.routilitySettings || {}).avatarPreview !== false, game: (stored.routilitySettings || {}).tryInGame !== false };
-        if (window.location.pathname === path && id && (tryOpts.preview || tryOpts.game)) window.RoUtilityTryOn.setup(id, tryOpts);
+        const tryOpts = { preview: (stored.routilitySettings || {}).avatarPreview !== false, game: (stored.routilitySettings || {}).tryInGame !== false, sandbox: (stored.routilitySettings || {}).avatarSandbox !== false };
+        if (window.location.pathname === path && id && (tryOpts.preview || tryOpts.game || tryOpts.sandbox)) window.RoUtilityTryOn.setup(id, tryOpts);
         if (window.location.pathname === path && id && (stored.routilitySettings || {}).priceAlerts !== false) window.RoUtilityPriceAlert.setup(id);
       });
       return;
@@ -603,7 +599,7 @@
           if (window.location.pathname !== path) return;
           if (s.friendsOwn !== false || s.classicFaceThumbs !== false) window.RoUtilityItemExtras.setup(bundlePage[1], { acquired: false, friends: s.friendsOwn !== false, bundle: true, classicFace: s.classicFaceThumbs !== false });
           if (s.itemExplorer !== false) window.RoUtilityExplorer.setup(bundlePage[1], { bundle: true });
-          if (s.avatarPreview !== false || s.tryInGame !== false) window.RoUtilityTryOn.setupBundle(bundlePage[1], { preview: s.avatarPreview !== false, game: s.tryInGame !== false });
+          if (s.avatarPreview !== false || s.tryInGame !== false || s.avatarSandbox !== false) window.RoUtilityTryOn.setupBundle(bundlePage[1], { preview: s.avatarPreview !== false, game: s.tryInGame !== false, sandbox: s.avatarSandbox !== false });
         });
       });
       return;

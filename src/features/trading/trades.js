@@ -717,7 +717,7 @@
     const note = document.querySelector('.routility-trade-filter-note');
     if (!filterQuery) {
       filterBusy = false;
-      document.querySelectorAll('.trade-row').forEach(r => r.classList.remove('routility-trade-hidden'));
+      document.querySelectorAll('.trade-row').forEach(r => delete r.dataset.routilityHidden);
       if (note) note.textContent = '';
       return;
     }
@@ -766,7 +766,7 @@
       await Promise.all(rows.map(async (row, i) => {
         const entry = matched[i];
         if (!entry) {
-          row.classList.add('routility-trade-hidden');
+          row.dataset.routilityHidden = '1';
           return;
         }
         const detail = tradeDetails.has(entry.id) ? tradeDetails.get(entry.id) : await loadDetail(entry.id);
@@ -774,7 +774,8 @@
         const keys = detail ? [...detail.give, ...detail.get] : [];
         const hay = keys.map(k => (k.startsWith('name:') ? k.slice(5) : map.get(k) || '')).join(' | ');
         const match = words.every(w => hay.includes(w));
-        row.classList.toggle('routility-trade-hidden', !match);
+        if (match) delete row.dataset.routilityHidden;
+        else row.dataset.routilityHidden = '1';
         if (match) shown++;
         if (note) note.textContent = label(shown, rows.length, true);
       }));
@@ -797,7 +798,7 @@
     const t = e.target;
     if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
     if (document.querySelector('[role="dialog"][data-state="open"], .modal.in')) return;
-    const rows = [...document.querySelectorAll('.trade-row')].filter(r => !r.classList.contains('routility-trade-hidden') && r.offsetParent);
+    const rows = [...document.querySelectorAll('.trade-row')].filter(r => !r.dataset.routilityHidden && r.offsetParent);
     if (!rows.length) return;
     const i = rows.findIndex(r => r.classList.contains('selected'));
     const next = rows[Math.min(rows.length - 1, Math.max(0, i + (e.key === 'ArrowDown' ? 1 : -1)))];
@@ -2244,7 +2245,7 @@
     closePreview();
     document.querySelectorAll('.routility-trade-filter, .routility-proof-btn').forEach(n => n.remove());
     document.querySelectorAll('.routility-proof-backdrop').forEach(n => (n.routilityShut ? n.routilityShut() : n.remove()));
-    document.querySelectorAll('.routility-trade-hidden').forEach(n => n.classList.remove('routility-trade-hidden'));
+    document.querySelectorAll('[data-routility-hidden]').forEach(n => delete n.dataset.routilityHidden);
   }
 
   window.RoUtilityTrades = { setup, teardown };

@@ -883,6 +883,109 @@
     return panel;
   }
 
+  const sbOwned = new Map();
+  const sbCosts = new Map();
+  let sbAsked = '';
+  let sbChecking = false;
+
+  async function checkOwned(ids) {
+    const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+    const todo = ids.filter(id => !sbOwned.has(id));
+    if (!me || !todo.length || sbChecking) return;
+    sbChecking = true;
+    try {
+      for (let i = 0; i < todo.length; i += 4) {
+        await Promise.all(todo.slice(i, i + 4).map(async (id) => {
+          try {
+            const r = await fetch(`https://inventory.roblox.com/v1/users/${me}/items/Asset/${id}/is-owned`, { credentials: 'include' });
+            if (r.ok) sbOwned.set(id, (await r.json()) === true);
+          } catch {}
+        }));
+      }
+    } finally {
+      sbChecking = false;
+    }
+    if (wear) {
+      wear.rendered = '';
+      renderWearing();
+    }
+  }
+
+  function ownedRow(assets) {
+    const ids = assets.map(a => a.id);
+    const key = ids.slice().sort().join(',');
+    if (ids.some(id => !sbCosts.has(id)) && sbAsked !== key) {
+      sbAsked = key;
+      window.postMessage({ type: 'routility-sandbox', action: 'state' }, location.origin);
+    }
+    if (ids.some(id => !sbOwned.has(id))) {
+      checkOwned(ids);
+      return null;
+    }
+    let owned = 0;
+    let cost = 0;
+    let off = 0;
+    for (const id of ids) {
+      if (sbOwned.get(id)) {
+        owned++;
+        continue;
+      }
+      const c = sbCosts.get(id);
+      if (c == null) continue;
+      if (c < 0) off++;
+      else cost += c;
+    }
+    const row = el('div', 'routility-av-worth-own font-caption-body');
+    row.appendChild(el('span', 'content-default', lt('You own {n} of {total}', { n: formatNumber(owned), total: formatNumber(ids.length) })));
+    if (cost > 0) {
+      const part = el('span', 'routility-av-worth-part');
+      part.dataset.rtTip = lt('What the pieces you don’t own cost right now, using the lowest resale price for limiteds');
+      part.append(el('span', 'icon-robux-16x16'), el('span', null, lt('{amount} to finish', { amount: formatNumber(cost) })));
+      row.appendChild(part);
+    }
+    if (off) row.appendChild(el('span', 'content-muted', ltn(off, '{n} off sale', '{n} off sale', { n: formatNumber(off) })));
+    return row;
+  }
+
+  function worthCard(rap, usd) {
+    const w = wear;
+    const short = (n) => {
+      for (const [d, u] of [[1e9, 'B'], [1e6, 'M'], [1e3, 'K']]) if (n >= d) return (Math.floor(n / d * 10) / 10).toString().replace(/\.0$/, '') + u;
+      return String(Math.round(n));
+    };
+    const showValue = window.RoUtilityUI.shows('Avatar').value;
+    const worth = showValue ? w.assets.reduce((sum, a) => { const p = w.prices?.get(a.id); return sum + (window.RoUtilityUI.itemValue(p) || p?.rap || 0); }, 0) : rap;
+    const card = el('div', 'routility-av-worth');
+    card.appendChild(el('span', 'text-secondary font-caption-body', lt('Outfit Worth')));
+    const big = el('div', 'routility-av-worth-big');
+    big.dataset.rtTip = showValue ? lt('RoUtility Value of the limiteds you’re wearing, counting RAP for items we haven’t valued yet') : lt('Recent average price of the limiteds you’re wearing');
+    let icon;
+    if (showValue) {
+      icon = el('img', 'routility-logo');
+      icon.src = chrome.runtime.getURL('assets/icons/logo.png');
+      icon.alt = '';
+    } else {
+      icon = el('span', 'icon-robux-16x16');
+    }
+    big.append(icon, el('span', null, formatNumber(Math.round(worth))));
+    card.appendChild(big);
+    const row = el('div', 'routility-av-worth-row font-caption-body');
+    const part = (ic, text, tip) => {
+      const p = el('span', 'routility-av-worth-part');
+      p.dataset.rtTip = tip;
+      p.append(ic, el('span', null, text));
+      return p;
+    };
+    if (showValue) row.appendChild(part(el('span', 'icon-robux-16x16'), short(rap) + ' ' + lt('RAP'), lt('Recent average price of the limiteds you’re wearing')));
+    row.appendChild(part(window.RoUtilityUI.usdIcon('routility-logo'), formatUSD(usd), lt('RoUtility USD price of the limiteds you’re wearing')));
+    card.appendChild(row);
+    if (document.documentElement.classList.contains('routility-sandbox')) {
+      const own = ownedRow(w.assets);
+      if (own) card.appendChild(own);
+    }
+    return card;
+  }
+
   function renderWearing() {
     const w = wear;
     if (!w) return;
@@ -910,33 +1013,7 @@
       const usd = assets.reduce((sum, a) => sum + (w.prices?.get(a.id)?.usd || 0), 0);
       const rap = assets.reduce((sum, a) => sum + (w.prices?.get(a.id)?.rap || 0), 0);
       if (w.values && (usd > 0 || rap > 0)) {
-        const stats = el('div', 'routility-av-wearing-stats');
-        const short = (n) => {
-          for (const [d, u] of [[1e9, 'B'], [1e6, 'M'], [1e3, 'K']]) if (n >= d) return (Math.floor(n / d * 10) / 10).toString().replace(/\.0$/, '') + u;
-          return String(Math.round(n));
-        };
-        const box = (label, tip, icon, text, brief) => {
-          const b = el('div', 'routility-av-wearing-stat');
-          b.dataset.rtTip = tip;
-          b.appendChild(el('span', 'text-secondary font-caption-body', label));
-          const v = el('span', 'routility-av-wearing-stat-value');
-          const num = el('span', 'routility-av-num');
-          num.append(el('span', 'routility-av-num-short', brief), el('span', 'routility-av-num-full', text));
-          v.append(icon, num);
-          b.appendChild(v);
-          return b;
-        };
-        stats.appendChild(box(lt('RAP'), lt('Recent average price of the limiteds you’re wearing'), el('span', 'icon-robux-16x16'), formatNumber(Math.round(rap)), short(rap)));
-        if (window.RoUtilityUI.shows('Avatar').value) {
-          const worth = assets.reduce((sum, a) => { const p = w.prices?.get(a.id); return sum + (window.RoUtilityUI.itemValue(p) || p?.rap || 0); }, 0);
-          const vlogo = el('img', 'routility-logo');
-          vlogo.src = chrome.runtime.getURL('assets/icons/logo.png');
-          vlogo.alt = '';
-          stats.appendChild(box(lt('Value'), lt('RoUtility Value of the limiteds you’re wearing, counting RAP for items we haven’t valued yet'), vlogo, formatNumber(Math.round(worth)), short(worth)));
-          stats.classList.add('routility-av-wearing-stats-3');
-        }
-        stats.appendChild(box(lt('Price'), lt('RoUtility USD price of the limiteds you’re wearing'), window.RoUtilityUI.usdIcon('routility-logo'), formatUSD(usd), window.RoUtilityUI.shortUSD(usd)));
-        panel.appendChild(stats);
+        panel.appendChild(worthCard(rap, usd));
       }
     }
     const grid = el('ul', 'routility-av-wearing-grid');
@@ -1007,7 +1084,15 @@
     });
     w.perf.observe({ type: 'resource' });
     w.onSandbox = (e) => {
-      if (e.source === window && e.data && e.data.type === 'routility-sandbox-state') refreshWearing();
+      if (e.source !== window || !e.data || e.data.type !== 'routility-sandbox-state') return;
+      for (const x of (e.data.state && e.data.state.worn) || []) {
+        if (!x.known) continue;
+        const resale = Number.isFinite(x.lowest) && x.lowest > 0 ? x.lowest : null;
+        const price = Number.isFinite(x.price) && x.price >= 0 ? x.price : null;
+        sbCosts.set(String(x.id), resale ?? price ?? -1);
+      }
+      w.rendered = '';
+      refreshWearing();
     };
     window.addEventListener('message', w.onSandbox);
     w.observer = new MutationObserver(onFrame(() => {

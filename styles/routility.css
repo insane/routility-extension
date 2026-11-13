@@ -1266,49 +1266,6 @@ html.routility-av-searching #avatar-items-container .foundation-web-progress-cir
   margin: -6px 0 12px;
 }
 
-.routility-av-wearing-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.routility-av-wearing-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-  padding: 8px 12px;
-  border: 1px solid rgba(127, 127, 127, 0.16);
-  border-radius: calc(10px * var(--routility-round, 1));
-  background: rgba(127, 127, 127, 0.07);
-}
-
-.routility-av-wearing-stat-value {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-  font-size: 16px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.routility-av-wearing-stat-value > span:last-child {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.routility-av-wearing-stat-value .routility-logo {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-}
-
-.routility-av-wearing-stat-value .icon-robux-16x16 {
-  flex-shrink: 0;
-}
-
 .routility-av-remove-all:disabled {
   opacity: 0.5;
   pointer-events: none;
@@ -2894,7 +2851,7 @@ html.routility-streamer-account .account-previous-username-list,
 html.routility-streamer-account .settings-left-navigation input.input-field[placeholder^="e.g."],
 html.routility-streamer-name .age-bracket-label-username,
 html.routility-streamer-name nav a:is([href="/users/profile"], [data-rt-profile="/users/profile"]) .text-truncate-end,
-html.routility-streamer-values .routility-av-wearing-stats,
+html.routility-streamer-values .routility-av-worth,
 html.routility-streamer-values .routility-value-row {
   filter: blur(6px);
   transition: filter 0.15s ease;
@@ -2906,7 +2863,7 @@ html.routility-streamer-account .settings-left-navigation input.input-field[plac
 html.routility-streamer-account .settings-left-navigation input.input-field[placeholder^="e.g."]:focus,
 html.routility-streamer-name .age-bracket-label:hover .age-bracket-label-username,
 html.routility-streamer-name nav a:is([href="/users/profile"], [data-rt-profile="/users/profile"]):hover .text-truncate-end,
-html.routility-streamer-values .routility-av-wearing-stats:hover,
+html.routility-streamer-values .routility-av-worth:hover,
 html.routility-streamer-values .routility-value-row:hover {
   filter: none;
 }
@@ -3405,8 +3362,59 @@ html.routility-calc-page:not(.routility-calc-ready) #content::after {
   z-index: 2;
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 2px;
   pointer-events: auto;
+}
+
+.routility-gem {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: #4fb6ff;
+  filter: drop-shadow(0 1px 1.5px rgb(0 0 0 / 0.3));
+}
+
+.routility-gem svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.routility-gem-projected {
+  color: #f59e0b;
+}
+
+.routility-gem-ultra {
+  color: #f6c945;
+  filter: drop-shadow(0 0 4px rgba(246, 201, 69, 0.75)) drop-shadow(0 1px 1.5px rgb(0 0 0 / 0.35));
+}
+
+.light-theme .routility-gem:not(.routility-gem-ultra):not(.routility-gem-projected) {
+  color: #0a84d6;
+}
+
+.light-theme .routility-gem-projected {
+  color: #d97706;
+}
+
+.routility-item-tag {
+  cursor: default;
+}
+
+.routility-ic-tags .routility-gem,
+.routility-calc-tags .routility-gem,
+.routility-ads-gem .routility-gem {
+  width: 17px;
+  height: 17px;
+}
+
+.routility-ic-tags .routility-gem svg,
+.routility-calc-tags .routility-gem svg,
+.routility-ads-gem .routility-gem svg {
+  width: 15px;
+  height: 15px;
 }
 
 .routility-card-tag {
@@ -3450,7 +3458,7 @@ html.routility-calc-page:not(.routility-calc-ready) #content::after {
   -webkit-appearance: none;
 }
 
-.trade-row.routility-trade-hidden {
+.trade-row[data-routility-hidden] {
   display: none !important;
 }
 
@@ -7963,40 +7971,6 @@ html.routility-streamer-account .routility-devices-list > li:not(:first-child) .
   pointer-events: none;
 }
 
-.routility-av-num-full {
-  display: none;
-}
-
-.routility-av-wearing-stat:hover .routility-av-num-short {
-  display: none;
-}
-
-.routility-av-wearing-stat:hover .routility-av-num-full {
-  display: inline;
-}
-
-.routility-av-wearing-stats {
-  display: flex;
-}
-
-.routility-av-wearing-stats > .routility-av-wearing-stat {
-  flex: 1 1 0;
-  transition: flex-grow 0.18s ease;
-}
-
-.routility-av-wearing-stats > .routility-av-wearing-stat:hover {
-  flex-grow: 2.4;
-}
-
-.routility-av-wearing-stat:hover .routility-av-wearing-stat-value > span:last-child {
-  overflow: visible;
-  text-overflow: clip;
-}
-
-.routility-av-wearing-stats > .routility-av-wearing-stat {
-  min-width: max-content;
-}
-
 
 
 
@@ -8472,11 +8446,8 @@ html.routility-ads-page:not(.routility-ads-ready) #content::after {
   position: absolute;
   top: 6px;
   left: 6px;
-  width: 14px;
-  height: 14px;
-  background: #4fb6ff;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.8 3.6h10.4l4.6 5.4L12 21.4 2.2 9z'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.8 3.6h10.4l4.6 5.4L12 21.4 2.2 9z'/%3E%3C/svg%3E") center / contain no-repeat;
+  display: flex;
+  gap: 2px;
 }
 .routility-ads-sk-tile { height: 210px; border-radius: calc(12px * var(--routility-round, 1)); }
 .routility-ads-grid-note { grid-column: 1 / -1; padding: 12px 2px; }
@@ -13477,14 +13448,6 @@ html.routility-cash-text .routility-usd-ic::before { content: var(--routility-ca
 .trade-inventory-panel .item-cards-stackable:has(.routility-card-worth, .routility-card-usd) li.trade-item-card { height: 280px !important; }
 .trade-inventory-panel .item-cards-stackable:has(.routility-card-worth, .routility-card-usd) li.trade-item-card .trade-inventory-card, .trade-inventory-panel .item-cards-stackable:has(.routility-card-worth, .routility-card-usd) li.trade-item-card .item-card-container { height: auto !important; }
 
-.routility-av-wearing-stats.routility-av-wearing-stats-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.routility-av-wearing-stats-3 { gap: 6px; }
-.routility-av-wearing-stats-3 .routility-av-wearing-stat { padding: 7px 8px; }
-.routility-av-wearing-stats-3 .routility-av-wearing-stat-value { gap: 4px; font-size: 14px; }
-.routility-av-wearing-stats-3 .routility-av-wearing-stat-value .routility-logo { width: 14px; height: 14px; }
-.routility-av-wearing-stats-3 .routility-av-wearing-stat-value > :first-child { transition: width 0.18s ease, margin 0.18s ease, opacity 0.18s ease; }
-.routility-av-wearing-stats-3:has(.routility-av-wearing-stat:hover) > .routility-av-wearing-stat:not(:hover) { min-width: 0; }
-.routility-av-wearing-stats-3:has(.routility-av-wearing-stat:hover) > .routility-av-wearing-stat:not(:hover) .routility-av-wearing-stat-value > :first-child { width: 0; margin-right: -4px; opacity: 0; }
 .routility-ads-total { display: inline-flex; align-items: center; gap: 12px; }
 .routility-ads-total-part { display: inline-flex; align-items: center; gap: 4px; }
 .routility-ads-total .routility-val { gap: 4px; }
@@ -14814,22 +14777,16 @@ html.routility-ps-page:not(.routility-ps-ready) #content::after {
 
 .routility-sb {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 12px;
   margin: 0 0 16px;
-  padding: 16px;
-}
-
-.routility-sb-top {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  padding: 10px 12px 10px 16px;
 }
 
 .routility-sb-icon {
   flex: none;
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   color: var(--color-system-emphasis, #335fff);
 }
 
@@ -14837,36 +14794,30 @@ html.routility-ps-page:not(.routility-ps-ready) #content::after {
   flex: 1;
   min-width: 0;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.routility-sb-worth {
-  flex: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
-  text-align: right;
-}
-
-.routility-sb-total {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.routility-sb-tools {
-  display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 10px;
-  flex-wrap: wrap;
+}
+
+.routility-sb-note {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.routility-sb > .foundation-web-button {
+  flex: none;
 }
 
 .routility-sb-chips {
   display: flex;
   gap: 8px;
-  flex-wrap: wrap;
+  margin-left: auto;
+  flex-wrap: nowrap;
+}
+
+.routility-sb-chips[hidden] {
+  display: none;
 }
 
 .routility-sb-chip {
@@ -14880,31 +14831,203 @@ html.routility-ps-page:not(.routility-ps-ready) #content::after {
   color: var(--color-surface-0, #121215);
 }
 
-.routility-sb-search {
-  flex: 1 1 220px;
-  min-width: 180px;
-  max-width: 420px;
+html.routility-sandbox .routility-av-crumb-row {
+  flex-wrap: wrap;
+  row-gap: 8px;
 }
 
-.routility-sb-tools > .routility-sb-sort {
+.routility-av-toolbar > .routility-sb-sort {
   flex: none;
-  width: 220px !important;
+  width: 200px !important;
   max-width: 100%;
 }
 
-.routility-sb-hint[hidden] {
-  display: none;
+.routility-av-worth {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(127, 127, 127, 0.16);
+  border-radius: calc(10px * var(--routility-round, 1));
+  background: rgba(127, 127, 127, 0.07);
 }
 
-@media (max-width: 760px) {
-  .routility-sb-top {
-    flex-wrap: wrap;
-  }
+.routility-av-worth-big {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  max-width: 100%;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
 
-  .routility-sb-worth {
-    align-items: flex-start;
-    text-align: left;
-  }
+.routility-av-worth-big .routility-logo {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+
+.routility-av-worth-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  color: var(--color-content-default, inherit);
+}
+
+.routility-av-worth-part {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+}
+
+.routility-av-worth-own {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(127, 127, 127, 0.16);
+}
+
+.routility-sb > .foundation-web-button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.routility-sb-dialog {
+  width: min(420px, calc(100vw - 32px));
+  max-width: none;
+  padding: 20px;
+}
+
+.routility-sb-fits-dialog {
+  width: min(640px, calc(100vw - 32px));
+}
+
+.routility-sb-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.routility-sb-dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.routility-sb-dialog-actions {
+  margin-top: 4px;
+}
+
+.routility-sb-fits {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  max-height: min(60vh, 520px);
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.routility-sb-fit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.routility-sb-fit-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: calc(10px * var(--routility-round, 1));
+  background: rgba(127, 127, 127, 0.1);
+}
+
+.routility-sb-fit-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.routility-sb-fit-thumb .routility-sb-icon {
+  width: 36px;
+  height: 36px;
+  color: var(--color-content-muted, #8a94a0);
+}
+
+.routility-sb-fit-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.routility-sb-fit-name {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.routility-sb-fit-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.routility-sb-fit-delete svg,
+.routility-sb-zoom-save svg {
+  width: 18px;
+  height: 18px;
+}
+
+.routility-sb-zoom-save {
+  position: absolute !important;
+  top: 12px;
+  right: 56px;
+  z-index: 2;
+}
+
+.routility-sb-zoom-save[hidden] {
+  display: none !important;
+}
+
+.routility-sb-try-head {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+}
+
+.routility-sb-try-head > .routility-sb-try {
+  margin-left: auto;
+}
+
+.routility-sb-fit-head {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+}
+
+.routility-sb-fit-head > .routility-sb-fit-link {
+  margin-left: auto;
+  float: none !important;
+}
+
+.routility-av-worth-part .routility-logo {
+  width: 14px;
+  height: 14px;
 }
 
 html.routility-sandbox .routility-tc-open,

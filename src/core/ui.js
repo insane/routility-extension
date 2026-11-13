@@ -344,31 +344,47 @@
     return v ? lt('Value: {value}', { value: formatNumber(v) }) : '';
   }
 
+  const GEM_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.8 3.6h10.4l4.6 5.4L12 21.4 2.2 9z"/><path fill="#fff" opacity=".3" d="M2.2 9 6.8 3.6h2.6L7.9 9z"/><path fill="#fff" opacity=".55" d="M9.4 3.6h5.2l1.5 5.4H7.9z"/><path fill="#fff" opacity=".12" d="M14.6 3.6h2.6l4.6 5.4h-5.7z"/><path fill="#fff" opacity=".18" d="M2.2 9h5.7L12 21.4z"/><path fill="#000" opacity=".22" d="M16.1 9h5.7L12 21.4z"/></svg>';
+  let maskSeq = 0;
+  const projectedSvg = (id) => `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#fff"/><rect x="10.85" y="8.4" width="2.3" height="6.4" rx="1.15" fill="#000"/><circle cx="12" cy="17.3" r="1.35" fill="#000"/></mask><path mask="url(#${id})" fill="currentColor" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" d="M12 3.4 21.2 19.6H2.8z"/><path fill="#fff" opacity=".18" d="M12 3.4 16.6 11.5H7.4z"/></svg>`;
+
+  function tagIcon(kind, ultra) {
+    const node = el('span', 'routility-injected routility-gem routility-gem-' + kind + (ultra ? ' routility-gem-ultra' : ''));
+    node.setAttribute('role', 'img');
+    let tip;
+    if (kind === 'projected') {
+      node.innerHTML = projectedSvg('routility-gem-m' + (++maskSeq));
+      tip = lt('Projected') + ': ' + lt('Its RAP is pushed up by recent sales above its usual price');
+    } else {
+      node.innerHTML = GEM_SVG;
+      tip = ultra ? lt('Ultra Rare') + ': ' + lt('One of the rarest limiteds, very few copies exist') : lt('Rare') + ': ' + lt('Very few copies exist');
+    }
+    node.setAttribute('aria-label', tip);
+    node.dataset.rtTip = tip;
+    return node;
+  }
+
+  function tagIcons(item) {
+    const out = [];
+    if (item && (item.rare || item.ultra)) out.push(tagIcon('rare', !!item.ultra));
+    if (item && item.projected) out.push(tagIcon('projected'));
+    return out;
+  }
+
   let tagsOn = true;
   chrome.storage.local.get('routilitySettings', (s) => { tagsOn = (s.routilitySettings || {}).itemTags !== false; });
 
   function cardTags(card, price) {
     const host = card.querySelector('.item-card-thumb-container');
     if (!host) return;
-    const want = tagsOn && price ? (price.projected ? 'p' : '') + (price.rare ? 'r' : '') : '';
+    const want = tagsOn && price ? (price.projected ? 'p' : '') + (price.rare ? 'r' : '') + (price.ultra ? 'u' : '') : '';
     let box = host.querySelector(':scope > .routility-card-tags');
     if ((box ? box.dataset.tags : '') === want) return;
     box?.remove();
     if (!want) return;
     box = el('span', 'routility-injected routility-card-tags');
     box.dataset.tags = want;
-    if (price.projected) {
-      const p = el('span', 'foundation-web-badge inline-flex items-center radius-circle padding-x-small bg-system-alert content-inverse-emphasis routility-card-tag');
-      p.appendChild(el('span', 'text-no-wrap', lt('Projected')));
-      p.dataset.rtTip = lt('Its RAP is pushed up by recent sales above its usual price');
-      box.appendChild(p);
-    }
-    if (price.rare) {
-      const r = el('span', 'foundation-web-badge inline-flex items-center radius-circle padding-x-small routility-card-tag routility-card-tag-rare');
-      r.appendChild(el('span', 'text-no-wrap', lt('Rare')));
-      r.dataset.rtTip = lt('Very few copies exist');
-      box.appendChild(r);
-    }
+    box.append(...tagIcons(price));
     host.appendChild(box);
   }
 
@@ -1167,7 +1183,7 @@
     });
   }
 
-  window.RoUtilityUI = { json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, usdIcon, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, exactTime, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request, confirmDialog };
+  window.RoUtilityUI = { tagIcon, tagIcons, json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, usdIcon, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, exactTime, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request, confirmDialog };
 })();
 
 (function () {

@@ -4,6 +4,7 @@
  "(no new posts)": "(새 게시물 없음)",
  "{a} and {b}": "{a} 및 {b}",
  "{amount} Robux": "{amount} Robux",
+ "{amount} to finish": "완성까지 {amount}",
  "{amount}{pct} against you": "{amount}{pct} 불리",
  "{amount}{pct} in your favor": "{amount}{pct} 유리",
  "{amount}{pct} RAP against you": "RAP {amount}{pct} 불리",
@@ -202,6 +203,9 @@
  "{n} of {max} communities joined": "{max}개 중 {n}개 커뮤니티 가입",
  "{n} of {max} people max": "{n} / 최대 {max}명",
  "{n} of {total} owned": "{total}개 중 {n}개 보유",
+ "{n} off sale": {
+  "other": "{n}개 판매 중지"
+ },
  "{n} other extensions": {
   "other": "다른 확장 프로그램 {n}개"
  },
@@ -1105,6 +1109,7 @@
  "first of your {n} copies": {
   "other": "보유한 {n}개 중 첫 번째"
  },
+ "Fit {n}": "코디 {n}",
  "Fix Shuffled Order": "섞인 순서 고치기",
  "Fixed": "수정",
  "Flags rare items and items whose RAP is pushed up by recent sales, on item pages, trades, the Marketplace and the calculator.": "아이템 페이지, 거래, 마켓플레이스, 계산기에서 레어 아이템과 최근 판매로 RAP가 부풀려진 아이템을 표시합니다.",
@@ -1370,7 +1375,6 @@
  "Items you received": "내가 받은 아이템",
  "Items you’re watching.": "지켜보고 있는 아이템.",
  "Its RAP is pushed up by recent sales above its usual price": "최근 판매로 RAP가 평소 가격보다 부풀려져 있습니다",
- "Its RAP is pushed up by recent sales above its usual price. Be careful trading for it at RAP.": "최근 판매로 RAP가 평소 가격보다 부풀려져 있습니다. RAP 기준으로 거래할 때 주의하세요.",
  "Jacket": "재킷",
  "Japanese Yen": "일본 엔",
  "Join": "참여",
@@ -1641,6 +1645,7 @@
  "No requests match these filters.": "이 필터에 맞는 요청이 없습니다.",
  "No requests match your search.": "검색과 일치하는 요청이 없습니다.",
  "No results for “{query}”": "“{query}” 결과 없음",
+ "No saved fits yet. Use Save Fit to keep the outfit you’re trying on.": "저장한 코디가 아직 없어요. 코디 저장으로 지금 입어 보는 코디를 저장하세요.",
  "No saved looks yet. Put on the items you like, then press Save Current Look.": "저장된 룩이 아직 없습니다. 마음에 드는 아이템을 입은 다음 현재 룩 저장을 누르세요.",
  "No scripts in this model": "이 모델에는 스크립트가 없습니다",
  "No servers running in {region}…": "{region}에서 실행 중인 서버가 없습니다…",
@@ -1730,6 +1735,7 @@
  "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in your currency and what Plus has cost you so far.": "Roblox Plus 페이지에서 Plus 갱신일, 가격과 결제처, 다음 할인이 열리는 날, Plus로 아낀 금액의 내 통화 가치, 지금까지 Plus에 쓴 비용을 보여 줘요.",
  "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.": "켜짐. 이제부터 받는 배지는 Roblox 탭이 열려 있는 동안 약 5분 안에 삭제돼요. 이미 가진 배지는 그대로예요.",
  "Once you verify with Roblox, your notes are saved to your RoUtility account so they come back on other browsers. They’re encrypted and only you can get them. Turning this off deletes the backup.": "Roblox로 인증하면 메모가 RoUtility 계정에 저장되어 다른 브라우저에서도 다시 보여요. 메모는 암호화되며 나만 불러올 수 있어요. 끄면 백업이 삭제돼요.",
+ "One of the rarest limiteds, very few copies exist": "가장 희귀한 리미티드 중 하나로, 남은 수량이 매우 적어요",
  "Online": "온라인",
  "Online {time}": "{time} 온라인",
  "Online Status": "온라인 상태",
@@ -1778,6 +1784,7 @@
  "Outfit Rotator saved. Pick at least 2 characters to start rotating.": "코디 로테이터를 저장했어요. 시작하려면 캐릭터를 2개 이상 고르세요.",
  "Outfit Rotator saved. Rotation is off.": "코디 로테이터를 저장했어요. 로테이션이 꺼져 있어요.",
  "Outfit Rotator stopped. Turn it back on here or in the avatar editor.": "코디 로테이터를 멈췄어요. 여기나 아바타 편집기에서 다시 켤 수 있어요.",
+ "Outfit Worth": "코디 가치",
  "Outfits": "의상",
  "Outfits ({n})": "의상 ({n})",
  "Overpay Warning": "과지불 경고",
@@ -2186,13 +2193,16 @@
  "Save Alert": "알림 저장",
  "Save Current Look": "현재 룩 저장",
  "Save current theme here": "현재 테마를 여기에 저장",
+ "Save Fit": "코디 저장",
  "Save looks with items you don’t own yet. Wear them again in Fun Mode, and see what you’d need to buy to wear them for real.": "아직 없는 아이템으로 룩을 저장하세요. 재미 모드에서 다시 입고, 실제로 입으려면 무엇을 사야 하는지 확인할 수 있습니다.",
  "Save them to a file, load them on another browser, or start over. The file also holds your left menu and home layouts, chat size, price alerts, hidden games and playtime history.": "파일로 저장하거나, 다른 브라우저에서 불러오거나, 처음부터 다시 시작하세요. 파일에는 왼쪽 메뉴와 홈 레이아웃, 채팅 크기, 가격 알림, 숨긴 게임도 들어 있습니다, 플레이 시간 기록.",
  "Save to {slot}": "{slot}에 저장",
  "Save to apply your changes.": "저장하면 변경 사항이 적용돼요.",
+ "Saved": "저장됨",
  "Saved {file}.": "{file} 저장됨.",
  "Saved by this player": "이 플레이어가 저장함",
  "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.": "결제 페이지의 저장된 카드, PayPal, 청구 이메일 및 주소, Roblox 크레딧, 기프트 카드 정보.",
+ "Saved Fits": "저장한 코디",
  "Saved Outfits": "저장된 의상",
  "Saved Payment Method": "저장된 결제 수단",
  "Saved, in {currency}": "절약한 금액 ({currency})",
@@ -2200,6 +2210,9 @@
  "Saved. Roblox is drawing your new thumbnail.": "저장했습니다. Roblox가 새 썸네일을 그리는 중입니다.",
  "Saved. Roblox pages you already have open pick this up when they reload.": "저장했습니다. 이미 열려 있는 Roblox 페이지는 새로고침하면 반영됩니다.",
  "Saved. Your new thumbnail can take a minute to show up.": "저장했습니다. 새 썸네일이 표시되기까지 1분 정도 걸릴 수 있습니다.",
+ "Saves the {n} items you’re trying on so you can wear them again later. They stay on this computer.": {
+  "other": "지금 입어 보는 아이템 {n}개를 저장해서 나중에 다시 입을 수 있어요. 이 컴퓨터에만 저장돼요."
+ },
  "Saves your current colors and background here": "현재 색상과 배경을 여기에 저장합니다",
  "Saving": "저장하는 중",
  "Saving…": "저장 중…",
@@ -2606,6 +2619,10 @@
  "Try On": "착용해 보기",
  "Try On & Explore": "착용해 보기 및 탐색",
  "Try other words, or check the spelling.": "다른 단어로 시도하거나 철자를 확인하세요.",
+ "Try Their Fit": "이 코디 입어 보기",
+ "Try these items on in Sandbox": "이 아이템들을 샌드박스에서 입어 보기",
+ "Try this on in Sandbox": "샌드박스에서 입어 보기",
+ "Try this outfit on in Sandbox": "이 코디를 샌드박스에서 입어 보기",
  "Trying on": "착용해 보는 중",
  "Turkish Lira": "튀르키예 리라",
  "Turn Off": "끄기",
@@ -2628,6 +2645,7 @@
  "Type a username (or paste a user ID) above to see their limiteds.": "위에 사용자 이름을 입력하거나 사용자 ID를 붙여 넣으면 그 사람의 한정판을 볼 수 있습니다.",
  "Type a word or phrase in the search box to find threads and posts.": "검색창에 단어나 문구를 입력해 스레드와 게시물을 찾으세요.",
  "Typing…": "입력하는 중…",
+ "Ultra Rare": "울트라 레어",
  "Unavailable": "사용할 수 없음",
  "Unavailable Game Details": "사용할 수 없는 게임 정보",
  "Under each device on Settings > Security, the IP address it last used, so a login you don’t recognize is easier to spot. Streamer Mode blurs it with the rest of the list.": "설정 > 보안의 각 기기 아래에 마지막으로 사용한 IP 주소를 보여 줘서 모르는 로그인을 쉽게 찾을 수 있어요. 스트리머 모드에서는 목록과 함께 흐리게 처리돼요.",
@@ -2768,6 +2786,7 @@
  "What everything they own is worth in your currency.": "가진 모든 아이템의 가치를 내 통화로 보여줘요.",
  "What Shows Up": "표시할 항목",
  "What the item is worth in your currency, next to its Robux price. Hover it for the RoUtility Value when the item has one.": "아이템의 내 통화 가치를 Robux 가격 옆에 보여줘요. 가치가 있는 아이템은 마우스를 올리면 RoUtility 가치가 보여요.",
+ "What the pieces you don’t own cost right now, using the lowest resale price for limiteds": "가지고 있지 않은 아이템의 현재 가격 (리미티드는 최저 재판매가 기준)",
  "what you want": "원하는 것",
  "What You’re Wearing": "착용 중인 아이템",
  "What you’ve spent on each creator, experience, item type and month": "제작자, 경험, 아이템 유형, 월별 지출",
@@ -2856,6 +2875,7 @@
  "You own": "보유",
  "You Own": "보유",
  "You own {n}": "{n}개 보유",
+ "You own {n} of {total}": "{total}개 중 {n}개 보유",
  "You own {name}": "{name}을(를) 소유하고 있습니다",
  "You played here for about {n} minutes": {
   "other": "여기서 약 {n}분 플레이했어요"
@@ -3102,7 +3122,6 @@
  "Relevance": "관련도",
  "Sandbox": "Sandbox",
  "Sandbox Mode": "Sandbox 모드",
- "Search the Marketplace": "마켓플레이스 검색",
  "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "리미티드를 포함해 마켓플레이스의 무엇이든 입어 보세요. 여기서 바꾼 것은 실제 아바타에 영향을 주지 않아요.",
  "Nothing in this category matches your filter.": "이 카테고리에는 필터와 맞는 아이템이 없어요.",
  "Show All Items": "모든 아이템 보기"

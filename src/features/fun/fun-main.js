@@ -1552,6 +1552,7 @@
     return {
       on: sbOn(),
       filter: sb && sb.filter,
+      undo: !!(sb && Array.isArray(sb.history) && sb.history.length),
       worn: sb && Array.isArray(sb.assets) ? sb.assets.map(a => Object.assign({ id: a.id, name: a.name || '', type: a.type || 0 }, sbInfo.get(a.id) || {})) : [],
     };
   }
@@ -1582,23 +1583,93 @@
   }
 
   let sbJob = null;
+  const sbGet = (u) => oFetch.call(window, u, { credentials: 'include' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
+
+  async function sbLoadOwn() {
+    const [v1, v4] = await Promise.all([sbGet('https://avatar.roblox.com/v1/avatar'), sbGet(SB_V4)]);
+    if (!sb || !v1 || !Array.isArray(v1.assets)) return false;
+    sb.assets = v1.assets.map(a => ({ id: Number(a.id), name: a.name || '', type: (a.assetType && a.assetType.id) || 0, meta: a.meta || undefined }));
+    for (const a of sb.assets) sbLearn({ id: a.id, name: a.name, assetType: a.type });
+    sb.scales = v1.scales || null;
+    sb.type = v1.playerAvatarType || 'R15';
+    sb.colors = (v4 && v4.avatarModel && v4.avatarModel.bodyColors) || null;
+    sb.recent = [];
+    return true;
+  }
+
   function sbReady() {
     if (!sbOn() || Array.isArray(sb.assets)) return Promise.resolve();
     if (!sbJob) {
-      sbJob = (async () => {
-        const get = (u) => oFetch.call(window, u, { credentials: 'include' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
-        const [v1, v4] = await Promise.all([get('https://avatar.roblox.com/v1/avatar'), get(SB_V4)]);
-        if (!sb || !v1 || !Array.isArray(v1.assets)) return;
-        sb.assets = v1.assets.map(a => ({ id: Number(a.id), name: a.name || '', type: (a.assetType && a.assetType.id) || 0, meta: a.meta || undefined }));
-        for (const a of sb.assets) sbLearn({ id: a.id, name: a.name, assetType: a.type });
-        sb.scales = v1.scales || null;
-        sb.type = v1.playerAvatarType || 'R15';
-        sb.colors = (v4 && v4.avatarModel && v4.avatarModel.bodyColors) || null;
-        sb.recent = [];
-        sbSave();
-      })().finally(() => { sbJob = null; });
+      sbJob = sbLoadOwn().then((ok) => { if (ok) sbSave(); }).finally(() => { sbJob = null; });
     }
     return sbJob;
+  }
+
+  const SB_MULTI = new Set([8, 41, 42, 43, 44, 45, 46, 47, 57, 58, 64, 65, 66, 67, 68, 69, 72]);
+  const SB_WEARABLE = new Set([2, 8, 11, 12, 17, 18, 19, 27, 28, 29, 30, 31, 41, 42, 43, 44, 45, 46, 47, 48, 50, 51, 52, 53, 54, 55, 57, 58, 64, 65, 66, 67, 68, 69, 70, 71, 72, 76, 77, 78, 79]);
+
+  function sbFit() {
+    return { assets: (sb.assets || []).map(a => Object.assign({ id: a.id, name: a.name || '', type: a.type || 0 }, a.meta ? { meta: a.meta } : {})), colors: sb.colors || null, scales: sb.scales || null, type: sb.type || 'R15' };
+  }
+
+  function sbRemember() {
+    if (!sb || !Array.isArray(sb.assets)) return;
+    const snap = sbFit();
+    const last = (sb.history || [])[0];
+    if (last && JSON.stringify(last) === JSON.stringify(snap)) return;
+    sb.history = [snap].concat(sb.history || []).slice(0, 15);
+  }
+
+  function sbSet(fit) {
+    if (!sb || !fit || !Array.isArray(fit.assets)) return;
+    sb.assets = fit.assets.map(a => ({ id: Number(a.id), name: a.name || '', type: Number(a.type) || 0, meta: a.meta || undefined })).filter(a => a.id > 0);
+    for (const a of sb.assets) sbLearn({ id: a.id, name: a.name, assetType: a.type });
+    if (fit.colors) sb.colors = fit.colors;
+    if (fit.scales) sb.scales = fit.scales;
+    if (fit.type) sb.type = fit.type;
+  }
+
+  async function sbLoadUser(id) {
+    const d = await sbGet(`https://avatar.roblox.com/v2/avatar/users/${id}/avatar`);
+    if (!(await sbLoadOwn())) return false;
+    if (!sb || !d || !Array.isArray(d.assets)) return true;
+    const colors = {};
+    for (const [k, v] of Object.entries(d.bodyColor3s || {})) {
+      const key = k.replace(/3$/, '');
+      if (SB_COLOR3[key] && typeof v === 'string') colors[key] = v.replace(/^#/, '');
+    }
+    sbSet({ assets: d.assets.map(a => ({ id: a.id, name: a.name, type: a.assetType && a.assetType.id, meta: a.meta })), colors: Object.keys(colors).length ? colors : null, scales: d.scales || null, type: d.playerAvatarType || null });
+    return true;
+  }
+
+  async function sbLoadWear(ids, bundle) {
+    if (bundle) {
+      const d = await sbGet(`https://catalog.roblox.com/v1/bundles/${bundle}/details`);
+      ids = ((d && d.items) || []).filter(i => i && i.type === 'Asset').map(i => Number(i.id)).filter(n => n > 0);
+    }
+    if (!(await sbLoadOwn())) return false;
+    await sbDetails(ids, true);
+    for (const id of ids) {
+      const info = sbInfo.get(id) || {};
+      if (!SB_WEARABLE.has(info.type)) continue;
+      const type = info.type;
+      const swap = type === 79 || type === 17 ? [17, 79] : [type];
+      sb.assets = sb.assets.filter(a => a.id !== id && (SB_MULTI.has(type) || !swap.includes(a.type)));
+      sb.assets.push({ id, name: info.name || '', type });
+    }
+    return true;
+  }
+
+  if (SB_PAGE) {
+    const args = new URLSearchParams(location.search);
+    const wear = (args.get('wear') || '').split(',').map(Number).filter(n => Number.isInteger(n) && n > 0).slice(0, 20);
+    const bundle = Number(args.get('bundle')) || 0;
+    const user = Number(args.get('user')) || 0;
+    if (wear.length || bundle || user) {
+      sb = { on: true, filter: (sb && sb.filter) || { mode: 'classic', q: '', sort: 'high' } };
+      try { history.replaceState(history.state, '', location.pathname + '?sandbox' + location.hash); } catch {}
+      sbJob = Promise.resolve().then(() => (user ? sbLoadUser(user) : sbLoadWear(wear, bundle))).then((ok) => { if (ok) sbSave(); }).finally(() => { sbJob = null; });
+    }
   }
 
   let sbToken = '';
@@ -1626,6 +1697,7 @@
 
   function sbApply(def, types) {
     if (!sb || !def) return;
+    sbRemember();
     const want = (t) => !Array.isArray(types) || !types.length || types.includes(t);
     if (Array.isArray(def.assets) && want('UpdateAssets')) {
       sb.assets = def.assets.map((a) => {
@@ -1940,6 +2012,25 @@
     } else if (a === 'render' && sbOn()) {
       const id = e.data.id;
       sbRender(renderSize(e.data.size), '2dWebp').then(url => window.postMessage({ type: 'routility-sandbox-render', id, url: url || null }, ORIGIN));
+    } else if (a === 'snapshot' && sbOn()) {
+      const id = e.data.id;
+      sbReady().then(() => window.postMessage({ type: 'routility-sandbox-snapshot', id, fit: sb && Array.isArray(sb.assets) ? sbFit() : null }, ORIGIN));
+    } else if (a === 'load' && sbOn() && e.data.fit) {
+      const fit = e.data.fit;
+      sbReady().then(() => {
+        sbRemember();
+        sbSet(fit);
+        sbSave();
+        window.postMessage({ type: 'routility-sandbox-applied' }, ORIGIN);
+      });
+    } else if (a === 'undo' && sbOn()) {
+      sbReady().then(() => {
+        const prev = sb && Array.isArray(sb.history) ? sb.history.shift() : null;
+        if (!prev) return;
+        sbSet(prev);
+        sbSave();
+        window.postMessage({ type: 'routility-sandbox-applied' }, ORIGIN);
+      });
     } else if (a === 'state') {
       const worn = sb && Array.isArray(sb.assets) ? sb.assets.map(x => x.id) : [];
       (worn.length ? sbDetails(worn, true) : Promise.resolve()).then(() => window.postMessage({ type: 'routility-sandbox-state', state: sbState() }, ORIGIN));

@@ -360,8 +360,16 @@ async function downloadAllItems() {
     const wave = await Promise.all(rest.splice(0, 4).map(itemsPage));
     for (const data of wave) allItems.push(...data.items);
   }
+  const extra = await getJson(`${API_BASE}/values`).catch(() => null);
+  const ultra = new Set(((extra && extra.ultra) || []).map(String));
   const itemMap = {};
-  for (const item of allItems) itemMap[item.id] = item;
+  for (const item of allItems) {
+    if (ultra.has(String(item.id))) {
+      item.ultra = true;
+      item.rare = true;
+    }
+    itemMap[item.id] = item;
+  }
   const meta = { routilityLastFetch: Date.now(), routilityItemCount: allItems.length };
   if (await kvSet('items', itemMap)) {
     await chrome.storage.local.set(meta);
@@ -413,7 +421,7 @@ async function getHistory(id) {
 }
 
 function brief(item) {
-  return { usd: item.usd, rap: item.rap, value: Number(item.value) > 0 ? Number(item.value) : 0, demand: item.demand || '', trend: item.trend || '', projected: !!item.projected, rare: !!item.rare };
+  return { usd: item.usd, rap: item.rap, value: Number(item.value) > 0 ? Number(item.value) : 0, demand: item.demand || '', trend: item.trend || '', projected: !!item.projected, rare: !!item.rare, ultra: !!item.ultra };
 }
 
 let nameIndexFor = null;
@@ -839,7 +847,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
   if (msg.type === 'calcItems') {
     getItems().then(items => {
-      sendResponse(Object.values(items).map(i => ({ id: String(i.id), name: i.name || '', acr: i.acr || '', usd: Number.isFinite(i.usd) ? i.usd : 0, rap: i.rap || 0, value: Number(i.value) > 0 ? Number(i.value) : 0, bundleId: i.bundleId ? String(i.bundleId) : '', demand: i.demand || '', trend: i.trend || '', rare: !!i.rare, projected: !!i.projected, thumb: i.thumb || '' })));
+      sendResponse(Object.values(items).map(i => ({ id: String(i.id), name: i.name || '', acr: i.acr || '', usd: Number.isFinite(i.usd) ? i.usd : 0, rap: i.rap || 0, value: Number(i.value) > 0 ? Number(i.value) : 0, bundleId: i.bundleId ? String(i.bundleId) : '', demand: i.demand || '', trend: i.trend || '', rare: !!i.rare, ultra: !!i.ultra, projected: !!i.projected, thumb: i.thumb || '' })));
     });
     return true;
   }

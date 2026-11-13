@@ -23,6 +23,20 @@
     box.appendChild(b);
   }
 
+  function placeSandbox(box, model) {
+    const s = st;
+    if (!s.opts.sandbox || box.querySelector('.routility-sbt-btn')) return;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = (model ? model.className : 'btn-control btn-control-md') + ' routility-injected routility-sbt-btn';
+    b.textContent = lt('Sandbox');
+    b.dataset.rtTip = lt('Try this on in Sandbox');
+    b.addEventListener('click', () => {
+      location.href = 'https://www.roblox.com/my/avatar?sandbox&' + (s.items ? 'bundle=' : 'wear=') + s.itemId;
+    });
+    box.appendChild(b);
+  }
+
   function place() {
     const s = st;
     if (!s || !(s.type || s.items)) return;
@@ -30,6 +44,7 @@
     if (!box) return;
     const model = [...box.querySelectorAll('button')].find(x => !x.classList.contains('routility-injected'));
     placeGame(box, model);
+    placeSandbox(box, model);
     if (!s.opts.preview || s.noFile || box.querySelector('.routility-pv-btn')) return;
     const b = document.createElement('button');
     b.type = 'button';
@@ -86,7 +101,7 @@
       if (res && res.status === 200) {
         type = res.assetTypeId;
         try { sessionStorage.setItem(key, String(type)); } catch {}
-      } else if (opts.game) {
+      } else if (opts.game || opts.sandbox) {
         type = await detailsType(s.itemId);
         if (st !== s) return;
         s.noFile = true;
@@ -122,7 +137,7 @@
     if (!st) return;
     st.observer?.disconnect();
     st = null;
-    document.querySelectorAll('.routility-pv-btn, .routility-pv, .routility-ig-btn').forEach(n => n.remove());
+    document.querySelectorAll('.routility-pv-btn, .routility-pv, .routility-ig-btn, .routility-sbt-btn').forEach(n => n.remove());
   }
 
   const keepAsked = new Set();

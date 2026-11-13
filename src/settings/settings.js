@@ -323,6 +323,11 @@
   const usd = (t, cls) => h('span', 'rt-m-usd' + (cls ? ' ' + cls : ''), [logoImg(), t]);
   const rb = (t, cls) => h('span', 'rt-m-rb' + (cls ? ' ' + cls : ''), [el('span', 'icon-robux-16x16 rt-m-robux'), t]);
   const pill = (t, kind) => h('span', 'rt-m-pill' + (kind ? ' rt-m-' + kind : ''), t);
+  const gemIcon = (kind) => {
+    const n = window.RoUtilityUI && window.RoUtilityUI.tagIcon ? window.RoUtilityUI.tagIcon(kind) : h('span', 'rt-m-pill', kind === 'rare' ? lt('Rare') : lt('Projected'));
+    n.classList.add('rt-m-gem');
+    return n;
+  };
   const circle = (size, cls) => h('span', 'rt-m-circle' + (cls ? ' ' + cls : ''), null, { width: size + 'px', height: size + 'px' });
   const tile = (size, kids, cls) => h('span', 'rt-m-tile' + (cls ? ' ' + cls : ''), kids, { width: size + 'px', height: size + 'px' });
   const r = (kids, cls) => h('div', 'rt-m-row' + (cls ? ' ' + cls : ''), kids);
@@ -467,7 +472,7 @@
     tradeCalculator: () => c([r([c([muted(lt('You give')), r([thumb(A.valk, 24), thumb(A.v3000, 24)])]), h('span', 'rt-m-arrow', '⇄'), c([muted(lt('You receive')), r([thumb(A.stv, 24)])])], 'rt-m-spread'), r([muted(lt('Verdict')), h('span', 'rt-m-strong rt-m-green', lt('You gain USD'))], 'rt-m-spread')], 'rt-m-w190'),
     itemSimilar: () => c([strong(lt('Similar Price')), r([A.fedora, A.stv, A.empyreus, A.frigidus].map(id => thumb(id, 36)))], 'rt-m-w190'),
     itemHoardStats: () => c([r([muted(lt('Premium Copies')), strong('482')], 'rt-m-spread'), r([muted(lt('Hoarded')), strong(lt('{pct} of copies', { pct: '61%' }))], 'rt-m-spread')], 'rt-m-w190'),
-    itemTags: () => r([thumb(A.fedora, 40), c([strong('Sparkle Time Fedora'), r([h('span', 'rt-m-pill rt-m-down', lt('Projected')), pill(lt('Rare'))])])]),
+    itemTags: () => r([thumb(A.fedora, 40), c([strong('Sparkle Time Fedora'), r([gemIcon('rare'), gemIcon('projected')])])]),
     calcLinks: () => c([r([muted(lt('Trade')), h('span', 'rt-m-strong rt-m-blue-text', lt('Value it in the Trade Calculator'))], 'rt-m-spread')], 'rt-m-w190'),
     tradeItemCard: () => { const box = h('div', 'rt-m-card', [r([thumb(A.valk, 22), c([strong('Valkyrie Helm'), liveUsd(A.valk, 'rt-m-tiny')])]), h('span', 'rt-m-chart rt-m-chart-sm')]); box.querySelector('.rt-m-chart').innerHTML = '<svg viewBox="0 0 180 34" preserveAspectRatio="none"><path d="M0 26 L30 24 L60 27 L90 18 L120 20 L150 10 L180 8" fill="none" stroke="currentColor" stroke-width="2"/></svg>'; return box; },
     tradePreview: () => h('div', 'rt-m-card', [r([c([muted(lt('You give')), r([thumb(A.valk, 22), thumb(A.v3000, 22)]), strong(money(896))]), c([muted(lt('You receive')), r([thumb(A.stv, 22)]), strong(money(25000))])], 'rt-m-spread')]),

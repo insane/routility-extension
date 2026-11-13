@@ -15,6 +15,7 @@
     { label: LT('Friends'), href: '/users/friends#!/friends', icon: 'icon-regular-two-people', words: 'people' },
     { label: LT('Friend Requests'), href: '/users/friends#!/friend-requests', icon: 'icon-regular-two-people', words: 'requests add' },
     { label: LT('Avatar'), href: '/my/avatar', icon: 'icon-regular-person-standing', words: 'outfit character' },
+    { label: LT('Sandbox'), href: '/my/avatar?sandbox', icon: 'routility-sb-nav-icon', words: 'try on limiteds dominus', flag: 'avatarSandbox' },
     { label: LT('Inventory'), href: (me) => `/users/${me}/inventory`, icon: 'icon-regular-backpack', words: 'items' },
     { label: LT('Trades'), href: '/trades', icon: 'icon-regular-hand-two-arrows-horizontal', words: 'trading inbound outbound' },
     { label: LT('Trade Calculator'), href: '/trades/calculator', icon: 'routility-calc-nav-icon', words: 'value calc', flag: 'tradeCalculator' },

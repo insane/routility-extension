@@ -4,6 +4,7 @@
  "(no new posts)": "（没有新帖子）",
  "{a} and {b}": "{a}和{b}",
  "{amount} Robux": "{amount} Robux",
+ "{amount} to finish": "还差 {amount} 凑齐",
  "{amount}{pct} against you": "对你不利 {amount}{pct}",
  "{amount}{pct} in your favor": "对你有利 {amount}{pct}",
  "{amount}{pct} RAP against you": "RAP 对你不利 {amount}{pct}",
@@ -202,6 +203,9 @@
  "{n} of {max} communities joined": "已加入 {n}/{max} 个社群",
  "{n} of {max} people max": "{n}/{max} 人（上限）",
  "{n} of {total} owned": "已拥有 {n}/{total}",
+ "{n} off sale": {
+  "other": "{n} 件已下架"
+ },
  "{n} other extensions": {
   "other": "{n} 个其他扩展程序"
  },
@@ -1105,6 +1109,7 @@
  "first of your {n} copies": {
   "other": "你的 {n} 份中的第一份"
  },
+ "Fit {n}": "搭配 {n}",
  "Fix Shuffled Order": "修复被打乱的顺序",
  "Fixed": "修复",
  "Flags rare items and items whose RAP is pushed up by recent sales, on item pages, trades, the Marketplace and the calculator.": "在物品页面、交易、商城和计算器中，标记稀有物品以及 RAP 因近期成交而被抬高的物品。",
@@ -1370,7 +1375,6 @@
  "Items you received": "你收到的物品",
  "Items you’re watching.": "你正在关注的物品。",
  "Its RAP is pushed up by recent sales above its usual price": "它的 RAP 因近期高于常价的成交而被抬高",
- "Its RAP is pushed up by recent sales above its usual price. Be careful trading for it at RAP.": "它的 RAP 因近期高于常价的成交而被抬高。按 RAP 换取它时要小心。",
  "Jacket": "夹克",
  "Japanese Yen": "日元",
  "Join": "加入",
@@ -1641,6 +1645,7 @@
  "No requests match these filters.": "没有请求符合这些筛选条件。",
  "No requests match your search.": "没有请求符合你的搜索。",
  "No results for “{query}”": "没有“{query}”的结果",
+ "No saved fits yet. Use Save Fit to keep the outfit you’re trying on.": "还没有保存的搭配。使用“保存搭配”保留你正在试穿的造型。",
  "No saved looks yet. Put on the items you like, then press Save Current Look.": "还没有保存的造型。穿上你喜欢的物品，然后点击“保存当前造型”。",
  "No scripts in this model": "此模型中没有脚本",
  "No servers running in {region}…": "{region} 没有正在运行的服务器…",
@@ -1730,6 +1735,7 @@
  "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in your currency and what Plus has cost you so far.": "在 Roblox Plus 页面显示 Plus 的续订日期、价格和扣款渠道、下一个折扣的解锁日期、Plus 节省金额折合你的货币值多少，以及到目前为止 Plus 花了你多少钱。",
  "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.": "已开启。之后获得的徽章会在打开 Roblox 标签页时约 5 分钟内删除。已有的徽章会保留。",
  "Once you verify with Roblox, your notes are saved to your RoUtility account so they come back on other browsers. They’re encrypted and only you can get them. Turning this off deletes the backup.": "用 Roblox 验证后，你的备注会保存到你的 RoUtility 账户，在其他浏览器上也能恢复。备注经过加密，只有你能取回。关闭此项会删除备份。",
+ "One of the rarest limiteds, very few copies exist": "最稀有的限量物品之一，现存数量极少",
  "Online": "在线",
  "Online {time}": "{time}在线",
  "Online Status": "在线状态",
@@ -1778,6 +1784,7 @@
  "Outfit Rotator saved. Pick at least 2 characters to start rotating.": "换装轮换已保存。请至少选择 2 个角色才能开始。",
  "Outfit Rotator saved. Rotation is off.": "换装轮换已保存。轮换已关闭。",
  "Outfit Rotator stopped. Turn it back on here or in the avatar editor.": "换装轮换已停止。可在这里或形象编辑器中重新开启。",
+ "Outfit Worth": "服装价值",
  "Outfits": "服装",
  "Outfits ({n})": "服装（{n}）",
  "Overpay Warning": "多付警告",
@@ -2186,13 +2193,16 @@
  "Save Alert": "保存提醒",
  "Save Current Look": "保存当前造型",
  "Save current theme here": "将当前主题保存到这里",
+ "Save Fit": "保存搭配",
  "Save looks with items you don’t own yet. Wear them again in Fun Mode, and see what you’d need to buy to wear them for real.": "用你还没有的物品保存造型。在娱乐模式中再次穿上，并查看真正穿上需要购买哪些物品。",
  "Save them to a file, load them on another browser, or start over. The file also holds your left menu and home layouts, chat size, price alerts, hidden games and playtime history.": "将它们保存到文件、在另一个浏览器中加载，或从头开始。文件中还包含你的左侧菜单和主页布局、聊天大小、价格提醒和隐藏的游戏和游戏时长记录。",
  "Save to {slot}": "保存到{slot}",
  "Save to apply your changes.": "保存后更改生效。",
+ "Saved": "已保存",
  "Saved {file}.": "已保存 {file}。",
  "Saved by this player": "由此玩家保存",
  "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.": "付款页面上已保存的银行卡、PayPal、账单邮箱和地址、Roblox 点数以及礼品卡详情。",
+ "Saved Fits": "已保存的搭配",
  "Saved Outfits": "已保存的服装",
  "Saved Payment Method": "已保存的付款方式",
  "Saved, in {currency}": "节省金额（{currency}）",
@@ -2200,6 +2210,9 @@
  "Saved. Roblox is drawing your new thumbnail.": "已保存。Roblox 正在生成你的新缩略图。",
  "Saved. Roblox pages you already have open pick this up when they reload.": "已保存。你已经打开的 Roblox 页面会在重新加载时应用此设置。",
  "Saved. Your new thumbnail can take a minute to show up.": "已保存。你的新缩略图可能需要一分钟才会显示。",
+ "Saves the {n} items you’re trying on so you can wear them again later. They stay on this computer.": {
+  "other": "保存你正在试穿的 {n} 件物品，之后可以再次穿上。只保存在这台电脑上。"
+ },
  "Saves your current colors and background here": "将你当前的颜色和背景保存到这里",
  "Saving": "正在保存",
  "Saving…": "正在保存…",
@@ -2606,6 +2619,10 @@
  "Try On": "试穿",
  "Try On & Explore": "试穿和探索",
  "Try other words, or check the spelling.": "试试其他关键词，或检查拼写。",
+ "Try Their Fit": "试穿 TA 的搭配",
+ "Try these items on in Sandbox": "在沙盒中试穿这些物品",
+ "Try this on in Sandbox": "在沙盒中试穿",
+ "Try this outfit on in Sandbox": "在沙盒中试穿这套搭配",
  "Trying on": "试穿中",
  "Turkish Lira": "土耳其里拉",
  "Turn Off": "关闭",
@@ -2628,6 +2645,7 @@
  "Type a username (or paste a user ID) above to see their limiteds.": "在上方输入用户名（或粘贴用户 ID）即可查看其限量物品。",
  "Type a word or phrase in the search box to find threads and posts.": "在搜索框中输入字词或短语即可查找主题和帖子。",
  "Typing…": "正在输入…",
+ "Ultra Rare": "极其稀有",
  "Unavailable": "不可用",
  "Unavailable Game Details": "不可用游戏详情",
  "Under each device on Settings > Security, the IP address it last used, so a login you don’t recognize is easier to spot. Streamer Mode blurs it with the rest of the list.": "在 设置 > 安全 中每台设备下方显示其最后使用的 IP 地址，更容易发现陌生登录。主播模式会将它与列表其余部分一起模糊。",
@@ -2768,6 +2786,7 @@
  "What everything they own is worth in your currency.": "他们拥有的所有物品按你的货币计算的价值。",
  "What Shows Up": "显示的内容",
  "What the item is worth in your currency, next to its Robux price. Hover it for the RoUtility Value when the item has one.": "物品折合你的货币的价值，显示在 Robux 价格旁。物品有 RoUtility 价值时，悬停即可查看。",
+ "What the pieces you don’t own cost right now, using the lowest resale price for limiteds": "你没有的物品现在的价格，限量物品按最低转售价计算",
  "what you want": "你想要的",
  "What You’re Wearing": "你正在穿戴的",
  "What you’ve spent on each creator, experience, item type and month": "你在每个创作者、体验、物品类型和月份上的花费",
@@ -2856,6 +2875,7 @@
  "You own": "你拥有",
  "You Own": "你拥有",
  "You own {n}": "你拥有 {n} 个",
+ "You own {n} of {total}": "你拥有 {total} 件中的 {n} 件",
  "You own {name}": "你拥有 {name}",
  "You played here for about {n} minutes": {
   "other": "你在这里玩了大约 {n} 分钟"
@@ -3102,7 +3122,6 @@
  "Relevance": "相关度",
  "Sandbox": "Sandbox",
  "Sandbox Mode": "Sandbox 模式",
- "Search the Marketplace": "搜索市场",
  "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "试穿市场里的任何物品，包括限量物品。你在这里做的更改不会影响你的真实头像。",
  "Nothing in this category matches your filter.": "此类别中没有符合筛选条件的物品。",
  "Show All Items": "显示所有物品"

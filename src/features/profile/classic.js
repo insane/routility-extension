@@ -1653,7 +1653,7 @@
     pane.appendChild(showcase(s, { key: 'games', title: lt('Experiences'), kind: 'games', items: slides, gridItem: it => gameCard(it.game, s.thumbs.get('game:' + it.game.universeId)), extraClass: 'profile-game routility-classic-creations' }));
     if (!s.columns) {
       pane.appendChild(assetSection(lt('Models'), seeAll(`https://create.roblox.com/store/models?keyword=${encodeURIComponent(s.data.user.name)}`, lt('See All')), models, 'routility-classic-models'));
-      pane.appendChild(assetSection(lt('Clothing'), seeAll(`/catalog?CreatorName=${encodeURIComponent(s.data.user.name)}&CreatorType=User`, lt('See All')), items, 'routility-classic-clothing'));
+      pane.appendChild(assetSection(lt('Marketplace Items'), seeAll(`/catalog?CreatorName=${encodeURIComponent(s.data.user.name)}&CreatorType=User`, lt('See All')), items, 'routility-classic-clothing'));
     }
     if (s.columns && !games.length) {
       const empty = el('div', 'section routility-classic-creations-empty');
@@ -1663,7 +1663,7 @@
       pane.appendChild(empty);
     }
     if (s.columns && items.length) {
-      const clothing = assetSection(lt('Clothing'), seeAll(`/catalog?CreatorName=${encodeURIComponent(s.data.user.name)}&CreatorType=User`, lt('See All')), items.slice(0, 5), 'routility-classic-clothing');
+      const clothing = assetSection(lt('Marketplace Items'), seeAll(`/catalog?CreatorName=${encodeURIComponent(s.data.user.name)}&CreatorType=User`, lt('See All')), items.slice(0, 5), 'routility-classic-clothing');
       const right = s.root.querySelector('.routility-column-right');
       if (right) right.prepend(clothing);
       else pane.appendChild(clothing);

@@ -555,19 +555,9 @@
       thumb.appendChild(img);
     }
     thumbBox.appendChild(thumb);
-    if (item.rare || item.projected) {
+    if (item.rare || item.ultra || item.projected) {
       const tags = el('span', 'routility-calc-tags');
-      if (item.projected) {
-        const t = badge(lt('Projected'));
-        t.classList.add('routility-calc-rare', 'routility-calc-projected');
-        t.dataset.rtTip = lt('Its RAP is pushed up by recent sales above its usual price');
-        tags.appendChild(t);
-      }
-      if (item.rare) {
-        const t = badge(lt('Rare'));
-        t.classList.add('routility-calc-rare');
-        tags.appendChild(t);
-      }
+      tags.append(...window.RoUtilityUI.tagIcons(item));
       thumbBox.appendChild(tags);
     }
     if (item.serial) thumbBox.appendChild(el('span', 'routility-calc-serial text-label-small', '#' + formatNumber(item.serial)));

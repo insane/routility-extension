@@ -489,10 +489,10 @@
       img.src = it.thumb;
       box.appendChild(img);
     }
-    if (it.rare) {
-      const gem = el('span', 'routility-ads-gem');
-      gem.dataset.rtTip = lt('Rare');
-      box.appendChild(gem);
+    if (it.rare || it.ultra || it.projected) {
+      const tags = el('span', 'routility-ads-gem');
+      tags.append(...window.RoUtilityUI.tagIcons(it));
+      box.appendChild(tags);
     }
     if (opts.serial) box.appendChild(el('span', 'routility-ads-serial text-label-small', '#' + formatNumber(opts.serial)));
     const rap = el('span', 'routility-ads-tile-rap text-label-small content-muted');

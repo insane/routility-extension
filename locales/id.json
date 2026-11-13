@@ -4,6 +4,7 @@
  "(no new posts)": "(tidak ada postingan baru)",
  "{a} and {b}": "{a} dan {b}",
  "{amount} Robux": "{amount} Robux",
+ "{amount} to finish": "{amount} lagi untuk melengkapi",
  "{amount}{pct} against you": "{amount}{pct} merugikanmu",
  "{amount}{pct} in your favor": "{amount}{pct} menguntungkanmu",
  "{amount}{pct} RAP against you": "{amount}{pct} RAP merugikanmu",
@@ -202,6 +203,9 @@
  "{n} of {max} communities joined": "{n} dari {max} komunitas diikuti",
  "{n} of {max} people max": "Maks. {n} dari {max} orang",
  "{n} of {total} owned": "{n} dari {total} dimiliki",
+ "{n} off sale": {
+  "other": "{n} tidak dijual"
+ },
  "{n} other extensions": {
   "other": "{n} ekstensi lain"
  },
@@ -1105,6 +1109,7 @@
  "first of your {n} copies": {
   "other": "yang pertama dari {n} salinanmu"
  },
+ "Fit {n}": "Outfit {n}",
  "Fix Shuffled Order": "Perbaiki Urutan Acak",
  "Fixed": "Diperbaiki",
  "Flags rare items and items whose RAP is pushed up by recent sales, on item pages, trades, the Marketplace and the calculator.": "Menandai item langka dan item yang RAP-nya didorong naik oleh penjualan terbaru, di halaman item, perdagangan, Marketplace, dan kalkulator.",
@@ -1370,7 +1375,6 @@
  "Items you received": "Item yang kamu terima",
  "Items you’re watching.": "Item yang kamu pantau.",
  "Its RAP is pushed up by recent sales above its usual price": "RAP-nya didorong naik oleh penjualan terbaru di atas harga biasanya",
- "Its RAP is pushed up by recent sales above its usual price. Be careful trading for it at RAP.": "RAP-nya didorong naik oleh penjualan terbaru di atas harga biasanya. Hati-hati menukarnya di harga RAP.",
  "Jacket": "Jaket",
  "Japanese Yen": "Yen Jepang",
  "Join": "Gabung",
@@ -1641,6 +1645,7 @@
  "No requests match these filters.": "Tidak ada permintaan yang cocok dengan filter ini.",
  "No requests match your search.": "Tidak ada permintaan yang cocok dengan pencarianmu.",
  "No results for “{query}”": "Tidak ada hasil untuk “{query}”",
+ "No saved fits yet. Use Save Fit to keep the outfit you’re trying on.": "Belum ada outfit tersimpan. Gunakan Simpan Outfit untuk menyimpan outfit yang sedang kamu coba.",
  "No saved looks yet. Put on the items you like, then press Save Current Look.": "Belum ada gaya tersimpan. Pakai item yang kamu suka, lalu tekan Simpan Gaya Saat Ini.",
  "No scripts in this model": "Tidak ada skrip di model ini",
  "No servers running in {region}…": "Tidak ada server berjalan di {region}…",
@@ -1730,6 +1735,7 @@
  "On the Roblox Plus page: when Plus renews, the price and where you’re billed, when your next discount unlocks, what your Plus savings are worth in your currency and what Plus has cost you so far.": "Di halaman Roblox Plus: kapan Plus diperpanjang, harga dan tempat penagihannya, kapan diskon berikutnya terbuka, berapa nilai hematan Plus dalam mata uangmu, dan berapa biaya Plus sejauh ini.",
  "On. Badges you earn from now on are removed within about 5 minutes while a Roblox tab is open. Badges you already have stay.": "Aktif. Lencana yang kamu dapat mulai sekarang dihapus dalam sekitar 5 menit selama tab Roblox terbuka. Lencana yang sudah ada tetap.",
  "Once you verify with Roblox, your notes are saved to your RoUtility account so they come back on other browsers. They’re encrypted and only you can get them. Turning this off deletes the backup.": "Setelah kamu verifikasi dengan Roblox, catatanmu disimpan ke akun RoUtility-mu agar muncul lagi di browser lain. Catatan dienkripsi dan hanya kamu yang bisa mengambilnya. Mematikan ini akan menghapus cadangannya.",
+ "One of the rarest limiteds, very few copies exist": "Salah satu limited paling langka, sangat sedikit salinannya",
  "Online": "Online",
  "Online {time}": "Online {time}",
  "Online Status": "Status Online",
@@ -1778,6 +1784,7 @@
  "Outfit Rotator saved. Pick at least 2 characters to start rotating.": "Rotasi Outfit disimpan. Pilih minimal 2 karakter untuk mulai.",
  "Outfit Rotator saved. Rotation is off.": "Rotasi Outfit disimpan. Rotasi mati.",
  "Outfit Rotator stopped. Turn it back on here or in the avatar editor.": "Rotasi Outfit dihentikan. Nyalakan lagi di sini atau di editor avatar.",
+ "Outfit Worth": "Nilai Outfit",
  "Outfits": "Outfit",
  "Outfits ({n})": "Outfit ({n})",
  "Overpay Warning": "Peringatan Bayar Lebih",
@@ -2186,13 +2193,16 @@
  "Save Alert": "Simpan Peringatan",
  "Save Current Look": "Simpan Gaya Saat Ini",
  "Save current theme here": "Simpan tema saat ini di sini",
+ "Save Fit": "Simpan Outfit",
  "Save looks with items you don’t own yet. Wear them again in Fun Mode, and see what you’d need to buy to wear them for real.": "Simpan gaya dengan item yang belum kamu miliki. Pakai lagi di Mode Seru, dan lihat apa yang perlu kamu beli untuk memakainya sungguhan.",
  "Save them to a file, load them on another browser, or start over. The file also holds your left menu and home layouts, chat size, price alerts, hidden games and playtime history.": "Simpan ke file, muat di browser lain, atau mulai dari awal. File itu juga menyimpan tata letak menu kiri dan beranda, ukuran chat, peringatan harga, dan game tersembunyi dan riwayat waktu bermain.",
  "Save to {slot}": "Simpan ke {slot}",
  "Save to apply your changes.": "Simpan untuk menerapkan perubahan.",
+ "Saved": "Tersimpan",
  "Saved {file}.": "{file} disimpan.",
  "Saved by this player": "Disimpan oleh pemain ini",
  "Saved cards, PayPal, billing email and address, Roblox Credit and gift card details on the Payments page.": "Kartu tersimpan, PayPal, email dan alamat penagihan, Kredit Roblox, dan detail kartu hadiah di halaman Pembayaran.",
+ "Saved Fits": "Outfit Tersimpan",
  "Saved Outfits": "Outfit Tersimpan",
  "Saved Payment Method": "Metode Pembayaran Tersimpan",
  "Saved, in {currency}": "Hemat, dalam {currency}",
@@ -2200,6 +2210,9 @@
  "Saved. Roblox is drawing your new thumbnail.": "Tersimpan. Roblox sedang menggambar thumbnail barumu.",
  "Saved. Roblox pages you already have open pick this up when they reload.": "Tersimpan. Halaman Roblox yang sudah terbuka akan menerapkannya saat dimuat ulang.",
  "Saved. Your new thumbnail can take a minute to show up.": "Tersimpan. Thumbnail barumu bisa butuh semenit untuk muncul.",
+ "Saves the {n} items you’re trying on so you can wear them again later. They stay on this computer.": {
+  "other": "Menyimpan {n} item yang sedang kamu coba agar bisa dipakai lagi nanti. Tersimpan di komputer ini."
+ },
  "Saves your current colors and background here": "Menyimpan warna dan latar belakangmu saat ini di sini",
  "Saving": "Menyimpan",
  "Saving…": "Menyimpan…",
@@ -2606,6 +2619,10 @@
  "Try On": "Coba",
  "Try On & Explore": "Coba & Jelajahi",
  "Try other words, or check the spelling.": "Coba kata lain, atau cek ejaannya.",
+ "Try Their Fit": "Coba Outfit Mereka",
+ "Try these items on in Sandbox": "Coba item ini di Sandbox",
+ "Try this on in Sandbox": "Coba di Sandbox",
+ "Try this outfit on in Sandbox": "Coba outfit ini di Sandbox",
  "Trying on": "Sedang mencoba",
  "Turkish Lira": "Lira Turki",
  "Turn Off": "Matikan",
@@ -2628,6 +2645,7 @@
  "Type a username (or paste a user ID) above to see their limiteds.": "Ketik username (atau tempel user ID) di atas untuk melihat limited-nya.",
  "Type a word or phrase in the search box to find threads and posts.": "Ketik kata atau frasa di kotak pencarian untuk menemukan thread dan postingan.",
  "Typing…": "Mengetik…",
+ "Ultra Rare": "Ultra Langka",
  "Unavailable": "Tidak tersedia",
  "Unavailable Game Details": "Detail Game Tidak Tersedia",
  "Under each device on Settings > Security, the IP address it last used, so a login you don’t recognize is easier to spot. Streamer Mode blurs it with the rest of the list.": "Di bawah setiap perangkat di Pengaturan > Keamanan, alamat IP terakhir yang dipakai, agar login yang tidak kamu kenali lebih mudah terlihat. Mode Streamer mengaburkannya bersama daftar lainnya.",
@@ -2768,6 +2786,7 @@
  "What everything they own is worth in your currency.": "Berapa nilai semua yang mereka miliki dalam mata uangmu.",
  "What Shows Up": "Yang Ditampilkan",
  "What the item is worth in your currency, next to its Robux price. Hover it for the RoUtility Value when the item has one.": "Nilai item dalam mata uangmu, di samping harga Robux-nya. Arahkan kursor untuk melihat Nilai RoUtility jika item punya.",
+ "What the pieces you don’t own cost right now, using the lowest resale price for limiteds": "Harga saat ini untuk item yang belum kamu miliki, memakai harga jual ulang terendah untuk limited",
  "what you want": "yang kamu mau",
  "What You’re Wearing": "Yang Kamu Pakai",
  "What you’ve spent on each creator, experience, item type and month": "Berapa yang kamu belanjakan untuk tiap kreator, pengalaman, jenis item, dan bulan",
@@ -2856,6 +2875,7 @@
  "You own": "Kamu memiliki",
  "You Own": "Kamu Memiliki",
  "You own {n}": "Kamu memiliki {n}",
+ "You own {n} of {total}": "Kamu punya {n} dari {total}",
  "You own {name}": "Kamu pemilik {name}",
  "You played here for about {n} minutes": {
   "other": "Kamu bermain di sini sekitar {n} menit"
@@ -3102,7 +3122,6 @@
  "Relevance": "Relevansi",
  "Sandbox": "Sandbox",
  "Sandbox Mode": "Mode Sandbox",
- "Search the Marketplace": "Cari di Marketplace",
  "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Coba apa saja dari Marketplace, termasuk limited. Apa pun yang kamu ubah di sini tidak menyentuh avatar aslimu.",
  "Nothing in this category matches your filter.": "Tidak ada di kategori ini yang cocok dengan filtermu.",
  "Show All Items": "Tampilkan Semua Item"
