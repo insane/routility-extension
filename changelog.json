@@ -6,22 +6,29 @@
   },
   "releases": [
     {
+      "version": "1.2.2",
+      "date": "2026-11-13",
+      "summary": "Try anything in Sandbox from item pages, trades and profiles, keep Saved Fits, see your Outfit Worth, and item tags with the routility.io icons.",
+      "changes": [
+        { "type": "new", "text": "Try anything in Sandbox: a Sandbox button on item and bundle pages, Try On on each side of a trade, and Try Their Fit on profiles load those items or that whole outfit onto your Sandbox avatar." },
+        { "type": "new", "text": "Sandbox: Save Fit and Saved Fits keep outfits you put together, Undo steps back a change, Enlarge can download the picture, and Outfit Worth shows how many pieces you own and what the rest would cost." },
+        { "type": "new", "text": "Sandbox: the item search covers the whole Marketplace, the limited filters and sort sit right above the items, and an Outfit Worth total shows what your fit would be worth." },
+        { "type": "improved", "text": "Item tags now use the same icons as routility.io: a gem for Rare, a golden gem for Ultra Rare and a warning sign for Projected." },
+        { "type": "improved", "text": "Avatar: the Wearing panel shows your outfit's full Value as one big Outfit Worth total, with RAP and price underneath." },
+        { "type": "fixed", "text": "Trade search: trades that don't match no longer pop back in at the top after you open a matching trade." },
+        { "type": "fixed", "text": "Classic Profile Layout: the creations section is now called Marketplace Items, since it shows hats, backgrounds and more, not just clothing." }
+      ]
+    },
+    {
       "version": "1.2.1",
       "date": "2026-11-11",
       "summary": "Sandbox Mode to try on any Marketplace item, limiteds included, plus profile and tooltip fixes.",
       "changes": [
         { "type": "new", "text": "Sandbox (Avatar): a Sandbox page in the sidebar opens the avatar editor with every Marketplace item to try on, limiteds included, with the priciest classic limiteds first. Filter by limiteds, search, sort and enlarge the preview. Nothing you wear there is saved, and Exit Sandbox brings your real avatar back." },
-        { "type": "new", "text": "Sandbox: the item search covers the whole Marketplace, the limited filters and sort sit right above the items, and an Outfit Worth total shows what your fit would be worth." },
-        { "type": "improved", "text": "Avatar: the Wearing panel shows your outfit's full Value as one big Outfit Worth total, with RAP and price underneath." },
-        { "type": "new", "text": "Try anything in Sandbox: a Sandbox button on item and bundle pages, Try On on each side of a trade, and Try Their Fit on profiles load those items or that whole outfit onto your Sandbox avatar." },
-        { "type": "new", "text": "Sandbox: Save Fit and Saved Fits keep outfits you put together, Undo steps back a change, Enlarge can download the picture, and Outfit Worth shows how many pieces you own and what the rest would cost." },
-        { "type": "fixed", "text": "Classic Profile Layout: the creations section is now called Marketplace Items, since it shows hats, backgrounds and more, not just clothing." },
-        { "type": "improved", "text": "Item tags now use the same icons as routility.io: a gem for Rare, a golden gem for Ultra Rare and a warning sign for Projected." },
         { "type": "improved", "text": "Click the magnifying glass in the search bar to open the Command Palette with whatever you typed." },
         { "type": "fixed", "text": "Hover hints no longer stay stuck on screen when the panel under them refreshes." },
         { "type": "fixed", "text": "Edit in Studio no longer shows the game launch window as if you were joining a server." },
-        { "type": "fixed", "text": "Classic Profile Layout: Send Robux and Customize name no longer overlap the pills under the name." },
-        { "type": "fixed", "text": "Trade search: trades that don't match no longer pop back in at the top after you open a matching trade." }
+        { "type": "fixed", "text": "Classic Profile Layout: Send Robux and Customize name no longer overlap the pills under the name." }
       ]
     },
     {
