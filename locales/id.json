@@ -3129,5 +3129,19 @@
  "Sandbox Mode": "Mode Sandbox",
  "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Coba apa saja dari Marketplace, termasuk limited. Apa pun yang kamu ubah di sini tidak menyentuh avatar aslimu.",
  "Nothing in this category matches your filter.": "Tidak ada di kategori ini yang cocok dengan filtermu.",
- "Show All Items": "Tampilkan Semua Item"
+ "Show All Items": "Tampilkan Semua Item",
+ "Stopped waiting for {game} after 15 minutes. The server stayed full.": "Berhenti menunggu {game} setelah 15 menit. Servernya tetap penuh.",
+ "A spot opened in {game}. Joining now.": "Ada slot kosong di {game}. Bergabung sekarang.",
+ "The server you were waiting for in {game} closed.": "Server yang kamu tunggu di {game} sudah ditutup.",
+ "Play this place": "Mainkan tempat ini",
+ "Remove from Friend History": "Hapus dari Riwayat Teman",
+ "Can’t Trade": "Tidak Bisa Trade",
+ "Start a trade with this person": "Mulai trade dengan orang ini",
+ "Not accepting trades from you. Their trade settings may only allow friends or people they follow.": "Tidak menerima trade darimu. Pengaturan trade mereka mungkin hanya mengizinkan teman atau orang yang mereka ikuti.",
+ "This account can’t trade.": "Akun ini tidak bisa trade.",
+ "Your “Who can trade with me?” setting doesn’t include this person. Click to change it.": "Pengaturan “Siapa yang bisa trade denganku?” milikmu tidak mencakup orang ini. Klik untuk mengubahnya.",
+ "Trade Button on Profiles": "Tombol Trade di Profil",
+ "A Trade button next to Add Friend on profiles. When you can’t trade with someone, it says Can’t Trade, and hovering it shows why.": "Tombol Trade di sebelah Tambah Teman di profil. Jika kamu tidak bisa trade dengan seseorang, tertulis Tidak Bisa Trade, dan arahkan kursor untuk melihat alasannya.",
+ "Profile Background": "Latar Profil",
+ "When someone sets a profile background, it shows as a banner across the top with their avatar, and behind Currently Wearing.": "Jika seseorang memasang latar profil, latarnya tampil sebagai banner di atas bersama avatarnya, dan di belakang Sedang Dipakai."
 }

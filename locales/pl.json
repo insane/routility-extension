@@ -3576,5 +3576,19 @@
  "Sandbox Mode": "Tryb Sandbox",
  "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Przymierz wszystko z Marketplace, łącznie z limitedami. Nic, co tu zmienisz, nie dotyka twojego prawdziwego awatara.",
  "Nothing in this category matches your filter.": "Nic w tej kategorii nie pasuje do twojego filtra.",
- "Show All Items": "Pokaż wszystkie przedmioty"
+ "Show All Items": "Pokaż wszystkie przedmioty",
+ "Stopped waiting for {game} after 15 minutes. The server stayed full.": "Przestano czekać na {game} po 15 minutach. Serwer był wciąż pełny.",
+ "A spot opened in {game}. Joining now.": "Zwolniło się miejsce w {game}. Dołączanie.",
+ "The server you were waiting for in {game} closed.": "Serwer w {game}, na który czekasz, został zamknięty.",
+ "Play this place": "Graj w to miejsce",
+ "Remove from Friend History": "Usuń z historii znajomych",
+ "Can’t Trade": "Brak wymiany",
+ "Start a trade with this person": "Rozpocznij wymianę z tą osobą",
+ "Not accepting trades from you. Their trade settings may only allow friends or people they follow.": "Nie przyjmuje od ciebie wymian. Jej ustawienia mogą zezwalać tylko znajomym lub osobom, które obserwuje.",
+ "This account can’t trade.": "To konto nie może wymieniać.",
+ "Your “Who can trade with me?” setting doesn’t include this person. Click to change it.": "Twoje ustawienie „Kto może się ze mną wymieniać?” nie obejmuje tej osoby. Kliknij, aby je zmienić.",
+ "Trade Button on Profiles": "Przycisk wymiany na profilach",
+ "A Trade button next to Add Friend on profiles. When you can’t trade with someone, it says Can’t Trade, and hovering it shows why.": "Przycisk Wymień obok Dodaj znajomego na profilach. Gdy nie możesz się z kimś wymienić, pokazuje Brak wymiany, a po najechaniu widać powód.",
+ "Profile Background": "Tło profilu",
+ "When someone sets a profile background, it shows as a banner across the top with their avatar, and behind Currently Wearing.": "Gdy ktoś ustawi tło profilu, pojawia się ono jako baner u góry z awatarem oraz za sekcją Aktualnie ma na sobie."
 }

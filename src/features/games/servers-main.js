@@ -37,6 +37,14 @@
       redirect = from === to ? null : { to, path: new RegExp(`(/games/)${from}(/servers\\b)`, 'g'), query: new RegExp(`([?&]placeId=)${from}(?=&|$)`, 'g') };
       return;
     }
+    if (e.data.type === 'routility-play') {
+      const id = Number(e.data.placeId);
+      if (!Number.isFinite(id) || id <= 0) return;
+      const launcher = window.Roblox && window.Roblox.GameLauncher;
+      if (launcher && typeof launcher.joinMultiplayerGame === 'function') launcher.joinMultiplayerGame(id);
+      else location.href = `roblox://experiences/start?placeId=${id}`;
+      return;
+    }
     if (e.data.type !== 'routility-join') return;
     const placeId = Number(e.data.placeId);
     const gameId = String(e.data.gameId || '');

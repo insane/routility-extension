@@ -3129,5 +3129,19 @@
  "Sandbox Mode": "Sandbox 模式",
  "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "试穿市场里的任何物品，包括限量物品。你在这里做的更改不会影响你的真实头像。",
  "Nothing in this category matches your filter.": "此类别中没有符合筛选条件的物品。",
- "Show All Items": "显示所有物品"
+ "Show All Items": "显示所有物品",
+ "Stopped waiting for {game} after 15 minutes. The server stayed full.": "已等待 {game} 15 分钟，服务器仍然满员，已停止等待。",
+ "A spot opened in {game}. Joining now.": "{game} 有空位了，正在加入。",
+ "The server you were waiting for in {game} closed.": "你在等待的 {game} 服务器已关闭。",
+ "Play this place": "玩这个地点",
+ "Remove from Friend History": "从好友记录中删除",
+ "Can’t Trade": "无法交易",
+ "Start a trade with this person": "与此人开始交易",
+ "Not accepting trades from you. Their trade settings may only allow friends or people they follow.": "不接受你的交易。对方的交易设置可能只允许好友或其关注的人。",
+ "This account can’t trade.": "此账户无法交易。",
+ "Your “Who can trade with me?” setting doesn’t include this person. Click to change it.": "你的“谁可以与我交易？”设置不包括此人。点击进行更改。",
+ "Trade Button on Profiles": "个人资料交易按钮",
+ "A Trade button next to Add Friend on profiles. When you can’t trade with someone, it says Can’t Trade, and hovering it shows why.": "在个人资料的“添加好友”旁显示交易按钮。无法与某人交易时会显示“无法交易”，悬停即可查看原因。",
+ "Profile Background": "个人资料背景",
+ "When someone sets a profile background, it shows as a banner across the top with their avatar, and behind Currently Wearing.": "设置了个人资料背景的人，背景会作为带头像的横幅显示在顶部，并显示在“当前穿戴”后面。"
 }

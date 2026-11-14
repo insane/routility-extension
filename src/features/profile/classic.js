@@ -311,6 +311,18 @@
     if (native) for (const child of native.children) host.appendChild(child.cloneNode(true));
   }
 
+  function syncAbout(s) {
+    const native = document.querySelector('#content > .profile-platform-container .user-profile-header pre.description-content');
+    if (!native || !s.data || !s.data.user) return;
+    const text = native.textContent;
+    if (text.trim() === (s.data.user.description || '').trim()) return;
+    const body = s.root.querySelector('.routility-about-body');
+    if (body && body.querySelector('textarea')) return;
+    s.data.user.description = text;
+    try { sessionStorage.removeItem(PROFILE_CACHE); } catch {}
+    if (body) aboutContent(body, text);
+  }
+
   function syncName(s) {
     const shown = s.root.querySelector('.profile-name');
     const name = document.querySelector('#content > .profile-platform-container #profile-header-title-container-name')?.textContent.trim();
@@ -319,11 +331,53 @@
     try { sessionStorage.removeItem(PROFILE_CACHE); } catch {}
   }
 
+  let bannerOn = true;
+  chrome.storage.local.get('routilitySettings', (st) => { bannerOn = (st.routilitySettings || {}).classicBanner !== false; });
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== 'local' || !changes.routilitySettings) return;
+    bannerOn = (changes.routilitySettings.newValue || {}).classicBanner !== false;
+    if (state) syncBackground(state);
+  });
+
+  function syncBackground(s) {
+    const native = document.querySelector('#content > .profile-platform-container .currently-wearing-avatar-with-background');
+    const bgNode = native && native.querySelector('.profile-avatar-background-with-image');
+    const bg = bgNode && getComputedStyle(bgNode).backgroundImage;
+    const url = bannerOn && bg && bg.startsWith('url(') ? bg : '';
+    const fit = url && native.querySelector('.profile-avatar-background-with-image img')?.src || '';
+    let banner = s.root.querySelector('.routility-classic-banner');
+    const left = s.root.querySelector('.routility-classic-wearing .profile-avatar-left');
+    if (!url) {
+      banner?.remove();
+      if (left) {
+        left.classList.remove('routility-classic-has-bg');
+        left.style.backgroundImage = '';
+      }
+      return;
+    }
+    if (!banner) {
+      banner = el('div', 'routility-injected routility-classic-banner');
+      banner.appendChild(el('img', 'routility-classic-banner-fit'));
+      banner.firstChild.alt = '';
+      s.root.prepend(banner);
+    }
+    if (banner.style.backgroundImage !== url) banner.style.backgroundImage = url;
+    const img = banner.firstChild;
+    if (fit && img.src !== fit) img.src = fit;
+    img.hidden = !fit;
+    if (left && left.style.backgroundImage !== url) {
+      left.style.backgroundImage = url;
+      left.classList.add('routility-classic-has-bg');
+    }
+  }
+
   function syncActions() {
     const s = state;
     if (!s) return;
     syncBadges(s);
     syncName(s);
+    syncAbout(s);
+    syncBackground(s);
     const list = s.root.querySelector('.details-actions');
     if (!list) return;
     const natives = nativeButtons();
@@ -333,7 +387,7 @@
     const p = s.presence;
     const mine = String(s.userId) === document.querySelector('meta[name="user-data"]')?.dataset.userid;
     const follow = !mine && p && p.userPresenceType === 2 && p.placeId && p.gameId && !joins.some(Boolean);
-    const key = labels.map((l, i) => l + (off[i] ? ':off' : '')).join('|') + (follow ? '|follow' : '');
+    const key = labels.map((l, i) => l + (off[i] ? ':off' : '') + (natives[i].dataset.rtTip ? ':' + natives[i].dataset.rtTip : '')).join('|') + (follow ? '|follow' : '');
     if (list.dataset.labels === key) return;
     list.dataset.labels = key;
     list.textContent = '';
@@ -350,7 +404,11 @@
       const join = joins[i];
       const b = el('button', join ? 'btn-growth-md routility-join-game' : 'btn-control-md', join ? lt('Join Game') : labels[i]);
       b.type = 'button';
-      if (off[i]) {
+      if (nb.dataset.rtTip) b.dataset.rtTip = nb.dataset.rtTip;
+      if (off[i] && nb.dataset.rtTip) {
+        b.classList.add('disabled', 'routility-tip-disabled');
+        b.setAttribute('aria-disabled', 'true');
+      } else if (off[i]) {
         b.classList.add('disabled');
         b.disabled = true;
       } else {
@@ -825,7 +883,7 @@
     const sec = el('div', 'section profile-about');
     const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
     const mine = !!me && String(me) === String(s.userId) && !user.isBanned;
-    const body = el('div', 'section-content remove-panel');
+    const body = el('div', 'section-content remove-panel routility-about-body');
     const head = header(lt('About'), socialLinks(s.data.socials));
     if (mine) {
       const edit = el('button', 'btn-generic-edit-sm routility-about-edit');

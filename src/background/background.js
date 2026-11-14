@@ -2630,3 +2630,105 @@ async function rearm() {
 }
 
 rearm();
+
+const JOIN_WAIT_KEY = 'routilityJoinWaits';
+const JOIN_WAIT_EVERY = 6000;
+const JOIN_WAIT_GIVE_UP = 15 * 60000;
+const joinWaitTimers = new Map();
+const joinWaitBusy = new Set();
+
+async function joinWaitAll() {
+  return (await chrome.storage.session.get(JOIN_WAIT_KEY).catch(() => ({})))[JOIN_WAIT_KEY] || {};
+}
+
+function joinWaitEdit(fn) {
+  return serial('joinWait', async () => {
+    const all = await joinWaitAll();
+    fn(all);
+    await chrome.storage.session.set({ [JOIN_WAIT_KEY]: all }).catch(() => {});
+    return all;
+  });
+}
+
+function joinWaitArm(tabId) {
+  if (joinWaitTimers.has(tabId)) return;
+  joinWaitTimers.set(tabId, setInterval(() => joinWaitCheck(tabId), JOIN_WAIT_EVERY));
+  joinWaitCheck(tabId);
+}
+
+async function joinWaitIcon(placeId) {
+  const r = await authJson(`https://thumbnails.roblox.com/v1/places/gameicons?placeIds=${placeId}&size=150x150&format=Png&isCircular=false`).catch(() => null);
+  const img = r && r.data && r.data.data && r.data.data[0] && r.data.data[0].imageUrl;
+  return (img && await dataUrl(img).catch(() => null)) || chrome.runtime.getURL('assets/icons/icon128.png');
+}
+
+async function joinWaitEnd(tabId, w, state, message) {
+  clearInterval(joinWaitTimers.get(tabId));
+  joinWaitTimers.delete(tabId);
+  await joinWaitEdit(all => { if (all[tabId] && all[tabId].id === w.id) delete all[tabId]; });
+  chrome.tabs.sendMessage(tabId, { type: 'joinWaitState', id: w.id, state }, { frameId: 0 }).catch(() => {});
+  if (!message) return;
+  await i18nLoaded;
+  showNotification(`joinwait:${w.id}:${Date.now()}`, lt('Join When Open'), message, await joinWaitIcon(w.placeId), null).catch(() => {});
+}
+
+async function joinWaitCheck(tabId) {
+  if (joinWaitBusy.has(tabId)) return;
+  const w = (await joinWaitAll())[tabId];
+  if (!w) {
+    clearInterval(joinWaitTimers.get(tabId));
+    joinWaitTimers.delete(tabId);
+    return;
+  }
+  const tab = await chrome.tabs.get(tabId).catch(() => null);
+  if (!tab || !/^https:\/\/www\.roblox\.com\//.test(tab.url || '')) return joinWaitEnd(tabId, w, 'stopped');
+  await i18nLoaded;
+  if (Date.now() - w.started > JOIN_WAIT_GIVE_UP) return joinWaitEnd(tabId, w, 'stopped', lt('Stopped waiting for {game} after 15 minutes. The server stayed full.', { game: w.game }));
+  joinWaitBusy.add(tabId);
+  try {
+    const res = await chrome.tabs.sendMessage(tabId, { type: 'joinWaitScan', id: w.id, placeId: w.placeId }, { frameId: 0 }).catch(() => null);
+    if (!res || !res.state) return;
+    const current = (await joinWaitAll())[tabId];
+    if (!current || current.id !== w.id) return;
+    if (res.state === 'open') {
+      chrome.tabs.sendMessage(tabId, { type: 'joinWaitGo', id: w.id, placeId: w.placeId }, { frameId: 0 }).catch(() => {});
+      return joinWaitEnd(tabId, w, 'joining', lt('A spot opened in {game}. Joining now.', { game: w.game }));
+    }
+    if (res.state === 'gone') return joinWaitEnd(tabId, w, 'stopped', lt('The server you were waiting for in {game} closed.', { game: w.game }));
+  } finally {
+    joinWaitBusy.delete(tabId);
+  }
+}
+
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  if (!msg || typeof msg.type !== 'string' || !msg.type.startsWith('joinWait')) return;
+  const tabId = sender.tab && sender.tab.id;
+  if (!tabId) return;
+  if (msg.type === 'joinWaitStart') {
+    const id = String(msg.id || '');
+    const placeId = String(msg.placeId || '');
+    if (!/^[0-9a-f-]{36}$/i.test(id) || !/^\d{1,20}$/.test(placeId)) return sendResponse(null);
+    const w = { id, placeId, game: String(msg.game || '').slice(0, 80) || 'Roblox', started: Date.now() };
+    joinWaitEdit(all => { all[tabId] = w; }).then(() => { joinWaitArm(tabId); sendResponse(w); });
+    return true;
+  }
+  if (msg.type === 'joinWaitStop') {
+    clearInterval(joinWaitTimers.get(tabId));
+    joinWaitTimers.delete(tabId);
+    joinWaitEdit(all => { delete all[tabId]; }).then(() => sendResponse(true));
+    return true;
+  }
+  if (msg.type === 'joinWaitGet') {
+    joinWaitAll().then(all => sendResponse(all[tabId] || null));
+    return true;
+  }
+});
+
+chrome.tabs.onRemoved.addListener((tabId) => {
+  if (!joinWaitTimers.has(tabId)) return;
+  clearInterval(joinWaitTimers.get(tabId));
+  joinWaitTimers.delete(tabId);
+  joinWaitEdit(all => { delete all[tabId]; });
+});
+
+joinWaitAll().then(all => Object.keys(all).forEach(t => joinWaitArm(Number(t))));

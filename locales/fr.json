@@ -3278,5 +3278,19 @@
  "Sandbox Mode": "Mode bac à sable",
  "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Essaie n’importe quoi de la Boutique, limités compris. Rien de ce que tu changes ici ne touche ton vrai avatar.",
  "Nothing in this category matches your filter.": "Rien dans cette catégorie ne correspond à ton filtre.",
- "Show All Items": "Afficher tous les articles"
+ "Show All Items": "Afficher tous les articles",
+ "Stopped waiting for {game} after 15 minutes. The server stayed full.": "Attente arrêtée pour {game} après 15 minutes. Le serveur est resté plein.",
+ "A spot opened in {game}. Joining now.": "Une place s’est libérée dans {game}. Connexion en cours.",
+ "The server you were waiting for in {game} closed.": "Le serveur que tu attendais dans {game} a fermé.",
+ "Play this place": "Jouer à ce lieu",
+ "Remove from Friend History": "Retirer de l’historique d’amis",
+ "Can’t Trade": "Échange impossible",
+ "Start a trade with this person": "Commencer un échange avec cette personne",
+ "Not accepting trades from you. Their trade settings may only allow friends or people they follow.": "N’accepte pas tes échanges. Ses réglages peuvent n’autoriser que ses amis ou les personnes qu’elle suit.",
+ "This account can’t trade.": "Ce compte ne peut pas échanger.",
+ "Your “Who can trade with me?” setting doesn’t include this person. Click to change it.": "Ton réglage « Qui peut échanger avec moi ? » n’inclut pas cette personne. Clique pour le modifier.",
+ "Trade Button on Profiles": "Bouton Échanger sur les profils",
+ "A Trade button next to Add Friend on profiles. When you can’t trade with someone, it says Can’t Trade, and hovering it shows why.": "Un bouton Échanger à côté d’Ajouter en ami sur les profils. Si tu ne peux pas échanger avec quelqu’un, il affiche Échange impossible et le survol indique pourquoi.",
+ "Profile Background": "Arrière-plan du profil",
+ "When someone sets a profile background, it shows as a banner across the top with their avatar, and behind Currently Wearing.": "Quand quelqu’un choisit un arrière-plan de profil, il s’affiche en bannière en haut avec son avatar et derrière Porte actuellement."
 }

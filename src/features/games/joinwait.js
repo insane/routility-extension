@@ -4,15 +4,13 @@
   if (location.hostname !== 'www.roblox.com') return;
   const { el, json, onFrame } = window.RoUtilityUI;
   const { lt } = window.RoUtilityI18n;
-  const EVERY = 6000;
-  const GIVE_UP = 15 * 60000;
   const TILE = 'li.rbx-public-game-server-item, li.rbx-friends-game-server-item';
   const servers = new Map();
   let on = false;
   let observer = null;
   let watch = null;
 
-  const placeId = () => Number((location.pathname.match(/^\/games\/(\d+)/i) || [])[1]) || 0;
+  const placeId = () => Number(document.documentElement.dataset.routilitySubplace) || Number((location.pathname.match(/^\/games\/(\d+)/i) || [])[1]) || 0;
   const shortOf = (li) => li.querySelector('.server-id-text')?.textContent.replace(/^[^:]*:\s*/, '').trim() || '';
   const clock = (ms) => {
     const sec = Math.max(0, Math.floor(ms / 1000));
@@ -69,63 +67,88 @@
     }
   }
 
-  function stop() {
+  let base = null;
+
+  function untitle() {
+    if (base === null) return;
+    document.title = base;
+    base = null;
+  }
+
+  function tick() {
+    document.querySelectorAll('.routility-wait-btn').forEach(label);
+    if (!watch || watch.state === 'joining') return untitle();
+    if (base === null) base = document.title;
+    document.title = `${lt('Waiting {time}', { time: clock(Date.now() - watch.started) })} · ${base}`;
+  }
+
+  function drop() {
     if (!watch) return;
-    clearInterval(watch.poll);
     clearInterval(watch.tick);
     watch = null;
+    untitle();
     paint();
   }
 
-  function join() {
-    if (!watch || watch.state === 'joining') return;
-    watch.state = 'joining';
+  function stop() {
+    if (!watch) return;
+    drop();
+    chrome.runtime.sendMessage({ type: 'joinWaitStop' }).catch(() => {});
+  }
+
+  function adopt(w, state) {
+    if (watch) clearInterval(watch.tick);
+    watch = { id: w.id, placeId: Number(w.placeId), started: w.started, state };
+    watch.tick = setInterval(tick, 1000);
+    tick();
     paint();
-    window.postMessage({ type: 'routility-join', placeId: watch.placeId, gameId: watch.id }, location.origin);
-    setTimeout(stop, 4000);
   }
 
-  async function check() {
-    const w = watch;
-    if (!w || w.busy || w.state === 'joining') return;
-    if (Date.now() - w.started > GIVE_UP) return stop();
-    w.busy = true;
-    try {
-      let cursor = '';
-      for (let page = 0; page < 5; page++) {
-        const d = await json(`https://games.roblox.com/v1/games/${w.placeId}/servers/Public?sortOrder=Desc&excludeFullGames=false&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`);
-        if (watch !== w || !d) return;
-        for (const sv of d.data || []) {
-          if (sv.id === w.id) {
-            if (Number(sv.playing) < Number(sv.maxPlayers)) join();
-            return;
-          }
-          if (Number(sv.playing) < Number(sv.maxPlayers)) {
-            join();
-            return;
-          }
-        }
-        cursor = d.nextPageCursor || '';
-        if (!cursor) {
-          stop();
-          return;
-        }
-      }
-    } finally {
-      w.busy = false;
-    }
+  function gameName() {
+    const sub = document.documentElement.dataset.routilitySubplace && document.querySelector('.routility-subplace-dropdown .input-dropdown-btn')?.textContent.trim();
+    return sub || document.querySelector('.game-name')?.textContent.trim() || document.title.replace(/\s*-\s*Roblox\s*$/i, '');
   }
 
-  function toggle(id) {
+  async function toggle(id) {
     if (!id) return;
     if (watch && watch.id === id) return stop();
     stop();
-    watch = { id, placeId: placeId(), started: Date.now(), state: 'waiting', busy: false };
-    watch.poll = setInterval(check, EVERY);
-    watch.tick = setInterval(() => document.querySelectorAll('.routility-wait-btn').forEach(label), 1000);
-    paint();
-    check();
+    const w = await chrome.runtime.sendMessage({ type: 'joinWaitStart', id, placeId: placeId(), game: gameName() }).catch(() => null);
+    if (w) adopt(w, 'waiting');
   }
+
+  async function scan(placeId, id) {
+    let cursor = '';
+    for (let page = 0; page < 5; page++) {
+      const d = await json(`https://games.roblox.com/v1/games/${placeId}/servers/Public?sortOrder=Desc&excludeFullGames=false&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`);
+      if (!d) return null;
+      for (const sv of d.data || []) {
+        const open = Number(sv.playing) < Number(sv.maxPlayers);
+        if (sv.id === id) return open ? 'open' : 'full';
+        if (open) return 'open';
+      }
+      cursor = d.nextPageCursor || '';
+      if (!cursor) return 'gone';
+    }
+    return 'full';
+  }
+
+  chrome.runtime.onMessage.addListener((msg, sender, reply) => {
+    if (msg && msg.type === 'joinWaitScan') {
+      scan(Number(msg.placeId), String(msg.id)).then(state => reply({ state }), () => reply(null));
+      return true;
+    }
+    if (!msg || !watch || msg.id !== watch.id) return;
+    if (msg.type === 'joinWaitGo') {
+      watch.state = 'joining';
+      tick();
+      paint();
+      window.postMessage({ type: 'routility-join', placeId: Number(msg.placeId), gameId: msg.id }, location.origin);
+      setTimeout(drop, 4000);
+    } else if (msg.type === 'joinWaitState' && msg.state === 'stopped') {
+      drop();
+    }
+  });
 
   function start() {
     if (observer) return;
@@ -136,6 +159,7 @@
     });
     observer.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true });
     paint();
+    chrome.runtime.sendMessage({ type: 'joinWaitGet' }).then(w => { if (w && !watch) adopt(w, 'waiting'); }, () => {});
   }
 
   window.addEventListener('message', (e) => {

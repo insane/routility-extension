@@ -3278,5 +3278,19 @@
  "Sandbox Mode": "Modalità Sandbox",
  "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Prova qualsiasi cosa del Marketplace, limited inclusi. Niente di ciò che cambi qui tocca il tuo vero avatar.",
  "Nothing in this category matches your filter.": "Niente in questa categoria corrisponde al tuo filtro.",
- "Show All Items": "Mostra tutti gli articoli"
+ "Show All Items": "Mostra tutti gli articoli",
+ "Stopped waiting for {game} after 15 minutes. The server stayed full.": "Attesa per {game} interrotta dopo 15 minuti. Il server è rimasto pieno.",
+ "A spot opened in {game}. Joining now.": "Si è liberato un posto in {game}. Accesso in corso.",
+ "The server you were waiting for in {game} closed.": "Il server che aspettavi in {game} è stato chiuso.",
+ "Play this place": "Gioca questo luogo",
+ "Remove from Friend History": "Rimuovi dalla cronologia amici",
+ "Can’t Trade": "Scambio non possibile",
+ "Start a trade with this person": "Inizia uno scambio con questa persona",
+ "Not accepting trades from you. Their trade settings may only allow friends or people they follow.": "Non accetta scambi da te. Le sue impostazioni potrebbero consentire solo amici o persone che segue.",
+ "This account can’t trade.": "Questo account non può fare scambi.",
+ "Your “Who can trade with me?” setting doesn’t include this person. Click to change it.": "La tua impostazione “Chi può fare scambi con me?” non include questa persona. Clicca per cambiarla.",
+ "Trade Button on Profiles": "Pulsante Scambia nei profili",
+ "A Trade button next to Add Friend on profiles. When you can’t trade with someone, it says Can’t Trade, and hovering it shows why.": "Un pulsante Scambia accanto ad Aggiungi amico nei profili. Se non puoi fare scambi con qualcuno, mostra Scambio non possibile e passandoci sopra vedi il motivo.",
+ "Profile Background": "Sfondo del profilo",
+ "When someone sets a profile background, it shows as a banner across the top with their avatar, and behind Currently Wearing.": "Quando qualcuno imposta uno sfondo del profilo, appare come banner in alto con il suo avatar e dietro Indossa ora."
 }

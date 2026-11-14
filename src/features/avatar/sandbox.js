@@ -369,60 +369,225 @@
     btn.disabled = false;
   }
 
+  let grow = null;
+  const EASE = '0.4s cubic-bezier(0.2, 0, 0, 1)';
+
+  function bigHeight(row) {
+    return Math.round(Math.max(380, Math.min(row.getBoundingClientRect().width * 0.62, window.innerHeight - 160)));
+  }
+
+  function setBox(box, x, y, w, h) {
+    box.style.setProperty('left', Math.round(x) + 'px', 'important');
+    box.style.setProperty('top', Math.round(y) + 'px', 'important');
+    box.style.setProperty('width', Math.round(w) + 'px', 'important');
+    box.style.setProperty('height', Math.round(h) + 'px', 'important');
+  }
+
+  function release(g) {
+    for (const k of ['left', 'top', 'width', 'height']) g.box.style.removeProperty(k);
+    delete g.box.dataset.routilityBig;
+    for (const [n, props] of g.touched) for (const k of props) n.style.removeProperty(k);
+    g.save.remove();
+    g.extras.forEach(n => n.remove());
+    g.watch?.disconnect();
+    g.watch2d?.disconnect();
+    g.sharp.remove();
+    g.box.querySelectorAll('.routility-sb-sharp').forEach(n => n.remove());
+    delete g.box.dataset.routilitySharp;
+    window.dispatchEvent(new Event('resize'));
+  }
+
+  function shrink() {
+    const g = grow;
+    if (!g) return;
+    grow = null;
+    document.removeEventListener('keydown', g.onKey, true);
+    window.removeEventListener('message', g.onRender);
+    window.removeEventListener('resize', g.onResize);
+    const zb = document.querySelector('.routility-sb-enlarge');
+    zb?.classList.remove('routility-sb-enlarged');
+    if (zb) zb.dataset.rtTip = lt('Enlarge');
+    if (!g.box.isConnected) return release(g);
+    delete g.box.dataset.routilityBigOn;
+    setBox(g.box, 0, 0, g.size.width, g.size.height);
+    g.col.style.setProperty('margin-top', g.size.height + 'px', 'important');
+    g.panel.style.setProperty('margin-top', '0px', 'important');
+    setTimeout(() => release(g), 420);
+  }
+
+  function fillShow(show) {
+    const worth = document.querySelector('.routility-av-wearing .routility-av-worth');
+    const tiles = [...document.querySelectorAll('.routility-av-wearing .routility-av-wearing-grid img')].filter(i => i.src).slice(0, 12);
+    const key = (worth ? worth.textContent : '') + '|' + tiles.map(i => i.src).join(',');
+    if (show.dataset.key === key) return;
+    show.dataset.key = key;
+    show.textContent = '';
+    const left = el('div', 'routility-sb-show-worth');
+    if (worth) {
+      left.appendChild(el('span', 'routility-sb-show-label', lt('Outfit Worth')));
+      const big = worth.querySelector('.routility-av-worth-big');
+      if (big) left.appendChild(big.cloneNode(true));
+      const row = worth.querySelector('.routility-av-worth-row');
+      if (row) left.appendChild(row.cloneNode(true));
+    }
+    const strip = el('div', 'routility-sb-show-items');
+    for (const t of tiles) {
+      const cell = el('span', 'routility-sb-show-item');
+      const img = el('img');
+      img.src = t.src.replace('/150/150/', '/420/420/');
+      img.alt = t.alt || '';
+      cell.appendChild(img);
+      strip.appendChild(cell);
+    }
+    show.append(left, strip);
+  }
+
   function enlarge() {
-    document.querySelector('.routility-sb-zoom')?.remove();
-    const overlay = el('div', 'foundation-web-dialog-overlay padding-medium foundation-web-portal-zindex bg-common-backdrop routility-injected routility-sb-zoom');
-    overlay.dataset.state = 'open';
-    const dialog = el('div', 'relative radius-large bg-surface-100 stroke-muted stroke-standard foundation-web-dialog-content shadow-transient-high routility-sb-zoom-dialog');
-    dialog.setAttribute('role', 'dialog');
-    dialog.setAttribute('aria-modal', 'true');
-    dialog.setAttribute('aria-label', lt('Sandbox Mode'));
-    const close = el('button', 'routility-modal-icon routility-sb-zoom-close');
-    close.type = 'button';
-    close.setAttribute('aria-label', lt('Close'));
-    close.appendChild(el('span', 'icon icon-regular-x'));
-    const save = el('button', 'routility-modal-icon routility-sb-zoom-save');
+    if (grow) return shrink();
+    const box = document.querySelector('#avatar-web-app .avatar-back');
+    const col = document.querySelector('#avatar-web-app .left-wrapper-placeholder');
+    const row = col && col.parentElement;
+    const panel = row && row.querySelector(':scope > .right-panel');
+    if (!box || !panel) return;
+    const r = box.getBoundingClientRect();
+    const rr = row.getBoundingClientRect();
+    const touched = [];
+    const set = (n, k, v) => {
+      n.style.setProperty(k, v, 'important');
+      const t = touched.find(x => x[0] === n);
+      if (t) t[1].add(k);
+      else touched.push([n, new Set([k])]);
+    };
+    set(row, 'position', 'relative');
+    for (let n = box.parentElement; n && n !== row; n = n.parentElement) set(n, 'position', 'static');
+    set(col, 'margin-top', r.height + 'px');
+    set(col, 'transition', 'margin-top ' + EASE);
+    set(panel, 'margin-top', '0px');
+    set(panel, 'transition', 'margin-top ' + EASE);
+    const zb = document.querySelector('.routility-sb-enlarge');
+    const base = zb ? zb.className.replace(/\broutility-\S+|\btoggle-three-dee\b/g, '').trim() : 'foundation-web-button relative clip group/interactable cursor-pointer flex items-center justify-center stroke-none select-none radius-medium bg-action-standard content-action-standard';
+    const save = el('button', base + ' routility-injected routility-sb-big-save');
     save.type = 'button';
     save.setAttribute('aria-label', lt('Download'));
     save.dataset.rtTip = lt('Download');
-    save.innerHTML = DOWNLOAD_SVG;
-    save.hidden = true;
-    const shot = el('div', 'routility-sb-zoom-shot');
-    shot.appendChild(el('span', 'routility-sk routility-sb-zoom-sk'));
-    dialog.append(close, save, shot);
-    overlay.appendChild(dialog);
-    const id = ++renderSeq;
-    const onRender = (e) => {
-      if (e.source !== window || !e.data || e.data.type !== 'routility-sandbox-render' || e.data.id !== id) return;
-      window.removeEventListener('message', onRender);
-      shot.textContent = '';
-      if (!e.data.url) {
-        shot.appendChild(el('p', 'text-body-medium content-muted', lt('Couldn’t render your avatar. Try again in a moment.')));
-        return;
-      }
-      const img = el('img', 'routility-sb-zoom-img');
-      img.alt = lt('Avatar');
-      img.src = e.data.url;
-      shot.appendChild(img);
-      save.hidden = false;
-      save.onclick = () => downloadShot(img, save);
+    const layer = el('div', FIELD_LAYER);
+    layer.setAttribute('aria-hidden', 'true');
+    save.appendChild(layer);
+    save.insertAdjacentHTML('beforeend', DOWNLOAD_SVG);
+    const alignSave = () => {
+      if (!zb || !zb.isConnected) return;
+      const br = box.getBoundingClientRect();
+      const zr = zb.getBoundingClientRect();
+      save.style.setProperty('right', Math.round(br.right - zr.left + 8) + 'px', 'important');
     };
-    const onKey = (e) => {
+    alignSave();
+    const img = box.querySelector('.thumbnail-holder > .thumbnail-2d-container img');
+    const native3d = () => box.querySelector('.avatar-thumbnail > .thumbnail-holder > button');
+    const nb = native3d();
+    const mode = el('button', (nb ? nb.className.replace(/\broutility-\S+|\btoggle-three-dee\b/g, '').trim() : base) + ' routility-injected routility-sb-big-mode');
+    mode.type = 'button';
+    const modeLayer = el('div', FIELD_LAYER);
+    modeLayer.setAttribute('aria-hidden', 'true');
+    const modeText = el('span', 'padding-y-xsmall text-truncate-end text-no-wrap', nb ? nb.textContent.trim() : '3D');
+    mode.append(modeLayer, modeText);
+    mode.addEventListener('click', () => native3d()?.click());
+    const sharp = el('img', 'routility-injected routility-sb-sharp');
+    sharp.alt = '';
+    box.querySelector('.avatar-thumbnail')?.prepend(sharp);
+    const g = grow = { box, col, panel, row, save, sharp, touched, native: img ? img.src : '', hi: '', id: 0, size: { width: r.width, height: r.height } };
+    save.addEventListener('click', () => {
+      const shot = new Image();
+      shot.src = g.hi || g.native || '';
+      if (shot.src) downloadShot(shot, save);
+    });
+    box.dataset.routilityBig = '';
+    set(box, '--routility-dpr', String(Math.min(2, Math.max(1, window.devicePixelRatio || 1))));
+    setBox(box, r.left - rr.left, r.top - rr.top, r.width, r.height);
+    const glow = el('div', 'routility-injected routility-sb-glow');
+    const shade = el('div', 'routility-injected routility-sb-shade');
+    const show = el('div', 'routility-injected routility-sb-show');
+    g.extras = [glow, shade, show, mode];
+    box.prepend(glow);
+    box.append(shade, show, save, mode);
+    fillShow(show);
+    const wearing = document.querySelector('.routility-av-wearing');
+    if (wearing) {
+      let queued = false;
+      g.watch = new MutationObserver(() => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => { queued = false; if (grow === g) fillShow(show); });
+      });
+      g.watch.observe(wearing, { childList: true, subtree: true, characterData: true });
+    }
+    box.getBoundingClientRect();
+    const request = () => {
+      const want = g.native;
+      const rid = g.id = ++renderSeq;
+      window.removeEventListener('message', g.onRender);
+      g.onRender = (e) => {
+        if (e.source !== window || !e.data || e.data.type !== 'routility-sandbox-render' || e.data.id !== rid) return;
+        window.removeEventListener('message', g.onRender);
+        if (!e.data.url) return;
+        const big = e.data.url.replace(/\/720\/720\//, '/1024/1024/');
+        const load = (url, fallback) => {
+          const pic = new Image();
+          pic.onload = () => {
+            if (grow !== g || g.native !== want) return;
+            g.hi = url;
+            sharp.src = url;
+            box.dataset.routilitySharp = '';
+          };
+          pic.onerror = () => { if (fallback) load(fallback); };
+          pic.src = url;
+        };
+        load(big, big !== e.data.url ? e.data.url : '');
+      };
+      window.addEventListener('message', g.onRender);
+      send('render', { id: rid, size: '720x720' });
+    };
+    const watch2d = () => {
+      if (grow !== g) return;
+      if (!sharp.isConnected) box.querySelector('.avatar-thumbnail')?.prepend(sharp);
+      const label = native3d()?.textContent.trim();
+      if (label && modeText.textContent !== label) modeText.textContent = label;
+      const now = box.querySelector('.thumbnail-holder > .thumbnail-2d-container img');
+      if (!now || !now.src || now.src === g.native) return;
+      g.native = now.src;
+      g.hi = '';
+      delete box.dataset.routilitySharp;
+      request();
+    };
+    g.watch2d = new MutationObserver(watch2d);
+    g.watch2d.observe(box, { childList: true, subtree: true, attributes: true, attributeFilter: ['src'] });
+    g.onKey = (e) => {
       if (e.key !== 'Escape') return;
       e.stopPropagation();
-      shut();
+      shrink();
     };
-    const shut = () => {
-      overlay.remove();
-      document.removeEventListener('keydown', onKey, true);
-      window.removeEventListener('message', onRender);
+    g.onResize = () => {
+      if (grow !== g) return;
+      const h = bigHeight(row);
+      setBox(box, 0, 0, row.getBoundingClientRect().width, h);
+      col.style.setProperty('margin-top', h + 'px', 'important');
+      panel.style.setProperty('margin-top', h + 16 + 'px', 'important');
     };
-    window.addEventListener('message', onRender);
-    close.addEventListener('click', shut);
-    overlay.addEventListener('mousedown', (e) => { if (e.target === overlay) shut(); });
-    document.addEventListener('keydown', onKey, true);
-    document.body.appendChild(overlay);
-    send('render', { id, size: '720x720' });
+    window.addEventListener('resize', g.onResize);
+    document.addEventListener('keydown', g.onKey, true);
+    zb?.classList.add('routility-sb-enlarged');
+    if (zb) zb.dataset.rtTip = lt('Close');
+    requestAnimationFrame(() => {
+      box.dataset.routilityBigOn = '';
+      g.onResize();
+      if (rr.top < 64) window.scrollBy({ top: rr.top - 72, behavior: 'smooth' });
+      setTimeout(() => {
+        if (grow !== g) return;
+        window.dispatchEvent(new Event('resize'));
+        alignZoom();
+        alignSave();
+      }, 440);
+    });
+    request();
   }
 
   function zoomButton() {
@@ -443,7 +608,7 @@
 
   function alignZoom() {
     const b = document.querySelector('#avatar-web-app .avatar-thumbnail > .routility-sb-enlarge');
-    const native = b && [...b.parentElement.querySelectorAll('button')].find(x => x !== b && /^(2D|3D)$/.test(x.textContent.trim()));
+    const native = b && (document.querySelector('#avatar-web-app .avatar-back .routility-sb-big-mode') || [...b.parentElement.querySelectorAll('button')].find(x => x !== b && /^(2D|3D)$/.test(x.textContent.trim())));
     if (!b || !native) return;
     const box = b.parentElement.getBoundingClientRect();
     const r = native.getBoundingClientRect();
@@ -455,6 +620,7 @@
     const on = settings.avatarSandbox !== false && AVATAR.test(location.pathname) && sandboxOn();
     document.documentElement.classList.toggle('routility-sandbox', on);
     if (!on) {
+      if (grow) shrink();
       banner?.remove();
       banner = null;
       document.querySelectorAll('.routility-sb-enlarge, .routility-sb-chips, .routility-sb-sort, .routility-sb-empty').forEach(n => n.remove());

@@ -520,7 +520,7 @@
     }
     const wanted = [...counts.values()];
     const owned = await Promise.all(wanted.map(({ id, type }) => ownedCount(offer.user.id, id, type)));
-    return wanted.filter((w, k) => typeof owned[k] === 'number' && owned[k] < w.need).map(({ name, type, id }) => ({ assetId: id, bundle: type === 'Bundle', name }));
+    return wanted.filter((w, k) => typeof owned[k] === 'number' && owned[k] < (w.type === 'Bundle' ? 1 : w.need)).map(({ name, type, id }) => ({ assetId: id, bundle: type === 'Bundle', name }));
   }
 
   function renderOwnership(node, label, missing) {
@@ -560,6 +560,10 @@
     const id = await selectedTradeId();
     if (!id) return;
     let result = ownResults.get(id);
+    if (result && Date.now() - result.at > 120000) {
+      ownResults.delete(id);
+      result = undefined;
+    }
     if (!result) {
       const token = ++ownToken;
       ownResults.set(id, null);

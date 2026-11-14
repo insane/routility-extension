@@ -279,6 +279,10 @@
   padding-right: 15px;
 }
 
+.routility-classic .details-actions .routility-tip-disabled {
+  pointer-events: auto;
+}
+
 .routility-classic .details-actions .btn-control-md,
 .routility-classic .details-actions .btn-growth-md {
   height: 36px;
@@ -2536,4 +2540,28 @@ img.routility-render-head {
 
 html.routility-classic-on #content:has(> .routility-classic, > .routility-modern) {
   max-width: 970px;
+}
+
+.routility-classic-banner {
+  position: relative;
+  height: 240px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  border-radius: calc(8px * var(--routility-round, 1));
+  background-position: center;
+  background-size: cover;
+}
+
+.routility-classic-banner-fit {
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  height: 112%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.routility-classic .routility-classic-has-bg {
+  background-position: center;
+  background-size: cover;
 }

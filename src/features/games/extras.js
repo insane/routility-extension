@@ -327,6 +327,7 @@
 
   function serverStats(p, placeId) {
     const rootPlaceId = placeId;
+    const PICKS = 'routilitySubplacePicks';
     const subplaces = { list: [] };
     const servers = new Map();
     p.hasServer = (id) => {
@@ -515,8 +516,9 @@
       mapKey = '';
       document.querySelectorAll('[data-routility-region-hidden]').forEach(n => delete n.dataset.routilityRegionHidden);
       if (id === rootPlaceId) delete document.documentElement.dataset.routilitySubplace;
-      else document.documentElement.dataset.routilitySubplace = '1';
+      else document.documentElement.dataset.routilitySubplace = id;
       window.postMessage({ type: 'routility-place', from: rootPlaceId, to: id }, location.origin);
+      rememberPlace(id);
       refreshNative();
       loadSample();
       loadCounts();
@@ -545,7 +547,20 @@
       if (!out.length) return;
       if (!out.some(x => x.id === rootPlaceId)) out.unshift({ id: rootPlaceId, name: lt('Main place') });
       subplaces.list = out;
+      const saved = await new Promise(r => chrome.storage.local.get(PICKS, st => r((st[PICKS] || {})[rootPlaceId])));
+      if (p !== page) return;
+      if (saved && saved !== placeId && settings.subplacePicker !== false && settings.serverRegions !== false && out.some(x => x.id === saved)) switchPlace(saved);
       p.tick();
+    };
+    const rememberPlace = (id) => {
+      chrome.storage.local.get(PICKS, (st) => {
+        const all = st[PICKS] || {};
+        delete all[rootPlaceId];
+        if (id !== rootPlaceId) all[rootPlaceId] = id;
+        const keys = Object.keys(all);
+        if (keys.length > 100) delete all[keys[0]];
+        chrome.storage.local.set({ [PICKS]: all });
+      });
     };
     let placesAsked = false;
     let gen = 0;
@@ -696,12 +711,17 @@
       }
       if (!note) {
         note = el('div', 'text-body-small content-muted routility-subplace-note');
+        const play = el('button', 'btn-control-xs routility-injected routility-subplace-play', lt('Play this place'));
+        play.type = 'button';
+        play.addEventListener('click', () => window.postMessage({ type: 'routility-play', placeId: placeId }, location.origin));
+        note.append(el('span', 'routility-subplace-note-text'), play);
         row.parentElement.after(note);
       }
       const place = subplaces.list.find(x => x.id === placeId);
       const text = switched ? lt('Showing servers for {place}. The Play button still joins the main place.', { place: place ? place.name : placeId }) : '';
       note.hidden = !text;
-      if (note.textContent !== text) note.textContent = text;
+      const span = note.querySelector('.routility-subplace-note-text');
+      if (span.textContent !== text) span.textContent = text;
     };
 
     const regions = () => {

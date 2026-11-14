@@ -3576,5 +3576,19 @@
  "Sandbox Mode": "Режим песочницы",
  "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Примеряй что угодно из Маркетплейса, включая лимитки. Ничто из изменённого здесь не трогает твой настоящий аватар.",
  "Nothing in this category matches your filter.": "В этой категории нет ничего под твой фильтр.",
- "Show All Items": "Показать все предметы"
+ "Show All Items": "Показать все предметы",
+ "Stopped waiting for {game} after 15 minutes. The server stayed full.": "Ожидание в {game} остановлено через 15 минут. Сервер так и остался заполненным.",
+ "A spot opened in {game}. Joining now.": "В {game} освободилось место. Подключаемся.",
+ "The server you were waiting for in {game} closed.": "Сервер в {game}, которого вы ждали, закрылся.",
+ "Play this place": "Играть в этом месте",
+ "Remove from Friend History": "Удалить из истории друзей",
+ "Can’t Trade": "Обмен недоступен",
+ "Start a trade with this person": "Начать обмен с этим человеком",
+ "Not accepting trades from you. Their trade settings may only allow friends or people they follow.": "Не принимает ваши обмены. Возможно, в настройках разрешены только друзья или те, на кого он подписан.",
+ "This account can’t trade.": "Этот аккаунт не может обмениваться.",
+ "Your “Who can trade with me?” setting doesn’t include this person. Click to change it.": "Ваша настройка «Кто может обмениваться со мной?» не включает этого человека. Нажмите, чтобы изменить.",
+ "Trade Button on Profiles": "Кнопка обмена в профилях",
+ "A Trade button next to Add Friend on profiles. When you can’t trade with someone, it says Can’t Trade, and hovering it shows why.": "Кнопка «Обмен» рядом с «Добавить в друзья» в профилях. Если обмен с человеком невозможен, на ней написано «Обмен недоступен», а при наведении видна причина.",
+ "Profile Background": "Фон профиля",
+ "When someone sets a profile background, it shows as a banner across the top with their avatar, and behind Currently Wearing.": "Если человек установил фон профиля, он показывается баннером сверху вместе с аватаром и за блоком «Сейчас надето»."
 }

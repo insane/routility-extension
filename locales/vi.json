@@ -3129,5 +3129,19 @@
  "Sandbox Mode": "Chế độ Sandbox",
  "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Thử bất cứ thứ gì trên Chợ, kể cả limited. Những gì bạn thay đổi ở đây không đụng đến avatar thật của bạn.",
  "Nothing in this category matches your filter.": "Không có gì trong danh mục này khớp với bộ lọc của bạn.",
- "Show All Items": "Hiện tất cả vật phẩm"
+ "Show All Items": "Hiện tất cả vật phẩm",
+ "Stopped waiting for {game} after 15 minutes. The server stayed full.": "Đã ngừng chờ {game} sau 15 phút. Máy chủ vẫn đầy.",
+ "A spot opened in {game}. Joining now.": "Đã có chỗ trống trong {game}. Đang tham gia.",
+ "The server you were waiting for in {game} closed.": "Máy chủ bạn đang chờ trong {game} đã đóng.",
+ "Play this place": "Chơi địa điểm này",
+ "Remove from Friend History": "Xóa khỏi Lịch sử bạn bè",
+ "Can’t Trade": "Không thể giao dịch",
+ "Start a trade with this person": "Bắt đầu giao dịch với người này",
+ "Not accepting trades from you. Their trade settings may only allow friends or people they follow.": "Không nhận giao dịch từ bạn. Cài đặt của họ có thể chỉ cho phép bạn bè hoặc người họ theo dõi.",
+ "This account can’t trade.": "Tài khoản này không thể giao dịch.",
+ "Your “Who can trade with me?” setting doesn’t include this person. Click to change it.": "Cài đặt “Ai có thể giao dịch với tôi?” của bạn không bao gồm người này. Nhấp để thay đổi.",
+ "Trade Button on Profiles": "Nút giao dịch trên hồ sơ",
+ "A Trade button next to Add Friend on profiles. When you can’t trade with someone, it says Can’t Trade, and hovering it shows why.": "Nút Giao dịch cạnh Thêm bạn trên hồ sơ. Khi bạn không thể giao dịch với ai đó, nút hiện Không thể giao dịch và di chuột vào để xem lý do.",
+ "Profile Background": "Nền hồ sơ",
+ "When someone sets a profile background, it shows as a banner across the top with their avatar, and behind Currently Wearing.": "Khi ai đó đặt nền hồ sơ, nền sẽ hiện thành biểu ngữ ở trên cùng với avatar của họ và phía sau Đang mặc."
 }

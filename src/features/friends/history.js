@@ -48,8 +48,24 @@
     text.append(name, el('span', 'routility-cm-meta text-body-small content-muted', e.name ? '@' + e.name : ''));
     const when = el('span', 'routility-cm-role text-body-small', ago(e.at));
     when.dataset.rtTip = new Date(e.at).toLocaleString();
-    li.append(icon, text, when);
+    const remove = el('button', 'routility-fh-remove');
+    remove.type = 'button';
+    remove.setAttribute('aria-label', lt('Remove from Friend History'));
+    remove.dataset.rtTip = lt('Remove from Friend History');
+    remove.appendChild(el('span', 'icon icon-regular-x size-[var(--icon-size-small)]'));
+    remove.addEventListener('click', () => forget(e));
+    li.append(icon, text, when, remove);
     return li;
+  }
+
+  async function forget(e) {
+    if (!s || !s.me) return;
+    const same = (x) => String(x.id) === String(e.id) && x.type === e.type && x.at === e.at;
+    s.log = s.log.filter(x => !same(x));
+    render();
+    const key = window.RoUtilityFriends.friendLogKey(s.me);
+    const st = await chrome.storage.local.get(key);
+    if (Array.isArray(st[key])) await chrome.storage.local.set({ [key]: st[key].filter(x => !same(x)) });
   }
 
   function skeleton() {

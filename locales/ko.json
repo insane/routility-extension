@@ -3129,5 +3129,19 @@
  "Sandbox Mode": "Sandbox 모드",
  "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "리미티드를 포함해 마켓플레이스의 무엇이든 입어 보세요. 여기서 바꾼 것은 실제 아바타에 영향을 주지 않아요.",
  "Nothing in this category matches your filter.": "이 카테고리에는 필터와 맞는 아이템이 없어요.",
- "Show All Items": "모든 아이템 보기"
+ "Show All Items": "모든 아이템 보기",
+ "Stopped waiting for {game} after 15 minutes. The server stayed full.": "15분 동안 기다렸지만 {game} 서버가 계속 꽉 차 있어서 대기를 멈췄어요.",
+ "A spot opened in {game}. Joining now.": "{game}에 자리가 났어요. 지금 참여할게요.",
+ "The server you were waiting for in {game} closed.": "기다리던 {game} 서버가 닫혔어요.",
+ "Play this place": "이 장소 플레이",
+ "Remove from Friend History": "친구 기록에서 삭제",
+ "Can’t Trade": "거래 불가",
+ "Start a trade with this person": "이 사람과 거래 시작",
+ "Not accepting trades from you. Their trade settings may only allow friends or people they follow.": "회원님의 거래를 받지 않아요. 친구나 팔로우한 사람만 허용하도록 설정했을 수 있어요.",
+ "This account can’t trade.": "이 계정은 거래할 수 없어요.",
+ "Your “Who can trade with me?” setting doesn’t include this person. Click to change it.": "회원님의 '나와 거래할 수 있는 사람' 설정에 이 사람이 포함되지 않아요. 클릭해서 변경하세요.",
+ "Trade Button on Profiles": "프로필 거래 버튼",
+ "A Trade button next to Add Friend on profiles. When you can’t trade with someone, it says Can’t Trade, and hovering it shows why.": "프로필의 친구 추가 옆에 거래 버튼을 표시해요. 거래할 수 없는 사람에게는 '거래 불가'로 표시되고, 마우스를 올리면 이유를 볼 수 있어요.",
+ "Profile Background": "프로필 배경",
+ "When someone sets a profile background, it shows as a banner across the top with their avatar, and behind Currently Wearing.": "프로필 배경을 설정한 사람은 상단에 아바타와 함께 배너로 보이고, '착용 중'의 배경에도 나타나요."
 }

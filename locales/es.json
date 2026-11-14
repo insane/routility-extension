@@ -3278,5 +3278,19 @@
  "Sandbox Mode": "Modo Sandbox",
  "Try on anything from the Marketplace, limiteds included. Nothing you change here touches your real avatar.": "Pruébate cualquier cosa del Mercado, limitados incluidos. Nada de lo que cambies aquí afecta a tu avatar real.",
  "Nothing in this category matches your filter.": "Nada en esta categoría coincide con tu filtro.",
- "Show All Items": "Mostrar todos los artículos"
+ "Show All Items": "Mostrar todos los artículos",
+ "Stopped waiting for {game} after 15 minutes. The server stayed full.": "Se dejó de esperar en {game} tras 15 minutos. El servidor siguió lleno.",
+ "A spot opened in {game}. Joining now.": "Se abrió un lugar en {game}. Uniéndote ahora.",
+ "The server you were waiting for in {game} closed.": "El servidor que esperabas en {game} se cerró.",
+ "Play this place": "Jugar este lugar",
+ "Remove from Friend History": "Quitar del historial de amigos",
+ "Can’t Trade": "No se puede intercambiar",
+ "Start a trade with this person": "Iniciar un intercambio con esta persona",
+ "Not accepting trades from you. Their trade settings may only allow friends or people they follow.": "No acepta intercambios tuyos. Su configuración puede permitir solo amigos o personas a las que sigue.",
+ "This account can’t trade.": "Esta cuenta no puede intercambiar.",
+ "Your “Who can trade with me?” setting doesn’t include this person. Click to change it.": "Tu ajuste «¿Quién puede intercambiar conmigo?» no incluye a esta persona. Haz clic para cambiarlo.",
+ "Trade Button on Profiles": "Botón de intercambio en perfiles",
+ "A Trade button next to Add Friend on profiles. When you can’t trade with someone, it says Can’t Trade, and hovering it shows why.": "Un botón de Intercambiar junto a Agregar amigo en los perfiles. Si no puedes intercambiar con alguien, dice No se puede intercambiar y al pasar el cursor muestra el motivo.",
+ "Profile Background": "Fondo de perfil",
+ "When someone sets a profile background, it shows as a banner across the top with their avatar, and behind Currently Wearing.": "Cuando alguien elige un fondo de perfil, se muestra como un banner arriba con su avatar y detrás de Lleva puesto."
 }
