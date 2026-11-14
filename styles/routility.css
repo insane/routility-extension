@@ -4556,6 +4556,70 @@ li.rbx-public-game-server-item[data-routility-region-hidden="1"] {
   width: 100%;
 }
 
+.routility-server-regions .server-list-container-header {
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.routility-subplace-dropdown.routility-dropdown {
+  position: relative;
+  display: block;
+  flex: 0 1 auto;
+  width: auto !important;
+  min-width: 0;
+  max-width: min(100%, 300px);
+  margin-left: auto;
+}
+
+.routility-subplace-dropdown .input-dropdown-btn {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100% !important;
+  min-width: 140px;
+}
+
+.routility-subplace-dropdown .input-dropdown-btn .rbx-selection-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.routility-subplace-dropdown .dropdown-menu {
+  right: 0;
+  left: auto;
+  width: max-content !important;
+  min-width: 100%;
+  max-width: min(420px, calc(100vw - 32px));
+  max-height: 320px;
+}
+
+.routility-subplace-dropdown .dropdown-menu > li > button {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.routility-subplace-note {
+  margin: 0 0 8px;
+}
+
+[data-routility-switching] {
+  opacity: 0.4;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+html[data-routility-subplace] [data-routility-sv="private"],
+html[data-routility-subplace] .routility-recent-servers {
+  display: none !important;
+}
+
 .routility-region-list .card-item,
 .routility-region-list .card-item-public-server {
   height: auto !important;

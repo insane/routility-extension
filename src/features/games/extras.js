@@ -326,6 +326,8 @@
   }
 
   function serverStats(p, placeId) {
+    const rootPlaceId = placeId;
+    const subplaces = { list: [] };
     const servers = new Map();
     p.hasServer = (id) => {
       const parts = String(id).split('-');
@@ -346,12 +348,15 @@
     const loadCounts = async () => {
       clearTimeout(countsTimer);
       if (p !== page || settings.serverRegions === false) return;
-      const res = await window.RoUtilityUI.request({ type: 'serverCounts', placeId }, r => r !== undefined);
-      if (p !== page) return;
+      const at = placeId;
+      const res = await window.RoUtilityUI.request({ type: 'serverCounts', placeId: at }, r => r !== undefined);
+      if (p !== page || at !== placeId) return;
       if (res && Array.isArray(res.regions) && res.regions.length) {
         counts = res;
-        p.regionCounts = res;
-        p.latestVersion = Number.isFinite(res.latestVersion) ? res.latestVersion : null;
+        if (at === rootPlaceId) {
+          p.regionCounts = res;
+          p.latestVersion = Number.isFinite(res.latestVersion) ? res.latestVersion : null;
+        }
         countsTimer = setTimeout(loadCounts, 300000);
       } else {
         if (res && res.scanning && !(counts && Array.isArray(counts.regions))) counts = { scanning: true, listed: res.listed || 0, resolved: res.resolved || 0 };
@@ -370,8 +375,9 @@
       st.loading = true;
       mapKey = '';
       p.tick();
-      const res = await window.RoUtilityUI.request({ type: 'serverRegionList', placeId, ids, cursor: st.cursor }, r => r !== undefined);
-      if (p !== page) return;
+      const at = placeId;
+      const res = await window.RoUtilityUI.request({ type: 'serverRegionList', placeId: at, ids, cursor: st.cursor }, r => r !== undefined);
+      if (p !== page || at !== placeId) return;
       st.loading = false;
       if (res && Array.isArray(res.servers)) {
         const have = new Set(st.servers.map(x => x.id));
@@ -391,11 +397,15 @@
     };
     const sample = new Map();
     let sampled = false;
+    let sampleDone = false;
     const loadSample = async () => {
       if (sampled) return;
       sampled = true;
-      const d = await json(`https://games.roblox.com/v1/games/${placeId}/servers/Public?sortOrder=Desc&excludeFullGames=true&limit=100`);
-      if (p !== page || !d) return;
+      const at = placeId;
+      const d = await json(`https://games.roblox.com/v1/games/${at}/servers/Public?sortOrder=Desc&excludeFullGames=true&limit=100`);
+      if (p !== page || at !== placeId) return;
+      sampleDone = true;
+      if (!d) return p.tick();
       for (const sv of d.data || []) if (sv && typeof sv.id === 'string') sample.set(sv.id, sv);
       p.tick();
     };
@@ -439,12 +449,13 @@
         ids.forEach(id => { waiting.delete(id); urgent.delete(id); });
         regionBusy[lane] = true;
         if (waiting.size) askRegions();
-        const res = await window.RoUtilityUI.request({ type: 'serverRegions', placeId, ids }, r => r !== undefined);
+        const at = placeId;
+        const res = await window.RoUtilityUI.request({ type: 'serverRegions', placeId: at, ids }, r => r !== undefined);
         regionBusy[lane] = false;
         if (p !== page) return;
         if (!res || res.retryAfter) {
           regionPauseUntil = Date.now() + (res && res.retryAfter ? res.retryAfter * 1000 : 30000);
-          ids.forEach(id => { askedAt.delete(id); waiting.add(id); });
+          ids.forEach(id => { askedAt.delete(id); if (at === placeId) waiting.add(id); });
         } else {
           for (const id of ids) {
             const dc = res.regions ? res.regions[id] : null;
@@ -460,6 +471,84 @@
         if (waiting.size) askRegions();
       }, 250);
     };
+    const NATIVE_LISTS = { Friend: '#rbx-friends-running-games', Public: '#rbx-public-running-games' };
+    let dimTimer = null;
+    const undim = (kind) => {
+      for (const [k, sel] of Object.entries(NATIVE_LISTS)) {
+        if (kind && k !== kind) continue;
+        document.querySelector(sel)?.removeAttribute('data-routility-switching');
+      }
+    };
+    const refreshNative = () => {
+      clearTimeout(dimTimer);
+      for (const sel of Object.values(NATIVE_LISTS)) {
+        const sec = document.querySelector(sel);
+        const btn = sec && sec.querySelector('.rbx-refresh, .refresh-link-icon');
+        if (!btn) continue;
+        sec.setAttribute('data-routility-switching', '');
+        btn.click();
+      }
+      dimTimer = setTimeout(() => undim(), 6000);
+    };
+    const switchPlace = (id) => {
+      if (id === placeId || !subplaces.list.some(x => x.id === id)) return;
+      placeId = id;
+      gen++;
+      clearTimeout(countsTimer);
+      clearTimeout(regionTimer);
+      clearTimeout(retry);
+      for (const sid of waiting) askedAt.delete(sid);
+      waiting.clear();
+      urgent.clear();
+      counts = null;
+      countsTries = 0;
+      lists.clear();
+      sample.clear();
+      sampled = false;
+      sampleDone = false;
+      servers.clear();
+      cursor = '';
+      pages = 0;
+      busy = false;
+      fails = 0;
+      selected = null;
+      mapKey = '';
+      document.querySelectorAll('[data-routility-region-hidden]').forEach(n => delete n.dataset.routilityRegionHidden);
+      if (id === rootPlaceId) delete document.documentElement.dataset.routilitySubplace;
+      else document.documentElement.dataset.routilitySubplace = '1';
+      window.postMessage({ type: 'routility-place', from: rootPlaceId, to: id }, location.origin);
+      refreshNative();
+      loadSample();
+      loadCounts();
+      p.tick();
+    };
+    p.subplaces = subplaces;
+    p.currentPlace = () => placeId;
+    p.switchPlace = switchPlace;
+    const loadSubplaces = async (tries) => {
+      if (p !== page) return;
+      const universeId = document.querySelector('#game-detail-meta-data')?.dataset.universeId;
+      if (!universeId) {
+        if (tries < 40) setTimeout(() => loadSubplaces(tries + 1), 500);
+        return;
+      }
+      const out = [];
+      let next = '';
+      for (let i = 0; i < 3; i++) {
+        const d = await json(`https://develop.roblox.com/v1/universes/${universeId}/places?limit=100&sortOrder=Asc${next ? `&cursor=${encodeURIComponent(next)}` : ''}`);
+        if (p !== page) return;
+        if (!d) break;
+        for (const x of d.data || []) if (x && Number.isFinite(x.id) && typeof x.name === 'string') out.push({ id: String(x.id), name: x.name.trim() });
+        next = d.nextPageCursor;
+        if (!next) break;
+      }
+      if (!out.length) return;
+      if (!out.some(x => x.id === rootPlaceId)) out.unshift({ id: rootPlaceId, name: lt('Main place') });
+      subplaces.list = out;
+      p.tick();
+    };
+    let placesAsked = false;
+    let gen = 0;
     let cursor = '';
     let pages = 0;
     let busy = false;
@@ -476,9 +565,10 @@
       }
       busy = true;
       last = Date.now();
+      const g = gen;
       const d = await json(`https://games.roblox.com/v1/games/${placeId}/servers/Public?sortOrder=Desc&excludeFullGames=false&limit=100${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ''}`);
+      if (p !== page || g !== gen) return;
       busy = false;
-      if (p !== page) return;
       if (!d) {
         fails++;
         if (fails >= 3) {
@@ -501,6 +591,8 @@
     const fromPage = (e) => {
       if (e.source !== window || !e.data || e.data.type !== 'routility-servers' || !Array.isArray(e.data.servers)) return;
       if (p !== page) return window.removeEventListener('message', fromPage);
+      if (e.data.placeId && String(e.data.placeId) !== placeId) return;
+      if (e.data.kind) undim(e.data.kind);
       let added = false;
       for (const s of e.data.servers) {
         const parts = String(s.id || '').split('-');
@@ -514,7 +606,7 @@
     const onJoinClick = (e) => {
       const btn = e.target.closest?.('.game-server-join-btn');
       if (!btn || p !== page) return;
-      const li = btn.closest('li.rbx-public-game-server-item');
+      const li = btn.closest('li.rbx-public-game-server-item') || (placeId !== rootPlaceId ? btn.closest('li[class*="game-server-item"]:not(.rbx-private-game-server-item)') : null);
       if (!li) return;
       if (li.classList.contains('routility-region-item')) {
         const id = li.dataset.serverId;
@@ -522,14 +614,21 @@
         if (!id || !sv) return;
         e.preventDefault();
         e.stopPropagation();
-        launchServer(placeId, sv, li.__routilityJoin || {});
+        launchServer(li.dataset.placeId || rootPlaceId, sv, li.__routilityJoin || {});
         return;
       }
       const short = li.querySelector('.server-id-text')?.textContent.replace(/^ID:\s*/, '').trim();
       const sv = short && servers.get(short);
       if (!sv) return;
       const r = regionOf.get(sv.id);
-      pendingJoin = { at: Date.now(), server: sv, dc: r && r.dc != null ? centers.get(r.dc) : null, details: detailsOf.get(sv.id), latest: p.latestVersion };
+      const info = { dc: r && r.dc != null ? centers.get(r.dc) : null, details: detailsOf.get(sv.id), latest: placeId === rootPlaceId ? p.latestVersion : counts && Number.isFinite(counts.latestVersion) ? counts.latestVersion : null };
+      if (placeId !== rootPlaceId) {
+        e.preventDefault();
+        e.stopPropagation();
+        launchServer(placeId, sv, info);
+        return;
+      }
+      pendingJoin = { at: Date.now(), server: sv, ...info };
     };
     document.addEventListener('click', onJoinClick, true);
     const prevStop = p.stopJoins;
@@ -569,8 +668,51 @@
       regions();
     };
 
+    const placePicker = (sec, switched) => {
+      const row = sec.querySelector('.server-list-container-header');
+      let sel = sec.querySelector('.routility-subplace-dropdown');
+      let note = sec.querySelector('.routility-subplace-note');
+      if (!row || subplaces.list.length < 2 || settings.subplacePicker === false) {
+        sel?.remove();
+        note?.remove();
+        return;
+      }
+      const key = subplaces.list.map(x => `${x.id}:${x.name}`).join('|');
+      const options = () => subplaces.list.map(x => ({ value: x.id, label: subplaces.list.some(y => y !== x && y.name === x.name) ? `${x.name} (${x.id})` : x.name }));
+      if (!sel) {
+        sel = window.RoUtilityUI.dropdown(options(), placeId, (id) => switchPlace(id), 'routility-subplace-dropdown');
+        sel.dataset.key = key;
+        sel.dataset.value = placeId;
+        sel.querySelector('.input-dropdown-btn')?.setAttribute('aria-label', lt('Place to show servers for'));
+        row.appendChild(sel);
+      }
+      if (sel.dataset.key !== key) {
+        sel.dataset.key = key;
+        sel.setOptions(options());
+      }
+      if (sel.dataset.value !== placeId) {
+        sel.dataset.value = placeId;
+        sel.setValue(placeId);
+      }
+      if (!note) {
+        note = el('div', 'text-body-small content-muted routility-subplace-note');
+        row.parentElement.after(note);
+      }
+      const place = subplaces.list.find(x => x.id === placeId);
+      const text = switched ? lt('Showing servers for {place}. The Play button still joins the main place.', { place: place ? place.name : placeId }) : '';
+      note.hidden = !text;
+      if (note.textContent !== text) note.textContent = text;
+    };
+
     const regions = () => {
+      const pickerOn = settings.subplacePicker !== false && settings.serverRegions !== false;
+      if (!pickerOn && placeId !== rootPlaceId) switchPlace(rootPlaceId);
+      if (pickerOn && !placesAsked) {
+        placesAsked = true;
+        loadSubplaces(0);
+      }
       const on = settings.serverRegions !== false && centers.size > 0;
+      const switched = placeId !== rootPlaceId;
       const tiles = [...document.querySelectorAll('li.rbx-public-game-server-item:not(.routility-region-item)')];
       if (!on) {
         document.querySelectorAll('.routility-pill-region, .routility-server-map, .routility-server-regions').forEach(n => n.remove());
@@ -687,13 +829,14 @@
       const st = sel ? lists.get(selected) : null;
       const key = JSON.stringify([points.map(x => [x.key, x.servers, x.players]), selected, seen.size, emptyNote, headText, note, st ? [st.servers.length, st.loading, st.done, st.error, st.scanning] : null]);
       let card = document.querySelector('.routility-server-map');
-      if (!points.length || !list) {
+      const anchor = document.querySelector('#rbx-public-running-games');
+      const picking = !!anchor && pickerOn && subplaces.list.length > 1;
+      if ((!points.length || !list) && !picking) {
         card?.remove();
         document.querySelector('.routility-server-regions')?.remove();
         mapKey = '';
         return;
       }
-      const anchor = document.querySelector('#rbx-public-running-games');
       let sec = document.querySelector('.routility-server-regions');
       if (anchor) {
         if (!sec) {
@@ -706,6 +849,14 @@
           sec.appendChild(ch);
         }
         if (sec.nextElementSibling !== anchor) anchor.before(sec);
+        placePicker(sec, switched);
+      }
+      if (!points.length || !list) {
+        card?.remove();
+        mapKey = '';
+        const count = sec && sec.querySelector('.routility-server-regions-count');
+        if (count) count.textContent = '';
+        return;
       }
       const placed = anchor ? card && card.parentElement === sec : card && card.nextElementSibling === list;
       if (card && card.isConnected && mapKey === key && placed) return;
@@ -811,6 +962,7 @@
     for (const sv of st.servers) {
       const li = el('li', 'rbx-public-game-server-item routility-region-item');
       li.dataset.serverId = sv.id;
+      li.dataset.placeId = String(placeId);
       li.__routilityServer = sv;
       li.__routilityJoin = { dc: g.dc, details: { placeVersion: sv.placeVersion, startedAt: sv.startedAt }, latest };
       const card = el('div', 'card-item card-item-public-server');
@@ -2799,6 +2951,9 @@
     page = null;
     document.querySelectorAll('.routility-play-region, .routility-server-pills, .routility-server-region-line, .routility-server-meta, .routility-server-share, .routility-server-map, .routility-server-regions, .routility-recent-servers, .routility-groups-chip, .routility-groups-li, .routility-store-total, #routility-creator-items, .routility-outfits, .routility-outfit-backdrop').forEach(n => n.remove());
     document.querySelectorAll('[data-routility-region-hidden]').forEach(n => delete n.dataset.routilityRegionHidden);
+    document.querySelectorAll('[data-routility-switching]').forEach(n => n.removeAttribute('data-routility-switching'));
+    delete document.documentElement.dataset.routilitySubplace;
+    window.postMessage({ type: 'routility-place', from: '0', to: '0' }, location.origin);
   }
 
   window.RoUtilityExtras = { setup, teardown, serverMap };
