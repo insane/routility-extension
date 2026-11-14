@@ -6,6 +6,27 @@
   },
   "releases": [
     {
+      "version": "1.2.3",
+      "date": "2026-11-14",
+      "summary": "Join When Open keeps waiting in the background, a Trade button on profiles, profile backgrounds in Classic Profile, a bigger Sandbox Enlarge and a place picker for servers.",
+      "changes": [
+        { "type": "new", "text": "Subplace Picker (Servers): a dropdown in Server Regions to browse the servers of an experience’s other places, like a large-servers place. The Friends and Other Servers lists follow your pick, Play this place joins it, and your pick is remembered.", "by": ["primary999"] },
+        { "type": "new", "text": "Trade Button on Profiles (Trading): a Trade button next to Add Friend. When you can’t trade with someone it says Can’t Trade, and hovering it shows why." },
+        { "type": "new", "text": "Profile Background (Classic Profile Layout): when someone sets a profile background, it shows as a banner across the top with their avatar, and behind Currently Wearing." },
+        { "type": "improved", "text": "Join When Open keeps checking in the background, even from another tab, works on subplaces, counts the wait in the tab title, and sends a notification when it joins or stops waiting." },
+        { "type": "improved", "text": "Sandbox: Enlarge grows your avatar box right on the page, sharp in 2D and 3D, with your Outfit Worth and the items you’re wearing along the bottom." },
+        { "type": "improved", "text": "Friend History: remove anyone you don’t want to see anymore with the ✕ on their row." },
+        { "type": "improved", "text": "The RoUtility Bot shows in your Chat list even when chat is turned off in your Roblox privacy settings." },
+        { "type": "improved", "text": "Settings: a few settings moved to the tab they belong in, like the Trade button under Trading, and there are new settings for Join When Open notifications and the Enlarge showcase." },
+        { "type": "improved", "text": "The Sandbox button is gone from item and bundle pages to keep the buttons under the item tidy. Sandbox is still in the sidebar." },
+        { "type": "fixed", "text": "Classic Profile Layout: a changed About shows right away instead of the old one for a few minutes." },
+        { "type": "fixed", "text": "Classic Profile Layout: the buttons no longer jump sideways for a moment while the mutual friends and communities load." },
+        { "type": "fixed", "text": "Classic Profile Layout: other extensions’ icons next to a name, like Rotector’s, can be hovered and clicked again." },
+        { "type": "fixed", "text": "Trades: No longer owned no longer flags bundles you have several copies of, and a trade is checked again after two minutes." },
+        { "type": "fixed", "text": "Servers: the Join When Open button lines up with Join and the invite button." }
+      ]
+    },
+    {
       "version": "1.2.2",
       "date": "2026-11-13",
       "summary": "Try anything in Sandbox from item pages, trades and profiles, keep Saved Fits, see your Outfit Worth, and item tags with the routility.io icons.",
