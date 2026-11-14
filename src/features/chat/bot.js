@@ -552,8 +552,9 @@
 
   function placeRow() {
     const list = document.querySelector('#chat-container .react-chat-thread-list');
-    if (!list) return;
-    let row = list.querySelector(':scope > .routility-bot-row');
+    const off = !list && document.querySelector('#chat-container [data-testid="react-chat-disabled"]');
+    if (!list && !off) return;
+    let row = (list || off.parentElement).querySelector(':scope > .routility-bot-row');
     if (!row) {
       row = el('button', 'react-chat-row flex width-full shrink-0 items-center gap-medium padding-x-medium padding-y-xsmall text-left bg-none stroke-none cursor-pointer hover:bg-shift-100 routility-injected routility-bot-row');
       row.type = 'button';
@@ -567,7 +568,8 @@
       row.append(pic, body);
       row.addEventListener('click', () => openBot());
     }
-    if (list.firstElementChild !== row) list.prepend(row);
+    if (list && list.firstElementChild !== row) list.prepend(row);
+    if (off && off.previousElementSibling !== row) off.before(row);
     const prev = row.querySelector('.routility-bot-preview');
     const text = lastPreview();
     if (prev.textContent !== text) prev.textContent = text;
