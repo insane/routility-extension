@@ -6,7 +6,7 @@
 
   function rewrite(url) {
     const text = String(url || '');
-    if (!redirect || !/server|instance/i.test(text)) return text;
+    if (!redirect || !/^https:\/\/games\.roblox\.com\//.test(text)) return text;
     const to = redirect.to;
     return text.replace(redirect.path, (m, a, b) => a + to + b).replace(redirect.query, (m, a) => a + to);
   }
