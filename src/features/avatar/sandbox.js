@@ -506,11 +506,13 @@
     const glow = el('div', 'routility-injected routility-sb-glow');
     const shade = el('div', 'routility-injected routility-sb-shade');
     const show = el('div', 'routility-injected routility-sb-show');
-    g.extras = [glow, shade, show, mode];
+    const showcase = settings.sandboxShowcase !== false;
+    g.extras = showcase ? [glow, shade, show, mode] : [glow, shade, mode];
     box.prepend(glow);
-    box.append(shade, show, save, mode);
-    fillShow(show);
-    const wearing = document.querySelector('.routility-av-wearing');
+    if (showcase) box.append(shade, show, save, mode);
+    else box.append(shade, save, mode);
+    if (showcase) fillShow(show);
+    const wearing = showcase && document.querySelector('.routility-av-wearing');
     if (wearing) {
       let queued = false;
       g.watch = new MutationObserver(() => {

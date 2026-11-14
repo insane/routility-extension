@@ -2668,6 +2668,8 @@ async function joinWaitEnd(tabId, w, state, message) {
   await joinWaitEdit(all => { if (all[tabId] && all[tabId].id === w.id) delete all[tabId]; });
   chrome.tabs.sendMessage(tabId, { type: 'joinWaitState', id: w.id, state }, { frameId: 0 }).catch(() => {});
   if (!message) return;
+  const st = await chrome.storage.local.get('routilitySettings').catch(() => ({}));
+  if ((st.routilitySettings || {}).joinWaitNotify === false) return;
   await i18nLoaded;
   showNotification(`joinwait:${w.id}:${Date.now()}`, lt('Join When Open'), message, await joinWaitIcon(w.placeId), null).catch(() => {});
 }

@@ -300,9 +300,18 @@
     if (menu.getBoundingClientRect().right > document.documentElement.clientWidth - 8) menu.classList.add('routility-menu-flip');
   }
 
+  function adoptForeign(s) {
+    const title = s.root.querySelector('.header-title');
+    const name = document.querySelector('#content > .profile-platform-container #profile-header-title-container-name');
+    if (!title || !name || !name.parentElement) return;
+    for (const node of name.parentElement.querySelectorAll(':scope > [data-rotector-owned]')) title.appendChild(node);
+  }
+
   function syncBadges(s) {
+    adoptForeign(s);
     const host = s.root.querySelector('.routility-name-badges');
-    const native = document.querySelector('#content > .profile-platform-container #profile-header-title-container-name')?.nextElementSibling;
+    const sibling = document.querySelector('#content > .profile-platform-container #profile-header-title-container-name')?.nextElementSibling;
+    const native = sibling && !sibling.matches('[data-rotector-owned]') ? sibling : null;
     if (!host) return;
     const html = native ? native.innerHTML : '';
     if (host.dataset.src === html) return;
@@ -725,11 +734,27 @@
     details.appendChild(el('ul', 'details-actions desktop-action'));
     caption.appendChild(details);
     top.appendChild(caption);
+    let firstSeen = 0;
     const fitStats = () => {
-      const actions = details.querySelector('.details-actions');
-      if (!actions || !actions.children.length) return;
       const extras = [...info.querySelectorAll('.routility-mutual-li, .routility-groups-li')];
-      if (!extras.length || info.getBoundingClientRect().right <= actions.getBoundingClientRect().left - 16) return;
+      if (!extras.length) return;
+      const pending = extras.filter(li => !li.classList.contains('routility-info-stat'));
+      const actions = details.querySelector('.details-actions');
+      const ready = actions && actions.children.length;
+      if (!ready) {
+        if (!pending.length) return;
+        if (!firstSeen) {
+          firstSeen = Date.now();
+          setTimeout(fitStats, 3100);
+        }
+        if (Date.now() - firstSeen < 3000) return;
+      }
+      const room = ready ? actions.getBoundingClientRect().left - 16 : Infinity;
+      const need = info.getBoundingClientRect().right + pending.reduce((n, li) => n + li.getBoundingClientRect().width, 0);
+      if (need <= room) {
+        pending.forEach(li => li.classList.add('routility-info-stat'));
+        return;
+      }
       const values = caption.querySelector('.routility-value-row');
       if (values && values.dataset.state !== 'ready') return;
       let row = values;

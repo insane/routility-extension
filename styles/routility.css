@@ -1320,6 +1320,11 @@ html.routility-av-adv-auto [role=dialog][data-state] {
   cursor: pointer;
 }
 
+.routility-classic .details-info > :is(.routility-mutual-li, .routility-groups-li):not(.routility-info-stat) {
+  position: absolute !important;
+  visibility: hidden !important;
+}
+
 .routility-mutual-li,
 .routility-groups-li {
   cursor: default;
