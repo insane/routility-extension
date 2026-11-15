@@ -6,6 +6,24 @@
   },
   "releases": [
     {
+      "version": "1.2.4",
+      "date": "2026-11-15",
+      "summary": "The 2017 Roblox Theme now looks like the real 2017 site, plus a steadier Trade button, tidier Owners rows and an Avatar page that fits smaller screens.",
+      "changes": [
+        { "type": "new", "text": "Classics Row (2017 Roblox Theme): a Classics row at the top of the Games page with the big games from the Roblox front page of any year from 2012 to 2019, with their live player counts." },
+        { "type": "improved", "text": "2017 Roblox Theme: uses Source Sans like the real 2017 site, with lighter titles, blue See All buttons, the old R$ icon, game cards with Playing and rating on their own lines, and a top bar laid out like 2017." },
+        { "type": "improved", "text": "2017 Roblox Theme: a slimmer 2017-style sidebar that gives pages more room, with Quick Settings on one line each." },
+        { "type": "improved", "text": "2017 Roblox Theme: tidier Home, with a smaller greeting, a cleaner Friends row, wide game tiles that no longer grow on hover, and scroll arrows that only show when you point at a row." },
+        { "type": "improved", "text": "2017 Roblox Theme: the Chat & Party bar is blue like in 2017, Roblox items in the Catalog show By Roblox with the verified check, and the Robux menu uses the old R$ icon." },
+        { "type": "improved", "text": "Trade Button on Profiles: a faded Trade button holds its spot while it loads, so the other buttons don’t jump." },
+        { "type": "improved", "text": "Profile value pills explain themselves while they load when you hover them." },
+        { "type": "fixed", "text": "2017 Roblox Theme: Catalog price and creator filters are wide enough to type in, the Catalog search icon lines up, and Avatar items are white cards again without empty space." },
+        { "type": "fixed", "text": "Owners on item pages: rows are the same size as Resellers again instead of huge avatars and tall Trade buttons, and the Plus/Premium filter fits on one line." },
+        { "type": "fixed", "text": "Avatar: the pinned left column can scroll to its bottom on smaller screens." },
+        { "type": "fixed", "text": "2017 Roblox Theme: fixed the cut-off Home greeting, empty space under game cards, the hidden Robux balance, the Holding Period info icon and Avatar item cards with empty boxes." }
+      ]
+    },
+    {
       "version": "1.2.3",
       "date": "2026-11-14",
       "summary": "Join When Open keeps waiting in the background, a Trade button on profiles, profile backgrounds in Classic Profile, a bigger Sandbox Enlarge and a place picker for servers.",
