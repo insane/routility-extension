@@ -4,6 +4,7 @@
   if (location.hostname !== 'www.roblox.com') return;
   const { lt, LT } = window.RoUtilityI18n;
   const SEE_ALL = LT('See All');
+  const PLAYING = LT('Playing');
   let on = false;
 
   function seeAll() {
@@ -45,8 +46,17 @@
     root.style.setProperty('--c17-search-left', left);
   }
 
+  function label() {
+    const root = document.documentElement;
+    const want = on ? JSON.stringify(' ' + lt(PLAYING)) : '';
+    if (root.style.getPropertyValue('--c17-playing') === want) return;
+    if (want) root.style.setProperty('--c17-playing', want);
+    else root.style.removeProperty('--c17-playing');
+  }
+
   function run() {
     placeSearch();
+    label();
     if (!on) {
       document.querySelectorAll('.routility-2017-more').forEach(n => n.remove());
       return;

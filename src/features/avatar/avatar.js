@@ -1203,5 +1203,31 @@
     document.querySelectorAll('.routility-av-crumb-row').forEach(n => n.classList.remove('routility-av-crumb-row'));
   }
 
+  let pinned = null;
+  const sizer = new ResizeObserver(() => pinTop());
+
+  function pinTop() {
+    const box = pinned && pinned.isConnected ? pinned : null;
+    if (!box) return;
+    const v = Math.min(64, Math.round(window.innerHeight - box.offsetHeight - 16)) + 'px';
+    if (box.style.getPropertyValue('--routility-av-top') !== v) box.style.setProperty('--routility-av-top', v);
+  }
+
+  function watchPin() {
+    const box = document.querySelector('#avatar-web-app .left-wrapper-placeholder');
+    if (box && box !== pinned) {
+      pinned = box;
+      sizer.disconnect();
+      sizer.observe(box);
+    }
+    pinTop();
+  }
+
+  if (/^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?my\/avatar/i.test(location.pathname)) {
+    window.addEventListener('resize', pinTop);
+    setInterval(watchPin, 1000);
+    watchPin();
+  }
+
   window.RoUtilityAvatar = { setup, setupWearing, setupRig, setupRemember, teardown };
 })();

@@ -2641,7 +2641,7 @@ html.routility-av-sticky #avatar-react-container > div:has(> .left-wrapper-place
 
 html.routility-av-sticky #avatar-web-app .left-wrapper-placeholder {
   position: sticky;
-  top: 64px;
+  top: var(--routility-av-top, 64px);
   z-index: 2;
   height: auto;
 }

@@ -1,28 +1,21 @@
 @font-face {
-  font-family: "HCo Gotham SSm";
-  src: url("https://static.rbxcdn.com/fonts/Gotham/GothamSSm-Light.woff2") format("woff2");
-  font-weight: 300;
+  font-family: "RoUtility Source Sans";
+  src: url("../assets/fonts/SourceSans3-Light.woff2") format("woff2");
+  font-weight: 100 300;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "HCo Gotham SSm";
-  src: url("https://static.rbxcdn.com/fonts/Gotham/GothamSSm-Book.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "RoUtility Source Sans";
+  src: url("../assets/fonts/SourceSans3-Regular.woff2") format("woff2");
+  font-weight: 400 500;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "HCo Gotham SSm";
-  src: url("https://static.rbxcdn.com/fonts/Gotham/GothamSSm-Medium.woff2") format("woff2");
-  font-weight: 500 600;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "HCo Gotham SSm";
-  src: url("https://static.rbxcdn.com/fonts/Gotham/GothamSSm-Bold.woff2") format("woff2");
-  font-weight: 700 900;
+  font-family: "RoUtility Source Sans";
+  src: url("../assets/fonts/SourceSans3-Semibold.woff2") format("woff2");
+  font-weight: 600 900;
   font-display: swap;
 }
 
@@ -38,6 +31,7 @@ html.routility-2017:not(.routility-2017-themed) .dark-theme {
   --color-content-default: #191919 !important;
   --color-content-muted: #757575 !important;
   --color-content-link: #00a2ff !important;
+  --color-action-standard-foreground: #191919 !important;
   --color-shift-100: rgba(25, 25, 25, 0.04) !important;
   --color-shift-200: rgba(25, 25, 25, 0.08) !important;
   --color-shift-300: rgba(25, 25, 25, 0.12) !important;
@@ -103,7 +97,7 @@ html.routility-2017.routility-2017-themed :is(body, .light-theme, .dark-theme) {
 
 html.routility-2017 body,
 html.routility-2017 body *:not([class*="icon"]):not(input[type="password"]) {
-  font-family: "HCo Gotham SSm", "Source Sans Pro", Arial, Helvetica, sans-serif !important;
+  font-family: "RoUtility Source Sans", "Source Sans Pro", Arial, Helvetica, sans-serif !important;
 }
 
 html.routility-2017 body {
@@ -204,12 +198,21 @@ html.routility-2017 #header .navbar-search .input-addon-btn:hover > .icon {
 }
 
 html.routility-2017 #header .rbx-navbar-header {
-  margin: 0 12px !important;
+  margin: 0 !important;
+  padding: 0 0 0 17px !important;
 }
 
 html.routility-2017 #header #header-menu-icon {
-  margin: 0 12px 0 0 !important;
-  padding: 5px 5px 0 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html.routility-2017 #header .rbx-navbar-header .navbar-brand {
+  margin-left: 0 !important;
+}
+
+html.routility-2017 #header ul.rbx-navbar {
+  margin-left: 0 !important;
 }
 
 html.routility-2017 #header #header-menu-icon > .menu-button,
@@ -265,6 +268,24 @@ html.routility-2017 #header :is(#nav-robux-amount, .nav-credit-text, .rbx-text-n
   color: var(--c17-on-header) !important;
 }
 
+html.routility-2017 #header .age-bracket-label-username {
+  margin-right: 0 !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+html.routility-2017 #header .navbar-icon-item > button {
+  margin-top: 1px !important;
+}
+
+html.routility-2017 #header .navbar-stream {
+  margin: 0 2px !important;
+}
+
+html.routility-2017 #header #nav-credit-icon {
+  margin-left: 14px !important;
+}
+
 html.routility-2017 #header .navbar-brand .icon-logo-r {
   background-image: url("https://static.rbxcdn.com/images/Logo/logo_O_01302017.svg") !important;
   background-size: 30px 30px !important;
@@ -289,7 +310,8 @@ html.routility-2017 #header ul.rbx-navbar {
 html.routility-2017 #header ul.rbx-navbar > li {
   float: left !important;
   width: auto !important;
-  min-width: 76.8px !important;
+  min-width: 0 !important;
+  padding: 0 20px !important;
   text-align: center !important;
 }
 
@@ -382,8 +404,12 @@ html.routility-2017 :is(li.game-card:not(.routility-classic-game), .games-detail
 html.routility-2017 :is(li.game-card:not(.routility-classic-game), .games-detail .game-carousel) .game-card-info {
   position: absolute !important;
   bottom: 6px !important;
-  width: 100% !important;
-  margin: 0 6px !important;
+  left: 0 !important;
+  right: 0 !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 6px !important;
   line-height: 1.4em !important;
 }
 
@@ -490,7 +516,7 @@ html.routility-2017 .routility-2017-more:hover {
 html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list {
   box-sizing: border-box !important;
   width: auto !important;
-  height: 242px !important;
+  height: 223px !important;
   margin: 8px 36px !important;
   padding: 0 0 5px !important;
   overflow: visible !important;
@@ -507,7 +533,7 @@ html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .h
   z-index: 1000 !important;
   box-sizing: border-box !important;
   width: 30px !important;
-  height: 240px !important;
+  height: 218px !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 1px solid var(--c17-border) !important;
@@ -571,7 +597,7 @@ html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .h
 }
 
 html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new > span {
-  top: 100px !important;
+  top: 95px !important;
 }
 
 html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new.prev > span {
@@ -593,14 +619,14 @@ html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .h
 }
 
 html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::after {
-  top: 101px !important;
+  top: 96px !important;
   left: -35px !important;
   background-position: 0 -980px !important;
   opacity: .15 !important;
 }
 
 html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::after {
-  top: 101px !important;
+  top: 96px !important;
   right: -33px !important;
   left: auto !important;
   clear: none !important;
@@ -685,6 +711,28 @@ html.routility-2017 :is(.games-list-header, .routility-home-edit) .foundation-we
 
 html.routility-2017 :is(.games-list-header, .routility-home-edit) .foundation-web-button > .absolute {
   display: none !important;
+}
+
+html.routility-2017 .home-sort-header-container [data-testid="section-header"]:has(> .routility-home-edit) {
+  align-items: center !important;
+}
+
+html.routility-2017 .home-sort-header-container .routility-home-edit {
+  margin-left: 12px !important;
+}
+
+html.routility-2017 .routility-playtime {
+  width: min(620px, 55%);
+}
+
+html.routility-2017 .routility-pt-head {
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+
+html.routility-2017 .routility-pt-head > .text-title-medium {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 html.routility-2017 .games-page-container .filters-container {
@@ -1813,7 +1861,7 @@ html.routility-2017 .routility-classic .profile-header .header-details {
   display: flex !important;
   align-items: flex-start !important;
   justify-content: space-between !important;
-  height: 54px !important;
+  height: auto !important;
   margin-top: auto !important;
 }
 
@@ -1854,7 +1902,7 @@ html.routility-2017 .routility-classic .profile-header .profile-header-top {
 }
 
 html.routility-2017 .routility-classic .profile-header .header-title {
-  height: 42px !important;
+  height: 32px !important;
 }
 
 html.routility-2017 #content .container-header > :is(h2, h3) {
@@ -1987,7 +2035,7 @@ html.routility-2017 #game-detail-page .container-list.games-detail > h3 {
 html.routility-2017 #game-detail-page .games-detail .game-carousel > .game-card-container {
   flex: 0 0 150px !important;
   width: 150px !important;
-  height: 240px !important;
+  height: 218px !important;
   margin: 0 14px 0 0 !important;
 }
 
@@ -2201,4 +2249,351 @@ html.routility-2017 .group-profile-header .actions-container {
 html.routility-2017 .group-profile-header .description-container pre {
   color: var(--c17-text) !important;
   font-size: 16px !important;
+}
+
+html.routility-2017 #content .container-header > :is(h2, h3),
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .home-sort-header-container [data-testid="text-icon-row-text"] {
+  padding: 0 !important;
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  line-height: 29px !important;
+}
+
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .home-sort-header-container {
+  align-items: center !important;
+}
+
+html.routility-2017 :is(.btn-secondary-xs, .btn-secondary-md).see-all-link-icon,
+html.routility-2017 .container-header .btn-more,
+html.routility-2017 .routility-2017-more {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  min-width: 90px !important;
+  height: 22px !important;
+  padding: 0 8px !important;
+  border: 1px solid var(--c17-accent) !important;
+  border-radius: 3px !important;
+  background-color: var(--c17-accent) !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+}
+
+html.routility-2017 :is(.btn-secondary-xs, .btn-secondary-md).see-all-link-icon:hover,
+html.routility-2017 .container-header .btn-more:hover,
+html.routility-2017 .routility-2017-more:hover {
+  border-color: var(--c17-accent-hover) !important;
+  background-color: var(--c17-accent-hover) !important;
+  text-decoration: none !important;
+}
+
+html.routility-2017 :is(li.game-card:not(.routility-classic-game), .games-detail .game-carousel) .game-card-name {
+  max-height: 20px !important;
+  margin: 4px 0 0 !important;
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  line-height: 20px !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  word-break: normal;
+}
+
+html.routility-2017 :is(li.game-card:not(.routility-classic-game), .games-detail .game-carousel) .game-card-info {
+  position: static !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  margin: 1px 0 0 !important;
+  padding: 0 6px !important;
+}
+
+html.routility-2017 :is(li.game-card:not(.routility-classic-game), .games-detail .game-carousel) .game-card-info .info-label {
+  color: var(--c17-muted) !important;
+  font-size: 12px !important;
+  line-height: 18px !important;
+}
+
+html.routility-2017 :is(li.game-card:not(.routility-classic-game), .games-detail .game-carousel) .game-card-info:not(.game-card-friend-info) .playing-counts-label::after {
+  content: var(--c17-playing, " Playing");
+}
+
+html.routility-2017 :is(li.game-card:not(.routility-classic-game), .games-detail .game-carousel) .game-card-info:not(.game-card-friend-info) .icon-playing-counts-gray {
+  display: none !important;
+}
+
+html.routility-2017 :is(li.game-card:not(.routility-classic-game), .games-detail .game-carousel) .game-card-info .info-label + .info-label {
+  margin-left: 3px !important;
+}
+
+html.routility-2017 :is(li.game-card:not(.routility-classic-game), .games-detail .game-carousel) .game-card-info .icon-votes-gray {
+  width: 12px !important;
+  height: 12px !important;
+  background-size: 24px auto !important;
+  background-position: 0 -360px !important;
+}
+
+html.routility-2017 .routility-home-greeting {
+  gap: 14px;
+}
+
+html.routility-2017 .routility-greet-avatar {
+  width: 128px;
+  height: 128px;
+}
+
+html.routility-2017 .routility-greet-title {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29px;
+}
+
+html.routility-2017 #header ul.rbx-navbar > li > a.nav-menu-title {
+  font-weight: 600 !important;
+}
+
+html.routility-2017 .friends-carousel-container .text-truncate-end {
+  font-weight: 400 !important;
+}
+
+html.routility-2017 .home-container :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list {
+  margin: 8px 0 !important;
+}
+
+html.routility-2017 .home-container :is(.games-list-container, .game-sort-carousel-wrapper):has(> .horizontal-scroller.games-list) {
+  overflow: visible !important;
+}
+
+html.routility-2017 .home-container :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::before,
+html.routility-2017 .home-container :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.prev))::after,
+html.routility-2017 .home-container :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::before,
+html.routility-2017 .home-container :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:not(:has(.scroller-new.next)) > .horizontal-scroll-window::after {
+  display: none !important;
+}
+
+html.routility-2017 .home-container :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list .scroller-new {
+  opacity: 0 !important;
+  transition: opacity 0.15s ease !important;
+}
+
+html.routility-2017 .home-container :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list:hover .scroller-new {
+  opacity: 1 !important;
+}
+
+html.routility-2017 :is(.heading-container h1.heading, .games-list-header h1) {
+  font-size: 24px !important;
+  font-weight: 400 !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .header-title .profile-name {
+  font-size: 24px !important;
+  font-weight: 400 !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-name {
+  display: block !important;
+  max-height: 20px !important;
+  overflow: hidden !important;
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  line-height: 20px !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  -webkit-line-clamp: unset !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-price .text-robux-tile {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .details-info {
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .details-info > li {
+  width: 88px !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .details-info .text-label {
+  font-weight: 400 !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .details-info a.text-name {
+  padding: 2px 0 0 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .details-actions .btn-control-md {
+  height: 32px !important;
+  padding: 0 12px !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 30px !important;
+}
+
+html.routility-2017 #game-detail-page :is(.container-list.games-detail > h3, [data-testid="text-icon-row-text"]) {
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  line-height: 29px !important;
+}
+
+html.routility-2017 :is(li.game-card:not(.routility-classic-game), .games-detail .game-carousel) .game-card-info:not(.game-card-friend-info) .playing-counts-label {
+  order: -1;
+  flex: 0 0 100%;
+  margin: 0 !important;
+}
+
+html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) li.game-card:not(.routility-classic-game) .game-card-container {
+  height: 218px !important;
+}
+
+html.routility-2017 .home-container :is(.games-list-container, .game-sort-carousel-wrapper) > .horizontal-scroller.games-list > .horizontal-scroll-window {
+  overflow: hidden !important;
+}
+
+html.routility-2017 :is(li.game-card:not(.routility-classic-game), .games-detail .game-carousel) .game-card-thumb-container :is(.thumbnail-2d-container, .thumbnail-2d-container img) {
+  border-radius: 0 !important;
+}
+
+html.routility-2017 #header .navbar-search {
+  width: 433px !important;
+  max-width: calc(100vw - 1100px) !important;
+  min-width: 160px !important;
+  margin: 7px 0 0 2px !important;
+}
+
+html.routility-2017 #header .navbar-search input#navbar-search-input {
+  width: 100% !important;
+  height: 26px !important;
+  padding: 4px 10px 4px 32px !important;
+  border-right: 1px solid var(--c17-border) !important;
+  border-radius: 3px !important;
+}
+
+html.routility-2017 #header .navbar-search .input-addon-btn {
+  right: auto !important;
+  left: 0 !important;
+  width: 30px !important;
+  height: 26px !important;
+  border: 0 !important;
+  background-color: transparent !important;
+}
+
+html.routility-2017 #header .navbar-search .input-addon-btn > .icon {
+  margin: 0 0 0 7px !important;
+}
+
+html.routility-2017 .friend-carousel-container .friends-carousel-container {
+  padding: 12px !important;
+}
+
+html.routility-2017 .friend-carousel-container .friends-carousel-tile {
+  margin-bottom: 0 !important;
+}
+
+html.routility-2017 #content h1:not(.game-name) {
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+}
+
+html.routility-2017 :is(.category-dropdown, .subcategory-dropdown, .category-tabs) > h2 {
+  font-weight: 400 !important;
+}
+
+html.routility-2017 .item-card:not(#avatar-web-app .item-card) .item-card-name {
+  display: block !important;
+  overflow: hidden !important;
+  font-weight: 300 !important;
+  line-height: 20px !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  -webkit-line-clamp: unset !important;
+}
+
+html.routility-2017 .routility-classic .profile-header .header-title .routility-name-badges :is(.relative, .icon, .routility-user-badge) {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+html.routility-2017 .routility-classic .routility-classic-outfits {
+  padding: 0 0 15px !important;
+}
+
+html.routility-2017 .friends-subtitle > h2 {
+  font-size: 24px !important;
+  font-weight: 400 !important;
+}
+
+html.routility-2017 #content [data-testid="text-icon-row-text"],
+html.routility-2017 .slide-item-info > h2.slide-item-name {
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  line-height: 29px !important;
+}
+
+html.routility-2017 .recommendations-header > h2 {
+  font-size: 24px !important;
+  font-weight: 400 !important;
+}
+
+html.routility-2017 #game-detail-page .game-name {
+  font-weight: 400 !important;
+}
+
+html.routility-2017 .friends-carousel-container .width-full :is(.verified-badge, .icon) {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+html.routility-2017 .routility-pt-head > .text-title-medium {
+  font-weight: 400 !important;
+}
+
+html.routility-2017 #avatar-web-app .section-sliders .text-label {
+  color: var(--c17-text) !important;
+  font-weight: 400 !important;
+}
+
+html.routility-2017 #avatar-web-app .item-card .item-card-name {
+  display: -webkit-box !important;
+  max-height: 40px !important;
+  overflow: hidden !important;
+  line-height: 20px !important;
+  white-space: normal !important;
+  text-overflow: ellipsis !important;
+  word-break: break-word;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+}
+
+html.routility-2017 #avatar-web-app .item-card .item-card-name > span {
+  white-space: normal !important;
+}
+
+html.routility-2017 #avatar-web-app .item-card .item-card-price:not(.routility-injected) {
+  display: none !important;
+}
+
+html.routility-2017 #avatar-web-app .item-card .item-card-container {
+  background-color: transparent !important;
+}
+
+html.routility-2017 #avatar-web-app .item-card .item-card-thumb-container {
+  background-color: var(--c17-card) !important;
+}
+
+html.routility-2017 #avatar-web-app .item-card :is(.item-card-name, .item-card-price) {
+  padding: 0 !important;
+}
+
+html.routility-2017 #avatar-web-app .item-card .item-card-name {
+  margin-top: 6px !important;
 }
