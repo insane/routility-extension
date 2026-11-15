@@ -619,6 +619,7 @@ html.routility-modal-open body {
 
 .routility-it-modal {
   width: min(880px, 94vw);
+  height: 88vh;
   outline: none;
 }
 

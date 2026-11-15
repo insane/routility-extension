@@ -117,11 +117,11 @@
       tabs.querySelectorAll('button').forEach(b => b.classList.toggle('routility-it-tab-on', b.dataset.range === s.range));
       list.textContent = '';
       note.textContent = '';
-      for (let i = 0; i < 2; i++) list.appendChild(skeletonRow());
+      for (let i = 0; i < 5; i++) list.appendChild(skeletonRow());
       const r = await fetchTrades(assetId, s.range, 1, 5);
       if (token !== s.token) return;
-      list.textContent = '';
       if (!r) {
+        list.textContent = '';
         note.textContent = lt('Couldn’t load trades. Try again in a moment.');
         all.hidden = true;
         return;
@@ -129,7 +129,7 @@
       const ids = [...new Set(r.trades.flatMap(t => [t.side_a && t.side_a.id, t.side_b && t.side_b.id]).filter(Boolean).map(String))];
       await avatars(ids, heads);
       if (token !== s.token) return;
-      for (const t of r.trades) list.appendChild(tradeCard(t, assetId, heads));
+      list.replaceChildren(...r.trades.map(t => tradeCard(t, assetId, heads)));
       note.textContent = r.trades.length ? '' : lt('No trades in this time.');
       all.hidden = (r.total || 0) <= r.trades.length;
     };
@@ -308,9 +308,9 @@
       if (!s.page) for (let i = 0; i < 4; i++) list.appendChild(skeletonRow());
       const r = await fetchTrades(assetId, s.range, s.page + 1, PER_PAGE);
       if (token !== s.token || !backdrop.isConnected) return;
-      list.querySelectorAll('.routility-it-skeleton').forEach(n => n.remove());
       more.disabled = false;
       if (!r) {
+        list.querySelectorAll('.routility-it-skeleton').forEach(n => n.remove());
         note.textContent = lt('Couldn’t load trades. Try again in a moment.');
         return;
       }
@@ -319,7 +319,8 @@
       const ids = [...new Set(r.trades.flatMap(t => [t.side_a && t.side_a.id, t.side_b && t.side_b.id]).filter(Boolean).map(String))];
       await avatars(ids, heads);
       if (token !== s.token) return;
-      for (const t of r.trades) list.appendChild(tradeCard(t, assetId, heads));
+      list.querySelectorAll('.routility-it-skeleton').forEach(n => n.remove());
+      list.append(...r.trades.map(t => tradeCard(t, assetId, heads)));
       note.textContent = list.children.length ? '' : lt('No trades in this time.');
       more.hidden = s.page >= s.pages;
     };
