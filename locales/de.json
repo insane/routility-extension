@@ -3304,5 +3304,26 @@
  "Classics Row": "Klassiker-Reihe",
  "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "Eine Klassiker-Reihe oben auf der Spiele-Seite mit den großen Spielen der Roblox-Startseite aus dem Jahr deiner Wahl, mit den aktuellen Spielerzahlen.",
  "Classics Year": "Klassiker-Jahr",
- "Which year’s front page games show in the Classics row.": "Aus welchem Jahr die Startseiten-Spiele in der Klassiker-Reihe stammen."
+ "Which year’s front page games show in the Classics row.": "Aus welchem Jahr die Startseiten-Spiele in der Klassiker-Reihe stammen.",
+ "{n} trades in the past week": {
+  "one": "{n} Handel in der letzten Woche",
+  "other": "{n} Handel in der letzten Woche"
+ },
+ "{n} trades in the past month": {
+  "one": "{n} Handel im letzten Monat",
+  "other": "{n} Handel im letzten Monat"
+ },
+ "{n} trades all time": {
+  "one": "{n} Handel insgesamt",
+  "other": "{n} Handel insgesamt"
+ },
+ "Recent Trades": "Letzte Trades",
+ "See trades": "Trades ansehen",
+ "What it was worth at the time of the trade": "Was es zum Zeitpunkt des Trades wert war",
+ "Couldn’t load trades. Try again in a moment.": "Trades konnten nicht geladen werden. Versuch es gleich noch einmal.",
+ "No trades in this time.": "In diesem Zeitraum gab es keine Trades.",
+ "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Wie oft es zuletzt getradet wurde. Klicke auf Trades ansehen, um jeden Trade zu sehen, wer getradet hat und was jedes Item damals wert war.",
+ "See all trades": "Alle Trades ansehen",
+ "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "Trades können nebenbei {extra} enthalten, das wir nicht sehen. Die Summen zählen nur die Items.",
+ "Robux or USD": "Robux oder USD"
 }

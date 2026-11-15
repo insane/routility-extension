@@ -3602,5 +3602,32 @@
  "Classics Row": "Ряд классики",
  "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "Ряд классики вверху страницы игр с большими играми с главной страницы Roblox выбранного года и текущим числом игроков.",
  "Classics Year": "Год классики",
- "Which year’s front page games show in the Classics row.": "Игры с главной страницы какого года показывать в ряду классики."
+ "Which year’s front page games show in the Classics row.": "Игры с главной страницы какого года показывать в ряду классики.",
+ "{n} trades in the past week": {
+  "one": "{n} обмен за неделю",
+  "few": "{n} обмена за неделю",
+  "many": "{n} обменов за неделю",
+  "other": "{n} обмена за неделю"
+ },
+ "{n} trades in the past month": {
+  "one": "{n} обмен за месяц",
+  "few": "{n} обмена за месяц",
+  "many": "{n} обменов за месяц",
+  "other": "{n} обмена за месяц"
+ },
+ "{n} trades all time": {
+  "one": "{n} обмен за всё время",
+  "few": "{n} обмена за всё время",
+  "many": "{n} обменов за всё время",
+  "other": "{n} обмена за всё время"
+ },
+ "Recent Trades": "Последние обмены",
+ "See trades": "Смотреть обмены",
+ "What it was worth at the time of the trade": "Сколько стоил на момент обмена",
+ "Couldn’t load trades. Try again in a moment.": "Не удалось загрузить обмены. Попробуйте чуть позже.",
+ "No trades in this time.": "За этот период обменов нет.",
+ "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Сколько раз его недавно обменивали. Нажмите «Смотреть обмены», чтобы увидеть каждый обмен, участников и стоимость каждого предмета на тот момент.",
+ "See all trades": "Смотреть все обмены",
+ "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "В обмены могут входить {extra} сверху, которых мы не видим. Итоги учитывают только предметы.",
+ "Robux or USD": "Robux или USD"
 }

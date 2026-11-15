@@ -3304,5 +3304,26 @@
  "Classics Row": "Riga dei classici",
  "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "Una riga di classici in cima alla pagina Giochi con i grandi giochi della home di Roblox dell’anno che scegli, con i giocatori in tempo reale.",
  "Classics Year": "Anno dei classici",
- "Which year’s front page games show in the Classics row.": "Di quale anno sono i giochi della home mostrati nella riga dei classici."
+ "Which year’s front page games show in the Classics row.": "Di quale anno sono i giochi della home mostrati nella riga dei classici.",
+ "{n} trades in the past week": {
+  "one": "{n} scambio nell’ultima settimana",
+  "other": "{n} scambi nell’ultima settimana"
+ },
+ "{n} trades in the past month": {
+  "one": "{n} scambio nell’ultimo mese",
+  "other": "{n} scambi nell’ultimo mese"
+ },
+ "{n} trades all time": {
+  "one": "{n} scambio in totale",
+  "other": "{n} scambi in totale"
+ },
+ "Recent Trades": "Scambi recenti",
+ "See trades": "Vedi scambi",
+ "What it was worth at the time of the trade": "Quanto valeva al momento dello scambio",
+ "Couldn’t load trades. Try again in a moment.": "Impossibile caricare gli scambi. Riprova tra poco.",
+ "No trades in this time.": "Nessuno scambio in questo periodo.",
+ "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Quante volte è stato scambiato di recente. Clicca su Vedi scambi per vedere ogni scambio, chi ha scambiato e quanto valeva ogni oggetto in quel momento.",
+ "See all trades": "Vedi tutti gli scambi",
+ "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "Gli scambi possono includere {extra} a parte, che non possiamo vedere. I totali contano solo gli oggetti.",
+ "Robux or USD": "Robux o USD"
 }

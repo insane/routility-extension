@@ -3155,5 +3155,23 @@
  "Classics Row": "クラシック列",
  "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "ゲームページの一番上に、選んだ年のRobloxトップページの人気ゲームをライブのプレイ人数付きで並べたクラシック列を表示します。",
  "Classics Year": "クラシックの年",
- "Which year’s front page games show in the Classics row.": "クラシック列に表示するトップページのゲームの年。"
+ "Which year’s front page games show in the Classics row.": "クラシック列に表示するトップページのゲームの年。",
+ "{n} trades in the past week": {
+  "other": "過去1週間で{n}件のトレード"
+ },
+ "{n} trades in the past month": {
+  "other": "過去1か月で{n}件のトレード"
+ },
+ "{n} trades all time": {
+  "other": "これまでに{n}件のトレード"
+ },
+ "Recent Trades": "最近のトレード",
+ "See trades": "トレードを見る",
+ "What it was worth at the time of the trade": "トレード時点での価値",
+ "Couldn’t load trades. Try again in a moment.": "トレードを読み込めませんでした。少し待ってからもう一度お試しください。",
+ "No trades in this time.": "この期間のトレードはありません。",
+ "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "最近どれくらいトレードされたかを表示します。「トレードを見る」をクリックすると、各トレード、トレードした人、当時の各アイテムの価値を確認できます。",
+ "See all trades": "すべてのトレードを見る",
+ "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "トレードには見えない{extra}が別途含まれることがあります。合計はアイテムのみです。",
+ "Robux or USD": "RobuxやUSD"
 }

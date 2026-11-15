@@ -3304,5 +3304,26 @@
  "Classics Row": "Klasikler Sırası",
  "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "Oyunlar sayfasının en üstünde, seçtiğin yılın Roblox ana sayfasındaki büyük oyunları canlı oyuncu sayılarıyla gösteren bir Klasikler sırası.",
  "Classics Year": "Klasikler Yılı",
- "Which year’s front page games show in the Classics row.": "Klasikler sırasında hangi yılın ana sayfa oyunlarının görüneceği."
+ "Which year’s front page games show in the Classics row.": "Klasikler sırasında hangi yılın ana sayfa oyunlarının görüneceği.",
+ "{n} trades in the past week": {
+  "one": "Son haftada {n} takas",
+  "other": "Son haftada {n} takas"
+ },
+ "{n} trades in the past month": {
+  "one": "Son ayda {n} takas",
+  "other": "Son ayda {n} takas"
+ },
+ "{n} trades all time": {
+  "one": "Toplam {n} takas",
+  "other": "Toplam {n} takas"
+ },
+ "Recent Trades": "Son Takaslar",
+ "See trades": "Takasları gör",
+ "What it was worth at the time of the trade": "Takas anındaki değeri",
+ "Couldn’t load trades. Try again in a moment.": "Takaslar yüklenemedi. Biraz sonra tekrar dene.",
+ "No trades in this time.": "Bu sürede takas yok.",
+ "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Son zamanlarda kaç kez takas edildiği. Her takası, kimin takas ettiğini ve o anda her eşyanın değerini görmek için Takasları gör’e tıkla.",
+ "See all trades": "Tüm takasları gör",
+ "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "Takaslar, göremediğimiz {extra} içerebilir. Toplamlar yalnızca eşyaları sayar.",
+ "Robux or USD": "Robux veya USD"
 }

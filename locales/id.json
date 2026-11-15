@@ -3155,5 +3155,23 @@
  "Classics Row": "Baris Klasik",
  "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "Baris Klasik di atas halaman Game dengan game besar dari halaman depan Roblox tahun pilihanmu, lengkap dengan jumlah pemain langsung.",
  "Classics Year": "Tahun Klasik",
- "Which year’s front page games show in the Classics row.": "Game halaman depan dari tahun mana yang tampil di baris Klasik."
+ "Which year’s front page games show in the Classics row.": "Game halaman depan dari tahun mana yang tampil di baris Klasik.",
+ "{n} trades in the past week": {
+  "other": "{n} trade dalam seminggu terakhir"
+ },
+ "{n} trades in the past month": {
+  "other": "{n} trade dalam sebulan terakhir"
+ },
+ "{n} trades all time": {
+  "other": "{n} trade sepanjang waktu"
+ },
+ "Recent Trades": "Trade Terbaru",
+ "See trades": "Lihat trade",
+ "What it was worth at the time of the trade": "Nilainya saat trade terjadi",
+ "Couldn’t load trades. Try again in a moment.": "Gagal memuat trade. Coba lagi sebentar lagi.",
+ "No trades in this time.": "Tidak ada trade dalam rentang waktu ini.",
+ "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Seberapa sering item ini di-trade belakangan ini. Klik Lihat trade untuk melihat setiap trade, siapa yang melakukannya, dan nilai tiap item saat itu.",
+ "See all trades": "Lihat semua trade",
+ "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "Trade bisa menyertakan {extra} di luar, yang tidak bisa kami lihat. Totalnya hanya menghitung item.",
+ "Robux or USD": "Robux atau USD"
 }

@@ -836,6 +836,19 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return true;
   }
 
+  if (msg.type === 'itemTrades') {
+    const id = String(msg.id || '');
+    const range = ['7d', '30d', 'all'].includes(msg.range) ? msg.range : 'all';
+    const page = Math.max(1, Math.floor(Number(msg.page) || 1));
+    const limit = Math.min(50, Math.max(1, Math.floor(Number(msg.limit) || 20)));
+    if (!/^\d+$/.test(id)) { sendResponse(null); return; }
+    fetch(`https://routility.io/web/item-trades/${id}?range=${range}&page=${page}&limit=${limit}`)
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => sendResponse(d && Array.isArray(d.trades) ? d : null))
+      .catch(() => sendResponse(null));
+    return true;
+  }
+
   if (msg.type === 'itemAcronyms') {
     getItems().then(items => {
       const out = {};

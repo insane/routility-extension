@@ -10,6 +10,7 @@
       "date": "2026-11-15",
       "summary": "The 2017 Roblox Theme now looks like the real 2017 site, plus a steadier Trade button, tidier Owners rows and an Avatar page that fits smaller screens.",
       "changes": [
+        { "type": "new", "text": "Recent Trades (Limited Values): limited item pages show how many times the item was traded lately, and a Recent Trades section under the Price Chart lists the latest trades, with who traded and what each item was worth at the time. See all trades opens every trade from the past week, month or all time." },
         { "type": "new", "text": "Classics Row (2017 Roblox Theme): a Classics row at the top of the Games page with the big games from the Roblox front page of any year from 2012 to 2019, with their live player counts." },
         { "type": "improved", "text": "2017 Roblox Theme: uses Source Sans like the real 2017 site, with lighter titles, blue See All buttons, the old R$ icon, game cards with Playing and rating on their own lines, and a top bar laid out like 2017." },
         { "type": "improved", "text": "2017 Roblox Theme: a slimmer 2017-style sidebar that gives pages more room, with Quick Settings on one line each." },

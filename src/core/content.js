@@ -237,7 +237,7 @@
     });
   }
 
-  const itemExtras = { stats: true, tags: true, calc: true, similar: true, usd: true, value: true, demand: true, trend: true, copies: true, change: true, owned: true };
+  const itemExtras = { trades: true, stats: true, tags: true, calc: true, similar: true, usd: true, value: true, demand: true, trend: true, copies: true, change: true, owned: true };
   let similarItems = null;
 
   function similarList(item) {
@@ -362,6 +362,7 @@
     itemExtras.copies = set.itemCopies !== false;
     itemExtras.change = set.itemChange !== false;
     itemExtras.owned = set.itemOwnedRow !== false;
+    itemExtras.trades = set.itemTradesRow !== false;
   });
 
   function injectItemInfo(details, item) {
@@ -410,6 +411,12 @@
         tags.appendChild(t);
       }
       rows.push(nativeRow(lt('Tags'), tags));
+    }
+    if (itemExtras.trades && window.RoUtilityItemTrades) {
+      const holder = el('span', 'flex items-center gap-xsmall routility-it-row', lt('Loading…'));
+      const row = nativeRow(lt('Recent Trades'), holder);
+      rows.push(row);
+      window.RoUtilityItemTrades.fill(holder, row, item);
     }
     if (itemExtras.calc) {
       const a = el('a', 'text-link font-body routility-calc-link', lt('Value it in the Trade Calculator'));

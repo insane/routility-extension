@@ -3155,5 +3155,23 @@
  "Classics Row": "经典行",
  "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "在游戏页面顶部显示一行经典游戏，包含你所选年份 Roblox 首页上的热门游戏及实时玩家人数。",
  "Classics Year": "经典年份",
- "Which year’s front page games show in the Classics row.": "经典行显示哪一年首页上的游戏。"
+ "Which year’s front page games show in the Classics row.": "经典行显示哪一年首页上的游戏。",
+ "{n} trades in the past week": {
+  "other": "过去一周 {n} 笔交易"
+ },
+ "{n} trades in the past month": {
+  "other": "过去一个月 {n} 笔交易"
+ },
+ "{n} trades all time": {
+  "other": "累计 {n} 笔交易"
+ },
+ "Recent Trades": "近期交易",
+ "See trades": "查看交易",
+ "What it was worth at the time of the trade": "交易当时的价值",
+ "Couldn’t load trades. Try again in a moment.": "无法加载交易，请稍后再试。",
+ "No trades in this time.": "这段时间内没有交易。",
+ "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "最近被交易的次数。点击“查看交易”可查看每笔交易、交易双方以及当时每件物品的价值。",
+ "See all trades": "查看全部交易",
+ "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "交易可能另外包含我们看不到的{extra}。总计只计算物品。",
+ "Robux or USD": "Robux 或美元"
 }

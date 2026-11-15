@@ -3304,5 +3304,26 @@
  "Classics Row": "Rangée Classiques",
  "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "Une rangée Classiques en haut de la page Jeux avec les grands jeux de la page d’accueil Roblox de l’année choisie, avec leurs joueurs en direct.",
  "Classics Year": "Année des classiques",
- "Which year’s front page games show in the Classics row.": "De quelle année viennent les jeux de la page d’accueil affichés dans la rangée Classiques."
+ "Which year’s front page games show in the Classics row.": "De quelle année viennent les jeux de la page d’accueil affichés dans la rangée Classiques.",
+ "{n} trades in the past week": {
+  "one": "{n} échange la semaine dernière",
+  "other": "{n} échanges la semaine dernière"
+ },
+ "{n} trades in the past month": {
+  "one": "{n} échange le mois dernier",
+  "other": "{n} échanges le mois dernier"
+ },
+ "{n} trades all time": {
+  "one": "{n} échange au total",
+  "other": "{n} échanges au total"
+ },
+ "Recent Trades": "Échanges récents",
+ "See trades": "Voir les échanges",
+ "What it was worth at the time of the trade": "Ce qu’il valait au moment de l’échange",
+ "Couldn’t load trades. Try again in a moment.": "Impossible de charger les échanges. Réessaie dans un instant.",
+ "No trades in this time.": "Aucun échange sur cette période.",
+ "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Combien de fois il a été échangé récemment. Clique sur Voir les échanges pour voir chaque échange, qui a échangé et ce que valait chaque objet à ce moment-là.",
+ "See all trades": "Voir tous les échanges",
+ "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "Les échanges peuvent inclure des {extra} en plus, que nous ne voyons pas. Les totaux ne comptent que les objets.",
+ "Robux or USD": "Robux ou USD"
 }

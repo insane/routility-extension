@@ -54,6 +54,7 @@
         "src/core/ui.js",
         "src/features/items/chart.js",
         "src/features/items/owners.js",
+        "src/features/items/itemtrades.js",
         "src/features/profile/profile.js",
         "src/features/inventory/inventory.js",
         "src/features/trading/trades.js",

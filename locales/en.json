@@ -3304,5 +3304,26 @@
  "Classics Row": "Classics Row",
  "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.",
  "Classics Year": "Classics Year",
- "Which year’s front page games show in the Classics row.": "Which year’s front page games show in the Classics row."
+ "Which year’s front page games show in the Classics row.": "Which year’s front page games show in the Classics row.",
+ "{n} trades in the past week": {
+  "one": "{n} trade in the past week",
+  "other": "{n} trades in the past week"
+ },
+ "{n} trades in the past month": {
+  "one": "{n} trade in the past month",
+  "other": "{n} trades in the past month"
+ },
+ "{n} trades all time": {
+  "one": "{n} trade all time",
+  "other": "{n} trades all time"
+ },
+ "Recent Trades": "Recent Trades",
+ "See trades": "See trades",
+ "What it was worth at the time of the trade": "What it was worth at the time of the trade",
+ "Couldn’t load trades. Try again in a moment.": "Couldn’t load trades. Try again in a moment.",
+ "No trades in this time.": "No trades in this time.",
+ "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.",
+ "See all trades": "See all trades",
+ "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "Trades can include {extra} on the side, which we can’t see. The totals only count the items.",
+ "Robux or USD": "Robux or USD"
 }

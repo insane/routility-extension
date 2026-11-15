@@ -3155,5 +3155,23 @@
  "Classics Row": "แถวคลาสสิก",
  "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "แถวคลาสสิกด้านบนหน้าเกม พร้อมเกมดังจากหน้าแรกของ Roblox ในปีที่คุณเลือก และจำนวนผู้เล่นสด",
  "Classics Year": "ปีของคลาสสิก",
- "Which year’s front page games show in the Classics row.": "เลือกว่าแถวคลาสสิกจะแสดงเกมจากหน้าแรกของปีไหน"
+ "Which year’s front page games show in the Classics row.": "เลือกว่าแถวคลาสสิกจะแสดงเกมจากหน้าแรกของปีไหน",
+ "{n} trades in the past week": {
+  "other": "เทรด {n} ครั้งในสัปดาห์ที่ผ่านมา"
+ },
+ "{n} trades in the past month": {
+  "other": "เทรด {n} ครั้งในเดือนที่ผ่านมา"
+ },
+ "{n} trades all time": {
+  "other": "เทรดทั้งหมด {n} ครั้ง"
+ },
+ "Recent Trades": "เทรดล่าสุด",
+ "See trades": "ดูการเทรด",
+ "What it was worth at the time of the trade": "มูลค่าในตอนที่เทรด",
+ "Couldn’t load trades. Try again in a moment.": "โหลดการเทรดไม่ได้ ลองใหม่อีกครั้งในอีกสักครู่",
+ "No trades in this time.": "ไม่มีการเทรดในช่วงเวลานี้",
+ "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "ไอเทมนี้ถูกเทรดบ่อยแค่ไหนช่วงนี้ กดดูการเทรดเพื่อดูแต่ละการเทรด ใครเทรด และมูลค่าของแต่ละไอเทมในตอนนั้น",
+ "See all trades": "ดูการเทรดทั้งหมด",
+ "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "การเทรดอาจมี {extra} เพิ่มเติมที่เรามองไม่เห็น ยอดรวมนับเฉพาะไอเทม",
+ "Robux or USD": "Robux หรือ USD"
 }

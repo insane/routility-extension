@@ -2956,3 +2956,8 @@ html.routility-2017 #routility-2017-classics .horizontally-scrollable {
   position: relative !important;
   transition: left 0.3s ease;
 }
+
+html.routility-2017 #asset-resale-data-container .routility-it-section {
+  padding: 15px !important;
+  background-color: var(--c17-card) !important;
+}

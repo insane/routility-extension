@@ -3155,5 +3155,23 @@
  "Classics Row": "클래식 줄",
  "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "게임 페이지 맨 위에 선택한 연도의 Roblox 첫 페이지 인기 게임을 실시간 플레이어 수와 함께 보여주는 클래식 줄입니다.",
  "Classics Year": "클래식 연도",
- "Which year’s front page games show in the Classics row.": "클래식 줄에 어떤 연도의 첫 페이지 게임을 보여줄지 정합니다."
+ "Which year’s front page games show in the Classics row.": "클래식 줄에 어떤 연도의 첫 페이지 게임을 보여줄지 정합니다.",
+ "{n} trades in the past week": {
+  "other": "지난주 거래 {n}건"
+ },
+ "{n} trades in the past month": {
+  "other": "지난달 거래 {n}건"
+ },
+ "{n} trades all time": {
+  "other": "전체 거래 {n}건"
+ },
+ "Recent Trades": "최근 거래",
+ "See trades": "거래 보기",
+ "What it was worth at the time of the trade": "거래 당시의 가치",
+ "Couldn’t load trades. Try again in a moment.": "거래를 불러올 수 없어요. 잠시 후 다시 시도하세요.",
+ "No trades in this time.": "이 기간에는 거래가 없어요.",
+ "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "최근 얼마나 거래됐는지 보여줘요. 거래 보기를 누르면 각 거래, 거래한 사람, 당시 아이템 가치를 볼 수 있어요.",
+ "See all trades": "모든 거래 보기",
+ "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "거래에는 저희가 볼 수 없는 {extra}가 따로 포함될 수 있어요. 합계는 아이템만 계산해요.",
+ "Robux or USD": "Robux나 USD"
 }

@@ -3155,5 +3155,23 @@
  "Classics Row": "Hàng kinh điển",
  "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "Một hàng kinh điển ở đầu trang Trò chơi với các trò chơi lớn trên trang chủ Roblox của năm bạn chọn, kèm số người chơi trực tiếp.",
  "Classics Year": "Năm kinh điển",
- "Which year’s front page games show in the Classics row.": "Hàng kinh điển hiển thị trò chơi trang chủ của năm nào."
+ "Which year’s front page games show in the Classics row.": "Hàng kinh điển hiển thị trò chơi trang chủ của năm nào.",
+ "{n} trades in the past week": {
+  "other": "{n} giao dịch trong tuần qua"
+ },
+ "{n} trades in the past month": {
+  "other": "{n} giao dịch trong tháng qua"
+ },
+ "{n} trades all time": {
+  "other": "{n} giao dịch từ trước đến nay"
+ },
+ "Recent Trades": "Giao dịch gần đây",
+ "See trades": "Xem giao dịch",
+ "What it was worth at the time of the trade": "Giá trị tại thời điểm giao dịch",
+ "Couldn’t load trades. Try again in a moment.": "Không tải được giao dịch. Hãy thử lại sau giây lát.",
+ "No trades in this time.": "Không có giao dịch trong khoảng thời gian này.",
+ "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Số lần vật phẩm được giao dịch gần đây. Nhấn Xem giao dịch để xem từng giao dịch, ai đã giao dịch và giá trị của từng vật phẩm lúc đó.",
+ "See all trades": "Xem tất cả giao dịch",
+ "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "Giao dịch có thể kèm {extra} bên ngoài mà chúng tôi không thấy được. Tổng chỉ tính vật phẩm.",
+ "Robux or USD": "Robux hoặc USD"
 }

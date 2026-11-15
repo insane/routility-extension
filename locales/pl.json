@@ -3602,5 +3602,32 @@
  "Classics Row": "Rząd klasyków",
  "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "Rząd klasyków na górze strony Gry z dużymi grami ze strony głównej Roblox z wybranego roku, z liczbą graczy na żywo.",
  "Classics Year": "Rok klasyków",
- "Which year’s front page games show in the Classics row.": "Z którego roku gry ze strony głównej pokazują się w rzędzie klasyków."
+ "Which year’s front page games show in the Classics row.": "Z którego roku gry ze strony głównej pokazują się w rzędzie klasyków.",
+ "{n} trades in the past week": {
+  "one": "{n} wymiana w ostatnim tygodniu",
+  "few": "{n} wymiany w ostatnim tygodniu",
+  "many": "{n} wymian w ostatnim tygodniu",
+  "other": "{n} wymiany w ostatnim tygodniu"
+ },
+ "{n} trades in the past month": {
+  "one": "{n} wymiana w ostatnim miesiącu",
+  "few": "{n} wymiany w ostatnim miesiącu",
+  "many": "{n} wymian w ostatnim miesiącu",
+  "other": "{n} wymiany w ostatnim miesiącu"
+ },
+ "{n} trades all time": {
+  "one": "{n} wymiana łącznie",
+  "few": "{n} wymiany łącznie",
+  "many": "{n} wymian łącznie",
+  "other": "{n} wymiany łącznie"
+ },
+ "Recent Trades": "Ostatnie wymiany",
+ "See trades": "Zobacz wymiany",
+ "What it was worth at the time of the trade": "Ile był wart w chwili wymiany",
+ "Couldn’t load trades. Try again in a moment.": "Nie udało się wczytać wymian. Spróbuj ponownie za chwilę.",
+ "No trades in this time.": "Brak wymian w tym okresie.",
+ "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Ile razy był ostatnio wymieniany. Kliknij Zobacz wymiany, aby zobaczyć każdą wymianę, kto wymieniał i ile był wart każdy przedmiot w tamtym czasie.",
+ "See all trades": "Zobacz wszystkie wymiany",
+ "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "Wymiany mogą obejmować {extra} na boku, których nie widzimy. Sumy liczą tylko przedmioty.",
+ "Robux or USD": "Robux lub USD"
 }
