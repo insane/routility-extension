@@ -2624,7 +2624,6 @@
  "Try On & Explore": "ลองสวมและสำรวจ",
  "Try other words, or check the spelling.": "ลองคำอื่น หรือตรวจการสะกด",
  "Try Their Fit": "ลองชุดของเขา",
- "Try these items on in Sandbox": "ลองไอเทมเหล่านี้ใน Sandbox",
  "Try this on in Sandbox": "ลองใน Sandbox",
  "Try this outfit on in Sandbox": "ลองชุดนี้ใน Sandbox",
  "Trying on": "กำลังลองสวม",
@@ -3173,5 +3172,13 @@
  "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "ไอเทมนี้ถูกเทรดบ่อยแค่ไหนช่วงนี้ กดดูการเทรดเพื่อดูแต่ละการเทรด ใครเทรด และมูลค่าของแต่ละไอเทมในตอนนั้น",
  "See all trades": "ดูการเทรดทั้งหมด",
  "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "การเทรดอาจมี {extra} เพิ่มเติมที่เรามองไม่เห็น ยอดรวมนับเฉพาะไอเทม",
- "Robux or USD": "Robux หรือ USD"
+ "Robux or USD": "Robux หรือ USD",
+ "Analyze": "วิเคราะห์",
+ "See how each item in this trade has been traded lately": "ดูว่าไอเทมแต่ละชิ้นในเทรดนี้ถูกเทรดอย่างไรช่วงนี้",
+ "Analyze Button": "ปุ่มวิเคราะห์",
+ "An Analyze button on trades that shows how each item in the trade has been traded lately, with who traded and what everything was worth.": "ปุ่มวิเคราะห์ในการเทรดที่แสดงว่าไอเทมแต่ละชิ้นถูกเทรดอย่างไรช่วงนี้ ใครเทรด และทุกอย่างมีมูลค่าเท่าไร",
+ "No trades": "ไม่มีการเทรด",
+ "{n} this week": {
+  "other": "{n} ครั้งในสัปดาห์นี้"
+ }
 }

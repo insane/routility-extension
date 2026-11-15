@@ -646,24 +646,6 @@
     placeTools();
   }
 
-  function tradeButtons() {
-    if (!/^\/trades/i.test(location.pathname)) return;
-    for (const head of document.querySelectorAll('.trade-list-detail-offer-header')) {
-      if (head.querySelector('.routility-sb-try')) continue;
-      const b = button(lt('Try On'));
-      b.classList.replace('height-1000', 'height-800');
-      b.classList.add('routility-injected', 'routility-sb-try');
-      b.dataset.rtTip = lt('Try these items on in Sandbox');
-      b.addEventListener('click', () => {
-        const list = head.parentElement.querySelector(':scope > .item-cards, :scope > ul');
-        const ids = [...new Set([...(list ? list.querySelectorAll('a[href*="/catalog/"]') : [])].map(a => (a.getAttribute('href').match(/\/catalog\/(\d+)/) || [])[1]).filter(Boolean))];
-        if (ids.length) window.open('https://www.roblox.com/my/avatar?sandbox&wear=' + ids.slice(0, 20).join(','), '_blank');
-      });
-      head.classList.add('routility-sb-try-head');
-      head.appendChild(b);
-    }
-  }
-
   function profileButtons() {
     const m = location.pathname.match(/^\/users\/(\d+)\/profile/i);
     if (!m || m[1] === document.querySelector('meta[name="user-data"]')?.dataset.userid) return;
@@ -761,14 +743,13 @@
     ensureNav();
     place();
     if (settings.avatarSandbox === false) {
-      document.querySelectorAll('.routility-sb-try, .routility-sb-fit-link').forEach(n => n.remove());
+      document.querySelectorAll('.routility-sb-fit-link').forEach(n => n.remove());
       return;
     }
-    tradeButtons();
     profileButtons();
   };
   const observer = new MutationObserver((records) => {
-    if (queued || records.every(r => r.target.closest?.('.routility-sb, .routility-sb-chips, .routility-sb-sort, .routility-sb-try, .routility-sb-fit-link'))) return;
+    if (queued || records.every(r => r.target.closest?.('.routility-sb, .routility-sb-chips, .routility-sb-sort, .routility-sb-fit-link'))) return;
     queued = true;
     requestAnimationFrame(tick);
   });

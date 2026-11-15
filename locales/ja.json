@@ -2624,7 +2624,6 @@
  "Try On & Explore": "試着と探索",
  "Try other words, or check the spelling.": "別の言葉で試すか、つづりを確認してください。",
  "Try Their Fit": "このコーデを試着",
- "Try these items on in Sandbox": "これらのアイテムをサンドボックスで試着",
  "Try this on in Sandbox": "サンドボックスで試着",
  "Try this outfit on in Sandbox": "このコーデをサンドボックスで試着",
  "Trying on": "試着中",
@@ -3173,5 +3172,13 @@
  "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "最近どれくらいトレードされたかを表示します。「トレードを見る」をクリックすると、各トレード、トレードした人、当時の各アイテムの価値を確認できます。",
  "See all trades": "すべてのトレードを見る",
  "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "トレードには見えない{extra}が別途含まれることがあります。合計はアイテムのみです。",
- "Robux or USD": "RobuxやUSD"
+ "Robux or USD": "RobuxやUSD",
+ "Analyze": "分析",
+ "See how each item in this trade has been traded lately": "このトレードの各アイテムが最近どうトレードされたかを見る",
+ "Analyze Button": "分析ボタン",
+ "An Analyze button on trades that shows how each item in the trade has been traded lately, with who traded and what everything was worth.": "トレードに分析ボタンを追加し、トレード内の各アイテムが最近どうトレードされたか、誰がトレードしたか、当時の価値を表示します。",
+ "No trades": "トレードなし",
+ "{n} this week": {
+  "other": "今週{n}件"
+ }
 }

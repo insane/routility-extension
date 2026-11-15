@@ -1709,6 +1709,7 @@
   function scan() {
     ensureCleanButton();
     ensureProof();
+    ensureAnalyze();
     scanRows();
     scanOffers();
     checkOwnership();
@@ -1724,9 +1725,60 @@
 
   let lastFilterRows = 0;
   let proofOn = true;
+  let analyzeOn = true;
   chrome.storage.local.get('routilitySettings', (st) => {
     proofOn = (st.routilitySettings || {}).tradeProof !== false;
+    analyzeOn = (st.routilitySettings || {}).tradeAnalyze !== false;
   });
+
+  function ensureAnalyze() {
+    const h2 = document.querySelector('.trades-list-detail > div > h2');
+    if (!analyzeOn || !h2 || !document.querySelector('.trade-list-detail-offer') || !window.RoUtilityItemTrades) {
+      document.querySelectorAll('.routility-analyze-btn').forEach(n => n.remove());
+      return;
+    }
+    const row = document.querySelector('.trades-list-detail .trade-buttons');
+    const ref = row && [...row.querySelectorAll(':scope > button')].filter(x => !x.classList.contains('routility-injected')).pop();
+    const home = ref ? row : h2;
+    const existing = document.querySelector('.routility-analyze-btn');
+    if (existing && existing.parentElement === home) return;
+    existing?.remove();
+    const b = ref ? actionClone(ref, lt('Analyze')) : proofButtonEl(lt('Analyze'));
+    b.classList.add('routility-injected', 'routility-analyze-btn');
+    b.dataset.rtTip = lt('See how each item in this trade has been traded lately');
+    b.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (b.disabled) return;
+      b.disabled = true;
+      const id = await selectedTradeId();
+      const [d, map] = id ? await Promise.all([rawDetail(id), catalogMap()]) : [];
+      b.disabled = false;
+      if (!d || !d.participantAOffer || !d.participantBOffer) return;
+      const seen = new Set();
+      const items = [];
+      for (const offer of [d.participantAOffer, d.participantBOffer]) {
+        for (const it of offer.items || []) {
+          const k = offerItemKey(it);
+          if (k.bundle || !k.targetId || seen.has(k.targetId)) continue;
+          seen.add(k.targetId);
+          const c = map && (map.lookup ? map.lookup(k) : map.get(k.targetId));
+          items.push({ id: k.targetId, name: it.itemName || (c && c.name) || '', thumb: (c && c.thumb) || '' });
+        }
+      }
+      window.RoUtilityItemTrades.open(items, '7d', 0);
+    });
+    if (ref) {
+      b.classList.add('routility-action-inline');
+      const proofIn = row.querySelector(':scope > .routility-proof-btn');
+      if (proofIn) proofIn.before(b);
+      else row.appendChild(b);
+      return;
+    }
+    const proof = h2.querySelector('.routility-proof-btn');
+    if (proof) proof.before(b);
+    else h2.appendChild(b);
+  }
 
   function proofButtonEl(label, primary) {
     const b = el('button', 'foundation-web-button relative clip group/interactable focus-visible:outline-focus cursor-pointer flex items-center justify-center stroke-none select-none radius-medium text-label-medium height-1000 padding-x-medium ' + (primary ? 'bg-action-emphasis content-action-emphasis' : 'bg-action-standard content-action-standard'));
@@ -1744,16 +1796,32 @@
       document.querySelectorAll('.routility-proof-btn').forEach(n => n.remove());
       return;
     }
-    if (h2.querySelector('.routility-proof-btn')) return;
-    const b = proofButtonEl(lt('Proof'));
+    const row = document.querySelector('.trades-list-detail .trade-buttons');
+    const ref = row && [...row.querySelectorAll(':scope > button')].filter(x => !x.classList.contains('routility-injected')).pop();
+    const home = ref ? row : h2;
+    const existing = document.querySelector('.routility-proof-btn');
+    if (existing && existing.parentElement === home) return;
+    existing?.remove();
+    const b = ref ? actionClone(ref, lt('Proof')) : proofButtonEl(lt('Proof'));
     b.classList.add('routility-injected', 'routility-proof-btn');
+    if (ref) b.classList.add('routility-action-inline');
     b.dataset.rtTip = lt('A picture of this trade and the text for a value request, ready to paste');
     b.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       openProof();
     });
-    h2.appendChild(b);
+    home.appendChild(b);
+  }
+
+  function actionClone(ref, label) {
+    const b = ref.cloneNode(true);
+    b.removeAttribute('id');
+    b.disabled = false;
+    const leaves = [...b.querySelectorAll('span')].filter(x => !x.children.length && x.textContent.trim());
+    if (leaves.length) leaves[0].textContent = label;
+    else b.textContent = label;
+    return b;
   }
 
   async function proofData() {

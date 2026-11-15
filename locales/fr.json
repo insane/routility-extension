@@ -2760,7 +2760,6 @@
  "Try On & Explore": "Essayer et explorer",
  "Try other words, or check the spelling.": "Essaie d’autres mots, ou vérifie l’orthographe.",
  "Try Their Fit": "Essayer sa tenue",
- "Try these items on in Sandbox": "Essayer ces articles dans le Sandbox",
  "Try this on in Sandbox": "Essayer dans le Sandbox",
  "Try this outfit on in Sandbox": "Essayer cette tenue dans le Sandbox",
  "Trying on": "Essayage",
@@ -3325,5 +3324,14 @@
  "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Combien de fois il a été échangé récemment. Clique sur Voir les échanges pour voir chaque échange, qui a échangé et ce que valait chaque objet à ce moment-là.",
  "See all trades": "Voir tous les échanges",
  "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "Les échanges peuvent inclure des {extra} en plus, que nous ne voyons pas. Les totaux ne comptent que les objets.",
- "Robux or USD": "Robux ou USD"
+ "Robux or USD": "Robux ou USD",
+ "Analyze": "Analyser",
+ "See how each item in this trade has been traded lately": "Vois comment chaque objet de cet échange a été échangé récemment",
+ "Analyze Button": "Bouton Analyser",
+ "An Analyze button on trades that shows how each item in the trade has been traded lately, with who traded and what everything was worth.": "Un bouton Analyser sur les échanges qui montre comment chaque objet de l’échange a été échangé récemment, qui a échangé et ce que tout valait.",
+ "No trades": "Aucun échange",
+ "{n} this week": {
+  "one": "{n} cette semaine",
+  "other": "{n} cette semaine"
+ }
 }

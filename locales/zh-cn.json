@@ -2624,7 +2624,6 @@
  "Try On & Explore": "试穿和探索",
  "Try other words, or check the spelling.": "试试其他关键词，或检查拼写。",
  "Try Their Fit": "试穿 TA 的搭配",
- "Try these items on in Sandbox": "在沙盒中试穿这些物品",
  "Try this on in Sandbox": "在沙盒中试穿",
  "Try this outfit on in Sandbox": "在沙盒中试穿这套搭配",
  "Trying on": "试穿中",
@@ -3173,5 +3172,13 @@
  "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "最近被交易的次数。点击“查看交易”可查看每笔交易、交易双方以及当时每件物品的价值。",
  "See all trades": "查看全部交易",
  "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "交易可能另外包含我们看不到的{extra}。总计只计算物品。",
- "Robux or USD": "Robux 或美元"
+ "Robux or USD": "Robux 或美元",
+ "Analyze": "分析",
+ "See how each item in this trade has been traded lately": "查看这笔交易中每件物品最近的交易情况",
+ "Analyze Button": "分析按钮",
+ "An Analyze button on trades that shows how each item in the trade has been traded lately, with who traded and what everything was worth.": "在交易中添加分析按钮，显示交易中每件物品最近的交易情况、交易双方以及当时的价值。",
+ "No trades": "没有交易",
+ "{n} this week": {
+  "other": "本周 {n} 笔"
+ }
 }

@@ -2624,7 +2624,6 @@
  "Try On & Explore": "Mặc thử & Khám phá",
  "Try other words, or check the spelling.": "Thử từ khác, hoặc kiểm tra chính tả.",
  "Try Their Fit": "Thử trang phục của họ",
- "Try these items on in Sandbox": "Thử các món này trong Sandbox",
  "Try this on in Sandbox": "Thử trong Sandbox",
  "Try this outfit on in Sandbox": "Thử trang phục này trong Sandbox",
  "Trying on": "Đang mặc thử",
@@ -3173,5 +3172,13 @@
  "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Số lần vật phẩm được giao dịch gần đây. Nhấn Xem giao dịch để xem từng giao dịch, ai đã giao dịch và giá trị của từng vật phẩm lúc đó.",
  "See all trades": "Xem tất cả giao dịch",
  "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "Giao dịch có thể kèm {extra} bên ngoài mà chúng tôi không thấy được. Tổng chỉ tính vật phẩm.",
- "Robux or USD": "Robux hoặc USD"
+ "Robux or USD": "Robux hoặc USD",
+ "Analyze": "Phân tích",
+ "See how each item in this trade has been traded lately": "Xem từng vật phẩm trong giao dịch này được giao dịch gần đây thế nào",
+ "Analyze Button": "Nút Phân tích",
+ "An Analyze button on trades that shows how each item in the trade has been traded lately, with who traded and what everything was worth.": "Nút Phân tích trên giao dịch cho thấy từng vật phẩm được giao dịch gần đây thế nào, ai đã giao dịch và mọi thứ đáng giá bao nhiêu.",
+ "No trades": "Không có giao dịch",
+ "{n} this week": {
+  "other": "{n} tuần này"
+ }
 }

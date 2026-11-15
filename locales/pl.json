@@ -3032,7 +3032,6 @@
  "Try On & Explore": "Przymierzanie i odkrywanie",
  "Try other words, or check the spelling.": "Spróbuj innych słów lub sprawdź pisownię.",
  "Try Their Fit": "Przymierz ten strój",
- "Try these items on in Sandbox": "Przymierz te przedmioty w Sandboxie",
  "Try this on in Sandbox": "Przymierz w Sandboxie",
  "Try this outfit on in Sandbox": "Przymierz ten strój w Sandboxie",
  "Trying on": "Przymierzanie",
@@ -3629,5 +3628,16 @@
  "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Ile razy był ostatnio wymieniany. Kliknij Zobacz wymiany, aby zobaczyć każdą wymianę, kto wymieniał i ile był wart każdy przedmiot w tamtym czasie.",
  "See all trades": "Zobacz wszystkie wymiany",
  "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "Wymiany mogą obejmować {extra} na boku, których nie widzimy. Sumy liczą tylko przedmioty.",
- "Robux or USD": "Robux lub USD"
+ "Robux or USD": "Robux lub USD",
+ "Analyze": "Analizuj",
+ "See how each item in this trade has been traded lately": "Zobacz, jak ostatnio wymieniano każdy przedmiot z tej wymiany",
+ "Analyze Button": "Przycisk Analizuj",
+ "An Analyze button on trades that shows how each item in the trade has been traded lately, with who traded and what everything was worth.": "Przycisk Analizuj przy wymianach, który pokazuje, jak ostatnio wymieniano każdy przedmiot z wymiany, kto wymieniał i ile wszystko było warte.",
+ "No trades": "Brak wymian",
+ "{n} this week": {
+  "one": "{n} w tym tygodniu",
+  "few": "{n} w tym tygodniu",
+  "many": "{n} w tym tygodniu",
+  "other": "{n} w tym tygodniu"
+ }
 }

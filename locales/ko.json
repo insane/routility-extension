@@ -2624,7 +2624,6 @@
  "Try On & Explore": "착용해 보기 및 탐색",
  "Try other words, or check the spelling.": "다른 단어로 시도하거나 철자를 확인하세요.",
  "Try Their Fit": "이 코디 입어 보기",
- "Try these items on in Sandbox": "이 아이템들을 샌드박스에서 입어 보기",
  "Try this on in Sandbox": "샌드박스에서 입어 보기",
  "Try this outfit on in Sandbox": "이 코디를 샌드박스에서 입어 보기",
  "Trying on": "착용해 보는 중",
@@ -3173,5 +3172,13 @@
  "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "최근 얼마나 거래됐는지 보여줘요. 거래 보기를 누르면 각 거래, 거래한 사람, 당시 아이템 가치를 볼 수 있어요.",
  "See all trades": "모든 거래 보기",
  "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "거래에는 저희가 볼 수 없는 {extra}가 따로 포함될 수 있어요. 합계는 아이템만 계산해요.",
- "Robux or USD": "Robux나 USD"
+ "Robux or USD": "Robux나 USD",
+ "Analyze": "분석",
+ "See how each item in this trade has been traded lately": "이 거래의 각 아이템이 최근 어떻게 거래됐는지 보기",
+ "Analyze Button": "분석 버튼",
+ "An Analyze button on trades that shows how each item in the trade has been traded lately, with who traded and what everything was worth.": "거래에 분석 버튼을 추가해 거래 속 각 아이템이 최근 어떻게 거래됐는지, 누가 거래했는지, 당시 가치가 얼마였는지 보여줘요.",
+ "No trades": "거래 없음",
+ "{n} this week": {
+  "other": "이번 주 {n}건"
+ }
 }

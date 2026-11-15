@@ -2624,7 +2624,6 @@
  "Try On & Explore": "Coba & Jelajahi",
  "Try other words, or check the spelling.": "Coba kata lain, atau cek ejaannya.",
  "Try Their Fit": "Coba Outfit Mereka",
- "Try these items on in Sandbox": "Coba item ini di Sandbox",
  "Try this on in Sandbox": "Coba di Sandbox",
  "Try this outfit on in Sandbox": "Coba outfit ini di Sandbox",
  "Trying on": "Sedang mencoba",
@@ -3173,5 +3172,13 @@
  "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Seberapa sering item ini di-trade belakangan ini. Klik Lihat trade untuk melihat setiap trade, siapa yang melakukannya, dan nilai tiap item saat itu.",
  "See all trades": "Lihat semua trade",
  "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "Trade bisa menyertakan {extra} di luar, yang tidak bisa kami lihat. Totalnya hanya menghitung item.",
- "Robux or USD": "Robux atau USD"
+ "Robux or USD": "Robux atau USD",
+ "Analyze": "Analisis",
+ "See how each item in this trade has been traded lately": "Lihat bagaimana tiap item dalam trade ini di-trade belakangan ini",
+ "Analyze Button": "Tombol Analisis",
+ "An Analyze button on trades that shows how each item in the trade has been traded lately, with who traded and what everything was worth.": "Tombol Analisis di trade yang menunjukkan bagaimana tiap item di trade itu di-trade belakangan ini, siapa yang trade, dan berapa nilai semuanya.",
+ "No trades": "Tidak ada trade",
+ "{n} this week": {
+  "other": "{n} minggu ini"
+ }
 }

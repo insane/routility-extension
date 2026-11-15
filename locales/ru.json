@@ -3032,7 +3032,6 @@
  "Try On & Explore": "Примерка и обзор",
  "Try other words, or check the spelling.": "Попробуй другие слова или проверь написание.",
  "Try Their Fit": "Примерить их образ",
- "Try these items on in Sandbox": "Примерить эти предметы в песочнице",
  "Try this on in Sandbox": "Примерить в песочнице",
  "Try this outfit on in Sandbox": "Примерить этот образ в песочнице",
  "Trying on": "Примерка",
@@ -3629,5 +3628,16 @@
  "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Сколько раз его недавно обменивали. Нажмите «Смотреть обмены», чтобы увидеть каждый обмен, участников и стоимость каждого предмета на тот момент.",
  "See all trades": "Смотреть все обмены",
  "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "В обмены могут входить {extra} сверху, которых мы не видим. Итоги учитывают только предметы.",
- "Robux or USD": "Robux или USD"
+ "Robux or USD": "Robux или USD",
+ "Analyze": "Анализ",
+ "See how each item in this trade has been traded lately": "Посмотреть, как недавно обменивали каждый предмет из этого обмена",
+ "Analyze Button": "Кнопка «Анализ»",
+ "An Analyze button on trades that shows how each item in the trade has been traded lately, with who traded and what everything was worth.": "Кнопка «Анализ» в обменах показывает, как недавно обменивали каждый предмет, кто участвовал и сколько всё стоило.",
+ "No trades": "Нет обменов",
+ "{n} this week": {
+  "one": "{n} за неделю",
+  "few": "{n} за неделю",
+  "many": "{n} за неделю",
+  "other": "{n} за неделю"
+ }
 }

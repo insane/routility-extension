@@ -619,6 +619,11 @@ html.routility-modal-open body {
 
 .routility-it-modal {
   width: min(880px, 94vw);
+  outline: none;
+}
+
+.routility-it-modal > :not(.routility-modal-body) {
+  flex: none;
 }
 
 .routility-it-tabs {
@@ -871,4 +876,67 @@ html.routility-modal-open body {
 .routility-it-warn strong {
   font-weight: 700;
   opacity: 1;
+}
+
+.routility-it-items-pick {
+  display: flex;
+  flex: none;
+  padding-bottom: 2px;
+  gap: 8px;
+  margin: 16px 0 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.routility-it-pick {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  max-width: 240px;
+  height: 44px;
+  padding: 0 12px 0 6px;
+  border: 1px solid rgba(127, 127, 127, 0.3);
+  border-radius: 10px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.routility-it-pick:hover {
+  background: rgba(127, 127, 127, 0.14);
+}
+
+.routility-it-pick.routility-it-pick-on {
+  border-color: var(--color-system-emphasis, #335fff);
+  background: rgba(51, 95, 255, 0.12);
+}
+
+.routility-it-pick.routility-it-pick-none {
+  opacity: 0.55;
+}
+
+.routility-it-pick img {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.routility-it-pick-name {
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.routility-it-pick-count {
+  flex: none;
+  font-size: 12px;
+  opacity: 0.65;
+}
+
+.routility-it-pick-count:empty {
+  display: none;
 }

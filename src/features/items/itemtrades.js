@@ -73,7 +73,7 @@
     link.href = '#';
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      open(item, c.week ? '7d' : c.month ? '30d' : 'all');
+      open([item], c.week ? '7d' : c.month ? '30d' : 'all');
     });
     holder.replaceChildren(el('span', 'font-body text', text), el('span', 'font-body text routility-it-dot', '·'), link);
     placeSection(item, c.week ? '7d' : c.month ? '30d' : 'all');
@@ -111,7 +111,7 @@
     box.append(head, sideNote(), list, note, all);
     const heads = new Map();
     const s = { range: startRange, token: 0 };
-    all.addEventListener('click', () => open(item, s.range));
+    all.addEventListener('click', () => open([item], s.range));
     const load = async () => {
       const token = ++s.token;
       tabs.querySelectorAll('button').forEach(b => b.classList.toggle('routility-it-tab-on', b.dataset.range === s.range));
@@ -229,18 +229,19 @@
     return card;
   }
 
-  function open(item, startRange) {
+  function open(items, startRange, startIndex = 0) {
+    items = (items || []).filter(i => i && /^\d+$/.test(String(i.id)));
+    if (!items.length) return;
     document.querySelector('.routility-it-backdrop')?.remove();
-    const assetId = String(item.id);
     const backdrop = el('div', 'routility-modal-backdrop routility-injected routility-it-backdrop');
     const modal = el('div', 'routility-modal routility-it-modal');
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-modal', 'true');
     const head = el('div', 'routility-modal-head');
     const title = el('h2', 'routility-modal-title', lt('Recent Trades'));
-    if (item.name) title.appendChild(el('span', 'routility-modal-count', item.name));
+    const sub = el('span', 'routility-modal-count');
+    title.appendChild(sub);
     const ext = el('a', 'routility-modal-icon');
-    ext.href = `https://routility.io/items/${assetId}`;
     ext.target = '_blank';
     ext.rel = 'noopener';
     ext.dataset.rtTip = lt('Open on RoUtility');
@@ -250,6 +251,7 @@
     close.setAttribute('aria-label', lt('Close'));
     close.appendChild(svg('M6 6l12 12M18 6L6 18'));
     head.append(title, ext, close);
+    const picker = el('div', 'routility-it-items-pick');
     const tabs = el('div', 'routility-it-tabs');
     const body = el('div', 'routility-modal-body');
     const list = el('ul', 'routility-it-list');
@@ -258,13 +260,15 @@
     more.type = 'button';
     more.hidden = true;
     body.append(list, note, more);
-    modal.append(head, tabs, sideNote(), body);
+    modal.append(head);
+    if (items.length > 1) modal.append(picker);
+    modal.append(tabs, sideNote(), body);
     backdrop.appendChild(modal);
     document.body.appendChild(backdrop);
     document.documentElement.classList.add('routility-modal-open');
 
     const heads = new Map();
-    const s = { range: startRange, page: 0, pages: 1, token: 0 };
+    const s = { index: Math.min(startIndex, items.length - 1), range: startRange, page: 0, pages: 1, token: 0 };
 
     const shut = () => {
       backdrop.remove();
@@ -278,8 +282,9 @@
 
     const load = async () => {
       const token = s.token;
+      const assetId = String(items[s.index].id);
       more.disabled = true;
-      note.textContent = s.page ? '' : lt('Loading…');
+      note.textContent = '';
       if (!s.page) for (let i = 0; i < 3; i++) list.appendChild(el('li', 'routility-it-trade routility-it-skeleton'));
       const r = await fetchTrades(assetId, s.range, s.page + 1, PER_PAGE);
       if (token !== s.token || !backdrop.isConnected) return;
@@ -299,23 +304,55 @@
       more.hidden = s.page >= s.pages;
     };
 
-    const pick = (range) => {
-      s.range = range;
+    const show = () => {
+      const it = items[s.index];
+      sub.textContent = it.name || '';
+      ext.href = `https://routility.io/items/${it.id}`;
       s.page = 0;
       s.token++;
       list.textContent = '';
-      tabs.querySelectorAll('button').forEach(b => b.classList.toggle('routility-it-tab-on', b.dataset.range === range));
+      body.scrollTop = 0;
+      tabs.querySelectorAll('button').forEach(b => b.classList.toggle('routility-it-tab-on', b.dataset.range === s.range));
+      picker.querySelectorAll('button').forEach((b, i) => b.classList.toggle('routility-it-pick-on', i === s.index));
       load();
     };
+
+    items.forEach((it, i) => {
+      const b = el('button', 'routility-it-pick');
+      b.type = 'button';
+      if (it.thumb) {
+        const img = el('img');
+        img.src = it.thumb;
+        img.alt = '';
+        b.appendChild(img);
+      }
+      const name = el('span', 'routility-it-pick-name', it.name || '');
+      const n = el('span', 'routility-it-pick-count', '');
+      b.append(name, n);
+      b.title = it.name || '';
+      b.addEventListener('click', () => {
+        s.index = i;
+        show();
+      });
+      picker.appendChild(b);
+      if (items.length > 1) count(String(it.id)).then((c) => {
+        if (!c) return;
+        n.textContent = c.week ? ltn(c.week, '{n} this week', '{n} this week', { n: formatNumber(c.week) }) : c.all ? '' : lt('No trades');
+        if (!c.all) b.classList.add('routility-it-pick-none');
+      });
+    });
     for (const [value, label] of RANGES) {
       const b = el('button', 'routility-it-tab', lt(label));
       b.type = 'button';
       b.dataset.range = value;
-      b.addEventListener('click', () => pick(value));
+      b.addEventListener('click', () => {
+        s.range = value;
+        show();
+      });
       tabs.appendChild(b);
     }
     more.addEventListener('click', load);
-    pick(startRange);
+    show();
   }
 
   window.RoUtilityItemTrades = { fill, open };

@@ -2760,7 +2760,6 @@
  "Try On & Explore": "Dene ve keşfet",
  "Try other words, or check the spelling.": "Başka kelimeler dene veya yazımı kontrol et.",
  "Try Their Fit": "Kombinini Dene",
- "Try these items on in Sandbox": "Bu eşyaları Sandbox’ta dene",
  "Try this on in Sandbox": "Sandbox’ta dene",
  "Try this outfit on in Sandbox": "Bu kombini Sandbox’ta dene",
  "Trying on": "Deneniyor",
@@ -3325,5 +3324,14 @@
  "How many times it was traded lately. Click See trades to see each trade, who traded and what every item was worth at the time.": "Son zamanlarda kaç kez takas edildiği. Her takası, kimin takas ettiğini ve o anda her eşyanın değerini görmek için Takasları gör’e tıkla.",
  "See all trades": "Tüm takasları gör",
  "Trades can include {extra} on the side, which we can’t see. The totals only count the items.": "Takaslar, göremediğimiz {extra} içerebilir. Toplamlar yalnızca eşyaları sayar.",
- "Robux or USD": "Robux veya USD"
+ "Robux or USD": "Robux veya USD",
+ "Analyze": "Analiz Et",
+ "See how each item in this trade has been traded lately": "Bu takastaki her eşyanın son zamanlarda nasıl takas edildiğini gör",
+ "Analyze Button": "Analiz Et Düğmesi",
+ "An Analyze button on trades that shows how each item in the trade has been traded lately, with who traded and what everything was worth.": "Takaslarda, takastaki her eşyanın son zamanlarda nasıl takas edildiğini, kimin takas ettiğini ve her şeyin değerini gösteren bir Analiz Et düğmesi.",
+ "No trades": "Takas yok",
+ "{n} this week": {
+  "one": "Bu hafta {n}",
+  "other": "Bu hafta {n}"
+ }
 }

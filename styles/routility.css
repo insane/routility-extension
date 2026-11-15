@@ -12773,11 +12773,22 @@ html.routility-menu-bar .rt-m-tab-on::before {
   text-overflow: ellipsis;
 }
 
-.routility-proof-btn {
+.routility-proof-btn:not(.routility-action-inline) {
   flex-shrink: 0;
   height: 32px;
   margin-left: auto;
   font-size: 14px;
+}
+
+.routility-analyze-btn:not(.routility-action-inline) {
+  flex-shrink: 0;
+  height: 32px;
+  margin-left: auto;
+  font-size: 14px;
+}
+
+.routility-analyze-btn:not(.routility-action-inline) + .routility-proof-btn:not(.routility-action-inline) {
+  margin-left: 8px;
 }
 
 .routility-modal.routility-proof-modal {
@@ -15159,16 +15170,6 @@ html.routility-sandbox .routility-av-crumb-row {
 
 .routility-sb-zoom-save[hidden] {
   display: none !important;
-}
-
-.routility-sb-try-head {
-  display: flex !important;
-  align-items: center;
-  gap: 12px;
-}
-
-.routility-sb-try-head > .routility-sb-try {
-  margin-left: auto;
 }
 
 .routility-sb-fit-head {
