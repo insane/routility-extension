@@ -201,7 +201,7 @@
       const tag = String(x.tag || '');
       if (!Object.hasOwn(TAG_NAME, tag)) return pill(tag, 'routility-ads-tag');
       const tile = el('span', 'routility-ads-tagtile');
-      tile.dataset.rtTip = lt(TAG_NAME[tag]) + ' · ' + lt(TAG_TIP[tag]);
+      tile.dataset.rtTip = lt(TAG_NAME[tag]) + ', ' + lt(TAG_TIP[tag]);
       tile.setAttribute('role', 'img');
       tile.setAttribute('aria-label', lt(TAG_NAME[tag]));
       const img = el('img', 'routility-fade');
@@ -218,7 +218,7 @@
     if (id.startsWith('robux-')) return cashItem('robux', Number(x.robux) || 0);
     const a = el('a', 'routility-ads-item');
     a.href = `https://www.roblox.com/catalog/${encodeURIComponent(id)}`;
-    a.dataset.rtTip = (x.name || lt('Item')) + (x.usd ? ' · ' + usd(Number(x.usd)) : '') + (adValue(x) ? ' · ' + lt('Value {value}', { value: formatNumber(adValue(x)) }) : '') + (x.rap ? ' · R$ ' + formatNumber(x.rap) : '');
+    a.dataset.rtTip = (x.name || lt('Item')) + (x.usd ? ', ' + usd(Number(x.usd)) : '') + (adValue(x) ? ', ' + lt('Value {value}', { value: formatNumber(adValue(x)) }) : '') + (x.rap ? ', R$ ' + formatNumber(x.rap) : '');
     a.appendChild(thumbImg(x.thumb || '', 84));
     a.appendChild(priceLabel(x));
     return a;
@@ -497,7 +497,7 @@
     if (opts.serial) box.appendChild(el('span', 'routility-ads-serial text-label-small', '#' + formatNumber(opts.serial)));
     const rap = el('span', 'routility-ads-tile-rap text-label-small content-muted');
     if (!showing.value && itemValue(it)) b.dataset.rtTip = window.RoUtilityUI.valueTip(it);
-    if (showing.value && itemValue(it)) rap.append(valueTag(itemValue(it), { short: true, className: 'routility-ads-tile-val' }), document.createTextNode(' · '));
+    if (showing.value && itemValue(it)) rap.append(valueTag(itemValue(it), { short: true, className: 'routility-ads-tile-val' }), document.createTextNode(', '));
     rap.append(document.createTextNode('RAP '), robuxIcon(), document.createTextNode(' ' + (it.rap ? compact(it.rap) : '-')));
     b.append(box, el('span', 'routility-ads-tile-name text-label-medium content-emphasis', it.name), el('span', 'routility-ads-tile-usd text-title-medium content-emphasis', it.usd ? usd(it.usd) : lt('No price')), rap);
     if (opts.onHold) b.dataset.rtTip = lt('On hold, can’t be traded yet');
@@ -662,7 +662,7 @@
         const on = st.look.some(e => e.kind === 'tag' && e.tag === tag);
         const b = el('button', 'routility-ads-tagbtn relative clip group/interactable cursor-pointer' + (on ? ' routility-ads-tile-on' : ''));
         b.type = 'button';
-        b.dataset.rtTip = lt(TAG_NAME[tag]) + ' · ' + lt(TAG_TIP[tag]);
+        b.dataset.rtTip = lt(TAG_NAME[tag]) + ', ' + lt(TAG_TIP[tag]);
         b.setAttribute('aria-pressed', String(on));
         b.append(layer(), tagImg(tag));
         b.disabled = !on && st.look.length >= 4;
@@ -1037,7 +1037,7 @@
       const a = mine.querySelector('a');
       a.href = 'https://www.roblox.com/trade-ads';
       a.classList.remove('bg-shift-200');
-      a.querySelectorAll('.foundation-web-badge').forEach(b => (b.closest('span.fill') || b).remove());
+      a.querySelectorAll('.foundation-web-badge, .foundation-web-status-indicator').forEach(b => (b.closest('span.fill') || b).remove());
       const icon = a.querySelector('.icon');
       if (icon) icon.className = 'grow-0 shrink-0 basis-auto icon routility-ads-nav-icon size-[var(--icon-size-large)]';
       const label = a.querySelector(':scope > .text-truncate-end') || [...a.querySelectorAll('span')].find(sp => /^Trade( Calculator)?$/.test(sp.textContent.trim()));

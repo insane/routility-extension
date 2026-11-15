@@ -131,7 +131,7 @@
   function setLine(n, text, tip) {
     if (!n || n.dataset.text === text) return;
     n.dataset.text = text;
-    n.textContent = text ? ' · ' + text : '';
+    n.textContent = text ? ', ' + text : '';
     n.hidden = !text;
     if (tip) n.dataset.rtTip = tip;
     else delete n.dataset.rtTip;
@@ -143,7 +143,7 @@
     if (!a) return null;
     const text = a === 'today' ? lt('Today') : a;
     let tip = lt('Owned since {date}', { date: shortDate(when) });
-    if (entry.tradable && entry.created && Math.abs(Date.parse(entry.updated) - Date.parse(entry.created)) > DAY) tip = lt('Owned since {date} · first bought {first}', { date: shortDate(when), first: shortDate(entry.created) });
+    if (entry.tradable && entry.created && Math.abs(Date.parse(entry.updated) - Date.parse(entry.created)) > DAY) tip = lt('Owned since {date}, first bought {first}', { date: shortDate(when), first: shortDate(entry.created) });
     return { text, tip };
   }
 

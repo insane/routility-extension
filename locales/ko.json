@@ -89,9 +89,9 @@
  "{item} is worth {value}.": "{item}의 가치는 {value}이에요.",
  "{items} and {last}": "{items} 및 {last}",
  "{label}: ": "{label}: ",
- "{located} of {checked} servers located • {regions}": "서버 {checked}개 중 {located}개 위치 확인 • {regions}",
+ "{located} of {checked} servers located, {regions}": "서버 {checked}개 중 {located}개 위치 확인, {regions}",
  "{missing} of the {total} free Roblox items aren’t in your inventory yet.": "Roblox 무료 아이템 {total}개 중 {missing}개가 아직 인벤토리에 없습니다.",
- "{n} · Buy them in the experience": "{n} · 경험 안에서 구매",
+ "{n}, Buy them in the experience": "{n}, 경험 안에서 구매",
  "{n} badges": {
   "other": "배지 {n}개"
  },
@@ -101,8 +101,8 @@
  "{n} copies": {
   "other": "{n}개"
  },
- "{n} copies • {serials}": {
-  "other": "{n}개 • {serials}"
+ "{n} copies, {serials}": {
+  "other": "{n}개, {serials}"
  },
  "{n} couldn’t be added.": "{n}개를 추가하지 못했습니다.",
  "{n} couldn’t be checked.": {
@@ -145,11 +145,11 @@
  "{n} items": {
   "other": "아이템 {n}개"
  },
- "{n} items • {worn}/{max} accessories": {
-  "other": "아이템 {n}개 • 액세서리 {worn}/{max}"
+ "{n} items, {worn}/{max} accessories": {
+  "other": "아이템 {n}개, 액세서리 {worn}/{max}"
  },
- "{n} items • updated {time}": {
-  "other": "아이템 {n}개 • {time} 업데이트"
+ "{n} items, updated {time}": {
+  "other": "아이템 {n}개, {time} 업데이트"
  },
  "{n} items to buy": {
   "other": "구매할 아이템 {n}개"
@@ -162,8 +162,8 @@
   "other": "한정판 {n}개"
  },
  "{n} located": "{n}개 위치 확인",
- "{n} matches · {checked} checked": {
-  "other": "{n}건 일치 · {checked}건 확인됨"
+ "{n} matches, {checked} checked": {
+  "other": "{n}건 일치, {checked}건 확인됨"
  },
  "{n} members": {
   "other": "멤버 {n}명"
@@ -219,8 +219,8 @@
   "other": "{n}명이 더 이상 친구가 아닙니다"
  },
  "{n} Place Visits": "플레이스 방문 {n}회",
- "{n} purchases · {spent} Robux spent": {
-  "other": "구매 {n}건 · {spent} Robux 사용"
+ "{n} purchases, {spent} Robux spent": {
+  "other": "구매 {n}건, {spent} Robux 사용"
  },
  "{n} purchases in this experience": {
   "other": "이 경험에서 구매 {n}건"
@@ -234,8 +234,8 @@
  "{n} Robux": {
   "other": "{n} Robux"
  },
- "{n} rows · back to {date}": {
-  "other": "{n}행 · {date}까지"
+ "{n} rows, back to {date}": {
+  "other": "{n}행, {date}까지"
  },
  "{n} rows exported": {
   "other": "{n}행을 내보냈습니다"
@@ -255,11 +255,11 @@
  "{n} servers": {
   "other": "서버 {n}개"
  },
- "{n} servers • {players} playing": {
-  "other": "서버 {n}개 • {players}명 플레이 중"
+ "{n} servers, {players} playing": {
+  "other": "서버 {n}개, {players}명 플레이 중"
  },
- "{n} servers • {regions}": {
-  "other": "서버 {n}개 • {regions}"
+ "{n} servers, {regions}": {
+  "other": "서버 {n}개, {regions}"
  },
  "{n} sold": {
   "other": "{n}개 판매"
@@ -273,8 +273,8 @@
  "{n} trades with \"{query}\"": {
   "other": "“{query}” 포함 거래 {n}건"
  },
- "{n} trades with \"{query}\" • checked {count} trades, loading older ones…": {
-  "other": "“{query}” 포함 거래 {n}건 • {count}건 확인됨, 이전 거래 불러오는 중…"
+ "{n} trades with \"{query}\", checked {count} trades, loading older ones…": {
+  "other": "“{query}” 포함 거래 {n}건, {count}건 확인됨, 이전 거래 불러오는 중…"
  },
  "{n} unpriced": {
   "other": "가격 없음 {n}개"
@@ -294,7 +294,7 @@
  "{n} years ago": {
   "other": "{n}년 전"
  },
- "{n}+ matches · {checked} checked": "{n}건 이상 일치 · {checked}건 확인됨",
+ "{n}+ matches, {checked} checked": "{n}건 이상 일치, {checked}건 확인됨",
  "{n}d": {
   "other": "{n}일"
  },
@@ -320,7 +320,7 @@
   "other": "{n}년"
  },
  "{name} ({count})": "{name} ({count})",
- "{name} • {robux} Robux": "{name} • {robux} Robux",
+ "{name}, {robux} Robux": "{name}, {robux} Robux",
  "{name} accessories": "{name} 액세서리",
  "{name} audit log.csv": "{name} 감사 로그.csv",
  "{name} color": "{name} 색상",
@@ -349,26 +349,26 @@
  "{pct} over RAP": "RAP보다 {pct} 높음",
  "{pct} under RAP": "RAP보다 {pct} 낮음",
  "{pct}% ({label})": "{pct}% ({label})",
- "{pct}% liked • {likes} likes, {dislikes} dislikes": "{pct}% 좋아요 • 좋아요 {likes}개, 싫어요 {dislikes}개",
+ "{pct}% liked, {likes} likes, {dislikes} dislikes": "{pct}% 좋아요, 좋아요 {likes}개, 싫어요 {dislikes}개",
  "{pct}% of copies": "전체의 {pct}%",
  "{pct}% over RAP": "RAP보다 {pct}% 높음",
  "{pct}% rating": "평점 {pct}%",
  "{pct}% under RAP": "RAP보다 {pct}% 낮음",
  "{percent}% off unlocks {date}": "{date}에 {percent}% 할인 해제",
- "{place} • {n} servers • {players} playing": {
-  "other": "{place} • 서버 {n}개 • {players}명 플레이 중"
+ "{place}, {n} servers, {players} playing": {
+  "other": "{place}, 서버 {n}개, {players}명 플레이 중"
  },
  "{playing} of {max} people max": "{playing} / 최대 {max}명",
  "{price} a month": "월 {price}",
  "{price} a week": "주 {price}",
  "{price} a year": "연 {price}",
- "{rating} • {n} playing": "{rating} • {n}명 플레이 중",
+ "{rating}, {n} playing": "{rating}, {n}명 플레이 중",
  "{region} isn’t in the region list anymore. Joining any server…": "{region}은(는) 더 이상 지역 목록에 없습니다. 아무 서버에나 참여하는 중…",
  "{results} (first 2,000 items)": "{results} (처음 2,000개 아이템)",
  "{results} (some categories couldn’t load)": "{results} (일부 카테고리를 불러오지 못했어요)",
  "{robux} Robux at the DevEx rate": "DevEx 환율로 {robux} Robux",
  "{robux} Robux at your rate ({rate}/1k)": "내 환율로 {robux} Robux ({rate}/1k)",
- "{role} · Rank {rank}": "{role} · 랭크 {rank}",
+ "{role}, Rank {rank}": "{role}, 랭크 {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} 스터드",
  "{status} on {parts}": "{parts}: {status}",
@@ -486,7 +486,7 @@
  "Adds, what you’re really after, anything else. Keep it short.": "추가 아이템, 정말 원하는 것, 그 밖의 내용. 짧게 적어 주세요.",
  "Adjust Accessories": "액세서리 조정",
  "Admin": "관리자",
- "Admin · Rank {rank}": "관리자 · 랭크 {rank}",
+ "Admin, Rank {rank}": "관리자, 랭크 {rank}",
  "Admin Badge": "관리자 배지",
  "Admin Tools": "관리 도구",
  "Admins": "관리자",
@@ -524,7 +524,7 @@
  "Amount": "금액",
  "Amount (R$)": "금액 (R$)",
  "Amount of Robux": "Robux 금액",
- "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "가지고 있는 아이템 페이지에 “2026년 10월 1일 · 9일 전”처럼 획득일 줄을 표시합니다.",
+ "An Acquired line on item pages for things you own, like Oct 1, 2026, 9 days ago.": "가지고 있는 아이템 페이지에 “2026년 10월 1일, 9일 전”처럼 획득일 줄을 표시합니다.",
  "An Adjust Accessories button under your avatar to move, rotate and resize hats and other accessories like in the Roblox app, with a 3D preview you can spin around. Saves to your avatar, within Roblox’s limits.": "아바타 아래에 액세서리 조정 버튼을 추가해 Roblox 앱처럼 모자 등 액세서리를 이동, 회전, 크기 조절할 수 있습니다. 돌려 볼 수 있는 3D 미리 보기를 제공하며, Roblox 제한 범위 안에서 아바타에 저장됩니다.",
  "An Avatar Items row in a game’s Store with clothing and accessories made by the game’s creator.": "게임 상점에 게임 제작자가 만든 옷과 액세서리를 보여 주는 아바타 아이템 줄을 추가합니다.",
  "An Avatar Type row next to Server Size: whether the game makes everyone R6, R15, or lets players pick. Roblox doesn’t show it on the page.": "서버 크기 옆에 아바타 유형 줄을 추가해요. 게임이 모두를 R6나 R15로 만드는지, 플레이어가 고를 수 있는지 보여 줘요. Roblox 페이지에는 나오지 않아요.",
@@ -542,7 +542,7 @@
  "Archive All Read": "읽은 메시지 모두 보관",
  "Archive Every Read Message?": "읽은 메시지를 모두 보관할까요?",
  "Archived {n}": "{n}개 보관함",
- "Archived {n} · Some Didn’t Work": "{n}개 보관함 · 일부 실패",
+ "Archived {n}, Some Didn’t Work": "{n}개 보관함, 일부 실패",
  "Archiving ({archived} done) {done} of {total}": "보관하는 중 ({archived}개 완료) {done} / {total}",
  "Archiving {done} of {total}": "보관하는 중 {done} / {total}",
  "Arrange Home & Charts": "홈 및 차트 정렬",
@@ -689,7 +689,7 @@
  "Checking {region}…": "{region} 확인하는 중…",
  "Checking for new purchases since your last visit…": "지난 방문 이후의 새 구매 확인 중…",
  "Checking open servers for {region}…": "{region}의 열린 서버 확인하는 중…",
- "Checking trades · {done} of {total}": "거래 확인하는 중 · {done} / {total}",
+ "Checking trades, {done} of {total}": "거래 확인하는 중, {done} / {total}",
  "Checking what you already own… {done} of {total}": "이미 가진 아이템 확인하는 중… {done} / {total}",
  "Checking where your friends are…": "친구 위치 확인하는 중…",
  "Checking which {region} servers have room right now…": "지금 자리가 있는 {region} 서버 확인하는 중…",
@@ -808,7 +808,7 @@
  "Couldn’t load all your items right now. Open Post again to retry.": "아이템을 모두 불러오지 못했어요. 게시를 다시 열어 다시 시도하세요.",
  "Couldn’t load friends right now. Try again in a minute.": "지금은 친구를 불러올 수 없습니다. 1분 후 다시 시도하세요.",
  "Couldn’t load items right now. Try again in a minute.": "지금은 아이템을 불러올 수 없습니다. 1분 후 다시 시도하세요.",
- "Couldn’t Load Messages · Try Again": "메시지를 불러오지 못함 · 다시 시도",
+ "Couldn’t Load Messages, Try Again": "메시지를 불러오지 못함, 다시 시도",
  "Couldn’t load owners right now. Try again in a minute.": "지금은 소유자를 불러올 수 없습니다. 1분 후 다시 시도하세요.",
  "Couldn’t load servers for this region.": "이 지역의 서버를 불러오지 못했습니다.",
  "Couldn’t load that file. Chrome didn’t save it, try again.": "그 파일을 불러올 수 없어요. Chrome이 저장하지 못했으니 다시 시도해 주세요.",
@@ -916,7 +916,7 @@
  "Delete New Badges Automatically": "새 배지 자동 삭제",
  "Delete Selected": "선택 항목 삭제",
  "Deleted": "삭제됨",
- "Deleted {n} · {failed} didn’t work. They’re still selected, try again.": "{n}개 삭제됨 · {failed}개는 실패했어요. 선택된 채로 남아 있으니 다시 시도해 주세요.",
+ "Deleted {n}, {failed} didn’t work. They’re still selected, try again.": "{n}개 삭제됨, {failed}개는 실패했어요. 선택된 채로 남아 있으니 다시 시도해 주세요.",
  "Deleted {n} badges.": {
   "other": "배지 {n}개를 삭제했어요."
  },
@@ -962,7 +962,7 @@
  "Drag the preview to look around. Hair and waist accessories can’t be adjusted.": "미리 보기를 드래그해 둘러볼 수 있습니다. 머리카락과 허리 액세서리는 조정할 수 없습니다.",
  "Drag the top left corner of a chat window to make it bigger. Every chat window, the RoUtility Bot included, uses the same size. Double-click the corner to reset.": "채팅 창의 왼쪽 위 모서리를 드래그하면 크게 만들 수 있습니다. RoUtility 봇을 포함한 모든 채팅 창이 같은 크기를 사용합니다. 모서리를 더블 클릭하면 초기화됩니다.",
  "Drag to move": "드래그하여 이동",
- "Drag to resize · Double-click to reset": "드래그하여 크기 조절 · 더블 클릭하여 초기화",
+ "Drag to resize, Double-click to reset": "드래그하여 크기 조절, 더블 클릭하여 초기화",
  "Drag to turn your avatar. Scroll to zoom in or out.": "드래그해서 아바타를 돌리고, 스크롤해서 확대·축소하세요.",
  "Dress Skirt": "드레스 스커트",
  "Dynamic": "역동적인",
@@ -1050,7 +1050,7 @@
  "Export CSV": "CSV 내보내기",
  "Export to CSV": "CSV로 내보내기",
  "Exported {n}": "{n}개 내보냄",
- "Exported {n} · Rest Didn’t Load": "{n}개 내보냄 · 나머지는 불러오지 못함",
+ "Exported {n}, Rest Didn’t Load": "{n}개 내보냄, 나머지는 불러오지 못함",
  "Exporting {n}": "{n}개 내보내는 중",
  "Extra details on your Roblox Settings pages: your devices, backup codes and voice chat.": "Roblox 설정 페이지의 추가 정보: 기기, 백업 코드, 음성 채팅.",
  "Extra Requests": "추가 요청 수",
@@ -1098,7 +1098,7 @@
  },
  "Finding an open server…": "열린 서버를 찾는 중…",
  "Finding Items": "아이템 찾는 중",
- "Finding read messages · {archived} archived ({page})": "읽은 메시지 찾는 중 · {archived}개 보관함 ({page})",
+ "Finding read messages, {archived} archived ({page})": "읽은 메시지 찾는 중, {archived}개 보관함 ({page})",
  "Finding read messages ({page})": "읽은 메시지 찾는 중 ({page})",
  "Finding the closest server to you ({region})…": "가장 가까운 서버를 찾는 중 ({region})…",
  "Finding Things": "찾기",
@@ -1133,7 +1133,7 @@
  "Forum navigation": "포럼 탐색",
  "Forum Posts": "포럼 게시물",
  "Forum Search": "포럼 검색",
- "Founder · Rank {rank}": "창립자 · 랭크 {rank}",
+ "Founder, Rank {rank}": "창립자, 랭크 {rank}",
  "Free": "무료",
  "Free Items": "무료 아이템",
  "Freebie": "공짜",
@@ -1158,7 +1158,7 @@
  "Friends Playing, layout, random experience": "플레이 중인 친구, 레이아웃, 무작위 경험",
  "Friends Since": "친구가 된 날",
  "Friends since {date}": "{date}부터 친구",
- "Friends since {date} • {age}": "{date}부터 친구 • {age}",
+ "Friends since {date}, {age}": "{date}부터 친구, {age}",
  "Friends Who Own It": "보유한 친구",
  "Friends whose name contains what you type, shown first.": "입력한 글자가 이름에 포함된 친구를 먼저 보여 줍니다.",
  "Friends you have in common, next to the friend counts on profiles. Click it for the list.": "프로필의 친구 수 옆에 함께 아는 친구를 표시합니다. 클릭하면 목록을 볼 수 있습니다.",
@@ -1253,7 +1253,7 @@
  "How far each reseller listing is under or over RAP.": "각 재판매 등록이 RAP보다 얼마나 낮거나 높은지.",
  "How it will roughly look. Save to get Roblox’s real thumbnail.": "대략적인 모습입니다. 저장하면 Roblox의 실제 썸네일을 받습니다.",
  "How long ago each trade was sent on the trade list. Hover it for the exact time and when it expires.": "거래 목록에 각 거래를 보낸 지 얼마나 되었는지 표시합니다. 마우스를 올리면 정확한 시간과 만료 시점을 볼 수 있습니다.",
- "How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.": "각 아이템이 누군가의 인벤토리에 있었던 기간을 “제작: Roblox · 3년”처럼 제작자 옆에 표시합니다. 마우스를 올리면 정확한 날짜를 볼 수 있습니다.",
+ "How long each item has been in anyone’s inventory, next to its creator, like By Roblox, 3y. Hover it for the exact date.": "각 아이템이 누군가의 인벤토리에 있었던 기간을 “제작: Roblox, 3년”처럼 제작자 옆에 표시합니다. 마우스를 올리면 정확한 날짜를 볼 수 있습니다.",
  "How Long They’ve Owned It": "보유 기간",
  "How many": "숫자",
  "How many communities you’re in out of how many you can join, under Communities in the side list.": "사이드 목록의 커뮤니티 아래에 가입한 커뮤니티 수와 가입 가능한 최대 수를 보여 줘요.",
@@ -1290,7 +1290,7 @@
  "Ignore": "무시",
  "Ignore {n}?": "{n}건을 무시할까요?",
  "Ignore Matches": "일치 항목 무시",
- "Ignored {n} · {failed} didn’t work, try again": "{n}개 무시 · {failed}개 실패, 다시 시도해 주세요",
+ "Ignored {n}, {failed} didn’t work, try again": "{n}개 무시, {failed}개 실패, 다시 시도해 주세요",
  "Ignored {n} requests": {
   "other": "요청 {n}개를 무시했어요"
  },
@@ -1332,7 +1332,7 @@
  "In game": "게임 중",
  "In Order": "순서대로",
  "In Studio": "Studio 사용 중",
- "In Studio • {game}": "Studio 사용 중 • {game}",
+ "In Studio, {game}": "Studio 사용 중, {game}",
  "in under a minute": "1분 이내",
  "In-Experience Purchases": "경험 내 구매",
  "Inappropriate": "부적절함",
@@ -1388,7 +1388,7 @@
  "Join their server": "이 사람의 서버에 참여",
  "Joined": "가입일",
  "Joined {date}": "{date} 가입",
- "Joined {date} • {age}": "{date} 가입 • {age}",
+ "Joined {date}, {age}": "{date} 가입, {age}",
  "Joined Date": "가입일",
  "Joined in {year}": "{year}년 가입",
  "Joined Roblox": "Roblox 가입일",
@@ -1430,7 +1430,7 @@
  },
  "Leave Selected": "선택한 커뮤니티 탈퇴",
  "Leaving {done} of {total}": "탈퇴하는 중 {done} / {total}",
- "Left {n} · {failed} didn’t work. They’re still selected, try again.": "{n}개 탈퇴 · {failed}개 실패. 선택된 상태로 남아 있으니 다시 시도하세요.",
+ "Left {n}, {failed} didn’t work. They’re still selected, try again.": "{n}개 탈퇴, {failed}개 실패. 선택된 상태로 남아 있으니 다시 시도하세요.",
  "Left {n} communities.": {
   "other": "커뮤니티 {n}개에서 탈퇴했습니다."
  },
@@ -1477,7 +1477,7 @@
  "Look {n}": "룩 {n}",
  "Look Name": "룩 이름",
  "Looking For": "찾는 것",
- "Looking for \"{query}\" • checked {count} trades, loading older ones…": "“{query}” 찾는 중 • 거래 {count}건 확인됨, 이전 거래 불러오는 중…",
+ "Looking for \"{query}\", checked {count} trades, loading older ones…": "“{query}” 찾는 중, 거래 {count}건 확인됨, 이전 거래 불러오는 중…",
  "Looking through the Marketplace…": "마켓플레이스 살펴보는 중…",
  "Looking through the Marketplace… {n} free items so far": {
   "other": "마켓플레이스 살펴보는 중… 지금까지 무료 아이템 {n}개"
@@ -1792,7 +1792,7 @@
  "Owned": "보유 중",
  "Owned {time}": "{time} 보유",
  "Owned since {date}": "{date}부터 보유",
- "Owned since {date} · first bought {first}": "{date}부터 보유 · 첫 구매 {first}",
+ "Owned since {date}, first bought {first}": "{date}부터 보유, 첫 구매 {first}",
  "Owner": "소유자",
  "Owners": "소유자",
  "Owners List": "소유자 목록",
@@ -1958,7 +1958,7 @@
  "Quick Settings Style": "빠른 설정 스타일",
  "Quick Setup": "빠른 설정",
  "Quick Sign In": "빠른 로그인",
- "R$ {price} · {copies} copies": "R$ {price} · {copies}개",
+ "R$ {price}, {copies} copies": "R$ {price}, {copies}개",
  "R$ {price} (your alert: R$ {target})": "R$ {price} (내 알림: R$ {target})",
  "R6 / R15 Switch": "R6 / R15 전환",
  "R6 characters have limitations…": "R6 캐릭터에는 제한이 있습니다…",
@@ -2072,7 +2072,7 @@
  "Roblox asked RoUtility to slow down, carrying on in a moment. {n} purchases so far, back to {date}.": {
   "other": "Roblox에서 RoUtility에 속도를 줄이라고 요청했습니다. 잠시 후 계속합니다. 지금까지 구매 {n}건, {date}까지."
  },
- "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox가 속도를 늦춰 달래요 · {total}개 중 {done}개 확인, {s}초 후 다시 시작",
+ "Roblox asked us to slow down, {done} of {total} checked, going again in {s}s": "Roblox가 속도를 늦춰 달래요, {total}개 중 {done}개 확인, {s}초 후 다시 시작",
  "Roblox Badges": "Roblox 배지",
  "Roblox couldn’t send it. Check your balance before you try again.": "Roblox가 보내지 못했어요. 다시 시도하기 전에 잔액을 확인하세요.",
  "Roblox default": "Roblox 기본값",
@@ -2445,7 +2445,7 @@
  "Teleports players": "플레이어 텔레포트",
  "Tell us what’s wrong": "무엇이 문제인지 알려 주세요",
  "Terminated": "정지됨",
- "Terminated · @{name}": "정지됨 · @{name}",
+ "Terminated, @{name}": "정지됨, @{name}",
  "Terminated Players": "정지된 플레이어",
  "Terrible": "최악",
  "Test Notification": "테스트 알림",
@@ -2550,7 +2550,7 @@
  "Thread": "스레드",
  "Thread not available": "스레드를 사용할 수 없음",
  "Threads": "스레드",
- "tick • tick • tick • chime": "틱 • 틱 • 틱 • 차임",
+ "tick, tick, tick, chime": "틱, 틱, 틱, 차임",
  "Tile Menu": "타일 메뉴",
  "Tiles": "타일",
  "Timed Out, Try Again": "시간 초과, 다시 시도",
@@ -2662,7 +2662,7 @@
   "other": "{n}명 팔로우를 취소할까요?"
  },
  "Unfollow Selected": "선택한 사람 팔로우 취소",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "{n}명 팔로우 취소 · {failed}명은 실패했어요. 아직 선택되어 있으니 다시 시도하세요.",
+ "Unfollowed {n}, {failed} didn’t work. They’re still selected, try again.": "{n}명 팔로우 취소, {failed}명은 실패했어요. 아직 선택되어 있으니 다시 시도하세요.",
  "Unfollowed {n} people.": {
   "other": "{n}명 팔로우를 취소했어요."
  },
@@ -2674,7 +2674,7 @@
  },
  "Unfriend Detector": "친구 삭제 감지기",
  "Unfriend Selected": "선택한 친구 삭제",
- "Unfriended {n} · {failed} didn’t work. They’re still selected, try again.": "{n}명 친구 삭제 · {failed}명 실패. 선택된 상태로 남아 있으니 다시 시도하세요.",
+ "Unfriended {n}, {failed} didn’t work. They’re still selected, try again.": "{n}명 친구 삭제, {failed}명 실패. 선택된 상태로 남아 있으니 다시 시도하세요.",
  "Unfriended {n} friends.": {
   "other": "친구 {n}명을 삭제했습니다."
  },
@@ -2865,8 +2865,8 @@
  "YOU GIVE": "주는 것",
  "You give {pct}% more RAP": "RAP를 {pct}% 더 줌",
  "You give {pct}% more value": "가치를 {pct}% 더 줌",
- "You give • {n} items": {
-  "other": "주는 것 • 아이템 {n}개"
+ "You give, {n} items": {
+  "other": "주는 것, 아이템 {n}개"
  },
  "You have no inbound trades.": "받은 거래가 없습니다.",
  "You have no outbound trades.": "보낸 거래가 없습니다.",
@@ -2885,8 +2885,8 @@
   "other": "여기서 약 {n}분 플레이했어요"
  },
  "You receive": "받는 것",
- "You receive • {n} items": {
-  "other": "받는 것 • 아이템 {n}개"
+ "You receive, {n} items": {
+  "other": "받는 것, 아이템 {n}개"
  },
  "You rolled": "뽑은 결과",
  "You sent {n} Robux": "{n} Robux를 보냈어요",
@@ -2993,7 +2993,7 @@
  "{n} statuses unavailable": {
   "other": "{n}명의 상태를 확인할 수 없음"
  },
- "{status} · {checked} members checked · {online} online · {matches} matches": "{status} · {checked}명 확인 · 온라인 {online}명 · 일치 {matches}명",
+ "{status}, {checked} members checked, {online} online, {matches} matches": "{status}, {checked}명 확인, 온라인 {online}명, 일치 {matches}명",
  "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. It records what Unfriend Detector notices, so it needs Unfriend Detector on. Remove anyone with the ✕ on their row. Stored only on this device.": "roblox.com/friend-history에 친구 기록 페이지를 추가합니다. 친구 목록에 추가된 사람과 목록에서 사라진 사람을 두 열로 보여 줍니다. 친구 삭제 감지기가 알아챈 변화를 기록하므로 감지기를 켜 두어야 합니다. 이 기기에만 저장됩니다. 행의 ✕로 누구든 삭제할 수 있어요.",
  "Added": "추가됨",
  "All places": "모든 장소",
@@ -3018,7 +3018,7 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "모든 멤버를 확인하므로 큰 커뮤니티는 시간이 걸릴 수 있습니다. 각 묶음을 불러올 때마다 상태를 확인합니다. 장소 필터는 Roblox가 공유한 위치만 찾습니다.",
  "Start a scan to find online members.": "스캔을 시작해 온라인 멤버를 찾아보세요.",
  "Stop Scan": "스캔 중지",
- "Stopped · Partial results": "중지됨 · 일부 결과",
+ "Stopped, Partial results": "중지됨, 일부 결과",
  "{bound} players": "{bound} 플레이어 수",
  "{n} playing": {
   "other": "{n}명 플레이 중"

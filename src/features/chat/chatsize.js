@@ -53,7 +53,7 @@
       if (!g) {
         g = document.createElement('div');
         g.className = 'routility-chat-grip';
-        g.dataset.rtTip = lt('Drag to resize · Double-click to reset');
+        g.dataset.rtTip = lt('Drag to resize, Double-click to reset');
         g.setAttribute('aria-hidden', 'true');
         g.addEventListener('pointerdown', start);
         g.addEventListener('dblclick', reset);

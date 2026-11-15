@@ -106,9 +106,9 @@
  "{item} is worth {value}.": "{item} vale {value}.",
  "{items} and {last}": "{items} y {last}",
  "{label}: ": "{label}: ",
- "{located} of {checked} servers located • {regions}": "{located} de {checked} servidores ubicados • {regions}",
+ "{located} of {checked} servers located, {regions}": "{located} de {checked} servidores ubicados, {regions}",
  "{missing} of the {total} free Roblox items aren’t in your inventory yet.": "{missing} de los {total} artículos gratis de Roblox aún no están en tu inventario.",
- "{n} · Buy them in the experience": "{n} · Cómpralos en la experiencia",
+ "{n}, Buy them in the experience": "{n}, Cómpralos en la experiencia",
  "{n} badges": {
   "one": "{n} insignia",
   "other": "{n} insignias"
@@ -121,9 +121,9 @@
   "one": "{n} copia",
   "other": "{n} copias"
  },
- "{n} copies • {serials}": {
-  "one": "{n} copia • {serials}",
-  "other": "{n} copias • {serials}"
+ "{n} copies, {serials}": {
+  "one": "{n} copia, {serials}",
+  "other": "{n} copias, {serials}"
  },
  "{n} couldn’t be added.": "{n} no se pudieron agregar.",
  "{n} couldn’t be checked.": {
@@ -178,13 +178,13 @@
   "one": "{n} artículo",
   "other": "{n} artículos"
  },
- "{n} items • {worn}/{max} accessories": {
-  "one": "{n} artículo • {worn}/{max} accesorios",
-  "other": "{n} artículos • {worn}/{max} accesorios"
+ "{n} items, {worn}/{max} accessories": {
+  "one": "{n} artículo, {worn}/{max} accesorios",
+  "other": "{n} artículos, {worn}/{max} accesorios"
  },
- "{n} items • updated {time}": {
-  "one": "{n} artículo • actualizado {time}",
-  "other": "{n} artículos • actualizado {time}"
+ "{n} items, updated {time}": {
+  "one": "{n} artículo, actualizado {time}",
+  "other": "{n} artículos, actualizado {time}"
  },
  "{n} items to buy": {
   "one": "{n} artículo por comprar",
@@ -200,9 +200,9 @@
   "other": "{n} limitados"
  },
  "{n} located": "{n} ubicados",
- "{n} matches · {checked} checked": {
-  "one": "{n} coincidencia · {checked} revisados",
-  "other": "{n} coincidencias · {checked} revisados"
+ "{n} matches, {checked} checked": {
+  "one": "{n} coincidencia, {checked} revisados",
+  "other": "{n} coincidencias, {checked} revisados"
  },
  "{n} members": {
   "one": "{n} miembro",
@@ -274,9 +274,9 @@
   "other": "{n} personas ya no son tus amigas"
  },
  "{n} Place Visits": "{n} visitas",
- "{n} purchases · {spent} Robux spent": {
-  "one": "{n} compra · {spent} Robux gastados",
-  "other": "{n} compras · {spent} Robux gastados"
+ "{n} purchases, {spent} Robux spent": {
+  "one": "{n} compra, {spent} Robux gastados",
+  "other": "{n} compras, {spent} Robux gastados"
  },
  "{n} purchases in this experience": {
   "one": "{n} compra en esta experiencia",
@@ -294,9 +294,9 @@
   "one": "{n} Robux",
   "other": "{n} Robux"
  },
- "{n} rows · back to {date}": {
-  "one": "{n} fila · hasta {date}",
-  "other": "{n} filas · hasta {date}"
+ "{n} rows, back to {date}": {
+  "one": "{n} fila, hasta {date}",
+  "other": "{n} filas, hasta {date}"
  },
  "{n} rows exported": {
   "one": "{n} fila exportada",
@@ -321,13 +321,13 @@
   "one": "{n} servidor",
   "other": "{n} servidores"
  },
- "{n} servers • {players} playing": {
-  "one": "{n} servidor • {players} jugando",
-  "other": "{n} servidores • {players} jugando"
+ "{n} servers, {players} playing": {
+  "one": "{n} servidor, {players} jugando",
+  "other": "{n} servidores, {players} jugando"
  },
- "{n} servers • {regions}": {
-  "one": "{n} servidor • {regions}",
-  "other": "{n} servidores • {regions}"
+ "{n} servers, {regions}": {
+  "one": "{n} servidor, {regions}",
+  "other": "{n} servidores, {regions}"
  },
  "{n} sold": {
   "one": "{n} vendidos",
@@ -345,9 +345,9 @@
   "one": "{n} intercambio con “{query}”",
   "other": "{n} intercambios con “{query}”"
  },
- "{n} trades with \"{query}\" • checked {count} trades, loading older ones…": {
-  "one": "{n} intercambio con “{query}” • {count} intercambios revisados, cargando más antiguos…",
-  "other": "{n} intercambios con “{query}” • {count} intercambios revisados, cargando más antiguos…"
+ "{n} trades with \"{query}\", checked {count} trades, loading older ones…": {
+  "one": "{n} intercambio con “{query}”, {count} intercambios revisados, cargando más antiguos…",
+  "other": "{n} intercambios con “{query}”, {count} intercambios revisados, cargando más antiguos…"
  },
  "{n} unpriced": {
   "one": "{n} sin precio",
@@ -373,7 +373,7 @@
   "one": "hace {n} año",
   "other": "hace {n} años"
  },
- "{n}+ matches · {checked} checked": "+{n} coincidencias · {checked} revisados",
+ "{n}+ matches, {checked} checked": "+{n} coincidencias, {checked} revisados",
  "{n}d": {
   "one": "{n} d",
   "other": "{n} d"
@@ -407,7 +407,7 @@
   "other": "{n} a"
  },
  "{name} ({count})": "{name} ({count})",
- "{name} • {robux} Robux": "{name} • {robux} Robux",
+ "{name}, {robux} Robux": "{name}, {robux} Robux",
  "{name} accessories": "Accesorios de {name}",
  "{name} audit log.csv": "registro de auditoría de {name}.csv",
  "{name} color": "Color de {name}",
@@ -436,27 +436,27 @@
  "{pct} over RAP": "{pct} sobre el RAP",
  "{pct} under RAP": "{pct} bajo el RAP",
  "{pct}% ({label})": "{pct}% ({label})",
- "{pct}% liked • {likes} likes, {dislikes} dislikes": "{pct}% de me gusta • {likes} me gusta, {dislikes} no me gusta",
+ "{pct}% liked, {likes} likes, {dislikes} dislikes": "{pct}% de me gusta, {likes} me gusta, {dislikes} no me gusta",
  "{pct}% of copies": "{pct}% de las copias",
  "{pct}% over RAP": "{pct}% sobre el RAP",
  "{pct}% rating": "{pct}% de calificación",
  "{pct}% under RAP": "{pct}% bajo el RAP",
  "{percent}% off unlocks {date}": "{percent}% de descuento desde el {date}",
- "{place} • {n} servers • {players} playing": {
-  "one": "{place} • {n} servidor • {players} jugando",
-  "other": "{place} • {n} servidores • {players} jugando"
+ "{place}, {n} servers, {players} playing": {
+  "one": "{place}, {n} servidor, {players} jugando",
+  "other": "{place}, {n} servidores, {players} jugando"
  },
  "{playing} of {max} people max": "{playing} de {max} personas máx.",
  "{price} a month": "{price} al mes",
  "{price} a week": "{price} a la semana",
  "{price} a year": "{price} al año",
- "{rating} • {n} playing": "{rating} • {n} jugando",
+ "{rating}, {n} playing": "{rating}, {n} jugando",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} ya no está en la lista de regiones. Uniéndote a cualquier servidor…",
  "{results} (first 2,000 items)": "{results} (primeros 2,000 artículos)",
  "{results} (some categories couldn’t load)": "{results} (algunas categorías no se pudieron cargar)",
  "{robux} Robux at the DevEx rate": "{robux} Robux a la tasa de DevEx",
  "{robux} Robux at your rate ({rate}/1k)": "{robux} Robux a tu tasa ({rate}/1k)",
- "{role} · Rank {rank}": "{role} · Rango {rank}",
+ "{role}, Rank {rank}": "{role}, Rango {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} studs",
  "{status} on {parts}": "{status} en {parts}",
@@ -574,7 +574,7 @@
  "Adds, what you’re really after, anything else. Keep it short.": "Extras, lo que realmente buscas, cualquier otra cosa. Que sea breve.",
  "Adjust Accessories": "Ajustar accesorios",
  "Admin": "Admin",
- "Admin · Rank {rank}": "Admin · Rango {rank}",
+ "Admin, Rank {rank}": "Admin, Rango {rank}",
  "Admin Badge": "Insignia de admin",
  "Admin Tools": "Herramientas de admin",
  "Admins": "Admins",
@@ -613,7 +613,7 @@
  "Amount": "Monto",
  "Amount (R$)": "Monto (R$)",
  "Amount of Robux": "Cantidad de Robux",
- "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "Una línea Obtenido en las páginas de artículos que tienes, como 1 oct 2026 · hace 9 días.",
+ "An Acquired line on item pages for things you own, like Oct 1, 2026, 9 days ago.": "Una línea Obtenido en las páginas de artículos que tienes, como 1 oct 2026, hace 9 días.",
  "An Adjust Accessories button under your avatar to move, rotate and resize hats and other accessories like in the Roblox app, with a 3D preview you can spin around. Saves to your avatar, within Roblox’s limits.": "Un botón Ajustar accesorios debajo de tu avatar para mover, rotar y cambiar el tamaño de sombreros y otros accesorios como en la app de Roblox, con una vista previa 3D que puedes girar. Se guarda en tu avatar, dentro de los límites de Roblox.",
  "An Avatar Items row in a game’s Store with clothing and accessories made by the game’s creator.": "Una fila de Artículos de avatar en la Tienda de un juego con ropa y accesorios hechos por el creador del juego.",
  "An Avatar Type row next to Server Size: whether the game makes everyone R6, R15, or lets players pick. Roblox doesn’t show it on the page.": "Una fila Tipo de avatar junto a Tamaño del servidor: si el juego pone a todos en R6, R15 o deja elegir. Roblox no lo muestra en la página.",
@@ -631,7 +631,7 @@
  "Archive All Read": "Archivar todo lo leído",
  "Archive Every Read Message?": "¿Archivar todos los mensajes leídos?",
  "Archived {n}": "{n} archivados",
- "Archived {n} · Some Didn’t Work": "{n} archivados · Algunos fallaron",
+ "Archived {n}, Some Didn’t Work": "{n} archivados, Algunos fallaron",
  "Archiving ({archived} done) {done} of {total}": "Archivando ({archived} listos) {done} de {total}",
  "Archiving {done} of {total}": "Archivando {done} de {total}",
  "Arrange Home & Charts": "Ordenar Inicio y Listas",
@@ -782,7 +782,7 @@
  "Checking {region}…": "Revisando {region}…",
  "Checking for new purchases since your last visit…": "Buscando compras nuevas desde tu última visita…",
  "Checking open servers for {region}…": "Revisando servidores abiertos en {region}…",
- "Checking trades · {done} of {total}": "Revisando intercambios · {done} de {total}",
+ "Checking trades, {done} of {total}": "Revisando intercambios, {done} de {total}",
  "Checking what you already own… {done} of {total}": "Revisando lo que ya tienes… {done} de {total}",
  "Checking where your friends are…": "Revisando dónde están tus amigos…",
  "Checking which {region} servers have room right now…": "Revisando qué servidores de {region} tienen lugar ahora…",
@@ -905,7 +905,7 @@
  "Couldn’t load all your items right now. Open Post again to retry.": "No se pudieron cargar todos tus artículos. Abre Publicar otra vez para reintentar.",
  "Couldn’t load friends right now. Try again in a minute.": "No se pudieron cargar los amigos ahora. Inténtalo de nuevo en un minuto.",
  "Couldn’t load items right now. Try again in a minute.": "No se pudieron cargar los artículos ahora. Inténtalo de nuevo en un minuto.",
- "Couldn’t Load Messages · Try Again": "No Se Cargaron los Mensajes · Reintentar",
+ "Couldn’t Load Messages, Try Again": "No Se Cargaron los Mensajes, Reintentar",
  "Couldn’t load owners right now. Try again in a minute.": "No se pudieron cargar los dueños ahora. Inténtalo de nuevo en un minuto.",
  "Couldn’t load servers for this region.": "No se pudieron cargar los servidores de esta región.",
  "Couldn’t load that file. Chrome didn’t save it, try again.": "No se pudo cargar ese archivo. Chrome no lo guardó, inténtalo de nuevo.",
@@ -1018,7 +1018,7 @@
  "Delete New Badges Automatically": "Eliminar Insignias Nuevas Automáticamente",
  "Delete Selected": "Eliminar Seleccionadas",
  "Deleted": "Eliminado",
- "Deleted {n} · {failed} didn’t work. They’re still selected, try again.": "Se eliminaron {n} · {failed} no funcionaron. Siguen seleccionadas, inténtalo de nuevo.",
+ "Deleted {n}, {failed} didn’t work. They’re still selected, try again.": "Se eliminaron {n}, {failed} no funcionaron. Siguen seleccionadas, inténtalo de nuevo.",
  "Deleted {n} badges.": {
   "one": "Se eliminó {n} insignia.",
   "other": "Se eliminaron {n} insignias."
@@ -1065,7 +1065,7 @@
  "Drag the preview to look around. Hair and waist accessories can’t be adjusted.": "Arrastra la vista previa para mirar alrededor. Los accesorios de pelo y cintura no se pueden ajustar.",
  "Drag the top left corner of a chat window to make it bigger. Every chat window, the RoUtility Bot included, uses the same size. Double-click the corner to reset.": "Arrastra la esquina superior izquierda de una ventana de chat para agrandarla. Todas las ventanas de chat, incluido el Bot de RoUtility, usan el mismo tamaño. Haz doble clic en la esquina para restablecer.",
  "Drag to move": "Arrastra para mover",
- "Drag to resize · Double-click to reset": "Arrastra para cambiar el tamaño · Doble clic para restablecer",
+ "Drag to resize, Double-click to reset": "Arrastra para cambiar el tamaño, Doble clic para restablecer",
  "Drag to turn your avatar. Scroll to zoom in or out.": "Arrastra para girar tu avatar. Usa la rueda para acercar o alejar.",
  "Dress Skirt": "Falda de vestido",
  "Dynamic": "Dinámico",
@@ -1156,7 +1156,7 @@
  "Export CSV": "Exportar CSV",
  "Export to CSV": "Exportar a CSV",
  "Exported {n}": "Exportados {n}",
- "Exported {n} · Rest Didn’t Load": "Exportados {n} · El Resto No Cargó",
+ "Exported {n}, Rest Didn’t Load": "Exportados {n}, El Resto No Cargó",
  "Exporting {n}": "Exportando {n}",
  "Extra details on your Roblox Settings pages: your devices, backup codes and voice chat.": "Detalles extra en tus páginas de Configuración de Roblox: tus dispositivos, códigos de respaldo y chat de voz.",
  "Extra Requests": "Solicitudes extra",
@@ -1205,7 +1205,7 @@
  },
  "Finding an open server…": "Buscando un servidor abierto…",
  "Finding Items": "Buscando artículos",
- "Finding read messages · {archived} archived ({page})": "Buscando mensajes leídos · {archived} archivados ({page})",
+ "Finding read messages, {archived} archived ({page})": "Buscando mensajes leídos, {archived} archivados ({page})",
  "Finding read messages ({page})": "Buscando mensajes leídos ({page})",
  "Finding the closest server to you ({region})…": "Buscando el servidor más cercano a ti ({region})…",
  "Finding Things": "Encontrar cosas",
@@ -1241,7 +1241,7 @@
  "Forum navigation": "Navegación del foro",
  "Forum Posts": "Publicaciones del foro",
  "Forum Search": "Búsqueda en el foro",
- "Founder · Rank {rank}": "Fundador · Rango {rank}",
+ "Founder, Rank {rank}": "Fundador, Rango {rank}",
  "Free": "Gratis",
  "Free Items": "Artículos gratis",
  "Freebie": "Regalado",
@@ -1266,7 +1266,7 @@
  "Friends Playing, layout, random experience": "Amigos jugando, diseño, experiencia al azar",
  "Friends Since": "Amigos desde",
  "Friends since {date}": "Amigos desde {date}",
- "Friends since {date} • {age}": "Amigos desde {date} • {age}",
+ "Friends since {date}, {age}": "Amigos desde {date}, {age}",
  "Friends Who Own It": "Amigos que lo tienen",
  "Friends whose name contains what you type, shown first.": "Los amigos cuyo nombre contiene lo que escribes, primero.",
  "Friends you have in common, next to the friend counts on profiles. Click it for the list.": "Amigos que tienen en común, junto a la cantidad de amigos en los perfiles. Haz clic para ver la lista.",
@@ -1362,7 +1362,7 @@
  "How far each reseller listing is under or over RAP.": "Cuánto está cada publicación de reventa por debajo o por encima del RAP.",
  "How it will roughly look. Save to get Roblox’s real thumbnail.": "Así se verá más o menos. Guarda para obtener la miniatura real de Roblox.",
  "How long ago each trade was sent on the trade list. Hover it for the exact time and when it expires.": "Hace cuánto se envió cada intercambio en la lista de intercambios. Pasa el cursor para ver la hora exacta y cuándo vence.",
- "How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.": "Cuánto tiempo lleva cada artículo en el inventario de alguien, junto a su creador, como De Roblox · 3 a. Pasa el cursor para ver la fecha exacta.",
+ "How long each item has been in anyone’s inventory, next to its creator, like By Roblox, 3y. Hover it for the exact date.": "Cuánto tiempo lleva cada artículo en el inventario de alguien, junto a su creador, como De Roblox, 3 a. Pasa el cursor para ver la fecha exacta.",
  "How Long They’ve Owned It": "Cuánto tiempo lo han tenido",
  "How many": "Cuántos",
  "How many communities you’re in out of how many you can join, under Communities in the side list.": "En cuántas comunidades estás de las que puedes unirte, debajo de Comunidades en la lista lateral.",
@@ -1399,7 +1399,7 @@
  "Ignore": "Ignorar",
  "Ignore {n}?": "¿Ignorar {n}?",
  "Ignore Matches": "Ignorar coincidencias",
- "Ignored {n} · {failed} didn’t work, try again": "Ignoradas {n} · {failed} no funcionaron, inténtalo de nuevo",
+ "Ignored {n}, {failed} didn’t work, try again": "Ignoradas {n}, {failed} no funcionaron, inténtalo de nuevo",
  "Ignored {n} requests": {
   "one": "{n} solicitud ignorada",
   "other": "{n} solicitudes ignoradas"
@@ -1450,7 +1450,7 @@
  "In game": "En el juego",
  "In Order": "En Orden",
  "In Studio": "En Studio",
- "In Studio • {game}": "En Studio • {game}",
+ "In Studio, {game}": "En Studio, {game}",
  "in under a minute": "en menos de un minuto",
  "In-Experience Purchases": "Compras en experiencias",
  "Inappropriate": "Inapropiado",
@@ -1506,7 +1506,7 @@
  "Join their server": "Unirse a su servidor",
  "Joined": "Se unió",
  "Joined {date}": "Miembro desde el {date}",
- "Joined {date} • {age}": "Se unió el {date} • {age}",
+ "Joined {date}, {age}": "Se unió el {date}, {age}",
  "Joined Date": "Fecha de ingreso",
  "Joined in {year}": "Se unió en {year}",
  "Joined Roblox": "Se unió a Roblox",
@@ -1549,7 +1549,7 @@
  },
  "Leave Selected": "Salir de las seleccionadas",
  "Leaving {done} of {total}": "Saliendo {done} de {total}",
- "Left {n} · {failed} didn’t work. They’re still selected, try again.": "Saliste de {n} · {failed} fallaron. Siguen seleccionadas, inténtalo de nuevo.",
+ "Left {n}, {failed} didn’t work. They’re still selected, try again.": "Saliste de {n}, {failed} fallaron. Siguen seleccionadas, inténtalo de nuevo.",
  "Left {n} communities.": {
   "one": "Saliste de {n} comunidad.",
   "other": "Saliste de {n} comunidades."
@@ -1600,7 +1600,7 @@
  "Look {n}": "Look {n}",
  "Look Name": "Nombre del look",
  "Looking For": "Busco",
- "Looking for \"{query}\" • checked {count} trades, loading older ones…": "Buscando “{query}” • {count} intercambios revisados, cargando más antiguos…",
+ "Looking for \"{query}\", checked {count} trades, loading older ones…": "Buscando “{query}”, {count} intercambios revisados, cargando más antiguos…",
  "Looking through the Marketplace…": "Buscando en el Mercado…",
  "Looking through the Marketplace… {n} free items so far": {
   "one": "Buscando en el Mercado… {n} artículo gratis hasta ahora",
@@ -1919,7 +1919,7 @@
  "Owned": "Obtenido",
  "Owned {time}": "Obtenido {time}",
  "Owned since {date}": "Lo tienes desde el {date}",
- "Owned since {date} · first bought {first}": "Lo tienes desde el {date} · primera compra el {first}",
+ "Owned since {date}, first bought {first}": "Lo tienes desde el {date}, primera compra el {first}",
  "Owner": "Dueño",
  "Owners": "Dueños",
  "Owners List": "Lista de dueños",
@@ -2085,7 +2085,7 @@
  "Quick Settings Style": "Estilo de Configuración rápida",
  "Quick Setup": "Configuración Rápida",
  "Quick Sign In": "Inicio de sesión rápido",
- "R$ {price} · {copies} copies": "R$ {price} · {copies} copias",
+ "R$ {price}, {copies} copies": "R$ {price}, {copies} copias",
  "R$ {price} (your alert: R$ {target})": "R$ {price} (tu alerta: R$ {target})",
  "R6 / R15 Switch": "Cambio R6 / R15",
  "R6 characters have limitations…": "Los personajes R6 tienen limitaciones…",
@@ -2202,7 +2202,7 @@
   "one": "Roblox le pidió a RoUtility ir más despacio, sigue en un momento. {n} compra hasta ahora, hasta {date}.",
   "other": "Roblox le pidió a RoUtility ir más despacio, sigue en un momento. {n} compras hasta ahora, hasta {date}."
  },
- "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox nos pidió ir más lento · {done} de {total} revisadas, seguimos en {s} s",
+ "Roblox asked us to slow down, {done} of {total} checked, going again in {s}s": "Roblox nos pidió ir más lento, {done} de {total} revisadas, seguimos en {s} s",
  "Roblox Badges": "Insignias de Roblox",
  "Roblox couldn’t send it. Check your balance before you try again.": "Roblox no pudo enviarlo. Revisa tu saldo antes de volver a intentarlo.",
  "Roblox default": "Predeterminado de Roblox",
@@ -2579,7 +2579,7 @@
  "Teleports players": "Teletransporta jugadores",
  "Tell us what’s wrong": "Cuéntanos qué pasa",
  "Terminated": "Cancelada",
- "Terminated · @{name}": "Cancelada · @{name}",
+ "Terminated, @{name}": "Cancelada, @{name}",
  "Terminated Players": "Jugadores con cuenta cancelada",
  "Terrible": "Terrible",
  "Test Notification": "Notificación de prueba",
@@ -2685,7 +2685,7 @@
  "Thread": "Hilo",
  "Thread not available": "Hilo no disponible",
  "Threads": "Hilos",
- "tick • tick • tick • chime": "tic • tic • tic • ding",
+ "tick, tick, tick, chime": "tic, tic, tic, ding",
  "Tile Menu": "Menú del mosaico",
  "Tiles": "Tarjetas",
  "Timed Out, Try Again": "Se agotó el tiempo, intenta de nuevo",
@@ -2799,7 +2799,7 @@
   "other": "¿Dejar de seguir a {n} personas?"
  },
  "Unfollow Selected": "Dejar de seguir seleccionados",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "Dejaste de seguir a {n} · {failed} no funcionaron. Siguen seleccionados, inténtalo de nuevo.",
+ "Unfollowed {n}, {failed} didn’t work. They’re still selected, try again.": "Dejaste de seguir a {n}, {failed} no funcionaron. Siguen seleccionados, inténtalo de nuevo.",
  "Unfollowed {n} people.": {
   "one": "Dejaste de seguir a {n} persona.",
   "other": "Dejaste de seguir a {n} personas."
@@ -2813,7 +2813,7 @@
  },
  "Unfriend Detector": "Detector de amigos perdidos",
  "Unfriend Selected": "Eliminar seleccionados",
- "Unfriended {n} · {failed} didn’t work. They’re still selected, try again.": "Eliminaste a {n} · {failed} fallaron. Siguen seleccionados, inténtalo de nuevo.",
+ "Unfriended {n}, {failed} didn’t work. They’re still selected, try again.": "Eliminaste a {n}, {failed} fallaron. Siguen seleccionados, inténtalo de nuevo.",
  "Unfriended {n} friends.": {
   "one": "Eliminaste a {n} amigo.",
   "other": "Eliminaste a {n} amigos."
@@ -3005,9 +3005,9 @@
  "YOU GIVE": "DAS",
  "You give {pct}% more RAP": "Das {pct}% más de RAP",
  "You give {pct}% more value": "Das {pct}% más de valor",
- "You give • {n} items": {
-  "one": "Das • {n} artículo",
-  "other": "Das • {n} artículos"
+ "You give, {n} items": {
+  "one": "Das, {n} artículo",
+  "other": "Das, {n} artículos"
  },
  "You have no inbound trades.": "No tienes intercambios recibidos.",
  "You have no outbound trades.": "No tienes intercambios enviados.",
@@ -3027,9 +3027,9 @@
   "other": "Jugaste aquí unos {n} minutos"
  },
  "You receive": "Recibes",
- "You receive • {n} items": {
-  "one": "Recibes • {n} artículo",
-  "other": "Recibes • {n} artículos"
+ "You receive, {n} items": {
+  "one": "Recibes, {n} artículo",
+  "other": "Recibes, {n} artículos"
  },
  "You rolled": "Te tocó",
  "You sent {n} Robux": "Enviaste {n} Robux",
@@ -3139,7 +3139,7 @@
   "one": "{n} estado no disponible",
   "other": "{n} estados no disponibles"
  },
- "{status} · {checked} members checked · {online} online · {matches} matches": "{status} · {checked} miembros revisados · {online} en línea · {matches} coincidencias",
+ "{status}, {checked} members checked, {online} online, {matches} matches": "{status}, {checked} miembros revisados, {online} en línea, {matches} coincidencias",
  "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. It records what Unfriend Detector notices, so it needs Unfriend Detector on. Remove anyone with the ✕ on their row. Stored only on this device.": "Una página de Historial de amigos en roblox.com/friend-history con dos columnas: las personas que se agregaron a tu lista de amigos y las que ya no están en ella. Registra lo que nota el Detector de amigos perdidos, así que necesita que esté activado. Solo se guarda en este dispositivo. Quita a cualquiera con la ✕ de su fila.",
  "Added": "Agregados",
  "All places": "Todos los lugares",
@@ -3164,7 +3164,7 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Revisa a cada miembro, así que las comunidades grandes pueden tardar un rato. El estado se revisa a medida que carga cada grupo. Los filtros de lugar solo encuentran ubicaciones que Roblox comparte.",
  "Start a scan to find online members.": "Inicia una búsqueda para encontrar miembros en línea.",
  "Stop Scan": "Detener búsqueda",
- "Stopped · Partial results": "Detenida · Resultados incompletos",
+ "Stopped, Partial results": "Detenida, Resultados incompletos",
  "{bound} players": "{bound} de jugadores",
  "{n} playing": {
   "one": "{n} jugando",

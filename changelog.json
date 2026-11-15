@@ -6,6 +6,15 @@
   },
   "releases": [
     {
+      "version": "1.2.5",
+      "date": "2026-11-15",
+      "summary": "Even item cards in the 2017 Roblox Theme and no more doubled menu counters.",
+      "changes": [
+        { "type": "improved", "text": "2017 Roblox Theme: Catalog, Sandbox and trade item cards are all the same height with room under the price, and the RoUtility Value shows in blue." },
+        { "type": "fixed", "text": "Friend History, Trade Calculator, Trade Ads and the other RoUtility menu links no longer show a second copy of the Friends or Trade counter after Roblox changed its counters." }
+      ]
+    },
+    {
       "version": "1.2.4",
       "date": "2026-11-15",
       "summary": "The 2017 Roblox Theme now looks like the real 2017 site, plus a steadier Trade button, tidier Owners rows and an Avatar page that fits smaller screens.",

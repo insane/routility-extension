@@ -239,7 +239,7 @@
       a.removeAttribute('id');
       a.removeAttribute('data-rt-profile');
       a.classList.remove('bg-shift-200');
-      a.querySelectorAll('.foundation-web-badge').forEach(b => b.remove());
+      a.querySelectorAll('.foundation-web-badge, .foundation-web-status-indicator').forEach(b => b.remove());
       const icon = a.querySelector('.icon');
       if (icon) icon.className = 'grow-0 shrink-0 basis-auto icon routility-ps-nav-icon size-[var(--icon-size-large)]';
       const label = a.querySelector(':scope > .text-truncate-end') || [...a.querySelectorAll('span')].find(sp => !sp.children.length && sp.textContent.trim());

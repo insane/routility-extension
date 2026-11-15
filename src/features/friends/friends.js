@@ -1706,7 +1706,7 @@
         if (x.hasVerifiedBadge) name.appendChild(window.RoUtilityUI.verifiedBadge());
         if (f.admin && f.admin.has(x.id)) name.appendChild(window.RoUtilityUI.adminBadge());
         const p = f.live.get(x.id);
-        const where = online(x) ? ' · ' + lt(LABELS[p.userPresenceType] || 'Online') : '';
+        const where = online(x) ? ', ' + lt(LABELS[p.userPresenceType] || 'Online') : '';
         text.append(name, el('span', 'routility-cm-meta text-body-small content-muted', (x.name ? '@' + x.name : '') + where));
         const tags = el('span', 'routility-cm-tags');
         if (x.deleted) tags.appendChild(el('span', 'routility-cm-tag routility-fm-tag-bad', lt('Terminated')));
@@ -1767,8 +1767,8 @@
       ffRender();
       busy = false;
       note = following
-        ? (failed.size ? lt('Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.', { n: formatNumber(gone.length), failed: formatNumber(failed.size) }) : ltn(gone.length, 'Unfollowed {n} person.', 'Unfollowed {n} people.', { n: formatNumber(gone.length) }))
-        : (failed.size ? lt('Unfriended {n} · {failed} didn’t work. They’re still selected, try again.', { n: formatNumber(gone.length), failed: formatNumber(failed.size) }) : ltn(gone.length, 'Unfriended {n} friend.', 'Unfriended {n} friends.', { n: formatNumber(gone.length) }));
+        ? (failed.size ? lt('Unfollowed {n}, {failed} didn’t work. They’re still selected, try again.', { n: formatNumber(gone.length), failed: formatNumber(failed.size) }) : ltn(gone.length, 'Unfollowed {n} person.', 'Unfollowed {n} people.', { n: formatNumber(gone.length) }))
+        : (failed.size ? lt('Unfriended {n}, {failed} didn’t work. They’re still selected, try again.', { n: formatNumber(gone.length), failed: formatNumber(failed.size) }) : ltn(gone.length, 'Unfriended {n} friend.', 'Unfriended {n} friends.', { n: formatNumber(gone.length) }));
       paint();
     });
     paint();

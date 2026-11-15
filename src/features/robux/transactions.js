@@ -327,7 +327,7 @@
     note.classList.remove('text-error');
     const filter = s.filter && s.filter.key === info.key ? s.filter : null;
     const progress = () => {
-      if (st === s) note.textContent = ltn(c.rows.length, '{n} rows · back to {date}', '{n} rows · back to {date}', { n: formatNumber(c.rows.length), date: oldestText(c) });
+      if (st === s) note.textContent = ltn(c.rows.length, '{n} rows, back to {date}', '{n} rows, back to {date}', { n: formatNumber(c.rows.length), date: oldestText(c) });
     };
     const wasStopped = s.stopped;
     s.stopped = false;

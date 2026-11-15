@@ -301,7 +301,7 @@
     }
     const names = el('div', 'routility-note-names');
     names.appendChild(el('span', 'text-title-medium content-emphasis text-truncate-end text-no-wrap', who.name || lt('Someone')));
-    const sub = [who.user, n.at ? ago(Date.now() - Number(n.at)) : ''].filter(Boolean).join(' · ');
+    const sub = [who.user, n.at ? ago(Date.now() - Number(n.at)) : ''].filter(Boolean).join(', ');
     if (sub) names.appendChild(el('span', 'text-body-small content-muted text-truncate-end text-no-wrap', sub));
     head.append(face, names);
     const text = el('p', 'text-body-medium content-default routility-note-copy routility-note-full');

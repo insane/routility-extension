@@ -693,7 +693,7 @@
       a.classList.add('routility-sb-nav-link');
       a.removeAttribute('id');
       a.classList.remove('bg-shift-200');
-      a.querySelectorAll('.foundation-web-badge').forEach(n => n.remove());
+      a.querySelectorAll('.foundation-web-badge, .foundation-web-status-indicator').forEach(n => n.remove());
       const icon = a.querySelector('.icon');
       if (icon) icon.className = 'grow-0 shrink-0 basis-auto icon routility-sb-nav-icon size-[var(--icon-size-large)]';
       const label = a.querySelector(':scope > .text-truncate-end') || [...a.querySelectorAll('span')].find(sp => !sp.children.length && sp.textContent.trim());

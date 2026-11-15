@@ -629,7 +629,7 @@
     }
     node.textContent = text;
     node.dataset.routilityAge = entry.id + ':' + text;
-    node.dataset.rtTip = parts.join(' • ');
+    node.dataset.rtTip = parts.join(', ');
   }
 
   const FILTER_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none pointer-events-none';
@@ -731,8 +731,8 @@
       const vars = { n: formatNumber(shown), query: filterQuery, count: formatNumber(rows) };
       if (more) {
         return shown
-          ? ltn(shown, '{n} trade with "{query}" • checked {count} trades, loading older ones…', '{n} trades with "{query}" • checked {count} trades, loading older ones…', vars)
-          : lt('Looking for "{query}" • checked {count} trades, loading older ones…', vars);
+          ? ltn(shown, '{n} trade with "{query}", checked {count} trades, loading older ones…', '{n} trades with "{query}", checked {count} trades, loading older ones…', vars)
+          : lt('Looking for "{query}", checked {count} trades, loading older ones…', vars);
       }
       return shown ? ltn(shown, '{n} trade with "{query}"', '{n} trades with "{query}"', vars) : lt('No trades with "{query}"', vars);
     };
@@ -884,7 +884,7 @@
       } else if (/^b?\d+$/.test(i.thumbKey)) {
         t.dataset.thumbKey = i.thumbKey;
       }
-      t.dataset.rtTip = `${i.name} • ${i.usd > 0 ? formatUSD(i.usd) : lt('No price')}` + (itemValue(i) ? ' • ' + lt('Value {value}', { value: formatNumber(itemValue(i)) }) : '');
+      t.dataset.rtTip = `${i.name}, ${i.usd > 0 ? formatUSD(i.usd) : lt('No price')}` + (itemValue(i) ? ', ' + lt('Value {value}', { value: formatNumber(itemValue(i)) }) : '');
       row.appendChild(t);
     }
     if (offer.robux > 0) {
@@ -1041,11 +1041,11 @@
         v.querySelector('.routility-send-value').replaceWith(valueTag(totals[i].value, { className: 'routility-send-value', tip: false }));
         card.appendChild(v);
       }
-      card.appendChild(line(el('span', 'icon-robux-16x16 routility-send-icon'), 'RAP', rap[i] === null ? '—' : rapFmt(rap[i])));
+      card.appendChild(line(el('span', 'icon-robux-16x16 routility-send-icon'), 'RAP', rap[i] === null ? '-' : rapFmt(rap[i])));
       return card;
     };
-    sides.appendChild(side(ltn(items[0], 'You give • {n} item', 'You give • {n} items'), 0));
-    sides.appendChild(side(ltn(items[1], 'You receive • {n} item', 'You receive • {n} items'), 1));
+    sides.appendChild(side(ltn(items[0], 'You give, {n} item', 'You give, {n} items'), 0));
+    sides.appendChild(side(ltn(items[1], 'You receive, {n} item', 'You receive, {n} items'), 1));
     box.appendChild(sides);
     const diff = get - give;
     const base = diff < 0 ? get : give;
@@ -1599,12 +1599,12 @@
       let done = 0;
       const queue = list.slice();
       const progress = () => {
-        status.textContent = lt('Checking trades · {done} of {total}', { done: formatNumber(done), total: formatNumber(list.length) });
+        status.textContent = lt('Checking trades, {done} of {total}', { done: formatNumber(done), total: formatNumber(list.length) });
         fill.style.width = (done / Math.max(1, list.length)) * 100 + '%';
       };
       const cool = async () => {
         while (!me.stop && Date.now() < robloxCooldown) {
-          status.textContent = lt('Roblox asked us to slow down · {done} of {total} checked, going again in {s}s', { done: formatNumber(done), total: formatNumber(list.length), s: Math.ceil((robloxCooldown - Date.now()) / 1000) });
+          status.textContent = lt('Roblox asked us to slow down, {done} of {total} checked, going again in {s}s', { done: formatNumber(done), total: formatNumber(list.length), s: Math.ceil((robloxCooldown - Date.now()) / 1000) });
           await new Promise(res => setTimeout(res, 1000));
         }
         if (!me.stop) progress();
@@ -2132,7 +2132,7 @@
     const at = new Date(p.created);
     let when = '';
     try { when = isNaN(at) ? '' : at.toLocaleDateString(window.RoUtilityI18n.locale(), { month: 'short', day: 'numeric', year: 'numeric' }); } catch { when = isNaN(at) ? '' : at.toDateString(); }
-    text([p.status, when].filter(Boolean).join(' · '), PAD, y, font(600, 12), C.muted);
+    text([p.status, when].filter(Boolean).join(', '), PAD, y, font(600, 12), C.muted);
     let lx = W - PAD;
     lx -= text('routility.io', lx, y, font(600, 12), C.muted, 'right');
     lx -= 6;

@@ -82,7 +82,7 @@
     }
     const bar = document.querySelector('.users-vote .vote-container');
     if (bar && counts.length === 2 && counts[0] + counts[1] > 0) {
-      const tip = lt('{pct}% liked • {likes} likes, {dislikes} dislikes', { pct: Math.round(counts[0] / (counts[0] + counts[1]) * 100), likes: formatNumber(counts[0]), dislikes: formatNumber(counts[1]) });
+      const tip = lt('{pct}% liked, {likes} likes, {dislikes} dislikes', { pct: Math.round(counts[0] / (counts[0] + counts[1]) * 100), likes: formatNumber(counts[0]), dislikes: formatNumber(counts[1]) });
       if (bar.dataset.rtTip !== tip) bar.dataset.rtTip = tip;
     }
     for (const [label, iso] of [['Updated', g.updated], ['Created', g.created]]) {
@@ -93,7 +93,7 @@
         node.textContent = ago(iso).replace(/^\w/, c => c.toUpperCase());
         node.dataset.rtTip = stamp(iso);
       } else {
-        node.dataset.rtTip = `${stamp(iso)} • ${ago(iso)}`;
+        node.dataset.rtTip = `${stamp(iso)}, ${ago(iso)}`;
       }
     }
   }
@@ -250,7 +250,7 @@
     time.classList.toggle('routility-pt-line-none', !last);
     const picker = row.querySelector('.routility-pt-range');
     if (picker) picker.hidden = !last;
-    const tip = [last && ltn(total, '{n} minute', '{n} minutes', { n: formatNumber(total) }), last && lt('Last played {date}', { date: shortDate(last) }), lt('Tracked by RoUtility while a Roblox tab is open.')].filter(Boolean).join(' • ');
+    const tip = [last && ltn(total, '{n} minute', '{n} minutes', { n: formatNumber(total) }), last && lt('Last played {date}', { date: shortDate(last) }), lt('Tracked by RoUtility while a Roblox tab is open.')].filter(Boolean).join(', ');
     if (time.dataset.rtTip !== tip) time.dataset.rtTip = tip;
   }
 

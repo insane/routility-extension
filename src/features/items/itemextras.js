@@ -211,7 +211,7 @@
     row.appendChild(el('div', 'font-header-1 text-subheader text-label text-overflow row-label', lt('Acquired')));
     const value = el('span', 'font-body text');
     value.appendChild(document.createTextNode(shortDate(a.when)));
-    value.appendChild(el('span', 'content-muted routility-acquired-ago', ' · ' + ago(a.when) + (a.copies > 1 ? ' · ' + ltn(a.copies, 'first of your {n} copy', 'first of your {n} copies') : '')));
+    value.appendChild(el('span', 'content-muted routility-acquired-ago', ', ' + ago(a.when) + (a.copies > 1 ? ', ' + ltn(a.copies, 'first of your {n} copy', 'first of your {n} copies') : '')));
     row.appendChild(value);
     window.RoUtilityUI.rowGate(() => {
       if (!details.isConnected || !after.isConnected || details.querySelector('.' + row.className.split(' ').pop())) return;

@@ -144,7 +144,7 @@
     if (s.link && s.link.isConnected) return;
     const caption = [...document.querySelectorAll('.price-container-text .price-info .font-caption-body')].find(n => n.querySelector('a[href="#resellers"]'));
     if (!caption) return;
-    const sep = el('span', 'routility-injected routility-alert-sep', ' · ');
+    const sep = el('span', 'routility-injected routility-alert-sep', ', ');
     const link = el('a', 'text-link routility-injected routility-alert-link', lt('Price Alert'));
     link.href = '#';
     link.setAttribute('role', 'button');

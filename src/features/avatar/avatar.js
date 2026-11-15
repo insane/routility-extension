@@ -63,7 +63,7 @@
     let row = document.querySelector('.routility-av-status');
     const count = document.querySelector('.routility-av-count');
     if (count) {
-      const text = isActive(s) ? `• ${ltn(shown, '{n} result', '{n} results')}` : '';
+      const text = isActive(s) ? ltn(shown, '{n} result', '{n} results') : '';
       if (count.textContent !== text) count.textContent = text;
     }
     if (!isActive(s) || !list) {
@@ -1008,7 +1008,7 @@
     }
     panel.appendChild(head);
     if (assets) {
-      panel.appendChild(el('div', 'text-secondary font-caption-body routility-av-wearing-sub', ltn(assets.length, '{n} item • {worn}/{max} accessories', '{n} items • {worn}/{max} accessories', { n: formatNumber(assets.length), worn: rigid.length, max: MAX_RIGID })));
+      panel.appendChild(el('div', 'text-secondary font-caption-body routility-av-wearing-sub', ltn(assets.length, '{n} item, {worn}/{max} accessories', '{n} items, {worn}/{max} accessories', { n: formatNumber(assets.length), worn: rigid.length, max: MAX_RIGID })));
       if (w.error) panel.appendChild(el('div', 'text-secondary font-caption-body routility-av-wearing-error', w.error));
       const usd = assets.reduce((sum, a) => sum + (w.prices?.get(a.id)?.usd || 0), 0);
       const rap = assets.reduce((sum, a) => sum + (w.prices?.get(a.id)?.rap || 0), 0);

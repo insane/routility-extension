@@ -1669,7 +1669,7 @@ async function tradeCard(t) {
       }
       g.fillStyle = ink(dark ? 1 : 0.92);
       g.font = font(700, 36);
-      g.fillText(side.ids.length ? sideTotal(side, t.useUsd) : '—', cx, 222);
+      g.fillText(side.ids.length ? sideTotal(side, t.useUsd) : '-', cx, 222);
       if (side.robux) {
         g.fillStyle = ink(0.6);
         g.font = font(600, 20);
@@ -1797,7 +1797,7 @@ async function handleLimitedNow(events, s) {
     const parts = [price ? `R$ ${price.toLocaleString('en-US')}` : lt('Free'), qty ? ltn(qty, '{n} copy', '{n} copies', { n: qty.toLocaleString('en-US') }) : '', ev.creatorName && !ev.isRoblox ? lt('by {creator}', { creator: ev.creatorName }) : ''].filter(Boolean);
     const title = ev.type === 'became_limited' ? lt('Now Limited') : ev.isRoblox ? lt('New Limited') : lt('New UGC Limited');
     const icon = await thumbData('asset', ev.id);
-    await showNotification(`limited:${ev.type}:${ev.id}`, title, `${ev.name || lt('Unnamed item')}\n${parts.join(' · ')}`, icon, `https://www.roblox.com/catalog/${ev.id}`, null, {
+    await showNotification(`limited:${ev.type}:${ev.id}`, title, `${ev.name || lt('Unnamed item')}\n${parts.join(', ')}`, icon, `https://www.roblox.com/catalog/${ev.id}`, null, {
       buttons: [{ title: lt('View Item'), url: `https://www.roblox.com/catalog/${ev.id}` }],
     });
   }
@@ -1907,8 +1907,8 @@ async function checkPriceAlerts() {
     const saved = (await chrome.storage.local.get(ALERTS_KEY))[ALERTS_KEY] || {};
     if (saved[id]) await chrome.storage.local.set({ [ALERTS_KEY]: { ...saved, [id]: { ...saved[id], cid: a.cid, lastListing: listing } } });
     const icon = await thumbData('asset', id);
-    const seller = top.seller && top.seller.name ? ` · ${lt('by {creator}', { creator: top.seller.name })}` : '';
-    const serial = top.serialNumber ? ` · #${Number(top.serialNumber).toLocaleString('en-US')}` : '';
+    const seller = top.seller && top.seller.name ? `, ${lt('by {creator}', { creator: top.seller.name })}` : '';
+    const serial = top.serialNumber ? `, #${Number(top.serialNumber).toLocaleString('en-US')}` : '';
     await showNotification(`alert:${id}:${listing}`, lt('Price Alert'), `${a.name}\n${lt('R$ {price} (your alert: R$ {target})', { price: Number(top.price).toLocaleString('en-US'), target: Number(a.target).toLocaleString('en-US') })}${serial}${seller}`, icon, `https://www.roblox.com/catalog/${id}#resellers`, null, {
       buttons: [{ title: lt('View Resellers'), url: `https://www.roblox.com/catalog/${id}#resellers` }],
     });

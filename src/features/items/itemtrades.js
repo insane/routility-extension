@@ -75,7 +75,7 @@
       e.preventDefault();
       open([item], c.week ? '7d' : c.month ? '30d' : 'all');
     });
-    holder.replaceChildren(el('span', 'font-body text', text), el('span', 'font-body text routility-it-dot', '·'), link);
+    holder.replaceChildren(el('span', 'font-body text', text), document.createTextNode(' '), link);
     placeSection(item, c.week ? '7d' : c.month ? '30d' : 'all');
   }
 

@@ -106,9 +106,9 @@
  "{item} is worth {value}.": "{item} değeri {value}.",
  "{items} and {last}": "{items} ve {last}",
  "{label}: ": "{label}:",
- "{located} of {checked} servers located • {regions}": "{checked} sunucudan {located} tanesinin konumu bulundu • {regions}",
+ "{located} of {checked} servers located, {regions}": "{checked} sunucudan {located} tanesinin konumu bulundu, {regions}",
  "{missing} of the {total} free Roblox items aren’t in your inventory yet.": "{total} ücretsiz Roblox eşyasından {missing} tanesi henüz envanterinde yok.",
- "{n} · Buy them in the experience": "{n} · Deneyimin içinden satın al",
+ "{n}, Buy them in the experience": "{n}, Deneyimin içinden satın al",
  "{n} badges": {
   "one": "{n} rozet",
   "other": "{n} rozet"
@@ -121,9 +121,9 @@
   "one": "{n} kopya",
   "other": "{n} kopya"
  },
- "{n} copies • {serials}": {
-  "one": "{n} kopya • {serials}",
-  "other": "{n} kopya • {serials}"
+ "{n} copies, {serials}": {
+  "one": "{n} kopya, {serials}",
+  "other": "{n} kopya, {serials}"
  },
  "{n} couldn’t be added.": "{n} eklenemedi.",
  "{n} couldn’t be checked.": {
@@ -178,13 +178,13 @@
   "one": "{n} eşya",
   "other": "{n} eşya"
  },
- "{n} items • {worn}/{max} accessories": {
-  "one": "{n} eşya • {worn}/{max} aksesuar",
-  "other": "{n} eşya • {worn}/{max} aksesuar"
+ "{n} items, {worn}/{max} accessories": {
+  "one": "{n} eşya, {worn}/{max} aksesuar",
+  "other": "{n} eşya, {worn}/{max} aksesuar"
  },
- "{n} items • updated {time}": {
-  "one": "{n} eşya • {time} güncellendi",
-  "other": "{n} eşya • {time} güncellendi"
+ "{n} items, updated {time}": {
+  "one": "{n} eşya, {time} güncellendi",
+  "other": "{n} eşya, {time} güncellendi"
  },
  "{n} items to buy": {
   "one": "Satın alınacak {n} eşya",
@@ -200,9 +200,9 @@
   "other": "{n} limited"
  },
  "{n} located": "{n} konum bulundu",
- "{n} matches · {checked} checked": {
-  "one": "{n} eşleşme · {checked} kontrol edildi",
-  "other": "{n} eşleşme · {checked} kontrol edildi"
+ "{n} matches, {checked} checked": {
+  "one": "{n} eşleşme, {checked} kontrol edildi",
+  "other": "{n} eşleşme, {checked} kontrol edildi"
  },
  "{n} members": {
   "one": "{n} üye",
@@ -274,9 +274,9 @@
   "other": "{n} kişi artık arkadaşın değil"
  },
  "{n} Place Visits": "{n} yer ziyareti",
- "{n} purchases · {spent} Robux spent": {
-  "one": "{n} satın alma · {spent} Robux harcandı",
-  "other": "{n} satın alma · {spent} Robux harcandı"
+ "{n} purchases, {spent} Robux spent": {
+  "one": "{n} satın alma, {spent} Robux harcandı",
+  "other": "{n} satın alma, {spent} Robux harcandı"
  },
  "{n} purchases in this experience": {
   "one": "Bu deneyimde {n} satın alma",
@@ -294,9 +294,9 @@
   "one": "{n} Robux",
   "other": "{n} Robux"
  },
- "{n} rows · back to {date}": {
-  "one": "{n} satır · {date} tarihine kadar",
-  "other": "{n} satır · {date} tarihine kadar"
+ "{n} rows, back to {date}": {
+  "one": "{n} satır, {date} tarihine kadar",
+  "other": "{n} satır, {date} tarihine kadar"
  },
  "{n} rows exported": {
   "one": "{n} satır dışa aktarıldı",
@@ -321,13 +321,13 @@
   "one": "{n} sunucu",
   "other": "{n} sunucu"
  },
- "{n} servers • {players} playing": {
-  "one": "{n} sunucu • {players} oynuyor",
-  "other": "{n} sunucu • {players} oynuyor"
+ "{n} servers, {players} playing": {
+  "one": "{n} sunucu, {players} oynuyor",
+  "other": "{n} sunucu, {players} oynuyor"
  },
- "{n} servers • {regions}": {
-  "one": "{n} sunucu • {regions}",
-  "other": "{n} sunucu • {regions}"
+ "{n} servers, {regions}": {
+  "one": "{n} sunucu, {regions}",
+  "other": "{n} sunucu, {regions}"
  },
  "{n} sold": {
   "one": "{n} satıldı",
@@ -345,9 +345,9 @@
   "one": "\"{query}\" içeren {n} takas",
   "other": "\"{query}\" içeren {n} takas"
  },
- "{n} trades with \"{query}\" • checked {count} trades, loading older ones…": {
-  "one": "\"{query}\" içeren {n} takas • {count} takas kontrol edildi, eskiler yükleniyor…",
-  "other": "\"{query}\" içeren {n} takas • {count} takas kontrol edildi, eskiler yükleniyor…"
+ "{n} trades with \"{query}\", checked {count} trades, loading older ones…": {
+  "one": "\"{query}\" içeren {n} takas, {count} takas kontrol edildi, eskiler yükleniyor…",
+  "other": "\"{query}\" içeren {n} takas, {count} takas kontrol edildi, eskiler yükleniyor…"
  },
  "{n} unpriced": {
   "one": "{n} fiyatsız",
@@ -373,7 +373,7 @@
   "one": "{n} yıl önce",
   "other": "{n} yıl önce"
  },
- "{n}+ matches · {checked} checked": "{n}+ eşleşme · {checked} kontrol edildi",
+ "{n}+ matches, {checked} checked": "{n}+ eşleşme, {checked} kontrol edildi",
  "{n}d": {
   "one": "{n}g",
   "other": "{n}g"
@@ -407,7 +407,7 @@
   "other": "{n}y"
  },
  "{name} ({count})": "{name} ({count})",
- "{name} • {robux} Robux": "{name} • {robux} Robux",
+ "{name}, {robux} Robux": "{name}, {robux} Robux",
  "{name} accessories": "{name} aksesuarları",
  "{name} audit log.csv": "{name} denetim kaydı.csv",
  "{name} color": "{name} rengi",
@@ -436,27 +436,27 @@
  "{pct} over RAP": "RAP'in {pct} üstünde",
  "{pct} under RAP": "RAP'in {pct} altında",
  "{pct}% ({label})": "%{pct} ({label})",
- "{pct}% liked • {likes} likes, {dislikes} dislikes": "%{pct} beğeni • {likes} beğeni, {dislikes} beğenmeme",
+ "{pct}% liked, {likes} likes, {dislikes} dislikes": "%{pct} beğeni, {likes} beğeni, {dislikes} beğenmeme",
  "{pct}% of copies": "Kopya oranı: %{pct}",
  "{pct}% over RAP": "RAP'in %{pct} üstünde",
  "{pct}% rating": "%{pct} değerlendirme",
  "{pct}% under RAP": "RAP'in %{pct} altında",
  "{percent}% off unlocks {date}": "{date} tarihinde %{percent} indirim açılır",
- "{place} • {n} servers • {players} playing": {
-  "one": "{place} • {n} sunucu • {players} oynuyor",
-  "other": "{place} • {n} sunucu • {players} oynuyor"
+ "{place}, {n} servers, {players} playing": {
+  "one": "{place}, {n} sunucu, {players} oynuyor",
+  "other": "{place}, {n} sunucu, {players} oynuyor"
  },
  "{playing} of {max} people max": "{playing}/{max} kişi maks.",
  "{price} a month": "Aylık {price}",
  "{price} a week": "Haftalık {price}",
  "{price} a year": "Yıllık {price}",
- "{rating} • {n} playing": "{rating} • {n} oynuyor",
+ "{rating}, {n} playing": "{rating}, {n} oynuyor",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} artık bölge listesinde değil. Herhangi bir sunucuya katılınıyor…",
  "{results} (first 2,000 items)": "{results} (ilk 2.000 eşya)",
  "{results} (some categories couldn’t load)": "{results} (bazı kategoriler yüklenemedi)",
  "{robux} Robux at the DevEx rate": "DevEx kuruyla {robux} Robux",
  "{robux} Robux at your rate ({rate}/1k)": "Senin kurunla {robux} Robux ({rate}/1k)",
- "{role} · Rank {rank}": "{role} · Rütbe {rank}",
+ "{role}, Rank {rank}": "{role}, Rütbe {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} stud",
  "{status} on {parts}": "{parts}: {status}",
@@ -574,7 +574,7 @@
  "Adds, what you’re really after, anything else. Keep it short.": "Ekler, asıl istediğin şey, diğer her şey. Kısa tut.",
  "Adjust Accessories": "Aksesuarları ayarla",
  "Admin": "Yönetici",
- "Admin · Rank {rank}": "Yönetici · Rütbe {rank}",
+ "Admin, Rank {rank}": "Yönetici, Rütbe {rank}",
  "Admin Badge": "Yönetici rozeti",
  "Admin Tools": "Yönetici araçları",
  "Admins": "Yöneticiler",
@@ -613,7 +613,7 @@
  "Amount": "Tutar",
  "Amount (R$)": "Tutar (R$)",
  "Amount of Robux": "Robux miktarı",
- "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "Sahip olduğun eşyaların sayfalarında bir Edinildi satırı, örneğin 1 Eki 2026 · 9 gün önce.",
+ "An Acquired line on item pages for things you own, like Oct 1, 2026, 9 days ago.": "Sahip olduğun eşyaların sayfalarında bir Edinildi satırı, örneğin 1 Eki 2026, 9 gün önce.",
  "An Adjust Accessories button under your avatar to move, rotate and resize hats and other accessories like in the Roblox app, with a 3D preview you can spin around. Saves to your avatar, within Roblox’s limits.": "Avatarının altında, şapkaları ve diğer aksesuarları Roblox uygulamasındaki gibi taşımak, döndürmek ve boyutlandırmak için bir Aksesuarları ayarla düğmesi; döndürebileceğin bir 3D önizlemeyle. Roblox'un sınırları içinde avatarına kaydedilir.",
  "An Avatar Items row in a game’s Store with clothing and accessories made by the game’s creator.": "Bir oyunun Mağazasında, oyunun yaratıcısının yaptığı kıyafet ve aksesuarları gösteren bir Avatar eşyaları satırı.",
  "An Avatar Type row next to Server Size: whether the game makes everyone R6, R15, or lets players pick. Roblox doesn’t show it on the page.": "Sunucu Boyutu’nun yanında bir Avatar Türü satırı: oyunun herkesi R6 mı, R15 mi yaptığı yoksa seçime mi bıraktığı. Roblox bunu sayfada göstermiyor.",
@@ -631,7 +631,7 @@
  "Archive All Read": "Okunanların tümünü arşivle",
  "Archive Every Read Message?": "Okunan tüm mesajlar arşivlensin mi?",
  "Archived {n}": "{n} arşivlendi",
- "Archived {n} · Some Didn’t Work": "{n} arşivlendi · Bazıları olmadı",
+ "Archived {n}, Some Didn’t Work": "{n} arşivlendi, Bazıları olmadı",
  "Archiving ({archived} done) {done} of {total}": "Arşivleniyor ({archived} tamam) {done}/{total}",
  "Archiving {done} of {total}": "Arşivleniyor {done}/{total}",
  "Arrange Home & Charts": "Ana sayfa ve Listeleri düzenle",
@@ -782,7 +782,7 @@
  "Checking {region}…": "{region} kontrol ediliyor…",
  "Checking for new purchases since your last visit…": "Son ziyaretinden bu yana yeni satın alımlar kontrol ediliyor…",
  "Checking open servers for {region}…": "{region} için açık sunucular kontrol ediliyor…",
- "Checking trades · {done} of {total}": "Takaslar kontrol ediliyor · {done}/{total}",
+ "Checking trades, {done} of {total}": "Takaslar kontrol ediliyor, {done}/{total}",
  "Checking what you already own… {done} of {total}": "Zaten sahip oldukların kontrol ediliyor… {done}/{total}",
  "Checking where your friends are…": "Arkadaşlarının nerede olduğu kontrol ediliyor…",
  "Checking which {region} servers have room right now…": "Şu anda hangi {region} sunucularında yer var, kontrol ediliyor…",
@@ -905,7 +905,7 @@
  "Couldn’t load all your items right now. Open Post again to retry.": "Tüm eşyaların yüklenemedi. Tekrar denemek için Paylaş’ı yeniden aç.",
  "Couldn’t load friends right now. Try again in a minute.": "Arkadaşlar şu anda yüklenemedi. Bir dakika sonra tekrar dene.",
  "Couldn’t load items right now. Try again in a minute.": "Eşyalar şu anda yüklenemedi. Bir dakika sonra tekrar dene.",
- "Couldn’t Load Messages · Try Again": "Mesajlar Yüklenemedi · Tekrar Dene",
+ "Couldn’t Load Messages, Try Again": "Mesajlar Yüklenemedi, Tekrar Dene",
  "Couldn’t load owners right now. Try again in a minute.": "Sahipler şu anda yüklenemedi. Bir dakika sonra tekrar dene.",
  "Couldn’t load servers for this region.": "Bu bölgenin sunucuları yüklenemedi.",
  "Couldn’t load that file. Chrome didn’t save it, try again.": "O dosya yüklenemedi. Chrome kaydetmedi, tekrar dene.",
@@ -1018,7 +1018,7 @@
  "Delete New Badges Automatically": "Yeni Rozetleri Otomatik Sil",
  "Delete Selected": "Seçilenleri Sil",
  "Deleted": "Silindi",
- "Deleted {n} · {failed} didn’t work. They’re still selected, try again.": "{n} silindi · {failed} silinemedi. Hâlâ seçili, tekrar dene.",
+ "Deleted {n}, {failed} didn’t work. They’re still selected, try again.": "{n} silindi, {failed} silinemedi. Hâlâ seçili, tekrar dene.",
  "Deleted {n} badges.": {
   "one": "{n} rozet silindi.",
   "other": "{n} rozet silindi."
@@ -1065,7 +1065,7 @@
  "Drag the preview to look around. Hair and waist accessories can’t be adjusted.": "Etrafa bakmak için önizlemeyi sürükle. Saç ve bel aksesuarları ayarlanamaz.",
  "Drag the top left corner of a chat window to make it bigger. Every chat window, the RoUtility Bot included, uses the same size. Double-click the corner to reset.": "Büyütmek için bir sohbet penceresinin sol üst köşesini sürükle. RoUtility botu dahil tüm sohbet pencereleri aynı boyutu kullanır. Sıfırlamak için köşeye çift tıkla.",
  "Drag to move": "Taşımak için sürükle",
- "Drag to resize · Double-click to reset": "Boyutlandırmak için sürükle · Sıfırlamak için çift tıkla",
+ "Drag to resize, Double-click to reset": "Boyutlandırmak için sürükle, Sıfırlamak için çift tıkla",
  "Drag to turn your avatar. Scroll to zoom in or out.": "Avatarını döndürmek için sürükle. Yakınlaştırmak veya uzaklaştırmak için kaydır.",
  "Dress Skirt": "Elbise etek",
  "Dynamic": "Dinamik",
@@ -1156,7 +1156,7 @@
  "Export CSV": "CSV olarak dışa aktar",
  "Export to CSV": "CSV'ye aktar",
  "Exported {n}": "{n} Dışa Aktarıldı",
- "Exported {n} · Rest Didn’t Load": "{n} Dışa Aktarıldı · Kalanı Yüklenmedi",
+ "Exported {n}, Rest Didn’t Load": "{n} Dışa Aktarıldı, Kalanı Yüklenmedi",
  "Exporting {n}": "{n} dışa aktarılıyor",
  "Extra details on your Roblox Settings pages: your devices, backup codes and voice chat.": "Roblox Ayarlar sayfalarında ek ayrıntılar: cihazların, yedek kodların ve sesli sohbet.",
  "Extra Requests": "Ek İstekler",
@@ -1205,7 +1205,7 @@
  },
  "Finding an open server…": "Açık bir sunucu aranıyor…",
  "Finding Items": "Eşyalar aranıyor",
- "Finding read messages · {archived} archived ({page})": "Okunan mesajlar aranıyor · {archived} arşivlendi ({page})",
+ "Finding read messages, {archived} archived ({page})": "Okunan mesajlar aranıyor, {archived} arşivlendi ({page})",
  "Finding read messages ({page})": "Okunan mesajlar aranıyor ({page})",
  "Finding the closest server to you ({region})…": "Sana en yakın sunucu aranıyor ({region})…",
  "Finding Things": "Bir Şey Bulma",
@@ -1241,7 +1241,7 @@
  "Forum navigation": "Forum gezinmesi",
  "Forum Posts": "Forum gönderileri",
  "Forum Search": "Forum araması",
- "Founder · Rank {rank}": "Kurucu · Rütbe {rank}",
+ "Founder, Rank {rank}": "Kurucu, Rütbe {rank}",
  "Free": "Ücretsiz",
  "Free Items": "Ücretsiz eşyalar",
  "Freebie": "Bedava",
@@ -1266,7 +1266,7 @@
  "Friends Playing, layout, random experience": "Oynayan arkadaşlar, düzen, rastgele deneyim",
  "Friends Since": "Arkadaşlık Tarihi",
  "Friends since {date}": "{date} tarihinden beri arkadaş",
- "Friends since {date} • {age}": "{date} tarihinden beri arkadaş • {age}",
+ "Friends since {date}, {age}": "{date} tarihinden beri arkadaş, {age}",
  "Friends Who Own It": "Sahip olan arkadaşlar",
  "Friends whose name contains what you type, shown first.": "Adında yazdığın şey geçen arkadaşlar önce gösterilir.",
  "Friends you have in common, next to the friend counts on profiles. Click it for the list.": "Profillerde, arkadaş sayılarının yanında ortak arkadaşların. Liste için tıkla.",
@@ -1362,7 +1362,7 @@
  "How far each reseller listing is under or over RAP.": "Her satıcı ilanının RAP'in ne kadar altında veya üstünde olduğu.",
  "How it will roughly look. Save to get Roblox’s real thumbnail.": "Kabaca nasıl görüneceği. Roblox'un gerçek küçük resmini almak için kaydet.",
  "How long ago each trade was sent on the trade list. Hover it for the exact time and when it expires.": "Takas listesinde her takasın ne kadar önce gönderildiği. Tam saat ve ne zaman sona ereceği için üzerine gel.",
- "How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.": "Her eşyanın birinin envanterinde ne kadar süredir olduğu, yaratıcısının yanında, örneğin Roblox tarafından · 3y. Tam tarih için üzerine gel.",
+ "How long each item has been in anyone’s inventory, next to its creator, like By Roblox, 3y. Hover it for the exact date.": "Her eşyanın birinin envanterinde ne kadar süredir olduğu, yaratıcısının yanında, örneğin Roblox tarafından, 3y. Tam tarih için üzerine gel.",
  "How Long They’ve Owned It": "Ne kadar süredir sahipler",
  "How many": "Kaç",
  "How many communities you’re in out of how many you can join, under Communities in the side list.": "Yan listede Topluluklar’ın altında, kaç topluluktasın ve en fazla kaçına katılabilirsin.",
@@ -1399,7 +1399,7 @@
  "Ignore": "Yok say",
  "Ignore {n}?": "{n} yok sayılsın mı?",
  "Ignore Matches": "Eşleşmeleri yok say",
- "Ignored {n} · {failed} didn’t work, try again": "{n} yok sayıldı · {failed} başarısız, tekrar dene",
+ "Ignored {n}, {failed} didn’t work, try again": "{n} yok sayıldı, {failed} başarısız, tekrar dene",
  "Ignored {n} requests": {
   "one": "{n} istek yok sayıldı",
   "other": "{n} istek yok sayıldı"
@@ -1450,7 +1450,7 @@
  "In game": "Oyunda",
  "In Order": "Sırayla",
  "In Studio": "Studio'da",
- "In Studio • {game}": "Studio'da • {game}",
+ "In Studio, {game}": "Studio'da, {game}",
  "in under a minute": "bir dakikadan kısa sürede",
  "In-Experience Purchases": "Deneyim içi satın alımlar",
  "Inappropriate": "Uygunsuz",
@@ -1506,7 +1506,7 @@
  "Join their server": "Sunucusuna katıl",
  "Joined": "Katıldı",
  "Joined {date}": "{date} tarihinden beri üye",
- "Joined {date} • {age}": "{date} katıldı • {age}",
+ "Joined {date}, {age}": "{date} katıldı, {age}",
  "Joined Date": "Katılma tarihi",
  "Joined in {year}": "{year} yılında katıldı",
  "Joined Roblox": "Roblox'a katıldı",
@@ -1549,7 +1549,7 @@
  },
  "Leave Selected": "Seçilenlerden ayrıl",
  "Leaving {done} of {total}": "Ayrılınıyor {done}/{total}",
- "Left {n} · {failed} didn’t work. They’re still selected, try again.": "{n} topluluktan ayrıldın · {failed} olmadı. Hâlâ seçililer, tekrar dene.",
+ "Left {n}, {failed} didn’t work. They’re still selected, try again.": "{n} topluluktan ayrıldın, {failed} olmadı. Hâlâ seçililer, tekrar dene.",
  "Left {n} communities.": {
   "one": "{n} topluluktan ayrıldın.",
   "other": "{n} topluluktan ayrıldın."
@@ -1600,7 +1600,7 @@
  "Look {n}": "Kombin {n}",
  "Look Name": "Kombin adı",
  "Looking For": "Aranan",
- "Looking for \"{query}\" • checked {count} trades, loading older ones…": "\"{query}\" aranıyor • {count} takas kontrol edildi, eskiler yükleniyor…",
+ "Looking for \"{query}\", checked {count} trades, loading older ones…": "\"{query}\" aranıyor, {count} takas kontrol edildi, eskiler yükleniyor…",
  "Looking through the Marketplace…": "Pazar taranıyor…",
  "Looking through the Marketplace… {n} free items so far": {
   "one": "Pazar taranıyor… şu ana kadar {n} ücretsiz eşya",
@@ -1919,7 +1919,7 @@
  "Owned": "Sahipsin",
  "Owned {time}": "{time} sahip",
  "Owned since {date}": "{date} tarihinden beri sahipsin",
- "Owned since {date} · first bought {first}": "{date} tarihinden beri sahipsin · ilk alım {first}",
+ "Owned since {date}, first bought {first}": "{date} tarihinden beri sahipsin, ilk alım {first}",
  "Owner": "Sahip",
  "Owners": "Sahipler",
  "Owners List": "Sahipler listesi",
@@ -2085,7 +2085,7 @@
  "Quick Settings Style": "Hızlı ayarlar stili",
  "Quick Setup": "Hızlı Kurulum",
  "Quick Sign In": "Hızlı giriş",
- "R$ {price} · {copies} copies": "R$ {price} · {copies} kopya",
+ "R$ {price}, {copies} copies": "R$ {price}, {copies} kopya",
  "R$ {price} (your alert: R$ {target})": "R$ {price} (alarmın: R$ {target})",
  "R6 / R15 Switch": "R6 / R15 geçişi",
  "R6 characters have limitations…": "R6 karakterlerin sınırlamaları var…",
@@ -2202,7 +2202,7 @@
   "one": "Roblox, RoUtility'den yavaşlamasını istedi, birazdan devam edecek. Şu ana kadar {n} satın alma, {date} tarihine kadar.",
   "other": "Roblox, RoUtility'den yavaşlamasını istedi, birazdan devam edecek. Şu ana kadar {n} satın alma, {date} tarihine kadar."
  },
- "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox yavaşlamamızı istedi · {total} içinden {done} kontrol edildi, {s} sn sonra devam",
+ "Roblox asked us to slow down, {done} of {total} checked, going again in {s}s": "Roblox yavaşlamamızı istedi, {total} içinden {done} kontrol edildi, {s} sn sonra devam",
  "Roblox Badges": "Roblox rozetleri",
  "Roblox couldn’t send it. Check your balance before you try again.": "Roblox gönderemedi. Tekrar denemeden önce bakiyeni kontrol et.",
  "Roblox default": "Roblox varsayılanı",
@@ -2579,7 +2579,7 @@
  "Teleports players": "Oyuncuları ışınlar",
  "Tell us what’s wrong": "Sorunun ne olduğunu bize anlat",
  "Terminated": "Kapatılmış",
- "Terminated · @{name}": "Kapatılmış · @{name}",
+ "Terminated, @{name}": "Kapatılmış, @{name}",
  "Terminated Players": "Kapatılmış oyuncular",
  "Terrible": "Berbat",
  "Test Notification": "Test bildirimi",
@@ -2685,7 +2685,7 @@
  "Thread": "Konu",
  "Thread not available": "Konu kullanılamıyor",
  "Threads": "Konular",
- "tick • tick • tick • chime": "tık • tık • tık • zil",
+ "tick, tick, tick, chime": "tık, tık, tık, zil",
  "Tile Menu": "Kutu menüsü",
  "Tiles": "Kutucuklar",
  "Timed Out, Try Again": "Zaman aşımı, tekrar dene",
@@ -2799,7 +2799,7 @@
   "other": "{n} kişiyi takipten çık?"
  },
  "Unfollow Selected": "Seçilenleri Takipten Çık",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "{n} kişi takipten çıkıldı · {failed} başarısız oldu. Hâlâ seçililer, tekrar dene.",
+ "Unfollowed {n}, {failed} didn’t work. They’re still selected, try again.": "{n} kişi takipten çıkıldı, {failed} başarısız oldu. Hâlâ seçililer, tekrar dene.",
  "Unfollowed {n} people.": {
   "one": "{n} kişi takipten çıkıldı.",
   "other": "{n} kişi takipten çıkıldı."
@@ -2813,7 +2813,7 @@
  },
  "Unfriend Detector": "Arkadaşlıktan çıkma algılayıcı",
  "Unfriend Selected": "Seçilenleri arkadaşlıktan çıkar",
- "Unfriended {n} · {failed} didn’t work. They’re still selected, try again.": "{n} kişi arkadaşlıktan çıkarıldı · {failed} olmadı. Hâlâ seçililer, tekrar dene.",
+ "Unfriended {n}, {failed} didn’t work. They’re still selected, try again.": "{n} kişi arkadaşlıktan çıkarıldı, {failed} olmadı. Hâlâ seçililer, tekrar dene.",
  "Unfriended {n} friends.": {
   "one": "{n} arkadaş, arkadaşlıktan çıkarıldı.",
   "other": "{n} arkadaş, arkadaşlıktan çıkarıldı."
@@ -3005,9 +3005,9 @@
  "YOU GIVE": "VERDİKLERİN",
  "You give {pct}% more RAP": "%{pct} daha fazla RAP veriyorsun",
  "You give {pct}% more value": "%{pct} daha fazla değer veriyorsun",
- "You give • {n} items": {
-  "one": "Verdiklerin • {n} eşya",
-  "other": "Verdiklerin • {n} eşya"
+ "You give, {n} items": {
+  "one": "Verdiklerin, {n} eşya",
+  "other": "Verdiklerin, {n} eşya"
  },
  "You have no inbound trades.": "Gelen takasın yok.",
  "You have no outbound trades.": "Giden takasın yok.",
@@ -3027,9 +3027,9 @@
   "other": "Burada yaklaşık {n} dakika oynadın"
  },
  "You receive": "Aldıkların",
- "You receive • {n} items": {
-  "one": "Aldıkların • {n} eşya",
-  "other": "Aldıkların • {n} eşya"
+ "You receive, {n} items": {
+  "one": "Aldıkların, {n} eşya",
+  "other": "Aldıkların, {n} eşya"
  },
  "You rolled": "Çıkan",
  "You sent {n} Robux": "{n} Robux gönderdin",
@@ -3139,7 +3139,7 @@
   "one": "{n} durum alınamadı",
   "other": "{n} durum alınamadı"
  },
- "{status} · {checked} members checked · {online} online · {matches} matches": "{status} · {checked} üye kontrol edildi · {online} çevrimiçi · {matches} eşleşme",
+ "{status}, {checked} members checked, {online} online, {matches} matches": "{status}, {checked} üye kontrol edildi, {online} çevrimiçi, {matches} eşleşme",
  "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. It records what Unfriend Detector notices, so it needs Unfriend Detector on. Remove anyone with the ✕ on their row. Stored only on this device.": "roblox.com/friend-history adresinde iki sütunlu bir Arkadaş geçmişi sayfası: arkadaş listene eklenen kişiler ve artık listende olmayan kişiler. Arkadaşlıktan çıkma algılayıcının fark ettiklerini kaydeder, bu yüzden algılayıcının açık olması gerekir. Yalnızca bu cihazda saklanır. Satırındaki ✕ ile herkesi kaldırabilirsin.",
  "Added": "Eklenenler",
  "All places": "Tüm yerler",
@@ -3164,7 +3164,7 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Her üyeyi kontrol eder, bu yüzden büyük topluluklar biraz sürebilir. Durum her bölüm yüklendikçe kontrol edilir. Yer filtreleri yalnızca Roblox’un paylaştığı konumlarla eşleşir.",
  "Start a scan to find online members.": "Çevrimiçi üyeleri bulmak için bir tarama başlat.",
  "Stop Scan": "Taramayı Durdur",
- "Stopped · Partial results": "Durduruldu · Eksik sonuçlar",
+ "Stopped, Partial results": "Durduruldu, Eksik sonuçlar",
  "{bound} players": "{bound} oyuncu",
  "{n} playing": {
   "one": "{n} oynuyor",

@@ -1160,7 +1160,8 @@ html.routility-av-searching #avatar-items-container .foundation-web-progress-cir
   display: none !important;
 }
 
-.avatar-item-list .hlist > li.routility-av-miss {
+html .avatar-item-list .hlist > li.routility-av-miss,
+html #avatar-web-app .avatar-item-list .hlist > li.item-card.routility-av-miss {
   display: none !important;
 }
 
@@ -9565,12 +9566,12 @@ a.routility-bot-card:hover {
 }
 
 .routility-clean-done .routility-clean-item-info::after {
-  content: ' · Done';
+  content: ' (Done)';
   color: var(--color-system-success, #39c582);
 }
 
 .routility-clean-failed .routility-clean-item-info::after {
-  content: ' · Failed';
+  content: ' (Failed)';
   color: var(--color-system-alert, #df281f);
 }
 

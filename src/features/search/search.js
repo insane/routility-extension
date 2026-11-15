@@ -266,7 +266,7 @@
       const p = r.presence && r.presence.get(u.id);
       const playing = p && p.userPresenceType === 2;
       const where = playing ? (p.lastLocation ? lt('Playing {game}', { game: p.lastLocation }) : lt('In an experience')) : null;
-      const sub = el('span', 'routility-search-sub' + (u.terminated ? ' routility-search-termed' : ''), (u.terminated ? lt('Terminated · @{name}', { name: u.name }) : u.formerly ? '@' + u.name : where || (u.friend ? lt('You are friends') : '@' + u.name)) + (u.formerly ? ' · ' + lt('formerly {name}', { name: u.formerly }) : ''));
+      const sub = el('span', 'routility-search-sub' + (u.terminated ? ' routility-search-termed' : ''), (u.terminated ? lt('Terminated, @{name}', { name: u.name }) : u.formerly ? '@' + u.name : where || (u.friend ? lt('You are friends') : '@' + u.name)) + (u.formerly ? ', ' + lt('formerly {name}', { name: u.formerly }) : ''));
       const tick = u.verified ? window.RoUtilityUI.verifiedBadge() : null;
       if (tick) delete tick.dataset.rtTip;
       const extras = tick ? [tick] : [];

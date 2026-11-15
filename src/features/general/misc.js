@@ -674,7 +674,7 @@
     const label = lt(st.label);
     const list = parts.length > 1 ? lt('{items} and {last}', { items: parts.slice(0, -1).join(', '), last: parts[parts.length - 1] }) : parts[0];
     const head = parts.length ? lt('{status} on {parts}', { status: label, parts: list }) : label;
-    return `${head}${st.incident ? ` · ${st.incident}` : ''}`;
+    return `${head}${st.incident ? `, ${st.incident}` : ''}`;
   }
 
   function showStatus(st) {
@@ -1230,7 +1230,7 @@
       let ok = true;
       let lost = false;
       for (let pass = 0; pass < 40 && ok; pass++) {
-        const ids = await pmCollect(m => m.isRead && !seen.has(m.id), Infinity, (p) => { label.textContent = total ? lt('Finding read messages · {archived} archived ({page})', { archived: formatNumber(total), page: p }) : lt('Finding read messages ({page})', { page: p }); });
+        const ids = await pmCollect(m => m.isRead && !seen.has(m.id), Infinity, (p) => { label.textContent = total ? lt('Finding read messages, {archived} archived ({page})', { archived: formatNumber(total), page: p }) : lt('Finding read messages ({page})', { page: p }); });
         if (!ids) {
           ok = false;
           lost = true;
@@ -1244,11 +1244,11 @@
       }
       pmBusy = false;
       if (lost && !total) {
-        label.textContent = lt('Couldn’t Load Messages · Try Again');
+        label.textContent = lt('Couldn’t Load Messages, Try Again');
         read.disabled = archive.disabled = false;
         return;
       }
-      label.textContent = ok ? lt('Archived {n}', { n: formatNumber(total) }) : lt('Archived {n} · Some Didn’t Work', { n: formatNumber(total) });
+      label.textContent = ok ? lt('Archived {n}', { n: formatNumber(total) }) : lt('Archived {n}, Some Didn’t Work', { n: formatNumber(total) });
       setTimeout(() => location.reload(), ok ? 900 : 2500);
     });
     bar.append(read, archive);

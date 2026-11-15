@@ -1806,6 +1806,49 @@ html.routility-2017 .catalog-revamp .catalog-item-container .item-card-price {
   margin-top: auto !important;
 }
 
+html.routility-2017 .catalog-revamp .catalog-item-container .item-card-price ~ .item-card-price {
+  margin-top: 0 !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-caption > * {
+  flex-shrink: 0 !important;
+}
+
+html.routility-2017 #content ul.item-cards-stackable .catalog-item-container.catalog-item-container {
+  height: auto !important;
+  min-height: 258px !important;
+  align-self: stretch !important;
+}
+
+html.routility-2017 #content ul.item-cards-stackable .catalog-item-container .item-card-caption {
+  padding-bottom: 18px !important;
+  height: auto !important;
+  max-height: none !important;
+  flex: 0 0 auto !important;
+}
+
+html.routility-2017 #content ul.item-cards-stackable .catalog-item-container .item-card-caption .item-card-price {
+  overflow: visible !important;
+}
+
+html.routility-2017 #content ul.item-cards-stackable .catalog-item-container :is(.item-card-container, .item-card-link) {
+  height: auto !important;
+}
+
+html.routility-2017 #content ul.item-cards-stackable .catalog-item-container.catalog-item-container {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+html.routility-2017 #content ul.item-cards-stackable .catalog-item-container > .item-card-container {
+  flex: 1 1 auto !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-price {
+  min-height: 18px !important;
+  line-height: 18px !important;
+}
+
 html.routility-2017 .catalog-revamp .catalog-item-container .item-card-price .icon-robux-16x16 {
   margin: 0 1px 0 0 !important;
 }
@@ -2600,8 +2643,22 @@ html.routility-2017 #avatar-web-app .item-cards-stackable > .item-card {
   height: auto !important;
 }
 
+html.routility-2017 #avatar-web-app .avatar-item-list .hlist.item-cards-stackable:is(*, :has(.routility-card-usd), :has(.routility-val)) > li.item-card.item-card {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  align-self: stretch !important;
+}
+
+html.routility-2017 .routility-card-worth,
+html.routility-2017 .routility-card-worth :is(.text-robux-tile, .text-robux, .routility-val-r, span:not(.routility-logo)),
+html.routility-2017 #content .item-card .item-card-price.routility-card-worth.routility-card-worth :is(.text-robux-tile, .text-robux, .routility-val-r, span:not(.routility-logo)),
+html.routility-2017 #content .item-card .item-card-price.routility-card-worth.routility-card-worth {
+  color: #0f9fff !important;
+}
+
 html.routility-2017 #avatar-web-app .item-cards-stackable > .item-card > .item-card-container {
-  flex: 1 1 auto !important;
+  flex: 1 0 auto !important;
   height: auto !important;
   padding-bottom: 8px !important;
   background-color: var(--c17-card) !important;
@@ -2621,6 +2678,18 @@ html.routility-2017 #avatar-web-app .item-card .relative.radius-medium {
 
 html.routility-2017 #content :is(.icon-robux-16x16, .icon-robux-gray-16x16, .icon-robux-white-16x16, .icon-robux-20x20, .icon-robux-28x28):not(:last-child) {
   margin-right: 5px !important;
+}
+
+html.routility-2017 .trade-inventory-panel .item-cards-stackable.item-cards-stackable li.trade-item-card.trade-item-card {
+  height: 267px !important;
+}
+
+html.routility-2017 .trade-inventory-panel li.trade-item-card .item-card-container {
+  min-height: 239px;
+}
+
+html.routility-2017 .trade-inventory-panel li.trade-item-card .item-card-caption {
+  padding-bottom: 12px !important;
 }
 
 html.routility-2017 .trades-container .trade-request-window {

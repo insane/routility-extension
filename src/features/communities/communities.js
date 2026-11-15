@@ -207,7 +207,7 @@
           const rank = [...row.querySelectorAll('.profile-insight-pill-button')].find(b => / Rank$/.test(b.textContent.trim()) && !b.dataset.rtRank);
           if (rank) {
             rank.dataset.rtRank = '1';
-            rank.textContent = lt('{role} · Rank {rank}', { role: s.role.name, rank: s.role.rank });
+            rank.textContent = lt('{role}, Rank {rank}', { role: s.role.name, rank: s.role.rank });
           }
         }
       }
@@ -559,7 +559,7 @@
         document.querySelectorAll(`.groups-list-item[href*="/communities/${id}/"], .groups-list-item[href$="/communities/${id}"]`).forEach(n => n.classList.add('routility-cm-left'));
       }
       busy = false;
-      note = failed.size ? lt('Left {n} \u00b7 {failed} didn\u2019t work. They\u2019re still selected, try again.', { n: formatNumber(gone.length), failed: formatNumber(failed.size) }) : ltn(gone.length, 'Left {n} community.', 'Left {n} communities.', { n: formatNumber(gone.length) });
+      note = failed.size ? lt('Left {n}, {failed} didn\u2019t work. They\u2019re still selected, try again.', { n: formatNumber(gone.length), failed: formatNumber(failed.size) }) : ltn(gone.length, 'Left {n} community.', 'Left {n} communities.', { n: formatNumber(gone.length) });
       paint();
     });
     paint();
@@ -639,7 +639,7 @@
       a.remove();
       setTimeout(() => URL.revokeObjectURL(a.href), 4000);
     }
-    label.textContent = failed ? lt('Couldn’t Export') : partial ? lt('Exported {n} · Rest Didn’t Load', { n: formatNumber(rows.length - 1) }) : lt('Exported {n}', { n: formatNumber(rows.length - 1) });
+    label.textContent = failed ? lt('Couldn’t Export') : partial ? lt('Exported {n}, Rest Didn’t Load', { n: formatNumber(rows.length - 1) }) : lt('Exported {n}', { n: formatNumber(rows.length - 1) });
     setTimeout(() => { label.textContent = lt('Export CSV'); }, failed || partial ? 4000 : 2500);
     btn.disabled = false;
     s.exporting = false;
@@ -686,7 +686,7 @@
     const display = el('div', 'text-title-medium text-truncate-split text-no-wrap user-item-display-name-row', res.user.displayName || res.user.name);
     if (res.user.verified) display.appendChild(verifiedBadge());
     names.append(display, el('span', 'text-body-medium', '@' + res.user.name));
-    const tag = el('span', 'text-label-medium shrink-0 margin-right-medium routility-cm-find-role' + (res.role ? '' : ' routility-cm-find-out'), res.role ? lt('{role} · Rank {rank}', { role: res.role.name, rank: res.role.rank }) : lt('Not a member'));
+    const tag = el('span', 'text-label-medium shrink-0 margin-right-medium routility-cm-find-role' + (res.role ? '' : ' routility-cm-find-out'), res.role ? lt('{role}, Rank {rank}', { role: res.role.name, rank: res.role.rank }) : lt('Not a member'));
     inner.append(av, names, tag);
     a.appendChild(inner);
     li.appendChild(a);

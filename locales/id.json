@@ -89,9 +89,9 @@
  "{item} is worth {value}.": "{item} bernilai {value}.",
  "{items} and {last}": "{items} dan {last}",
  "{label}: ": "{label}: ",
- "{located} of {checked} servers located • {regions}": "{located} dari {checked} server ditemukan lokasinya • {regions}",
+ "{located} of {checked} servers located, {regions}": "{located} dari {checked} server ditemukan lokasinya, {regions}",
  "{missing} of the {total} free Roblox items aren’t in your inventory yet.": "{missing} dari {total} item Roblox gratis belum ada di inventarismu.",
- "{n} · Buy them in the experience": "{n} · Beli di dalam pengalaman",
+ "{n}, Buy them in the experience": "{n}, Beli di dalam pengalaman",
  "{n} badges": {
   "other": "{n} lencana"
  },
@@ -101,8 +101,8 @@
  "{n} copies": {
   "other": "{n} salinan"
  },
- "{n} copies • {serials}": {
-  "other": "{n} salinan • {serials}"
+ "{n} copies, {serials}": {
+  "other": "{n} salinan, {serials}"
  },
  "{n} couldn’t be added.": "{n} tidak bisa ditambahkan.",
  "{n} couldn’t be checked.": {
@@ -145,11 +145,11 @@
  "{n} items": {
   "other": "{n} item"
  },
- "{n} items • {worn}/{max} accessories": {
-  "other": "{n} item • {worn}/{max} aksesori"
+ "{n} items, {worn}/{max} accessories": {
+  "other": "{n} item, {worn}/{max} aksesori"
  },
- "{n} items • updated {time}": {
-  "other": "{n} item • diperbarui {time}"
+ "{n} items, updated {time}": {
+  "other": "{n} item, diperbarui {time}"
  },
  "{n} items to buy": {
   "other": "{n} item untuk dibeli"
@@ -162,8 +162,8 @@
   "other": "{n} limited"
  },
  "{n} located": "{n} ditemukan lokasinya",
- "{n} matches · {checked} checked": {
-  "other": "{n} cocok · {checked} diperiksa"
+ "{n} matches, {checked} checked": {
+  "other": "{n} cocok, {checked} diperiksa"
  },
  "{n} members": {
   "other": "{n} anggota"
@@ -219,8 +219,8 @@
   "other": "{n} orang sudah bukan temanmu lagi"
  },
  "{n} Place Visits": "{n} Kunjungan Tempat",
- "{n} purchases · {spent} Robux spent": {
-  "other": "{n} pembelian · {spent} Robux dibelanjakan"
+ "{n} purchases, {spent} Robux spent": {
+  "other": "{n} pembelian, {spent} Robux dibelanjakan"
  },
  "{n} purchases in this experience": {
   "other": "{n} pembelian di pengalaman ini"
@@ -234,8 +234,8 @@
  "{n} Robux": {
   "other": "{n} Robux"
  },
- "{n} rows · back to {date}": {
-  "other": "{n} baris · sampai {date}"
+ "{n} rows, back to {date}": {
+  "other": "{n} baris, sampai {date}"
  },
  "{n} rows exported": {
   "other": "{n} baris diekspor"
@@ -255,11 +255,11 @@
  "{n} servers": {
   "other": "{n} server"
  },
- "{n} servers • {players} playing": {
-  "other": "{n} server • {players} bermain"
+ "{n} servers, {players} playing": {
+  "other": "{n} server, {players} bermain"
  },
- "{n} servers • {regions}": {
-  "other": "{n} server • {regions}"
+ "{n} servers, {regions}": {
+  "other": "{n} server, {regions}"
  },
  "{n} sold": {
   "other": "{n} terjual"
@@ -273,8 +273,8 @@
  "{n} trades with \"{query}\"": {
   "other": "{n} perdagangan dengan \"{query}\""
  },
- "{n} trades with \"{query}\" • checked {count} trades, loading older ones…": {
-  "other": "{n} perdagangan dengan \"{query}\" • {count} perdagangan diperiksa, memuat yang lebih lama…"
+ "{n} trades with \"{query}\", checked {count} trades, loading older ones…": {
+  "other": "{n} perdagangan dengan \"{query}\", {count} perdagangan diperiksa, memuat yang lebih lama…"
  },
  "{n} unpriced": {
   "other": "{n} tanpa harga"
@@ -294,7 +294,7 @@
  "{n} years ago": {
   "other": "{n} tahun lalu"
  },
- "{n}+ matches · {checked} checked": "{n}+ cocok · {checked} diperiksa",
+ "{n}+ matches, {checked} checked": "{n}+ cocok, {checked} diperiksa",
  "{n}d": {
   "other": "{n}hr"
  },
@@ -320,7 +320,7 @@
   "other": "{n}thn"
  },
  "{name} ({count})": "{name} ({count})",
- "{name} • {robux} Robux": "{name} • {robux} Robux",
+ "{name}, {robux} Robux": "{name}, {robux} Robux",
  "{name} accessories": "Aksesori {name}",
  "{name} audit log.csv": "log audit {name}.csv",
  "{name} color": "Warna {name}",
@@ -349,26 +349,26 @@
  "{pct} over RAP": "{pct} di atas RAP",
  "{pct} under RAP": "{pct} di bawah RAP",
  "{pct}% ({label})": "{pct}% ({label})",
- "{pct}% liked • {likes} likes, {dislikes} dislikes": "{pct}% suka • {likes} suka, {dislikes} tidak suka",
+ "{pct}% liked, {likes} likes, {dislikes} dislikes": "{pct}% suka, {likes} suka, {dislikes} tidak suka",
  "{pct}% of copies": "{pct}% dari salinan",
  "{pct}% over RAP": "{pct}% di atas RAP",
  "{pct}% rating": "Rating {pct}%",
  "{pct}% under RAP": "{pct}% di bawah RAP",
  "{percent}% off unlocks {date}": "Diskon {percent}% terbuka {date}",
- "{place} • {n} servers • {players} playing": {
-  "other": "{place} • {n} server • {players} bermain"
+ "{place}, {n} servers, {players} playing": {
+  "other": "{place}, {n} server, {players} bermain"
  },
  "{playing} of {max} people max": "Maks. {playing} dari {max} orang",
  "{price} a month": "{price} per bulan",
  "{price} a week": "{price} per minggu",
  "{price} a year": "{price} per tahun",
- "{rating} • {n} playing": "{rating} • {n} bermain",
+ "{rating}, {n} playing": "{rating}, {n} bermain",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} sudah tidak ada di daftar wilayah. Bergabung ke server mana saja…",
  "{results} (first 2,000 items)": "{results} (2.000 item pertama)",
  "{results} (some categories couldn’t load)": "{results} (beberapa kategori gagal dimuat)",
  "{robux} Robux at the DevEx rate": "{robux} Robux dengan kurs DevEx",
  "{robux} Robux at your rate ({rate}/1k)": "{robux} Robux dengan kursmu ({rate}/1k)",
- "{role} · Rank {rank}": "{role} · Peringkat {rank}",
+ "{role}, Rank {rank}": "{role}, Peringkat {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} stud",
  "{status} on {parts}": "{status} di {parts}",
@@ -486,7 +486,7 @@
  "Adds, what you’re really after, anything else. Keep it short.": "Tambahan, apa yang benar-benar kamu cari, hal lainnya. Singkat saja.",
  "Adjust Accessories": "Atur Aksesori",
  "Admin": "Admin",
- "Admin · Rank {rank}": "Admin · Peringkat {rank}",
+ "Admin, Rank {rank}": "Admin, Peringkat {rank}",
  "Admin Badge": "Lencana Admin",
  "Admin Tools": "Alat Admin",
  "Admins": "Admin",
@@ -524,7 +524,7 @@
  "Amount": "Jumlah",
  "Amount (R$)": "Jumlah (R$)",
  "Amount of Robux": "Jumlah Robux",
- "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "Baris Diperoleh di halaman item untuk barang milikmu, seperti 1 Okt 2026 · 9 hari lalu.",
+ "An Acquired line on item pages for things you own, like Oct 1, 2026, 9 days ago.": "Baris Diperoleh di halaman item untuk barang milikmu, seperti 1 Okt 2026, 9 hari lalu.",
  "An Adjust Accessories button under your avatar to move, rotate and resize hats and other accessories like in the Roblox app, with a 3D preview you can spin around. Saves to your avatar, within Roblox’s limits.": "Tombol Atur Aksesori di bawah avatarmu untuk memindahkan, memutar, dan mengubah ukuran topi dan aksesori lain seperti di aplikasi Roblox, dengan pratinjau 3D yang bisa diputar. Disimpan ke avatarmu, dalam batas Roblox.",
  "An Avatar Items row in a game’s Store with clothing and accessories made by the game’s creator.": "Baris Item Avatar di Toko game dengan pakaian dan aksesori buatan kreator game itu.",
  "An Avatar Type row next to Server Size: whether the game makes everyone R6, R15, or lets players pick. Roblox doesn’t show it on the page.": "Baris Tipe Avatar di samping Ukuran Server: apakah game membuat semua pemain R6, R15, atau membiarkan pemain memilih. Roblox tidak menampilkannya di halaman.",
@@ -542,7 +542,7 @@
  "Archive All Read": "Arsipkan Semua yang Dibaca",
  "Archive Every Read Message?": "Arsipkan Semua Pesan yang Sudah Dibaca?",
  "Archived {n}": "{n} diarsipkan",
- "Archived {n} · Some Didn’t Work": "{n} diarsipkan · Sebagian Gagal",
+ "Archived {n}, Some Didn’t Work": "{n} diarsipkan, Sebagian Gagal",
  "Archiving ({archived} done) {done} of {total}": "Mengarsipkan ({archived} selesai) {done} dari {total}",
  "Archiving {done} of {total}": "Mengarsipkan {done} dari {total}",
  "Arrange Home & Charts": "Atur Beranda & Peringkat",
@@ -689,7 +689,7 @@
  "Checking {region}…": "Memeriksa {region}…",
  "Checking for new purchases since your last visit…": "Memeriksa pembelian baru sejak kunjungan terakhirmu…",
  "Checking open servers for {region}…": "Memeriksa server terbuka untuk {region}…",
- "Checking trades · {done} of {total}": "Memeriksa perdagangan · {done} dari {total}",
+ "Checking trades, {done} of {total}": "Memeriksa perdagangan, {done} dari {total}",
  "Checking what you already own… {done} of {total}": "Memeriksa yang sudah kamu punya… {done} dari {total}",
  "Checking where your friends are…": "Memeriksa lokasi temanmu…",
  "Checking which {region} servers have room right now…": "Memeriksa server {region} mana yang masih ada tempat…",
@@ -808,7 +808,7 @@
  "Couldn’t load all your items right now. Open Post again to retry.": "Tidak bisa memuat semua itemmu. Buka Posting lagi untuk mencoba lagi.",
  "Couldn’t load friends right now. Try again in a minute.": "Tidak bisa memuat teman sekarang. Coba lagi dalam semenit.",
  "Couldn’t load items right now. Try again in a minute.": "Tidak bisa memuat item sekarang. Coba lagi dalam semenit.",
- "Couldn’t Load Messages · Try Again": "Pesan Tidak Termuat · Coba Lagi",
+ "Couldn’t Load Messages, Try Again": "Pesan Tidak Termuat, Coba Lagi",
  "Couldn’t load owners right now. Try again in a minute.": "Tidak bisa memuat pemilik sekarang. Coba lagi dalam semenit.",
  "Couldn’t load servers for this region.": "Tidak bisa memuat server untuk wilayah ini.",
  "Couldn’t load that file. Chrome didn’t save it, try again.": "Tidak bisa memuat file itu. Chrome tidak menyimpannya, coba lagi.",
@@ -916,7 +916,7 @@
  "Delete New Badges Automatically": "Hapus Lencana Baru Otomatis",
  "Delete Selected": "Hapus yang Dipilih",
  "Deleted": "Dihapus",
- "Deleted {n} · {failed} didn’t work. They’re still selected, try again.": "{n} dihapus · {failed} gagal. Masih dipilih, coba lagi.",
+ "Deleted {n}, {failed} didn’t work. They’re still selected, try again.": "{n} dihapus, {failed} gagal. Masih dipilih, coba lagi.",
  "Deleted {n} badges.": {
   "other": "{n} lencana dihapus."
  },
@@ -962,7 +962,7 @@
  "Drag the preview to look around. Hair and waist accessories can’t be adjusted.": "Seret pratinjau untuk melihat sekeliling. Aksesori rambut dan pinggang tidak bisa diatur.",
  "Drag the top left corner of a chat window to make it bigger. Every chat window, the RoUtility Bot included, uses the same size. Double-click the corner to reset.": "Seret sudut kiri atas jendela chat untuk memperbesarnya. Semua jendela chat, termasuk Bot RoUtility, memakai ukuran yang sama. Klik dua kali sudutnya untuk mengatur ulang.",
  "Drag to move": "Seret untuk memindahkan",
- "Drag to resize · Double-click to reset": "Seret untuk mengubah ukuran · Klik dua kali untuk mengatur ulang",
+ "Drag to resize, Double-click to reset": "Seret untuk mengubah ukuran, Klik dua kali untuk mengatur ulang",
  "Drag to turn your avatar. Scroll to zoom in or out.": "Seret untuk memutar avatarmu. Gulir untuk memperbesar atau memperkecil.",
  "Dress Skirt": "Rok Gaun",
  "Dynamic": "Dinamis",
@@ -1050,7 +1050,7 @@
  "Export CSV": "Ekspor CSV",
  "Export to CSV": "Ekspor ke CSV",
  "Exported {n}": "{n} Diekspor",
- "Exported {n} · Rest Didn’t Load": "{n} Diekspor · Sisanya Tidak Termuat",
+ "Exported {n}, Rest Didn’t Load": "{n} Diekspor, Sisanya Tidak Termuat",
  "Exporting {n}": "Mengekspor {n}",
  "Extra details on your Roblox Settings pages: your devices, backup codes and voice chat.": "Detail tambahan di halaman Pengaturan Roblox-mu: perangkat, kode cadangan, dan obrolan suara.",
  "Extra Requests": "Permintaan Tambahan",
@@ -1098,7 +1098,7 @@
  },
  "Finding an open server…": "Mencari server terbuka…",
  "Finding Items": "Mencari Item",
- "Finding read messages · {archived} archived ({page})": "Mencari pesan yang sudah dibaca · {archived} diarsipkan ({page})",
+ "Finding read messages, {archived} archived ({page})": "Mencari pesan yang sudah dibaca, {archived} diarsipkan ({page})",
  "Finding read messages ({page})": "Mencari pesan yang sudah dibaca ({page})",
  "Finding the closest server to you ({region})…": "Mencari server terdekat denganmu ({region})…",
  "Finding Things": "Mencari Barang",
@@ -1133,7 +1133,7 @@
  "Forum navigation": "Navigasi forum",
  "Forum Posts": "Postingan Forum",
  "Forum Search": "Pencarian Forum",
- "Founder · Rank {rank}": "Pendiri · Peringkat {rank}",
+ "Founder, Rank {rank}": "Pendiri, Peringkat {rank}",
  "Free": "Gratis",
  "Free Items": "Item Gratis",
  "Freebie": "Gratisan",
@@ -1158,7 +1158,7 @@
  "Friends Playing, layout, random experience": "Teman Bermain, tata letak, pengalaman acak",
  "Friends Since": "Berteman Sejak",
  "Friends since {date}": "Berteman sejak {date}",
- "Friends since {date} • {age}": "Berteman sejak {date} • {age}",
+ "Friends since {date}, {age}": "Berteman sejak {date}, {age}",
  "Friends Who Own It": "Teman yang Memilikinya",
  "Friends whose name contains what you type, shown first.": "Teman yang namanya mengandung yang kamu ketik, ditampilkan duluan.",
  "Friends you have in common, next to the friend counts on profiles. Click it for the list.": "Teman yang kalian punya bersama, di sebelah jumlah teman di profil. Klik untuk melihat daftarnya.",
@@ -1253,7 +1253,7 @@
  "How far each reseller listing is under or over RAP.": "Seberapa jauh setiap listing reseller di bawah atau di atas RAP.",
  "How it will roughly look. Save to get Roblox’s real thumbnail.": "Kira-kira seperti ini tampilannya. Simpan untuk mendapatkan thumbnail asli dari Roblox.",
  "How long ago each trade was sent on the trade list. Hover it for the exact time and when it expires.": "Sudah berapa lama setiap perdagangan dikirim di daftar perdagangan. Arahkan kursor untuk melihat waktu persisnya dan kapan berakhir.",
- "How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.": "Sudah berapa lama setiap item ada di inventaris seseorang, di sebelah kreatornya, seperti Oleh Roblox · 3thn. Arahkan kursor untuk melihat tanggal persisnya.",
+ "How long each item has been in anyone’s inventory, next to its creator, like By Roblox, 3y. Hover it for the exact date.": "Sudah berapa lama setiap item ada di inventaris seseorang, di sebelah kreatornya, seperti Oleh Roblox, 3thn. Arahkan kursor untuk melihat tanggal persisnya.",
  "How Long They’ve Owned It": "Sudah Berapa Lama Dimiliki",
  "How many": "Berapa",
  "How many communities you’re in out of how many you can join, under Communities in the side list.": "Berapa komunitas yang kamu ikuti dari batas yang bisa kamu ikuti, di bawah Komunitas di daftar samping.",
@@ -1290,7 +1290,7 @@
  "Ignore": "Abaikan",
  "Ignore {n}?": "Abaikan {n}?",
  "Ignore Matches": "Abaikan yang Cocok",
- "Ignored {n} · {failed} didn’t work, try again": "{n} diabaikan · {failed} gagal, coba lagi",
+ "Ignored {n}, {failed} didn’t work, try again": "{n} diabaikan, {failed} gagal, coba lagi",
  "Ignored {n} requests": {
   "other": "{n} permintaan diabaikan"
  },
@@ -1332,7 +1332,7 @@
  "In game": "Dalam game",
  "In Order": "Berurutan",
  "In Studio": "Di Studio",
- "In Studio • {game}": "Di Studio • {game}",
+ "In Studio, {game}": "Di Studio, {game}",
  "in under a minute": "dalam kurang dari semenit",
  "In-Experience Purchases": "Pembelian Dalam Pengalaman",
  "Inappropriate": "Tidak pantas",
@@ -1388,7 +1388,7 @@
  "Join their server": "Gabung ke server mereka",
  "Joined": "Bergabung",
  "Joined {date}": "Anggota sejak {date}",
- "Joined {date} • {age}": "Bergabung {date} • {age}",
+ "Joined {date}, {age}": "Bergabung {date}, {age}",
  "Joined Date": "Tanggal Bergabung",
  "Joined in {year}": "Bergabung tahun {year}",
  "Joined Roblox": "Bergabung dengan Roblox",
@@ -1430,7 +1430,7 @@
  },
  "Leave Selected": "Keluar dari yang Dipilih",
  "Leaving {done} of {total}": "Keluar {done} dari {total}",
- "Left {n} · {failed} didn’t work. They’re still selected, try again.": "Keluar dari {n} · {failed} gagal. Masih terpilih, coba lagi.",
+ "Left {n}, {failed} didn’t work. They’re still selected, try again.": "Keluar dari {n}, {failed} gagal. Masih terpilih, coba lagi.",
  "Left {n} communities.": {
   "other": "Keluar dari {n} komunitas."
  },
@@ -1477,7 +1477,7 @@
  "Look {n}": "Gaya {n}",
  "Look Name": "Nama Gaya",
  "Looking For": "Mencari",
- "Looking for \"{query}\" • checked {count} trades, loading older ones…": "Mencari \"{query}\" • {count} perdagangan diperiksa, memuat yang lebih lama…",
+ "Looking for \"{query}\", checked {count} trades, loading older ones…": "Mencari \"{query}\", {count} perdagangan diperiksa, memuat yang lebih lama…",
  "Looking through the Marketplace…": "Menelusuri Marketplace…",
  "Looking through the Marketplace… {n} free items so far": {
   "other": "Menelusuri Marketplace… {n} item gratis sejauh ini"
@@ -1792,7 +1792,7 @@
  "Owned": "Dimiliki",
  "Owned {time}": "Dimiliki {time}",
  "Owned since {date}": "Dimiliki sejak {date}",
- "Owned since {date} · first bought {first}": "Dimiliki sejak {date} · pertama dibeli {first}",
+ "Owned since {date}, first bought {first}": "Dimiliki sejak {date}, pertama dibeli {first}",
  "Owner": "Pemilik",
  "Owners": "Pemilik",
  "Owners List": "Daftar Pemilik",
@@ -1958,7 +1958,7 @@
  "Quick Settings Style": "Gaya Pengaturan Cepat",
  "Quick Setup": "Atur Cepat",
  "Quick Sign In": "Masuk Cepat",
- "R$ {price} · {copies} copies": "R$ {price} · {copies} salinan",
+ "R$ {price}, {copies} copies": "R$ {price}, {copies} salinan",
  "R$ {price} (your alert: R$ {target})": "R$ {price} (peringatanmu: R$ {target})",
  "R6 / R15 Switch": "Ganti R6 / R15",
  "R6 characters have limitations…": "Karakter R6 punya keterbatasan…",
@@ -2072,7 +2072,7 @@
  "Roblox asked RoUtility to slow down, carrying on in a moment. {n} purchases so far, back to {date}.": {
   "other": "Roblox meminta RoUtility memperlambat, lanjut sebentar lagi. {n} pembelian sejauh ini, sampai {date}."
  },
- "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox meminta kami melambat · {done} dari {total} dicek, lanjut dalam {s} dtk",
+ "Roblox asked us to slow down, {done} of {total} checked, going again in {s}s": "Roblox meminta kami melambat, {done} dari {total} dicek, lanjut dalam {s} dtk",
  "Roblox Badges": "Lencana Roblox",
  "Roblox couldn’t send it. Check your balance before you try again.": "Roblox tidak bisa mengirimnya. Periksa saldomu sebelum mencoba lagi.",
  "Roblox default": "Bawaan Roblox",
@@ -2445,7 +2445,7 @@
  "Teleports players": "Memindahkan pemain (teleport)",
  "Tell us what’s wrong": "Beri tahu kami apa masalahnya",
  "Terminated": "Diblokir Permanen",
- "Terminated · @{name}": "Diblokir Permanen · @{name}",
+ "Terminated, @{name}": "Diblokir Permanen, @{name}",
  "Terminated Players": "Pemain yang Diblokir Permanen",
  "Terrible": "Buruk Sekali",
  "Test Notification": "Notifikasi Tes",
@@ -2550,7 +2550,7 @@
  "Thread": "Thread",
  "Thread not available": "Thread tidak tersedia",
  "Threads": "Thread",
- "tick • tick • tick • chime": "tik • tik • tik • ting",
+ "tick, tick, tick, chime": "tik, tik, tik, ting",
  "Tile Menu": "Menu Ubin",
  "Tiles": "Kartu",
  "Timed Out, Try Again": "Waktu Habis, Coba Lagi",
@@ -2662,7 +2662,7 @@
   "other": "Berhenti mengikuti {n} orang?"
  },
  "Unfollow Selected": "Berhenti Mengikuti yang Dipilih",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "Berhenti mengikuti {n} · {failed} gagal. Mereka masih dipilih, coba lagi.",
+ "Unfollowed {n}, {failed} didn’t work. They’re still selected, try again.": "Berhenti mengikuti {n}, {failed} gagal. Mereka masih dipilih, coba lagi.",
  "Unfollowed {n} people.": {
   "other": "Berhenti mengikuti {n} orang."
  },
@@ -2674,7 +2674,7 @@
  },
  "Unfriend Detector": "Detektor Batal Berteman",
  "Unfriend Selected": "Batalkan Pertemanan yang Dipilih",
- "Unfriended {n} · {failed} didn’t work. They’re still selected, try again.": "Pertemanan dengan {n} dibatalkan · {failed} gagal. Masih terpilih, coba lagi.",
+ "Unfriended {n}, {failed} didn’t work. They’re still selected, try again.": "Pertemanan dengan {n} dibatalkan, {failed} gagal. Masih terpilih, coba lagi.",
  "Unfriended {n} friends.": {
   "other": "Pertemanan dengan {n} teman dibatalkan."
  },
@@ -2865,8 +2865,8 @@
  "YOU GIVE": "KAMU BERIKAN",
  "You give {pct}% more RAP": "Kamu memberi RAP {pct}% lebih banyak",
  "You give {pct}% more value": "Kamu memberi nilai {pct}% lebih banyak",
- "You give • {n} items": {
-  "other": "Kamu berikan • {n} item"
+ "You give, {n} items": {
+  "other": "Kamu berikan, {n} item"
  },
  "You have no inbound trades.": "Kamu tidak punya perdagangan masuk.",
  "You have no outbound trades.": "Kamu tidak punya perdagangan keluar.",
@@ -2885,8 +2885,8 @@
   "other": "Kamu bermain di sini sekitar {n} menit"
  },
  "You receive": "Kamu terima",
- "You receive • {n} items": {
-  "other": "Kamu terima • {n} item"
+ "You receive, {n} items": {
+  "other": "Kamu terima, {n} item"
  },
  "You rolled": "Hasil acakmu",
  "You sent {n} Robux": "Kamu mengirim {n} Robux",
@@ -2993,7 +2993,7 @@
  "{n} statuses unavailable": {
   "other": "{n} status tidak tersedia"
  },
- "{status} · {checked} members checked · {online} online · {matches} matches": "{status} · {checked} anggota diperiksa · {online} online · {matches} cocok",
+ "{status}, {checked} members checked, {online} online, {matches} matches": "{status}, {checked} anggota diperiksa, {online} online, {matches} cocok",
  "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. It records what Unfriend Detector notices, so it needs Unfriend Detector on. Remove anyone with the ✕ on their row. Stored only on this device.": "Halaman Riwayat Teman di roblox.com/friend-history dengan dua kolom: orang yang ditambahkan ke daftar temanmu dan orang yang sudah tidak ada di sana. Halaman ini mencatat apa yang diketahui Detektor Batal Berteman, jadi detektor itu harus aktif. Hanya disimpan di perangkat ini. Hapus siapa pun dengan ✕ di barisnya.",
  "Added": "Ditambahkan",
  "All places": "Semua tempat",
@@ -3018,7 +3018,7 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Memeriksa setiap anggota, jadi komunitas besar bisa butuh waktu. Status diperiksa saat setiap bagian dimuat. Filter tempat hanya cocok dengan lokasi yang dibagikan Roblox.",
  "Start a scan to find online members.": "Mulai pemindaian untuk mencari anggota yang online.",
  "Stop Scan": "Hentikan Pindai",
- "Stopped · Partial results": "Dihentikan · Hasil sebagian",
+ "Stopped, Partial results": "Dihentikan, Hasil sebagian",
  "{bound} players": "{bound} pemain",
  "{n} playing": {
   "other": "{n} bermain"

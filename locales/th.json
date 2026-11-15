@@ -89,9 +89,9 @@
  "{item} is worth {value}.": "{item} มีมูลค่า {value}",
  "{items} and {last}": "{items} และ {last}",
  "{label}: ": "{label}: ",
- "{located} of {checked} servers located • {regions}": "ระบุตำแหน่งได้ {located} จาก {checked} เซิร์ฟเวอร์ • {regions}",
+ "{located} of {checked} servers located, {regions}": "ระบุตำแหน่งได้ {located} จาก {checked} เซิร์ฟเวอร์, {regions}",
  "{missing} of the {total} free Roblox items aren’t in your inventory yet.": "ไอเทมฟรีของ Roblox {missing} จาก {total} ชิ้นยังไม่อยู่ในสินค้าคงคลังของคุณ",
- "{n} · Buy them in the experience": "{n} · ซื้อได้ในประสบการณ์",
+ "{n}, Buy them in the experience": "{n}, ซื้อได้ในประสบการณ์",
  "{n} badges": {
   "other": "{n} ตรา"
  },
@@ -101,8 +101,8 @@
  "{n} copies": {
   "other": "{n} ชิ้น"
  },
- "{n} copies • {serials}": {
-  "other": "{n} ชิ้น • {serials}"
+ "{n} copies, {serials}": {
+  "other": "{n} ชิ้น, {serials}"
  },
  "{n} couldn’t be added.": "เพิ่มไม่ได้ {n} รายการ",
  "{n} couldn’t be checked.": {
@@ -145,11 +145,11 @@
  "{n} items": {
   "other": "{n} ไอเทม"
  },
- "{n} items • {worn}/{max} accessories": {
-  "other": "{n} ไอเทม • เครื่องประดับ {worn}/{max}"
+ "{n} items, {worn}/{max} accessories": {
+  "other": "{n} ไอเทม, เครื่องประดับ {worn}/{max}"
  },
- "{n} items • updated {time}": {
-  "other": "{n} ไอเทม • อัปเดต {time}"
+ "{n} items, updated {time}": {
+  "other": "{n} ไอเทม, อัปเดต {time}"
  },
  "{n} items to buy": {
   "other": "ไอเทมที่ต้องซื้อ {n} ชิ้น"
@@ -162,8 +162,8 @@
   "other": "{n} ลิมิเต็ด"
  },
  "{n} located": "ระบุตำแหน่งได้ {n}",
- "{n} matches · {checked} checked": {
-  "other": "ตรงกัน {n} · ตรวจแล้ว {checked}"
+ "{n} matches, {checked} checked": {
+  "other": "ตรงกัน {n}, ตรวจแล้ว {checked}"
  },
  "{n} members": {
   "other": "สมาชิก {n} คน"
@@ -219,8 +219,8 @@
   "other": "{n} คนไม่ได้เป็นเพื่อนของคุณแล้ว"
  },
  "{n} Place Visits": "เข้าชมเพลส {n} ครั้ง",
- "{n} purchases · {spent} Robux spent": {
-  "other": "ซื้อ {n} ครั้ง · ใช้ไป {spent} Robux"
+ "{n} purchases, {spent} Robux spent": {
+  "other": "ซื้อ {n} ครั้ง, ใช้ไป {spent} Robux"
  },
  "{n} purchases in this experience": {
   "other": "ซื้อในประสบการณ์นี้ {n} ครั้ง"
@@ -234,8 +234,8 @@
  "{n} Robux": {
   "other": "{n} Robux"
  },
- "{n} rows · back to {date}": {
-  "other": "{n} แถว · ย้อนไปถึง {date}"
+ "{n} rows, back to {date}": {
+  "other": "{n} แถว, ย้อนไปถึง {date}"
  },
  "{n} rows exported": {
   "other": "ส่งออกแล้ว {n} แถว"
@@ -255,11 +255,11 @@
  "{n} servers": {
   "other": "{n} เซิร์ฟเวอร์"
  },
- "{n} servers • {players} playing": {
-  "other": "{n} เซิร์ฟเวอร์ • {players} คนกำลังเล่น"
+ "{n} servers, {players} playing": {
+  "other": "{n} เซิร์ฟเวอร์, {players} คนกำลังเล่น"
  },
- "{n} servers • {regions}": {
-  "other": "{n} เซิร์ฟเวอร์ • {regions}"
+ "{n} servers, {regions}": {
+  "other": "{n} เซิร์ฟเวอร์, {regions}"
  },
  "{n} sold": {
   "other": "ขายแล้ว {n}"
@@ -273,8 +273,8 @@
  "{n} trades with \"{query}\"": {
   "other": "{n} การแลกเปลี่ยนที่มี \"{query}\""
  },
- "{n} trades with \"{query}\" • checked {count} trades, loading older ones…": {
-  "other": "{n} การแลกเปลี่ยนที่มี \"{query}\" • ตรวจแล้ว {count} รายการ กำลังโหลดรายการเก่ากว่า…"
+ "{n} trades with \"{query}\", checked {count} trades, loading older ones…": {
+  "other": "{n} การแลกเปลี่ยนที่มี \"{query}\", ตรวจแล้ว {count} รายการ กำลังโหลดรายการเก่ากว่า…"
  },
  "{n} unpriced": {
   "other": "ไม่มีราคา {n}"
@@ -294,7 +294,7 @@
  "{n} years ago": {
   "other": "{n} ปีที่แล้ว"
  },
- "{n}+ matches · {checked} checked": "ตรงกัน {n}+ · ตรวจแล้ว {checked}",
+ "{n}+ matches, {checked} checked": "ตรงกัน {n}+, ตรวจแล้ว {checked}",
  "{n}d": {
   "other": "{n} วัน"
  },
@@ -320,7 +320,7 @@
   "other": "{n} ปี"
  },
  "{name} ({count})": "{name} ({count})",
- "{name} • {robux} Robux": "{name} • {robux} Robux",
+ "{name}, {robux} Robux": "{name}, {robux} Robux",
  "{name} accessories": "เครื่องประดับ {name}",
  "{name} audit log.csv": "บันทึกการตรวจสอบ {name}.csv",
  "{name} color": "สี{name}",
@@ -349,26 +349,26 @@
  "{pct} over RAP": "สูงกว่า RAP {pct}",
  "{pct} under RAP": "ต่ำกว่า RAP {pct}",
  "{pct}% ({label})": "{pct}% ({label})",
- "{pct}% liked • {likes} likes, {dislikes} dislikes": "ถูกใจ {pct}% • ถูกใจ {likes} ไม่ถูกใจ {dislikes}",
+ "{pct}% liked, {likes} likes, {dislikes} dislikes": "ถูกใจ {pct}%, ถูกใจ {likes} ไม่ถูกใจ {dislikes}",
  "{pct}% of copies": "{pct}% ของจำนวนชิ้น",
  "{pct}% over RAP": "สูงกว่า RAP {pct}%",
  "{pct}% rating": "คะแนน {pct}%",
  "{pct}% under RAP": "ต่ำกว่า RAP {pct}%",
  "{percent}% off unlocks {date}": "ลด {percent}% ปลดล็อก {date}",
- "{place} • {n} servers • {players} playing": {
-  "other": "{place} • {n} เซิร์ฟเวอร์ • {players} คนกำลังเล่น"
+ "{place}, {n} servers, {players} playing": {
+  "other": "{place}, {n} เซิร์ฟเวอร์, {players} คนกำลังเล่น"
  },
  "{playing} of {max} people max": "{playing} จากสูงสุด {max} คน",
  "{price} a month": "{price} ต่อเดือน",
  "{price} a week": "{price} ต่อสัปดาห์",
  "{price} a year": "{price} ต่อปี",
- "{rating} • {n} playing": "{rating} • {n} คนกำลังเล่น",
+ "{rating}, {n} playing": "{rating}, {n} คนกำลังเล่น",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} ไม่อยู่ในรายการภูมิภาคแล้ว กำลังเข้าร่วมเซิร์ฟเวอร์ใดก็ได้…",
  "{results} (first 2,000 items)": "{results} (2,000 ไอเทมแรก)",
  "{results} (some categories couldn’t load)": "{results} (โหลดบางหมวดไม่ได้)",
  "{robux} Robux at the DevEx rate": "{robux} Robux ตามอัตรา DevEx",
  "{robux} Robux at your rate ({rate}/1k)": "{robux} Robux ตามอัตราของคุณ ({rate}/1k)",
- "{role} · Rank {rank}": "{role} · ระดับ {rank}",
+ "{role}, Rank {rank}": "{role}, ระดับ {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} สตัด",
  "{status} on {parts}": "{status} บน {parts}",
@@ -486,7 +486,7 @@
  "Adds, what you’re really after, anything else. Keep it short.": "ของแถม สิ่งที่คุณอยากได้จริงๆ และอื่นๆ เขียนสั้นๆ",
  "Adjust Accessories": "ปรับเครื่องประดับ",
  "Admin": "แอดมิน",
- "Admin · Rank {rank}": "แอดมิน · ระดับ {rank}",
+ "Admin, Rank {rank}": "แอดมิน, ระดับ {rank}",
  "Admin Badge": "เครื่องหมายแอดมิน",
  "Admin Tools": "เครื่องมือแอดมิน",
  "Admins": "แอดมิน",
@@ -524,7 +524,7 @@
  "Amount": "จำนวนเงิน",
  "Amount (R$)": "จำนวน (R$)",
  "Amount of Robux": "จำนวน Robux",
- "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "บรรทัด “ได้มาเมื่อ” บนหน้าไอเทมที่คุณเป็นเจ้าของ เช่น 1 ต.ค. 2026 · 9 วันที่แล้ว",
+ "An Acquired line on item pages for things you own, like Oct 1, 2026, 9 days ago.": "บรรทัด “ได้มาเมื่อ” บนหน้าไอเทมที่คุณเป็นเจ้าของ เช่น 1 ต.ค. 2026, 9 วันที่แล้ว",
  "An Adjust Accessories button under your avatar to move, rotate and resize hats and other accessories like in the Roblox app, with a 3D preview you can spin around. Saves to your avatar, within Roblox’s limits.": "ปุ่มปรับเครื่องประดับใต้อวาตาร์ของคุณสำหรับย้าย หมุน และปรับขนาดหมวกและเครื่องประดับอื่นๆ เหมือนในแอป Roblox พร้อมตัวอย่าง 3D ที่หมุนดูได้ บันทึกลงอวาตาร์ของคุณภายในขีดจำกัดของ Roblox",
  "An Avatar Items row in a game’s Store with clothing and accessories made by the game’s creator.": "แถวไอเทมอวาตาร์ในร้านค้าของเกม แสดงเสื้อผ้าและเครื่องประดับที่ผู้สร้างเกมทำขึ้น",
  "An Avatar Type row next to Server Size: whether the game makes everyone R6, R15, or lets players pick. Roblox doesn’t show it on the page.": "แถวประเภทอวาตาร์ข้างขนาดเซิร์ฟเวอร์ บอกว่าเกมบังคับทุกคนเป็น R6, R15 หรือให้ผู้เล่นเลือกเอง Roblox ไม่ได้แสดงในหน้านี้",
@@ -542,7 +542,7 @@
  "Archive All Read": "เก็บถาวรที่อ่านแล้วทั้งหมด",
  "Archive Every Read Message?": "เก็บถาวรข้อความที่อ่านแล้วทั้งหมดไหม",
  "Archived {n}": "เก็บถาวรแล้ว {n}",
- "Archived {n} · Some Didn’t Work": "เก็บถาวรแล้ว {n} · บางรายการไม่สำเร็จ",
+ "Archived {n}, Some Didn’t Work": "เก็บถาวรแล้ว {n}, บางรายการไม่สำเร็จ",
  "Archiving ({archived} done) {done} of {total}": "กำลังเก็บถาวร (เสร็จแล้ว {archived}) {done} จาก {total}",
  "Archiving {done} of {total}": "กำลังเก็บถาวร {done} จาก {total}",
  "Arrange Home & Charts": "จัดเรียงหน้าแรกและชาร์ต",
@@ -689,7 +689,7 @@
  "Checking {region}…": "กำลังตรวจ {region}…",
  "Checking for new purchases since your last visit…": "กำลังตรวจหาการซื้อใหม่ตั้งแต่ครั้งล่าสุดที่คุณเข้ามา…",
  "Checking open servers for {region}…": "กำลังตรวจเซิร์ฟเวอร์ที่เปิดอยู่ใน {region}…",
- "Checking trades · {done} of {total}": "กำลังตรวจการแลกเปลี่ยน · {done} จาก {total}",
+ "Checking trades, {done} of {total}": "กำลังตรวจการแลกเปลี่ยน, {done} จาก {total}",
  "Checking what you already own… {done} of {total}": "กำลังตรวจสิ่งที่คุณมีอยู่แล้ว… {done} จาก {total}",
  "Checking where your friends are…": "กำลังตรวจว่าเพื่อนของคุณอยู่ที่ไหน…",
  "Checking which {region} servers have room right now…": "กำลังตรวจว่าเซิร์ฟเวอร์ {region} ไหนว่างอยู่ตอนนี้…",
@@ -808,7 +808,7 @@
  "Couldn’t load all your items right now. Open Post again to retry.": "โหลดไอเทมทั้งหมดไม่ได้ เปิดโพสต์อีกครั้งเพื่อลองใหม่",
  "Couldn’t load friends right now. Try again in a minute.": "โหลดเพื่อนไม่ได้ในตอนนี้ ลองอีกครั้งในอีกหนึ่งนาที",
  "Couldn’t load items right now. Try again in a minute.": "โหลดไอเทมไม่ได้ในตอนนี้ ลองอีกครั้งในอีกหนึ่งนาที",
- "Couldn’t Load Messages · Try Again": "โหลดข้อความไม่ได้ · ลองอีกครั้ง",
+ "Couldn’t Load Messages, Try Again": "โหลดข้อความไม่ได้, ลองอีกครั้ง",
  "Couldn’t load owners right now. Try again in a minute.": "โหลดเจ้าของไม่ได้ในตอนนี้ ลองอีกครั้งในอีกหนึ่งนาที",
  "Couldn’t load servers for this region.": "โหลดเซิร์ฟเวอร์ของภูมิภาคนี้ไม่ได้",
  "Couldn’t load that file. Chrome didn’t save it, try again.": "โหลดไฟล์นั้นไม่ได้ Chrome ไม่ได้บันทึก ลองอีกครั้ง",
@@ -916,7 +916,7 @@
  "Delete New Badges Automatically": "ลบตราใหม่อัตโนมัติ",
  "Delete Selected": "ลบที่เลือก",
  "Deleted": "ถูกลบ",
- "Deleted {n} · {failed} didn’t work. They’re still selected, try again.": "ลบแล้ว {n} · {failed} ไม่สำเร็จ ยังถูกเลือกอยู่ ลองอีกครั้ง",
+ "Deleted {n}, {failed} didn’t work. They’re still selected, try again.": "ลบแล้ว {n}, {failed} ไม่สำเร็จ ยังถูกเลือกอยู่ ลองอีกครั้ง",
  "Deleted {n} badges.": {
   "other": "ลบแล้ว {n} ตรา"
  },
@@ -962,7 +962,7 @@
  "Drag the preview to look around. Hair and waist accessories can’t be adjusted.": "ลากตัวอย่างเพื่อหมุนดูรอบๆ เครื่องประดับผมและเอวปรับไม่ได้",
  "Drag the top left corner of a chat window to make it bigger. Every chat window, the RoUtility Bot included, uses the same size. Double-click the corner to reset.": "ลากมุมซ้ายบนของหน้าต่างแชตเพื่อขยาย หน้าต่างแชตทุกอัน รวมถึง RoUtility Bot จะใช้ขนาดเดียวกัน ดับเบิลคลิกที่มุมเพื่อรีเซ็ต",
  "Drag to move": "ลากเพื่อย้าย",
- "Drag to resize · Double-click to reset": "ลากเพื่อปรับขนาด · ดับเบิลคลิกเพื่อรีเซ็ต",
+ "Drag to resize, Double-click to reset": "ลากเพื่อปรับขนาด, ดับเบิลคลิกเพื่อรีเซ็ต",
  "Drag to turn your avatar. Scroll to zoom in or out.": "ลากเพื่อหมุนอวาตาร์ เลื่อนเพื่อซูมเข้าหรือออก",
  "Dress Skirt": "กระโปรงชุดเดรส",
  "Dynamic": "ไดนามิก",
@@ -1050,7 +1050,7 @@
  "Export CSV": "ส่งออก CSV",
  "Export to CSV": "ส่งออกเป็น CSV",
  "Exported {n}": "ส่งออกแล้ว {n}",
- "Exported {n} · Rest Didn’t Load": "ส่งออกแล้ว {n} · ที่เหลือโหลดไม่ได้",
+ "Exported {n}, Rest Didn’t Load": "ส่งออกแล้ว {n}, ที่เหลือโหลดไม่ได้",
  "Exporting {n}": "กำลังส่งออก {n}",
  "Extra details on your Roblox Settings pages: your devices, backup codes and voice chat.": "รายละเอียดเพิ่มเติมในหน้าการตั้งค่า Roblox: อุปกรณ์ รหัสสำรอง และแชทเสียง",
  "Extra Requests": "คำขอเพิ่มเติม",
@@ -1098,7 +1098,7 @@
  },
  "Finding an open server…": "กำลังหาเซิร์ฟเวอร์ที่ว่าง…",
  "Finding Items": "กำลังหาไอเทม",
- "Finding read messages · {archived} archived ({page})": "กำลังหาข้อความที่อ่านแล้ว · เก็บถาวรแล้ว {archived} ({page})",
+ "Finding read messages, {archived} archived ({page})": "กำลังหาข้อความที่อ่านแล้ว, เก็บถาวรแล้ว {archived} ({page})",
  "Finding read messages ({page})": "กำลังหาข้อความที่อ่านแล้ว ({page})",
  "Finding the closest server to you ({region})…": "กำลังหาเซิร์ฟเวอร์ที่ใกล้คุณที่สุด ({region})…",
  "Finding Things": "การค้นหา",
@@ -1133,7 +1133,7 @@
  "Forum navigation": "การนำทางฟอรัม",
  "Forum Posts": "โพสต์ในฟอรัม",
  "Forum Search": "ค้นหาในฟอรัม",
- "Founder · Rank {rank}": "ผู้ก่อตั้ง · ระดับ {rank}",
+ "Founder, Rank {rank}": "ผู้ก่อตั้ง, ระดับ {rank}",
  "Free": "ฟรี",
  "Free Items": "ไอเทมฟรี",
  "Freebie": "ของฟรี",
@@ -1158,7 +1158,7 @@
  "Friends Playing, layout, random experience": "เพื่อนที่กำลังเล่น เลย์เอาต์ ประสบการณ์แบบสุ่ม",
  "Friends Since": "เป็นเพื่อนตั้งแต่",
  "Friends since {date}": "เป็นเพื่อนตั้งแต่ {date}",
- "Friends since {date} • {age}": "เป็นเพื่อนตั้งแต่ {date} • {age}",
+ "Friends since {date}, {age}": "เป็นเพื่อนตั้งแต่ {date}, {age}",
  "Friends Who Own It": "เพื่อนที่มีไอเทมนี้",
  "Friends whose name contains what you type, shown first.": "เพื่อนที่มีชื่อตรงกับที่คุณพิมพ์จะแสดงก่อน",
  "Friends you have in common, next to the friend counts on profiles. Click it for the list.": "เพื่อนร่วมกัน ข้างจำนวนเพื่อนบนโปรไฟล์ คลิกเพื่อดูรายชื่อ",
@@ -1253,7 +1253,7 @@
  "How far each reseller listing is under or over RAP.": "แต่ละรายการขายต่ำกว่าหรือสูงกว่า RAP เท่าไร",
  "How it will roughly look. Save to get Roblox’s real thumbnail.": "หน้าตาโดยประมาณ บันทึกเพื่อรับภาพขนาดย่อจริงจาก Roblox",
  "How long ago each trade was sent on the trade list. Hover it for the exact time and when it expires.": "การแลกเปลี่ยนแต่ละรายการถูกส่งมานานเท่าไรในรายการแลกเปลี่ยน วางเมาส์เพื่อดูเวลาที่แน่นอนและเวลาหมดอายุ",
- "How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.": "แต่ละไอเทมอยู่ในสินค้าคงคลังของเจ้าของมานานเท่าไร ข้างชื่อผู้สร้าง เช่น โดย Roblox · 3 ปี วางเมาส์เพื่อดูวันที่แน่นอน",
+ "How long each item has been in anyone’s inventory, next to its creator, like By Roblox, 3y. Hover it for the exact date.": "แต่ละไอเทมอยู่ในสินค้าคงคลังของเจ้าของมานานเท่าไร ข้างชื่อผู้สร้าง เช่น โดย Roblox, 3 ปี วางเมาส์เพื่อดูวันที่แน่นอน",
  "How Long They’ve Owned It": "เป็นเจ้าของมานานเท่าไร",
  "How many": "จำนวน",
  "How many communities you’re in out of how many you can join, under Communities in the side list.": "จำนวนคอมมูนิตี้ที่คุณอยู่เทียบกับจำนวนสูงสุดที่เข้าร่วมได้ ใต้คอมมูนิตี้ในรายการด้านข้าง",
@@ -1290,7 +1290,7 @@
  "Ignore": "ละเว้น",
  "Ignore {n}?": "ละเว้น {n} ไหม",
  "Ignore Matches": "ละเว้นที่ตรงกัน",
- "Ignored {n} · {failed} didn’t work, try again": "เพิกเฉยแล้ว {n} · {failed} ไม่สำเร็จ ลองอีกครั้ง",
+ "Ignored {n}, {failed} didn’t work, try again": "เพิกเฉยแล้ว {n}, {failed} ไม่สำเร็จ ลองอีกครั้ง",
  "Ignored {n} requests": {
   "other": "เพิกเฉยคำขอแล้ว {n} รายการ"
  },
@@ -1332,7 +1332,7 @@
  "In game": "อยู่ในเกม",
  "In Order": "ตามลำดับ",
  "In Studio": "อยู่ใน Studio",
- "In Studio • {game}": "อยู่ใน Studio • {game}",
+ "In Studio, {game}": "อยู่ใน Studio, {game}",
  "in under a minute": "ภายในไม่ถึงหนึ่งนาที",
  "In-Experience Purchases": "การซื้อในประสบการณ์",
  "Inappropriate": "ไม่เหมาะสม",
@@ -1388,7 +1388,7 @@
  "Join their server": "เข้าร่วมเซิร์ฟเวอร์ของเขา",
  "Joined": "เข้าร่วมแล้ว",
  "Joined {date}": "เป็นสมาชิกตั้งแต่ {date}",
- "Joined {date} • {age}": "เข้าร่วมเมื่อ {date} • {age}",
+ "Joined {date}, {age}": "เข้าร่วมเมื่อ {date}, {age}",
  "Joined Date": "วันที่เข้าร่วม",
  "Joined in {year}": "เข้าร่วมเมื่อปี {year}",
  "Joined Roblox": "เข้าร่วม Roblox",
@@ -1430,7 +1430,7 @@
  },
  "Leave Selected": "ออกจากที่เลือก",
  "Leaving {done} of {total}": "กำลังออก {done} จาก {total}",
- "Left {n} · {failed} didn’t work. They’re still selected, try again.": "ออกแล้ว {n} · ไม่สำเร็จ {failed} ยังเลือกไว้อยู่ ลองอีกครั้ง",
+ "Left {n}, {failed} didn’t work. They’re still selected, try again.": "ออกแล้ว {n}, ไม่สำเร็จ {failed} ยังเลือกไว้อยู่ ลองอีกครั้ง",
  "Left {n} communities.": {
   "other": "ออกจาก {n} ชุมชนแล้ว"
  },
@@ -1477,7 +1477,7 @@
  "Look {n}": "ลุค {n}",
  "Look Name": "ชื่อลุค",
  "Looking For": "กำลังหา",
- "Looking for \"{query}\" • checked {count} trades, loading older ones…": "กำลังหา \"{query}\" • ตรวจแล้ว {count} การแลกเปลี่ยน กำลังโหลดรายการเก่ากว่า…",
+ "Looking for \"{query}\", checked {count} trades, loading older ones…": "กำลังหา \"{query}\", ตรวจแล้ว {count} การแลกเปลี่ยน กำลังโหลดรายการเก่ากว่า…",
  "Looking through the Marketplace…": "กำลังค้นหาในตลาด…",
  "Looking through the Marketplace… {n} free items so far": {
   "other": "กำลังค้นหาในตลาด… พบไอเทมฟรีแล้ว {n} ชิ้น"
@@ -1792,7 +1792,7 @@
  "Owned": "เป็นเจ้าของ",
  "Owned {time}": "เป็นเจ้าของ {time}",
  "Owned since {date}": "เป็นเจ้าของตั้งแต่ {date}",
- "Owned since {date} · first bought {first}": "เป็นเจ้าของตั้งแต่ {date} · ซื้อครั้งแรก {first}",
+ "Owned since {date}, first bought {first}": "เป็นเจ้าของตั้งแต่ {date}, ซื้อครั้งแรก {first}",
  "Owner": "เจ้าของ",
  "Owners": "เจ้าของ",
  "Owners List": "รายชื่อเจ้าของ",
@@ -1958,7 +1958,7 @@
  "Quick Settings Style": "รูปแบบการตั้งค่าด่วน",
  "Quick Setup": "ตั้งค่าด่วน",
  "Quick Sign In": "ลงชื่อเข้าใช้ด่วน",
- "R$ {price} · {copies} copies": "R$ {price} · {copies} ชิ้น",
+ "R$ {price}, {copies} copies": "R$ {price}, {copies} ชิ้น",
  "R$ {price} (your alert: R$ {target})": "R$ {price} (การแจ้งเตือนของคุณ: R$ {target})",
  "R6 / R15 Switch": "สลับ R6 / R15",
  "R6 characters have limitations…": "ตัวละคร R6 มีข้อจำกัด…",
@@ -2072,7 +2072,7 @@
  "Roblox asked RoUtility to slow down, carrying on in a moment. {n} purchases so far, back to {date}.": {
   "other": "Roblox ขอให้ RoUtility ช้าลง จะทำต่อในอีกสักครู่ ได้แล้ว {n} รายการ ย้อนไปถึง {date}"
  },
- "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox ขอให้ช้าลง · ตรวจแล้ว {done} จาก {total} เริ่มต่อใน {s} วินาที",
+ "Roblox asked us to slow down, {done} of {total} checked, going again in {s}s": "Roblox ขอให้ช้าลง, ตรวจแล้ว {done} จาก {total} เริ่มต่อใน {s} วินาที",
  "Roblox Badges": "เหรียญตรา Roblox",
  "Roblox couldn’t send it. Check your balance before you try again.": "Roblox ส่งไม่สำเร็จ ตรวจสอบยอดคงเหลือก่อนลองอีกครั้ง",
  "Roblox default": "ค่าเริ่มต้นของ Roblox",
@@ -2445,7 +2445,7 @@
  "Teleports players": "เทเลพอร์ตผู้เล่น",
  "Tell us what’s wrong": "บอกเราว่ามีปัญหาอะไร",
  "Terminated": "ถูกระงับ",
- "Terminated · @{name}": "ถูกระงับ · @{name}",
+ "Terminated, @{name}": "ถูกระงับ, @{name}",
  "Terminated Players": "ผู้เล่นที่ถูกระงับ",
  "Terrible": "แย่มาก",
  "Test Notification": "ทดสอบการแจ้งเตือน",
@@ -2550,7 +2550,7 @@
  "Thread": "กระทู้",
  "Thread not available": "กระทู้ไม่พร้อมใช้งาน",
  "Threads": "กระทู้",
- "tick • tick • tick • chime": "ติ๊ก • ติ๊ก • ติ๊ก • กริ๊ง",
+ "tick, tick, tick, chime": "ติ๊ก, ติ๊ก, ติ๊ก, กริ๊ง",
  "Tile Menu": "เมนูไทล์",
  "Tiles": "ไทล์",
  "Timed Out, Try Again": "หมดเวลา ลองอีกครั้ง",
@@ -2662,7 +2662,7 @@
   "other": "เลิกติดตาม {n} คนไหม?"
  },
  "Unfollow Selected": "เลิกติดตามที่เลือก",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "เลิกติดตาม {n} คนแล้ว · {failed} คนไม่สำเร็จ ยังเลือกไว้อยู่ ลองอีกครั้ง",
+ "Unfollowed {n}, {failed} didn’t work. They’re still selected, try again.": "เลิกติดตาม {n} คนแล้ว, {failed} คนไม่สำเร็จ ยังเลือกไว้อยู่ ลองอีกครั้ง",
  "Unfollowed {n} people.": {
   "other": "เลิกติดตาม {n} คนแล้ว"
  },
@@ -2674,7 +2674,7 @@
  },
  "Unfriend Detector": "ตัวตรวจจับการเลิกเป็นเพื่อน",
  "Unfriend Selected": "เลิกเป็นเพื่อนกับที่เลือก",
- "Unfriended {n} · {failed} didn’t work. They’re still selected, try again.": "เลิกเป็นเพื่อนแล้ว {n} · ไม่สำเร็จ {failed} ยังเลือกไว้อยู่ ลองอีกครั้ง",
+ "Unfriended {n}, {failed} didn’t work. They’re still selected, try again.": "เลิกเป็นเพื่อนแล้ว {n}, ไม่สำเร็จ {failed} ยังเลือกไว้อยู่ ลองอีกครั้ง",
  "Unfriended {n} friends.": {
   "other": "เลิกเป็นเพื่อนกับ {n} คนแล้ว"
  },
@@ -2865,8 +2865,8 @@
  "YOU GIVE": "คุณให้",
  "You give {pct}% more RAP": "คุณให้ RAP มากกว่า {pct}%",
  "You give {pct}% more value": "คุณให้มูลค่ามากกว่า {pct}%",
- "You give • {n} items": {
-  "other": "คุณให้ • {n} ไอเทม"
+ "You give, {n} items": {
+  "other": "คุณให้, {n} ไอเทม"
  },
  "You have no inbound trades.": "คุณไม่มีการแลกเปลี่ยนขาเข้า",
  "You have no outbound trades.": "คุณไม่มีการแลกเปลี่ยนขาออก",
@@ -2885,8 +2885,8 @@
   "other": "คุณเล่นที่นี่ประมาณ {n} นาที"
  },
  "You receive": "คุณได้รับ",
- "You receive • {n} items": {
-  "other": "คุณได้รับ • {n} ไอเทม"
+ "You receive, {n} items": {
+  "other": "คุณได้รับ, {n} ไอเทม"
  },
  "You rolled": "คุณสุ่มได้",
  "You sent {n} Robux": "คุณส่ง {n} Robux แล้ว",
@@ -2993,7 +2993,7 @@
  "{n} statuses unavailable": {
   "other": "ไม่มีสถานะ {n} รายการ"
  },
- "{status} · {checked} members checked · {online} online · {matches} matches": "{status} · ตรวจสมาชิกแล้ว {checked} · ออนไลน์ {online} · ตรงกัน {matches}",
+ "{status}, {checked} members checked, {online} online, {matches} matches": "{status}, ตรวจสมาชิกแล้ว {checked}, ออนไลน์ {online}, ตรงกัน {matches}",
  "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. It records what Unfriend Detector notices, so it needs Unfriend Detector on. Remove anyone with the ✕ on their row. Stored only on this device.": "หน้าประวัติเพื่อนที่ roblox.com/friend-history มีสองคอลัมน์: คนที่ถูกเพิ่มเข้ารายชื่อเพื่อนของคุณ และคนที่ไม่อยู่ในรายชื่อแล้ว หน้านี้บันทึกสิ่งที่ตัวตรวจจับการเลิกเป็นเพื่อนพบ จึงต้องเปิดตัวตรวจจับไว้ บันทึกไว้บนอุปกรณ์นี้เท่านั้น ลบใครก็ได้ด้วย ✕ ที่แถวของเขา",
  "Added": "เพิ่มแล้ว",
  "All places": "ทุกสถานที่",
@@ -3018,7 +3018,7 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "ตรวจสมาชิกทุกคน ชุมชนขนาดใหญ่จึงอาจใช้เวลาสักพัก สถานะจะถูกตรวจเมื่อโหลดแต่ละชุด ตัวกรองสถานที่จะตรงกับตำแหน่งที่ Roblox แชร์เท่านั้น",
  "Start a scan to find online members.": "เริ่มสแกนเพื่อค้นหาสมาชิกที่ออนไลน์",
  "Stop Scan": "หยุดสแกน",
- "Stopped · Partial results": "หยุดแล้ว · ผลลัพธ์ไม่ครบ",
+ "Stopped, Partial results": "หยุดแล้ว, ผลลัพธ์ไม่ครบ",
  "{bound} players": "{bound}จำนวนผู้เล่น",
  "{n} playing": {
   "other": "กำลังเล่น {n} คน"

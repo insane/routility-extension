@@ -89,9 +89,9 @@
  "{item} is worth {value}.": "{item} 价值 {value}。",
  "{items} and {last}": "{items}和{last}",
  "{label}: ": "{label}：",
- "{located} of {checked} servers located • {regions}": "已定位 {checked} 个服务器中的 {located} 个 • {regions}",
+ "{located} of {checked} servers located, {regions}": "已定位 {checked} 个服务器中的 {located} 个，{regions}",
  "{missing} of the {total} free Roblox items aren’t in your inventory yet.": "{total} 个 Roblox 免费物品中有 {missing} 个还不在你的物品栏中。",
- "{n} · Buy them in the experience": "{n} · 在体验中购买",
+ "{n}, Buy them in the experience": "{n}，在体验中购买",
  "{n} badges": {
   "other": "{n} 个徽章"
  },
@@ -101,8 +101,8 @@
  "{n} copies": {
   "other": "{n} 份"
  },
- "{n} copies • {serials}": {
-  "other": "{n} 份 • {serials}"
+ "{n} copies, {serials}": {
+  "other": "{n} 份，{serials}"
  },
  "{n} couldn’t be added.": "{n} 个无法添加。",
  "{n} couldn’t be checked.": {
@@ -145,11 +145,11 @@
  "{n} items": {
   "other": "{n} 个物品"
  },
- "{n} items • {worn}/{max} accessories": {
-  "other": "{n} 个物品 • {worn}/{max} 个配饰"
+ "{n} items, {worn}/{max} accessories": {
+  "other": "{n} 个物品，{worn}/{max} 个配饰"
  },
- "{n} items • updated {time}": {
-  "other": "{n} 个物品 • 更新于 {time}"
+ "{n} items, updated {time}": {
+  "other": "{n} 个物品，更新于 {time}"
  },
  "{n} items to buy": {
   "other": "{n} 件待购买物品"
@@ -162,8 +162,8 @@
   "other": "{n} 个限量物品"
  },
  "{n} located": "已定位 {n} 个",
- "{n} matches · {checked} checked": {
-  "other": "{n} 个匹配 · 已检查 {checked} 个"
+ "{n} matches, {checked} checked": {
+  "other": "{n} 个匹配，已检查 {checked} 个"
  },
  "{n} members": {
   "other": "{n} 名成员"
@@ -219,8 +219,8 @@
   "other": "{n} 人已不再是你的好友"
  },
  "{n} Place Visits": "{n} 次访问",
- "{n} purchases · {spent} Robux spent": {
-  "other": "{n} 次购买 · 花费 {spent} Robux"
+ "{n} purchases, {spent} Robux spent": {
+  "other": "{n} 次购买，花费 {spent} Robux"
  },
  "{n} purchases in this experience": {
   "other": "在此体验中购买 {n} 次"
@@ -234,8 +234,8 @@
  "{n} Robux": {
   "other": "{n} Robux"
  },
- "{n} rows · back to {date}": {
-  "other": "{n} 行 · 追溯至 {date}"
+ "{n} rows, back to {date}": {
+  "other": "{n} 行，追溯至 {date}"
  },
  "{n} rows exported": {
   "other": "已导出 {n} 行"
@@ -255,11 +255,11 @@
  "{n} servers": {
   "other": "{n} 个服务器"
  },
- "{n} servers • {players} playing": {
-  "other": "{n} 个服务器 • {players} 人在玩"
+ "{n} servers, {players} playing": {
+  "other": "{n} 个服务器，{players} 人在玩"
  },
- "{n} servers • {regions}": {
-  "other": "{n} 个服务器 • {regions}"
+ "{n} servers, {regions}": {
+  "other": "{n} 个服务器，{regions}"
  },
  "{n} sold": {
   "other": "售出 {n}"
@@ -273,8 +273,8 @@
  "{n} trades with \"{query}\"": {
   "other": "{n} 笔交易包含“{query}”"
  },
- "{n} trades with \"{query}\" • checked {count} trades, loading older ones…": {
-  "other": "{n} 笔交易包含“{query}” • 已检查 {count} 笔交易，正在加载更早的交易…"
+ "{n} trades with \"{query}\", checked {count} trades, loading older ones…": {
+  "other": "{n} 笔交易包含“{query}”，已检查 {count} 笔交易，正在加载更早的交易…"
  },
  "{n} unpriced": {
   "other": "{n} 个未定价"
@@ -294,7 +294,7 @@
  "{n} years ago": {
   "other": "{n} 年前"
  },
- "{n}+ matches · {checked} checked": "{n}+ 个匹配 · 已检查 {checked} 个",
+ "{n}+ matches, {checked} checked": "{n}+ 个匹配，已检查 {checked} 个",
  "{n}d": {
   "other": "{n}天"
  },
@@ -320,7 +320,7 @@
   "other": "{n}年"
  },
  "{name} ({count})": "{name}（{count}）",
- "{name} • {robux} Robux": "{name} • {robux} Robux",
+ "{name}, {robux} Robux": "{name}，{robux} Robux",
  "{name} accessories": "{name}配饰",
  "{name} audit log.csv": "{name} 审核日志.csv",
  "{name} color": "{name}颜色",
@@ -349,26 +349,26 @@
  "{pct} over RAP": "高于 RAP {pct}",
  "{pct} under RAP": "低于 RAP {pct}",
  "{pct}% ({label})": "{pct}%（{label}）",
- "{pct}% liked • {likes} likes, {dislikes} dislikes": "{pct}% 好评 • {likes} 个赞，{dislikes} 个踩",
+ "{pct}% liked, {likes} likes, {dislikes} dislikes": "{pct}% 好评，{likes} 个赞，{dislikes} 个踩",
  "{pct}% of copies": "{pct}% 的份数",
  "{pct}% over RAP": "高于 RAP {pct}%",
  "{pct}% rating": "{pct}% 好评率",
  "{pct}% under RAP": "低于 RAP {pct}%",
  "{percent}% off unlocks {date}": "{date} 解锁 {percent}% 折扣",
- "{place} • {n} servers • {players} playing": {
-  "other": "{place} • {n} 个服务器 • {players} 人在玩"
+ "{place}, {n} servers, {players} playing": {
+  "other": "{place}，{n} 个服务器，{players} 人在玩"
  },
  "{playing} of {max} people max": "{playing}/{max} 人（上限）",
  "{price} a month": "每月 {price}",
  "{price} a week": "每周 {price}",
  "{price} a year": "每年 {price}",
- "{rating} • {n} playing": "{rating} • {n} 人在玩",
+ "{rating}, {n} playing": "{rating}，{n} 人在玩",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} 已不在地区列表中。正在加入任意服务器…",
  "{results} (first 2,000 items)": "{results}（前 2,000 个物品）",
  "{results} (some categories couldn’t load)": "{results}(部分类别无法加载)",
  "{robux} Robux at the DevEx rate": "按 DevEx 汇率计 {robux} Robux",
  "{robux} Robux at your rate ({rate}/1k)": "按你的汇率计 {robux} Robux（{rate}/1k）",
- "{role} · Rank {rank}": "{role} · 等级 {rank}",
+ "{role}, Rank {rank}": "{role}，等级 {rank}",
  "{side}: {items}": "{side}：{items}",
  "{size} studs": "{size} 格",
  "{status} on {parts}": "{parts}：{status}",
@@ -486,7 +486,7 @@
  "Adds, what you’re really after, anything else. Keep it short.": "加码、你真正想要的东西或其他任何东西。请简短。",
  "Adjust Accessories": "调整配饰",
  "Admin": "管理员",
- "Admin · Rank {rank}": "管理员 · 等级 {rank}",
+ "Admin, Rank {rank}": "管理员，等级 {rank}",
  "Admin Badge": "管理员徽章",
  "Admin Tools": "管理工具",
  "Admins": "管理员",
@@ -524,7 +524,7 @@
  "Amount": "金额",
  "Amount (R$)": "金额 (R$)",
  "Amount of Robux": "Robux 数量",
- "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "你拥有的物品页面上的“获得时间”一行，例如 2026 年 10 月 1 日 · 9 天前。",
+ "An Acquired line on item pages for things you own, like Oct 1, 2026, 9 days ago.": "你拥有的物品页面上的“获得时间”一行，例如 2026 年 10 月 1 日，9 天前。",
  "An Adjust Accessories button under your avatar to move, rotate and resize hats and other accessories like in the Roblox app, with a 3D preview you can spin around. Saves to your avatar, within Roblox’s limits.": "虚拟形象下方的“调整配饰”按钮，可以像 Roblox 应用那样移动、旋转帽子和其他配饰并调整大小，还有可旋转查看的 3D 预览。会保存到你的虚拟形象，并遵守 Roblox 的限制。",
  "An Avatar Items row in a game’s Store with clothing and accessories made by the game’s creator.": "在游戏商店中添加“虚拟形象物品”一栏，列出游戏创作者制作的服装和配饰。",
  "An Avatar Type row next to Server Size: whether the game makes everyone R6, R15, or lets players pick. Roblox doesn’t show it on the page.": "在服务器大小旁添加一行“虚拟形象类型”：游戏让所有人用 R6、R15，还是让玩家自己选。Roblox 页面上不显示这一点。",
@@ -542,7 +542,7 @@
  "Archive All Read": "归档全部已读",
  "Archive Every Read Message?": "要归档所有已读消息吗？",
  "Archived {n}": "已归档 {n} 条",
- "Archived {n} · Some Didn’t Work": "已归档 {n} 条 · 部分失败",
+ "Archived {n}, Some Didn’t Work": "已归档 {n} 条，部分失败",
  "Archiving ({archived} done) {done} of {total}": "正在归档（已完成 {archived}）{done}/{total}",
  "Archiving {done} of {total}": "正在归档 {done}/{total}",
  "Arrange Home & Charts": "排列主页和排行榜",
@@ -689,7 +689,7 @@
  "Checking {region}…": "正在检查 {region}…",
  "Checking for new purchases since your last visit…": "正在检查自上次访问以来的新购买…",
  "Checking open servers for {region}…": "正在检查 {region} 的开放服务器…",
- "Checking trades · {done} of {total}": "正在检查交易 · {done}/{total}",
+ "Checking trades, {done} of {total}": "正在检查交易，{done}/{total}",
  "Checking what you already own… {done} of {total}": "正在检查你已拥有的物品… {done}/{total}",
  "Checking where your friends are…": "正在查看你的好友在哪里…",
  "Checking which {region} servers have room right now…": "正在检查哪些 {region} 服务器目前有空位…",
@@ -808,7 +808,7 @@
  "Couldn’t load all your items right now. Open Post again to retry.": "无法加载你的全部物品。重新打开发布即可重试。",
  "Couldn’t load friends right now. Try again in a minute.": "目前无法加载好友，请一分钟后再试。",
  "Couldn’t load items right now. Try again in a minute.": "目前无法加载物品，请一分钟后再试。",
- "Couldn’t Load Messages · Try Again": "无法加载消息 · 重试",
+ "Couldn’t Load Messages, Try Again": "无法加载消息，重试",
  "Couldn’t load owners right now. Try again in a minute.": "目前无法加载拥有者，请一分钟后再试。",
  "Couldn’t load servers for this region.": "无法加载此地区的服务器。",
  "Couldn’t load that file. Chrome didn’t save it, try again.": "无法加载该文件。Chrome 没有保存，请再试一次。",
@@ -916,7 +916,7 @@
  "Delete New Badges Automatically": "自动删除新徽章",
  "Delete Selected": "删除所选",
  "Deleted": "已删除",
- "Deleted {n} · {failed} didn’t work. They’re still selected, try again.": "已删除 {n} 个 · {failed} 个失败，仍保持选中，请再试一次。",
+ "Deleted {n}, {failed} didn’t work. They’re still selected, try again.": "已删除 {n} 个，{failed} 个失败，仍保持选中，请再试一次。",
  "Deleted {n} badges.": {
   "other": "已删除 {n} 个徽章。"
  },
@@ -962,7 +962,7 @@
  "Drag the preview to look around. Hair and waist accessories can’t be adjusted.": "拖动预览即可四处查看。头发和腰部配饰无法调整。",
  "Drag the top left corner of a chat window to make it bigger. Every chat window, the RoUtility Bot included, uses the same size. Double-click the corner to reset.": "拖动聊天窗口的左上角即可放大。每个聊天窗口（包括 RoUtility 机器人）都使用相同的尺寸。双击角落即可重置。",
  "Drag to move": "拖动以移动",
- "Drag to resize · Double-click to reset": "拖动以调整大小 · 双击重置",
+ "Drag to resize, Double-click to reset": "拖动以调整大小，双击重置",
  "Drag to turn your avatar. Scroll to zoom in or out.": "拖动可旋转你的虚拟形象，滚动可放大或缩小。",
  "Dress Skirt": "连衣裙",
  "Dynamic": "动感",
@@ -1050,7 +1050,7 @@
  "Export CSV": "导出 CSV",
  "Export to CSV": "导出为 CSV",
  "Exported {n}": "已导出 {n} 条",
- "Exported {n} · Rest Didn’t Load": "已导出 {n} 条 · 其余未加载",
+ "Exported {n}, Rest Didn’t Load": "已导出 {n} 条，其余未加载",
  "Exporting {n}": "正在导出 {n}",
  "Extra details on your Roblox Settings pages: your devices, backup codes and voice chat.": "Roblox 设置页面上的更多详情：你的设备、备用代码和语音聊天。",
  "Extra Requests": "额外请求",
@@ -1098,7 +1098,7 @@
  },
  "Finding an open server…": "正在查找开放的服务器…",
  "Finding Items": "正在查找物品",
- "Finding read messages · {archived} archived ({page})": "正在查找已读消息 · 已归档 {archived}（{page}）",
+ "Finding read messages, {archived} archived ({page})": "正在查找已读消息，已归档 {archived}（{page}）",
  "Finding read messages ({page})": "正在查找已读消息（{page}）",
  "Finding the closest server to you ({region})…": "正在查找离你最近的服务器（{region}）…",
  "Finding Things": "查找",
@@ -1133,7 +1133,7 @@
  "Forum navigation": "论坛导航",
  "Forum Posts": "论坛帖子",
  "Forum Search": "论坛搜索",
- "Founder · Rank {rank}": "创始人 · 等级 {rank}",
+ "Founder, Rank {rank}": "创始人，等级 {rank}",
  "Free": "免费",
  "Free Items": "免费物品",
  "Freebie": "白送",
@@ -1158,7 +1158,7 @@
  "Friends Playing, layout, random experience": "好友在玩、布局、随机体验",
  "Friends Since": "成为好友时间",
  "Friends since {date}": "自 {date} 起成为好友",
- "Friends since {date} • {age}": "好友始于 {date} • {age}",
+ "Friends since {date}, {age}": "好友始于 {date}，{age}",
  "Friends Who Own It": "拥有此物品的好友",
  "Friends whose name contains what you type, shown first.": "名字包含你所输入内容的好友，会优先显示。",
  "Friends you have in common, next to the friend counts on profiles. Click it for the list.": "在个人资料的好友数旁边，显示你们的共同好友。点击可查看列表。",
@@ -1253,7 +1253,7 @@
  "How far each reseller listing is under or over RAP.": "每个转售挂单比 RAP 低或高多少。",
  "How it will roughly look. Save to get Roblox’s real thumbnail.": "大致的样子。保存后即可获得 Roblox 的真实缩略图。",
  "How long ago each trade was sent on the trade list. Hover it for the exact time and when it expires.": "在交易列表上显示每笔交易发出了多久。将鼠标悬停在上面可查看确切时间和到期时间。",
- "How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.": "在创作者旁边显示每个物品已在某人物品栏中存在多久，例如“作者：Roblox · 3年”。将鼠标悬停在上面可查看确切日期。",
+ "How long each item has been in anyone’s inventory, next to its creator, like By Roblox, 3y. Hover it for the exact date.": "在创作者旁边显示每个物品已在某人物品栏中存在多久，例如“作者：Roblox，3年”。将鼠标悬停在上面可查看确切日期。",
  "How Long They’ve Owned It": "他们拥有了多久",
  "How many": "数量",
  "How many communities you’re in out of how many you can join, under Communities in the side list.": "在侧边列表的社群下方显示你已加入的社群数量和可加入的上限。",
@@ -1290,7 +1290,7 @@
  "Ignore": "忽略",
  "Ignore {n}?": "要忽略 {n} 个吗？",
  "Ignore Matches": "忽略匹配项",
- "Ignored {n} · {failed} didn’t work, try again": "已忽略 {n} 个 · {failed} 个失败，请再试一次",
+ "Ignored {n}, {failed} didn’t work, try again": "已忽略 {n} 个，{failed} 个失败，请再试一次",
  "Ignored {n} requests": {
   "other": "已忽略 {n} 个请求"
  },
@@ -1332,7 +1332,7 @@
  "In game": "在游戏中",
  "In Order": "按顺序",
  "In Studio": "在 Studio 中",
- "In Studio • {game}": "在 Studio 中 • {game}",
+ "In Studio, {game}": "在 Studio 中，{game}",
  "in under a minute": "不到一分钟",
  "In-Experience Purchases": "体验内购买",
  "Inappropriate": "不当内容",
@@ -1388,7 +1388,7 @@
  "Join their server": "加入对方的服务器",
  "Joined": "注册时间",
  "Joined {date}": "加入于 {date}",
- "Joined {date} • {age}": "注册于 {date} • {age}",
+ "Joined {date}, {age}": "注册于 {date}，{age}",
  "Joined Date": "加入日期",
  "Joined in {year}": "{year} 年加入",
  "Joined Roblox": "加入 Roblox",
@@ -1430,7 +1430,7 @@
  },
  "Leave Selected": "退出所选",
  "Leaving {done} of {total}": "正在退出 {done}/{total}",
- "Left {n} · {failed} didn’t work. They’re still selected, try again.": "已退出 {n} 个 · {failed} 个失败。它们仍处于选中状态，请重试。",
+ "Left {n}, {failed} didn’t work. They’re still selected, try again.": "已退出 {n} 个，{failed} 个失败。它们仍处于选中状态，请重试。",
  "Left {n} communities.": {
   "other": "已退出 {n} 个社群。"
  },
@@ -1477,7 +1477,7 @@
  "Look {n}": "造型 {n}",
  "Look Name": "造型名称",
  "Looking For": "正在寻找",
- "Looking for \"{query}\" • checked {count} trades, loading older ones…": "正在查找“{query}” • 已检查 {count} 笔交易，正在加载更早的交易…",
+ "Looking for \"{query}\", checked {count} trades, loading older ones…": "正在查找“{query}”，已检查 {count} 笔交易，正在加载更早的交易…",
  "Looking through the Marketplace…": "正在浏览商城…",
  "Looking through the Marketplace… {n} free items so far": {
   "other": "正在浏览商城… 目前找到 {n} 个免费物品"
@@ -1792,7 +1792,7 @@
  "Owned": "已拥有",
  "Owned {time}": "{time}入手",
  "Owned since {date}": "自 {date} 起拥有",
- "Owned since {date} · first bought {first}": "自 {date} 起拥有 · 首次购买于 {first}",
+ "Owned since {date}, first bought {first}": "自 {date} 起拥有，首次购买于 {first}",
  "Owner": "拥有者",
  "Owners": "拥有者",
  "Owners List": "拥有者列表",
@@ -1958,7 +1958,7 @@
  "Quick Settings Style": "快捷设置样式",
  "Quick Setup": "快速设置",
  "Quick Sign In": "快速登录",
- "R$ {price} · {copies} copies": "R$ {price} · {copies} 份",
+ "R$ {price}, {copies} copies": "R$ {price}，{copies} 份",
  "R$ {price} (your alert: R$ {target})": "R$ {price}（你的提醒：R$ {target}）",
  "R6 / R15 Switch": "R6 / R15 切换",
  "R6 characters have limitations…": "R6 角色有一些限制…",
@@ -2072,7 +2072,7 @@
  "Roblox asked RoUtility to slow down, carrying on in a moment. {n} purchases so far, back to {date}.": {
   "other": "Roblox 要求 RoUtility 放慢速度，稍后继续。目前 {n} 次购买，追溯至 {date}。"
  },
- "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox 要求放慢速度 · 已检查 {done}/{total}，{s} 秒后继续",
+ "Roblox asked us to slow down, {done} of {total} checked, going again in {s}s": "Roblox 要求放慢速度，已检查 {done}/{total}，{s} 秒后继续",
  "Roblox Badges": "Roblox 徽章",
  "Roblox couldn’t send it. Check your balance before you try again.": "Roblox 未能发送。请先检查余额再重试。",
  "Roblox default": "Roblox 默认",
@@ -2445,7 +2445,7 @@
  "Teleports players": "传送玩家",
  "Tell us what’s wrong": "告诉我们哪里有问题",
  "Terminated": "已封禁",
- "Terminated · @{name}": "已封禁 · @{name}",
+ "Terminated, @{name}": "已封禁，@{name}",
  "Terminated Players": "已封禁的玩家",
  "Terrible": "极低",
  "Test Notification": "测试通知",
@@ -2550,7 +2550,7 @@
  "Thread": "主题",
  "Thread not available": "主题不可用",
  "Threads": "主题",
- "tick • tick • tick • chime": "嘀 • 嘀 • 嘀 • 叮",
+ "tick, tick, tick, chime": "嘀，嘀，嘀，叮",
  "Tile Menu": "方块菜单",
  "Tiles": "卡片",
  "Timed Out, Try Again": "已超时，重试",
@@ -2662,7 +2662,7 @@
   "other": "取消关注 {n} 人?"
  },
  "Unfollow Selected": "取消关注所选",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "已取消关注 {n} 人 · {failed} 人失败。他们仍处于选中状态，请重试。",
+ "Unfollowed {n}, {failed} didn’t work. They’re still selected, try again.": "已取消关注 {n} 人，{failed} 人失败。他们仍处于选中状态，请重试。",
  "Unfollowed {n} people.": {
   "other": "已取消关注 {n} 人。"
  },
@@ -2674,7 +2674,7 @@
  },
  "Unfriend Detector": "删好友检测",
  "Unfriend Selected": "删除所选好友",
- "Unfriended {n} · {failed} didn’t work. They’re still selected, try again.": "已删除 {n} 位好友 · {failed} 位失败。他们仍处于选中状态，请重试。",
+ "Unfriended {n}, {failed} didn’t work. They’re still selected, try again.": "已删除 {n} 位好友，{failed} 位失败。他们仍处于选中状态，请重试。",
  "Unfriended {n} friends.": {
   "other": "已删除 {n} 位好友。"
  },
@@ -2865,8 +2865,8 @@
  "YOU GIVE": "你付出",
  "You give {pct}% more RAP": "你多付出 {pct}% 的 RAP",
  "You give {pct}% more value": "你多付出 {pct}% 的价值",
- "You give • {n} items": {
-  "other": "你付出 • {n} 个物品"
+ "You give, {n} items": {
+  "other": "你付出，{n} 个物品"
  },
  "You have no inbound trades.": "你没有收到的交易。",
  "You have no outbound trades.": "你没有发出的交易。",
@@ -2885,8 +2885,8 @@
   "other": "你在这里玩了大约 {n} 分钟"
  },
  "You receive": "你收到",
- "You receive • {n} items": {
-  "other": "你收到 • {n} 个物品"
+ "You receive, {n} items": {
+  "other": "你收到，{n} 个物品"
  },
  "You rolled": "你抽到了",
  "You sent {n} Robux": "你已发送 {n} Robux",
@@ -2993,7 +2993,7 @@
  "{n} statuses unavailable": {
   "other": "{n} 个状态无法获取"
  },
- "{status} · {checked} members checked · {online} online · {matches} matches": "{status} · 已检查 {checked} 名成员 · {online} 人在线 · {matches} 人符合",
+ "{status}, {checked} members checked, {online} online, {matches} matches": "{status}，已检查 {checked} 名成员，{online} 人在线，{matches} 人符合",
  "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. It records what Unfriend Detector notices, so it needs Unfriend Detector on. Remove anyone with the ✕ on their row. Stored only on this device.": "在 roblox.com/friend-history 添加“好友记录”页面，分两列显示：被加入你好友列表的人，以及已不在列表中的人。它记录删好友检测发现的变化，所以需要开启删好友检测。仅保存在此设备上。点击某一行的 ✕ 即可删除该记录。",
  "Added": "已添加",
  "All places": "所有地点",
@@ -3018,7 +3018,7 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "会检查每位成员，所以大型社群可能需要一段时间。每批加载时都会检查状态。地点筛选只能匹配 Roblox 分享的位置。",
  "Start a scan to find online members.": "开始扫描以查找在线成员。",
  "Stop Scan": "停止扫描",
- "Stopped · Partial results": "已停止 · 结果不完整",
+ "Stopped, Partial results": "已停止，结果不完整",
  "{bound} players": "{bound}玩家数",
  "{n} playing": {
   "other": "{n} 人在玩"

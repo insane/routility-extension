@@ -213,7 +213,7 @@
       a.href = 'https://www.roblox.com/friend-history';
       a.removeAttribute('id');
       a.classList.remove('bg-shift-200');
-      a.querySelectorAll('.foundation-web-badge').forEach(b => badgeBox(b, a).remove());
+      a.querySelectorAll('.foundation-web-badge, .foundation-web-status-indicator').forEach(b => badgeBox(b, a).remove());
       const icon = a.querySelector('.icon');
       if (icon) icon.className = 'grow-0 shrink-0 basis-auto icon routility-fh-nav-icon size-[var(--icon-size-large)]';
       const label = a.querySelector(':scope > .text-truncate-end') || [...a.querySelectorAll('span')].find(sp => !sp.children.length && sp.textContent.trim());
@@ -247,7 +247,7 @@
   }
 
   function badgeText(b, n) {
-    let t = b.matches('.foundation-web-badge, .notification-blue') ? b : b.querySelector('.foundation-web-badge, .notification-blue') || b;
+    let t = b.matches('.foundation-web-badge, .foundation-web-status-indicator, .notification-blue') ? b : b.querySelector('.foundation-web-badge, .foundation-web-status-indicator, .notification-blue') || b;
     while (t.firstElementChild) t = t.firstElementChild;
     const text = n > 99 ? '99+' : formatNumber(n);
     if (t.textContent !== text) t.textContent = text;
@@ -284,7 +284,7 @@
       }
       if (!b) {
         if (a === modern) {
-          const tpl = document.querySelector('.left-nav nav li:not(.routility-fh-nav) > a .foundation-web-badge');
+          const tpl = document.querySelector('.left-nav nav li:not(.routility-fh-nav):not(.routility-injected) > a :is(.foundation-web-status-indicator, .foundation-web-badge)');
           b = tpl ? cleanClone(badgeBox(tpl, tpl.closest('a'))) : el('span', 'routility-fh-badge routility-fh-badge-own foundation-web-badge inline-flex items-center radius-circle height-600 padding-x-small bg-system-alert content-inverse-emphasis text-label-small');
         } else {
           const tpl = document.querySelector('ul.left-col-list > li:not([data-rt-nav]) > a .notification-blue');

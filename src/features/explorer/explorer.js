@@ -218,7 +218,7 @@
     } else if (p.kind === 'udim2') {
       box.textContent = `{${p.value[0]}, ${p.value[1]}}, {${p.value[2]}, ${p.value[3]}}`;
     } else if (p.kind === 'cframe') {
-      box.textContent = `${p.pos.join(', ')}  ·  ${p.rot.map(x => x + '°').join(', ')}`;
+      box.textContent = `${p.pos.join(', ')}  /  ${p.rot.map(x => x + '°').join(', ')}`;
       box.dataset.rtTip = lt('Position, then orientation');
     } else if (p.kind === 'color') {
       const rgb = p.value.map(x => Math.round(Math.max(0, Math.min(1, x)) * 255));
@@ -236,7 +236,7 @@
       box.textContent = ltn(p.count, '{n} keypoint', '{n} keypoints');
       box.classList.add('content-muted');
     } else {
-      box.textContent = '—';
+      box.textContent = '-';
       box.classList.add('content-muted');
     }
     return box;
@@ -497,7 +497,7 @@
     if (scan.high) parts.push(ltn(scan.high, '{count} High Risk', '{count} High Risk', { count: scan.high.toLocaleString() }));
     if (scan.medium) parts.push(ltn(scan.medium, '{count} to Review', '{count} to Review', { count: scan.medium.toLocaleString() }));
     if (!scan.high && !scan.medium) parts.push(lt('Looks Clean'));
-    return parts.join(' · ');
+    return parts.join(', ');
   }
 
   const assets = new Map();

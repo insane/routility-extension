@@ -140,9 +140,9 @@
  "{item} is worth {value}.": "{item} стоит {value}.",
  "{items} and {last}": "{items} и {last}",
  "{label}: ": "{label}:",
- "{located} of {checked} servers located • {regions}": "Найдено {located} из {checked} серверов • {regions}",
+ "{located} of {checked} servers located, {regions}": "Найдено {located} из {checked} серверов, {regions}",
  "{missing} of the {total} free Roblox items aren’t in your inventory yet.": "{missing} из {total} бесплатных предметов Roblox ещё нет в твоём инвентаре.",
- "{n} · Buy them in the experience": "{n} · Купи их в экспириенсе",
+ "{n}, Buy them in the experience": "{n}, Купи их в экспириенсе",
  "{n} badges": {
   "one": "{n} значок",
   "few": "{n} значка",
@@ -161,11 +161,11 @@
   "many": "{n} копий",
   "other": "{n} копии"
  },
- "{n} copies • {serials}": {
-  "one": "{n} копия • {serials}",
-  "few": "{n} копии • {serials}",
-  "many": "{n} копий • {serials}",
-  "other": "{n} копии • {serials}"
+ "{n} copies, {serials}": {
+  "one": "{n} копия, {serials}",
+  "few": "{n} копии, {serials}",
+  "many": "{n} копий, {serials}",
+  "other": "{n} копии, {serials}"
  },
  "{n} couldn’t be added.": "Не удалось добавить: {n}.",
  "{n} couldn’t be checked.": {
@@ -244,17 +244,17 @@
   "many": "{n} предметов",
   "other": "{n} предмета"
  },
- "{n} items • {worn}/{max} accessories": {
-  "one": "{n} предмет • {worn}/{max} аксессуаров",
-  "few": "{n} предмета • {worn}/{max} аксессуаров",
-  "many": "{n} предметов • {worn}/{max} аксессуаров",
-  "other": "{n} предмета • {worn}/{max} аксессуаров"
+ "{n} items, {worn}/{max} accessories": {
+  "one": "{n} предмет, {worn}/{max} аксессуаров",
+  "few": "{n} предмета, {worn}/{max} аксессуаров",
+  "many": "{n} предметов, {worn}/{max} аксессуаров",
+  "other": "{n} предмета, {worn}/{max} аксессуаров"
  },
- "{n} items • updated {time}": {
-  "one": "{n} предмет • обновлено {time}",
-  "few": "{n} предмета • обновлено {time}",
-  "many": "{n} предметов • обновлено {time}",
-  "other": "{n} предмета • обновлено {time}"
+ "{n} items, updated {time}": {
+  "one": "{n} предмет, обновлено {time}",
+  "few": "{n} предмета, обновлено {time}",
+  "many": "{n} предметов, обновлено {time}",
+  "other": "{n} предмета, обновлено {time}"
  },
  "{n} items to buy": {
   "one": "{n} предмет к покупке",
@@ -276,11 +276,11 @@
   "other": "{n} лимитеда"
  },
  "{n} located": "найдено: {n}",
- "{n} matches · {checked} checked": {
-  "one": "{n} совпадение · проверено {checked}",
-  "few": "{n} совпадения · проверено {checked}",
-  "many": "{n} совпадений · проверено {checked}",
-  "other": "{n} совпадения · проверено {checked}"
+ "{n} matches, {checked} checked": {
+  "one": "{n} совпадение, проверено {checked}",
+  "few": "{n} совпадения, проверено {checked}",
+  "many": "{n} совпадений, проверено {checked}",
+  "other": "{n} совпадения, проверено {checked}"
  },
  "{n} members": {
   "one": "{n} участник",
@@ -384,11 +384,11 @@
   "other": "{n} человека больше не твои друзья"
  },
  "{n} Place Visits": "Посещения: {n}",
- "{n} purchases · {spent} Robux spent": {
-  "one": "{n} покупка · потрачено {spent} Robux",
-  "few": "{n} покупки · потрачено {spent} Robux",
-  "many": "{n} покупок · потрачено {spent} Robux",
-  "other": "{n} покупки · потрачено {spent} Robux"
+ "{n} purchases, {spent} Robux spent": {
+  "one": "{n} покупка, потрачено {spent} Robux",
+  "few": "{n} покупки, потрачено {spent} Robux",
+  "many": "{n} покупок, потрачено {spent} Robux",
+  "other": "{n} покупки, потрачено {spent} Robux"
  },
  "{n} purchases in this experience": {
   "one": "{n} покупка в этом экспириенсе",
@@ -414,11 +414,11 @@
   "many": "{n} Robux",
   "other": "{n} Robux"
  },
- "{n} rows · back to {date}": {
-  "one": "{n} строка · до {date}",
-  "few": "{n} строки · до {date}",
-  "many": "{n} строк · до {date}",
-  "other": "{n} строки · до {date}"
+ "{n} rows, back to {date}": {
+  "one": "{n} строка, до {date}",
+  "few": "{n} строки, до {date}",
+  "many": "{n} строк, до {date}",
+  "other": "{n} строки, до {date}"
  },
  "{n} rows exported": {
   "one": "Экспортирована {n} строка",
@@ -453,17 +453,17 @@
   "many": "{n} серверов",
   "other": "{n} сервера"
  },
- "{n} servers • {players} playing": {
-  "one": "{n} сервер • {players} играют",
-  "few": "{n} сервера • {players} играют",
-  "many": "{n} серверов • {players} играют",
-  "other": "{n} сервера • {players} играют"
+ "{n} servers, {players} playing": {
+  "one": "{n} сервер, {players} играют",
+  "few": "{n} сервера, {players} играют",
+  "many": "{n} серверов, {players} играют",
+  "other": "{n} сервера, {players} играют"
  },
- "{n} servers • {regions}": {
-  "one": "{n} сервер • {regions}",
-  "few": "{n} сервера • {regions}",
-  "many": "{n} серверов • {regions}",
-  "other": "{n} сервера • {regions}"
+ "{n} servers, {regions}": {
+  "one": "{n} сервер, {regions}",
+  "few": "{n} сервера, {regions}",
+  "many": "{n} серверов, {regions}",
+  "other": "{n} сервера, {regions}"
  },
  "{n} sold": {
   "one": "{n} продажа",
@@ -489,11 +489,11 @@
   "many": "{n} обменов с «{query}»",
   "other": "{n} обмена с «{query}»"
  },
- "{n} trades with \"{query}\" • checked {count} trades, loading older ones…": {
-  "one": "{n} обмен с «{query}» • проверено обменов: {count}, загружаю старые…",
-  "few": "{n} обмена с «{query}» • проверено обменов: {count}, загружаю старые…",
-  "many": "{n} обменов с «{query}» • проверено обменов: {count}, загружаю старые…",
-  "other": "{n} обмена с «{query}» • проверено обменов: {count}, загружаю старые…"
+ "{n} trades with \"{query}\", checked {count} trades, loading older ones…": {
+  "one": "{n} обмен с «{query}», проверено обменов: {count}, загружаю старые…",
+  "few": "{n} обмена с «{query}», проверено обменов: {count}, загружаю старые…",
+  "many": "{n} обменов с «{query}», проверено обменов: {count}, загружаю старые…",
+  "other": "{n} обмена с «{query}», проверено обменов: {count}, загружаю старые…"
  },
  "{n} unpriced": {
   "one": "без цены: {n}",
@@ -531,7 +531,7 @@
   "many": "{n} лет назад",
   "other": "{n} года назад"
  },
- "{n}+ matches · {checked} checked": "{n}+ совпадений · проверено {checked}",
+ "{n}+ matches, {checked} checked": "{n}+ совпадений, проверено {checked}",
  "{n}d": {
   "one": "{n} д",
   "few": "{n} д",
@@ -581,7 +581,7 @@
   "other": "{n} г."
  },
  "{name} ({count})": "{name} ({count})",
- "{name} • {robux} Robux": "{name} • {robux} Robux",
+ "{name}, {robux} Robux": "{name}, {robux} Robux",
  "{name} accessories": "Аксессуары: {name}",
  "{name} audit log.csv": "{name} журнал аудита.csv",
  "{name} color": "Цвет: {name}",
@@ -610,29 +610,29 @@
  "{pct} over RAP": "{pct} выше RAP",
  "{pct} under RAP": "{pct} ниже RAP",
  "{pct}% ({label})": "{pct}% ({label})",
- "{pct}% liked • {likes} likes, {dislikes} dislikes": "{pct}% лайков • {likes} лайков, {dislikes} дизлайков",
+ "{pct}% liked, {likes} likes, {dislikes} dislikes": "{pct}% лайков, {likes} лайков, {dislikes} дизлайков",
  "{pct}% of copies": "{pct}% копий",
  "{pct}% over RAP": "{pct}% выше RAP",
  "{pct}% rating": "Рейтинг {pct}%",
  "{pct}% under RAP": "{pct}% ниже RAP",
  "{percent}% off unlocks {date}": "Скидка {percent}% с {date}",
- "{place} • {n} servers • {players} playing": {
-  "one": "{place} • {n} сервер • {players} играют",
-  "few": "{place} • {n} сервера • {players} играют",
-  "many": "{place} • {n} серверов • {players} играют",
-  "other": "{place} • {n} сервера • {players} играют"
+ "{place}, {n} servers, {players} playing": {
+  "one": "{place}, {n} сервер, {players} играют",
+  "few": "{place}, {n} сервера, {players} играют",
+  "many": "{place}, {n} серверов, {players} играют",
+  "other": "{place}, {n} сервера, {players} играют"
  },
  "{playing} of {max} people max": "{playing} из {max} человек макс.",
  "{price} a month": "{price} в месяц",
  "{price} a week": "{price} в неделю",
  "{price} a year": "{price} в год",
- "{rating} • {n} playing": "{rating} • {n} играют",
+ "{rating}, {n} playing": "{rating}, {n} играют",
  "{region} isn’t in the region list anymore. Joining any server…": "Региона {region} больше нет в списке. Подключаю к любому серверу…",
  "{results} (first 2,000 items)": "{results} (первые 2000 предметов)",
  "{results} (some categories couldn’t load)": "{results} (некоторые категории не загрузились)",
  "{robux} Robux at the DevEx rate": "{robux} Robux по курсу DevEx",
  "{robux} Robux at your rate ({rate}/1k)": "{robux} Robux по твоему курсу ({rate}/1k)",
- "{role} · Rank {rank}": "{role} · Ранг {rank}",
+ "{role}, Rank {rank}": "{role}, Ранг {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} стадов",
  "{status} on {parts}": "{status}: {parts}",
@@ -750,7 +750,7 @@
  "Adds, what you’re really after, anything else. Keep it short.": "Добавки, что тебе на самом деле нужно, что угодно ещё. Коротко.",
  "Adjust Accessories": "Настроить аксессуары",
  "Admin": "Админ",
- "Admin · Rank {rank}": "Админ · Ранг {rank}",
+ "Admin, Rank {rank}": "Админ, Ранг {rank}",
  "Admin Badge": "Значок админа",
  "Admin Tools": "Инструменты админа",
  "Admins": "Админы",
@@ -791,7 +791,7 @@
  "Amount": "Сумма",
  "Amount (R$)": "Сумма (R$)",
  "Amount of Robux": "Сумма Robux",
- "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "Строка «Получено» на страницах предметов, которые у тебя есть, например 1 окт. 2026 · 9 дней назад.",
+ "An Acquired line on item pages for things you own, like Oct 1, 2026, 9 days ago.": "Строка «Получено» на страницах предметов, которые у тебя есть, например 1 окт. 2026, 9 дней назад.",
  "An Adjust Accessories button under your avatar to move, rotate and resize hats and other accessories like in the Roblox app, with a 3D preview you can spin around. Saves to your avatar, within Roblox’s limits.": "Кнопка «Настроить аксессуары» под аватаром: двигай, вращай и меняй размер шляп и других аксессуаров, как в приложении Roblox, с 3D-превью, которое можно крутить. Сохраняется на аватар в пределах ограничений Roblox.",
  "An Avatar Items row in a game’s Store with clothing and accessories made by the game’s creator.": "Ряд «Предметы аватара» в Магазине игры с одеждой и аксессуарами от создателя игры.",
  "An Avatar Type row next to Server Size: whether the game makes everyone R6, R15, or lets players pick. Roblox doesn’t show it on the page.": "Строка «Тип аватара» рядом с размером сервера: делает ли игра всех R6, R15 или даёт выбрать. Roblox не показывает это на странице.",
@@ -809,7 +809,7 @@
  "Archive All Read": "Архивировать прочитанные",
  "Archive Every Read Message?": "Архивировать все прочитанные сообщения?",
  "Archived {n}": "Архивировано: {n}",
- "Archived {n} · Some Didn’t Work": "Архивировано: {n} · Некоторые не удалось",
+ "Archived {n}, Some Didn’t Work": "Архивировано: {n}, Некоторые не удалось",
  "Archiving ({archived} done) {done} of {total}": "Архивирование (готово {archived}) {done} из {total}",
  "Archiving {done} of {total}": "Архивирование {done} из {total}",
  "Arrange Home & Charts": "Порядок на Главной и в Чартах",
@@ -968,7 +968,7 @@
  "Checking {region}…": "Проверяю {region}…",
  "Checking for new purchases since your last visit…": "Проверяю новые покупки с твоего прошлого визита…",
  "Checking open servers for {region}…": "Проверяю открытые серверы в {region}…",
- "Checking trades · {done} of {total}": "Проверка обменов · {done} из {total}",
+ "Checking trades, {done} of {total}": "Проверка обменов, {done} из {total}",
  "Checking what you already own… {done} of {total}": "Проверяю, что у тебя уже есть… {done} из {total}",
  "Checking where your friends are…": "Проверяю, где твои друзья…",
  "Checking which {region} servers have room right now…": "Проверяю, на каких серверах в {region} сейчас есть места…",
@@ -1099,7 +1099,7 @@
  "Couldn’t load all your items right now. Open Post again to retry.": "Не удалось загрузить все твои предметы. Открой «Опубликовать» ещё раз, чтобы повторить.",
  "Couldn’t load friends right now. Try again in a minute.": "Сейчас не удалось загрузить друзей. Попробуй через минуту.",
  "Couldn’t load items right now. Try again in a minute.": "Сейчас не удалось загрузить предметы. Попробуй через минуту.",
- "Couldn’t Load Messages · Try Again": "Сообщения Не Загрузились · Ещё Раз",
+ "Couldn’t Load Messages, Try Again": "Сообщения Не Загрузились, Ещё Раз",
  "Couldn’t load owners right now. Try again in a minute.": "Сейчас не удалось загрузить владельцев. Попробуй через минуту.",
  "Couldn’t load servers for this region.": "Не удалось загрузить серверы этого региона.",
  "Couldn’t load that file. Chrome didn’t save it, try again.": "Не удалось загрузить файл. Chrome его не сохранил, попробуй ещё раз.",
@@ -1222,7 +1222,7 @@
  "Delete New Badges Automatically": "Удалять Новые Значки Автоматически",
  "Delete Selected": "Удалить Выбранные",
  "Deleted": "Удалено",
- "Deleted {n} · {failed} didn’t work. They’re still selected, try again.": "Удалено {n} · {failed} не получилось. Они остались выбранными, попробуй ещё раз.",
+ "Deleted {n}, {failed} didn’t work. They’re still selected, try again.": "Удалено {n}, {failed} не получилось. Они остались выбранными, попробуй ещё раз.",
  "Deleted {n} badges.": {
   "one": "Удалён {n} значок.",
   "few": "Удалено {n} значка.",
@@ -1271,7 +1271,7 @@
  "Drag the preview to look around. Hair and waist accessories can’t be adjusted.": "Перетаскивай превью, чтобы осмотреться. Аксессуары для волос и пояса настроить нельзя.",
  "Drag the top left corner of a chat window to make it bigger. Every chat window, the RoUtility Bot included, uses the same size. Double-click the corner to reset.": "Тяни за левый верхний угол окна чата, чтобы увеличить его. Все окна чата, включая бота RoUtility, используют один размер. Дважды щёлкни по углу, чтобы сбросить.",
  "Drag to move": "Перетащи, чтобы переместить",
- "Drag to resize · Double-click to reset": "Тяни, чтобы изменить размер · Двойной щелчок — сброс",
+ "Drag to resize, Double-click to reset": "Тяни, чтобы изменить размер, Двойной щелчок — сброс",
  "Drag to turn your avatar. Scroll to zoom in or out.": "Перетаскивай, чтобы вращать аватар. Прокручивай, чтобы приблизить или отдалить.",
  "Dress Skirt": "Юбка платья",
  "Dynamic": "Динамичные",
@@ -1368,7 +1368,7 @@
  "Export CSV": "Экспорт CSV",
  "Export to CSV": "Экспорт в CSV",
  "Exported {n}": "Экспортировано {n}",
- "Exported {n} · Rest Didn’t Load": "Экспортировано {n} · Остальное Не Загрузилось",
+ "Exported {n}, Rest Didn’t Load": "Экспортировано {n}, Остальное Не Загрузилось",
  "Exporting {n}": "Экспорт {n}",
  "Extra details on your Roblox Settings pages: your devices, backup codes and voice chat.": "Дополнительные сведения на страницах настроек Roblox: твои устройства, резервные коды и голосовой чат.",
  "Extra Requests": "Дополнительные заявки",
@@ -1419,7 +1419,7 @@
  },
  "Finding an open server…": "Ищу открытый сервер…",
  "Finding Items": "Поиск предметов",
- "Finding read messages · {archived} archived ({page})": "Ищу прочитанные сообщения · архивировано {archived} ({page})",
+ "Finding read messages, {archived} archived ({page})": "Ищу прочитанные сообщения, архивировано {archived} ({page})",
  "Finding read messages ({page})": "Ищу прочитанные сообщения ({page})",
  "Finding the closest server to you ({region})…": "Ищу ближайший к тебе сервер ({region})…",
  "Finding Things": "Поиск",
@@ -1457,7 +1457,7 @@
  "Forum navigation": "Навигация по форуму",
  "Forum Posts": "Посты на форуме",
  "Forum Search": "Поиск по форуму",
- "Founder · Rank {rank}": "Основатель · Ранг {rank}",
+ "Founder, Rank {rank}": "Основатель, Ранг {rank}",
  "Free": "Бесплатно",
  "Free Items": "Бесплатные предметы",
  "Freebie": "Халява",
@@ -1482,7 +1482,7 @@
  "Friends Playing, layout, random experience": "Друзья играют, вид, случайный экспириенс",
  "Friends Since": "Друзья с",
  "Friends since {date}": "Друзья с {date}",
- "Friends since {date} • {age}": "Друзья с {date} • {age}",
+ "Friends since {date}, {age}": "Друзья с {date}, {age}",
  "Friends Who Own It": "Друзья, у которых это есть",
  "Friends whose name contains what you type, shown first.": "Друзья, чьё имя содержит введённое, показываются первыми.",
  "Friends you have in common, next to the friend counts on profiles. Click it for the list.": "Общие друзья рядом с числом друзей в профилях. Нажми, чтобы увидеть список.",
@@ -1580,7 +1580,7 @@
  "How far each reseller listing is under or over RAP.": "Насколько каждое предложение перепродавца ниже или выше RAP.",
  "How it will roughly look. Save to get Roblox’s real thumbnail.": "Примерно так это будет выглядеть. Сохрани, чтобы получить настоящую миниатюру Roblox.",
  "How long ago each trade was sent on the trade list. Hover it for the exact time and when it expires.": "Как давно отправлен каждый обмен в списке обменов. Наведи, чтобы увидеть точное время и когда он истекает.",
- "How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.": "Сколько каждый предмет пробыл в чьём-либо инвентаре, рядом с создателем, например От Roblox · 3 г. Наведи, чтобы увидеть точную дату.",
+ "How long each item has been in anyone’s inventory, next to its creator, like By Roblox, 3y. Hover it for the exact date.": "Сколько каждый предмет пробыл в чьём-либо инвентаре, рядом с создателем, например От Roblox, 3 г. Наведи, чтобы увидеть точную дату.",
  "How Long They’ve Owned It": "Как долго он у них",
  "How many": "Сколько",
  "How many communities you’re in out of how many you can join, under Communities in the side list.": "В скольких сообществах ты состоишь из максимально возможных, под «Сообщества» в боковом списке.",
@@ -1617,7 +1617,7 @@
  "Ignore": "Игнорировать",
  "Ignore {n}?": "Игнорировать {n}?",
  "Ignore Matches": "Игнорировать совпадения",
- "Ignored {n} · {failed} didn’t work, try again": "Отклонено {n} · {failed} не получилось, попробуй ещё раз",
+ "Ignored {n}, {failed} didn’t work, try again": "Отклонено {n}, {failed} не получилось, попробуй ещё раз",
  "Ignored {n} requests": {
   "one": "Отклонён {n} запрос",
   "few": "Отклонено {n} запроса",
@@ -1686,7 +1686,7 @@
  "In game": "В игре",
  "In Order": "По Порядку",
  "In Studio": "В Studio",
- "In Studio • {game}": "В Studio • {game}",
+ "In Studio, {game}": "В Studio, {game}",
  "in under a minute": "меньше чем через минуту",
  "In-Experience Purchases": "Покупки в экспириенсах",
  "Inappropriate": "Неприемлемо",
@@ -1742,7 +1742,7 @@
  "Join their server": "На их сервер",
  "Joined": "Регистрация",
  "Joined {date}": "В сообществе с {date}",
- "Joined {date} • {age}": "Регистрация {date} • {age}",
+ "Joined {date}, {age}": "Регистрация {date}, {age}",
  "Joined Date": "Дата вступления",
  "Joined in {year}": "На Roblox с {year}",
  "Joined Roblox": "На Roblox с",
@@ -1787,7 +1787,7 @@
  },
  "Leave Selected": "Покинуть выбранные",
  "Leaving {done} of {total}": "Выход {done} из {total}",
- "Left {n} · {failed} didn’t work. They’re still selected, try again.": "Покинуто: {n} · не удалось: {failed}. Они всё ещё выбраны, попробуй снова.",
+ "Left {n}, {failed} didn’t work. They’re still selected, try again.": "Покинуто: {n}, не удалось: {failed}. Они всё ещё выбраны, попробуй снова.",
  "Left {n} communities.": {
   "one": "Покинуто {n} сообщество.",
   "few": "Покинуто {n} сообщества.",
@@ -1846,7 +1846,7 @@
  "Look {n}": "Образ {n}",
  "Look Name": "Название образа",
  "Looking For": "Ищу",
- "Looking for \"{query}\" • checked {count} trades, loading older ones…": "Ищу «{query}» • проверено обменов: {count}, загружаю старые…",
+ "Looking for \"{query}\", checked {count} trades, loading older ones…": "Ищу «{query}», проверено обменов: {count}, загружаю старые…",
  "Looking through the Marketplace…": "Просматриваю Маркетплейс…",
  "Looking through the Marketplace… {n} free items so far": {
   "one": "Просматриваю Маркетплейс… пока {n} бесплатный предмет",
@@ -2173,7 +2173,7 @@
  "Owned": "Есть",
  "Owned {time}": "Получен {time}",
  "Owned since {date}": "Владеешь с {date}",
- "Owned since {date} · first bought {first}": "Владеешь с {date} · впервые куплен {first}",
+ "Owned since {date}, first bought {first}": "Владеешь с {date}, впервые куплен {first}",
  "Owner": "Владелец",
  "Owners": "Владельцы",
  "Owners List": "Список владельцев",
@@ -2339,7 +2339,7 @@
  "Quick Settings Style": "Стиль быстрых настроек",
  "Quick Setup": "Быстрая Настройка",
  "Quick Sign In": "Быстрый вход",
- "R$ {price} · {copies} copies": "R$ {price} · копий: {copies}",
+ "R$ {price}, {copies} copies": "R$ {price}, копий: {copies}",
  "R$ {price} (your alert: R$ {target})": "R$ {price} (твоё оповещение: R$ {target})",
  "R6 / R15 Switch": "Переключатель R6 / R15",
  "R6 characters have limitations…": "У персонажей R6 есть ограничения…",
@@ -2462,7 +2462,7 @@
   "many": "Roblox попросил RoUtility притормозить, продолжу через мгновение. Пока {n} покупок, до {date}.",
   "other": "Roblox попросил RoUtility притормозить, продолжу через мгновение. Пока {n} покупки, до {date}."
  },
- "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox просит притормозить · проверено {done} из {total}, продолжим через {s} с",
+ "Roblox asked us to slow down, {done} of {total} checked, going again in {s}s": "Roblox просит притормозить, проверено {done} из {total}, продолжим через {s} с",
  "Roblox Badges": "Значки Roblox",
  "Roblox couldn’t send it. Check your balance before you try again.": "Roblox не смог отправить. Проверь баланс, прежде чем пробовать снова.",
  "Roblox default": "По умолчанию Roblox",
@@ -2847,7 +2847,7 @@
  "Teleports players": "Телепортирует игроков",
  "Tell us what’s wrong": "Расскажи, что не так",
  "Terminated": "Удалён",
- "Terminated · @{name}": "Удалён · @{name}",
+ "Terminated, @{name}": "Удалён, @{name}",
  "Terminated Players": "Удалённые игроки",
  "Terrible": "Ужасный",
  "Test Notification": "Тестовое уведомление",
@@ -2955,7 +2955,7 @@
  "Thread": "Тема",
  "Thread not available": "Тема недоступна",
  "Threads": "Темы",
- "tick • tick • tick • chime": "тик • тик • тик • дзынь",
+ "tick, tick, tick, chime": "тик, тик, тик, дзынь",
  "Tile Menu": "Меню плитки",
  "Tiles": "Плитки",
  "Timed Out, Try Again": "Время истекло, попробуй снова",
@@ -3073,7 +3073,7 @@
   "other": "Отписаться от {n} человека?"
  },
  "Unfollow Selected": "Отписаться от выбранных",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "Отписка от {n} · {failed} не получилось. Они всё ещё выбраны, попробуй снова.",
+ "Unfollowed {n}, {failed} didn’t work. They’re still selected, try again.": "Отписка от {n}, {failed} не получилось. Они всё ещё выбраны, попробуй снова.",
  "Unfollowed {n} people.": {
   "one": "Отписка от {n} человека.",
   "few": "Отписка от {n} человек.",
@@ -3091,7 +3091,7 @@
  },
  "Unfriend Detector": "Детектор удалений из друзей",
  "Unfriend Selected": "Удалить выбранных",
- "Unfriended {n} · {failed} didn’t work. They’re still selected, try again.": "Удалено из друзей: {n} · не удалось: {failed}. Они всё ещё выбраны, попробуй снова.",
+ "Unfriended {n}, {failed} didn’t work. They’re still selected, try again.": "Удалено из друзей: {n}, не удалось: {failed}. Они всё ещё выбраны, попробуй снова.",
  "Unfriended {n} friends.": {
   "one": "Удалён {n} друг.",
   "few": "Удалено {n} друга.",
@@ -3285,11 +3285,11 @@
  "YOU GIVE": "ТЫ ОТДАЁШЬ",
  "You give {pct}% more RAP": "Ты отдаёшь на {pct}% больше RAP",
  "You give {pct}% more value": "Ты отдаёшь на {pct}% больше ценности",
- "You give • {n} items": {
-  "one": "Ты отдаёшь • {n} предмет",
-  "few": "Ты отдаёшь • {n} предмета",
-  "many": "Ты отдаёшь • {n} предметов",
-  "other": "Ты отдаёшь • {n} предмета"
+ "You give, {n} items": {
+  "one": "Ты отдаёшь, {n} предмет",
+  "few": "Ты отдаёшь, {n} предмета",
+  "many": "Ты отдаёшь, {n} предметов",
+  "other": "Ты отдаёшь, {n} предмета"
  },
  "You have no inbound trades.": "У тебя нет входящих обменов.",
  "You have no outbound trades.": "У тебя нет исходящих обменов.",
@@ -3311,11 +3311,11 @@
   "other": "Ты играл здесь около {n} минуты"
  },
  "You receive": "Ты получаешь",
- "You receive • {n} items": {
-  "one": "Ты получаешь • {n} предмет",
-  "few": "Ты получаешь • {n} предмета",
-  "many": "Ты получаешь • {n} предметов",
-  "other": "Ты получаешь • {n} предмета"
+ "You receive, {n} items": {
+  "one": "Ты получаешь, {n} предмет",
+  "few": "Ты получаешь, {n} предмета",
+  "many": "Ты получаешь, {n} предметов",
+  "other": "Ты получаешь, {n} предмета"
  },
  "You rolled": "Тебе выпало",
  "You sent {n} Robux": "Ты отправил {n} Robux",
@@ -3431,7 +3431,7 @@
   "many": "{n} статусов недоступны",
   "other": "{n} статуса недоступны"
  },
- "{status} · {checked} members checked · {online} online · {matches} matches": "{status} · проверено участников: {checked} · в сети: {online} · подходит: {matches}",
+ "{status}, {checked} members checked, {online} online, {matches} matches": "{status}, проверено участников: {checked}, в сети: {online}, подходит: {matches}",
  "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. It records what Unfriend Detector notices, so it needs Unfriend Detector on. Remove anyone with the ✕ on their row. Stored only on this device.": "Страница «История друзей» на roblox.com/friend-history с двумя колонками: кого добавили в твой список друзей и кого в нём больше нет. Она записывает то, что замечает «Детектор удалений из друзей», поэтому он должен быть включён. Хранится только на этом устройстве. Удалите любого кнопкой ✕ в его строке.",
  "Added": "Добавлены",
  "All places": "Все места",
@@ -3456,7 +3456,7 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Проверяет каждого участника, поэтому большие сообщества могут занять время. Статус проверяется по мере загрузки каждой части. Фильтр по месту находит только места, которые показывает Roblox.",
  "Start a scan to find online members.": "Начни проверку, чтобы найти участников в сети.",
  "Stop Scan": "Остановить",
- "Stopped · Partial results": "Остановлено · Неполные результаты",
+ "Stopped, Partial results": "Остановлено, Неполные результаты",
  "{bound} players": "{bound} игроков",
  "{n} playing": {
   "one": "{n} играет",

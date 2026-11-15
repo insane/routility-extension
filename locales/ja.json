@@ -89,9 +89,9 @@
  "{item} is worth {value}.": "{item}の価値は{value}です。",
  "{items} and {last}": "{items}、{last}",
  "{label}: ": "{label}:",
- "{located} of {checked} servers located • {regions}": "{checked}台中{located}台のサーバーの場所を特定 • {regions}",
+ "{located} of {checked} servers located, {regions}": "{checked}台中{located}台のサーバーの場所を特定、{regions}",
  "{missing} of the {total} free Roblox items aren’t in your inventory yet.": "Roblox の無料アイテム{total}個のうち{missing}個がまだインベントリにありません。",
- "{n} · Buy them in the experience": "{n} · エクスペリエンス内で購入",
+ "{n}, Buy them in the experience": "{n}、エクスペリエンス内で購入",
  "{n} badges": {
   "other": "バッジ {n} 個"
  },
@@ -101,8 +101,8 @@
  "{n} copies": {
   "other": "{n}個"
  },
- "{n} copies • {serials}": {
-  "other": "{n}個 • {serials}"
+ "{n} copies, {serials}": {
+  "other": "{n}個、{serials}"
  },
  "{n} couldn’t be added.": "{n}個を追加できませんでした。",
  "{n} couldn’t be checked.": {
@@ -145,11 +145,11 @@
  "{n} items": {
   "other": "{n}個のアイテム"
  },
- "{n} items • {worn}/{max} accessories": {
-  "other": "{n}個のアイテム • アクセサリー {worn}/{max}"
+ "{n} items, {worn}/{max} accessories": {
+  "other": "{n}個のアイテム、アクセサリー {worn}/{max}"
  },
- "{n} items • updated {time}": {
-  "other": "{n}個のアイテム • {time}に更新"
+ "{n} items, updated {time}": {
+  "other": "{n}個のアイテム、{time}に更新"
  },
  "{n} items to buy": {
   "other": "購入が必要なアイテム{n}個"
@@ -162,8 +162,8 @@
   "other": "{n}個のリミテッド"
  },
  "{n} located": "{n}台特定",
- "{n} matches · {checked} checked": {
-  "other": "{n}件一致 · {checked}件確認済み"
+ "{n} matches, {checked} checked": {
+  "other": "{n}件一致、{checked}件確認済み"
  },
  "{n} members": {
   "other": "{n}人のメンバー"
@@ -219,8 +219,8 @@
   "other": "{n}人がフレンドではなくなりました"
  },
  "{n} Place Visits": "{n} プレイス訪問数",
- "{n} purchases · {spent} Robux spent": {
-  "other": "{n}件の購入 · {spent} Robux 使用"
+ "{n} purchases, {spent} Robux spent": {
+  "other": "{n}件の購入、{spent} Robux 使用"
  },
  "{n} purchases in this experience": {
   "other": "このエクスペリエンスで{n}件の購入"
@@ -234,8 +234,8 @@
  "{n} Robux": {
   "other": "{n} Robux"
  },
- "{n} rows · back to {date}": {
-  "other": "{n}行 · {date}まで"
+ "{n} rows, back to {date}": {
+  "other": "{n}行、{date}まで"
  },
  "{n} rows exported": {
   "other": "{n}行をエクスポートしました"
@@ -255,11 +255,11 @@
  "{n} servers": {
   "other": "{n}台のサーバー"
  },
- "{n} servers • {players} playing": {
-  "other": "{n}台のサーバー • {players}人がプレイ中"
+ "{n} servers, {players} playing": {
+  "other": "{n}台のサーバー、{players}人がプレイ中"
  },
- "{n} servers • {regions}": {
-  "other": "{n}台のサーバー • {regions}"
+ "{n} servers, {regions}": {
+  "other": "{n}台のサーバー、{regions}"
  },
  "{n} sold": {
   "other": "{n}件販売"
@@ -273,8 +273,8 @@
  "{n} trades with \"{query}\"": {
   "other": "「{query}」を含むトレード{n}件"
  },
- "{n} trades with \"{query}\" • checked {count} trades, loading older ones…": {
-  "other": "「{query}」を含むトレード{n}件 • {count}件確認済み、過去のトレードを読み込み中…"
+ "{n} trades with \"{query}\", checked {count} trades, loading older ones…": {
+  "other": "「{query}」を含むトレード{n}件、{count}件確認済み、過去のトレードを読み込み中…"
  },
  "{n} unpriced": {
   "other": "{n}件価格未設定"
@@ -294,7 +294,7 @@
  "{n} years ago": {
   "other": "{n}年前"
  },
- "{n}+ matches · {checked} checked": "{n}件以上一致 · {checked}件確認済み",
+ "{n}+ matches, {checked} checked": "{n}件以上一致、{checked}件確認済み",
  "{n}d": {
   "other": "{n}日"
  },
@@ -320,7 +320,7 @@
   "other": "{n}年"
  },
  "{name} ({count})": "{name} ({count})",
- "{name} • {robux} Robux": "{name} • {robux} Robux",
+ "{name}, {robux} Robux": "{name}、{robux} Robux",
  "{name} accessories": "{name}のアクセサリー",
  "{name} audit log.csv": "{name} 監査ログ.csv",
  "{name} color": "{name}の色",
@@ -349,26 +349,26 @@
  "{pct} over RAP": "RAP より{pct}高い",
  "{pct} under RAP": "RAP より{pct}低い",
  "{pct}% ({label})": "{pct}%({label})",
- "{pct}% liked • {likes} likes, {dislikes} dislikes": "{pct}% が高評価 • 高評価 {likes}、低評価 {dislikes}",
+ "{pct}% liked, {likes} likes, {dislikes} dislikes": "{pct}% が高評価、高評価 {likes}、低評価 {dislikes}",
  "{pct}% of copies": "全体の{pct}%",
  "{pct}% over RAP": "RAP より{pct}%高い",
  "{pct}% rating": "評価 {pct}%",
  "{pct}% under RAP": "RAP より{pct}%低い",
  "{percent}% off unlocks {date}": "{date} に {percent}% オフが解放",
- "{place} • {n} servers • {players} playing": {
-  "other": "{place} • {n}台のサーバー • {players}人がプレイ中"
+ "{place}, {n} servers, {players} playing": {
+  "other": "{place}、{n}台のサーバー、{players}人がプレイ中"
  },
  "{playing} of {max} people max": "{playing} / 最大{max}人",
  "{price} a month": "月額 {price}",
  "{price} a week": "週額 {price}",
  "{price} a year": "年額 {price}",
- "{rating} • {n} playing": "{rating} • {n}人がプレイ中",
+ "{rating}, {n} playing": "{rating}、{n}人がプレイ中",
  "{region} isn’t in the region list anymore. Joining any server…": "{region}は地域リストにありません。任意のサーバーに参加します…",
  "{results} (first 2,000 items)": "{results}(最初の2,000アイテム)",
  "{results} (some categories couldn’t load)": "{results}(一部のカテゴリーを読み込めませんでした)",
  "{robux} Robux at the DevEx rate": "DevEx レートで {robux} Robux",
  "{robux} Robux at your rate ({rate}/1k)": "あなたのレートで {robux} Robux（{rate}/1k）",
- "{role} · Rank {rank}": "{role} · ランク {rank}",
+ "{role}, Rank {rank}": "{role}、ランク {rank}",
  "{side}: {items}": "{side}:{items}",
  "{size} studs": "{size} スタッド",
  "{status} on {parts}": "{parts}で{status}",
@@ -486,7 +486,7 @@
  "Adds, what you’re really after, anything else. Keep it short.": "上乗せ、本当に欲しいもの、その他何でも。短くまとめてください。",
  "Adjust Accessories": "アクセサリーを調整",
  "Admin": "管理者",
- "Admin · Rank {rank}": "管理者 · ランク {rank}",
+ "Admin, Rank {rank}": "管理者、ランク {rank}",
  "Admin Badge": "管理者バッジ",
  "Admin Tools": "管理ツール",
  "Admins": "管理者",
@@ -524,7 +524,7 @@
  "Amount": "金額",
  "Amount (R$)": "金額 (R$)",
  "Amount of Robux": "Robuxの金額",
- "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "所有しているアイテムのページに、「2026年10月1日 · 9日前」のような「入手日」行を表示します。",
+ "An Acquired line on item pages for things you own, like Oct 1, 2026, 9 days ago.": "所有しているアイテムのページに、「2026年10月1日、9日前」のような「入手日」行を表示します。",
  "An Adjust Accessories button under your avatar to move, rotate and resize hats and other accessories like in the Roblox app, with a 3D preview you can spin around. Saves to your avatar, within Roblox’s limits.": "アバターの下に「アクセサリーを調整」ボタンを追加し、Roblox アプリのように帽子などのアクセサリーを移動・回転・サイズ変更できます。回転できる3Dプレビュー付き。Roblox の制限内でアバターに保存されます。",
  "An Avatar Items row in a game’s Store with clothing and accessories made by the game’s creator.": "ゲームのストアに、ゲームのクリエイターが作った服やアクセサリーを並べた「アバターアイテム」の列を追加します。",
  "An Avatar Type row next to Server Size: whether the game makes everyone R6, R15, or lets players pick. Roblox doesn’t show it on the page.": "サーバーサイズの横にアバタータイプの行を追加します。ゲームが全員を R6 にするか、R15 にするか、プレイヤーが選べるかを表示します。Roblox のページには表示されません。",
@@ -542,7 +542,7 @@
  "Archive All Read": "既読をすべてアーカイブ",
  "Archive Every Read Message?": "既読メッセージをすべてアーカイブしますか?",
  "Archived {n}": "{n}件アーカイブしました",
- "Archived {n} · Some Didn’t Work": "{n}件アーカイブしました · 一部失敗",
+ "Archived {n}, Some Didn’t Work": "{n}件アーカイブしました、一部失敗",
  "Archiving ({archived} done) {done} of {total}": "アーカイブ中({archived}件完了){done} / {total}",
  "Archiving {done} of {total}": "アーカイブ中 {done} / {total}",
  "Arrange Home & Charts": "ホームとチャートを並べ替え",
@@ -689,7 +689,7 @@
  "Checking {region}…": "{region}を確認中…",
  "Checking for new purchases since your last visit…": "前回以降の新しい購入を確認中…",
  "Checking open servers for {region}…": "{region}の空いているサーバーを確認中…",
- "Checking trades · {done} of {total}": "トレードを確認中 · {done} / {total}",
+ "Checking trades, {done} of {total}": "トレードを確認中、{done} / {total}",
  "Checking what you already own… {done} of {total}": "所有済みのものを確認中… {done} / {total}",
  "Checking where your friends are…": "フレンドの居場所を確認中…",
  "Checking which {region} servers have room right now…": "今空きがある{region}のサーバーを確認中…",
@@ -808,7 +808,7 @@
  "Couldn’t load all your items right now. Open Post again to retry.": "アイテムをすべて読み込めませんでした。もう一度「投稿」を開いて再試行してください。",
  "Couldn’t load friends right now. Try again in a minute.": "現在フレンドを読み込めません。1分後にもう一度お試しください。",
  "Couldn’t load items right now. Try again in a minute.": "現在アイテムを読み込めません。1分後にもう一度お試しください。",
- "Couldn’t Load Messages · Try Again": "メッセージを読み込めませんでした · 再試行",
+ "Couldn’t Load Messages, Try Again": "メッセージを読み込めませんでした、再試行",
  "Couldn’t load owners right now. Try again in a minute.": "現在所有者を読み込めません。1分後にもう一度お試しください。",
  "Couldn’t load servers for this region.": "この地域のサーバーを読み込めませんでした。",
  "Couldn’t load that file. Chrome didn’t save it, try again.": "そのファイルを読み込めませんでした。Chrome が保存できなかったので、もう一度お試しください。",
@@ -916,7 +916,7 @@
  "Delete New Badges Automatically": "新しいバッジを自動で削除",
  "Delete Selected": "選択したものを削除",
  "Deleted": "削除済み",
- "Deleted {n} · {failed} didn’t work. They’re still selected, try again.": "{n} 個削除 · {failed} 個は失敗しました。選択したままなので、もう一度お試しください。",
+ "Deleted {n}, {failed} didn’t work. They’re still selected, try again.": "{n} 個削除、{failed} 個は失敗しました。選択したままなので、もう一度お試しください。",
  "Deleted {n} badges.": {
   "other": "バッジを {n} 個削除しました。"
  },
@@ -962,7 +962,7 @@
  "Drag the preview to look around. Hair and waist accessories can’t be adjusted.": "プレビューをドラッグして見回せます。髪と腰のアクセサリーは調整できません。",
  "Drag the top left corner of a chat window to make it bigger. Every chat window, the RoUtility Bot included, uses the same size. Double-click the corner to reset.": "チャットウィンドウの左上の角をドラッグすると大きくできます。RoUtility ボットを含むすべてのチャットウィンドウが同じサイズになります。角をダブルクリックするとリセットされます。",
  "Drag to move": "ドラッグして移動",
- "Drag to resize · Double-click to reset": "ドラッグでサイズ変更 · ダブルクリックでリセット",
+ "Drag to resize, Double-click to reset": "ドラッグでサイズ変更、ダブルクリックでリセット",
  "Drag to turn your avatar. Scroll to zoom in or out.": "ドラッグでアバターを回転、スクロールでズームできます。",
  "Dress Skirt": "ドレススカート",
  "Dynamic": "ダイナミック",
@@ -1050,7 +1050,7 @@
  "Export CSV": "CSV をエクスポート",
  "Export to CSV": "CSV にエクスポート",
  "Exported {n}": "{n} 件をエクスポート",
- "Exported {n} · Rest Didn’t Load": "{n} 件をエクスポート · 残りは読み込めませんでした",
+ "Exported {n}, Rest Didn’t Load": "{n} 件をエクスポート、残りは読み込めませんでした",
  "Exporting {n}": "{n}件をエクスポート中",
  "Extra details on your Roblox Settings pages: your devices, backup codes and voice chat.": "Roblox の設定ページの追加情報：端末、バックアップコード、ボイスチャット。",
  "Extra Requests": "追加するリクエスト数",
@@ -1098,7 +1098,7 @@
  },
  "Finding an open server…": "空いているサーバーを探しています…",
  "Finding Items": "アイテムを探しています",
- "Finding read messages · {archived} archived ({page})": "既読メッセージを探しています · {archived}件アーカイブ済み ({page})",
+ "Finding read messages, {archived} archived ({page})": "既読メッセージを探しています、{archived}件アーカイブ済み ({page})",
  "Finding read messages ({page})": "既読メッセージを探しています ({page})",
  "Finding the closest server to you ({region})…": "最寄りのサーバーを探しています ({region})…",
  "Finding Things": "探しやすく",
@@ -1133,7 +1133,7 @@
  "Forum navigation": "フォーラムのナビゲーション",
  "Forum Posts": "フォーラム投稿数",
  "Forum Search": "フォーラム検索",
- "Founder · Rank {rank}": "創設者 · ランク {rank}",
+ "Founder, Rank {rank}": "創設者、ランク {rank}",
  "Free": "無料",
  "Free Items": "無料アイテム",
  "Freebie": "タダ同然",
@@ -1158,7 +1158,7 @@
  "Friends Playing, layout, random experience": "プレイ中のフレンド、レイアウト、ランダムなエクスペリエンス",
  "Friends Since": "フレンドになった日",
  "Friends since {date}": "{date}からのフレンド",
- "Friends since {date} • {age}": "{date}からフレンド • {age}",
+ "Friends since {date}, {age}": "{date}からフレンド、{age}",
  "Friends Who Own It": "所有しているフレンド",
  "Friends whose name contains what you type, shown first.": "入力した文字が名前に含まれるフレンドを先頭に表示します。",
  "Friends you have in common, next to the friend counts on profiles. Click it for the list.": "プロフィールのフレンド数の横に、共通のフレンドを表示します。クリックすると一覧が表示されます。",
@@ -1253,7 +1253,7 @@
  "How far each reseller listing is under or over RAP.": "各転売出品が RAP よりどれだけ安いか高いか。",
  "How it will roughly look. Save to get Roblox’s real thumbnail.": "おおよその見た目です。保存すると Roblox の実際のサムネイルが作成されます。",
  "How long ago each trade was sent on the trade list. Hover it for the exact time and when it expires.": "トレード一覧に、各トレードが送られてからの経過時間を表示します。カーソルを合わせると正確な時刻と期限が表示されます。",
- "How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.": "各アイテムが誰かのインベントリにある期間を、「Roblox 作 · 3年」のようにクリエイターの横に表示します。カーソルを合わせると正確な日付が表示されます。",
+ "How long each item has been in anyone’s inventory, next to its creator, like By Roblox, 3y. Hover it for the exact date.": "各アイテムが誰かのインベントリにある期間を、「Roblox 作、3年」のようにクリエイターの横に表示します。カーソルを合わせると正確な日付が表示されます。",
  "How Long They’ve Owned It": "所有期間",
  "How many": "数",
  "How many communities you’re in out of how many you can join, under Communities in the side list.": "サイドリストのコミュニティの下に、参加中のコミュニティ数と参加できる上限を表示します。",
@@ -1290,7 +1290,7 @@
  "Ignore": "無視",
  "Ignore {n}?": "{n}件を無視しますか?",
  "Ignore Matches": "一致を無視",
- "Ignored {n} · {failed} didn’t work, try again": "{n} 件を無視 · {failed} 件は失敗、もう一度お試しください",
+ "Ignored {n}, {failed} didn’t work, try again": "{n} 件を無視、{failed} 件は失敗、もう一度お試しください",
  "Ignored {n} requests": {
   "other": "{n} 件のリクエストを無視しました"
  },
@@ -1332,7 +1332,7 @@
  "In game": "ゲーム中",
  "In Order": "順番",
  "In Studio": "Studio 使用中",
- "In Studio • {game}": "Studio 使用中 • {game}",
+ "In Studio, {game}": "Studio 使用中、{game}",
  "in under a minute": "1分以内",
  "In-Experience Purchases": "エクスペリエンス内購入",
  "Inappropriate": "不適切",
@@ -1388,7 +1388,7 @@
  "Join their server": "このサーバーに参加",
  "Joined": "登録日",
  "Joined {date}": "{date}に参加",
- "Joined {date} • {age}": "{date}に登録 • {age}",
+ "Joined {date}, {age}": "{date}に登録、{age}",
  "Joined Date": "参加日",
  "Joined in {year}": "{year}年に参加",
  "Joined Roblox": "Roblox 登録日",
@@ -1430,7 +1430,7 @@
  },
  "Leave Selected": "選択したものから脱退",
  "Leaving {done} of {total}": "脱退中 {done} / {total}",
- "Left {n} · {failed} didn’t work. They’re still selected, try again.": "{n}件脱退 · {failed}件失敗しました。選択されたままなので、もう一度お試しください。",
+ "Left {n}, {failed} didn’t work. They’re still selected, try again.": "{n}件脱退、{failed}件失敗しました。選択されたままなので、もう一度お試しください。",
  "Left {n} communities.": {
   "other": "{n}個のコミュニティから脱退しました。"
  },
@@ -1477,7 +1477,7 @@
  "Look {n}": "コーデ{n}",
  "Look Name": "コーデ名",
  "Looking For": "求めているもの",
- "Looking for \"{query}\" • checked {count} trades, loading older ones…": "「{query}」を検索中 • {count}件のトレードを確認済み、過去のトレードを読み込み中…",
+ "Looking for \"{query}\", checked {count} trades, loading older ones…": "「{query}」を検索中、{count}件のトレードを確認済み、過去のトレードを読み込み中…",
  "Looking through the Marketplace…": "マーケットプレイスを確認中…",
  "Looking through the Marketplace… {n} free items so far": {
   "other": "マーケットプレイスを確認中… これまでに無料アイテム{n}個"
@@ -1792,7 +1792,7 @@
  "Owned": "所有済み",
  "Owned {time}": "{time}に所有",
  "Owned since {date}": "{date}から所有",
- "Owned since {date} · first bought {first}": "{date}から所有 · 初回購入 {first}",
+ "Owned since {date}, first bought {first}": "{date}から所有、初回購入 {first}",
  "Owner": "オーナー",
  "Owners": "所有者",
  "Owners List": "所有者リスト",
@@ -1958,7 +1958,7 @@
  "Quick Settings Style": "クイック設定のスタイル",
  "Quick Setup": "クイック設定",
  "Quick Sign In": "クイックサインイン",
- "R$ {price} · {copies} copies": "R$ {price} · {copies}個",
+ "R$ {price}, {copies} copies": "R$ {price}、{copies}個",
  "R$ {price} (your alert: R$ {target})": "R$ {price}(アラート:R$ {target})",
  "R6 / R15 Switch": "R6 / R15 切り替え",
  "R6 characters have limitations…": "R6 キャラクターには制限があります…",
@@ -2072,7 +2072,7 @@
  "Roblox asked RoUtility to slow down, carrying on in a moment. {n} purchases so far, back to {date}.": {
   "other": "Roblox から RoUtility に速度を落とすよう求められました。まもなく再開します。これまでに{n}件の購入（{date}まで）。"
  },
- "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox から速度制限 · {total} 件中 {done} 件確認済み、{s} 秒後に再開",
+ "Roblox asked us to slow down, {done} of {total} checked, going again in {s}s": "Roblox から速度制限、{total} 件中 {done} 件確認済み、{s} 秒後に再開",
  "Roblox Badges": "Roblox バッジ",
  "Roblox couldn’t send it. Check your balance before you try again.": "Robloxが送信できませんでした。もう一度試す前に残高を確認してください。",
  "Roblox default": "Roblox のデフォルト",
@@ -2445,7 +2445,7 @@
  "Teleports players": "プレイヤーをテレポート",
  "Tell us what’s wrong": "問題の内容を教えてください",
  "Terminated": "停止済み",
- "Terminated · @{name}": "停止済み · @{name}",
+ "Terminated, @{name}": "停止済み、@{name}",
  "Terminated Players": "停止されたプレイヤー",
  "Terrible": "最悪",
  "Test Notification": "テスト通知",
@@ -2550,7 +2550,7 @@
  "Thread": "スレッド",
  "Thread not available": "スレッドを利用できません",
  "Threads": "スレッド",
- "tick • tick • tick • chime": "チッ • チッ • チッ • チャイム",
+ "tick, tick, tick, chime": "チッ、チッ、チッ、チャイム",
  "Tile Menu": "タイルメニュー",
  "Tiles": "タイル",
  "Timed Out, Try Again": "タイムアウト。もう一度試す",
@@ -2662,7 +2662,7 @@
   "other": "{n}人のフォローを解除しますか?"
  },
  "Unfollow Selected": "選択した人のフォローを解除",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "{n}人のフォローを解除しました・{failed}人は失敗しました。選択されたままなので、もう一度お試しください。",
+ "Unfollowed {n}, {failed} didn’t work. They’re still selected, try again.": "{n}人のフォローを解除しました、{failed}人は失敗しました。選択されたままなので、もう一度お試しください。",
  "Unfollowed {n} people.": {
   "other": "{n}人のフォローを解除しました。"
  },
@@ -2674,7 +2674,7 @@
  },
  "Unfriend Detector": "フレンド解除ディテクター",
  "Unfriend Selected": "選択したフレンドを解除",
- "Unfriended {n} · {failed} didn’t work. They’re still selected, try again.": "{n}人をフレンド解除 · {failed}人は失敗しました。選択されたままなので、もう一度お試しください。",
+ "Unfriended {n}, {failed} didn’t work. They’re still selected, try again.": "{n}人をフレンド解除、{failed}人は失敗しました。選択されたままなので、もう一度お試しください。",
  "Unfriended {n} friends.": {
   "other": "{n}人のフレンドを解除しました。"
  },
@@ -2865,8 +2865,8 @@
  "YOU GIVE": "渡す",
  "You give {pct}% more RAP": "RAP を{pct}%多く渡します",
  "You give {pct}% more value": "価値を{pct}%多く渡します",
- "You give • {n} items": {
-  "other": "渡す • {n}個のアイテム"
+ "You give, {n} items": {
+  "other": "渡す、{n}個のアイテム"
  },
  "You have no inbound trades.": "受信トレードはありません。",
  "You have no outbound trades.": "送信トレードはありません。",
@@ -2885,8 +2885,8 @@
   "other": "ここで約 {n} 分遊びました"
  },
  "You receive": "受け取る",
- "You receive • {n} items": {
-  "other": "受け取る • {n}個のアイテム"
+ "You receive, {n} items": {
+  "other": "受け取る、{n}個のアイテム"
  },
  "You rolled": "結果",
  "You sent {n} Robux": "{n} Robuxを送りました",
@@ -2993,7 +2993,7 @@
  "{n} statuses unavailable": {
   "other": "{n}件の状態を取得できません"
  },
- "{status} · {checked} members checked · {online} online · {matches} matches": "{status} · {checked}人を確認 · オンライン{online}人 · 一致{matches}人",
+ "{status}, {checked} members checked, {online} online, {matches} matches": "{status}、{checked}人を確認、オンライン{online}人、一致{matches}人",
  "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. It records what Unfriend Detector notices, so it needs Unfriend Detector on. Remove anyone with the ✕ on their row. Stored only on this device.": "roblox.com/friend-history に「フレンド履歴」ページを追加します。フレンドリストに追加された人と、リストからいなくなった人の2列で表示します。フレンド解除ディテクターが見つけた変化を記録するため、ディテクターをオンにしておく必要があります。データはこのデバイスにのみ保存されます。行の✕で誰でも削除できます。",
  "Added": "追加",
  "All places": "すべての場所",
@@ -3018,7 +3018,7 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "すべてのメンバーを確認するため、大きなコミュニティでは時間がかかることがあります。状態は読み込みごとに確認されます。場所の絞り込みは、Roblox が共有している場所にのみ一致します。",
  "Start a scan to find online members.": "スキャンを開始してオンラインのメンバーを探しましょう。",
  "Stop Scan": "スキャンを停止",
- "Stopped · Partial results": "停止 · 結果は一部のみ",
+ "Stopped, Partial results": "停止、結果は一部のみ",
  "{bound} players": "{bound}人数",
  "{n} playing": {
   "other": "{n}人がプレイ中"

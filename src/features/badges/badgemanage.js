@@ -16,7 +16,7 @@
     const pct = rate * 100;
     const name = (RARITY.find(([min]) => pct >= min) || RARITY[RARITY.length - 1])[1];
     const shown = pct >= 10 ? Math.round(pct) + '%' : pct >= 1 ? (Math.round(pct * 10) / 10) + '%' : pct > 0 ? (Math.round(pct * 100) / 100 || 0.01) + '%' : '0%';
-    return `${lt(name)} · ${shown}`;
+    return `${lt(name)}, ${shown}`;
   }
 
   async function getJson(url) {
@@ -287,7 +287,7 @@
       const name = el('span', 'routility-cm-name text-title-medium');
       name.appendChild(el('span', 'text-truncate-end', x.name || String(x.id)));
       const where = gameName(x);
-      text.append(name, el('span', 'routility-cm-meta text-body-small content-muted', (where ? where + ' · ' : '') + rarity(x.rate)));
+      text.append(name, el('span', 'routility-cm-meta text-body-small content-muted', (where ? where + ', ' : '') + rarity(x.rate)));
       li.append(box, icon, text, el('span', 'routility-cm-tags'));
       li.addEventListener('click', (e) => {
         if (e.target.closest('a, input') || box.disabled) return;
@@ -360,7 +360,7 @@
         const x = li.routilityBadge;
         const meta = li.querySelector('.routility-cm-meta');
         const where = gameName(x);
-        const text = (where ? where + ' · ' : '') + rarity(x.rate);
+        const text = (where ? where + ', ' : '') + rarity(x.rate);
         if (meta && meta.textContent !== text) meta.textContent = text;
       }
     };
@@ -413,7 +413,7 @@
       for (const id of gone) selected.delete(id);
       if (gone.size) removedAny = true;
       busy = false;
-      note = failed.size ? lt('Deleted {n} · {failed} didn’t work. They’re still selected, try again.', { n: formatNumber(gone.size), failed: formatNumber(failed.size) }) : ltn(gone.size, 'Deleted {n} badge.', 'Deleted {n} badges.', { n: formatNumber(gone.size) });
+      note = failed.size ? lt('Deleted {n}, {failed} didn’t work. They’re still selected, try again.', { n: formatNumber(gone.size), failed: formatNumber(failed.size) }) : ltn(gone.size, 'Deleted {n} badge.', 'Deleted {n} badges.', { n: formatNumber(gone.size) });
       paintGames();
       const top = body.scrollTop;
       version++;

@@ -89,9 +89,9 @@
  "{item} is worth {value}.": "{item} đáng giá {value}.",
  "{items} and {last}": "{items} và {last}",
  "{label}: ": "{label}:",
- "{located} of {checked} servers located • {regions}": "Đã định vị {located}/{checked} máy chủ • {regions}",
+ "{located} of {checked} servers located, {regions}": "Đã định vị {located}/{checked} máy chủ, {regions}",
  "{missing} of the {total} free Roblox items aren’t in your inventory yet.": "{missing}/{total} vật phẩm Roblox miễn phí chưa có trong kho đồ của bạn.",
- "{n} · Buy them in the experience": "{n} · Mua trong trải nghiệm",
+ "{n}, Buy them in the experience": "{n}, Mua trong trải nghiệm",
  "{n} badges": {
   "other": "{n} huy hiệu"
  },
@@ -101,8 +101,8 @@
  "{n} copies": {
   "other": "{n} bản"
  },
- "{n} copies • {serials}": {
-  "other": "{n} bản • {serials}"
+ "{n} copies, {serials}": {
+  "other": "{n} bản, {serials}"
  },
  "{n} couldn’t be added.": "Không thể thêm {n}.",
  "{n} couldn’t be checked.": {
@@ -145,11 +145,11 @@
  "{n} items": {
   "other": "{n} vật phẩm"
  },
- "{n} items • {worn}/{max} accessories": {
-  "other": "{n} vật phẩm • {worn}/{max} phụ kiện"
+ "{n} items, {worn}/{max} accessories": {
+  "other": "{n} vật phẩm, {worn}/{max} phụ kiện"
  },
- "{n} items • updated {time}": {
-  "other": "{n} vật phẩm • cập nhật {time}"
+ "{n} items, updated {time}": {
+  "other": "{n} vật phẩm, cập nhật {time}"
  },
  "{n} items to buy": {
   "other": "{n} vật phẩm cần mua"
@@ -162,8 +162,8 @@
   "other": "{n} limited"
  },
  "{n} located": "Đã định vị {n}",
- "{n} matches · {checked} checked": {
-  "other": "{n} khớp · đã kiểm tra {checked}"
+ "{n} matches, {checked} checked": {
+  "other": "{n} khớp, đã kiểm tra {checked}"
  },
  "{n} members": {
   "other": "{n} thành viên"
@@ -219,8 +219,8 @@
   "other": "{n} người không còn là bạn bè của bạn"
  },
  "{n} Place Visits": "{n} Lượt truy cập",
- "{n} purchases · {spent} Robux spent": {
-  "other": "{n} giao dịch mua · đã chi {spent} Robux"
+ "{n} purchases, {spent} Robux spent": {
+  "other": "{n} giao dịch mua, đã chi {spent} Robux"
  },
  "{n} purchases in this experience": {
   "other": "{n} giao dịch mua trong trải nghiệm này"
@@ -234,8 +234,8 @@
  "{n} Robux": {
   "other": "{n} Robux"
  },
- "{n} rows · back to {date}": {
-  "other": "{n} dòng · đến {date}"
+ "{n} rows, back to {date}": {
+  "other": "{n} dòng, đến {date}"
  },
  "{n} rows exported": {
   "other": "Đã xuất {n} dòng"
@@ -255,11 +255,11 @@
  "{n} servers": {
   "other": "{n} máy chủ"
  },
- "{n} servers • {players} playing": {
-  "other": "{n} máy chủ • {players} đang chơi"
+ "{n} servers, {players} playing": {
+  "other": "{n} máy chủ, {players} đang chơi"
  },
- "{n} servers • {regions}": {
-  "other": "{n} máy chủ • {regions}"
+ "{n} servers, {regions}": {
+  "other": "{n} máy chủ, {regions}"
  },
  "{n} sold": {
   "other": "Đã bán {n}"
@@ -273,8 +273,8 @@
  "{n} trades with \"{query}\"": {
   "other": "{n} giao dịch có \"{query}\""
  },
- "{n} trades with \"{query}\" • checked {count} trades, loading older ones…": {
-  "other": "{n} giao dịch có \"{query}\" • đã kiểm tra {count} giao dịch, đang tải giao dịch cũ hơn…"
+ "{n} trades with \"{query}\", checked {count} trades, loading older ones…": {
+  "other": "{n} giao dịch có \"{query}\", đã kiểm tra {count} giao dịch, đang tải giao dịch cũ hơn…"
  },
  "{n} unpriced": {
   "other": "{n} chưa định giá"
@@ -294,7 +294,7 @@
  "{n} years ago": {
   "other": "{n} năm trước"
  },
- "{n}+ matches · {checked} checked": "{n}+ khớp · đã kiểm tra {checked}",
+ "{n}+ matches, {checked} checked": "{n}+ khớp, đã kiểm tra {checked}",
  "{n}d": {
   "other": "{n} ngày"
  },
@@ -320,7 +320,7 @@
   "other": "{n} năm"
  },
  "{name} ({count})": "{name} ({count})",
- "{name} • {robux} Robux": "{name} • {robux} Robux",
+ "{name}, {robux} Robux": "{name}, {robux} Robux",
  "{name} accessories": "Phụ kiện {name}",
  "{name} audit log.csv": "nhật ký kiểm tra {name}.csv",
  "{name} color": "Màu {name}",
@@ -349,26 +349,26 @@
  "{pct} over RAP": "Cao hơn RAP {pct}",
  "{pct} under RAP": "Thấp hơn RAP {pct}",
  "{pct}% ({label})": "{pct}% ({label})",
- "{pct}% liked • {likes} likes, {dislikes} dislikes": "{pct}% thích • {likes} thích, {dislikes} không thích",
+ "{pct}% liked, {likes} likes, {dislikes} dislikes": "{pct}% thích, {likes} thích, {dislikes} không thích",
  "{pct}% of copies": "{pct}% số bản",
  "{pct}% over RAP": "Cao hơn RAP {pct}%",
  "{pct}% rating": "Đánh giá {pct}%",
  "{pct}% under RAP": "Thấp hơn RAP {pct}%",
  "{percent}% off unlocks {date}": "Giảm {percent}% mở khóa vào {date}",
- "{place} • {n} servers • {players} playing": {
-  "other": "{place} • {n} máy chủ • {players} đang chơi"
+ "{place}, {n} servers, {players} playing": {
+  "other": "{place}, {n} máy chủ, {players} đang chơi"
  },
  "{playing} of {max} people max": "{playing}/{max} người tối đa",
  "{price} a month": "{price} mỗi tháng",
  "{price} a week": "{price} mỗi tuần",
  "{price} a year": "{price} mỗi năm",
- "{rating} • {n} playing": "{rating} • {n} đang chơi",
+ "{rating}, {n} playing": "{rating}, {n} đang chơi",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} không còn trong danh sách khu vực. Đang tham gia máy chủ bất kỳ…",
  "{results} (first 2,000 items)": "{results} (2.000 vật phẩm đầu tiên)",
  "{results} (some categories couldn’t load)": "{results} (một số danh mục không tải được)",
  "{robux} Robux at the DevEx rate": "{robux} Robux theo tỷ giá DevEx",
  "{robux} Robux at your rate ({rate}/1k)": "{robux} Robux theo tỷ giá của bạn ({rate}/1k)",
- "{role} · Rank {rank}": "{role} · Hạng {rank}",
+ "{role}, Rank {rank}": "{role}, Hạng {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} stud",
  "{status} on {parts}": "{status} trên {parts}",
@@ -486,7 +486,7 @@
  "Adds, what you’re really after, anything else. Keep it short.": "Đồ thêm, thứ bạn thật sự muốn, điều gì khác. Viết ngắn gọn thôi.",
  "Adjust Accessories": "Chỉnh phụ kiện",
  "Admin": "Admin",
- "Admin · Rank {rank}": "Admin · Hạng {rank}",
+ "Admin, Rank {rank}": "Admin, Hạng {rank}",
  "Admin Badge": "Huy hiệu Admin",
  "Admin Tools": "Công cụ Admin",
  "Admins": "Admin",
@@ -524,7 +524,7 @@
  "Amount": "Số tiền",
  "Amount (R$)": "Số tiền (R$)",
  "Amount of Robux": "Số Robux",
- "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "Dòng Ngày có trên trang vật phẩm cho những món bạn sở hữu, như 1 thg 10, 2026 · 9 ngày trước.",
+ "An Acquired line on item pages for things you own, like Oct 1, 2026, 9 days ago.": "Dòng Ngày có trên trang vật phẩm cho những món bạn sở hữu, như 1 thg 10, 2026, 9 ngày trước.",
  "An Adjust Accessories button under your avatar to move, rotate and resize hats and other accessories like in the Roblox app, with a 3D preview you can spin around. Saves to your avatar, within Roblox’s limits.": "Nút Chỉnh phụ kiện bên dưới hình đại diện để di chuyển, xoay và đổi kích thước mũ và phụ kiện khác như trong ứng dụng Roblox, kèm bản xem trước 3D xoay được. Lưu vào hình đại diện của bạn, trong giới hạn của Roblox.",
  "An Avatar Items row in a game’s Store with clothing and accessories made by the game’s creator.": "Một hàng Vật phẩm hình đại diện trong Cửa hàng của game với quần áo và phụ kiện do người tạo game làm.",
  "An Avatar Type row next to Server Size: whether the game makes everyone R6, R15, or lets players pick. Roblox doesn’t show it on the page.": "Một dòng Loại avatar cạnh Kích thước máy chủ: game ép mọi người dùng R6, R15 hay cho tự chọn. Roblox không hiển thị điều này trên trang.",
@@ -542,7 +542,7 @@
  "Archive All Read": "Lưu trữ tất cả đã đọc",
  "Archive Every Read Message?": "Lưu trữ mọi tin nhắn đã đọc?",
  "Archived {n}": "Đã lưu trữ {n}",
- "Archived {n} · Some Didn’t Work": "Đã lưu trữ {n} · Một số không thành công",
+ "Archived {n}, Some Didn’t Work": "Đã lưu trữ {n}, Một số không thành công",
  "Archiving ({archived} done) {done} of {total}": "Đang lưu trữ ({archived} xong) {done}/{total}",
  "Archiving {done} of {total}": "Đang lưu trữ {done}/{total}",
  "Arrange Home & Charts": "Sắp xếp Trang chủ & Bảng xếp hạng",
@@ -689,7 +689,7 @@
  "Checking {region}…": "Đang kiểm tra {region}…",
  "Checking for new purchases since your last visit…": "Đang kiểm tra giao dịch mua mới kể từ lần truy cập trước…",
  "Checking open servers for {region}…": "Đang kiểm tra máy chủ còn chỗ ở {region}…",
- "Checking trades · {done} of {total}": "Đang kiểm tra giao dịch · {done}/{total}",
+ "Checking trades, {done} of {total}": "Đang kiểm tra giao dịch, {done}/{total}",
  "Checking what you already own… {done} of {total}": "Đang kiểm tra những gì bạn đã có… {done}/{total}",
  "Checking where your friends are…": "Đang kiểm tra bạn bè của bạn đang ở đâu…",
  "Checking which {region} servers have room right now…": "Đang kiểm tra máy chủ {region} nào còn chỗ…",
@@ -808,7 +808,7 @@
  "Couldn’t load all your items right now. Open Post again to retry.": "Không tải được hết vật phẩm của bạn. Mở lại Đăng để thử lại.",
  "Couldn’t load friends right now. Try again in a minute.": "Hiện không tải được bạn bè. Hãy thử lại sau một phút.",
  "Couldn’t load items right now. Try again in a minute.": "Hiện không tải được vật phẩm. Hãy thử lại sau một phút.",
- "Couldn’t Load Messages · Try Again": "Không Tải Được Tin Nhắn · Thử Lại",
+ "Couldn’t Load Messages, Try Again": "Không Tải Được Tin Nhắn, Thử Lại",
  "Couldn’t load owners right now. Try again in a minute.": "Hiện không tải được chủ sở hữu. Hãy thử lại sau một phút.",
  "Couldn’t load servers for this region.": "Không tải được máy chủ cho khu vực này.",
  "Couldn’t load that file. Chrome didn’t save it, try again.": "Không tải được tệp đó. Chrome không lưu, hãy thử lại.",
@@ -916,7 +916,7 @@
  "Delete New Badges Automatically": "Tự Động Xóa Huy Hiệu Mới",
  "Delete Selected": "Xóa Mục Đã Chọn",
  "Deleted": "Đã xóa",
- "Deleted {n} · {failed} didn’t work. They’re still selected, try again.": "Đã xóa {n} · {failed} không thành công. Vẫn đang được chọn, hãy thử lại.",
+ "Deleted {n}, {failed} didn’t work. They’re still selected, try again.": "Đã xóa {n}, {failed} không thành công. Vẫn đang được chọn, hãy thử lại.",
  "Deleted {n} badges.": {
   "other": "Đã xóa {n} huy hiệu."
  },
@@ -962,7 +962,7 @@
  "Drag the preview to look around. Hair and waist accessories can’t be adjusted.": "Kéo bản xem trước để nhìn xung quanh. Không thể chỉnh phụ kiện tóc và thắt lưng.",
  "Drag the top left corner of a chat window to make it bigger. Every chat window, the RoUtility Bot included, uses the same size. Double-click the corner to reset.": "Kéo góc trên bên trái của cửa sổ trò chuyện để phóng to. Mọi cửa sổ trò chuyện, kể cả Bot RoUtility, dùng cùng kích thước. Bấm đúp vào góc để đặt lại.",
  "Drag to move": "Kéo để di chuyển",
- "Drag to resize · Double-click to reset": "Kéo để đổi kích thước · Bấm đúp để đặt lại",
+ "Drag to resize, Double-click to reset": "Kéo để đổi kích thước, Bấm đúp để đặt lại",
  "Drag to turn your avatar. Scroll to zoom in or out.": "Kéo để xoay avatar. Cuộn để phóng to hoặc thu nhỏ.",
  "Dress Skirt": "Váy đầm",
  "Dynamic": "Năng động",
@@ -1050,7 +1050,7 @@
  "Export CSV": "Xuất CSV",
  "Export to CSV": "Xuất ra CSV",
  "Exported {n}": "Đã Xuất {n}",
- "Exported {n} · Rest Didn’t Load": "Đã Xuất {n} · Phần Còn Lại Không Tải Được",
+ "Exported {n}, Rest Didn’t Load": "Đã Xuất {n}, Phần Còn Lại Không Tải Được",
  "Exporting {n}": "Đang xuất {n}",
  "Extra details on your Roblox Settings pages: your devices, backup codes and voice chat.": "Thông tin thêm trên các trang Cài đặt Roblox: thiết bị, mã dự phòng và trò chuyện thoại.",
  "Extra Requests": "Lời mời thêm",
@@ -1098,7 +1098,7 @@
  },
  "Finding an open server…": "Đang tìm máy chủ còn chỗ…",
  "Finding Items": "Đang tìm vật phẩm",
- "Finding read messages · {archived} archived ({page})": "Đang tìm tin nhắn đã đọc · đã lưu trữ {archived} ({page})",
+ "Finding read messages, {archived} archived ({page})": "Đang tìm tin nhắn đã đọc, đã lưu trữ {archived} ({page})",
  "Finding read messages ({page})": "Đang tìm tin nhắn đã đọc ({page})",
  "Finding the closest server to you ({region})…": "Đang tìm máy chủ gần bạn nhất ({region})…",
  "Finding Things": "Tìm kiếm",
@@ -1133,7 +1133,7 @@
  "Forum navigation": "Điều hướng diễn đàn",
  "Forum Posts": "Bài viết diễn đàn",
  "Forum Search": "Tìm kiếm diễn đàn",
- "Founder · Rank {rank}": "Người sáng lập · Hạng {rank}",
+ "Founder, Rank {rank}": "Người sáng lập, Hạng {rank}",
  "Free": "Miễn phí",
  "Free Items": "Vật phẩm miễn phí",
  "Freebie": "Miễn phí",
@@ -1158,7 +1158,7 @@
  "Friends Playing, layout, random experience": "Bạn bè đang chơi, bố cục, trải nghiệm ngẫu nhiên",
  "Friends Since": "Bạn bè từ",
  "Friends since {date}": "Bạn bè từ {date}",
- "Friends since {date} • {age}": "Là bạn bè từ {date} • {age}",
+ "Friends since {date}, {age}": "Là bạn bè từ {date}, {age}",
  "Friends Who Own It": "Bạn bè sở hữu món này",
  "Friends whose name contains what you type, shown first.": "Bạn bè có tên chứa nội dung bạn nhập sẽ hiện trước.",
  "Friends you have in common, next to the friend counts on profiles. Click it for the list.": "Bạn bè chung của hai bạn, cạnh số bạn bè trên hồ sơ. Bấm vào để xem danh sách.",
@@ -1253,7 +1253,7 @@
  "How far each reseller listing is under or over RAP.": "Mỗi tin rao bán lại thấp hơn hay cao hơn RAP bao nhiêu.",
  "How it will roughly look. Save to get Roblox’s real thumbnail.": "Trông sẽ gần giống thế này. Lưu để nhận ảnh thu nhỏ thật của Roblox.",
  "How long ago each trade was sent on the trade list. Hover it for the exact time and when it expires.": "Mỗi giao dịch được gửi bao lâu trước trên danh sách giao dịch. Di chuột lên để xem thời gian chính xác và khi nào hết hạn.",
- "How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.": "Mỗi vật phẩm đã nằm trong kho đồ của ai đó bao lâu, cạnh người tạo, như Bởi Roblox · 3 năm. Di chuột lên để xem ngày chính xác.",
+ "How long each item has been in anyone’s inventory, next to its creator, like By Roblox, 3y. Hover it for the exact date.": "Mỗi vật phẩm đã nằm trong kho đồ của ai đó bao lâu, cạnh người tạo, như Bởi Roblox, 3 năm. Di chuột lên để xem ngày chính xác.",
  "How Long They’ve Owned It": "Đã sở hữu bao lâu",
  "How many": "Bao nhiêu",
  "How many communities you’re in out of how many you can join, under Communities in the side list.": "Bạn đang ở bao nhiêu cộng đồng trên tổng số có thể tham gia, dưới mục Cộng đồng ở danh sách bên.",
@@ -1290,7 +1290,7 @@
  "Ignore": "Bỏ qua",
  "Ignore {n}?": "Bỏ qua {n}?",
  "Ignore Matches": "Bỏ qua mục khớp",
- "Ignored {n} · {failed} didn’t work, try again": "Đã bỏ qua {n} · {failed} không thành công, thử lại",
+ "Ignored {n}, {failed} didn’t work, try again": "Đã bỏ qua {n}, {failed} không thành công, thử lại",
  "Ignored {n} requests": {
   "other": "Đã bỏ qua {n} lời mời"
  },
@@ -1332,7 +1332,7 @@
  "In game": "Trong game",
  "In Order": "Theo Thứ Tự",
  "In Studio": "Trong Studio",
- "In Studio • {game}": "Trong Studio • {game}",
+ "In Studio, {game}": "Trong Studio, {game}",
  "in under a minute": "trong chưa đầy một phút",
  "In-Experience Purchases": "Mua trong trải nghiệm",
  "Inappropriate": "Không phù hợp",
@@ -1388,7 +1388,7 @@
  "Join their server": "Vào máy chủ của họ",
  "Joined": "Đã tham gia",
  "Joined {date}": "Thành viên từ {date}",
- "Joined {date} • {age}": "Tham gia {date} • {age}",
+ "Joined {date}, {age}": "Tham gia {date}, {age}",
  "Joined Date": "Ngày tham gia",
  "Joined in {year}": "Tham gia năm {year}",
  "Joined Roblox": "Ngày tham gia Roblox",
@@ -1430,7 +1430,7 @@
  },
  "Leave Selected": "Rời mục đã chọn",
  "Leaving {done} of {total}": "Đang rời {done}/{total}",
- "Left {n} · {failed} didn’t work. They’re still selected, try again.": "Đã rời {n} · {failed} không thành công. Chúng vẫn đang được chọn, hãy thử lại.",
+ "Left {n}, {failed} didn’t work. They’re still selected, try again.": "Đã rời {n}, {failed} không thành công. Chúng vẫn đang được chọn, hãy thử lại.",
  "Left {n} communities.": {
   "other": "Đã rời {n} cộng đồng."
  },
@@ -1477,7 +1477,7 @@
  "Look {n}": "Bộ đồ {n}",
  "Look Name": "Tên bộ đồ",
  "Looking For": "Đang tìm",
- "Looking for \"{query}\" • checked {count} trades, loading older ones…": "Đang tìm \"{query}\" • đã kiểm tra {count} giao dịch, đang tải giao dịch cũ hơn…",
+ "Looking for \"{query}\", checked {count} trades, loading older ones…": "Đang tìm \"{query}\", đã kiểm tra {count} giao dịch, đang tải giao dịch cũ hơn…",
  "Looking through the Marketplace…": "Đang lục tìm trong Chợ…",
  "Looking through the Marketplace… {n} free items so far": {
   "other": "Đang lục tìm trong Chợ… đã thấy {n} vật phẩm miễn phí"
@@ -1792,7 +1792,7 @@
  "Owned": "Đã sở hữu",
  "Owned {time}": "Sở hữu {time}",
  "Owned since {date}": "Sở hữu từ {date}",
- "Owned since {date} · first bought {first}": "Sở hữu từ {date} · mua lần đầu {first}",
+ "Owned since {date}, first bought {first}": "Sở hữu từ {date}, mua lần đầu {first}",
  "Owner": "Chủ sở hữu",
  "Owners": "Chủ sở hữu",
  "Owners List": "Danh sách chủ sở hữu",
@@ -1958,7 +1958,7 @@
  "Quick Settings Style": "Kiểu Cài đặt nhanh",
  "Quick Setup": "Cài Đặt Nhanh",
  "Quick Sign In": "Đăng nhập nhanh",
- "R$ {price} · {copies} copies": "R$ {price} · {copies} bản",
+ "R$ {price}, {copies} copies": "R$ {price}, {copies} bản",
  "R$ {price} (your alert: R$ {target})": "R$ {price} (cảnh báo của bạn: R$ {target})",
  "R6 / R15 Switch": "Chuyển R6 / R15",
  "R6 characters have limitations…": "Nhân vật R6 có một số giới hạn…",
@@ -2072,7 +2072,7 @@
  "Roblox asked RoUtility to slow down, carrying on in a moment. {n} purchases so far, back to {date}.": {
   "other": "Roblox yêu cầu RoUtility chậm lại, sẽ tiếp tục sau giây lát. Đến giờ có {n} giao dịch mua, đến {date}."
  },
- "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox yêu cầu chậm lại · đã kiểm tra {done}/{total}, tiếp tục sau {s} giây",
+ "Roblox asked us to slow down, {done} of {total} checked, going again in {s}s": "Roblox yêu cầu chậm lại, đã kiểm tra {done}/{total}, tiếp tục sau {s} giây",
  "Roblox Badges": "Huy hiệu Roblox",
  "Roblox couldn’t send it. Check your balance before you try again.": "Roblox không gửi được. Hãy kiểm tra số dư trước khi thử lại.",
  "Roblox default": "Mặc định của Roblox",
@@ -2445,7 +2445,7 @@
  "Teleports players": "Dịch chuyển người chơi",
  "Tell us what’s wrong": "Cho chúng tôi biết vấn đề",
  "Terminated": "Bị khóa",
- "Terminated · @{name}": "Bị khóa · @{name}",
+ "Terminated, @{name}": "Bị khóa, @{name}",
  "Terminated Players": "Người chơi bị khóa",
  "Terrible": "Rất tệ",
  "Test Notification": "Thông báo thử",
@@ -2550,7 +2550,7 @@
  "Thread": "Chủ đề",
  "Thread not available": "Chủ đề không khả dụng",
  "Threads": "Chủ đề",
- "tick • tick • tick • chime": "tích • tích • tích • ting",
+ "tick, tick, tick, chime": "tích, tích, tích, ting",
  "Tile Menu": "Menu ô",
  "Tiles": "Ô thẻ",
  "Timed Out, Try Again": "Hết thời gian, thử lại",
@@ -2662,7 +2662,7 @@
   "other": "Bỏ theo dõi {n} người?"
  },
  "Unfollow Selected": "Bỏ theo dõi người đã chọn",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "Đã bỏ theo dõi {n} · {failed} không thành công. Họ vẫn đang được chọn, hãy thử lại.",
+ "Unfollowed {n}, {failed} didn’t work. They’re still selected, try again.": "Đã bỏ theo dõi {n}, {failed} không thành công. Họ vẫn đang được chọn, hãy thử lại.",
  "Unfollowed {n} people.": {
   "other": "Đã bỏ theo dõi {n} người."
  },
@@ -2674,7 +2674,7 @@
  },
  "Unfriend Detector": "Phát hiện hủy kết bạn",
  "Unfriend Selected": "Hủy kết bạn người đã chọn",
- "Unfriended {n} · {failed} didn’t work. They’re still selected, try again.": "Đã hủy kết bạn {n} · {failed} không thành công. Họ vẫn đang được chọn, hãy thử lại.",
+ "Unfriended {n}, {failed} didn’t work. They’re still selected, try again.": "Đã hủy kết bạn {n}, {failed} không thành công. Họ vẫn đang được chọn, hãy thử lại.",
  "Unfriended {n} friends.": {
   "other": "Đã hủy kết bạn với {n} người."
  },
@@ -2865,8 +2865,8 @@
  "YOU GIVE": "BẠN ĐƯA",
  "You give {pct}% more RAP": "Bạn đưa RAP nhiều hơn {pct}%",
  "You give {pct}% more value": "Bạn đưa giá trị nhiều hơn {pct}%",
- "You give • {n} items": {
-  "other": "Bạn đưa • {n} vật phẩm"
+ "You give, {n} items": {
+  "other": "Bạn đưa, {n} vật phẩm"
  },
  "You have no inbound trades.": "Bạn không có giao dịch đến nào.",
  "You have no outbound trades.": "Bạn không có giao dịch đi nào.",
@@ -2885,8 +2885,8 @@
   "other": "Bạn đã chơi ở đây khoảng {n} phút"
  },
  "You receive": "Bạn nhận",
- "You receive • {n} items": {
-  "other": "Bạn nhận • {n} vật phẩm"
+ "You receive, {n} items": {
+  "other": "Bạn nhận, {n} vật phẩm"
  },
  "You rolled": "Bạn quay được",
  "You sent {n} Robux": "Bạn đã gửi {n} Robux",
@@ -2993,7 +2993,7 @@
  "{n} statuses unavailable": {
   "other": "{n} trạng thái không có sẵn"
  },
- "{status} · {checked} members checked · {online} online · {matches} matches": "{status} · đã kiểm tra {checked} thành viên · {online} trực tuyến · {matches} kết quả khớp",
+ "{status}, {checked} members checked, {online} online, {matches} matches": "{status}, đã kiểm tra {checked} thành viên, {online} trực tuyến, {matches} kết quả khớp",
  "A Friend History page at roblox.com/friend-history with two columns: people who were added to your friends list and people who are no longer on it. It records what Unfriend Detector notices, so it needs Unfriend Detector on. Remove anyone with the ✕ on their row. Stored only on this device.": "Trang Lịch sử bạn bè tại roblox.com/friend-history có hai cột: những người được thêm vào danh sách bạn bè của bạn và những người không còn trong đó. Trang ghi lại những gì Phát hiện hủy kết bạn nhận thấy, nên tính năng đó cần được bật. Chỉ lưu trên thiết bị này. Xóa bất kỳ ai bằng dấu ✕ trên hàng của họ.",
  "Added": "Đã thêm",
  "All places": "Mọi địa điểm",
@@ -3018,7 +3018,7 @@
  "Scans every member, so large communities can take a while. Status is checked as each batch loads. Place filters only match locations Roblox shares.": "Kiểm tra từng thành viên nên cộng đồng lớn có thể mất một lúc. Trạng thái được kiểm tra khi mỗi đợt tải xong. Bộ lọc địa điểm chỉ khớp với vị trí mà Roblox chia sẻ.",
  "Start a scan to find online members.": "Bắt đầu quét để tìm thành viên trực tuyến.",
  "Stop Scan": "Dừng quét",
- "Stopped · Partial results": "Đã dừng · Kết quả chưa đầy đủ",
+ "Stopped, Partial results": "Đã dừng, Kết quả chưa đầy đủ",
  "{bound} players": "{bound} người chơi",
  "{n} playing": {
   "other": "{n} đang chơi"

@@ -247,7 +247,7 @@
     head.appendChild(el('span', 'text-title-medium content-emphasis', lt('Server regions')));
     const total = points.reduce((n, p) => n + p.servers, 0);
     const regionsText = ltn(points.length, '{n} region', '{n} regions', { n: formatNumber(points.length) });
-    const headText = opts.headText || (checked > total ? lt('{located} of {checked} servers located • {regions}', { located: formatNumber(total), checked: formatNumber(checked), regions: regionsText }) : ltn(total, '{n} server • {regions}', '{n} servers • {regions}', { n: formatNumber(total), regions: regionsText }));
+    const headText = opts.headText || (checked > total ? lt('{located} of {checked} servers located, {regions}', { located: formatNumber(total), checked: formatNumber(checked), regions: regionsText }) : ltn(total, '{n} server, {regions}', '{n} servers, {regions}', { n: formatNumber(total), regions: regionsText }));
     head.appendChild(el('span', 'text-body-small content-muted', headText));
     card.dataset.headText = headText;
     if (!opts.bare) card.appendChild(head);
@@ -296,7 +296,7 @@
       chip.appendChild(code ? flagIcon(code) : el('span', 'routility-map-chip-dot'));
       chip.appendChild(el('span', 'text-no-wrap', placeName(p.dc)));
       chip.appendChild(el('span', 'text-no-wrap routility-map-chip-count', formatNumber(p.servers)));
-      chip.dataset.rtTip = ltn(p.servers, '{place} • {n} server • {players} playing', '{place} • {n} servers • {players} playing', { place: placeName(p.dc, true), n: formatNumber(p.servers), players: formatNumber(p.players) });
+      chip.dataset.rtTip = ltn(p.servers, '{place}, {n} server, {players} playing', '{place}, {n} servers, {players} playing', { place: placeName(p.dc, true), n: formatNumber(p.servers), players: formatNumber(p.players) });
       chip.addEventListener('click', () => onPick(on ? null : p.key));
       chips.appendChild(chip);
     }
@@ -668,7 +668,7 @@
             if (Number.isFinite(s.fps)) row.appendChild(perfPill(s.fps));
             if (Number.isFinite(s.ping)) row.appendChild(pingPill(s.ping));
           } else {
-            row.appendChild(pill('routility-pill-muted')).textContent = done ? lt('No ping info') : '—';
+            row.appendChild(pill('routility-pill-muted')).textContent = done ? lt('No ping info') : '-';
           }
           const gauge = li.querySelector('.server-player-count-gauge');
           if (gauge) gauge.after(row);
@@ -769,7 +769,7 @@
           loadCenters(6, true);
         }
         const full = s.maxPlayers > 0 && s.playing >= s.maxPlayers;
-        const text = !known ? '—' : dc ? placeName(dc, true) : res.dc != null ? lt('Unknown region') : full ? lt('Region unavailable (full)') : lt('Region unavailable');
+        const text = !known ? '-' : dc ? placeName(dc, true) : res.dc != null ? lt('Unknown region') : full ? lt('Region unavailable (full)') : lt('Region unavailable');
         const tip = !known || dc ? '' : res.dc != null ? lt('Datacenter {id} isn’t in RoUtility’s list yet', { id: res.dc }) : full ? lt('Roblox hides where full servers are until a slot opens') : lt('RoUtility doesn’t know this server’s region yet');
         const latest = counts && Number.isFinite(counts.latestVersion) ? counts.latestVersion : null;
         const d = detailsOf.get(s.id);
@@ -836,7 +836,7 @@
         points = [...byPlace.values()].sort((x, y) => y.servers - x.servers || x.dc.city.localeCompare(y.dc.city));
         const total = Number(counts.total) || points.reduce((n, x) => n + x.servers, 0) + unknown;
         const located = points.reduce((n, x) => n + x.servers, 0);
-        headText = `${ltn(total, '{n} server', '{n} servers', { n: formatNumber(total) })}${located < total ? ` • ${lt('{n} located', { n: formatNumber(located) })}` : ''} • ${ltn(points.length, '{n} region', '{n} regions', { n: formatNumber(points.length) })}${Number.isFinite(counts.latestVersion) ? ` • ${lt('latest v{version}', { version: counts.latestVersion })}` : ''}`;
+        headText = `${ltn(total, '{n} server', '{n} servers', { n: formatNumber(total) })}${located < total ? `, ${lt('{n} located', { n: formatNumber(located) })}` : ''}, ${ltn(points.length, '{n} region', '{n} regions', { n: formatNumber(points.length) })}${Number.isFinite(counts.latestVersion) ? `, ${lt('latest v{version}', { version: counts.latestVersion })}` : ''}`;
         tiles.forEach(li => delete li.dataset.routilityRegionHidden);
       } else {
         points = [...groups.values()].sort((x, y) => y.servers - x.servers || x.dc.city.localeCompare(y.dc.city));
@@ -967,7 +967,7 @@
     const box = el('div', 'routility-region-panel');
     const head = el('div', 'routility-server-map-head');
     head.appendChild(el('span', 'text-title-small content-emphasis', lt('Servers in {place}', { place: placeName(g.dc) })));
-    head.appendChild(el('span', 'text-body-small content-muted', ltn(g.servers, '{n} server • {players} playing', '{n} servers • {players} playing', { n: formatNumber(g.servers), players: formatNumber(g.players) })));
+    head.appendChild(el('span', 'text-body-small content-muted', ltn(g.servers, '{n} server, {players} playing', '{n} servers, {players} playing', { n: formatNumber(g.servers), players: formatNumber(g.players) })));
     box.appendChild(head);
     if (!st || (!st.servers.length && (st.loading || st.scanning))) {
       box.appendChild(el('div', 'text-body-small content-muted', st && st.scanning ? lt('RoUtility is still scanning this game, the list shows up in a moment.') : lt('Loading servers…')));
@@ -2329,7 +2329,7 @@
         const name = el('span', 'routility-mutual-name');
         name.appendChild(el('span', 'text-overflow', g.name));
         if (g.verified) name.appendChild(verifiedBadge());
-        text.append(name, el('span', 'routility-mutual-user text-overflow', `${ltn(g.members, '{n} member', '{n} members', { n: formatNumber(g.members) })}${g.role ? ` • ${g.role}` : ''}`));
+        text.append(name, el('span', 'routility-mutual-user text-overflow', `${ltn(g.members, '{n} member', '{n} members', { n: formatNumber(g.members) })}${g.role ? `, ${g.role}` : ''}`));
         a.append(layer, face, text);
         li.appendChild(a);
         list.appendChild(li);
@@ -2417,7 +2417,7 @@
       box.appendChild(document.createTextNode(`${ltn(total.count, 'All {n} pass:', 'All {n} passes:', { n: formatNumber(total.count) })} `));
       box.appendChild(el('span', 'icon-robux-16x16'));
       box.appendChild(el('span', 'text-robux routility-store-robux', formatNumber(total.robux)));
-      if (total.owned) box.appendChild(document.createTextNode(` • ${lt('You own {n}', { n: formatNumber(total.owned) })}`));
+      if (total.owned) box.appendChild(document.createTextNode(`, ${lt('You own {n}', { n: formatNumber(total.owned) })}`));
       head.appendChild(box);
     };
   }
@@ -2454,7 +2454,7 @@
       box.id = 'routility-dev-products';
       const head = el('div', 'container-header');
       head.appendChild(el('h3', null, lt('Developer Products')));
-      head.appendChild(el('span', 'routility-creator-by text-secondary', lt('{n} · Buy them in the experience', { n: formatNumber(data.length) })));
+      head.appendChild(el('span', 'routility-creator-by text-secondary', lt('{n}, Buy them in the experience', { n: formatNumber(data.length) })));
       const list = el('ul', 'hlist store-cards gear-passes-container');
       for (const i of data) {
         const li = el('li', 'list-item');
@@ -2514,7 +2514,7 @@
       const head = el('div', 'container-header');
       head.appendChild(el('h3', null, lt('Avatar Items')));
       const by = el('span', 'routility-creator-by text-secondary');
-      by.appendChild(document.createTextNode(`${lt('By {name}', { name: data.creator.name })} · `));
+      by.appendChild(document.createTextNode(`${lt('By {name}', { name: data.creator.name })}, `));
       const all = el('a', 'text-link', lt('See All'));
       all.href = `https://www.roblox.com/catalog?Category=1&CreatorName=${encodeURIComponent(data.creator.name)}&CreatorType=${data.creator.group ? 'Group' : 'User'}`;
       by.appendChild(all);
@@ -2717,7 +2717,7 @@
       const large = (t && t.data && t.data[0] && t.data[0].imageUrl) || '';
       if (large) big.firstChild.src = large;
       const assets = (d && d.assets) || [];
-      sub.textContent = d ? `${ltn(assets.length, '{n} item', '{n} items', { n: formatNumber(assets.length) })}${d.playerAvatarType ? ' · ' + d.playerAvatarType : ''}` : lt('Roblox didn’t send this outfit');
+      sub.textContent = d ? `${ltn(assets.length, '{n} item', '{n} items', { n: formatNumber(assets.length) })}${d.playerAvatarType ? ', ' + d.playerAvatarType : ''}` : lt('Roblox didn’t send this outfit');
       items.textContent = '';
       if (!assets.length) return;
       const at = {};

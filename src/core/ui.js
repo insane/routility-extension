@@ -838,7 +838,7 @@
 
   function priceTitle(price) {
     if (!price) return '';
-    return [valueTip(price), price.demand && lt('Demand: {demand}', { demand: price.demand }), price.trend && lt('Trend: {trend}', { trend: price.trend })].filter(Boolean).join(' • ');
+    return [valueTip(price), price.demand && lt('Demand: {demand}', { demand: price.demand }), price.trend && lt('Trend: {trend}', { trend: price.trend })].filter(Boolean).join(', ');
   }
 
   let priceWait = 0;
@@ -1057,7 +1057,7 @@
   function stripNavBadges(li, keep) {
     if (!li) return;
     const a = li.querySelector('a') || li;
-    for (const b of li.querySelectorAll('.foundation-web-badge')) {
+    for (const b of li.querySelectorAll('.foundation-web-badge, .foundation-web-status-indicator')) {
       if (keep && b.closest(keep)) continue;
       let box = b;
       while (box.parentElement && box.parentElement !== a && box.parentElement.children.length === 1) box = box.parentElement;

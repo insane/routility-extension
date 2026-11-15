@@ -179,7 +179,7 @@
       let text = ltn(copies.length, '{n} copy', '{n} copies', { n: formatNumber(copies.length) });
       if (serials.length) {
         const shown = serials.slice(0, 6).map(n => '#' + formatNumber(n)).join(', ');
-        text += ' • ' + shown + (serials.length > 6 ? ` +${formatNumber(serials.length - 6)}` : '');
+        text += ', ' + shown + (serials.length > 6 ? ` +${formatNumber(serials.length - 6)}` : '');
       }
       const row = nativeRow(lt('You own'), textValue(text));
       row.classList.add('routility-owned-row');

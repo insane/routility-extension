@@ -79,7 +79,7 @@
     document.querySelectorAll('.routility-wait-btn').forEach(label);
     if (!watch || watch.state === 'joining') return untitle();
     if (base === null) base = document.title;
-    document.title = `${lt('Waiting {time}', { time: clock(Date.now() - watch.started) })} · ${base}`;
+    document.title = `(${lt('Waiting {time}', { time: clock(Date.now() - watch.started) })}) ${base}`;
   }
 
   function drop() {

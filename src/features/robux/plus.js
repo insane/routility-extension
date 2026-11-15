@@ -82,7 +82,7 @@
     if (price && sub.nextRenewalTimestampMs) parts.push(per === 'Year' ? lt('{price} a year', { price }) : per === 'Week' ? lt('{price} a week', { price }) : lt('{price} a month', { price }));
     const where = store(sub);
     if (where) parts.push(lt('Billed through {store}', { store: where }));
-    return parts.join(' · ');
+    return parts.join(', ');
   }
 
   function unlocks(sub) {
@@ -150,7 +150,7 @@
     const paid = paidSoFar(sub);
     const custom = settings.calcRobux === 'custom' && Number(settings.calcRate) > 0;
     let tip = custom ? lt('{robux} Robux at your rate ({rate}/1k)', { robux: formatNumber(robux), rate: formatUSD(rate * 1000) }) : lt('{robux} Robux at the DevEx rate', { robux: formatNumber(robux) });
-    if (paid && paid.currency === 'USD' && usd > paid.amount) tip += ' · ' + lt('About {x}× what Plus has cost you', { x: formatNumber(Math.floor(usd / paid.amount)) });
+    if (paid && paid.currency === 'USD' && usd > paid.amount) tip += ', ' + lt('About {x}× what Plus has cost you', { x: formatNumber(Math.floor(usd / paid.amount)) });
     const row = el('div', 'gap-x-small flex routility-injected routility-plus-money');
     row.appendChild(statCard(lt('Saved, in {currency}', { currency: window.RoUtilityUI.cash().code }), usd > 0 ? '≈ ' + formatUSD(usd) : window.RoUtilityUI.formatCash(0), tip));
     if (paid) {
@@ -196,7 +196,7 @@
     fill.style.width = Math.min(100, Math.max(0, (1 - left / limit) * 100)) + '%';
     bar.appendChild(fill);
     const line = el('div', 'flex items-center wrap gap-x-small text-body-small content-muted');
-    line.append(robuxText(lt('{n} left'), left), el('span', null, '·'), robuxText(past === 'day' ? lt('{n} sent in the past day') : lt('{n} sent in the past month'), sent));
+    line.append(robuxText(lt('{n} left'), left), el('span', null, ','), robuxText(past === 'day' ? lt('{n} sent in the past day') : lt('{n} sent in the past month'), sent));
     box.append(bar, line);
     return box;
   }

@@ -246,9 +246,9 @@
     y += 10;
 
     const tiles = [
-      { icon: 'robux', label: lt('Robux Spent'), sub: lt('Past 12 months'), value: d.spent == null ? '—' : compact(d.spent) },
-      { icon: 'trades', label: lt('Trades'), sub: lt('This year'), value: d.trades ? compact(d.trades.n) + (d.trades.more ? '+' : '') : '—' },
-      { icon: 'friends', label: lt('Friends'), sub: lt('Right now'), value: d.friends == null ? '—' : compact(d.friends) },
+      { icon: 'robux', label: lt('Robux Spent'), sub: lt('Past 12 months'), value: d.spent == null ? '-' : compact(d.spent) },
+      { icon: 'trades', label: lt('Trades'), sub: lt('This year'), value: d.trades ? compact(d.trades.n) + (d.trades.more ? '+' : '') : '-' },
+      { icon: 'friends', label: lt('Friends'), sub: lt('Right now'), value: d.friends == null ? '-' : compact(d.friends) },
     ];
     const GAP = 12;
     const TW = (W - PAD * 2 - GAP * 2) / 3;

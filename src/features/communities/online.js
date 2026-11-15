@@ -300,9 +300,9 @@
           list.appendChild(el('li', 'routility-cm-empty text-body-medium content-muted', text));
         }
       }
-      const status = running && waiting ? waiting : { ready: lt('Ready'), scanning: lt('Scanning…'), stopped: lt('Stopped · Partial results'), failed: lt('Couldn’t finish the scan. Results are partial. Try again in a moment.'), done: lt('Scan complete') }[phase];
-      progress.textContent = lt('{status} · {checked} members checked · {online} online · {matches} matches', { status, checked: formatNumber(results.checked), online: formatNumber(results.online.length), matches: formatNumber(matches.length) });
-      if (results.unknown) progress.textContent += ' · ' + ltn(results.unknown, '{n} status unavailable', '{n} statuses unavailable', { n: formatNumber(results.unknown) });
+      const status = running && waiting ? waiting : { ready: lt('Ready'), scanning: lt('Scanning…'), stopped: lt('Stopped, Partial results'), failed: lt('Couldn’t finish the scan. Results are partial. Try again in a moment.'), done: lt('Scan complete') }[phase];
+      progress.textContent = lt('{status}, {checked} members checked, {online} online, {matches} matches', { status, checked: formatNumber(results.checked), online: formatNumber(results.online.length), matches: formatNumber(matches.length) });
+      if (results.unknown) progress.textContent += ', ' + ltn(results.unknown, '{n} status unavailable', '{n} statuses unavailable', { n: formatNumber(results.unknown) });
       previous.disabled = page === 0;
       next.disabled = page === pages - 1;
       pageLabel.textContent = lt('Page {page} of {pages}', { page: formatNumber(page + 1), pages: formatNumber(pages) });

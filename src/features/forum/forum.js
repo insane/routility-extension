@@ -838,9 +838,9 @@
       const byId = new Map((list || []).map(f => [f.id, f]));
       for (const [id, c] of cells) {
         const f = byId.get(id);
-        fill(c.threads, f ? formatNumber(f.threads) : '—');
-        fill(c.posts, f ? formatNumber(f.posts) : '—');
-        const wrap = fill(c.last, f ? null : '—');
+        fill(c.threads, f ? formatNumber(f.threads) : '-');
+        fill(c.posts, f ? formatNumber(f.posts) : '-');
+        const wrap = fill(c.last, f ? null : '-');
         if (f) lastPostCell(wrap, f.lastPost);
       }
     });
@@ -1860,7 +1860,7 @@
       mine.classList.add('routility-injected', 'routility-forum-nav');
       const a = mine.querySelector('a');
       a.href = 'https://www.roblox.com/forum';
-      a.querySelectorAll('.foundation-web-badge').forEach(b => (b.closest('span.fill') || b).remove());
+      a.querySelectorAll('.foundation-web-badge, .foundation-web-status-indicator').forEach(b => (b.closest('span.fill') || b).remove());
       const icon = a.querySelector('.icon');
       if (icon) icon.className = 'grow-0 shrink-0 basis-auto icon routility-forum-nav-icon size-[var(--icon-size-large)]';
       const label = a.querySelector(':scope > .text-truncate-end') || [...a.querySelectorAll('span')].find(sp => /^(Communities|Groups)$/.test(sp.textContent.trim()));

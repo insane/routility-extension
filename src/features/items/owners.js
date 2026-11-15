@@ -88,7 +88,7 @@
     const presence = known && presenceText(row);
     if (presence) details.push(presence);
     info.appendChild(el('span', 'separator', '-'));
-    info.appendChild(el('span', 'font-caption-body serial-number', details.join(' • ')));
+    info.appendChild(el('span', 'font-caption-body serial-number', details.join(', ')));
 
     const since = el('div', 'reseller-price-container routility-owned-since');
     if (row.ts) since.appendChild(el('span', 'font-caption-body', lt('Owned {time}', { time: ago(row.ts) })));

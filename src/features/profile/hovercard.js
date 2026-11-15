@@ -97,14 +97,14 @@
   function joined(iso) {
     const d = new Date(iso);
     if (isNaN(d)) return '';
-    return lt('Joined {date} • {age}', { date: d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }), age: age(iso) });
+    return lt('Joined {date}, {age}', { date: d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }), age: age(iso) });
   }
 
   function status(p, banned) {
     if (banned) return { kind: 'banned', text: lt('Banned') };
     const type = p ? p.userPresenceType : 0;
     if (type === 2) return { kind: 'game', text: p.lastLocation ? lt('Playing {game}', { game: p.lastLocation }) : lt('In a game'), place: p.rootPlaceId || p.placeId };
-    if (type === 3) return { kind: 'studio', text: p.lastLocation && !/^studio$/i.test(String(p.lastLocation).trim()) ? lt('In Studio • {game}', { game: p.lastLocation }) : lt('In Studio') };
+    if (type === 3) return { kind: 'studio', text: p.lastLocation && !/^studio$/i.test(String(p.lastLocation).trim()) ? lt('In Studio, {game}', { game: p.lastLocation }) : lt('In Studio') };
     if (type === 1) return { kind: 'online', text: lt('Online') };
     return { kind: 'offline', text: lt('Offline') };
   }
@@ -155,12 +155,12 @@
     const counts = [];
     if (d.friends !== null) counts.push(ltn(d.friends, '{n} friend', '{n} friends', { n: formatNumber(d.friends) }));
     if (d.followers !== null) counts.push(ltn(d.followers, '{n} follower', '{n} followers', { n: formatNumber(d.followers) }));
-    if (counts.length) body.appendChild(el('div', 'routility-hc-meta', counts.join(' • ')));
+    if (counts.length) body.appendChild(el('div', 'routility-hc-meta', counts.join(', ')));
     const j = joined(u.created);
     if (j) body.appendChild(el('div', 'routility-hc-meta', j));
     if (d.since) {
       const when = new Date(d.since);
-      const meta = el('div', 'routility-hc-meta routility-hc-since', lt('Friends since {date} • {age}', { date: when.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }), age: age(d.since) }));
+      const meta = el('div', 'routility-hc-meta routility-hc-since', lt('Friends since {date}, {age}', { date: when.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }), age: age(d.since) }));
       meta.dataset.rtTip = window.RoUtilityUI.exactTime(d.since);
       body.appendChild(meta);
     }

@@ -107,9 +107,8 @@
  "{item} is worth {value}.": "{item} is worth {value}.",
  "{items} and {last}": "{items} and {last}",
  "{label}: ": "{label}: ",
- "{located} of {checked} servers located • {regions}": "{located} of {checked} servers located • {regions}",
+ "{located} of {checked} servers located, {regions}": "{located} of {checked} servers located, {regions}",
  "{missing} of the {total} free Roblox items aren’t in your inventory yet.": "{missing} of the {total} free Roblox items aren’t in your inventory yet.",
- "{n} · Buy them in the experience": "{n} · Buy them in the experience",
  "{n} badges": {
   "one": "{n} badge",
   "other": "{n} badges"
@@ -126,9 +125,9 @@
   "one": "{n} copy",
   "other": "{n} copies"
  },
- "{n} copies • {serials}": {
-  "one": "{n} copy • {serials}",
-  "other": "{n} copies • {serials}"
+ "{n} copies, {serials}": {
+  "one": "{n} copy, {serials}",
+  "other": "{n} copies, {serials}"
  },
  "{n} couldn’t be added.": "{n} couldn’t be added.",
  "{n} couldn’t be checked.": {
@@ -183,17 +182,17 @@
   "one": "{n} item",
   "other": "{n} items"
  },
- "{n} items • {worn}/{max} accessories": {
-  "one": "{n} item • {worn}/{max} accessories",
-  "other": "{n} items • {worn}/{max} accessories"
- },
- "{n} items • updated {time}": {
-  "one": "{n} item • updated {time}",
-  "other": "{n} items • updated {time}"
- },
  "{n} items to buy": {
   "one": "{n} item to buy",
   "other": "{n} items to buy"
+ },
+ "{n} items, {worn}/{max} accessories": {
+  "one": "{n} item, {worn}/{max} accessories",
+  "other": "{n} items, {worn}/{max} accessories"
+ },
+ "{n} items, updated {time}": {
+  "one": "{n} item, updated {time}",
+  "other": "{n} items, updated {time}"
  },
  "{n} keypoints": {
   "one": "{n} keypoint",
@@ -205,9 +204,9 @@
   "other": "{n} limiteds"
  },
  "{n} located": "{n} located",
- "{n} matches · {checked} checked": {
-  "one": "{n} match · {checked} checked",
-  "other": "{n} matches · {checked} checked"
+ "{n} matches, {checked} checked": {
+  "one": "{n} match, {checked} checked",
+  "other": "{n} matches, {checked} checked"
  },
  "{n} members": {
   "one": "{n} member",
@@ -283,13 +282,13 @@
   "one": "{n} playing",
   "other": "{n} playing"
  },
- "{n} purchases · {spent} Robux spent": {
-  "one": "{n} purchase · {spent} Robux spent",
-  "other": "{n} purchases · {spent} Robux spent"
- },
  "{n} purchases in this experience": {
   "one": "{n} purchase in this experience",
   "other": "{n} purchases in this experience"
+ },
+ "{n} purchases, {spent} Robux spent": {
+  "one": "{n} purchase, {spent} Robux spent",
+  "other": "{n} purchases, {spent} Robux spent"
  },
  "{n} regions": {
   "one": "{n} region",
@@ -304,10 +303,6 @@
   "other": "{n} Robux"
  },
  "{n} Robux a month": "{n} Robux a month",
- "{n} rows · back to {date}": {
-  "one": "{n} rows · back to {date}",
-  "other": "{n} rows · back to {date}"
- },
  "{n} rows exported": {
   "one": "{n} row exported",
   "other": "{n} rows exported"
@@ -315,6 +310,10 @@
  "{n} rows matching exported": {
   "one": "{n} row matching exported",
   "other": "{n} rows matching exported"
+ },
+ "{n} rows, back to {date}": {
+  "one": "{n} rows, back to {date}",
+  "other": "{n} rows, back to {date}"
  },
  "{n} saved looks": {
   "one": "{n} saved look",
@@ -331,13 +330,13 @@
   "one": "{n} server",
   "other": "{n} servers"
  },
- "{n} servers • {players} playing": {
-  "one": "{n} server • {players} playing",
-  "other": "{n} servers • {players} playing"
+ "{n} servers, {players} playing": {
+  "one": "{n} server, {players} playing",
+  "other": "{n} servers, {players} playing"
  },
- "{n} servers • {regions}": {
-  "one": "{n} server • {regions}",
-  "other": "{n} servers • {regions}"
+ "{n} servers, {regions}": {
+  "one": "{n} server, {regions}",
+  "other": "{n} servers, {regions}"
  },
  "{n} sold": {
   "one": "{n} sold",
@@ -375,9 +374,9 @@
   "one": "{n} trade with \"{query}\"",
   "other": "{n} trades with \"{query}\""
  },
- "{n} trades with \"{query}\" • checked {count} trades, loading older ones…": {
-  "one": "{n} trade with \"{query}\" • checked {count} trades, loading older ones…",
-  "other": "{n} trades with \"{query}\" • checked {count} trades, loading older ones…"
+ "{n} trades with \"{query}\", checked {count} trades, loading older ones…": {
+  "one": "{n} trade with \"{query}\", checked {count} trades, loading older ones…",
+  "other": "{n} trades with \"{query}\", checked {count} trades, loading older ones…"
  },
  "{n} unpriced": {
   "one": "{n} unpriced",
@@ -403,7 +402,8 @@
   "one": "{n} year ago",
   "other": "{n} years ago"
  },
- "{n}+ matches · {checked} checked": "{n}+ matches · {checked} checked",
+ "{n}, Buy them in the experience": "{n}, Buy them in the experience",
+ "{n}+ matches, {checked} checked": "{n}+ matches, {checked} checked",
  "{n}d": {
   "one": "{n}d",
   "other": "{n}d"
@@ -437,7 +437,6 @@
   "other": "{n}y"
  },
  "{name} ({count})": "{name} ({count})",
- "{name} • {robux} Robux": "{name} • {robux} Robux",
  "{name} accessories": "{name} accessories",
  "{name} audit log.csv": "{name} audit log.csv",
  "{name} came online": "{name} came online",
@@ -454,6 +453,7 @@
  "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.": "{name} uses RoUtility, so you can add a message they’ll see with your request. No links or contact info.",
  "{name} value": "{name} value",
  "{name} went offline": "{name} went offline",
+ "{name}, {robux} Robux": "{name}, {robux} Robux",
  "{name}'s Collectibles": "{name}'s Collectibles",
  "{name}’s inventory is private, so I can’t see their limiteds.": "{name}’s inventory is private, so I can’t see their limiteds.",
  "{name}’s inventory is private.": "{name}’s inventory is private.",
@@ -470,31 +470,31 @@
  "{pct} over RAP": "{pct} over RAP",
  "{pct} under RAP": "{pct} under RAP",
  "{pct}% ({label})": "{pct}% ({label})",
- "{pct}% liked • {likes} likes, {dislikes} dislikes": "{pct}% liked • {likes} likes, {dislikes} dislikes",
+ "{pct}% liked, {likes} likes, {dislikes} dislikes": "{pct}% liked, {likes} likes, {dislikes} dislikes",
  "{pct}% of copies": "{pct}% of copies",
  "{pct}% over RAP": "{pct}% over RAP",
  "{pct}% rating": "{pct}% rating",
  "{pct}% under RAP": "{pct}% under RAP",
  "{percent}% off unlocks {date}": "{percent}% off unlocks {date}",
- "{place} • {n} servers • {players} playing": {
-  "one": "{place} • {n} server • {players} playing",
-  "other": "{place} • {n} servers • {players} playing"
+ "{place}, {n} servers, {players} playing": {
+  "one": "{place}, {n} server, {players} playing",
+  "other": "{place}, {n} servers, {players} playing"
  },
  "{playing} of {max} people max": "{playing} of {max} people max",
  "{price} a month": "{price} a month",
  "{price} a week": "{price} a week",
  "{price} a year": "{price} a year",
- "{rating} • {n} playing": "{rating} • {n} playing",
+ "{rating}, {n} playing": "{rating}, {n} playing",
  "{region} isn’t in the region list anymore. Joining any server…": "{region} isn’t in the region list anymore. Joining any server…",
  "{results} (first 2,000 items)": "{results} (first 2,000 items)",
  "{results} (some categories couldn’t load)": "{results} (some categories couldn’t load)",
  "{robux} Robux at the DevEx rate": "{robux} Robux at the DevEx rate",
  "{robux} Robux at your rate ({rate}/1k)": "{robux} Robux at your rate ({rate}/1k)",
- "{role} · Rank {rank}": "{role} · Rank {rank}",
+ "{role}, Rank {rank}": "{role}, Rank {rank}",
  "{side}: {items}": "{side}: {items}",
  "{size} studs": "{size} studs",
- "{status} · {checked} members checked · {online} online · {matches} matches": "{status} · {checked} members checked · {online} online · {matches} matches",
  "{status} on {parts}": "{status} on {parts}",
+ "{status}, {checked} members checked, {online} online, {matches} matches": "{status}, {checked} members checked, {online} online, {matches} matches",
  "{time} today": "{time} today",
  "{title} right now:": "{title} right now:",
  "{type} accessories": "{type} accessories",
@@ -630,9 +630,9 @@
  "Adds, what you’re really after, anything else. Keep it short.": "Adds, what you’re really after, anything else. Keep it short.",
  "Adjust Accessories": "Adjust Accessories",
  "Admin": "Admin",
- "Admin · Rank {rank}": "Admin · Rank {rank}",
  "Admin Badge": "Admin Badge",
  "Admin Tools": "Admin Tools",
+ "Admin, Rank {rank}": "Admin, Rank {rank}",
  "Admins": "Admins",
  "Ads are posted with your routility.io account. Sign in there, then come back to this tab.": "Ads are posted with your routility.io account. Sign in there, then come back to this tab.",
  "Ads reported by 3 people are hidden until staff review them.": "Ads reported by 3 people are hidden until staff review them.",
@@ -670,7 +670,7 @@
  "Amount": "Amount",
  "Amount (R$)": "Amount (R$)",
  "Amount of Robux": "Amount of Robux",
- "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.": "An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.",
+ "An Acquired line on item pages for things you own, like Oct 1, 2026, 9 days ago.": "An Acquired line on item pages for things you own, like Oct 1, 2026, 9 days ago.",
  "An Adjust Accessories button under your avatar to move, rotate and resize hats and other accessories like in the Roblox app, with a 3D preview you can spin around. Saves to your avatar, within Roblox’s limits.": "An Adjust Accessories button under your avatar to move, rotate and resize hats and other accessories like in the Roblox app, with a 3D preview you can spin around. Saves to your avatar, within Roblox’s limits.",
  "An Analyze button on trades that shows how each item in the trade has been traded lately, with who traded and what everything was worth.": "An Analyze button on trades that shows how each item in the trade has been traded lately, with who traded and what everything was worth.",
  "An Avatar Items row in a game’s Store with clothing and accessories made by the game’s creator.": "An Avatar Items row in a game’s Store with clothing and accessories made by the game’s creator.",
@@ -693,7 +693,7 @@
  "Archive All Read": "Archive All Read",
  "Archive Every Read Message?": "Archive Every Read Message?",
  "Archived {n}": "Archived {n}",
- "Archived {n} · Some Didn’t Work": "Archived {n} · Some Didn’t Work",
+ "Archived {n}, Some Didn’t Work": "Archived {n}, Some Didn’t Work",
  "Archiving ({archived} done) {done} of {total}": "Archiving ({archived} done) {done} of {total}",
  "Archiving {done} of {total}": "Archiving {done} of {total}",
  "Are You Sure?": "Are You Sure?",
@@ -852,7 +852,7 @@
  "Checking {region}…": "Checking {region}…",
  "Checking for new purchases since your last visit…": "Checking for new purchases since your last visit…",
  "Checking open servers for {region}…": "Checking open servers for {region}…",
- "Checking trades · {done} of {total}": "Checking trades · {done} of {total}",
+ "Checking trades, {done} of {total}": "Checking trades, {done} of {total}",
  "Checking what you already own… {done} of {total}": "Checking what you already own… {done} of {total}",
  "Checking where your friends are…": "Checking where your friends are…",
  "Checking which {region} servers have room right now…": "Checking which {region} servers have room right now…",
@@ -987,7 +987,7 @@
  "Couldn’t load all your items right now. Open Post again to retry.": "Couldn’t load all your items right now. Open Post again to retry.",
  "Couldn’t load friends right now. Try again in a minute.": "Couldn’t load friends right now. Try again in a minute.",
  "Couldn’t load items right now. Try again in a minute.": "Couldn’t load items right now. Try again in a minute.",
- "Couldn’t Load Messages · Try Again": "Couldn’t Load Messages · Try Again",
+ "Couldn’t Load Messages, Try Again": "Couldn’t Load Messages, Try Again",
  "Couldn’t load owners right now. Try again in a minute.": "Couldn’t load owners right now. Try again in a minute.",
  "Couldn’t load servers for this region.": "Couldn’t load servers for this region.",
  "Couldn’t load that file. Chrome didn’t save it, try again.": "Couldn’t load that file. Chrome didn’t save it, try again.",
@@ -1104,11 +1104,11 @@
  "Delete New Badges Automatically": "Delete New Badges Automatically",
  "Delete Selected": "Delete Selected",
  "Deleted": "Deleted",
- "Deleted {n} · {failed} didn’t work. They’re still selected, try again.": "Deleted {n} · {failed} didn’t work. They’re still selected, try again.",
  "Deleted {n} badges.": {
   "one": "Deleted {n} badge.",
   "other": "Deleted {n} badges."
  },
+ "Deleted {n}, {failed} didn’t work. They’re still selected, try again.": "Deleted {n}, {failed} didn’t work. They’re still selected, try again.",
  "Deleting": "Deleting",
  "Deleting {done} of {total}": "Deleting {done} of {total}",
  "Demand": "Demand",
@@ -1151,7 +1151,7 @@
  "Drag the preview to look around. Hair and waist accessories can’t be adjusted.": "Drag the preview to look around. Hair and waist accessories can’t be adjusted.",
  "Drag the top left corner of a chat window to make it bigger. Every chat window, the RoUtility Bot included, uses the same size. Double-click the corner to reset.": "Drag the top left corner of a chat window to make it bigger. Every chat window, the RoUtility Bot included, uses the same size. Double-click the corner to reset.",
  "Drag to move": "Drag to move",
- "Drag to resize · Double-click to reset": "Drag to resize · Double-click to reset",
+ "Drag to resize, Double-click to reset": "Drag to resize, Double-click to reset",
  "Drag to turn your avatar. Scroll to zoom in or out.": "Drag to turn your avatar. Scroll to zoom in or out.",
  "Dress Skirt": "Dress Skirt",
  "Dynamic": "Dynamic",
@@ -1252,7 +1252,7 @@
  "Export CSV": "Export CSV",
  "Export to CSV": "Export to CSV",
  "Exported {n}": "Exported {n}",
- "Exported {n} · Rest Didn’t Load": "Exported {n} · Rest Didn’t Load",
+ "Exported {n}, Rest Didn’t Load": "Exported {n}, Rest Didn’t Load",
  "Exporting {n}": "Exporting {n}",
  "Extra details on your Roblox Settings pages: your devices, backup codes and voice chat.": "Extra details on your Roblox Settings pages: your devices, backup codes and voice chat.",
  "Extra Requests": "Extra Requests",
@@ -1303,8 +1303,8 @@
  },
  "Finding an open server…": "Finding an open server…",
  "Finding Items": "Finding Items",
- "Finding read messages · {archived} archived ({page})": "Finding read messages · {archived} archived ({page})",
  "Finding read messages ({page})": "Finding read messages ({page})",
+ "Finding read messages, {archived} archived ({page})": "Finding read messages, {archived} archived ({page})",
  "Finding the closest server to you ({region})…": "Finding the closest server to you ({region})…",
  "Finding Things": "Finding Things",
  "Finding unread {page} / {pages}": "Finding unread {page} / {pages}",
@@ -1339,7 +1339,7 @@
  "Forum navigation": "Forum navigation",
  "Forum Posts": "Forum Posts",
  "Forum Search": "Forum Search",
- "Founder · Rank {rank}": "Founder · Rank {rank}",
+ "Founder, Rank {rank}": "Founder, Rank {rank}",
  "Free": "Free",
  "Free Items": "Free Items",
  "Freebie": "Freebie",
@@ -1368,7 +1368,7 @@
  "Friends Playing, layout, random experience": "Friends Playing, layout, random experience",
  "Friends Since": "Friends Since",
  "Friends since {date}": "Friends since {date}",
- "Friends since {date} • {age}": "Friends since {date} • {age}",
+ "Friends since {date}, {age}": "Friends since {date}, {age}",
  "Friends Today": "Friends Today",
  "Friends Who Own It": "Friends Who Own It",
  "Friends whose name contains what you type, shown first.": "Friends whose name contains what you type, shown first.",
@@ -1468,7 +1468,7 @@
  "How far each reseller listing is under or over RAP.": "How far each reseller listing is under or over RAP.",
  "How it will roughly look. Save to get Roblox’s real thumbnail.": "How it will roughly look. Save to get Roblox’s real thumbnail.",
  "How long ago each trade was sent on the trade list. Hover it for the exact time and when it expires.": "How long ago each trade was sent on the trade list. Hover it for the exact time and when it expires.",
- "How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.": "How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.",
+ "How long each item has been in anyone’s inventory, next to its creator, like By Roblox, 3y. Hover it for the exact date.": "How long each item has been in anyone’s inventory, next to its creator, like By Roblox, 3y. Hover it for the exact date.",
  "How Long They’ve Owned It": "How Long They’ve Owned It",
  "How many": "How many",
  "How many communities you’re in out of how many you can join, under Communities in the side list.": "How many communities you’re in out of how many you can join, under Communities in the side list.",
@@ -1508,11 +1508,11 @@
  "Ignore All": "Ignore All",
  "Ignore All Friend Requests?": "Ignore All Friend Requests?",
  "Ignore Matches": "Ignore Matches",
- "Ignored {n} · {failed} didn’t work, try again": "Ignored {n} · {failed} didn’t work, try again",
  "Ignored {n} requests": {
   "one": "Ignored {n} request",
   "other": "Ignored {n} requests"
  },
+ "Ignored {n}, {failed} didn’t work, try again": "Ignored {n}, {failed} didn’t work, try again",
  "Ignored requests can’t be brought back. Each person would have to send you a new one.": "Ignored requests can’t be brought back. Each person would have to send you a new one.",
  "Ignoring {done} of {total}": "Ignoring {done} of {total}",
  "Image": "Image",
@@ -1561,7 +1561,7 @@
  "In Game": "In Game",
  "In Order": "In Order",
  "In Studio": "In Studio",
- "In Studio • {game}": "In Studio • {game}",
+ "In Studio, {game}": "In Studio, {game}",
  "in under a minute": "in under a minute",
  "In-Experience Purchases": "In-Experience Purchases",
  "Inactive": "Inactive",
@@ -1620,7 +1620,7 @@
  "Join When Open": "Join When Open",
  "Joined": "Joined",
  "Joined {date}": "Joined {date}",
- "Joined {date} • {age}": "Joined {date} • {age}",
+ "Joined {date}, {age}": "Joined {date}, {age}",
  "Joined Date": "Joined Date",
  "Joined in {year}": "Joined in {year}",
  "Joined Roblox": "Joined Roblox",
@@ -1667,11 +1667,11 @@
  },
  "Leave Selected": "Leave Selected",
  "Leaving {done} of {total}": "Leaving {done} of {total}",
- "Left {n} · {failed} didn’t work. They’re still selected, try again.": "Left {n} · {failed} didn’t work. They’re still selected, try again.",
  "Left {n} communities.": {
   "one": "Left {n} community.",
   "other": "Left {n} communities."
  },
+ "Left {n}, {failed} didn’t work. They’re still selected, try again.": "Left {n}, {failed} didn’t work. They’re still selected, try again.",
  "Left Shoe": "Left Shoe",
  "less": "less",
  "Let’s Make a Deal": "Let’s Make a Deal",
@@ -1718,7 +1718,7 @@
  "Look {n}": "Look {n}",
  "Look Name": "Look Name",
  "Looking For": "Looking For",
- "Looking for \"{query}\" • checked {count} trades, loading older ones…": "Looking for \"{query}\" • checked {count} trades, loading older ones…",
+ "Looking for \"{query}\", checked {count} trades, loading older ones…": "Looking for \"{query}\", checked {count} trades, loading older ones…",
  "Looking for online members…": "Looking for online members…",
  "Looking through the Marketplace…": "Looking through the Marketplace…",
  "Looking through the Marketplace… {n} free items so far": {
@@ -2063,7 +2063,7 @@
  "Owned {time}": "Owned {time}",
  "Owned by @{name}": "Owned by @{name}",
  "Owned since {date}": "Owned since {date}",
- "Owned since {date} · first bought {first}": "Owned since {date} · first bought {first}",
+ "Owned since {date}, first bought {first}": "Owned since {date}, first bought {first}",
  "Owned Tag in the Marketplace": "Owned Tag in the Marketplace",
  "Owner": "Owner",
  "Owners": "Owners",
@@ -2246,8 +2246,8 @@
  "Quick Settings Style": "Quick Settings Style",
  "Quick Setup": "Quick Setup",
  "Quick Sign In": "Quick Sign In",
- "R$ {price} · {copies} copies": "R$ {price} · {copies} copies",
  "R$ {price} (your alert: R$ {target})": "R$ {price} (your alert: R$ {target})",
+ "R$ {price}, {copies} copies": "R$ {price}, {copies} copies",
  "R6 / R15 Switch": "R6 / R15 Switch",
  "R6 characters have limitations…": "R6 characters have limitations…",
  "R6 or R15": "R6 or R15",
@@ -2374,7 +2374,7 @@
   "one": "Roblox asked RoUtility to slow down, carrying on in a moment. {n} purchase so far, back to {date}.",
   "other": "Roblox asked RoUtility to slow down, carrying on in a moment. {n} purchases so far, back to {date}."
  },
- "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s": "Roblox asked us to slow down · {done} of {total} checked, going again in {s}s",
+ "Roblox asked us to slow down, {done} of {total} checked, going again in {s}s": "Roblox asked us to slow down, {done} of {total} checked, going again in {s}s",
  "Roblox Badges": "Roblox Badges",
  "Roblox couldn’t send it. Check your balance before you try again.": "Roblox couldn’t send it. Check your balance before you try again.",
  "Roblox default": "Roblox default",
@@ -2744,8 +2744,8 @@
  "Stop": "Stop",
  "Stop Scan": "Stop Scan",
  "Stop Trailer Autoplay": "Stop Trailer Autoplay",
- "Stopped · Partial results": "Stopped · Partial results",
  "Stopped waiting for {game} after 15 minutes. The server stayed full.": "Stopped waiting for {game} after 15 minutes. The server stayed full.",
+ "Stopped, Partial results": "Stopped, Partial results",
  "Stopped. {found} in the {total} most recent (back to {date}).": "Stopped. {found} in the {total} most recent (back to {date}).",
  "Stopped. {found} in the {total} most recent.": "Stopped. {found} in the {total} most recent.",
  "Stopped. Added {items}.": "Stopped. Added {items}.",
@@ -2784,8 +2784,8 @@
  "Teleports players": "Teleports players",
  "Tell us what’s wrong": "Tell us what’s wrong",
  "Terminated": "Terminated",
- "Terminated · @{name}": "Terminated · @{name}",
  "Terminated Players": "Terminated Players",
+ "Terminated, @{name}": "Terminated, @{name}",
  "Terrible": "Terrible",
  "Test Notification": "Test Notification",
  "Text": "Text",
@@ -2899,7 +2899,7 @@
  "Thread": "Thread",
  "Thread not available": "Thread not available",
  "Threads": "Threads",
- "tick • tick • tick • chime": "tick • tick • tick • chime",
+ "tick, tick, tick, chime": "tick, tick, tick, chime",
  "Tile Menu": "Tile Menu",
  "Tiles": "Tiles",
  "Timed Out, Try Again": "Timed Out, Try Again",
@@ -3018,11 +3018,11 @@
   "other": "Unfollow {n} People?"
  },
  "Unfollow Selected": "Unfollow Selected",
- "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.": "Unfollowed {n} · {failed} didn’t work. They’re still selected, try again.",
  "Unfollowed {n} people.": {
   "one": "Unfollowed {n} person.",
   "other": "Unfollowed {n} people."
  },
+ "Unfollowed {n}, {failed} didn’t work. They’re still selected, try again.": "Unfollowed {n}, {failed} didn’t work. They’re still selected, try again.",
  "Unfollowing {done} of {total}": "Unfollowing {done} of {total}",
  "Unfriend": "Unfriend",
  "Unfriend {n}": "Unfriend {n}",
@@ -3032,11 +3032,11 @@
  },
  "Unfriend Detector": "Unfriend Detector",
  "Unfriend Selected": "Unfriend Selected",
- "Unfriended {n} · {failed} didn’t work. They’re still selected, try again.": "Unfriended {n} · {failed} didn’t work. They’re still selected, try again.",
  "Unfriended {n} friends.": {
   "one": "Unfriended {n} friend.",
   "other": "Unfriended {n} friends."
  },
+ "Unfriended {n}, {failed} didn’t work. They’re still selected, try again.": "Unfriended {n}, {failed} didn’t work. They’re still selected, try again.",
  "Unfriending": "Unfriending",
  "Unfriending {done} of {total}": "Unfriending {done} of {total}",
  "Universe ID": "Universe ID",
@@ -3238,9 +3238,9 @@
  "YOU GIVE": "YOU GIVE",
  "You give {pct}% more RAP": "You give {pct}% more RAP",
  "You give {pct}% more value": "You give {pct}% more value",
- "You give • {n} items": {
-  "one": "You give • {n} item",
-  "other": "You give • {n} items"
+ "You give, {n} items": {
+  "one": "You give, {n} item",
+  "other": "You give, {n} items"
  },
  "You have no inbound trades.": "You have no inbound trades.",
  "You have no outbound trades.": "You have no outbound trades.",
@@ -3260,9 +3260,9 @@
   "other": "You played here for about {n} minutes"
  },
  "You receive": "You receive",
- "You receive • {n} items": {
-  "one": "You receive • {n} item",
-  "other": "You receive • {n} items"
+ "You receive, {n} items": {
+  "one": "You receive, {n} item",
+  "other": "You receive, {n} items"
  },
  "You rolled": "You rolled",
  "You sent {n} Robux": "You sent {n} Robux",

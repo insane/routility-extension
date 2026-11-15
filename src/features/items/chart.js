@@ -100,7 +100,7 @@
       axis: axisRobux,
       tip: (p) => {
         const n = rap.volByTs.get(p.ts);
-        return 'R$ ' + fmt(Math.round(p.v)) + (n ? ' • ' + ltn(n, '{n} sold', '{n} sold', { n: fmt(n) }) : '');
+        return 'R$ ' + fmt(Math.round(p.v)) + (n ? ', ' + ltn(n, '{n} sold', '{n} sold', { n: fmt(n) }) : '');
       },
       vol: rap.vol,
     };

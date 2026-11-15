@@ -300,8 +300,8 @@
     s.stats.spent.replaceChildren(waiting ? el('span', 'routility-sk routility-spend-sk-stat') : robux(spent, s));
     s.stats.count.replaceChildren(waiting ? el('span', 'routility-sk routility-spend-sk-stat') : document.createTextNode(formatNumber(rows.length)));
     const top = sorted(groups(rows, 'games'), 'spent')[0] || sorted(groups(rows, 'creators'), 'spent')[0];
-    s.stats.top.replaceChildren(waiting ? el('span', 'routility-sk routility-spend-sk-stat') : el('span', 'text-overflow', top ? top.name : '—'));
-    if (top) s.stats.top.dataset.rtTip = lt('{name} • {robux} Robux', { name: top.name, robux: formatNumber(top.spent) });
+    s.stats.top.replaceChildren(waiting ? el('span', 'routility-sk routility-spend-sk-stat') : el('span', 'text-overflow', top ? top.name : '-'));
+    if (top) s.stats.top.dataset.rtTip = lt('{name}, {robux} Robux', { name: top.name, robux: formatNumber(top.spent) });
     else delete s.stats.top.dataset.rtTip;
 
     const label = MODES.find(m => m[0] === s.mode);
@@ -500,7 +500,7 @@
     const text = formatNumber(total);
     if (num.textContent !== text) num.textContent = text;
     const vars = { n: formatNumber(count), date: oldest(g.cache) };
-    const tip = [ltn(count, '{n} purchase in this experience', '{n} purchases in this experience', vars), g.cache.done ? lt('Counted from all your purchases.') : lt('Counted from your purchases back to {date}. Spending on My Transactions can read older ones.', vars)].join(' • ');
+    const tip = [ltn(count, '{n} purchase in this experience', '{n} purchases in this experience', vars), g.cache.done ? lt('Counted from all your purchases.') : lt('Counted from your purchases back to {date}. Spending on My Transactions can read older ones.', vars)].join(', ');
     if (li.dataset.rtTip !== tip) li.dataset.rtTip = tip;
   }
 

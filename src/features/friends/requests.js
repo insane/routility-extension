@@ -334,7 +334,7 @@
     await Promise.all(Array.from({ length: 2 }, worker));
     if (rf !== s) return;
     s.bulk = null;
-    s.note = bad ? lt('Ignored {n} \u00b7 {failed} didn’t work, try again', { n: formatNumber(ok), failed: formatNumber(bad) }) : ltn(ok, 'Ignored {n} request', 'Ignored {n} requests', { n: formatNumber(ok) });
+    s.note = bad ? lt('Ignored {n}, {failed} didn’t work, try again', { n: formatNumber(ok), failed: formatNumber(bad) }) : ltn(ok, 'Ignored {n} request', 'Ignored {n} requests', { n: formatNumber(ok) });
     s.noteBad = bad > 0;
     paintActions(s);
     render(s, true);
@@ -609,7 +609,7 @@
     const extra = [];
     if (!s.scanning && s.partial) extra.push(lt('Some requests didn’t load, reload to try again'));
     if (s.note) extra.push(s.note);
-    tag.textContent = (s.scanning ? lt('{n}+ matches \u00b7 {checked} checked', vars) : ltn(n, '{n} match \u00b7 {checked} checked', '{n} matches \u00b7 {checked} checked', vars)) + extra.map(x => ' \u00b7 ' + x).join('');
+    tag.textContent = (s.scanning ? lt('{n}+ matches, {checked} checked', vars) : ltn(n, '{n} match, {checked} checked', '{n} matches, {checked} checked', vars)) + extra.map(x => ', ' + x).join('');
     tag.classList.toggle('routility-rf-count-bad', !!(s.partial || s.noteBad));
     if (s.scanning && !bar) {
       bar = el('span', 'routility-injected routility-rf-scan');

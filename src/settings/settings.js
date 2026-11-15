@@ -479,7 +479,7 @@
     tradePreview: () => h('div', 'rt-m-card', [r([c([muted(lt('You give')), r([thumb(A.valk, 22), thumb(A.v3000, 22)]), strong(money(896))]), c([muted(lt('You receive')), r([thumb(A.stv, 22)]), strong(money(25000))])], 'rt-m-spread')]),
     tradeSendSummary: () => c([r([h('div', 'rt-m-send-side', [muted(lt('You give')), liveUsd(A.stv, 'rt-m-tiny')]), h('div', 'rt-m-send-side', [muted(lt('You receive')), liveUsd(A.v3000, 'rt-m-tiny')])]), h('div', 'rt-m-alert', [h('span', 'rt-m-alert-dot'), lt('You’re giving more')]), r([h('span', 'rt-m-check'), h('span', 'rt-m-tiny rt-m-strong', lt('I’ve reviewed this trade'))])], 'rt-m-w190 rt-m-gap2'),
     tradeWarning: () => h('div', 'rt-m-alert', [h('span', 'rt-m-alert-dot'), lt('You’re giving {pct} more value', { pct: '45%' })]),
-    tradeFilter: () => c([field('dominus', true), r([face(U.linkmon, 20), strong('Linkmon99'), muted('• ' + ltn(2, '{n} day ago', '{n} days ago'))]), muted(ltn(3, '{n} trade with "{query}"', '{n} trades with "{query}"', { query: 'dominus' }))], 'rt-m-w190'),
+    tradeFilter: () => c([field('dominus', true), r([face(U.linkmon, 20), strong('Linkmon99'), muted(ltn(2, '{n} day ago', '{n} days ago'))]), muted(ltn(3, '{n} trade with "{query}"', '{n} trades with "{query}"', { query: 'dominus' }))], 'rt-m-w190'),
     tradeKeys: () => r([h('span', 'rt-m-key', '↑'), h('span', 'rt-m-key', '↓'), c([r([face(U.cv, 18), strong('CV10K')]), r([face(U.linkmon, 18), muted('Linkmon99')])])]),
     tradeAge: () => r([face(U.cv, 28), c([strong('CV10K'), muted(lt('Inbound')), h('span', 'rt-m-tiny rt-m-muted', ltn(2, '{n} day ago', '{n} days ago'))]), h('span', 'rt-m-tip', ltn(3, 'Expires in {n} day', 'Expires in {n} days'))]),
     tradeOwnership: () => c([h('div', 'rt-m-alert', [h('span', 'rt-m-alert-dot'), lt('They no longer own: {item}', { item: 'Valkyrie Helm' })]), r([thumb(A.stv, 28), h('span', 'rt-m-dim', [thumb(A.valk, 28)])])], 'rt-m-w190'),
@@ -489,7 +489,7 @@
     hiddenFriends: () => c([strong(lt('Friends ({n})', { n: 24 })), r([U.builderman, U.shedletsky, U.luke, U.telamon, U.merely, U.cv].map(id => face(id, 24)))]),
     friendCardMenu: () => r([face(U.cv, 28), c([strong('CV10K'), muted(lt('Online'))]), h('div', 'rt-m-cardmenu', [h('span', 'rt-m-cardmenu-dots', '•••'), h('div', 'rt-m-cardmenu-list', [h('span', null, lt('Unfriend')), h('span', null, lt('Block'))])])]),
     searchTerminated: () => r([circle(28), c([strong('ava_builds'), muted('@ava_builds'), h('span', 'rt-m-tiny rt-m-alert-text', lt('Terminated'))])]),
-    revealTerminated: () => r([circle(28), c([h('span', 'rt-m-strike', lt('Account Deleted')), r([strong('ava_builds'), muted('• ' + lt('Banned'))])])]),
+    revealTerminated: () => r([circle(28), c([h('span', 'rt-m-strike', lt('Account Deleted')), r([strong('ava_builds'), muted(lt('Banned'))])])]),
     inventoryValues: () => g([A.frigidus, A.stv, A.v3000].map(id => cell([thumb(id, 36), liveUsd(id, 'rt-m-tiny')])), 3, 'rt-m-full'),
     profilePills: (s = {}) => {
       const style = /^(separate|gray)$/.test(s.profilePills) ? s.profilePills : 'joined';
@@ -513,20 +513,20 @@
     itemCopies: () => r([muted(lt('Copies')), strong('10,647')], 'rt-m-spread rt-m-w190'),
     itemChange: () => r([muted(lt('Price Change')), h('span', 'rt-m-green', '+' + money(120) + ' (8%)')], 'rt-m-spread rt-m-w190'),
     itemTradesRow: () => r([muted(lt('Recent Trades')), h('span', 'rt-m-strong rt-m-blue-text', ltn(12, '{n} trade in the past week', '{n} trades in the past week', { n: 12 }))], 'rt-m-spread rt-m-w190'),
-    itemOwnedRow: () => r([muted(lt('You own')), strong(ltn(2, '{n} copy • {serials}', '{n} copies • {serials}', { serials: '#48, #1,204' }))], 'rt-m-spread rt-m-w190'),
+    itemOwnedRow: () => r([muted(lt('You own')), strong(ltn(2, '{n} copy, {serials}', '{n} copies, {serials}', { serials: '#48, #1,204' }))], 'rt-m-spread rt-m-w190'),
     lastOnSale: () => r([muted(lt('Last On Sale')), h('span', null, [strong(lt('{date} for', { date: 'Jun 05, 2024' }) + ' '), rb('250')])], 'rt-m-spread rt-m-w190'),
-    itemAcquired: () => c([r([muted(lt('Created')), strong('Jan 3, 2013')], 'rt-m-spread'), r([muted(lt('Acquired')), h('span', null, [strong('Oct 1, 2026'), muted(' · ' + ltn(9, '{n} day ago', '{n} days ago'))])], 'rt-m-spread')], 'rt-m-w190'),
+    itemAcquired: () => c([r([muted(lt('Created')), strong('Jan 3, 2013')], 'rt-m-spread'), r([muted(lt('Acquired')), h('span', null, [strong('Oct 1, 2026'), muted(', ' + ltn(9, '{n} day ago', '{n} days ago'))])], 'rt-m-spread')], 'rt-m-w190'),
     friendsOwn: () => r([h('span', 'rt-m-pill', [h('span', null, [face(U.builderman, 14), face(U.linkmon, 14)], { display: 'inline-flex', marginRight: '4px' }), ltn(114, '{n} Friend owns', '{n} Friends own')], { display: 'inline-flex', alignItems: 'center', padding: '3px 8px' })]),
     itemExplorer: () => h('div', 'rt-m-card rt-m-rx', [h('span', 'rt-m-rx-row', [h('span', 'rt-m-rx-dot', null, { background: '#f2b134' }), 'Accessory']), h('span', 'rt-m-rx-row rt-m-rx-sel', [h('span', 'rt-m-rx-dot', null, { background: '#5aa7ff' }), 'Handle'], { paddingLeft: '18px' }), h('span', 'rt-m-rx-row', [h('span', 'rt-m-rx-dot', null, { background: '#ff8a5b' }), 'HatAttachment'], { paddingLeft: '34px' })]),
     gearFix: () => r([thumb(A.valk, 34), h('span', 'rt-m-card', [thumb('27494652', 34)], { padding: '4px', outline: '1px dashed var(--rt-m-blue)' })]),
-    ownedSince: () => g([[A.valk, ltn(9, '{n}y', '{n}y')], [A.fedora, ltn(12, '{n}d', '{n}d')]].map(([id, t]) => c([thumb(id, 40), h('span', 'rt-m-tiny', [h('span', 'rt-m-muted', lt('By') + ' '), h('span', 'rt-m-strong', 'Roblox'), h('span', 'rt-m-muted', ' · ' + t)])], 'rt-m-center')), 2),
+    ownedSince: () => g([[A.valk, ltn(9, '{n}y', '{n}y')], [A.fedora, ltn(12, '{n}d', '{n}d')]].map(([id, t]) => c([thumb(id, 40), h('span', 'rt-m-tiny', [h('span', 'rt-m-muted', lt('By') + ' '), h('span', 'rt-m-strong', 'Roblox'), h('span', 'rt-m-muted', ', ' + t)])], 'rt-m-center')), 2),
     badgeDates: () => r([game(G.tds, 34), c([strong('Beat Wave 40'), muted(lt('Earned {date}', { date: 'Mar 3, 2021' }))])]),
     listOrder: () => r([muted(lt('Newest')), thumb(A.valk, 26), thumb(A.stv, 26), thumb(A.v3000, 26), muted(lt('Oldest'))]),
     inventorySearch: () => c([field(lt('Search {query}', { query: 'valkyrie' })), g([thumb(A.valk, 26), thumb(A.stv, 26), thumb(A.v3000, 26, [h('span', 'rt-m-badge', '×2')]), tile(26, null, 'rt-m-ghost'), tile(26, null, 'rt-m-ghost')], 5)]),
     richSearch: () => c([field('linkmon', true), h('div', 'rt-m-menu', [r([face(U.linkmon, 16), strong('Linkmon99')]), r([thumb(A.empyreus, 16), liveUsd(A.empyreus, 'rt-m-tiny')])])]),
     searchPeople: () => person(U.roblox, 'Roblox', '@Roblox', verified()),
     searchFriends: () => person(U.cv, 'CV10K', '@CV10K', pill(lt('Friend'))),
-    searchGames: () => r([game(G.tds, 30), c([strong('Tower Defense Simulator'), muted(lt('{rating} • {n} playing', { rating: '94%', n: '26,687' }))])]),
+    searchGames: () => r([game(G.tds, 30), c([strong('Tower Defense Simulator'), muted(lt('{rating}, {n} playing', { rating: '94%', n: '26,687' }))])]),
     searchItems: () => r([thumb(A.empyreus, 36), c([strong('Dominus Empyreus'), r([liveUsd(A.empyreus, 'rt-m-tiny'), h('span', 'rt-m-tiny rt-m-muted', [liveRap(A.empyreus)])])])]),
     searchSlash: () => r([h('span', 'rt-m-key', '/'), h('span', 'rt-m-arrow', '→'), field(lt('Search'), true)]),
     avatarRemember: () => c([r([pill(lt('Recent')), pill(lt('Accessories'), 'active'), pill(lt('Body'))]), r([muted(lt('Accessories')), h('span', 'rt-m-arrow', '›'), strong(lt('Head'))]), r([A.valk, A.stv, A.fedora, A.empyreus].map(id => thumb(id, 24)))], 'rt-m-w190'),
@@ -538,14 +538,14 @@
     thumbCustomize: () => r([h('span', 'rt-m-tc-frame', [thumb(A.valk, 44)]), c([r([muted(lt('Field of View')), strong('25°')], 'rt-m-spread'), h('span', 'rt-m-bar rt-m-bar-blue', [h('span', null, null, { width: '33%' })]), r([muted(lt('Rotation')), strong('25.5°')], 'rt-m-spread'), h('span', 'rt-m-bar rt-m-bar-blue', [h('span', null, null, { width: '71%' })])], 'rt-m-tc-ctrls')]),
     avatarRig: () => c([r([strong(lt('Avatar type')), r([muted('R6'), h('span', 'rt-m-switch', [h('span')]), strong('R15')])], 'rt-m-spread'), r([muted(lt('Body Type')), muted('100%')], 'rt-m-spread'), h('span', 'rt-m-bar rt-m-bar-blue', [h('span', null, null, { width: '100%' })])], 'rt-m-w190'),
     hideMakeup: () => r([pill(lt('Clothing')), h('span', 'rt-m-pill rt-m-gone', lt('Makeup')), pill(lt('Body'))]),
-    avatarWearing: () => c([r([strong(lt('Wearing')), liveUsd(`${A.fedora},${A.valk},${A.stv},${A.v3000},${A.frigidus}`, 'rt-m-tiny')], 'rt-m-spread'), muted(lt('{n} items • {worn}/{max} accessories', { n: 5, worn: 5, max: 10 })), g([A.fedora, A.valk, A.stv, A.v3000, A.frigidus].map(id => thumb(id, 24)), 5)], 'rt-m-w190'),
+    avatarWearing: () => c([r([strong(lt('Wearing')), liveUsd(`${A.fedora},${A.valk},${A.stv},${A.v3000},${A.frigidus}`, 'rt-m-tiny')], 'rt-m-spread'), muted(lt('{n} items, {worn}/{max} accessories', { n: 5, worn: 5, max: 10 })), g([A.fedora, A.valk, A.stv, A.v3000, A.frigidus].map(id => thumb(id, 24)), 5)], 'rt-m-w190'),
     avoidFriends: () => c([r([pill(lt('Play'), 'active')]), r([face(U.cv, 18), face(U.linkmon, 18), muted(lt('not in that server'))])]),
     notifyInbound: () => notice(lt('Trade Received'), lt('From {user}', { user: '@Builderman' }), face(U.builderman, 16)),
     notifyOutbound: () => notice(lt('Trade Sent'), lt('To {user}', { user: '@Shedletsky' }), face(U.shedletsky, 16)),
     notifyCompleted: () => notice(lt('Trade Completed'), lt('With {user}', { user: '@Telamon' }), face(U.telamon, 16)),
     notifyDeclined: () => notice(lt('Trade Declined'), lt('{user} declined it', { user: '@Merely' }), face(U.merely, 16)),
-    notifyLimiteds: () => notice(lt('New Roblox Limited'), lt('R$ {price} · {copies} copies', { price: '1,000', copies: '5,000' }), thumb(A.fedora, 18)),
-    notifyUgc: () => notice(lt('New UGC Limited'), lt('R$ {price} · {copies} copies', { price: '250', copies: '100' }), thumb(A.stv, 18)),
+    notifyLimiteds: () => notice(lt('New Roblox Limited'), lt('R$ {price}, {copies} copies', { price: '1,000', copies: '5,000' }), thumb(A.fedora, 18)),
+    notifyUgc: () => notice(lt('New UGC Limited'), lt('R$ {price}, {copies} copies', { price: '250', copies: '100' }), thumb(A.stv, 18)),
     priceAlerts: () => c([r([thumb(A.valk, 24), c([strong('Valkyrie Helm'), muted(lt('Alert at R$ {price}', { price: '250,000' }))])]), r([h('span', 'rt-m-tiny rt-m-strong rt-m-hl', lt('Price Alert'))])], 'rt-m-w190'),
     forumStatJoined: () => poster('joined'),
     forumStatPosts: () => poster('posts'),
@@ -579,7 +579,7 @@
     tradeAdsNav: () => h('div', 'rt-m-card', [muted(lt('Trade Calculator')), h('span', 'rt-m-strong rt-m-hl', lt('Trade Ads')), muted(lt('Communities'))]),
     calcNav: () => h('div', 'rt-m-card', [muted(lt('Trade')), h('span', 'rt-m-strong rt-m-hl', lt('Trade Calculator')), muted(lt('Communities'))]),
     groupFriends: () => r([pill(ltn(570247, '{n} Member', '{n} Members', { n: '570,247' })), h('span', 'rt-m-pill', [face(U.builderman, 14), document.createTextNode(' ' + ltn(4, '{n} Friend', '{n} Friends'))])]),
-    groupDetails: () => c([r([muted('570.2K+'), h('span', 'rt-m-arrow', '\u2192'), strong(ltn(570247, '{n} Member', '{n} Members', { n: '570,247' }))]), r([pill(lt('Founder · Rank {rank}', { rank: 255 })), pill([rb('144'), '\u00a0\u2248 $0.55'])])]),
+    groupDetails: () => c([r([muted('570.2K+'), h('span', 'rt-m-arrow', '\u2192'), strong(ltn(570247, '{n} Member', '{n} Members', { n: '570,247' }))]), r([pill(lt('Founder, Rank {rank}', { rank: 255 })), pill([rb('144'), '\u00a0\u2248 $0.55'])])]),
     friendManage: () => c([r([strong(lt('My Friends')), muted(ltn(248, '{n} friend', '{n} friends'))]), r([pill(lt('Offline')), pill(lt('Terminated')), h('span', 'rt-m-pill rt-m-down', lt('Unfriend {n}', { n: 6 }))])]),
     cancelRequests: () => r([pill(lt('Pending')), h('span', 'rt-m-pill rt-m-down', lt('Cancel Request'))]),
     socialBadge: () => r([face(U.shedletsky, 28), strong('Shedletsky'), verified(), h('span', 'rt-m-social-badge', [logoImg()])]),
@@ -598,7 +598,7 @@
     userOutfits: () => r([tile(34), tile(34), tile(34), c([strong(ltn(3, '{n} Outfit', '{n} Outfits')), muted(lt('Saved by this player'))])]),
     navCollapse: () => r([h('span', 'rt-m-rail', [icon('home'), icon('person'), icon('people'), icon('game')]), c([strong(lt('Collapse')), muted(lt('Icons only, more room'))])]),
     chatResize: () => r([h('div', 'rt-m-win', [h('span', 'rt-m-grip'), r([botFace(), line(46)]), line(70, 'rt-m-dark'), line(54, 'rt-m-dark')]), c([strong('400 × 520'), muted(lt('Drag the corner'))])]),
-    groupFind: () => c([r([pill(lt('Find: {query}', { query: 'builderman' }))]), r([face(U.builderman, 22), strong('builderman'), pill(lt('Admin · Rank {rank}', { rank: 254 }))])]),
+    groupFind: () => c([r([pill(lt('Find: {query}', { query: 'builderman' }))]), r([face(U.builderman, 22), strong('builderman'), pill(lt('Admin, Rank {rank}', { rank: 254 }))])]),
     createScanner: () => c([r([strong(lt('Scripts')), h('span', 'rt-m-pill rt-m-down', lt('{n} High Risk', { n: 1 }))]), r([muted('require(4815162342)'), pill(lt('Line {n}', { n: 12 }))])]),
     createIds: () => c([r([muted(lt('Universe ID')), strong('10032450273'), pill(lt('Copy'))]), r([muted(lt('Place ID')), strong('9539954854'), pill(lt('Copy'))])]),
     createDevItems: () => r([strong('78680392428952'), pill(lt('Copy')), pill(lt('Download'))]),
@@ -626,13 +626,13 @@
     exactCounts: () => c([muted(lt('Followers')), r([h('span', 'rt-m-strike', '16.7M'), h('span', 'rt-m-arrow', '→'), h('span', 'rt-m-strong rt-m-big', '16,734,201')])]),
     mutualGroups: () => c([r([muted(ltn(168, '{n} Friend', '{n} Friends')), muted(lt('{n} Following', { n: 42 }))]), h('span', 'rt-m-chip', [h('span', 'rt-m-stack', [communityIcon(GR.roblox, 16), communityIcon(GR.interns, 16), communityIcon(GR.videoStars, 16)]), ltn(3, '{n} Mutual community', '{n} Mutual communities')])]),
     genreFilters: () => r([pill(lt('All Genres')), pill(lt('Obby & Platformer'), 'active'), pill(lt('Action'))], 'rt-m-chips'),
-    recentlyUpdated: () => c([strong(lt('Recently Updated')), r([game(G.adoptMe, 46, [h('span', 'rt-m-tiny rt-m-muted', '• ' + ltn(2, '{n}h ago', '{n}h ago'))]), game(G.tds, 46, [h('span', 'rt-m-tiny rt-m-muted', ltn(3, '{n}d ago', '{n}d ago'))])])], 'rt-m-w190'),
+    recentlyUpdated: () => c([strong(lt('Recently Updated')), r([game(G.adoptMe, 46, [h('span', 'rt-m-tiny rt-m-muted', ltn(2, '{n}h ago', '{n}h ago'))]), game(G.tds, 46, [h('span', 'rt-m-tiny rt-m-muted', ltn(3, '{n}d ago', '{n}d ago'))])])], 'rt-m-w190'),
     friendsPlaying: () => c([strong(lt('Friends Playing')), r([[G.adoptMe, [U.cv, U.builderman]], [G.tds, [U.linkmon]], [G.jailbreak, [U.roblox]]].map(([gid, ids]) => game(gid, 46, [h('span', 'rt-m-tile-faces', ids.map(id => face(id, 16)))])))], 'rt-m-w190'),
     notInterested: () => r([game(G.brookhaven, 46, [h('span', 'rt-m-dots', '⋯')]), h('div', 'rt-m-card', [h('span', 'rt-m-strong rt-m-hl', lt('Not interested')), muted(lt('Report'))])]),
-    rollSounds: () => r([h('span', 'rt-m-key', '♪'), muted(lt('tick • tick • tick • chime'))]),
+    rollSounds: () => r([h('span', 'rt-m-key', '♪'), muted(lt('tick, tick, tick, chime'))]),
     creatorItems: () => c([r([strong(lt('Avatar Items')), h('span', 'rt-m-tiny rt-m-muted', lt('By {creator}', { creator: 'Uplift Games' }))], 'rt-m-spread'), r([A.fedora, A.frigidus, A.v3000].map(id => thumb(id, 36)))], 'rt-m-w190'),
     devProducts: () => c([r([strong(lt('Developer Products')), h('span', 'rt-m-tiny rt-m-muted', '48')], 'rt-m-spread'), r([rb('24'), rb('48'), rb('96')])], 'rt-m-w190'),
-    storeTotal: () => c([r([strong(lt('Passes')), h('span', 'rt-m-tiny rt-m-muted', lt('All {n} passes', { n: 12 }))], 'rt-m-spread'), r([rb('4,350', 'rt-m-big'), muted('• ' + lt('You own {n}', { n: 3 }))])], 'rt-m-w190'),
+    storeTotal: () => c([r([strong(lt('Passes')), h('span', 'rt-m-tiny rt-m-muted', lt('All {n} passes', { n: 12 }))], 'rt-m-spread'), r([rb('4,350', 'rt-m-big'), muted(lt('You own {n}', { n: 3 }))])], 'rt-m-w190'),
     serverStats: () => c([strong(lt('{n} of {max} people max', { n: 3, max: 5 })), h('span', 'rt-m-bar', [h('span', null, null, { width: '60%' })]), r([pill('100%'), pill(lt('{n} ms', { n: 38 }), 'up'), pill(lt('Join')), pill(lt('Invite'))])], 'rt-m-w190'),
     serverRegions: () => c([['us', 'Ashburn, Virginia', ltn(42, '{n} server', '{n} servers'), true], ['de', 'Frankfurt, Germany', ltn(18, '{n} server', '{n} servers')], ['sg', 'Singapore', ltn(9, '{n} server', '{n} servers')]].map(([code, city, count, top]) => r([flag(code), top ? strong(city) : muted(city), pill(count, top ? 'active' : '')], 'rt-m-spread rt-m-region')), 'rt-m-w190'),
     launchDetails: () => r([h('span', 'rt-m-launch-logo', [h('span', 'routility-roblox-mark routility-spin rt-m-mark')]), c([strong('Minesweeper'), h('span', 'rt-m-tiny rt-m-muted', lt('Joining server…')), r([pill('3/5'), pill(lt('{n} ms', { n: 38 }), 'up'), pill(lt('{h}h {m}m', { h: 3, m: 44 }))], 'rt-m-launch-pills')], 'rt-m-launch-info')], 'rt-m-launch'),
@@ -1083,7 +1083,7 @@
         { title: LT('Item Page Extras'), rows: [
           { key: 'itemSize', title: LT('Size'), desc: LT('A Size line on accessory pages with how big the accessory really is in studs, like 1.6 × 0.6 × 1.6 studs, so you can spot oversized ones before you buy.') },
           { key: 'lastOnSale', title: LT('Last On Sale'), desc: LT('A Last On Sale line on off-sale items: the last price Roblox sold it for and when its listing last changed, like Jun 5, 2024 for R$ 250.') },
-          { key: 'itemAcquired', title: LT('Acquired'), desc: LT('An Acquired line on item pages for things you own, like Oct 1, 2026 · 9 days ago.') },
+          { key: 'itemAcquired', title: LT('Acquired'), desc: LT('An Acquired line on item pages for things you own, like Oct 1, 2026, 9 days ago.') },
           { key: 'friendsOwn', title: LT('Friends Who Own It'), desc: LT('A chip on item pages with how many of your friends own the item. Click it for the list.') },
           { key: 'hiddenItems', title: LT('Hidden Item Details'), desc: LT('When an item’s page is hidden, like an archived or unreleased item, RoUtility rebuilds it from what Roblox still shares: picture, creator, type, dates, favorites and description.') },
         ] },
@@ -1114,7 +1114,7 @@
           { key: 'profileRap', parent: 'inventoryValues', title: LT('RAP on Profiles'), desc: LT('The total RAP of their limiteds.') },
           { key: 'profileShort', parent: 'inventoryValues', title: LT('Short Numbers on Profiles'), desc: LT('Show the profile pills like 7.27M+ instead of 7,270,616. The + means it was rounded down. Hover a pill for the exact number.') },
           { key: 'profilePills', parent: 'inventoryValues', title: LT('Profile Pill Style'), desc: LT('How the Value, RAP and Price pills look on profiles, inventories and trades.'), options: [['joined', LT('Combined')], ['separate', LT('Separate')], ['gray', LT('Minimal')]] },
-          { key: 'ownedSince', title: LT('How Long They’ve Owned It'), desc: LT('How long each item has been in anyone’s inventory, next to its creator, like By Roblox · 3y. Hover it for the exact date.') },
+          { key: 'ownedSince', title: LT('How Long They’ve Owned It'), desc: LT('How long each item has been in anyone’s inventory, next to its creator, like By Roblox, 3y. Hover it for the exact date.') },
         ] },
         { title: LT('Finding Things'), rows: [
           { key: 'inventorySearch', title: LT('Inventory Search'), desc: LT('Search a whole inventory category by name, asset ID or limited acronym like RSTF, not just the current page.') },
@@ -1572,7 +1572,7 @@
       show(stopper());
       say(lt('Getting items… {done} of {total}', { done: 0, total: n(items.length) }), 0);
       const out = await window.RoUtilityFreeItems.run(items, (p) => {
-        say(lt('Getting items… {done} of {total}', { done: n(p.done), total: n(p.total) }) + (p.last && p.last.name ? ' · ' + p.last.name : ''), p.done / p.total * 100);
+        say(lt('Getting items… {done} of {total}', { done: n(p.done), total: n(p.total) }) + (p.last && p.last.name ? ', ' + p.last.name : ''), p.done / p.total * 100);
       }, job.signal);
       job = null;
       const got = ltn(out.got.length, '{n} item', '{n} items', { n: n(out.got.length) });
@@ -1774,7 +1774,7 @@
       const fun = st[FUN] || {};
       const items = (Array.isArray(fun.items) ? fun.items : []).slice().sort((a, b) => b.at - a.at);
       const spent = Number(fun.spent) || 0;
-      sub.textContent = items.length ? ltn(items.length, '{n} purchase · {spent} Robux spent', '{n} purchases · {spent} Robux spent', { n: items.length.toLocaleString('en-US'), spent: spent.toLocaleString('en-US') }) : lt(def.desc);
+      sub.textContent = items.length ? ltn(items.length, '{n} purchase, {spent} Robux spent', '{n} purchases, {spent} Robux spent', { n: items.length.toLocaleString('en-US'), spent: spent.toLocaleString('en-US') }) : lt(def.desc);
       reset.hidden = !items.length;
       refill.hidden = !(spent > 0);
       list.textContent = '';
@@ -1798,7 +1798,7 @@
         }
         const kind = lt(it.kind === 'asset' ? FUN_TYPES[it.type] || FUN_KINDS.asset : FUN_KINDS[it.kind] || FUN_KINDS.other);
         const when = new Date(it.at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-        info.append(name, el('span', 'text-body-small content-muted', `${kind} · ${when}`));
+        info.append(name, el('span', 'text-body-small content-muted', `${kind}, ${when}`));
         const price = el('span', 'routility-fun-price');
         price.append(el('span', 'icon-robux-16x16'), el('span', 'text-robux', it.price ? Number(it.price).toLocaleString('en-US') : lt('Free')));
         row.append(pic, info, price, button(lt('Remove'), () => refund(it)));
@@ -2924,7 +2924,7 @@
     const side = el('div', 'routility-set-control');
     let below = null;
     if (def.options) {
-      const opts = def.options.map(([value, label]) => ({ value, label: def.key === 'language' && value !== 'auto' ? label : def.key === 'currency' ? value + ' · ' + lt(label) : lt(label) }));
+      const opts = def.options.map(([value, label]) => ({ value, label: def.key === 'language' && value !== 'auto' ? label : def.key === 'currency' ? value + ', ' + lt(label) : lt(label) }));
       const current = opts.some(o => o.value === settings[def.key]) ? settings[def.key] : DEFAULTS[def.key];
       const extraFor = def.rateInput || def.robuxInput || def.fontInput;
       const rate = def.rateInput ? rateField(settings, save) : def.robuxInput ? robuxField(settings, save, def.amountKey, def.amountLabel) : def.fontInput ? fontField() : null;
@@ -3272,7 +3272,7 @@
 
     const data = group(lt('Data & Privacy'));
     const statusText = (x) => x.itemCount
-      ? ltn(x.itemCount, '{n} item • updated {time}', '{n} items • updated {time}', { n: x.itemCount.toLocaleString('en-US'), time: timeAgo(x.lastFetch) })
+      ? ltn(x.itemCount, '{n} item, updated {time}', '{n} items, updated {time}', { n: x.itemCount.toLocaleString('en-US'), time: timeAgo(x.lastFetch) })
       : lt('Not downloaded yet.');
     const dataRow = row(lt('Price Data'), statusText(cache), button(lt('Refresh'), (btn, text) => {
       btn.disabled = true;
@@ -3441,7 +3441,7 @@
             return def.title && words.every(w => hay.includes(w) || (w.length > 3 && /s$/.test(w) && hay.includes(w.slice(0, -1))));
           });
           if (!hits.length) continue;
-          const wrap = group(lt(g.title) === lt(tab.label) ? lt(tab.label) : `${lt(tab.label)} • ${lt(g.title)}`);
+          const wrap = group(lt(g.title) === lt(tab.label) ? lt(tab.label) : `${lt(tab.label)}: ${lt(g.title)}`);
           for (const def of hits) {
             found++;
             if (def.custom) {

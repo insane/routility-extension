@@ -392,7 +392,7 @@
       const c = el('div', 'flex flex-col gap-xsmall routility-calc-summary-cell');
       c.appendChild(el('span', 'text-label-small content-muted', label));
       const row = el('div', 'flex items-center gap-small');
-      if (icon && value !== '—') {
+      if (icon && value !== '-') {
         const v = el('span', 'routility-calc-total-v text-heading-small ' + toneClass);
         v.append(icon, el('span', null, value));
         row.appendChild(v);
@@ -401,17 +401,17 @@
       c.appendChild(row);
       return c;
     };
-    box.appendChild(cell(lt('RAP difference'), both ? signed(Math.round(dRap), formatNumber) : '—', tone(dRap), both && percentsOn() ? pct(dRap, give.rap) : '', markIcon('rap')));
+    box.appendChild(cell(lt('RAP difference'), both ? signed(Math.round(dRap), formatNumber) : '-', tone(dRap), both && percentsOn() ? pct(dRap, give.rap) : '', markIcon('rap')));
     box.classList.toggle('routility-calc-summary-4', !!showing.value);
     if (showing.value) {
       const dVal = get.value - give.value;
       const vcell = cell(lt('Value difference'), '', tone(dVal), both && percentsOn() ? pct(dVal, give.value) : '');
       const target = vcell.querySelector('.text-heading-small');
       if (both) target.replaceWith(valueTag(Math.abs(dVal), { className: 'text-heading-small ' + tone(dVal), sign: dVal > 0 ? '+' : dVal < 0 ? '-' : '', tip: false }));
-      else target.textContent = '—';
+      else target.textContent = '-';
       box.appendChild(vcell);
     }
-    box.appendChild(cell(lt('Price difference'), both ? signed(dUsd, usdText) : '—', tone(dUsd), both && percentsOn() ? pct(dUsd, give.usd) : '', markIcon('usd', true)));
+    box.appendChild(cell(lt('Price difference'), both ? signed(dUsd, usdText) : '-', tone(dUsd), both && percentsOn() ? pct(dUsd, give.usd) : '', markIcon('usd', true)));
     const v = verdictFor(give, get);
     const vc = el('div', 'flex flex-col gap-xsmall routility-calc-summary-cell');
     vc.appendChild(el('span', 'text-label-small content-muted', lt('Verdict')));
@@ -924,7 +924,7 @@
       top.appendChild(el('span', 'text-title-medium content-emphasis text-truncate-end', u.displayName || u.name));
       if (u.verified) top.appendChild(window.RoUtilityUI.verifiedBadge());
       names.appendChild(top);
-      names.appendChild(el('span', 'text-body-small content-muted text-truncate-end', '@' + u.name + (u.friend ? ' • ' + lt('Friend') : '')));
+      names.appendChild(el('span', 'text-body-small content-muted text-truncate-end', '@' + u.name + (u.friend ? ', ' + lt('Friend') : '')));
       row.appendChild(names);
       row.addEventListener('mousedown', (e) => e.preventDefault());
       row.addEventListener('click', () => pickPlayer(u, field.input));
@@ -1248,8 +1248,8 @@
     const dUsd = tr.usd - tg.usd;
     const tone = (d) => (!both ? withAlpha(T.text, 0.35) : d > 0 ? T.green : d < 0 ? T.red : T.muted);
     const cells = [
-      [lt('RAP Diff.'), both ? signed(dRap, formatNumber) : '—', tone(dRap), both],
-      [lt('Price Diff.'), both ? signed(dUsd, usdText) : '—', tone(dUsd), false],
+      [lt('RAP Diff.'), both ? signed(dRap, formatNumber) : '-', tone(dRap), both],
+      [lt('Price Diff.'), both ? signed(dUsd, usdText) : '-', tone(dUsd), false],
       [lt('Verdict'), v.text, toneColor || T.muted, false],
     ];
     cells.forEach(([label, value, color, icon], i) => {
@@ -1481,7 +1481,7 @@
       mine.classList.add('routility-injected', 'routility-calc-nav');
       const a = mine.querySelector('a');
       a.href = 'https://www.roblox.com/trades/calculator';
-      a.querySelectorAll('.foundation-web-badge').forEach(b => (b.closest('span.fill') || b).remove());
+      a.querySelectorAll('.foundation-web-badge, .foundation-web-status-indicator').forEach(b => (b.closest('span.fill') || b).remove());
       const icon = a.querySelector('.icon');
       if (icon) {
         icon.className = 'grow-0 shrink-0 basis-auto icon routility-calc-nav-icon size-[var(--icon-size-large)]';

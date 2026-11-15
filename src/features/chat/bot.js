@@ -125,7 +125,7 @@
   const fill = (c, extra) => ({ label: '/' + c.name, act: c.args ? 'fill' : 'say', value: '/' + c.name + (c.args ? ' ' : '') + (extra || '') });
 
   function helpReply() {
-    return { text: lt('Type / and pick a command:') + '\n' + COMMANDS.filter(c => c.name !== 'help').map(c => `${usage(c)} · ${lt(c.desc)}`).join('\n'), chips: ['value', 'trade', 'player', 'me', 'top'].map(n => fill(findCommand(n))) };
+    return { text: lt('Type / and pick a command:') + '\n' + COMMANDS.filter(c => c.name !== 'help').map(c => `${usage(c)}, ${lt(c.desc)}`).join('\n'), chips: ['value', 'trade', 'player', 'me', 'top'].map(n => fill(findCommand(n))) };
   }
 
   function listByTitle(title, n) {
@@ -814,11 +814,11 @@
       const names = el('div', 'routility-bot-item-names');
       names.append(el('span', 'text-label-medium content-emphasis routility-bot-item-name', i.name));
       const tags = [i.demand && lt('{demand} demand', { demand: lt(i.demand) }), i.trend && lt(i.trend), i.projected && lt('Projected'), i.rare && lt('Rare')].filter(Boolean);
-      if (tags.length) names.append(el('span', 'text-caption-small content-muted', tags.join(' · ')));
+      if (tags.length) names.append(el('span', 'text-caption-small content-muted', tags.join(', ')));
       top.append(thumb(i, 40), names);
       const stats = el('div', 'routility-bot-stats');
       const stat = (label, value) => { const s = el('div', 'routility-bot-stat'); s.append(el('span', 'text-caption-small content-muted', label), el('span', 'text-label-medium content-emphasis', value)); return s; };
-      stats.append(stat(lt('Price'), i.usd ? shortUSD(i.usd) : '—'), ...(window.RoUtilityUI.shows('Bot').value && Number(i.value) > 0 ? [stat(lt('Value'), 'R$ ' + (i.value >= 1e5 ? short(i.value) : formatNumber(i.value)))] : []), stat('RAP', i.rap ? 'R$ ' + (i.rap >= 1e5 ? short(i.rap) : formatNumber(i.rap)) : '—'));
+      stats.append(stat(lt('Price'), i.usd ? shortUSD(i.usd) : '-'), ...(window.RoUtilityUI.shows('Bot').value && Number(i.value) > 0 ? [stat(lt('Value'), 'R$ ' + (i.value >= 1e5 ? short(i.value) : formatNumber(i.value)))] : []), stat('RAP', i.rap ? 'R$ ' + (i.rap >= 1e5 ? short(i.rap) : formatNumber(i.rap)) : '-'));
       a.append(top, stats);
       if (i.usd) a.appendChild(spark(i.id));
       return a;
@@ -869,7 +869,7 @@
         const pics = el('div', 'routility-bot-pics');
         for (const i of list.slice(0, 6)) {
           const t = thumb(i, 30);
-          t.dataset.rtTip = `${i.name} · ${i.usd ? formatUSD(i.usd) : lt('no price')}`;
+          t.dataset.rtTip = `${i.name}, ${i.usd ? formatUSD(i.usd) : lt('no price')}`;
           pics.appendChild(t);
         }
         if (robux) pics.appendChild(el('span', 'text-caption-small content-default routility-bot-robux', '+ R$ ' + formatNumber(robux)));
