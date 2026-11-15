@@ -3148,5 +3148,6 @@
  "Notify When It Joins": "แจ้งเตือนเมื่อเข้าร่วม",
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "แจ้งเตือนเมื่อมีที่ว่างและ RoUtility พาคุณเข้า หรือเมื่อหยุดรอเพราะเซิร์ฟเวอร์ปิดหรือเต็มอยู่ 15 นาที",
  "Enlarge Showcase": "มุมมองขยาย",
- "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "เมื่อขยายอวาตาร์ใน Sandbox จะแสดงมูลค่าชุดและไอเทมที่สวมอยู่ด้านล่าง"
+ "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "เมื่อขยายอวาตาร์ใน Sandbox จะแสดงมูลค่าชุดและไอเทมที่สวมอยู่ด้านล่าง",
+ "Adding up inventory value…": "กำลังคำนวณมูลค่าคลังไอเทม…"
 }

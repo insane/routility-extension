@@ -3595,5 +3595,6 @@
  "Notify When It Joins": "Уведомлять о входе",
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "Уведомление, когда освободилось место и RoUtility подключает вас, или когда ожидание прекращено, потому что сервер закрылся или был заполнен 15 минут.",
  "Enlarge Showcase": "Увеличенный вид",
- "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Когда вы увеличиваете аватар в Sandbox, внизу показываются стоимость образа и надетые предметы."
+ "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Когда вы увеличиваете аватар в Sandbox, внизу показываются стоимость образа и надетые предметы.",
+ "Adding up inventory value…": "Подсчёт стоимости инвентаря…"
 }

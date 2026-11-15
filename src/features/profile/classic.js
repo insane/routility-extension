@@ -414,6 +414,13 @@
       const b = el('button', join ? 'btn-growth-md routility-join-game' : 'btn-control-md', join ? lt('Join Game') : labels[i]);
       b.type = 'button';
       if (nb.dataset.rtTip) b.dataset.rtTip = nb.dataset.rtTip;
+      if (nb.classList.contains('routility-trade-pending')) {
+        b.classList.add('routility-trade-pending');
+        s.tradePending = true;
+      } else if (nb.classList.contains('routility-trade-btn') && s.tradePending) {
+        b.classList.add('routility-trade-in');
+        s.tradePending = false;
+      }
       if (off[i] && nb.dataset.rtTip) {
         b.classList.add('disabled', 'routility-tip-disabled');
         b.setAttribute('aria-disabled', 'true');

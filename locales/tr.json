@@ -3297,5 +3297,6 @@
  "Notify When It Joins": "Katılınca Bildir",
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "Yer açılıp RoUtility seni kattığında ya da sunucu kapandığı veya 15 dakika dolu kaldığı için beklemeyi bıraktığında bildirim.",
  "Enlarge Showcase": "Büyütme Görünümü",
- "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Sandbox avatarını büyüttüğünde altta kıyafet değerini ve giydiğin eşyaları gösterir."
+ "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Sandbox avatarını büyüttüğünde altta kıyafet değerini ve giydiğin eşyaları gösterir.",
+ "Adding up inventory value…": "Envanter değeri hesaplanıyor…"
 }

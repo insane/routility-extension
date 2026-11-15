@@ -59,17 +59,21 @@
     const m = location.pathname.match(PATH);
     const h = header();
     const existing = document.querySelector('.routility-trade-btn');
-    if (!on || !m || !current || current.userId !== m[1] || !current.view || !h) {
+    if (!on || !m || !current || current.userId !== m[1] || (!current.view && !current.pending) || !h) {
       existing?.remove();
       return;
     }
     const box = h.querySelector('.button-container');
     const ref = box && [...box.querySelectorAll('button.foundation-web-button')].find(x => !x.classList.contains('routility-trade-btn') && x.textContent.trim());
     if (!ref) return;
-    if (existing && existing.parentElement === box && existing.dataset.key === current.key) return;
+    const key = current.pending ? 'pending' : current.key;
+    if (existing && existing.parentElement === box && existing.dataset.key === key) return;
+    const was = existing && existing.parentElement === box && existing.classList.contains('routility-trade-pending');
     existing?.remove();
-    const b = build(ref, current.view);
-    b.dataset.key = current.key;
+    const b = build(ref, current.view || { text: lt('Trade'), off: true });
+    b.dataset.key = key;
+    if (current.pending) b.classList.add('routility-trade-pending');
+    else if (was) b.classList.add('routility-trade-in');
     box.appendChild(b);
   }
 
@@ -81,9 +85,11 @@
       return;
     }
     if (current && current.userId === m[1]) return paint();
-    const mine = current = { userId: m[1], view: null, key: '' };
+    const mine = current = { userId: m[1], view: null, key: '', pending: true };
+    paint();
     const st = await status(m[1]);
     if (current !== mine) return;
+    mine.pending = false;
     mine.view = view(st, m[1]);
     mine.key = st || '';
     paint();

@@ -3297,5 +3297,6 @@
  "Notify When It Joins": "Avvisa quando entri",
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "Una notifica quando si libera un posto e RoUtility ti fa entrare, o quando smette di aspettare perché il server è stato chiuso o è rimasto pieno per 15 minuti.",
  "Enlarge Showcase": "Vista ingrandita",
- "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Quando ingrandisci il tuo avatar Sandbox, mostra in basso il valore dell’outfit e gli oggetti che indossi."
+ "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Quando ingrandisci il tuo avatar Sandbox, mostra in basso il valore dell’outfit e gli oggetti che indossi.",
+ "Adding up inventory value…": "Calcolo del valore dell’inventario…"
 }

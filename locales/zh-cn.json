@@ -3148,5 +3148,6 @@
  "Notify When It Joins": "加入时通知",
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "有空位并由 RoUtility 让你加入时，或因服务器关闭或连续 15 分钟满员而停止等待时，发送通知。",
  "Enlarge Showcase": "放大展示",
- "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "放大 Sandbox 虚拟形象时，在底部显示服装价值和你正在穿戴的物品。"
+ "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "放大 Sandbox 虚拟形象时，在底部显示服装价值和你正在穿戴的物品。",
+ "Adding up inventory value…": "正在计算库存价值…"
 }

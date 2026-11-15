@@ -494,6 +494,7 @@
       .filter(Boolean).map(([c, width]) => {
         const pill = el('span', PILL_CLASS + ' ' + c + ' routility-pill-skeleton');
         pill.style.width = Math.round(width * (big ? 1.1 : 1)) + 'px';
+        pill.dataset.rtTip = lt('Adding up inventory value…');
         return pill;
       });
   }

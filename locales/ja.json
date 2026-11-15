@@ -3148,5 +3148,6 @@
  "Notify When It Joins": "参加時に通知",
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "空きが出てRoUtilityが参加したとき、またはサーバーが閉じたか15分間満員のままで待機を終えたときに通知します。",
  "Enlarge Showcase": "拡大ビュー",
- "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Sandboxのアバターを拡大したとき、下にコーデの価値と着用中のアイテムを表示します。"
+ "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Sandboxのアバターを拡大したとき、下にコーデの価値と着用中のアイテムを表示します。",
+ "Adding up inventory value…": "インベントリの価値を計算中…"
 }
