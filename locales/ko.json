@@ -3149,5 +3149,11 @@
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "자리가 나서 RoUtility가 참여시켜 줄 때, 또는 서버가 닫혔거나 15분 동안 꽉 차 있어서 대기를 멈출 때 알림을 보내요.",
  "Enlarge Showcase": "확대 보기",
  "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Sandbox 아바타를 확대하면 아래에 코디 가치와 착용 중인 아이템을 보여 줘요.",
- "Adding up inventory value…": "인벤토리 가치 계산 중…"
+ "Adding up inventory value…": "인벤토리 가치 계산 중…",
+ "Chat & Party": "채팅 & 파티",
+ "Classics": "클래식",
+ "Classics Row": "클래식 줄",
+ "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "게임 페이지 맨 위에 선택한 연도의 Roblox 첫 페이지 인기 게임을 실시간 플레이어 수와 함께 보여주는 클래식 줄입니다.",
+ "Classics Year": "클래식 연도",
+ "Which year’s front page games show in the Classics row.": "클래식 줄에 어떤 연도의 첫 페이지 게임을 보여줄지 정합니다."
 }

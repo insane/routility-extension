@@ -3149,5 +3149,11 @@
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "Thông báo khi có chỗ trống và RoUtility cho bạn vào, hoặc khi ngừng chờ vì máy chủ đã đóng hoặc vẫn đầy trong 15 phút.",
  "Enlarge Showcase": "Chế độ phóng to",
  "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Khi phóng to avatar Sandbox, hiển thị giá trị trang phục và các món bạn đang mặc ở phía dưới.",
- "Adding up inventory value…": "Đang tính giá trị kho đồ…"
+ "Adding up inventory value…": "Đang tính giá trị kho đồ…",
+ "Chat & Party": "Trò chuyện & Nhóm",
+ "Classics": "Kinh điển",
+ "Classics Row": "Hàng kinh điển",
+ "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "Một hàng kinh điển ở đầu trang Trò chơi với các trò chơi lớn trên trang chủ Roblox của năm bạn chọn, kèm số người chơi trực tiếp.",
+ "Classics Year": "Năm kinh điển",
+ "Which year’s front page games show in the Classics row.": "Hàng kinh điển hiển thị trò chơi trang chủ của năm nào."
 }

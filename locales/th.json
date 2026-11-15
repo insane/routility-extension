@@ -3149,5 +3149,11 @@
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "แจ้งเตือนเมื่อมีที่ว่างและ RoUtility พาคุณเข้า หรือเมื่อหยุดรอเพราะเซิร์ฟเวอร์ปิดหรือเต็มอยู่ 15 นาที",
  "Enlarge Showcase": "มุมมองขยาย",
  "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "เมื่อขยายอวาตาร์ใน Sandbox จะแสดงมูลค่าชุดและไอเทมที่สวมอยู่ด้านล่าง",
- "Adding up inventory value…": "กำลังคำนวณมูลค่าคลังไอเทม…"
+ "Adding up inventory value…": "กำลังคำนวณมูลค่าคลังไอเทม…",
+ "Chat & Party": "แชทและปาร์ตี้",
+ "Classics": "คลาสสิก",
+ "Classics Row": "แถวคลาสสิก",
+ "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "แถวคลาสสิกด้านบนหน้าเกม พร้อมเกมดังจากหน้าแรกของ Roblox ในปีที่คุณเลือก และจำนวนผู้เล่นสด",
+ "Classics Year": "ปีของคลาสสิก",
+ "Which year’s front page games show in the Classics row.": "เลือกว่าแถวคลาสสิกจะแสดงเกมจากหน้าแรกของปีไหน"
 }

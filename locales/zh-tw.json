@@ -3149,5 +3149,11 @@
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "有空位並由 RoUtility 讓你加入時，或因伺服器關閉或連續 15 分鐘客滿而停止等待時，傳送通知。",
  "Enlarge Showcase": "放大展示",
  "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "放大 Sandbox 虛擬人偶時，在底部顯示服裝價值和你正在穿戴的物品。",
- "Adding up inventory value…": "正在計算物品欄價值…"
+ "Adding up inventory value…": "正在計算物品欄價值…",
+ "Chat & Party": "聊天與派對",
+ "Classics": "經典",
+ "Classics Row": "經典列",
+ "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "在遊戲頁面頂端顯示一列經典遊戲，包含你所選年份 Roblox 首頁上的熱門遊戲及即時玩家人數。",
+ "Classics Year": "經典年份",
+ "Which year’s front page games show in the Classics row.": "經典列顯示哪一年首頁上的遊戲。"
 }

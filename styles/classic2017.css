@@ -533,7 +533,7 @@ html.routility-2017 :is(.games-list-container, .game-sort-carousel-wrapper) > .h
   z-index: 1000 !important;
   box-sizing: border-box !important;
   width: 30px !important;
-  height: 218px !important;
+  height: calc(100% - 5px) !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 1px solid var(--c17-border) !important;
@@ -2063,10 +2063,10 @@ html.routility-2017 .item-details-info-content > .item-details-section {
 }
 
 html.routility-2017 .item-details-info-content .item-info-row-container > .row-label {
-  flex: 0 0 120px !important;
-  width: 120px !important;
-  min-width: 120px !important;
-  max-width: 120px !important;
+  flex: 0 0 150px !important;
+  width: 150px !important;
+  min-width: 150px !important;
+  max-width: 150px !important;
   padding-right: 9px !important;
 }
 
@@ -2582,18 +2582,377 @@ html.routility-2017 #avatar-web-app .item-card .item-card-price:not(.routility-i
   display: none !important;
 }
 
-html.routility-2017 #avatar-web-app .item-card .item-card-container {
-  background-color: transparent !important;
+html.routility-2017 #avatar-web-app .item-cards-stackable {
+  display: flex !important;
+  flex-wrap: wrap !important;
 }
 
-html.routility-2017 #avatar-web-app .item-card .item-card-thumb-container {
+html.routility-2017 #avatar-web-app .item-cards-stackable > .item-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: auto !important;
+}
+
+html.routility-2017 #avatar-web-app .item-cards-stackable > .item-card > .item-card-container {
+  flex: 1 1 auto !important;
+  height: auto !important;
+  padding-bottom: 8px !important;
   background-color: var(--c17-card) !important;
 }
 
-html.routility-2017 #avatar-web-app .item-card :is(.item-card-name, .item-card-price) {
-  padding: 0 !important;
+html.routility-2017 #avatar-web-app .item-card .item-card-price:not(.routility-injected):has(> .text-robux-tile:empty) {
+  display: none !important;
 }
 
 html.routility-2017 #avatar-web-app .item-card .item-card-name {
-  margin-top: 6px !important;
+  margin: 6px 0 2px !important;
+}
+
+html.routility-2017 #avatar-web-app .item-card .relative.radius-medium {
+  border-radius: 0 !important;
+}
+
+html.routility-2017 #content :is(.icon-robux-16x16, .icon-robux-gray-16x16, .icon-robux-white-16x16, .icon-robux-20x20, .icon-robux-28x28):not(:last-child) {
+  margin-right: 5px !important;
+}
+
+html.routility-2017 .trades-container .trade-request-window {
+  padding: 0 12px !important;
+}
+
+html.routility-2017 #content :is(.icon-robux-16x16, .icon-robux-gray-16x16, .icon-robux-white-16x16, .icon-robux-20x20, .icon-robux-28x28):not(:where(.price-container-text .item-price-value .icon-robux-16x16, .routility-rap-icon)) {
+  background: url("https://images.rbxcdn.com/757f696cbfd2d8fcde61d219cead6a2c-branded_04182018.svg") 0 -96px / 32px auto no-repeat !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+  filter: none !important;
+}
+
+html.routility-2017 #content :is(.icon-robux-16x16, .icon-robux-gray-16x16, .icon-robux-white-16x16):not(:where(.price-container-text .item-price-value .icon-robux-16x16, .routility-rap-icon)) {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+html.routility-2017 #content .icon-robux-20x20 {
+  width: 20px !important;
+  height: 20px !important;
+  background-size: 40px auto !important;
+  background-position: 0 -120px !important;
+}
+
+html.routility-2017 #content .icon-robux-28x28 {
+  width: 28px !important;
+  height: 28px !important;
+  background-size: 56px auto !important;
+  background-position: 0 -168px !important;
+}
+
+html.routility-2017 #content .icon-robux-white-16x16 {
+  background-position: 0 -112px !important;
+}
+
+html.routility-2017 #content :is(.item-card-price, .store-card-price) :is(.icon-robux-16x16, .icon-robux-gray-16x16) {
+  background-position: 0 -64px !important;
+}
+
+html.routility-2017 #content :is(.icon-robux-16x16, .icon-robux-gray-16x16, .icon-robux-20x20, .icon-robux-28x28):not(:where(.price-container-text .item-price-value .icon-robux-16x16, .item-card-price *, .store-card-price *, .routility-rap-icon)) {
+  filter: brightness(0.45) !important;
+}
+
+html.routility-2017 #content .item-card-price :is(.icon-robux-16x16, .icon-robux-gray-16x16) {
+  margin: 0 4px 0 2px !important;
+  vertical-align: middle !important;
+  transform: translateY(-1.5px);
+}
+
+html.routility-2017.routility-2017-themed #header .navbar-search .input-addon-btn > .icon {
+  background: var(--c17-label) !important;
+  -webkit-mask: url("https://static.rbxcdn.com/images/Shared/navigation_10022018.svg") 0 -80px / 40px auto no-repeat !important;
+  mask: url("https://static.rbxcdn.com/images/Shared/navigation_10022018.svg") 0 -80px / 40px auto no-repeat !important;
+}
+
+html.routility-2017:not(.routility-nav-collapsed) .left-nav,
+html.routility-2017:not(.routility-nav-collapsed) .left-nav > div.flex {
+  width: 190px !important;
+}
+
+html.routility-2017:not(.routility-nav-collapsed) .left-nav > div.flex > div:first-child {
+  width: 189px !important;
+}
+
+html.routility-2017:not(.routility-nav-collapsed) .left-nav .padding-x-large {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+html.routility-2017:not(.routility-nav-collapsed) .left-nav nav > ul {
+  gap: 0 !important;
+}
+
+html.routility-2017:not(.routility-nav-collapsed) .left-nav nav > ul > li > :is(a, button) {
+  min-height: 36px !important;
+  height: 36px !important;
+  gap: 6px !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+html.routility-2017:not(.routility-nav-collapsed) .left-nav nav > ul > li > :is(a, button) > [class*="size-1000"] {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+html.routility-2017:not(.routility-nav-collapsed) .left-nav nav > ul > li > :is(a, button) * {
+  font-weight: 400 !important;
+}
+
+@media (min-width: 1141px) {
+  html.routility-2017:not(.routility-nav-collapsed) #wrap.logged-in #container-main {
+    margin-left: 190px !important;
+  }
+}
+
+html.routility-2017:not(.routility-nav-collapsed) .left-nav .routility-quick-row {
+  gap: 6px !important;
+  padding: 0 !important;
+}
+
+html.routility-2017:not(.routility-nav-collapsed) .left-nav .routility-quick-row .routility-quick-icon {
+  display: none !important;
+}
+
+html.routility-2017:not(.routility-nav-collapsed) .left-nav .routility-quick-row .routility-quick-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+html.routility-2017 :is(.wide-game-tile-game-grid, .wide-game-tile-carousel) .featured-game-container,
+html.routility-2017 :is(.wide-game-tile-game-grid, .wide-game-tile-carousel) .featured-game-container > .game-card-link,
+html.routility-2017 :is(.wide-game-tile-game-grid, .wide-game-tile-carousel) > li {
+  height: auto !important;
+  max-height: none !important;
+}
+
+html.routility-2017 :is(.wide-game-tile-game-grid, .wide-game-tile-carousel) .featured-game-container .info-container {
+  height: auto !important;
+  padding-bottom: 10px !important;
+}
+
+html.routility-2017 :is(.wide-game-tile-game-grid, .wide-game-tile-carousel) {
+  grid-template-rows: none !important;
+  grid-auto-rows: auto !important;
+}
+
+html.routility-2017 .horizontal-scroller.wide-game-tile-list {
+  height: auto !important;
+}
+
+html.routility-2017:not(.routility-nav-collapsed) .left-nav .routility-quick-row {
+  flex-wrap: nowrap !important;
+}
+
+html.routility-2017:not(.routility-nav-collapsed) .left-nav .routility-quick-row .routility-quick-dd {
+  flex: none !important;
+  width: auto !important;
+  padding-left: 0 !important;
+}
+
+html.routility-2017 #routility-recently-updated > .horizontal-scroller.games-list {
+  height: auto !important;
+}
+
+html.routility-2017 #routility-recently-updated li.game-card:not(.routility-classic-game) {
+  height: auto !important;
+}
+
+html.routility-2017 #routility-recently-updated li.game-card:not(.routility-classic-game) .game-card-container {
+  height: auto !important;
+  padding-bottom: 8px !important;
+}
+
+html.routility-2017:not(.routility-nav-collapsed) .left-nav .routility-quick-row .routility-quick-dd .input-dropdown-btn {
+  gap: 4px !important;
+  padding: 0 2px 0 6px !important;
+}
+
+html.routility-2017 :is(.wide-game-tile-game-grid, .wide-game-tile-carousel) > li > .featured-game-container {
+  height: 100% !important;
+}
+
+html.routility-2017 li.hover-game-tile.focused {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html.routility-2017 li.hover-game-tile.focused > .game-card-container {
+  box-shadow: 0 1px 6px rgba(25, 25, 25, 0.25) !important;
+}
+
+html.routility-2017 li.hover-game-tile.focused .wide-game-tile-metadata {
+  margin-bottom: 0 !important;
+}
+
+html.routility-2017 #chat-container section.react-chat-top-radius:has(> div.react-chat-top-radius:only-child) {
+  height: auto !important;
+  background-color: var(--c17-header) !important;
+}
+
+html.routility-2017 #chat-container section.react-chat-top-radius {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: 0 -1px 3px rgba(25, 25, 25, 0.25) !important;
+  min-height: 0 !important;
+  border-radius: 3px 3px 0 0 !important;
+}
+
+html.routility-2017 #chat-container section.react-chat-top-radius > div.react-chat-top-radius {
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  min-height: 36px !important;
+  border-radius: 3px 3px 0 0 !important;
+  background-color: var(--c17-header) !important;
+  color: #ffffff !important;
+}
+
+html.routility-2017 #chat-container section.react-chat-top-radius > div.react-chat-top-radius :is(.content-emphasis, .content-default, .content-muted, span, button) {
+  color: #ffffff !important;
+}
+
+html.routility-2017 #chat-container section.react-chat-top-radius > div.react-chat-top-radius .text-title-medium {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+html.routility-2017 #chat-container section.react-chat-top-radius > div.react-chat-top-radius .icon {
+  background-color: #ffffff !important;
+}
+
+html.routility-2017 :is(.icon-regular-robux, .icon-filled-robux):not(#header *) {
+  background: url("https://images.rbxcdn.com/757f696cbfd2d8fcde61d219cead6a2c-branded_04182018.svg") 0 54.545% / 200% auto no-repeat !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+  filter: brightness(0.14) !important;
+}
+
+html.routility-2017 #chat-container section.react-chat-top-radius > div.react-chat-top-radius .text-title-medium {
+  font-size: 0 !important;
+}
+
+html.routility-2017 #chat-container section.react-chat-top-radius > div.react-chat-top-radius .text-title-medium::after {
+  content: var(--c17-chat, "Chat & Party");
+  font-size: 16px;
+}
+
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container:has(input) {
+  width: 280px !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container:has(input) > .action-buttons-container {
+  display: flex !important;
+  gap: 8px;
+  padding: 8px 12px 12px !important;
+}
+
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container:has(input) > .action-buttons-container > * {
+  flex: 1 1 0;
+}
+
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container:has(input) .MuiInputBase-root {
+  width: auto !important;
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+}
+
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container:has(input) :has(> .MuiInputBase-root, > .MuiFormControl-root) {
+  display: flex !important;
+  gap: 8px;
+}
+
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container:has(input) .MuiFormControl-root {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+}
+
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container:has(input) input {
+  padding: 8px 10px !important;
+}
+
+html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .filters-modal-container:has(input) {
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+html.routility-2017 .item-card :is(.item-card-thumb-container, .item-card-thumb, .thumbnail-2d-container, .item-card-thumb-container img, .catalog-item-card-thumbnail-2d, .item-card-thumb-container-inner) {
+  border-radius: 0 !important;
+}
+
+html.routility-2017 .routility-2017-by {
+  display: flex !important;
+  align-items: center;
+  gap: 3px;
+}
+
+html.routility-2017 .routility-2017-by img {
+  width: 14px;
+  height: 14px;
+}
+
+html.routility-2017 .catalog-header .search-container .input-addon-btn {
+  top: 2px !important;
+  height: 38px !important;
+  border: 0 !important;
+  background-color: transparent !important;
+}
+
+html.routility-2017 .catalog-header .search-container input.search-input {
+  padding-left: 38px !important;
+}
+
+html.routility-2017 .catalog-header .search-container .input-group-btn > button.input-dropdown-btn {
+  border-radius: 3px !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-caption {
+  display: grid !important;
+  grid-template-columns: auto auto 1fr;
+  align-content: start !important;
+  column-gap: 10px;
+}
+
+html.routility-2017 .catalog-item-container .item-card-caption > :not(.item-card-price) {
+  grid-column: 1 / -1;
+  min-width: 0 !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-caption > .item-card-price {
+  width: auto !important;
+  margin-top: 4px !important;
+}
+
+html.routility-2017 .catalog-item-container .item-card-caption > .item-card-price ~ .item-card-price {
+  padding-left: 0 !important;
+}
+
+html.routility-2017 #avatar-web-app .item-card :is(.item-card-equipped, .item-card-thumb-container *) {
+  border-radius: 0 !important;
+}
+
+html.routility-2017 #routility-2017-classics .horizontal-scroll-window {
+  overflow: hidden !important;
+}
+
+html.routility-2017 #routility-2017-classics .horizontally-scrollable {
+  position: relative !important;
+  transition: left 0.3s ease;
 }

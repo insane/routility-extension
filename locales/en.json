@@ -3298,5 +3298,11 @@
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.",
  "Enlarge Showcase": "Enlarge Showcase",
  "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.",
- "Adding up inventory value…": "Adding up inventory value…"
+ "Adding up inventory value…": "Adding up inventory value…",
+ "Chat & Party": "Chat & Party",
+ "Classics": "Classics",
+ "Classics Row": "Classics Row",
+ "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.",
+ "Classics Year": "Classics Year",
+ "Which year’s front page games show in the Classics row.": "Which year’s front page games show in the Classics row."
 }

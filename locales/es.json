@@ -3298,5 +3298,11 @@
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "Un aviso cuando se abre un lugar y RoUtility te une, o cuando deja de esperar porque el servidor se cerró o siguió lleno durante 15 minutos.",
  "Enlarge Showcase": "Vista ampliada",
  "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Al ampliar tu avatar en Sandbox, muestra abajo el valor del atuendo y los objetos que llevas puestos.",
- "Adding up inventory value…": "Calculando el valor del inventario…"
+ "Adding up inventory value…": "Calculando el valor del inventario…",
+ "Chat & Party": "Chat y grupo",
+ "Classics": "Clásicos",
+ "Classics Row": "Fila de clásicos",
+ "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "Una fila de clásicos arriba en la página de Juegos con los grandes juegos de la portada de Roblox del año que elijas, con sus jugadores en vivo.",
+ "Classics Year": "Año de los clásicos",
+ "Which year’s front page games show in the Classics row.": "De qué año son los juegos de portada que aparecen en la fila de clásicos."
 }

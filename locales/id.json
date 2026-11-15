@@ -3149,5 +3149,11 @@
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "Notifikasi saat ada slot kosong dan RoUtility memasukkanmu, atau saat berhenti menunggu karena servernya ditutup atau tetap penuh selama 15 menit.",
  "Enlarge Showcase": "Tampilan Perbesar",
  "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Saat kamu memperbesar avatar Sandbox, tampilkan Nilai Pakaian dan item yang kamu pakai di bagian bawah.",
- "Adding up inventory value…": "Menghitung nilai inventaris…"
+ "Adding up inventory value…": "Menghitung nilai inventaris…",
+ "Chat & Party": "Obrolan & Party",
+ "Classics": "Klasik",
+ "Classics Row": "Baris Klasik",
+ "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "Baris Klasik di atas halaman Game dengan game besar dari halaman depan Roblox tahun pilihanmu, lengkap dengan jumlah pemain langsung.",
+ "Classics Year": "Tahun Klasik",
+ "Which year’s front page games show in the Classics row.": "Game halaman depan dari tahun mana yang tampil di baris Klasik."
 }

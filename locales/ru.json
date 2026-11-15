@@ -3596,5 +3596,11 @@
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "Уведомление, когда освободилось место и RoUtility подключает вас, или когда ожидание прекращено, потому что сервер закрылся или был заполнен 15 минут.",
  "Enlarge Showcase": "Увеличенный вид",
  "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Когда вы увеличиваете аватар в Sandbox, внизу показываются стоимость образа и надетые предметы.",
- "Adding up inventory value…": "Подсчёт стоимости инвентаря…"
+ "Adding up inventory value…": "Подсчёт стоимости инвентаря…",
+ "Chat & Party": "Чат и группа",
+ "Classics": "Классика",
+ "Classics Row": "Ряд классики",
+ "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "Ряд классики вверху страницы игр с большими играми с главной страницы Roblox выбранного года и текущим числом игроков.",
+ "Classics Year": "Год классики",
+ "Which year’s front page games show in the Classics row.": "Игры с главной страницы какого года показывать в ряду классики."
 }

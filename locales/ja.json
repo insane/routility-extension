@@ -3149,5 +3149,11 @@
  "A notification when a spot opens and RoUtility joins you, or when it stops waiting because the server closed or stayed full for 15 minutes.": "空きが出てRoUtilityが参加したとき、またはサーバーが閉じたか15分間満員のままで待機を終えたときに通知します。",
  "Enlarge Showcase": "拡大ビュー",
  "When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.": "Sandboxのアバターを拡大したとき、下にコーデの価値と着用中のアイテムを表示します。",
- "Adding up inventory value…": "インベントリの価値を計算中…"
+ "Adding up inventory value…": "インベントリの価値を計算中…",
+ "Chat & Party": "チャット&パーティー",
+ "Classics": "クラシック",
+ "Classics Row": "クラシック列",
+ "A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.": "ゲームページの一番上に、選んだ年のRobloxトップページの人気ゲームをライブのプレイ人数付きで並べたクラシック列を表示します。",
+ "Classics Year": "クラシックの年",
+ "Which year’s front page games show in the Classics row.": "クラシック列に表示するトップページのゲームの年。"
 }
