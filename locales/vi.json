@@ -3180,5 +3180,9 @@
  "No trades": "Không có giao dịch",
  "{n} this week": {
   "other": "{n} tuần này"
- }
+ },
+ "Menu Counters": "Bộ đếm trong menu",
+ "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "Các con số cạnh Tin nhắn, Bạn bè và Giao dịch trong menu, cùng kích thước và thẳng hàng, cách mép một chút. Màu trắng là cách Roblox từng hiển thị.",
+ "White": "Trắng",
+ "Blue": "Xanh dương"
 }

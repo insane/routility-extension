@@ -674,12 +674,6 @@ html.routility-modal-open body {
   border-top: 1px solid rgba(127, 127, 127, 0.18);
 }
 
-.routility-it-skeleton {
-  display: block;
-  height: 120px;
-  animation: routility-shimmer 1.2s ease-in-out infinite;
-}
-
 .routility-it-mid {
   display: flex;
   flex-direction: column;
@@ -938,5 +932,58 @@ html.routility-modal-open body {
 }
 
 .routility-it-pick-count:empty {
+  display: none;
+}
+
+.routility-it-sk {
+  display: inline-block;
+  border-radius: 6px;
+  background: rgba(127, 127, 127, 0.18) !important;
+  color: transparent !important;
+  animation: routility-shimmer 1.2s ease-in-out infinite;
+}
+
+.routility-it-sk.routility-it-head {
+  border-radius: 50%;
+}
+
+.routility-it-sk.routility-it-swap {
+  border-radius: 50%;
+}
+
+.routility-it-sk-name {
+  width: 110px;
+  height: 14px;
+}
+
+.routility-it-sk-total {
+  width: 120px;
+  height: 14px;
+}
+
+.routility-it-sk-when {
+  width: 60px;
+  height: 12px;
+}
+
+.routility-it-trade:not(.routility-it-skeleton) {
+  animation: routility-it-in 0.2s ease-out;
+}
+
+@keyframes routility-it-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.routility-it-tile img,
+.routility-it-head {
+  transition: opacity 0.2s ease;
+}
+
+.routility-it-tile img:not(.routility-it-loaded) {
+  opacity: 0;
+}
+
+.routility-it-items-pick[hidden] {
   display: none;
 }

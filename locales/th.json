@@ -3180,5 +3180,9 @@
  "No trades": "ไม่มีการเทรด",
  "{n} this week": {
   "other": "{n} ครั้งในสัปดาห์นี้"
- }
+ },
+ "Menu Counters": "ตัวนับในเมนู",
+ "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "ตัวเลขข้างข้อความ เพื่อน และเทรดในเมนู ให้ขนาดเท่ากันและเรียงตรงกันโดยเว้นระยะจากขอบ สีขาวคือแบบที่ Roblox เคยแสดง",
+ "White": "ขาว",
+ "Blue": "น้ำเงิน"
 }

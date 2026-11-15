@@ -652,7 +652,18 @@
     const heads = new Set(document.querySelectorAll('.routility-classic-wearing > .container-header, .routility-modern-wearing .routility-modern-section-head'));
     const names = new Set([lt('Currently Wearing').toLowerCase(), 'currently wearing']);
     for (const h of document.querySelectorAll('#content h2, #content h3')) {
-      if (names.has(h.textContent.trim().toLowerCase()) && !h.closest('.routility-injected')) heads.add(h.parentElement);
+      if (!names.has(h.textContent.trim().toLowerCase()) || h.closest('.routility-injected')) continue;
+      const parent = h.parentElement;
+      const shared = [...parent.children].some(c => c !== h && !c.classList.contains('routility-sb-fit-link'));
+      if (!shared) {
+        heads.add(parent);
+        continue;
+      }
+      if (h.nextElementSibling && h.nextElementSibling.classList.contains('routility-sb-fit-link')) continue;
+      const a = el('a', 'btn-secondary-xs btn-more routility-injected routility-sb-fit-link routility-sb-fit-inline', lt('Try Their Fit'));
+      a.href = 'https://www.roblox.com/my/avatar?sandbox&user=' + m[1];
+      a.dataset.rtTip = lt('Try this outfit on in Sandbox');
+      h.after(a);
     }
     for (const head of heads) {
       if (!head || head.querySelector('.routility-sb-fit-link')) continue;

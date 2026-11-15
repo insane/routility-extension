@@ -232,6 +232,7 @@
     root.classList.toggle('routility-av-more', (settings || {}).avatarMoreAccessories !== false);
     root.classList.toggle('routility-keep-r6', (settings || {}).keepR6 === true);
     root.classList.toggle('routility-av-sticky', (settings || {}).avatarSticky !== false);
+    root.classList.toggle('routility-counters-blue', (settings || {}).navCounters === 'blue');
     root.classList.toggle('routility-font-builder', (settings || {}).siteFont === 'builder');
     root.classList.toggle('routility-font-system', (settings || {}).siteFont === 'system');
     root.classList.toggle('routility-hide-chat', !!(settings || {}).hideChat);

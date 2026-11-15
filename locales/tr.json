@@ -3333,5 +3333,9 @@
  "{n} this week": {
   "one": "Bu hafta {n}",
   "other": "Bu hafta {n}"
- }
+ },
+ "Menu Counters": "Menü Sayaçları",
+ "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "Menüde Mesajlar, Arkadaşlar ve Takas yanındaki sayılar; hepsi aynı boyutta ve kenardan biraz boşlukla hizalı. Beyaz, Roblox’un eskiden gösterdiği hâli.",
+ "White": "Beyaz",
+ "Blue": "Mavi"
 }

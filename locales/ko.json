@@ -3180,5 +3180,9 @@
  "No trades": "거래 없음",
  "{n} this week": {
   "other": "이번 주 {n}건"
- }
+ },
+ "Menu Counters": "메뉴 카운터",
+ "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "메뉴의 메시지, 친구, 거래 옆 숫자를 모두 같은 크기로 맞추고 가장자리에서 조금 띄워 정렬해요. 흰색은 예전 Roblox 표시 방식이에요.",
+ "White": "흰색",
+ "Blue": "파란색"
 }

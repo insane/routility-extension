@@ -3639,5 +3639,9 @@
   "few": "{n} w tym tygodniu",
   "many": "{n} w tym tygodniu",
   "other": "{n} w tym tygodniu"
- }
+ },
+ "Menu Counters": "Liczniki w menu",
+ "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "Liczby obok Wiadomości, Znajomych i Wymiany w menu, wszystkie tej samej wielkości i wyrównane z odstępem od krawędzi. Biały to dawny wygląd Roblox.",
+ "White": "Biały",
+ "Blue": "Niebieski"
 }

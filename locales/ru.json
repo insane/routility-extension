@@ -3639,5 +3639,9 @@
   "few": "{n} за неделю",
   "many": "{n} за неделю",
   "other": "{n} за неделю"
- }
+ },
+ "Menu Counters": "Счётчики меню",
+ "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "Числа рядом с «Сообщениями», «Друзьями» и «Обменом» в меню — одного размера и выровнены с отступом от края. Белые — как раньше было в Roblox.",
+ "White": "Белые",
+ "Blue": "Синие"
 }

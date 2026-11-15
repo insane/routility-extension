@@ -117,7 +117,7 @@
       tabs.querySelectorAll('button').forEach(b => b.classList.toggle('routility-it-tab-on', b.dataset.range === s.range));
       list.textContent = '';
       note.textContent = '';
-      for (let i = 0; i < 2; i++) list.appendChild(el('li', 'routility-it-trade routility-it-skeleton'));
+      for (let i = 0; i < 2; i++) list.appendChild(skeletonRow());
       const r = await fetchTrades(assetId, s.range, 1, 5);
       if (token !== s.token) return;
       list.textContent = '';
@@ -172,6 +172,25 @@
     return p;
   }
 
+  function skeletonRow() {
+    const li = el('li', 'routility-it-trade routility-it-skeleton');
+    const side = () => {
+      const box = el('div', 'routility-it-side');
+      const head = el('div', 'routility-it-side-head');
+      const who = el('div', 'routility-it-user');
+      who.append(el('span', 'routility-it-head routility-it-sk'), el('span', 'routility-it-sk routility-it-sk-name'));
+      head.append(who, el('span', 'routility-it-sk routility-it-sk-total'));
+      const tiles = el('div', 'routility-it-tiles');
+      tiles.appendChild(el('span', 'routility-it-tile routility-it-sk'));
+      box.append(head, tiles);
+      return box;
+    };
+    const mid = el('div', 'routility-it-mid');
+    mid.append(el('span', 'routility-it-swap routility-it-sk'), el('span', 'routility-it-sk routility-it-sk-when'));
+    li.append(side(), mid, side());
+    return li;
+  }
+
   function tileTip(it) {
     const lines = [(it.name || '') + (it.serial ? ' #' + formatNumber(Number(it.serial)) : '')];
     if (it.usd) lines.push(lt('Price') + ' ' + formatUSD(it.usd));
@@ -186,6 +205,8 @@
     a.dataset.rtTip = tileTip(it);
     const img = el('img');
     img.alt = it.name || '';
+    img.decoding = 'async';
+    img.addEventListener('load', () => img.classList.add('routility-it-loaded'), { once: true });
     if (it.thumb) img.src = it.thumb;
     a.appendChild(img);
     return a;
@@ -229,9 +250,7 @@
     return card;
   }
 
-  function open(items, startRange, startIndex = 0) {
-    items = (items || []).filter(i => i && /^\d+$/.test(String(i.id)));
-    if (!items.length) return;
+  function open(source, startRange, startIndex = 0) {
     document.querySelector('.routility-it-backdrop')?.remove();
     const backdrop = el('div', 'routility-modal-backdrop routility-injected routility-it-backdrop');
     const modal = el('div', 'routility-modal routility-it-modal');
@@ -260,15 +279,16 @@
     more.type = 'button';
     more.hidden = true;
     body.append(list, note, more);
-    modal.append(head);
-    if (items.length > 1) modal.append(picker);
-    modal.append(tabs, sideNote(), body);
+    modal.append(head, picker, tabs, sideNote(), body);
+    picker.hidden = true;
+    for (let i = 0; i < 4; i++) list.appendChild(skeletonRow());
     backdrop.appendChild(modal);
     document.body.appendChild(backdrop);
     document.documentElement.classList.add('routility-modal-open');
 
     const heads = new Map();
-    const s = { index: Math.min(startIndex, items.length - 1), range: startRange, page: 0, pages: 1, token: 0 };
+    let items = [];
+    const s = { index: 0, range: startRange, page: 0, pages: 1, token: 0 };
 
     const shut = () => {
       backdrop.remove();
@@ -285,7 +305,7 @@
       const assetId = String(items[s.index].id);
       more.disabled = true;
       note.textContent = '';
-      if (!s.page) for (let i = 0; i < 3; i++) list.appendChild(el('li', 'routility-it-trade routility-it-skeleton'));
+      if (!s.page) for (let i = 0; i < 4; i++) list.appendChild(skeletonRow());
       const r = await fetchTrades(assetId, s.range, s.page + 1, PER_PAGE);
       if (token !== s.token || !backdrop.isConnected) return;
       list.querySelectorAll('.routility-it-skeleton').forEach(n => n.remove());
@@ -317,42 +337,59 @@
       load();
     };
 
-    items.forEach((it, i) => {
-      const b = el('button', 'routility-it-pick');
-      b.type = 'button';
-      if (it.thumb) {
-        const img = el('img');
-        img.src = it.thumb;
-        img.alt = '';
-        b.appendChild(img);
+    const start = (list0) => {
+      items = (list0 || []).filter(i => i && /^\d+$/.test(String(i.id)));
+      if (!backdrop.isConnected) return;
+      if (!items.length) {
+        list.textContent = '';
+        note.textContent = lt('No trades in this time.');
+        return;
       }
-      const name = el('span', 'routility-it-pick-name', it.name || '');
-      const n = el('span', 'routility-it-pick-count', '');
-      b.append(name, n);
-      b.title = it.name || '';
-      b.addEventListener('click', () => {
-        s.index = i;
-        show();
+      s.index = Math.min(startIndex, items.length - 1);
+      picker.hidden = items.length < 2;
+      build();
+    };
+
+    const build = () => {
+      items.forEach((it, i) => {
+        const b = el('button', 'routility-it-pick');
+        b.type = 'button';
+        if (it.thumb) {
+          const img = el('img');
+          img.src = it.thumb;
+          img.alt = '';
+          b.appendChild(img);
+        }
+        const name = el('span', 'routility-it-pick-name', it.name || '');
+        const n = el('span', 'routility-it-pick-count', '');
+        b.append(name, n);
+        b.title = it.name || '';
+        b.addEventListener('click', () => {
+          s.index = i;
+          show();
+        });
+        picker.appendChild(b);
+        if (items.length > 1) count(String(it.id)).then((c) => {
+          if (!c) return;
+          n.textContent = c.week ? ltn(c.week, '{n} this week', '{n} this week', { n: formatNumber(c.week) }) : c.all ? '' : lt('No trades');
+          if (!c.all) b.classList.add('routility-it-pick-none');
+        });
       });
-      picker.appendChild(b);
-      if (items.length > 1) count(String(it.id)).then((c) => {
-        if (!c) return;
-        n.textContent = c.week ? ltn(c.week, '{n} this week', '{n} this week', { n: formatNumber(c.week) }) : c.all ? '' : lt('No trades');
-        if (!c.all) b.classList.add('routility-it-pick-none');
-      });
-    });
-    for (const [value, label] of RANGES) {
-      const b = el('button', 'routility-it-tab', lt(label));
-      b.type = 'button';
-      b.dataset.range = value;
-      b.addEventListener('click', () => {
-        s.range = value;
-        show();
-      });
-      tabs.appendChild(b);
-    }
-    more.addEventListener('click', load);
-    show();
+      for (const [value, label] of RANGES) {
+        const b = el('button', 'routility-it-tab', lt(label));
+        b.type = 'button';
+        b.dataset.range = value;
+        b.addEventListener('click', () => {
+          s.range = value;
+          show();
+        });
+        tabs.appendChild(b);
+      }
+      more.addEventListener('click', load);
+      show();
+    };
+
+    Promise.resolve(source).then(start, () => start([]));
   }
 
   window.RoUtilityItemTrades = { fill, open };

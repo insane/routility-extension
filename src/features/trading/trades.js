@@ -1749,24 +1749,23 @@
     b.addEventListener('click', async (e) => {
       e.preventDefault();
       e.stopPropagation();
-      if (b.disabled) return;
-      b.disabled = true;
-      const id = await selectedTradeId();
-      const [d, map] = id ? await Promise.all([rawDetail(id), catalogMap()]) : [];
-      b.disabled = false;
-      if (!d || !d.participantAOffer || !d.participantBOffer) return;
-      const seen = new Set();
-      const items = [];
-      for (const offer of [d.participantAOffer, d.participantBOffer]) {
-        for (const it of offer.items || []) {
-          const k = offerItemKey(it);
-          if (k.bundle || !k.targetId || seen.has(k.targetId)) continue;
-          seen.add(k.targetId);
-          const c = map && (map.lookup ? map.lookup(k) : map.get(k.targetId));
-          items.push({ id: k.targetId, name: it.itemName || (c && c.name) || '', thumb: (c && c.thumb) || '' });
+      window.RoUtilityItemTrades.open((async () => {
+        const id = await selectedTradeId();
+        const [d, map] = id ? await Promise.all([rawDetail(id), catalogMap()]) : [];
+        if (!d || !d.participantAOffer || !d.participantBOffer) return [];
+        const seen = new Set();
+        const items = [];
+        for (const offer of [d.participantAOffer, d.participantBOffer]) {
+          for (const it of offer.items || []) {
+            const k = offerItemKey(it);
+            if (k.bundle || !k.targetId || seen.has(k.targetId)) continue;
+            seen.add(k.targetId);
+            const c = map && (map.lookup ? map.lookup(k) : map.get(k.targetId));
+            items.push({ id: k.targetId, name: it.itemName || (c && c.name) || '', thumb: (c && c.thumb) || '' });
+          }
         }
-      }
-      window.RoUtilityItemTrades.open(items, '7d', 0);
+        return items;
+      })(), '7d', 0);
     });
     if (ref) {
       b.classList.add('routility-action-inline');

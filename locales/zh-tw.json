@@ -3180,5 +3180,9 @@
  "No trades": "沒有交易",
  "{n} this week": {
   "other": "本週 {n} 筆"
- }
+ },
+ "Menu Counters": "選單計數",
+ "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "選單中訊息、好友和交易旁的數字統一大小，並與邊緣保留間距對齊。白色是 Roblox 以前的樣式。",
+ "White": "白色",
+ "Blue": "藍色"
 }

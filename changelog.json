@@ -13,6 +13,7 @@
         { "type": "new", "text": "Recent Trades (Limited Values): limited item pages show how many times the item was traded lately, and a Recent Trades section under the Price Chart lists the latest trades, with who traded and what each item was worth at the time. See all trades opens every trade from the past week, month or all time." },
         { "type": "new", "text": "Analyze Button (Trading): an Analyze button next to Decline on trades shows how each item in the trade has been traded lately, with who traded and what everything was worth." },
         { "type": "new", "text": "Classics Row (2017 Roblox Theme): a Classics row at the top of the Games page with the big games from the Roblox front page of any year from 2012 to 2019, with their live player counts." },
+        { "type": "improved", "text": "Menu Counters (Sidebar): the numbers next to Messages, Friends, Trade and Friend History are all the same size, lined up with room from the edge, and white again like Roblox used to show them. Pick Blue to keep Roblox’s new color." },
         { "type": "improved", "text": "Trades: the Proof button moved next to Decline with the other trade buttons, and the Try On buttons are gone from trades." },
         { "type": "improved", "text": "2017 Roblox Theme: uses Source Sans like the real 2017 site, with lighter titles, blue See All buttons, the old R$ icon, game cards with Playing and rating on their own lines, and a top bar laid out like 2017." },
         { "type": "improved", "text": "2017 Roblox Theme: a slimmer 2017-style sidebar that gives pages more room, with Quick Settings on one line each." },
@@ -21,6 +22,7 @@
         { "type": "improved", "text": "Trade Button on Profiles: a faded Trade button holds its spot while it loads, so the other buttons don’t jump." },
         { "type": "improved", "text": "Profile value pills explain themselves while they load when you hover them." },
         { "type": "fixed", "text": "2017 Roblox Theme: Catalog price and creator filters are wide enough to type in, the Catalog search icon lines up, and Avatar items are white cards again without empty space." },
+        { "type": "fixed", "text": "Profiles: with Classic Profile off, Currently Wearing no longer stretches past the page or shows items as giant boxes, Try Their Fit sits next to the heading, and the Trade button no longer squeezes the other buttons or pushes the … menu past the edge." },
         { "type": "fixed", "text": "Owners on item pages: rows are the same size as Resellers again instead of huge avatars and tall Trade buttons, and the Plus/Premium filter fits on one line." },
         { "type": "fixed", "text": "Avatar: the pinned left column can scroll to its bottom on smaller screens." },
         { "type": "fixed", "text": "2017 Roblox Theme: fixed the cut-off Home greeting, empty space under game cards, the hidden Robux balance, the Holding Period info icon and Avatar item cards with empty boxes." }

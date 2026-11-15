@@ -15454,3 +15454,62 @@ html.routility-sandbox #avatar-web-app :is(li, .rbx-tab):has(> :is([id="heading.
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32'%3E%3Cpath d='M13.3611 11.2576C13.647 10.1907 14.7436 9.55755 15.8106 9.84343L17.7424 10.3611C18.8093 10.647 19.4425 11.7436 19.1566 12.8106L18.639 14.7424C18.3531 15.8093 17.2564 16.4425 16.1895 16.1566L14.2576 15.639C13.1907 15.3531 12.5575 14.2564 12.8434 13.1895L13.3611 11.2576ZM17.2248 12.2929L15.2929 11.7753L14.7753 13.7071L16.7071 14.2248L17.2248 12.2929Z' fill='black'/%3E %3Cpath d='M13.8116 2C12.435 2 11.235 2.93689 10.9011 4.27239L10.3575 6.4467C7.23773 7.53806 5 10.5077 5 14V24.8769C5 26.7124 6.25429 28.2914 8.07468 28.5262C9.94303 28.7672 12.6223 29 16 29C19.3777 29 22.057 28.7672 23.9253 28.5262C25.7457 28.2914 27 26.7124 27 24.8769V14C27 10.5077 24.7623 7.53806 21.6425 6.4467L21.0989 4.27239C20.765 2.93689 19.565 2 18.1884 2H13.8116ZM19.4727 6.01373C19.3163 6.00462 19.1587 6 19 6H13C12.8413 6 12.6837 6.00462 12.5273 6.01373L12.8414 4.75746C12.9527 4.3123 13.3527 4 13.8116 4H18.1884C18.6473 4 19.0473 4.3123 19.1586 4.75746L19.4727 6.01373ZM19 8C22.3137 8 25 10.6863 25 14V18H7V14C7 10.6863 9.68629 8 13 8H19ZM25 24.8769C25 25.8139 24.3897 26.4497 23.6695 26.5426C21.8795 26.7735 19.2859 27 16 27C12.7141 27 10.1205 26.7735 8.33052 26.5426C7.61031 26.4497 7 25.8139 7 24.8769V20H11V22C11 22.5523 11.4477 23 12 23C12.5523 23 13 22.5523 13 22V20H25V24.8769Z' fill='black'/%3E%3C/svg%3E") center / contain no-repeat !important;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32'%3E%3Cpath d='M13.3611 11.2576C13.647 10.1907 14.7436 9.55755 15.8106 9.84343L17.7424 10.3611C18.8093 10.647 19.4425 11.7436 19.1566 12.8106L18.639 14.7424C18.3531 15.8093 17.2564 16.4425 16.1895 16.1566L14.2576 15.639C13.1907 15.3531 12.5575 14.2564 12.8434 13.1895L13.3611 11.2576ZM17.2248 12.2929L15.2929 11.7753L14.7753 13.7071L16.7071 14.2248L17.2248 12.2929Z' fill='black'/%3E %3Cpath d='M13.8116 2C12.435 2 11.235 2.93689 10.9011 4.27239L10.3575 6.4467C7.23773 7.53806 5 10.5077 5 14V24.8769C5 26.7124 6.25429 28.2914 8.07468 28.5262C9.94303 28.7672 12.6223 29 16 29C19.3777 29 22.057 28.7672 23.9253 28.5262C25.7457 28.2914 27 26.7124 27 24.8769V14C27 10.5077 24.7623 7.53806 21.6425 6.4467L21.0989 4.27239C20.765 2.93689 19.565 2 18.1884 2H13.8116ZM19.4727 6.01373C19.3163 6.00462 19.1587 6 19 6H13C12.8413 6 12.6837 6.00462 12.5273 6.01373L12.8414 4.75746C12.9527 4.3123 13.3527 4 13.8116 4H18.1884C18.6473 4 19.0473 4.3123 19.1586 4.75746L19.4727 6.01373ZM19 8C22.3137 8 25 10.6863 25 14V18H7V14C7 10.6863 9.68629 8 13 8H19ZM25 24.8769C25 25.8139 24.3897 26.4497 23.6695 26.5426C21.8795 26.7735 19.2859 27 16 27C12.7141 27 10.1205 26.7735 8.33052 26.5426C7.61031 26.4497 7 25.8139 7 24.8769V20H11V22C11 22.5523 11.4477 23 12 23C12.5523 23 13 22.5523 13 22V20H25V24.8769Z' fill='black'/%3E%3C/svg%3E") center / contain no-repeat !important;
 }
+
+.left-nav nav :is(.foundation-web-status-indicator, .routility-fh-badge-own) {
+  box-sizing: border-box !important;
+  min-width: 20px !important;
+  height: 20px !important;
+  padding: 0 6px !important;
+  border-radius: 10px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 20px !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.left-nav nav .foundation-web-status-indicator > span {
+  padding: 0 !important;
+}
+
+.left-nav nav li > a > .padding-x-small:has(> .foundation-web-status-indicator) {
+  padding-right: 14px !important;
+}
+
+.left-nav .routility-fh-nav > a > .routility-fh-badge-own {
+  margin-right: 14px !important;
+  color: #ffffff !important;
+}
+
+html:not(.routility-counters-blue) .left-nav nav .foundation-web-status-indicator {
+  background-color: var(--color-content-emphasis, #f7f7f8) !important;
+  color: var(--color-surface-0, #121215) !important;
+}
+
+*:has(> .routility-sb-fit-inline) {
+  position: relative;
+}
+
+.routility-sb-fit-link.routility-sb-fit-inline {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: auto !important;
+  margin: 0 !important;
+}
+
+.user-profile-header-info .button-container:has(> .routility-trade-btn) > button {
+  flex: 0 0 auto !important;
+  width: auto !important;
+}
+
+.user-profile-header-info .button-container:has(> .routility-trade-btn) > button:not(.routility-trade-btn):not(:first-child) {
+  flex: 0 1 auto !important;
+  min-width: 113px !important;
+}
+
+.user-profile-header-info .buttons-show-on-desktop:has(.routility-trade-btn),
+.user-profile-header-info .buttons-show-on-desktop:has(.routility-trade-btn) > .flex.gap-small,
+.user-profile-header-info .button-container:has(> .routility-trade-btn) {
+  width: auto !important;
+  max-width: 100% !important;
+}

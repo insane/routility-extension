@@ -3333,5 +3333,9 @@
  "{n} this week": {
   "one": "{n} esta semana",
   "other": "{n} esta semana"
- }
+ },
+ "Menu Counters": "Contadores do menu",
+ "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "Os números ao lado de Mensagens, Amigos e Troca no menu, todos do mesmo tamanho e alinhados com um espaço da borda. Branco é como o Roblox mostrava antes.",
+ "White": "Branco",
+ "Blue": "Azul"
 }

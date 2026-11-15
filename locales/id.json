@@ -3180,5 +3180,9 @@
  "No trades": "Tidak ada trade",
  "{n} this week": {
   "other": "{n} minggu ini"
- }
+ },
+ "Menu Counters": "Penghitung Menu",
+ "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "Angka di samping Pesan, Teman, dan Trade di menu, semuanya berukuran sama dan rata dengan jarak dari tepi. Putih adalah tampilan Roblox dulu.",
+ "White": "Putih",
+ "Blue": "Biru"
 }

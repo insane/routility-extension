@@ -3180,5 +3180,9 @@
  "No trades": "トレードなし",
  "{n} this week": {
   "other": "今週{n}件"
- }
+ },
+ "Menu Counters": "メニューのカウンター",
+ "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "メニューのメッセージ、友達、トレードの横の数字を同じサイズにそろえ、端から少し離して並べます。白は以前のRobloxの表示です。",
+ "White": "白",
+ "Blue": "青"
 }
