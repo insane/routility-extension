@@ -2012,7 +2012,7 @@
       const free = (sv) => (Number(sv.maxPlayers) || 0) - (Number(sv.playing) || 0);
       if (p.maxPlayers == null) {
         const uni = document.querySelector('#game-detail-meta-data')?.dataset.universeId;
-        const g = uni ? (await json(`https://games.roblox.com/v1/games?universeIds=${uni}`))?.data?.[0] : null;
+        const g = uni ? await window.RoUtilityUI.gameDetails(uni) : null;
         p.maxPlayers = g ? Number(g.maxPlayers) || 0 : 0;
         if (cancelled) return;
       }
@@ -2486,7 +2486,7 @@
   function creatorItems(p, universeId) {
     let data = null;
     (async () => {
-      const g = (await json(`https://games.roblox.com/v1/games?universeIds=${universeId}`))?.data?.[0];
+      const g = await window.RoUtilityUI.gameDetails(universeId);
       const c = g?.creator;
       if (!c || !c.id || (c.type === 'User' && String(c.id) === '1')) return;
       const group = c.type === 'Group';

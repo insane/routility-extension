@@ -1044,6 +1044,7 @@
       if (label) label.textContent = lt('Trade Ads');
     }
     if (after.nextElementSibling !== mine) after.after(mine);
+    window.RoUtilityUI.stripNavBadges(mine);
     mine.querySelector('a').classList.toggle('bg-shift-200', here);
     if (here) trade.classList.remove('bg-shift-200');
   }

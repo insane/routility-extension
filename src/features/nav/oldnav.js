@@ -47,7 +47,7 @@
     const ul = document.querySelector('ul.left-col-list');
     if (!ul) return;
     const mine = [...ul.querySelectorAll(':scope > li.routility-oldnav-item')];
-    if (settings.oldLeftNav !== true && settings.classicSite !== true) {
+    if (settings.oldLeftNav !== true) {
       mine.forEach(n => n.remove());
       ul.querySelectorAll(':scope > .routility-oldnav-hidden').forEach(n => n.classList.remove('routility-oldnav-hidden'));
       return;

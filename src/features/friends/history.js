@@ -220,6 +220,7 @@
       if (label) label.textContent = lt('Friend History');
     }
     if (li.nextElementSibling !== mine) li.after(mine);
+    window.RoUtilityUI.stripNavBadges(mine, '.routility-fh-badge');
     mine.querySelector('a').classList.toggle('bg-shift-200', here);
     if (here) friends.classList.remove('bg-shift-200');
     paintBadges();

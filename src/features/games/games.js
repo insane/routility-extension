@@ -115,10 +115,8 @@
 
   async function refresh(s, live) {
     try {
-      const res = await fetch(`https://games.roblox.com/v1/games?universeIds=${s.universeId}`, { credentials: 'include' });
-      const data = res.ok ? await res.json() : null;
+      const game = await window.RoUtilityUI.gameDetails(s.universeId);
       if (state !== s) return;
-      const game = (data && data.data || [])[0];
       if (game) s.game = game;
       if (live) s.live = true;
     } catch {}

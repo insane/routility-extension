@@ -247,6 +247,7 @@
     }
     if (li.nextElementSibling !== mine && !document.documentElement.classList.contains('routility-nav-custom')) li.after(mine);
     else if (!mine.isConnected) li.after(mine);
+    window.RoUtilityUI.stripNavBadges(mine);
     mine.querySelector('a').classList.toggle('bg-shift-200', here);
     if (here) inv.classList.remove('bg-shift-200');
   }

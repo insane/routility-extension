@@ -700,6 +700,7 @@
       if (label) label.textContent = lt('Sandbox');
     }
     if (!mine.isConnected || mine.previousElementSibling !== li) li.after(mine);
+    window.RoUtilityUI.stripNavBadges(mine);
     const here = AVATAR.test(location.pathname) && sandboxOn();
     mine.querySelector('a').classList.toggle('bg-shift-200', here);
     if (here) avatar.classList.remove('bg-shift-200');

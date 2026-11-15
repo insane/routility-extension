@@ -179,6 +179,7 @@
   function addHideButtons(root) {
     document.querySelectorAll('li > .routility-tile-more').forEach(btn => { if (personalRow(btn.parentElement)) btn.remove(); });
     if (settings.notInterested === false) return;
+    const added = [];
     for (const li of root.querySelectorAll(TILE_TODO)) {
       if (li.matches('.hover-game-tile') || li.querySelector(':scope > .routility-tile-more') || li.closest('#routility-friends-playing')) {
         li.dataset.rtTile = '1';
@@ -209,9 +210,10 @@
         openTileMenu(btn, li, id);
       });
       li.appendChild(btn);
-      const pad = parseFloat(getComputedStyle(li).paddingRight) || 0;
-      if (pad) btn.style.right = pad + 6 + 'px';
+      added.push([li, btn]);
     }
+    const pads = added.map(([li]) => parseFloat(getComputedStyle(li).paddingRight) || 0);
+    added.forEach(([, btn], i) => { if (pads[i]) btn.style.right = pads[i] + 6 + 'px'; });
   }
 
   function placeOf(li) {
@@ -1276,10 +1278,11 @@
   }
 
   function arranged(list, lay) {
-    return list.map((s, i) => {
-      const at = lay.order.indexOf(s.key);
-      return { ...s, rank: at >= 0 ? at : 1000 + i };
-    }).sort((a, b) => a.rank - b.rank);
+    const known = list.filter(s => lay.order.includes(s.key)).sort((a, b) => lay.order.indexOf(a.key) - lay.order.indexOf(b.key));
+    list.forEach((s, i) => {
+      if (!lay.order.includes(s.key)) known.splice(Math.min(i, known.length), 0, s);
+    });
+    return known;
   }
 
   let seenWrite = null;

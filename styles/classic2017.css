@@ -324,14 +324,14 @@ html.routility-2017 #header ul.rbx-navbar > li > a.nav-menu-title {
   white-space: nowrap !important;
 }
 
-html.routility-2017 .left-nav,
-html.routility-2017 .rbx-left-col {
+html.routility-2017.routility-old-nav .left-nav,
+html.routility-2017.routility-old-nav .rbx-left-col {
   background-color: var(--c17-card) !important;
   box-shadow: 0 0 3px rgba(25, 25, 25, 0.3);
 }
 
-html.routility-2017 .left-nav a,
-html.routility-2017 .rbx-left-col .text-nav {
+html.routility-2017.routility-old-nav .left-nav a,
+html.routility-2017.routility-old-nav .rbx-left-col .text-nav {
   color: var(--c17-text) !important;
 }
 
@@ -2677,25 +2677,25 @@ html.routility-2017.routility-2017-themed #header .navbar-search .input-addon-bt
   mask: url("https://static.rbxcdn.com/images/Shared/navigation_10022018.svg") 0 -80px / 40px auto no-repeat !important;
 }
 
-html.routility-2017:not(.routility-nav-collapsed) .left-nav,
-html.routility-2017:not(.routility-nav-collapsed) .left-nav > div.flex {
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav,
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav > div.flex {
   width: 190px !important;
 }
 
-html.routility-2017:not(.routility-nav-collapsed) .left-nav > div.flex > div:first-child {
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav > div.flex > div:first-child {
   width: 189px !important;
 }
 
-html.routility-2017:not(.routility-nav-collapsed) .left-nav .padding-x-large {
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav .padding-x-large {
   padding-left: 12px !important;
   padding-right: 12px !important;
 }
 
-html.routility-2017:not(.routility-nav-collapsed) .left-nav nav > ul {
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav nav > ul {
   gap: 0 !important;
 }
 
-html.routility-2017:not(.routility-nav-collapsed) .left-nav nav > ul > li > :is(a, button) {
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav nav > ul > li > :is(a, button) {
   min-height: 36px !important;
   height: 36px !important;
   gap: 6px !important;
@@ -2703,31 +2703,31 @@ html.routility-2017:not(.routility-nav-collapsed) .left-nav nav > ul > li > :is(
   font-weight: 400 !important;
 }
 
-html.routility-2017:not(.routility-nav-collapsed) .left-nav nav > ul > li > :is(a, button) > [class*="size-1000"] {
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav nav > ul > li > :is(a, button) > [class*="size-1000"] {
   width: 28px !important;
   height: 28px !important;
 }
 
-html.routility-2017:not(.routility-nav-collapsed) .left-nav nav > ul > li > :is(a, button) * {
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav nav > ul > li > :is(a, button) * {
   font-weight: 400 !important;
 }
 
 @media (min-width: 1141px) {
-  html.routility-2017:not(.routility-nav-collapsed) #wrap.logged-in #container-main {
+  html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) #wrap.logged-in #container-main {
     margin-left: 190px !important;
   }
 }
 
-html.routility-2017:not(.routility-nav-collapsed) .left-nav .routility-quick-row {
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav .routility-quick-row {
   gap: 6px !important;
   padding: 0 !important;
 }
 
-html.routility-2017:not(.routility-nav-collapsed) .left-nav .routility-quick-row .routility-quick-icon {
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav .routility-quick-row .routility-quick-icon {
   display: none !important;
 }
 
-html.routility-2017:not(.routility-nav-collapsed) .left-nav .routility-quick-row .routility-quick-label {
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav .routility-quick-row .routility-quick-label {
   flex: 1 1 auto;
   min-width: 0;
   overflow: hidden;
@@ -2758,11 +2758,11 @@ html.routility-2017 .horizontal-scroller.wide-game-tile-list {
   height: auto !important;
 }
 
-html.routility-2017:not(.routility-nav-collapsed) .left-nav .routility-quick-row {
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav .routility-quick-row {
   flex-wrap: nowrap !important;
 }
 
-html.routility-2017:not(.routility-nav-collapsed) .left-nav .routility-quick-row .routility-quick-dd {
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav .routility-quick-row .routility-quick-dd {
   flex: none !important;
   width: auto !important;
   padding-left: 0 !important;
@@ -2781,7 +2781,7 @@ html.routility-2017 #routility-recently-updated li.game-card:not(.routility-clas
   padding-bottom: 8px !important;
 }
 
-html.routility-2017:not(.routility-nav-collapsed) .left-nav .routility-quick-row .routility-quick-dd .input-dropdown-btn {
+html.routility-2017.routility-old-nav:not(.routility-nav-collapsed) .left-nav .routility-quick-row .routility-quick-dd .input-dropdown-btn {
   gap: 4px !important;
   padding: 0 2px 0 6px !important;
 }

@@ -256,9 +256,26 @@
     }
   }
 
+  function plusLabel() {
+    const span = document.querySelector('a[href*="/plus?referrals"] > span.text-truncate-end');
+    if (!span) return;
+    if (on && document.documentElement.classList.contains('routility-old-nav')) {
+      if (!span.dataset.routilityText) span.dataset.routilityText = span.textContent;
+      if (span.textContent !== 'Plus') span.textContent = 'Plus';
+    } else if (span.dataset.routilityText) {
+      span.textContent = span.dataset.routilityText;
+      delete span.dataset.routilityText;
+    }
+  }
+
+  let searchAt = 0;
   function run() {
-    placeSearch();
+    if (!searchLeft || Date.now() - searchAt > 1000) {
+      searchAt = Date.now();
+      placeSearch();
+    }
     label();
+    plusLabel();
     if (!on) {
       document.querySelectorAll('.routility-2017-more, .routility-2017-by, #routility-2017-classics').forEach(n => n.remove());
       return;

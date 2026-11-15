@@ -2,7 +2,7 @@
   'use strict';
 
   if (location.hostname !== 'www.roblox.com') return;
-  const { el, json, onFrame, formatNumber } = window.RoUtilityUI;
+  const { el, onFrame, formatNumber } = window.RoUtilityUI;
   const { lt } = window.RoUtilityI18n;
   const KEY = 'routilityGameSnaps';
   const SHOWN = 'routilityGameChange:';
@@ -132,8 +132,7 @@
     doing = id;
     let saved = null;
     try { saved = JSON.parse(sessionStorage.getItem(SHOWN + id) || 'null'); } catch {}
-    const d = await json(`https://games.roblox.com/v1/games?universeIds=${id}`);
-    const g = d && d.data && d.data[0];
+    const g = await window.RoUtilityUI.gameDetails(id);
     if (!g) {
       doing = '';
       return;

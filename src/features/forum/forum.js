@@ -1867,6 +1867,7 @@
       if (label) label.textContent = lt('Forum');
     }
     if (li.nextElementSibling !== mine) li.after(mine);
+    window.RoUtilityUI.stripNavBadges(mine);
     mine.querySelector('a').classList.toggle('bg-shift-200', here);
   }
 

@@ -1490,6 +1490,7 @@
       if (label) label.textContent = lt('Trade Calculator');
     }
     if (li.nextElementSibling !== mine) li.after(mine);
+    window.RoUtilityUI.stripNavBadges(mine);
     const a = mine.querySelector('a');
     a.classList.toggle('bg-shift-200', here);
     if (here) trade.classList.remove('bg-shift-200');

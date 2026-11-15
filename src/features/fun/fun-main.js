@@ -674,7 +674,43 @@
     try { return String(new URL(url).searchParams.get('sortOrder') || 'Desc').toLowerCase() !== 'asc'; } catch { return true; }
   }
 
+  const gameJobs = new Map();
+
+  function gameFetch(url) {
+    const hit = gameJobs.get(url);
+    if (hit && Date.now() - hit.at < 10000) return hit.job;
+    const job = (async () => {
+      let last = { status: 0, text: null };
+      for (let i = 0; i < 3; i++) {
+        try {
+          const r = await oFetch.call(window, url, { credentials: 'include' });
+          last = { status: r.status, text: await r.text() };
+        } catch {
+          return last;
+        }
+        if (last.status !== 429) break;
+        if (i < 2) await new Promise(res => setTimeout(res, 1500 * 2 ** i));
+      }
+      return last;
+    })();
+    gameJobs.set(url, { at: Date.now(), job });
+    job.then((r) => { if (r.status !== 200 && gameJobs.get(url)?.job === job) gameJobs.delete(url); });
+    return job;
+  }
+
+  function shareGames(req) {
+    const fake = { now: true, body: null, status: 200 };
+    return {
+      wait: gameFetch(req.url).then((r) => {
+        fake.body = (r.text && parse(r.text)) || { errors: [{ code: 0, message: 'Request failed' }] };
+        fake.status = r.status || 500;
+      }),
+      fake,
+    };
+  }
+
   const ROUTES = [
+    ['GET', /^https:\/\/games\.roblox\.com\/v1\/games\?universeIds=\d+(?:&languageCode=[\w-]+)?$/i, (m, req) => shareGames(req)],
     ['GET', /^https:\/\/friends\.roblox\.com\/v1\/(?:user\/friend-requests|my\/new-friend-requests)\/count(?:[?#]|$)/, () => {
       if (!cfg.requests) return null;
       return { edit: (t) => {

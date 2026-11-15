@@ -25,7 +25,13 @@
         { "type": "fixed", "text": "Profiles: with Classic Profile off, Currently Wearing no longer stretches past the page or shows items as giant boxes, Try Their Fit sits next to the heading, and the Trade button no longer squeezes the other buttons or pushes the … menu past the edge." },
         { "type": "fixed", "text": "Owners on item pages: rows are the same size as Resellers again instead of huge avatars and tall Trade buttons, and the Plus/Premium filter fits on one line." },
         { "type": "fixed", "text": "Avatar: the pinned left column can scroll to its bottom on smaller screens." },
-        { "type": "fixed", "text": "2017 Roblox Theme: fixed the cut-off Home greeting, empty space under game cards, the hidden Robux balance, the Holding Period info icon, Avatar item cards with empty boxes, and the spacing under Outfits and Friends on Classic Profile." }
+        { "type": "fixed", "text": "2017 Roblox Theme: fixed the cut-off Home greeting, empty space under game cards, the hidden Robux balance, the Holding Period info icon, Avatar item cards with empty boxes, and the spacing under Outfits and Friends on Classic Profile." },
+        { "type": "fixed", "text": "2017 Roblox Theme: the Classics row shows at the top of Games again when you have customized that page." },
+        { "type": "fixed", "text": "2017 Roblox Theme: the Roblox Plus link in the side menu just says Plus, so it fits on one line." },
+        { "type": "fixed", "text": "Charts and Home no longer freeze for a few seconds while the game tiles load." },
+        { "type": "fixed", "text": "Friend History, Trade Calculator, Trade Ads and the other RoUtility menu links no longer pick up a copy of the Friends or Trade counter." },
+        { "type": "fixed", "text": "Experience pages no longer show Content failed to load for the description when Roblox says too many requests. RoUtility asks for a game's details once and waits a moment before trying again." },
+        { "type": "improved", "text": "2017 Roblox Theme no longer turns on the old sidebar by itself. There's an Old Sidebar switch right under the theme if you want it, synced with the one in the Sidebar tab." }
       ]
     },
     {

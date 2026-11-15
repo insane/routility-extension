@@ -550,7 +550,7 @@
     try { localStorage.setItem(EARLY, JSON.stringify(early)); } catch {}
   };
   const oldNav = () => {
-    const on = (lastSettings || {}).oldLeftNav === true || (lastSettings || {}).classicSite === true;
+    const on = (lastSettings || {}).oldLeftNav === true;
     root.classList.toggle('routility-old-nav', on);
     try {
       const flipped = localStorage.getItem('routilityNavFlipped') === '1';

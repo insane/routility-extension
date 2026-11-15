@@ -1054,6 +1054,30 @@
     }
   }
 
+  function stripNavBadges(li, keep) {
+    if (!li) return;
+    const a = li.querySelector('a') || li;
+    for (const b of li.querySelectorAll('.foundation-web-badge')) {
+      if (keep && b.closest(keep)) continue;
+      let box = b;
+      while (box.parentElement && box.parentElement !== a && box.parentElement.children.length === 1) box = box.parentElement;
+      box.remove();
+    }
+  }
+
+  const gameMemo = new Map();
+
+  function gameDetails(universeId, maxAge = 15000) {
+    const id = String(universeId || '');
+    if (!/^\d+$/.test(id)) return Promise.resolve(null);
+    const hit = gameMemo.get(id);
+    if (hit && Date.now() - hit.at < maxAge) return hit.job;
+    const job = json(`https://games.roblox.com/v1/games?universeIds=${id}`).then(d => (d && Array.isArray(d.data) && d.data[0]) || null);
+    gameMemo.set(id, { at: Date.now(), job });
+    job.then((g) => { if (!g && gameMemo.get(id)?.job === job) gameMemo.delete(id); });
+    return job;
+  }
+
   const PRESENCE_TTL = 15000;
   const presenceSeen = new Map();
   const presenceLive = new Map();
@@ -1183,7 +1207,7 @@
     });
   }
 
-  window.RoUtilityUI = { tagIcon, tagIcons, json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, usdIcon, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, exactTime, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request, confirmDialog };
+  window.RoUtilityUI = { stripNavBadges, gameDetails, tagIcon, tagIcons, json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, usdIcon, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, exactTime, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request, confirmDialog };
 })();
 
 (function () {
