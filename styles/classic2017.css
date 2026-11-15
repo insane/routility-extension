@@ -2524,7 +2524,14 @@ html.routility-2017 .routility-classic .profile-header .header-title .routility-
 }
 
 html.routility-2017 .routility-classic .routility-classic-outfits {
-  padding: 0 0 15px !important;
+  padding: 0 !important;
+  margin-bottom: 18px !important;
+}
+
+html.routility-2017 .routility-classic .tab-pane .section.routility-classic-outfits > .section-content,
+html.routility-2017 .routility-classic .section.routility-classic-outfits > .section-content {
+  margin-bottom: 0 !important;
+  padding-bottom: 12px !important;
 }
 
 html.routility-2017 .friends-subtitle > h2 {
@@ -2960,4 +2967,16 @@ html.routility-2017 #routility-2017-classics .horizontally-scrollable {
 html.routility-2017 #asset-resale-data-container .routility-it-section {
   padding: 15px !important;
   background-color: var(--c17-card) !important;
+}
+
+html.routility-2017 .routility-classic .tab-pane .section.routility-classic-friends > .section-content,
+html.routility-2017 .routility-classic .section.routility-classic-friends > .section-content {
+  height: auto !important;
+  min-height: 0 !important;
+  padding-bottom: 12px !important;
+}
+
+html.routility-2017 .routility-classic .routility-classic-friends .routility-classic-people > li.friend {
+  height: auto !important;
+  margin-bottom: 0 !important;
 }
