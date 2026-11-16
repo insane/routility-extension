@@ -4,7 +4,7 @@
   const { el, onFrame, formatUSD, formatNumber, robuxRate } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const NS = 'http://www.w3.org/2000/svg';
-  const settings = { createScanner: true, createIds: true, createDevItems: true, createUsd: true, createSafety: true };
+  const settings = { createScanner: true, createIds: true, createDevItems: true, createUsd: true, createSafety: true, createSelect: true, createStoreDates: true, createVersion: true, createTier: true };
   let lastUrl = '';
   let page = null;
 
@@ -124,11 +124,38 @@
     return [...root.querySelectorAll('h1,h2,h3,h4,h5,h6,p,span,div,a')].find(e => !e.children.length && e.textContent.trim() === text) || null;
   }
 
+  function versionRow(s, details) {
+    if (!settings.createVersion || details.querySelector('.routility-cr-version')) return;
+    if (!s.version) {
+      s.version = fetch(`https://apis.roblox.com/toolbox-service/v2/assets/${s.id}`, { credentials: 'include' })
+        .then(r => (r.ok ? r.json() : null)).then(d => Number(d && d.asset && d.asset.revisionId) || 0).catch(() => 0);
+      s.version.then(() => { if (page === s) s.run(); });
+      return;
+    }
+    s.version.then((n) => {
+      if (!n || page !== s || !details.isConnected || details.querySelector('.routility-cr-version')) return;
+      const ref = [...details.children].find(c => c.querySelector('h3') && c.querySelector('span'));
+      if (!ref) return;
+      const box = ref.cloneNode(false);
+      box.classList.add('routility-injected', 'routility-cr-version');
+      const h = ref.querySelector('h3').cloneNode(false);
+      h.textContent = lt('Version');
+      const v = ref.querySelector('span').cloneNode(false);
+      v.textContent = formatNumber(n);
+      v.classList.add('routility-cr-fit');
+      v.dataset.rtTip = ltn(n, 'The creator has saved this {n} time. If the number jumps, it changed since you last looked.', 'The creator has saved this {n} times. If the number jumps, it changed since you last looked.', { n: formatNumber(n) });
+      box.append(h, v);
+      details.appendChild(box);
+    });
+  }
+
   function storePage(id) {
     const s = { id, scan: null, started: false };
     s.run = () => {
       const details = document.querySelector('[class*="overallDetailsContainer"]');
       if (!details) return;
+      versionRow(s, details);
+      if (!settings.createScanner) return;
       const typeLabel = leaf(details, 'Type');
       const typeValue = typeLabel && typeLabel.nextElementSibling;
       const type = typeValue ? typeValue.textContent.trim() : '';
@@ -404,22 +431,187 @@
     }
   }
 
+  let csrf = '';
+
+  async function postJson(url, body) {
+    for (let i = 0; i < 2; i++) {
+      try {
+        const res = await fetch(url, { method: 'POST', credentials: 'include', headers: { 'content-type': 'application/json', ...(csrf ? { 'x-csrf-token': csrf } : {}) }, body: JSON.stringify(body) });
+        const token = res.status === 403 && res.headers.get('x-csrf-token');
+        if (token) { csrf = token; continue; }
+        return res.ok ? await res.json() : null;
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  function ago(iso) {
+    const days = Math.max(0, Math.floor((Date.now() - Date.parse(iso)) / 86400000));
+    if (days < 1) return lt('today');
+    if (days < 30) return ltn(days, '{n} day ago', '{n} days ago');
+    if (days < 365) { const m = Math.max(1, Math.floor(days / 30.44)); return ltn(m, '{n} month ago', '{n} months ago'); }
+    const y = Math.floor(days / 365.25);
+    return ltn(y, '{n} year ago', '{n} years ago');
+  }
+
+  const selectCache = new Map();
+  let selectBusy = false;
+
+  function selectLine(e) {
+    const line = el('span', 'routility-injected routility-cr-select');
+    const bar = el('span', 'routility-cr-select-bar');
+    const fill = el('span', 'routility-cr-select-fill');
+    bar.appendChild(fill);
+    const text = el('span', 'routility-cr-select-text');
+    const when = e.engagedPlayersUpdatedAt ? new Date(e.engagedPlayersUpdatedAt + (/Z|[+-]\d\d:?\d\d$/.test(e.engagedPlayersUpdatedAt) ? '' : 'Z')).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : '';
+    const n = Number(e.engagedPlayersCount) || 0;
+    const need = Number(e.thresholdTrigger) || 0;
+    if (e.selectStatus === 'Eligible') {
+      line.classList.add('routility-cr-select-ok');
+      fill.style.width = '100%';
+      text.textContent = lt('Kids & Select: Eligible');
+      text.dataset.rtTip = lt('Roblox Kids and Select players can find it. It stays eligible while it keeps {reset} highly engaged players. It has {n} right now.', { reset: formatNumber(Number(e.thresholdReset) || 0), n: formatNumber(n) });
+    } else if (e.underReview) {
+      fill.style.width = '100%';
+      text.textContent = lt('Kids & Select: Under review');
+      text.dataset.rtTip = lt('Roblox is reviewing it for Kids and Select players.');
+    } else if (need && (e.reasons || []).every(r => r === 'Threshold')) {
+      fill.style.width = Math.min(100, Math.round(n / need * 100)) + '%';
+      text.textContent = lt('Kids & Select: {n} / {need}', { n: formatNumber(n), need: formatNumber(need) });
+      text.dataset.rtTip = lt('{n} highly engaged players in the last {days} days. It needs {need} to reach Roblox Kids and Select players.', { n: formatNumber(n), need: formatNumber(need), days: Number(e.gracePeriodDays) || 60 }) + (when ? ' ' + lt('Updated {date}.', { date: when }) : '');
+    } else {
+      line.classList.add('routility-cr-select-off');
+      text.textContent = lt('Kids & Select: Not eligible');
+      text.dataset.rtTip = lt('Roblox says: {reason}', { reason: (e.reasons || []).map(r => String(r).replace(/([a-z])([A-Z])/g, '$1 $2')).join(', ') || e.selectStatus });
+    }
+    line.append(bar, text);
+    return line;
+  }
+
+  async function selectPass() {
+    if (selectBusy) return;
+    const links = [...document.querySelectorAll('a[href*="/dashboard/creations/experiences/"]')].filter(a => !a.dataset.rtSelect && a.querySelector('.foundation-web-badge'));
+    if (!links.length) return;
+    selectBusy = true;
+    try {
+      const ids = [...new Set(links.map(a => (a.getAttribute('href').match(/experiences\/(\d+)/) || [])[1]).filter(Boolean))];
+      const missing = ids.filter(id => !selectCache.has(id));
+      for (let i = 0; i < missing.length; i += 50) {
+        const part = missing.slice(i, i + 50);
+        const d = await postJson('https://apis.roblox.com/core-content/v1/universe-eligibility/batch', { universeIds: part.map(Number) });
+        const all = (d && d.universeEligibilities) || {};
+        for (const id of part) selectCache.set(id, all[id] || null);
+      }
+      for (const a of links) {
+        const id = (a.getAttribute('href').match(/experiences\/(\d+)/) || [])[1];
+        const e = selectCache.get(id);
+        a.dataset.rtSelect = '1';
+        if (!e || a.querySelector('.routility-cr-select')) continue;
+        (a.querySelector('[class*="itemCardInfoContainer"]') || a).appendChild(selectLine(e));
+      }
+    } finally {
+      selectBusy = false;
+    }
+  }
+
+  const storeInfo = new Map();
+  let storeBusy = false;
+
+  async function storeCardsPass() {
+    if (storeBusy) return;
+    const names = [...document.querySelectorAll('a[data-testid="PLAYWRIGHT_assetNameLink"]')].filter(a => !a.dataset.rtDates);
+    if (!names.length) return;
+    storeBusy = true;
+    try {
+      const idOf = a => (a.getAttribute('href').match(/\/store\/asset\/(\d+)/) || [])[1];
+      const missing = [...new Set(names.map(idOf).filter(id => id && !storeInfo.has(id)))];
+      for (let i = 0; i < missing.length; i += 50) {
+        const part = missing.slice(i, i + 50);
+        for (const id of part) storeInfo.set(id, null);
+        try {
+          const res = await fetch(`https://apis.roblox.com/toolbox-service/v1/items/details?assetIds=${part.join(',')}`, { credentials: 'include' });
+          const d = res.ok ? await res.json() : null;
+          for (const x of (d && d.data) || []) {
+            if (!x.asset) continue;
+            storeInfo.set(String(x.asset.id), { updated: x.asset.updatedUtc || x.asset.createdUtc, created: x.asset.createdUtc, updater: x.creator && x.creator.type === 2 ? x.creator.latestGroupUpdaterUserName || '' : '' });
+          }
+        } catch {}
+      }
+      for (const a of names) {
+        const info = storeInfo.get(idOf(a));
+        a.dataset.rtDates = '1';
+        if (!info || !info.updated || a.parentElement.querySelector('.routility-cr-dates')) continue;
+        const line = el('span', 'routility-injected routility-cr-dates', lt('Updated {time}', { time: ago(info.updated) }) + (info.updater ? ' ' + lt('by @{name}', { name: info.updater }) : ''));
+        const stamp = d => new Date(d).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        line.dataset.rtTip = lt('Updated {date}', { date: stamp(info.updated) }) + (info.created ? '\n' + lt('Created {date}', { date: stamp(info.created) }) : '');
+        a.after(line);
+      }
+    } finally {
+      storeBusy = false;
+    }
+  }
+
+  const TIER_NEEDS = { ModerationStatusOk: LT('Account in good standing'), IdVerified: LT('ID verified'), AgeEstimationVerified: LT('Age checked'), Has2SVEnabled: LT('2-Step Verification on') };
+  const TIER_NAMES = { Private: LT('Private'), Trusted: LT('Trusted'), Everyone: LT('Everyone') };
+  let tierJob = null;
+
+  async function tierPass() {
+    const create = [...document.querySelectorAll('a, button')].find(b => /^Create Experience$/.test(b.textContent.trim()));
+    if (!create || document.querySelector('.routility-cr-tier')) return;
+    if (!tierJob) {
+      tierJob = (async () => {
+        try {
+          const me = await fetch('https://users.roblox.com/v1/users/authenticated', { credentials: 'include' }).then(r => (r.ok ? r.json() : null));
+          if (!me || !me.id) return null;
+          const r = await fetch(`https://apis.roblox.com/core-content/v2/user/${me.id}/publish-permissions`, { credentials: 'include' });
+          return r.ok ? await r.json() : null;
+        } catch {
+          return null;
+        }
+      })();
+    }
+    const d = await tierJob;
+    if (!d || !d.currentTier || !create.isConnected || document.querySelector('.routility-cr-tier')) return;
+    const order = d.tierOrder || ['Private', 'Trusted', 'Everyone'];
+    const top = order[order.length - 1];
+    const done = [];
+    const todo = [];
+    for (const q of d.requirements || []) {
+      if (!q.isEnabled || !TIER_NEEDS[q.id]) continue;
+      const needed = (q.tierRequirements || []).some(t => t.tier === top && t.isRequired);
+      if (q.isCompleted) done.push(lt(TIER_NEEDS[q.id]));
+      else if (needed) todo.push(lt(TIER_NEEDS[q.id]));
+    }
+    const badge = el('span', 'routility-injected routility-cr-tier' + (d.currentTier === top ? ' routility-cr-tier-top' : ''));
+    badge.append(el('span', 'routility-cr-tier-dot'), el('span', null, lt('Publishing: {tier}', { tier: TIER_NAMES[d.currentTier] ? lt(TIER_NAMES[d.currentTier]) : d.currentTier })));
+    badge.dataset.rtTip = [lt('Who your experiences can be opened up to: Private, Trusted or Everyone.'), done.length ? lt('Done: {list}', { list: done.join(', ') }) : '', todo.length ? lt('To reach Everyone: {list}', { list: todo.join(', ') }) : ''].filter(Boolean).join('\n');
+    const host = create.parentElement;
+    host.classList.add('routility-cr-tier-host');
+    create.after(badge);
+  }
+
   function route() {
     const url = location.href;
     if (url !== lastUrl) {
       lastUrl = url;
-      document.querySelectorAll('.routility-cr-card, .routility-cr-explorer, .routility-cr-ids, .routility-cr-servers').forEach(n => n.remove());
+      document.querySelectorAll('.routility-cr-card, .routility-cr-explorer, .routility-cr-ids, .routility-cr-servers, .routility-cr-version').forEach(n => n.remove());
       document.querySelectorAll('.routility-cr-hidden').forEach(n => n.classList.remove('routility-cr-hidden'));
       const path = location.pathname;
       let m;
-      if (settings.createScanner && (m = path.match(/^\/store\/asset\/(\d+)/))) page = storePage(m[1]);
+      if ((settings.createScanner || settings.createVersion) && (m = path.match(/^\/store\/asset\/(\d+)/))) page = storePage(m[1]);
       else if (settings.createIds && (m = path.match(/^\/dashboard\/creations\/experiences\/(\d+)\/overview/))) page = experiencePage(m[1]);
       else if (settings.createDevItems && /^\/dashboard\/creations\/?$/.test(path)) page = devItemsPage();
       else page = null;
     }
     if (page) page.run();
     usdPass();
-    if (settings.createSafety && /^\/dashboard\/creations\/?$/.test(location.pathname)) safetyPass();
+    const creations = /^\/dashboard\/creations\/?$/.test(location.pathname);
+    if (settings.createSafety && creations) safetyPass();
+    if (settings.createSelect && creations) selectPass();
+    if (settings.createTier && creations) tierPass();
+    if (settings.createStoreDates && /^\/store(\/|$)/.test(location.pathname) && !/^\/store\/asset\//.test(location.pathname)) storeCardsPass();
   }
 
   chrome.storage.local.get('routilitySettings', (st) => {

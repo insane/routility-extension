@@ -15608,3 +15608,7 @@ html:not(.routility-counters-blue) .left-nav nav .foundation-web-status-indicato
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.routility-tip .tooltip-arrow {
+  margin-left: 0 !important;
+}
