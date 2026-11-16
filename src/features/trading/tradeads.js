@@ -125,7 +125,21 @@
     return window.RoUtilityUI.formatCash(v);
   }
 
+  function siteImg(src) {
+    if (!src) return '';
+    let u;
+    try { u = new URL(src, SITE); } catch { return ''; }
+    if (u.origin === SITE && u.pathname === '/api/imgproxy.png') {
+      try {
+        const inner = new URL(u.searchParams.get('url') || '');
+        if (inner.protocol === 'https:' && /(^|\.)rbxcdn\.com$/.test(inner.hostname)) return inner.href;
+      } catch {}
+    }
+    return u.protocol === 'https:' ? u.href : '';
+  }
+
   function thumbImg(src, size) {
+    src = siteImg(src);
     const box = el('span', 'thumbnail-2d-container routility-ads-thumb');
     box.style.width = box.style.height = size + 'px';
     if (src) {
