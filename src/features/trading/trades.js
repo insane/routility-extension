@@ -1713,6 +1713,7 @@
     scanRows();
     scanOffers();
     checkOwnership();
+    ensureAllowance();
     ensureFilter();
     if (filterQuery) {
       const rows = document.querySelectorAll('.trade-row').length;
@@ -1729,7 +1730,47 @@
   chrome.storage.local.get('routilitySettings', (st) => {
     proofOn = (st.routilitySettings || {}).tradeProof !== false;
     analyzeOn = (st.routilitySettings || {}).tradeAnalyze !== false;
+    allowanceOn = (st.routilitySettings || {}).tradeAllowance !== false;
   });
+
+  let allowanceOn = true;
+
+  let allowance = null;
+  let allowanceAt = 0;
+
+  function allowanceText(a) {
+    if (!a) return null;
+    if (a.canTrade === false) return { text: lt('You can’t trade right now'), tip: lt('Roblox says your account can’t trade: {reason}', { reason: String(a.tradeEligibility || '').replace(/([a-z])([A-Z])/g, '$1 $2') }), tone: 'alert' };
+    const f = a.freeTradesAllowance;
+    if (!f || !(Number(f.limit) > 0)) return null;
+    if (Number(f.remaining) < 0) return { text: lt('Unlimited trades'), tip: lt('Included with Roblox Plus'), tone: 'plus' };
+    const now = new Date();
+    const reset = new Date(now.getFullYear(), now.getMonth() + 1, 1).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    return { text: lt('{left} of {limit} free trades left this month', { left: Math.max(0, Number(f.remaining)), limit: f.limit }), tip: lt('Resets {date}', { date: reset }), tone: Number(f.remaining) > 0 ? '' : 'alert' };
+  }
+
+  async function ensureAllowance() {
+    const header = document.querySelector('.trades-header');
+    if (!allowanceOn || !header) return;
+    if (!allowance || Date.now() - allowanceAt > 60000) {
+      allowanceAt = Date.now();
+      allowance = robloxJson('https://trades.roblox.com/v2/users/me/can-trade');
+    }
+    const v = allowanceText(await allowance);
+    let line = document.querySelector('.routility-trade-allowance');
+    if (!v) {
+      line?.remove();
+      return;
+    }
+    const key = v.text + '|' + v.tone;
+    if (line && line.dataset.key === key && line.previousElementSibling === header) return;
+    line?.remove();
+    line = el('div', 'routility-injected routility-trade-allowance text-body-small' + (v.tone ? ' routility-trade-allowance-' + v.tone : ''));
+    line.dataset.key = key;
+    line.dataset.rtTip = v.tip;
+    line.append(el('span', 'routility-trade-allowance-dot'), el('span', null, v.text));
+    header.after(line);
+  }
 
   function ensureAnalyze() {
     const h2 = document.querySelector('.trades-list-detail > div > h2');
@@ -2314,7 +2355,7 @@
     document.removeEventListener('mouseout', onRowOut);
     document.removeEventListener('scroll', closePreview, true);
     closePreview();
-    document.querySelectorAll('.routility-trade-filter, .routility-proof-btn').forEach(n => n.remove());
+    document.querySelectorAll('.routility-trade-filter, .routility-proof-btn, .routility-trade-allowance').forEach(n => n.remove());
     document.querySelectorAll('.routility-proof-backdrop').forEach(n => (n.routilityShut ? n.routilityShut() : n.remove()));
     document.querySelectorAll('[data-routility-hidden]').forEach(n => delete n.dataset.routilityHidden);
   }

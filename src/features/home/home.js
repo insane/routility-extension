@@ -780,7 +780,7 @@
         row.id = 'routility-friends-today';
         row.appendChild(header());
         row.appendChild(el('ul', 'routility-ft-list'));
-        const more = el('button', 'btn-control-xs routility-ft-more');
+        const more = el('button', 'routility-ft-more');
         more.type = 'button';
         more.addEventListener('click', () => {
           expanded = !expanded;
@@ -795,6 +795,7 @@
       const more = row.querySelector('.routility-ft-more');
       more.hidden = events.length <= SHOW;
       more.textContent = expanded ? lt('Show Less') : lt('Show All {n}', { n: formatNumber(Math.min(events.length, 50)) });
+      more.toggleAttribute('data-open', expanded);
       lookup(shown);
       if (!row.isConnected) {
         after.after(row);

@@ -261,9 +261,6 @@
  "{n} servers, {regions}": {
   "other": "{n} เซิร์ฟเวอร์, {regions}"
  },
- "{n} sold": {
-  "other": "ขายแล้ว {n}"
- },
  "{n} to buy": {
   "other": "ต้องซื้อ {n}"
  },
@@ -3185,5 +3182,63 @@
  "Menu Counters": "ตัวนับในเมนู",
  "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "ตัวเลขข้างข้อความ เพื่อน และเทรดในเมนู ให้ขนาดเท่ากันและเรียงตรงกันโดยเว้นระยะจากขอบ สีขาวคือแบบที่ Roblox เคยแสดง",
  "White": "ขาว",
- "Blue": "น้ำเงิน"
+ "Blue": "น้ำเงิน",
+ "A Beta Programs line on Settings > Account Info with the Roblox betas your account is in, like Studio early access programs.": "บรรทัดโปรแกรมเบต้าใน การตั้งค่า > ข้อมูลบัญชี แสดงเบต้าของ Roblox ที่บัญชีของคุณเข้าร่วมอยู่ เช่น โปรแกรมทดลองใช้ก่อนของ Studio",
+ "A Gear row next to Server Size with the gear types a game lets players bring in, when it allows any.": "แถวไอเทมเกียร์ข้างขนาดเซิร์ฟเวอร์ แสดงประเภทเกียร์ที่เกมอนุญาตให้ผู้เล่นนำเข้ามา ถ้ามีการอนุญาต",
+ "A Seller Fee line on resellable items: how much Roblox keeps when you sell one, and the lowest price you can list it for.": "บรรทัดค่าธรรมเนียมผู้ขายบนไอเทมที่ขายต่อได้ บอกว่า Roblox เก็บเท่าไรเมื่อคุณขาย และราคาต่ำสุดที่ตั้งขายได้",
+ "Allowed Gear": "เกียร์ที่อนุญาต",
+ "Beta Programs": "โปรแกรมเบต้า",
+ "Building": "การสร้าง",
+ "Explosive": "ระเบิด",
+ "Extra details on your Roblox Settings pages: your devices, backup codes, betas and voice chat.": "รายละเอียดเพิ่มเติมในหน้าการตั้งค่า Roblox ของคุณ: อุปกรณ์ รหัสสำรอง เบต้า และแชทด้วยเสียง",
+ "Free Trades Left": "เทรดฟรีที่เหลือ",
+ "Gear players can bring in: {list}": "เกียร์ที่ผู้เล่นนำเข้ามาได้: {list}",
+ "Greys out Add trusted friend on profiles when Roblox won’t let you add that person, so you don’t get an error. Hover it to see why.": "ทำให้ปุ่มเพิ่มเพื่อนที่ไว้ใจได้บนโปรไฟล์เป็นสีเทาเมื่อ Roblox ไม่ให้คุณเพิ่มคนนั้น คุณจะได้ไม่เจอข้อผิดพลาด วางเมาส์เพื่อดูเหตุผล",
+ "Hover the Maturity label at the top of a game page to see why it got that rating, like Violence (Occasional/Mild).": "วางเมาส์บนป้ายระดับความเหมาะสมด้านบนหน้าเกม เพื่อดูว่าทำไมเกมถึงได้เรตนั้น เช่น ความรุนแรง (บางครั้ง/เล็กน้อย)",
+ "How many times the creator added more copies, and when they last did.": "ผู้สร้างเพิ่มจำนวนชิ้นไปกี่ครั้ง และครั้งล่าสุดเมื่อไร",
+ "Limit": "จำกัด",
+ "Lines on item pages with what Roblox loads but doesn’t show: which game sells it, how many are left, the limit per person, when the sale ends and how many times it was restocked.": "บรรทัดบนหน้าไอเทมแสดงสิ่งที่ Roblox โหลดแต่ไม่แสดง: เกมไหนขาย เหลือกี่ชิ้น จำกัดต่อคนเท่าไร หมดเขตขายเมื่อไร และเติมสต็อกมากี่ครั้ง",
+ "Maturity Reasons": "เหตุผลของระดับความเหมาะสม",
+ "Melee": "ระยะประชิด",
+ "Music": "เพลง",
+ "Navigation": "การนำทาง",
+ "Power Ups": "พาวเวอร์อัป",
+ "Ranged": "ระยะไกล",
+ "Restocks": "เติมสต็อก",
+ "Roblox betas your account is in. Roblox loads this list but doesn’t show it.": "เบต้าของ Roblox ที่บัญชีคุณเข้าร่วม Roblox โหลดรายการนี้แต่ไม่แสดง",
+ "Roblox keeps {pct}% of every resale.": "Roblox เก็บ {pct}% จากการขายต่อทุกครั้ง",
+ "Roblox keeps {pct}% of every resale. The lowest price you can list it for is R$ {floor}, which pays you R$ {keep}.": "Roblox เก็บ {pct}% จากการขายต่อทุกครั้ง ราคาต่ำสุดที่ตั้งขายได้คือ R$ {floor} ซึ่งคุณจะได้ R$ {keep}",
+ "Roblox says your account can’t trade: {reason}": "Roblox บอกว่าบัญชีของคุณเทรดไม่ได้: {reason}",
+ "Roblox won’t let you add them as a Trusted Friend. Trusted Friends have to be people you know, and some accounts can’t have them at all.": "Roblox ไม่ให้คุณเพิ่มคนนี้เป็นเพื่อนที่ไว้ใจได้ เพื่อนที่ไว้ใจได้ต้องเป็นคนที่คุณรู้จัก และบางบัญชีมีไม่ได้เลย",
+ "Sale Details": "รายละเอียดการขาย",
+ "Sale Ends": "หมดเขตขาย",
+ "Seller Fee": "ค่าธรรมเนียมผู้ขาย",
+ "Sold In": "ขายใน",
+ "Stock": "สต็อก",
+ "The game where its original copies are sold.": "เกมที่ขายชิ้นต้นฉบับ",
+ "Transport": "ยานพาหนะ",
+ "Trusted Friend Check": "ตรวจเพื่อนที่ไว้ใจได้",
+ "Under Trades, how many of your free trades are left this month, or Unlimited trades if you have Roblox Plus.": "ใต้เทรด แสดงจำนวนเทรดฟรีที่เหลือในเดือนนี้ หรือเทรดไม่จำกัดถ้าคุณมี Roblox Plus",
+ "Unlimited trades": "เทรดไม่จำกัด",
+ "When Roblox takes it off sale.": "เวลาที่ Roblox จะหยุดขาย",
+ "Why: {list}": "เหตุผล: {list}",
+ "You can’t trade right now": "ตอนนี้คุณเทรดไม่ได้",
+ "last {date}": "ล่าสุด {date}",
+ "lowest price": "ราคาต่ำสุด",
+ "{left} left": "เหลือ {left}",
+ "{left} left of {total}": "เหลือ {left} จาก {total}",
+ "{left} of {limit} free trades left this month": "เหลือเทรดฟรี {left} จาก {limit} ครั้งในเดือนนี้",
+ "{list} +{n}": "{list} +{n}",
+ "{pct}% fee": "ค่าธรรมเนียม {pct}%",
+ "{n} per person": {
+  "other": "{n} ชิ้นต่อคน"
+ },
+ "{n} times": {
+  "other": "{n} ครั้ง"
+ },
+ "Included with Roblox Plus": "รวมอยู่ใน Roblox Plus",
+ "Resets {date}": "รีเซ็ต {date}",
+ "Uploaded By": "อัปโหลดโดย",
+ "The account that uploaded this item’s mesh and textures. Roblox only lists {creator}.": "บัญชีที่อัปโหลดเมชและเท็กซ์เจอร์ของไอเทมนี้ Roblox แสดงแค่ {creator}",
+ "When someone other than the listed creator uploaded an item’s mesh and textures, like group items or Roblox items made by UGC artists, shows who with their picture and @username.": "เมื่อคนที่อัปโหลดเมชและเท็กซ์เจอร์ไม่ใช่ผู้สร้างที่แสดงไว้ เช่น ไอเทมของกลุ่มหรือไอเทม Roblox ที่ศิลปิน UGC ทำ จะแสดงว่าเป็นใครพร้อมรูปและ @ชื่อผู้ใช้"
 }

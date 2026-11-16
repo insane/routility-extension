@@ -261,9 +261,6 @@
  "{n} servers, {regions}": {
   "other": "서버 {n}개, {regions}"
  },
- "{n} sold": {
-  "other": "{n}개 판매"
- },
  "{n} to buy": {
   "other": "{n}개 구매 필요"
  },
@@ -3185,5 +3182,63 @@
  "Menu Counters": "메뉴 카운터",
  "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "메뉴의 메시지, 친구, 거래 옆 숫자를 모두 같은 크기로 맞추고 가장자리에서 조금 띄워 정렬해요. 흰색은 예전 Roblox 표시 방식이에요.",
  "White": "흰색",
- "Blue": "파란색"
+ "Blue": "파란색",
+ "A Beta Programs line on Settings > Account Info with the Roblox betas your account is in, like Studio early access programs.": "설정 > 계정 정보에 Studio 얼리 액세스처럼 내 계정이 참여 중인 Roblox 베타를 보여 주는 베타 프로그램 줄을 추가해요.",
+ "A Gear row next to Server Size with the gear types a game lets players bring in, when it allows any.": "게임이 허용하는 기어 종류를 서버 크기 옆에 기어 줄로 보여 줘요. 허용하는 기어가 있을 때만 나와요.",
+ "A Seller Fee line on resellable items: how much Roblox keeps when you sell one, and the lowest price you can list it for.": "재판매할 수 있는 아이템에 판매 수수료 줄을 추가해요. 팔 때 Roblox가 가져가는 몫과 올릴 수 있는 최저 가격이에요.",
+ "Allowed Gear": "허용된 기어",
+ "Beta Programs": "베타 프로그램",
+ "Building": "건설",
+ "Explosive": "폭발물",
+ "Extra details on your Roblox Settings pages: your devices, backup codes, betas and voice chat.": "Roblox 설정 페이지에 더 자세한 정보를 보여 줘요. 기기, 백업 코드, 베타, 음성 채팅이에요.",
+ "Free Trades Left": "남은 무료 거래",
+ "Gear players can bring in: {list}": "가져올 수 있는 기어: {list}",
+ "Greys out Add trusted friend on profiles when Roblox won’t let you add that person, so you don’t get an error. Hover it to see why.": "Roblox가 그 사람을 추가하지 못하게 할 때 프로필의 신뢰하는 친구 추가 버튼을 회색으로 바꿔서 오류가 나지 않게 해요. 마우스를 올리면 이유가 보여요.",
+ "Hover the Maturity label at the top of a game page to see why it got that rating, like Violence (Occasional/Mild).": "게임 페이지 위쪽의 성숙도 라벨에 마우스를 올리면 폭력(가끔/약함)처럼 그 등급을 받은 이유가 보여요.",
+ "How many times the creator added more copies, and when they last did.": "제작자가 개수를 추가한 횟수와 마지막으로 추가한 날이에요.",
+ "Limit": "제한",
+ "Lines on item pages with what Roblox loads but doesn’t show: which game sells it, how many are left, the limit per person, when the sale ends and how many times it was restocked.": "Roblox가 불러오지만 보여 주지 않는 정보를 아이템 페이지에 보여 줘요. 어느 게임에서 파는지, 남은 개수, 1인당 제한, 판매 종료일, 재입고 횟수예요.",
+ "Maturity Reasons": "성숙도 이유",
+ "Melee": "근접",
+ "Music": "음악",
+ "Navigation": "내비게이션",
+ "Power Ups": "파워업",
+ "Ranged": "원거리",
+ "Restocks": "재입고",
+ "Roblox betas your account is in. Roblox loads this list but doesn’t show it.": "내 계정이 참여 중인 Roblox 베타예요. Roblox가 이 목록을 불러오지만 보여 주지는 않아요.",
+ "Roblox keeps {pct}% of every resale.": "Roblox는 재판매마다 {pct}%를 가져가요.",
+ "Roblox keeps {pct}% of every resale. The lowest price you can list it for is R$ {floor}, which pays you R$ {keep}.": "Roblox는 재판매마다 {pct}%를 가져가요. 올릴 수 있는 최저 가격은 R$ {floor}이고, 받는 금액은 R$ {keep}이에요.",
+ "Roblox says your account can’t trade: {reason}": "Roblox에 따르면 내 계정은 거래할 수 없어요: {reason}",
+ "Roblox won’t let you add them as a Trusted Friend. Trusted Friends have to be people you know, and some accounts can’t have them at all.": "Roblox가 이 사람을 신뢰하는 친구로 추가하지 못하게 해요. 신뢰하는 친구는 아는 사람이어야 하고, 아예 가질 수 없는 계정도 있어요.",
+ "Sale Details": "판매 정보",
+ "Sale Ends": "판매 종료",
+ "Seller Fee": "판매 수수료",
+ "Sold In": "판매처",
+ "Stock": "재고",
+ "The game where its original copies are sold.": "원래 개수가 판매되는 게임이에요.",
+ "Transport": "이동 수단",
+ "Trusted Friend Check": "신뢰하는 친구 확인",
+ "Under Trades, how many of your free trades are left this month, or Unlimited trades if you have Roblox Plus.": "거래 아래에 이번 달 남은 무료 거래 수를 보여 줘요. Roblox Plus가 있으면 무제한 거래라고 나와요.",
+ "Unlimited trades": "무제한 거래",
+ "When Roblox takes it off sale.": "Roblox가 판매를 끝내는 시점이에요.",
+ "Why: {list}": "이유: {list}",
+ "You can’t trade right now": "지금은 거래할 수 없어요",
+ "last {date}": "마지막 {date}",
+ "lowest price": "최저 가격",
+ "{left} left": "{left}개 남음",
+ "{left} left of {total}": "{total}개 중 {left}개 남음",
+ "{left} of {limit} free trades left this month": "이번 달 무료 거래 {limit}번 중 {left}번 남음",
+ "{list} +{n}": "{list} +{n}",
+ "{pct}% fee": "수수료 {pct}%",
+ "{n} per person": {
+  "other": "1인당 {n}개"
+ },
+ "{n} times": {
+  "other": "{n}번"
+ },
+ "Included with Roblox Plus": "Roblox Plus에 포함",
+ "Resets {date}": "{date}에 초기화",
+ "Uploaded By": "업로드한 사람",
+ "The account that uploaded this item’s mesh and textures. Roblox only lists {creator}.": "이 아이템의 메시와 텍스처를 업로드한 계정이에요. Roblox는 {creator}만 표시해요.",
+ "When someone other than the listed creator uploaded an item’s mesh and textures, like group items or Roblox items made by UGC artists, shows who with their picture and @username.": "그룹 아이템이나 UGC 아티스트가 만든 Roblox 아이템처럼, 표시된 제작자가 아닌 사람이 메시와 텍스처를 업로드했다면 그 사람을 사진과 @사용자 이름과 함께 보여 줘요."
 }

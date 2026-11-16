@@ -54,11 +54,60 @@
     if (li.dataset.rtTip !== tip) li.dataset.rtTip = tip;
   }
 
+  const GEAR = { Melee: LT('Melee'), Ranged: LT('Ranged'), Explosive: LT('Explosive'), PowerUps: LT('Power Ups'), Navigation: LT('Navigation'), Music: LT('Music'), Social: LT('Social'), Building: LT('Building'), PersonalTransport: LT('Transport') };
+
+  function extraRow(cls, label, text, tip, after) {
+    const list = document.querySelector('.game-stat-container');
+    let li = list && list.querySelector(':scope > .' + cls);
+    if (!text) {
+      li?.remove();
+      return;
+    }
+    if (!list) return;
+    if (!li) {
+      li = el('li', 'game-stat routility-injected routility-extra-stat ' + cls);
+      li.append(el('p', 'text-label text-overflow font-caption-header', label), el('p', 'text-lead font-caption-body'));
+      const prev = after.map(c => list.querySelector(':scope > .' + c)).find(Boolean) || [...list.children].find(n => n.querySelector('.text-label')?.textContent.trim() === 'Server Size');
+      if (prev) prev.after(li);
+      else list.appendChild(li);
+    }
+    const lead = li.querySelector('.text-lead');
+    if (lead.textContent !== text) lead.textContent = text;
+    if (li.dataset.rtTip !== tip) li.dataset.rtTip = tip;
+  }
+
+  function extraRows(g) {
+    const gear = (g.allowedGearCategories || []).map(c => GEAR[c] ? lt(GEAR[c]) : c);
+    extraRow('routility-gear-stat', lt('Gear'), gear.length ? (gear.length > 2 ? lt('{list} +{n}', { list: gear.slice(0, 2).join(', '), n: gear.length - 2 }) : gear.join(', ')) : '', lt('Gear players can bring in: {list}', { list: gear.join(', ') }), ['routility-avatar-stat']);
+  }
+
+  async function maturity(s) {
+    if (!s.maturity) {
+      s.maturity = (async () => {
+        const csrf = document.querySelector('meta[name="csrf-token"]')?.dataset.token || '';
+        try {
+          const r = await fetch('https://apis.roblox.com/experience-guidelines-api/experience-guidelines/get-age-recommendation', { method: 'POST', credentials: 'include', headers: { 'content-type': 'application/json', 'x-csrf-token': csrf }, body: JSON.stringify({ universeId: s.universeId }) });
+          if (!r.ok) return null;
+          const d = await r.json();
+          return ((d.ageRecommendationDetails && d.ageRecommendationDetails.descriptorUsages) || []).filter(u => u.contains !== false && u.descriptor && u.descriptor.displayName).map(u => u.descriptor.displayName);
+        } catch {
+          return null;
+        }
+      })();
+    }
+    const list = await s.maturity;
+    if (state !== s || !list || !list.length) return;
+    const tip = lt('Why: {list}', { list: list.join(', ') });
+    document.querySelectorAll('.age-recommendation-title').forEach(a => { if (a.dataset.rtTip !== tip) a.dataset.rtTip = tip; });
+  }
+
   function apply() {
     const s = state;
     if (!s || !s.game) return;
     const g = s.game;
     if (s.opts.avatar) avatarRow(g);
+    if (s.opts.extra) extraRows(g);
+    if (s.opts.maturity) maturity(s);
     if (!s.opts.stats) return;
     const visits = document.querySelector('#game-visits-count') || stat('Visits');
     if (visits && g.visits > 0 && visits.dataset.routilityExact !== String(g.visits)) {
@@ -102,7 +151,7 @@
     if (!universeId) return;
     if (state && state.universeId === String(universeId)) return;
     resetStats();
-    const s = { universeId: String(universeId), game: null, opts: Object.assign({ stats: true, avatar: true }, opts || {}) };
+    const s = { universeId: String(universeId), game: null, opts: Object.assign({ stats: true, avatar: true, extra: true, maturity: true }, opts || {}) };
     state = s;
     s.observer = new MutationObserver(onFrame(apply));
     s.observer.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true });
@@ -174,7 +223,8 @@
       delete n.dataset.routilityVote;
     });
     document.querySelector('.users-vote .vote-container')?.removeAttribute('data-rt-tip');
-    document.querySelectorAll('.routility-avatar-stat').forEach(n => n.remove());
+    document.querySelectorAll('.routility-avatar-stat, .routility-extra-stat').forEach(n => n.remove());
+    document.querySelectorAll('.age-recommendation-title[data-rt-tip]').forEach(n => n.removeAttribute('data-rt-tip'));
     document.querySelectorAll('[data-routility-when]').forEach(n => {
       n.textContent = n.dataset.routilityWhen;
       delete n.dataset.routilityWhen;

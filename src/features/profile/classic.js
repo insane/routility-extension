@@ -411,7 +411,7 @@
     natives.forEach((nb, i) => {
       const li = el('li');
       const join = joins[i];
-      const b = el('button', join ? 'btn-growth-md routility-join-game' : 'btn-control-md', join ? lt('Join Game') : labels[i]);
+      const b = el('button', join ? 'btn-growth-md routility-join-game' : 'btn-control-md', join ? lt('Join Game') : labels[i] === 'Add trusted friend' ? 'Add Trusted Friend' : labels[i]);
       b.type = 'button';
       if (nb.dataset.rtTip) b.dataset.rtTip = nb.dataset.rtTip;
       if (nb.classList.contains('routility-trade-pending')) {

@@ -261,9 +261,6 @@
  "{n} servers, {regions}": {
   "other": "{n}台のサーバー、{regions}"
  },
- "{n} sold": {
-  "other": "{n}件販売"
- },
  "{n} to buy": {
   "other": "{n}個 要購入"
  },
@@ -3185,5 +3182,63 @@
  "Menu Counters": "メニューのカウンター",
  "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "メニューのメッセージ、友達、トレードの横の数字を同じサイズにそろえ、端から少し離して並べます。白は以前のRobloxの表示です。",
  "White": "白",
- "Blue": "青"
+ "Blue": "青",
+ "A Beta Programs line on Settings > Account Info with the Roblox betas your account is in, like Studio early access programs.": "設定 > アカウント情報に、Studioの早期アクセスなど、あなたのアカウントが参加しているRobloxのベータを表示する「ベータプログラム」の行を追加します。",
+ "A Gear row next to Server Size with the gear types a game lets players bring in, when it allows any.": "ゲームが持ち込みを許可しているギアの種類を、サーバーサイズの横に「ギア」の行で表示します（許可がある場合のみ）。",
+ "A Seller Fee line on resellable items: how much Roblox keeps when you sell one, and the lowest price you can list it for.": "再販できるアイテムに「販売手数料」の行を追加します。売ったときにRobloxが取る割合と、出品できる最低価格です。",
+ "Allowed Gear": "許可されたギア",
+ "Beta Programs": "ベータプログラム",
+ "Building": "建築",
+ "Explosive": "爆発物",
+ "Extra details on your Roblox Settings pages: your devices, backup codes, betas and voice chat.": "Robloxの設定ページに詳しい情報を追加します。デバイス、バックアップコード、ベータ、ボイスチャットです。",
+ "Free Trades Left": "残りの無料トレード",
+ "Gear players can bring in: {list}": "持ち込めるギア：{list}",
+ "Greys out Add trusted friend on profiles when Roblox won’t let you add that person, so you don’t get an error. Hover it to see why.": "Robloxがその人を追加させない場合、プロフィールの「信頼できる友達を追加」をグレーにして、エラーが出ないようにします。カーソルを合わせると理由が見られます。",
+ "Hover the Maturity label at the top of a game page to see why it got that rating, like Violence (Occasional/Mild).": "ゲームページ上部の「成熟度」ラベルにカーソルを合わせると、暴力（時々/軽度）のように、その評価になった理由が見られます。",
+ "How many times the creator added more copies, and when they last did.": "作成者が個数を追加した回数と、最後に追加した日です。",
+ "Limit": "上限",
+ "Lines on item pages with what Roblox loads but doesn’t show: which game sells it, how many are left, the limit per person, when the sale ends and how many times it was restocked.": "Robloxが読み込むのに表示しない情報をアイテムページに表示します。どのゲームで売っているか、残り数、1人あたりの上限、販売終了日、再入荷の回数です。",
+ "Maturity Reasons": "成熟度の理由",
+ "Melee": "近接",
+ "Music": "音楽",
+ "Navigation": "ナビゲーション",
+ "Power Ups": "パワーアップ",
+ "Ranged": "遠距離",
+ "Restocks": "再入荷",
+ "Roblox betas your account is in. Roblox loads this list but doesn’t show it.": "あなたのアカウントが参加しているRobloxのベータです。Robloxはこの一覧を読み込みますが表示しません。",
+ "Roblox keeps {pct}% of every resale.": "Robloxは再販のたびに{pct}%を受け取ります。",
+ "Roblox keeps {pct}% of every resale. The lowest price you can list it for is R$ {floor}, which pays you R$ {keep}.": "Robloxは再販のたびに{pct}%を受け取ります。出品できる最低価格は R$ {floor} で、受け取れるのは R$ {keep} です。",
+ "Roblox says your account can’t trade: {reason}": "Robloxによると、あなたのアカウントはトレードできません：{reason}",
+ "Roblox won’t let you add them as a Trusted Friend. Trusted Friends have to be people you know, and some accounts can’t have them at all.": "Robloxはこの人を信頼できる友達として追加させてくれません。信頼できる友達は知り合いである必要があり、まったく持てないアカウントもあります。",
+ "Sale Details": "販売の詳細",
+ "Sale Ends": "販売終了",
+ "Seller Fee": "販売手数料",
+ "Sold In": "販売場所",
+ "Stock": "在庫",
+ "The game where its original copies are sold.": "オリジナルの個数が販売されているゲームです。",
+ "Transport": "乗り物",
+ "Trusted Friend Check": "信頼できる友達のチェック",
+ "Under Trades, how many of your free trades are left this month, or Unlimited trades if you have Roblox Plus.": "トレードの下に、今月の無料トレードの残り回数を表示します。Roblox Plusがあれば「トレード無制限」と表示します。",
+ "Unlimited trades": "トレード無制限",
+ "When Roblox takes it off sale.": "Robloxが販売を終了する日時です。",
+ "Why: {list}": "理由：{list}",
+ "You can’t trade right now": "今はトレードできません",
+ "last {date}": "最終 {date}",
+ "lowest price": "最低価格",
+ "{left} left": "残り{left}",
+ "{left} left of {total}": "{total}個中 残り{left}",
+ "{left} of {limit} free trades left this month": "今月の無料トレード：残り{left}/{limit}回",
+ "{list} +{n}": "{list} +{n}",
+ "{pct}% fee": "手数料{pct}%",
+ "{n} per person": {
+  "other": "1人{n}個まで"
+ },
+ "{n} times": {
+  "other": "{n}回"
+ },
+ "Included with Roblox Plus": "Roblox Plusに含まれています",
+ "Resets {date}": "{date}にリセット",
+ "Uploaded By": "アップロード者",
+ "The account that uploaded this item’s mesh and textures. Roblox only lists {creator}.": "このアイテムのメッシュとテクスチャをアップロードしたアカウントです。Robloxは{creator}しか表示しません。",
+ "When someone other than the listed creator uploaded an item’s mesh and textures, like group items or Roblox items made by UGC artists, shows who with their picture and @username.": "グループのアイテムやUGCアーティストが作ったRobloxのアイテムなど、表示上の作成者以外がメッシュとテクスチャをアップロードした場合、その人をアイコンと@ユーザー名つきで表示します。"
 }

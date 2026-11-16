@@ -8,10 +8,20 @@
     {
       "version": "1.2.5",
       "date": "2026-11-15",
-      "summary": "Even item cards in the 2017 Roblox Theme and no more doubled menu counters.",
+      "summary": "Things Roblox loads but never shows: sale details and seller fees on items, free trades left on Trades, plus even item cards in the 2017 Roblox Theme.",
       "changes": [
+        { "type": "new", "text": "Sale Details (Item Pages): item pages show which game sells an item, how many are left, the limit per person, when the sale ends and how many times it was restocked. Roblox loads all of this but doesn’t show it." },
+        { "type": "new", "text": "Uploaded By (Item Pages): when someone other than the listed creator uploaded an item’s mesh and textures, like group items or Roblox items made by UGC artists, the item page shows who, with their picture and @username." },
+        { "type": "new", "text": "Seller Fee (Item Pages): resellable items show how much Roblox keeps when you sell one and the lowest price you can list it for. Hover it to see what you’d get." },
+        { "type": "new", "text": "Free Trades Left (Trading): under Trades, see how many of your free trades are left this month, or Unlimited trades with Roblox Plus." },
+        { "type": "new", "text": "Allowed Gear (Game Pages): a Gear row with the gear types a game lets players bring in." },
+        { "type": "new", "text": "Maturity Reasons (Game Pages): hover the Maturity label at the top of a game page to see why it got that rating." },
+        { "type": "new", "text": "Trusted Friend Check (Profiles): Add trusted friend greys out when Roblox won’t let you add that person, and hovering it says why." },
+        { "type": "new", "text": "Beta Programs (Account): Settings > Account Info lists the Roblox betas your account is in." },
+        { "type": "improved", "text": "Friends Today: Show All is a full-width button lined up with the list, with room before the next row." },
         { "type": "improved", "text": "2017 Roblox Theme: Catalog, Sandbox and trade item cards are all the same height with room under the price, and the RoUtility Value shows in blue." },
-        { "type": "fixed", "text": "Friend History, Trade Calculator, Trade Ads and the other RoUtility menu links no longer show a second copy of the Friends or Trade counter after Roblox changed its counters." }
+        { "type": "fixed", "text": "Friend History, Trade Calculator, Trade Ads and the other RoUtility menu links no longer show a second copy of the Friends or Trade counter after Roblox changed its counters." },
+        { "type": "fixed", "text": "Trade Ads: profile pictures load again after routility.io changed how it sends them." }
       ]
     },
     {

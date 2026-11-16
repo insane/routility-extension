@@ -199,6 +199,175 @@
     });
   }
 
+  async function uploader(s) {
+    const key = 'routilityUploader2:' + s.itemId;
+    const hit = cached(key);
+    if (hit !== undefined) return hit;
+    const d = await json(`https://economy.roblox.com/v2/assets/${s.itemId}/details`);
+    if (!d || !d.Creator) return null;
+    const listed = d.Creator.CreatorType === 'User' ? Number(d.Creator.CreatorTargetId) : 0;
+    const av = await import(chrome.runtime.getURL('src/preview/avatar.js'));
+    const file = await av.fetchAsset(String(s.itemId));
+    const text = new TextDecoder('latin1').decode(file.buffer);
+    const ids = [...new Set([...text.matchAll(/(?:rbxassetid:\/\/|[?&]id=)(\d{5,})/g)].map(m => m[1]))].filter(id => id !== String(s.itemId)).slice(0, 6);
+    let userId = 0;
+    for (const id of ids) {
+      if (st !== s) return null;
+      const a = await json(`https://economy.roblox.com/v2/assets/${id}/details`);
+      const c = a && a.Creator;
+      if (c && c.CreatorType === 'User' && Number(c.CreatorTargetId) > 1 && Number(c.CreatorTargetId) !== listed) { userId = Number(c.CreatorTargetId); break; }
+    }
+    let result = null;
+    if (userId) {
+      const u = await json(`https://users.roblox.com/v1/users/${userId}`);
+      if (u && u.name) result = { id: userId, name: u.name, displayName: u.displayName || u.name, verified: !!u.hasVerifiedBadge, creator: d.Creator.Name || '' };
+    }
+    remember(key, result);
+    return result;
+  }
+
+  function placeUploader(s) {
+    const u = s.uploader;
+    if (!u) return;
+    const details = document.querySelector('#item-details');
+    if (!details || details.querySelector('.routility-uploader-row')) return;
+    const rows = [...details.querySelectorAll(':scope > .item-info-row-container')];
+    const after = rows.find(r => r.querySelector('.row-label')?.textContent.trim() === 'Created') || rows.find(r => r.querySelector('.row-label')?.textContent.trim() === 'Type');
+    if (!after) return;
+    const row = el('div', 'clearfix item-info-row-container routility-injected routility-uploader-row');
+    const label = el('div', 'font-header-1 text-subheader text-label text-overflow row-label', lt('Uploaded By'));
+    label.dataset.rtTip = lt('The account that uploaded this item’s mesh and textures. Roblox only lists {creator}.', { creator: u.creator });
+    row.appendChild(label);
+    const value = el('a', 'font-body text routility-uploader-value');
+    value.href = `https://www.roblox.com/users/${u.id}/profile`;
+    const name = el('span', 'routility-uploader-name', u.displayName);
+    value.append(face(u.pic, false), name);
+    if (u.verified) value.appendChild(verifiedBadge());
+    value.appendChild(el('span', 'content-muted routility-uploader-user', '@' + u.name));
+    row.appendChild(value);
+    window.RoUtilityUI.rowGate(() => {
+      if (!details.isConnected || !after.isConnected || details.querySelector('.routility-uploader-row')) return;
+      after.after(row);
+      if (!document.hidden) row.classList.add('routility-reveal');
+    });
+  }
+
+  async function saleInfo(s) {
+    const type = s.opts.bundle ? 'Bundle' : 'Asset';
+    const key = `routilitySaleInfo2:${type}:${s.itemId}`;
+    const hit = cached(key);
+    if (hit !== undefined) return hit;
+    const cat = await json(`https://catalog.roblox.com/v1/catalog/items/${s.itemId}/details?itemType=${type}`);
+    if (!cat || !cat.collectibleItemId) { if (cat) remember(key, null); return null; }
+    const wantResale = s.opts.resale && (cat.hasResellers || (cat.itemRestrictions || []).some(r => /^(Limited|LimitedUnique|Collectible)$/.test(r)));
+    const [items, resale] = await Promise.all([
+      s.opts.saleInfo ? robloxPost('https://apis.roblox.com/marketplace-items/v1/items/details', { itemIds: [cat.collectibleItemId] }) : null,
+      wantResale ? json(`https://apis.roblox.com/marketplace-sales/v1/item/${cat.collectibleItemId}/get-resale-parameters`) : null
+    ]);
+    const m = Array.isArray(items) ? items[0] || {} : {};
+    const universeIds = (m.universeIds || []).filter(Boolean).slice(0, 3);
+    let games = [];
+    if (universeIds.length) {
+      const g = await json(`https://games.roblox.com/v1/games?universeIds=${universeIds.join(',')}`);
+      games = ((g && g.data) || []).map(x => ({ name: x.name, placeId: x.rootPlaceId })).filter(x => x.name && x.placeId);
+    }
+    const deadline = Date.parse(m.offSaleDeadline || cat.offSaleDeadline || '');
+    const onSale = !cat.isOffSale;
+    const result = {
+      games,
+      left: onSale && Number(m.unitsAvailableForConsumption) > 0 ? Number(m.unitsAvailableForConsumption) : 0,
+      total: Number(cat.totalQuantity) || Number(m.assetStock) || 0,
+      limit: onSale && Number(m.unitsAvailableForConsumption) > 0 && Number(m.quantityLimitPerUser) > 0 ? Number(m.quantityLimitPerUser) : 0,
+      ends: onSale && deadline > Date.now() ? new Date(deadline).toISOString() : null,
+      restocks: Number(m.totalRestockedQuantity) > 0 ? { n: Number(m.totalRestockedQuantity), when: m.lastRestockedTime || null } : null,
+      fee: resale && Number(resale.resalePercentageFee) > 0 ? { pct: Number(resale.resalePercentageFee), floor: Number(resale.priceFloor) || 0 } : null
+    };
+    remember(key, result);
+    return result;
+  }
+
+  function untilText(iso) {
+    const ms = Date.parse(iso) - Date.now();
+    const h = Math.floor(ms / 3600000);
+    if (h < 1) return ltn(Math.max(1, Math.ceil(ms / 60000)), 'in {n} minute', 'in {n} minutes');
+    if (h < 48) return ltn(h, 'in {n} hour', 'in {n} hours');
+    return ltn(Math.floor(h / 24), 'in {n} day', 'in {n} days');
+  }
+
+  function saleRows(s) {
+    const i = s.saleInfo;
+    if (!i) return [];
+    const rows = [];
+    if (s.opts.saleInfo) {
+      if (i.games.length) {
+        const v = el('span', 'font-body text');
+        i.games.forEach((g, n) => {
+          if (n) v.appendChild(document.createTextNode(', '));
+          const a = el('a', 'text-link', g.name);
+          a.href = `https://www.roblox.com/games/${g.placeId}`;
+          v.appendChild(a);
+        });
+        v.dataset.rtTip = lt('The game where its original copies are sold.');
+        rows.push(['saleplace', lt('Sold In'), v]);
+      }
+      if (i.left) {
+        const v = el('span', 'font-body text', i.total ? lt('{left} left of {total}', { left: formatNumber(i.left), total: formatNumber(i.total) }) : lt('{left} left', { left: formatNumber(i.left) }));
+        rows.push(['stock', lt('Stock'), v]);
+      }
+      if (i.limit) rows.push(['limit', lt('Limit'), el('span', 'font-body text', ltn(i.limit, '{n} per person', '{n} per person'))]);
+      if (i.ends) {
+        const v = el('span', 'font-body text');
+        v.append(document.createTextNode(shortDate(i.ends)), el('span', 'content-muted routility-acquired-ago', ', ' + untilText(i.ends)));
+        v.dataset.rtTip = lt('When Roblox takes it off sale.');
+        rows.push(['ends', lt('Sale Ends'), v]);
+      }
+      if (i.restocks) {
+        const v = el('span', 'font-body text', ltn(i.restocks.n, '{n} time', '{n} times'));
+        if (i.restocks.when) v.appendChild(el('span', 'content-muted routility-acquired-ago', ', ' + lt('last {date}', { date: shortDate(i.restocks.when) })));
+        v.dataset.rtTip = lt('How many times the creator added more copies, and when they last did.');
+        rows.push(['restock', lt('Restocks'), v]);
+      }
+    }
+    if (s.opts.resale && i.fee) {
+      const v = el('span', 'font-body text routility-lastsale-value');
+      v.appendChild(el('span', null, lt('{pct}% fee', { pct: i.fee.pct }) + (i.fee.floor ? ',' : '')));
+      if (i.fee.floor) v.append(el('span', 'content-muted', lt('lowest price')), el('span', 'icon-robux-16x16 routility-lastsale-robux'), el('span', 'text-robux', formatNumber(i.fee.floor)));
+      const keep = i.fee.floor ? Math.max(0, i.fee.floor - Math.max(1, Math.round(i.fee.floor * i.fee.pct / 100))) : 0;
+      v.dataset.rtTip = i.fee.floor
+        ? lt('Roblox keeps {pct}% of every resale. The lowest price you can list it for is R$ {floor}, which pays you R$ {keep}.', { pct: i.fee.pct, floor: formatNumber(i.fee.floor), keep: formatNumber(keep) })
+        : lt('Roblox keeps {pct}% of every resale.', { pct: i.fee.pct });
+      rows.push(['fee', lt('Seller Fee'), v]);
+    }
+    return rows;
+  }
+
+  function placeSaleInfo(s) {
+    const details = document.querySelector('#item-details');
+    if (!details) return;
+    const native = [...details.querySelectorAll(':scope > .item-info-row-container')];
+    const label = t => native.find(r => r.querySelector('.row-label')?.textContent.trim() === t);
+    const resellable = label('Resellable');
+    const noResale = resellable && /^No$/i.test([...resellable.children].slice(1).map(c => c.textContent.trim()).join(''));
+    const rows = saleRows(s).filter(r => !(noResale && r[0] === 'fee'));
+    if (!rows.length) return;
+    let after = details.querySelector('.routility-lastsale-row') || details.querySelector('.routility-size-row') || details.querySelector('.routility-acquired-row') || label('Updated') || label('Created') || label('Type');
+    if (!after) return;
+    for (const [cls, name, value] of rows) {
+      const existing = details.querySelector('.routility-sale-' + cls);
+      if (existing) { after = existing; continue; }
+      const row = el('div', 'clearfix item-info-row-container routility-injected routility-sale-row routility-sale-' + cls);
+      row.appendChild(el('div', 'font-header-1 text-subheader text-label text-overflow row-label', name));
+      row.appendChild(value);
+      const prev = after;
+      window.RoUtilityUI.rowGate(() => {
+        if (!details.isConnected || !prev.isConnected || details.querySelector('.routility-sale-' + cls)) return;
+        prev.after(row);
+        if (!document.hidden) row.classList.add('routility-reveal');
+      });
+      after = row;
+    }
+  }
+
   function placeAcquired(s) {
     const a = s.acquired;
     if (!a) return;
@@ -414,12 +583,26 @@
     if (!document.hidden) chip.classList.add('routility-reveal');
   }
 
+  const ROW_ORDER = ['uploader-row', 'acquired-row', 'size-row', 'lastsale-row', 'sale-saleplace', 'sale-stock', 'sale-limit', 'sale-ends', 'sale-restock', 'sale-fee'];
+
+  function keepOrder() {
+    const details = document.querySelector('#item-details');
+    if (!details) return;
+    const rows = ROW_ORDER.map(c => details.querySelector(':scope > .routility-' + c)).filter(Boolean);
+    for (let i = 1; i < rows.length; i++) {
+      if (rows[i - 1].nextElementSibling !== rows[i]) rows[i - 1].after(rows[i]);
+    }
+  }
+
   function place() {
     const s = st;
     if (!s) return;
+    if (s.opts.uploader) placeUploader(s);
     if (s.opts.acquired) placeAcquired(s);
     if (s.opts.size) placeSize(s);
     if (s.opts.lastSale) placeLastSale(s);
+    if (s.opts.saleInfo || s.opts.resale) placeSaleInfo(s);
+    keepOrder();
     if (s.opts.friends) placeChip(s);
     if (s.opts.classicFace) placeFace(s);
   }
@@ -434,6 +617,14 @@
     s.observer.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true });
     if (opts.acquired) acquired(s).then(a => { if (st !== s) return; s.acquired = a; place(); });
     if (opts.lastSale && !opts.bundle) lastSale(s.itemId).then(l => { if (st !== s) return; s.lastSale = l; place(); });
+    if (opts.saleInfo || opts.resale) saleInfo(s).catch(() => null).then(i => { if (st !== s) return; s.saleInfo = i; place(); });
+    if (opts.uploader && !opts.bundle) uploader(s).catch(() => null).then(async u => {
+      if (st !== s || !u) return;
+      const pics = await window.RoUtilityUI.request({ type: 'getHeadshots', ids: [String(u.id)] }, r => r && typeof r === 'object');
+      if (st !== s) return;
+      s.uploader = Object.assign({}, u, { pic: (pics || {})[u.id] || '' });
+      place();
+    });
     const faceId = opts.bundle ? pendingFace.get(String(itemId)) : itemId;
     if (opts.classicFace && faceId) applyFace(s, faceId);
     if (opts.size) {
@@ -464,7 +655,7 @@
       delete img.dataset.routilityOrig;
     });
     st = null;
-    document.querySelectorAll('.routility-acquired-row, .routility-size-row, .routility-lastsale-row, .routility-friendsown-chip').forEach(n => n.remove());
+    document.querySelectorAll('.routility-acquired-row, .routility-size-row, .routility-lastsale-row, .routility-sale-row, .routility-uploader-row, .routility-friendsown-chip').forEach(n => n.remove());
     document.querySelectorAll('.routility-friendsown-host').forEach(n => n.classList.remove('routility-friendsown-host'));
   }
 

@@ -579,8 +579,8 @@
         chrome.storage.local.get('routilitySettings', (stored) => {
           const s = stored.routilitySettings || {};
           const id = getItemIdFromURL(window.location.href);
-          if (window.location.pathname !== path || !id || (s.itemAcquired === false && s.friendsOwn === false && s.itemSize === false && s.classicFaceThumbs === false && s.lastOnSale === false)) return;
-          window.RoUtilityItemExtras.setup(id, { acquired: s.itemAcquired !== false, friends: s.friendsOwn !== false, size: s.itemSize !== false, classicFace: s.classicFaceThumbs !== false, lastSale: s.lastOnSale !== false });
+          if (window.location.pathname !== path || !id || (s.itemAcquired === false && s.friendsOwn === false && s.itemSize === false && s.classicFaceThumbs === false && s.lastOnSale === false && s.itemSaleDetails === false && s.itemResale === false && s.itemUploader === false)) return;
+          window.RoUtilityItemExtras.setup(id, { acquired: s.itemAcquired !== false, friends: s.friendsOwn !== false, size: s.itemSize !== false, classicFace: s.classicFaceThumbs !== false, lastSale: s.lastOnSale !== false, saleInfo: s.itemSaleDetails !== false, resale: s.itemResale !== false, uploader: s.itemUploader !== false });
         });
       });
       chrome.storage.local.get('routilitySettings', (stored) => {
@@ -703,12 +703,12 @@
             if (window.location.pathname === path) window.RoUtilitySpending.gameStat(document.querySelector('#game-detail-meta-data').dataset.universeId);
           }, 15000);
         }
-        if (!(settings.badgeProgress || settings.badgeTools || settings.gameStats || settings.gameAvatarType) || window.location.pathname !== path) return;
+        if (!(settings.badgeProgress || settings.badgeTools || settings.gameStats || settings.gameAvatarType || settings.gameGear !== false || settings.gameMaturity !== false) || window.location.pathname !== path) return;
         waitForElement('#game-detail-meta-data[data-universe-id]', () => {
           if (window.location.pathname !== path) return;
           const universeId = document.querySelector('#game-detail-meta-data').dataset.universeId;
           if (settings.badgeProgress || settings.badgeTools) window.RoUtilityBadges.setup(universeId, { progress: settings.badgeProgress, tools: settings.badgeTools });
-          if (settings.gameStats || settings.gameAvatarType) window.RoUtilityGames.setup(universeId, { stats: !!settings.gameStats, avatar: !!settings.gameAvatarType });
+          if (settings.gameStats || settings.gameAvatarType || settings.gameGear !== false || settings.gameMaturity !== false) window.RoUtilityGames.setup(universeId, { stats: !!settings.gameStats, avatar: !!settings.gameAvatarType, extra: settings.gameGear !== false, maturity: settings.gameMaturity !== false });
           window.RoUtilityHome.markSeen(universeId);
         }, 15000);
       });

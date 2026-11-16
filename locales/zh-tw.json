@@ -261,9 +261,6 @@
  "{n} servers, {regions}": {
   "other": "{n} 個伺服器，{regions}"
  },
- "{n} sold": {
-  "other": "售出 {n}"
- },
  "{n} to buy": {
   "other": "{n} 件待購"
  },
@@ -3185,5 +3182,63 @@
  "Menu Counters": "選單計數",
  "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "選單中訊息、好友和交易旁的數字統一大小，並與邊緣保留間距對齊。白色是 Roblox 以前的樣式。",
  "White": "白色",
- "Blue": "藍色"
+ "Blue": "藍色",
+ "A Beta Programs line on Settings > Account Info with the Roblox betas your account is in, like Studio early access programs.": "在設定 > 帳戶資訊中加一行「測試計畫」，列出你的帳戶加入的 Roblox 測試，例如 Studio 搶先體驗計畫。",
+ "A Gear row next to Server Size with the gear types a game lets players bring in, when it allows any.": "在伺服器人數旁加一行「裝備」，列出遊戲允許玩家帶入的裝備類型（如有）。",
+ "A Seller Fee line on resellable items: how much Roblox keeps when you sell one, and the lowest price you can list it for.": "在可轉售物品上加一行「賣家手續費」：你賣出時 Roblox 抽取多少，以及你能掛出的最低價格。",
+ "Allowed Gear": "允許的裝備",
+ "Beta Programs": "測試計畫",
+ "Building": "建造",
+ "Explosive": "爆炸物",
+ "Extra details on your Roblox Settings pages: your devices, backup codes, betas and voice chat.": "在 Roblox 設定頁面顯示更多資訊：你的裝置、備用碼、測試計畫和語音聊天。",
+ "Free Trades Left": "剩餘免費交易",
+ "Gear players can bring in: {list}": "玩家可帶入的裝備：{list}",
+ "Greys out Add trusted friend on profiles when Roblox won’t let you add that person, so you don’t get an error. Hover it to see why.": "當 Roblox 不允許你新增某人時，把個人檔案上的「新增信任好友」變灰，免得你看到錯誤。滑過可查看原因。",
+ "Hover the Maturity label at the top of a game page to see why it got that rating, like Violence (Occasional/Mild).": "滑過遊戲頁面頂部的「成熟度」標籤，查看它為什麼得到這個分級，例如暴力（偶爾/輕度）。",
+ "How many times the creator added more copies, and when they last did.": "創作者補貨的次數，以及最近一次補貨的時間。",
+ "Limit": "限購",
+ "Lines on item pages with what Roblox loads but doesn’t show: which game sells it, how many are left, the limit per person, when the sale ends and how many times it was restocked.": "在物品頁面顯示 Roblox 載入了卻沒顯示的資訊：哪個遊戲在賣、還剩多少、每人限購、何時停售，以及補貨了幾次。",
+ "Maturity Reasons": "成熟度原因",
+ "Melee": "近戰",
+ "Music": "音樂",
+ "Navigation": "導航",
+ "Power Ups": "強化道具",
+ "Ranged": "遠程",
+ "Restocks": "補貨",
+ "Roblox betas your account is in. Roblox loads this list but doesn’t show it.": "你的帳戶加入的 Roblox 測試。Roblox 會載入這個清單但不顯示。",
+ "Roblox keeps {pct}% of every resale.": "Roblox 從每次轉售中抽取 {pct}%。",
+ "Roblox keeps {pct}% of every resale. The lowest price you can list it for is R$ {floor}, which pays you R$ {keep}.": "Roblox 從每次轉售中抽取 {pct}%。你能掛出的最低價格是 R$ {floor}，到手 R$ {keep}。",
+ "Roblox says your account can’t trade: {reason}": "Roblox 表示你的帳戶無法交易：{reason}",
+ "Roblox won’t let you add them as a Trusted Friend. Trusted Friends have to be people you know, and some accounts can’t have them at all.": "Roblox 不允許你把對方新增為信任好友。信任好友必須是你認識的人，有些帳戶完全不能有信任好友。",
+ "Sale Details": "販售詳情",
+ "Sale Ends": "停售時間",
+ "Seller Fee": "賣家手續費",
+ "Sold In": "販售於",
+ "Stock": "庫存",
+ "The game where its original copies are sold.": "原始份數販售的遊戲。",
+ "Transport": "交通工具",
+ "Trusted Friend Check": "信任好友檢查",
+ "Under Trades, how many of your free trades are left this month, or Unlimited trades if you have Roblox Plus.": "在「交易」下方顯示本月剩餘的免費交易次數；如果你有 Roblox Plus，則顯示「無限交易」。",
+ "Unlimited trades": "無限交易",
+ "When Roblox takes it off sale.": "Roblox 停售的時間。",
+ "Why: {list}": "原因：{list}",
+ "You can’t trade right now": "你現在不能交易",
+ "last {date}": "最近一次 {date}",
+ "lowest price": "最低價格",
+ "{left} left": "剩 {left}",
+ "{left} left of {total}": "剩 {left} / 共 {total}",
+ "{left} of {limit} free trades left this month": "本月免費交易剩 {left}/{limit} 次",
+ "{list} +{n}": "{list} +{n}",
+ "{pct}% fee": "手續費 {pct}%",
+ "{n} per person": {
+  "other": "每人 {n} 件"
+ },
+ "{n} times": {
+  "other": "{n} 次"
+ },
+ "Included with Roblox Plus": "Roblox Plus 包含",
+ "Resets {date}": "{date} 重置",
+ "Uploaded By": "上傳者",
+ "The account that uploaded this item’s mesh and textures. Roblox only lists {creator}.": "上傳這件物品網格和貼圖的帳戶。Roblox 只顯示 {creator}。",
+ "When someone other than the listed creator uploaded an item’s mesh and textures, like group items or Roblox items made by UGC artists, shows who with their picture and @username.": "當物品的網格和貼圖不是由列出的創作者上傳的（例如群組物品或 UGC 藝術家為 Roblox 製作的物品），顯示是誰上傳的，附頭像和 @使用者名稱。"
 }

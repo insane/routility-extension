@@ -14715,8 +14715,42 @@ a.routility-ft-game:hover {
   padding: 8px;
 }
 
-.routility-ft-more {
-  margin-top: 8px;
+.routility-ft .routility-ft-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  height: 36px;
+  margin: 8px 0 20px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: calc(8px * var(--routility-round, 1));
+  background: var(--color-shift-100, rgba(127, 127, 127, 0.08));
+  color: var(--color-content-emphasis, inherit);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 36px;
+  cursor: pointer;
+}
+
+.routility-ft .routility-ft-more:hover {
+  background: var(--color-shift-200, rgba(127, 127, 127, 0.16));
+}
+
+.routility-ft .routility-ft-more::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  margin-top: -3px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.routility-ft .routility-ft-more[data-open]::after {
+  margin-top: 3px;
+  transform: rotate(-135deg);
 }
 
 .routility-ft-more[hidden] {
@@ -15513,4 +15547,64 @@ html:not(.routility-counters-blue) .left-nav nav .foundation-web-status-indicato
 .user-profile-header-info .button-container:has(> .routility-trade-btn) {
   width: auto !important;
   max-width: 100% !important;
+}
+
+
+.routility-trade-allowance {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin: -6px 0 14px;
+  color: var(--color-content-default, #d5d7dd);
+  cursor: default;
+}
+
+.routility-trade-allowance-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3bb54a;
+}
+
+.routility-trade-allowance-plus .routility-trade-allowance-dot {
+  background: #335fff;
+}
+
+.routility-trade-allowance-alert .routility-trade-allowance-dot {
+  background: #e5484d;
+}
+
+
+
+
+.routility-uploader-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  color: inherit;
+}
+
+.routility-uploader-value:hover .routility-uploader-name {
+  text-decoration: underline;
+}
+
+.routility-uploader-value .routility-mutual-face {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+.routility-uploader-name {
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.routility-uploader-user {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

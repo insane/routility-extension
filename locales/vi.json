@@ -261,9 +261,6 @@
  "{n} servers, {regions}": {
   "other": "{n} máy chủ, {regions}"
  },
- "{n} sold": {
-  "other": "Đã bán {n}"
- },
  "{n} to buy": {
   "other": "{n} cần mua"
  },
@@ -3185,5 +3182,63 @@
  "Menu Counters": "Bộ đếm trong menu",
  "The numbers next to Messages, Friends and Trade in the menu, all the same size and lined up with some room from the edge. White is how Roblox used to show them.": "Các con số cạnh Tin nhắn, Bạn bè và Giao dịch trong menu, cùng kích thước và thẳng hàng, cách mép một chút. Màu trắng là cách Roblox từng hiển thị.",
  "White": "Trắng",
- "Blue": "Xanh dương"
+ "Blue": "Xanh dương",
+ "A Beta Programs line on Settings > Account Info with the Roblox betas your account is in, like Studio early access programs.": "Một dòng Chương trình beta trong Cài đặt > Thông tin tài khoản với các bản beta Roblox mà tài khoản của bạn tham gia, như chương trình truy cập sớm của Studio.",
+ "A Gear row next to Server Size with the gear types a game lets players bring in, when it allows any.": "Một dòng Trang bị cạnh Kích thước máy chủ với các loại trang bị mà game cho người chơi mang vào, nếu game cho phép.",
+ "A Seller Fee line on resellable items: how much Roblox keeps when you sell one, and the lowest price you can list it for.": "Một dòng Phí người bán trên vật phẩm bán lại được: Roblox giữ bao nhiêu khi bạn bán và giá thấp nhất bạn có thể đăng bán.",
+ "Allowed Gear": "Trang bị được phép",
+ "Beta Programs": "Chương trình beta",
+ "Building": "Xây dựng",
+ "Explosive": "Chất nổ",
+ "Extra details on your Roblox Settings pages: your devices, backup codes, betas and voice chat.": "Thêm chi tiết trên các trang Cài đặt Roblox của bạn: thiết bị, mã dự phòng, bản beta và trò chuyện thoại.",
+ "Free Trades Left": "Lượt giao dịch miễn phí còn lại",
+ "Gear players can bring in: {list}": "Trang bị người chơi được mang vào: {list}",
+ "Greys out Add trusted friend on profiles when Roblox won’t let you add that person, so you don’t get an error. Hover it to see why.": "Làm mờ nút Thêm bạn tin cậy trên hồ sơ khi Roblox không cho bạn thêm người đó, để bạn không gặp lỗi. Di chuột vào để xem lý do.",
+ "Hover the Maturity label at the top of a game page to see why it got that rating, like Violence (Occasional/Mild).": "Di chuột vào nhãn Độ trưởng thành ở đầu trang game để xem vì sao game được xếp hạng như vậy, ví dụ Bạo lực (Thỉnh thoảng/Nhẹ).",
+ "How many times the creator added more copies, and when they last did.": "Số lần người tạo đã thêm bản, và lần gần nhất là khi nào.",
+ "Limit": "Giới hạn",
+ "Lines on item pages with what Roblox loads but doesn’t show: which game sells it, how many are left, the limit per person, when the sale ends and how many times it was restocked.": "Các dòng trên trang vật phẩm với những gì Roblox tải nhưng không hiển thị: game nào bán, còn bao nhiêu, giới hạn mỗi người, khi nào hết bán và đã bổ sung hàng bao nhiêu lần.",
+ "Maturity Reasons": "Lý do độ trưởng thành",
+ "Melee": "Cận chiến",
+ "Music": "Âm nhạc",
+ "Navigation": "Điều hướng",
+ "Power Ups": "Tăng sức mạnh",
+ "Ranged": "Tầm xa",
+ "Restocks": "Bổ sung hàng",
+ "Roblox betas your account is in. Roblox loads this list but doesn’t show it.": "Các bản beta Roblox mà tài khoản bạn tham gia. Roblox tải danh sách này nhưng không hiển thị.",
+ "Roblox keeps {pct}% of every resale.": "Roblox giữ {pct}% mỗi lần bán lại.",
+ "Roblox keeps {pct}% of every resale. The lowest price you can list it for is R$ {floor}, which pays you R$ {keep}.": "Roblox giữ {pct}% mỗi lần bán lại. Giá thấp nhất bạn có thể đăng bán là R$ {floor}, bạn nhận được R$ {keep}.",
+ "Roblox says your account can’t trade: {reason}": "Roblox cho biết tài khoản của bạn không thể giao dịch: {reason}",
+ "Roblox won’t let you add them as a Trusted Friend. Trusted Friends have to be people you know, and some accounts can’t have them at all.": "Roblox không cho bạn thêm người này làm Bạn tin cậy. Bạn tin cậy phải là người bạn quen, và một số tài khoản hoàn toàn không thể có.",
+ "Sale Details": "Chi tiết bán hàng",
+ "Sale Ends": "Hết bán",
+ "Seller Fee": "Phí người bán",
+ "Sold In": "Bán tại",
+ "Stock": "Tồn kho",
+ "The game where its original copies are sold.": "Game nơi bán các bản gốc.",
+ "Transport": "Phương tiện",
+ "Trusted Friend Check": "Kiểm tra bạn tin cậy",
+ "Under Trades, how many of your free trades are left this month, or Unlimited trades if you have Roblox Plus.": "Dưới Giao dịch, số lượt giao dịch miễn phí còn lại trong tháng này, hoặc Giao dịch không giới hạn nếu bạn có Roblox Plus.",
+ "Unlimited trades": "Giao dịch không giới hạn",
+ "When Roblox takes it off sale.": "Khi Roblox ngừng bán.",
+ "Why: {list}": "Lý do: {list}",
+ "You can’t trade right now": "Hiện bạn không thể giao dịch",
+ "last {date}": "gần nhất {date}",
+ "lowest price": "giá thấp nhất",
+ "{left} left": "còn {left}",
+ "{left} left of {total}": "còn {left} / {total}",
+ "{left} of {limit} free trades left this month": "Còn {left}/{limit} lượt giao dịch miễn phí tháng này",
+ "{list} +{n}": "{list} +{n}",
+ "{pct}% fee": "phí {pct}%",
+ "{n} per person": {
+  "other": "{n} mỗi người"
+ },
+ "{n} times": {
+  "other": "{n} lần"
+ },
+ "Included with Roblox Plus": "Có trong Roblox Plus",
+ "Resets {date}": "Đặt lại vào {date}",
+ "Uploaded By": "Tải lên bởi",
+ "The account that uploaded this item’s mesh and textures. Roblox only lists {creator}.": "Tài khoản đã tải lên lưới và họa tiết của vật phẩm này. Roblox chỉ ghi {creator}.",
+ "When someone other than the listed creator uploaded an item’s mesh and textures, like group items or Roblox items made by UGC artists, shows who with their picture and @username.": "Khi lưới và họa tiết do người khác với người tạo được ghi tải lên, như vật phẩm của nhóm hoặc vật phẩm Roblox do nghệ sĩ UGC làm, hiển thị người đó kèm ảnh và @tên người dùng."
 }

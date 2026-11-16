@@ -3,10 +3,11 @@
 
   const { el, onFrame } = window.RoUtilityUI;
   const { lt, locale } = window.RoUtilityI18n;
-  const settings = { sessionIps: true, backupCodeDate: true, voiceStatus: true };
+  const settings = { sessionIps: true, backupCodeDate: true, voiceStatus: true, betaPrograms: true };
   let sessionsJob = null;
   let codesJob = null;
   let voiceJob = null;
+  let betaJob = null;
   let picked = null;
 
   async function getJson(url) {
@@ -150,6 +151,50 @@
     nav.prepend(row);
   }
 
+  const PLATFORMS = { STUDIO: 'Studio', CLIENT: 'App', PLAYER: 'App' };
+
+  function platformsOf(p) {
+    const names = new Set();
+    for (const raw of p.platforms || []) {
+      const key = Object.keys(PLATFORMS).find(k => String(raw).includes(k));
+      if (key) names.add(lt(PLATFORMS[key]));
+    }
+    return [...names];
+  }
+
+  async function betaRow() {
+    const section = document.querySelector('#rbx-account-info-header');
+    if (!section) return;
+    const lastRow = () => [...section.querySelectorAll('.settings-text-field-container')].filter(r => r.querySelector('.account-change-settings-button') && !r.classList.contains('routility-beta-row')).pop();
+    const placed = section.querySelector('.routility-beta-row');
+    if (placed) {
+      const host = lastRow();
+      if (host && host.nextElementSibling !== placed) host.after(placed);
+      return;
+    }
+    if (!betaJob) betaJob = getJson('https://apis.roblox.com/test-pilot-api/v1/beta-programs');
+    const d = await betaJob;
+    const list = ((d && d.betaPrograms) || []).filter(p => p && p.displayName);
+    if (!list.length || !section.isConnected || section.querySelector('.routility-beta-row')) return;
+    const row = el('div', 'form-group settings-text-field-container routility-injected routility-beta-row');
+    const field = el('div', 'account-settings-text-field');
+    field.appendChild(el('span', 'text-title-large account-info-inline-label', lt('Beta Programs')));
+    const lines = el('div', 'settings-text-lines-container');
+    for (const p of list) {
+      const box = el('div', 'account-settings-value-metadata-container');
+      const where = platformsOf(p);
+      const name = el('span', 'settings-text-span-visible text-body-medium', p.displayName + (where.length ? ' (' + where.join(', ') + ')' : ''));
+      name.dataset.rtTip = p.description || lt('Roblox betas your account is in. Roblox loads this list but doesn’t show it.');
+      box.appendChild(name);
+      lines.appendChild(box);
+    }
+    field.appendChild(lines);
+    row.appendChild(field);
+    const host = lastRow();
+    if (host) host.after(row);
+    else section.appendChild(row);
+  }
+
   function run() {
     if (location.pathname !== '/my/account') return;
     if (/^#!\/security/.test(location.hash)) {
@@ -158,12 +203,15 @@
         modalIp();
       }
       if (settings.backupCodeDate) codesDate();
-    } else if (settings.voiceStatus) voiceBan();
+    } else {
+      if (settings.voiceStatus) voiceBan();
+      if (settings.betaPrograms && !/^#!\/privacy/.test(location.hash)) betaRow();
+    }
   }
 
   chrome.storage.local.get('routilitySettings', (st) => {
     Object.assign(settings, st.routilitySettings || {});
-    if (location.pathname !== '/my/account' || (!settings.sessionIps && !settings.backupCodeDate && !settings.voiceStatus)) return;
+    if (location.pathname !== '/my/account' || (!settings.sessionIps && !settings.backupCodeDate && !settings.voiceStatus && !settings.betaPrograms)) return;
     const tick = onFrame(run);
     document.addEventListener('click', (e) => {
       const li = e.target.closest && e.target.closest('.routility-devices-list > li');
