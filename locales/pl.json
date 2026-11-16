@@ -359,6 +359,12 @@
   "many": "{n} niedostępnych w sprzedaży",
   "other": "{n} niedostępnego w sprzedaży"
  },
+ "{n} sold": {
+  "one": "{n} sprzedany",
+  "few": "{n} sprzedane",
+  "many": "{n} sprzedanych",
+  "other": "{n} sprzedanego"
+ },
  "{n} other extensions": {
   "one": "{n} inne rozszerzenie",
   "few": "{n} inne rozszerzenia",

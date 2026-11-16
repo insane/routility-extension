@@ -257,6 +257,10 @@
   "one": "{n} non in vendita",
   "other": "{n} non in vendita"
  },
+ "{n} sold": {
+  "one": "{n} venduto",
+  "other": "{n} venduti"
+ },
  "{n} other extensions": {
   "one": "{n} altra estensione",
   "other": "{n} altre estensioni"

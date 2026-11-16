@@ -206,6 +206,9 @@
  "{n} off sale": {
   "other": "ไม่วางขาย {n} ชิ้น"
  },
+ "{n} sold": {
+  "other": "ขายแล้ว {n}"
+ },
  "{n} other extensions": {
   "other": "ส่วนขยายอื่น {n} ตัว"
  },

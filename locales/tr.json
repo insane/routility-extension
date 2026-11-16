@@ -257,6 +257,10 @@
   "one": "{n} satışta değil",
   "other": "{n} satışta değil"
  },
+ "{n} sold": {
+  "one": "{n} satıldı",
+  "other": "{n} satıldı"
+ },
  "{n} other extensions": {
   "one": "{n} başka eklenti",
   "other": "{n} başka eklenti"

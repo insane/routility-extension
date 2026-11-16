@@ -206,6 +206,9 @@
  "{n} off sale": {
   "other": "{n} món ngừng bán"
  },
+ "{n} sold": {
+  "other": "Đã bán {n}"
+ },
  "{n} other extensions": {
   "other": "{n} tiện ích khác"
  },

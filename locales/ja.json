@@ -206,6 +206,9 @@
  "{n} off sale": {
   "other": "{n}個は販売停止中"
  },
+ "{n} sold": {
+  "other": "{n}個販売"
+ },
  "{n} other extensions": {
   "other": "ほかの拡張機能{n}個"
  },

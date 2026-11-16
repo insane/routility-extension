@@ -206,6 +206,9 @@
  "{n} off sale": {
   "other": "{n} tidak dijual"
  },
+ "{n} sold": {
+  "other": "{n} terjual"
+ },
  "{n} other extensions": {
   "other": "{n} ekstensi lain"
  },
