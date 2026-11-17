@@ -3267,5 +3267,7 @@
  "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the one with the tilted O from 2017 to 2022.": "左上角顯示哪個 Roblox 標誌：現在的、2006 至 2016 年的紅白標誌，或 2017 至 2022 年帶傾斜 O 的標誌。",
  "Today’s": "現在的",
  "2006 to 2016": "2006 至 2016 年",
- "2017 to 2022": "2017 至 2022 年"
+ "2017 to 2022": "2017 至 2022 年",
+ "Last Played First": "最近玩過的在前",
+ "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "首頁的「繼續」列按你最後一次玩每個體驗的時間排序，最新的在前。當 Roblox 在此瀏覽器中開啟時，RoUtility 看到你在遊戲中就會記錄。"
 }

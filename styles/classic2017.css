@@ -3033,6 +3033,67 @@ html.routility-2017 #routility-2017-classics .horizontally-scrollable {
   transition: left 0.3s ease;
 }
 
+html.routility-2017 #routility-2017-classics .routility-classics-year {
+  flex: none;
+  width: auto;
+  margin: 0 auto 0 12px;
+}
+
+html.routility-2017 #routility-2017-classics .routility-classics-year .input-dropdown-btn {
+  min-width: 84px;
+}
+
+html.routility-2017 #routility-2017-classics.routility-classics-all > .horizontal-scroller.games-list {
+  height: auto !important;
+}
+
+html.routility-2017 #routility-2017-classics.routility-classics-all .horizontally-scrollable {
+  position: static !important;
+  left: 0 !important;
+  height: auto !important;
+  transition: none;
+}
+
+html.routility-2017 #routility-2017-classics.routility-classics-all {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+html.routility-2017 #routility-2017-classics .routility-classics-year .dropdown-menu {
+  max-height: none !important;
+}
+
+html.routility-2017 #routility-2017-classics.routility-classics-all .game-tile-list {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  width: auto !important;
+  row-gap: 12px;
+}
+
+html.routility-2017 #routility-2017-classics.routility-classics-all .scroller-new,
+html.routility-2017 #routility-2017-classics.routility-classics-all > .horizontal-scroller.games-list::before,
+html.routility-2017 #routility-2017-classics.routility-classics-all > .horizontal-scroller.games-list::after,
+html.routility-2017 #routility-2017-classics.routility-classics-all > .horizontal-scroller.games-list > .horizontal-scroll-window::before,
+html.routility-2017 #routility-2017-classics.routility-classics-all > .horizontal-scroller.games-list > .horizontal-scroll-window::after {
+  display: none !important;
+}
+
+html.routility-2017 #routility-2017-classics.routility-classics-all > .horizontal-scroller.games-list > .horizontal-scroll-window {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+html.routility-2017 #routility-2017-classics.routility-classics-all > .horizontal-scroller.games-list {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+html.routility-2017 #routility-2017-classics .home-sort-header-container {
+  overflow: visible !important;
+  position: relative;
+  z-index: 1001;
+}
+
 html.routility-2017 #asset-resale-data-container .routility-it-section {
   padding: 15px !important;
   background-color: var(--c17-card) !important;

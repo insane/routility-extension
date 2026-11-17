@@ -3735,5 +3735,7 @@
  "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the one with the tilted O from 2017 to 2022.": "Które logo Roblox widać w lewym górnym rogu: dzisiejsze, czerwono-białe z lat 2006–2016 czy to z przechylonym O z lat 2017–2022.",
  "Today’s": "Dzisiejsze",
  "2006 to 2016": "2006–2016",
- "2017 to 2022": "2017–2022"
+ "2017 to 2022": "2017–2022",
+ "Last Played First": "Ostatnio grane najpierw",
+ "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "Wiersz Kontynuuj na stronie głównej jest posortowany według tego, kiedy ostatnio grałeś w każde doświadczenie, od najnowszego. RoUtility wie, że grałeś, gdy widzi cię w grze, kiedy Roblox jest otwarty w tej przeglądarce."
 }

@@ -3423,5 +3423,7 @@
  "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the one with the tilted O from 2017 to 2022.": "Sol üst köşede hangi Roblox logosunun görüneceği: bugünkü, 2006–2016 arasındaki kırmızı beyaz logo ya da 2017–2022 arasındaki eğik O’lu logo.",
  "Today’s": "Bugünkü",
  "2006 to 2016": "2006–2016",
- "2017 to 2022": "2017–2022"
+ "2017 to 2022": "2017–2022",
+ "Last Played First": "Son Oynanan Önce",
+ "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "Ana sayfadaki Devam Et satırı, her deneyimi en son ne zaman oynadığına göre en yeniden başlayarak sıralanır. RoUtility, Roblox bu tarayıcıda açıkken seni oyunda gördüğünde oynadığını bilir."
 }

@@ -3267,5 +3267,7 @@
  "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the one with the tilted O from 2017 to 2022.": "โลโก้ Roblox ที่แสดงมุมซ้ายบน: แบบปัจจุบัน แบบสีแดงขาวปี 2006 ถึง 2016 หรือแบบตัว O เอียงปี 2017 ถึง 2022",
  "Today’s": "ปัจจุบัน",
  "2006 to 2016": "2006 ถึง 2016",
- "2017 to 2022": "2017 ถึง 2022"
+ "2017 to 2022": "2017 ถึง 2022",
+ "Last Played First": "เล่นล่าสุดก่อน",
+ "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "แถวเล่นต่อในหน้าแรกจะเรียงตามเวลาที่คุณเล่นแต่ละประสบการณ์ครั้งล่าสุด ใหม่สุดก่อน RoUtility รู้ว่าคุณเล่นเกมไหนเมื่อเห็นคุณอยู่ในเกมขณะเปิด Roblox ในเบราว์เซอร์นี้"
 }

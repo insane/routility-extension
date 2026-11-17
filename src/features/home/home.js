@@ -14,7 +14,7 @@
   let toastTimer = null;
   let ready = false;
   let wantSetup = false;
-  const PAGE_KEYS = ['friendsPlaying', 'recentlyUpdated', 'genreFilters', 'notInterested', 'homeGreeting', 'playtime', 'homeQuickPlay', 'friendsToday', 'wrapped'];
+  const PAGE_KEYS = ['friendsPlaying', 'recentlyUpdated', 'continueOrder', 'genreFilters', 'notInterested', 'homeGreeting', 'playtime', 'homeQuickPlay', 'friendsToday', 'wrapped'];
 
   chrome.storage.local.get(['routilitySettings', HIDDEN_KEY, HIDDEN_NAMES], (st) => {
     settings = st.routilitySettings || {};
@@ -855,6 +855,49 @@
       if (keys.length > 600) keys.sort((a, b) => seen[a] - seen[b]).slice(0, keys.length - 600).forEach(k => delete seen[k]);
       chrome.storage.local.set({ [GAME_SEEN]: seen });
     });
+  }
+
+  function continueOrder(p) {
+    const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+    if (!me) return;
+    const key = 'routilityRecentServers:' + me;
+    let last = null;
+    const read = (all) => {
+      last = new Map(Object.entries(all || {}).map(([u, list]) => [u, Math.max(0, ...(Array.isArray(list) ? list : []).map(x => Number(x && x.last) || 0))]));
+    };
+    const apply = () => {
+      if (p !== page || !last || !last.size) return;
+      const sec = pageSections().list.find(s => /^Continue$/i.test(s.title));
+      if (!sec) return;
+      const links = [...sec.node.querySelectorAll('a.game-card-link[id]')];
+      const items = links.map(a => a.closest('li')).filter(Boolean);
+      const list = items[0] && items[0].parentElement;
+      if (!list || items.some(li => li.parentElement !== list)) return;
+      const rank = items.map((li, i) => ({ li, i, t: last.get(links[i].id) || 0 }));
+      const sorted = [...rank].sort((a, b) => (b.t - a.t) || (a.i - b.i));
+      const flex = /flex|grid/.test(getComputedStyle(list).display);
+      if (flex) {
+        sorted.forEach((x, n) => { if (x.li.style.order !== String(n)) x.li.style.order = String(n); });
+        return;
+      }
+      const current = [...list.children].filter(n => items.includes(n));
+      if (sorted.every((x, n) => current[n] === x.li)) return;
+      const anchor = current[0];
+      for (const x of sorted) list.insertBefore(x.li, anchor);
+    };
+    const onStore = (changes, area) => {
+      if (area !== 'local' || !changes[key]) return;
+      read(changes[key].newValue);
+      apply();
+    };
+    chrome.storage.local.get(key, (st) => {
+      if (p !== page) return;
+      read(st[key]);
+      apply();
+    });
+    chrome.storage.onChanged.addListener(onStore);
+    p.placeCO = apply;
+    p.coStop = () => chrome.storage.onChanged.removeListener(onStore);
   }
 
   function recentlyUpdated(p) {
@@ -1949,6 +1992,7 @@
     if (home && settings.friendsPlaying !== false) friendsPlaying(p);
     if (home && settings.recentlyUpdated !== false) recentlyUpdated(p);
     if (home && settings.friendsToday !== false) friendsToday(p);
+    if (home && settings.continueOrder !== false) continueOrder(p);
     if (!home && settings.genreFilters !== false) genreFilters(p);
     let queued = false;
     const tick = () => {
@@ -1960,6 +2004,7 @@
       p.place?.();
       p.placeRU?.();
       p.placeFT?.();
+      p.placeCO?.();
       p.genre?.();
       applyLayout();
       if (home) greeting();
@@ -1992,6 +2037,7 @@
     document.getElementById('routility-friends-playing')?.remove();
     document.getElementById('routility-recently-updated')?.remove();
     page.ftStop?.();
+    page.coStop?.();
     document.getElementById('routility-friends-today')?.remove();
     document.querySelector('.routility-add-friends')?.remove();
     page.genreStop?.();

@@ -3267,5 +3267,7 @@
  "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the one with the tilted O from 2017 to 2022.": "左上に表示するRobloxロゴ：現在のもの、2006〜2016年の赤と白のもの、2017〜2022年の傾いたOのもの。",
  "Today’s": "現在",
  "2006 to 2016": "2006〜2016年",
- "2017 to 2022": "2017〜2022年"
+ "2017 to 2022": "2017〜2022年",
+ "Last Played First": "最後にプレイした順",
+ "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "ホームの「続きから」の列を、各エクスペリエンスを最後にプレイした順に新しいものから並べます。このブラウザでRobloxを開いている間に、プレイ中のあなたを見つけるとRoUtilityが記録します。"
 }
