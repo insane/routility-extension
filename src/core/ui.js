@@ -1057,6 +1057,14 @@
   function stripNavBadges(li, keep) {
     if (!li) return;
     const a = li.querySelector('a') || li;
+    const label = a.querySelector(':scope > .text-truncate-end');
+    if (label) {
+      for (const n of [...a.children]) {
+        if (n === label || !(label.compareDocumentPosition(n) & Node.DOCUMENT_POSITION_FOLLOWING)) continue;
+        if (keep && (n.matches(keep) || n.querySelector(keep))) continue;
+        n.remove();
+      }
+    }
     for (const b of li.querySelectorAll('.foundation-web-badge, .foundation-web-status-indicator')) {
       if (keep && b.closest(keep)) continue;
       let box = b;

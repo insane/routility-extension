@@ -62,6 +62,24 @@
     return true;
   }
   window.RoUtilityHiddenSkeleton = hiPlace;
+  if (location.hostname === 'www.roblox.com' && root.classList.contains('routility-hi-path') && window.navigation) {
+    const born = Date.now();
+    const guard = (e) => {
+      if (Date.now() - born > 30000) {
+        navigation.removeEventListener('navigate', guard);
+        return;
+      }
+      if (e.userInitiated || !e.cancelable || e.navigationType === 'traverse' || e.navigationType === 'reload') return;
+      let to;
+      try { to = new URL(e.destination.url); } catch { return; }
+      if (to.origin !== location.origin || !/^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?catalog\/?$/i.test(to.pathname)) return;
+      e.preventDefault();
+      navigation.removeEventListener('navigate', guard);
+      root.dataset.routilityHiRedirect = to.href;
+      window.dispatchEvent(new CustomEvent('routility-hi-redirect'));
+    };
+    navigation.addEventListener('navigate', guard);
+  }
   if (location.hostname === 'www.roblox.com' && root.classList.contains('routility-hi-path') && !hiPlace()) {
     const hiWatch = new MutationObserver(() => { if (hiPlace()) hiWatch.disconnect(); });
     hiWatch.observe(root, { childList: true, subtree: true });
@@ -236,7 +254,9 @@
     root.classList.toggle('routility-font-builder', (settings || {}).siteFont === 'builder');
     root.classList.toggle('routility-font-system', (settings || {}).siteFont === 'system');
     root.classList.toggle('routility-hide-chat', !!(settings || {}).hideChat);
-    root.classList.toggle('routility-classic-logo', !!(settings || {}).classicLogo);
+    const logo = (settings || {}).classicLogo === true ? '2016' : (settings || {}).classicLogo;
+    root.classList.toggle('routility-classic-logo', logo === '2016');
+    root.classList.toggle('routility-logo-2017', logo === '2017');
     root.classList.toggle('routility-classic-premium', !!(settings || {}).classicPremium);
     root.classList.toggle('routility-classic-verified', !!(settings || {}).classicVerified);
     root.classList.toggle('routility-classic-admin', !!(settings || {}).classicAdmin);

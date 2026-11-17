@@ -6,6 +6,20 @@
   },
   "releases": [
     {
+      "version": "1.2.6",
+      "date": "2026-11-17",
+      "summary": "Plays nicer with RoValra, RoSeal, RoPro, BTRoblox and RoQoL, hidden items open again, and a choice of Roblox logo.",
+      "changes": [
+        { "type": "new", "text": "Roblox Logo: pick today’s logo, the red and white one from 2006 to 2016, or the one with the tilted O from 2017 to 2022." },
+        { "type": "improved", "text": "Other extensions: when RoValra, RoSeal, RoPro, BTRoblox, RoQoL or another extension already shows the same row, link or button, RoUtility hides its copy so nothing shows twice. This covers Demand and Trend, Friends Own, Avatar Type, Sandbox in the menu, Filter Items, the R6 and R15 switch, and BTRoblox’s profile." },
+        { "type": "fixed", "text": "Hidden items open again. Roblox now sends hidden item pages to the Marketplace, so RoUtility stops that and rebuilds the page." },
+        { "type": "fixed", "text": "Friend History, Trade Calculator and Trade Ads no longer copy the Friends or Trade counter when Roblox draws it differently." },
+        { "type": "fixed", "text": "Avatar Editor: Roblox’s R6 and R15 switch and Advanced button stay visible when its layout doesn’t match what RoUtility expects." },
+        { "type": "fixed", "text": "3D previews: newer accessories like Ghostly Pumpkin Head show up in Adjust Accessories, Sandbox and the other previews instead of going missing." },
+        { "type": "improved", "text": "Servers: the Join When Open button is gone." }
+      ]
+    },
+    {
       "version": "1.2.5",
       "date": "2026-11-15",
       "summary": "Things Roblox loads but never shows: who really uploaded an item, sale details and seller fees, free trades left, and Kids & Select progress on Creator Hub.",

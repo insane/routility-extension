@@ -2538,7 +2538,7 @@ img.routility-render-head {
   transform-origin: 50% 20%;
 }
 
-html.routility-classic-on #content:has(> .routility-classic, > .routility-modern) {
+html.routility-classic-on:not(.routility-with-btr-profile) #content:has(> .routility-classic, > .routility-modern) {
   max-width: 970px;
 }
 

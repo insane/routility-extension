@@ -2604,8 +2604,8 @@ html.routility-av-rig-on #avatar-web-app .left-wrapper .section-sliders:not(:has
   user-select: none;
 }
 
-html.routility-av-rig-on #avatar-web-app .left-wrapper .section-content > .scaling-info,
-html.routility-av-rig-on #avatar-web-app .left-wrapper .section-content > .avatar-type-container,
+html.routility-av-rig-on #avatar-web-app .left-wrapper .section-content:has(.routility-av-rig) > .scaling-info,
+html.routility-av-rig-on #avatar-web-app .left-wrapper .section-content:has(.routility-av-rig) > .avatar-type-container,
 html.routility-av-rig-on #avatar-web-app .left-wrapper .section-content > div:has(> .foundation-web-progress-circle) {
   display: none !important;
 }
@@ -10715,6 +10715,20 @@ html.routility-nav-collapsed .left-nav nav > ul > li {
 .routility-theme-presets { display: flex; flex-direction: column; gap: 10px; }
 .routility-page-off { display: none !important; }
 
+html.routility-logo-2017:not(.routility-2017) #header .navbar-brand .icon-logo {
+  width: 118px;
+  height: 30px;
+  background-image: url("https://static.rbxcdn.com/images/Logo/roblox_logo_11212016.svg") !important;
+  background-size: contain !important;
+  background-position: left center !important;
+  background-repeat: no-repeat !important;
+}
+
+html.routility-logo-2017:not(.routility-2017) .light-theme #header .navbar-brand .icon-logo,
+.light-theme .rt-m-logo-2017 {
+  filter: brightness(0.2);
+}
+
 html.routility-classic-logo #header .navbar-brand .icon-logo {
   width: 114px;
   height: 32px;
@@ -13469,6 +13483,7 @@ html.routility-hi-off .routility-hi-loading, html.routility-hi-failed .routility
 .routility-hi .thumbnail-holder .thumbnail-2d-container { display: block; width: 100%; height: 100%; }
 .routility-hi .thumbnail-holder img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .routility-hi .routility-hi-fav { cursor: default; }
+#routility-hi-favs { clear: left; float: left; width: fit-content; margin-top: 12px; }
 @media (max-width: 767px) {
   .routility-hi-banner { flex-wrap: wrap; }
 }
@@ -14547,22 +14562,6 @@ html.routility-fh-page:not(.routility-fh-ready) #content::after {
   padding: 4px 10px 0;
 }
 
-.routility-wait-btn {
-  margin-top: 6px !important;
-}
-
-.game-server-details span:has(> .routility-server-share) > .routility-wait-btn,
-.routility-region-actions > .routility-wait-btn {
-  margin-top: 12px !important;
-  flex: 0 0 auto;
-  width: auto;
-  white-space: nowrap;
-}
-
-.routility-wait-btn.routility-wait-active {
-  color: var(--color-system-emphasis, #335fff) !important;
-}
-
 .routility-gc {
   margin-bottom: 24px;
 }
@@ -15611,4 +15610,12 @@ html:not(.routility-counters-blue) .left-nav nav .foundation-web-status-indicato
 
 .routility-tip .tooltip-arrow {
   margin-left: 0 !important;
+}
+
+.routility-yield,
+html.routility-with-btr-profile :is(.routility-classic, .routility-classic-reveal, .routility-classic-loading),
+html.routility-with-foreign-friendsown .routility-friendsown-chip,
+html.routility-with-foreign-rig .routility-av-rig,
+html.routility-with-foreign-filter .routility-av-filter-btn {
+  display: none !important;
 }

@@ -168,7 +168,7 @@
         return { kind: 'string', value: `${family} (${weight}${style ? ', italic' : ''})` };
       });
       case 0x22: {
-        const types = r.beU32s(n);
+        const types = r.ints(n);
         const uris = Array.from({ length: r.u32() }, () => r.str());
         const objs = r.refs(r.u32());
         r.refs(r.u32());

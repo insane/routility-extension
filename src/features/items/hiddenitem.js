@@ -240,7 +240,14 @@
       history.replaceState(history.state, '', `/${bundle ? 'bundles' : 'catalog'}/${id}/${slug(it.name)}`);
       shown = { kind: bundle ? 'bundles' : 'catalog', id };
     }
-    native.after(page(id, bundle, it, img, owned === true, typeof favs === 'number' ? favs : null));
+    const built = page(id, bundle, it, img, owned === true, typeof favs === 'number' ? favs : null);
+    if (root.dataset.routilityHiRedirect) {
+      for (const [from, to] of [['item-thumbnail-container-frontend', 'routility-hi-thumb'], ['item-info-container-frontend', 'routility-hi-info'], ['favorites-button', 'routility-hi-favs'], ['item-details-container', 'routility-hi-page']]) {
+        const n = built.id === from ? built : built.querySelector('#' + from);
+        if (n) n.id = to;
+      }
+    }
+    native.after(built);
     sk();
     native.remove();
     document.title = `${it.name} - Roblox`;
@@ -303,17 +310,41 @@
     return last && last.t > picks[0].t ? null : picks[0];
   }
 
-  function start(target) {
+  function start(target, onFail) {
     if (started || !document.querySelector('#content > .request-error-page-content')) return started;
     started = true;
     const bundle = target.kind === 'bundles';
-    const fail = () => root.classList.add('routility-hi-failed');
+    const fail = () => {
+      root.classList.add('routility-hi-failed');
+      if (onFail) onFail();
+    };
     const timer = setTimeout(fail, 20000);
     run(target.id, bundle, target.moved).then((ok) => { clearTimeout(timer); if (!ok) fail(); }, fail);
     return true;
   }
 
+  function onRedirect(off) {
+    const go = () => {
+      const dest = root.dataset.routilityHiRedirect;
+      if (!dest || started) return;
+      const m = location.pathname.match(ITEM_PATH);
+      const content = document.getElementById('content');
+      if (off || !m || !content) {
+        location.replace(dest);
+        return;
+      }
+      for (const n of content.children) n.style.display = 'none';
+      content.append(el('div', 'routility-injected request-error-page-content'));
+      root.classList.add('routility-hi-path');
+      root.classList.remove('routility-hi-failed');
+      start({ kind: m[1].toLowerCase(), id: m[2] }, () => location.replace(dest));
+    };
+    if (root.dataset.routilityHiRedirect) go();
+    else window.addEventListener('routility-hi-redirect', go, { once: true });
+  }
+
   chrome.storage.local.get('routilitySettings', async (st) => {
+    onRedirect((st.routilitySettings || {}).hiddenItems === false);
     if ((st.routilitySettings || {}).hiddenItems === false) {
       root.classList.add('routility-hi-off');
       root.classList.remove('routility-hi-maybe');

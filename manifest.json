@@ -41,6 +41,7 @@
         "src/core/life.js",
         "src/core/i18n.js",
         "src/core/skeleton.js",
+        "src/core/coexist.js",
         "src/features/classic-roblox/classicnames.js",
         "src/features/fun/fun.js", "src/features/items/catalogsearch.js"
       ],
@@ -118,7 +119,6 @@
         "src/core/content.js",
         "src/features/items/catalogowned.js",
         "src/features/games/serverfilter.js",
-        "src/features/games/joinwait.js",
         "src/features/games/changes.js",
         "src/features/games/gamemenu.js",
         "src/features/games/privateservers.js",
