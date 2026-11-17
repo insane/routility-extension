@@ -718,16 +718,17 @@
       chrome.storage.local.get('routilitySettings', (stored) => {
         const settings = { avatarSearch: true, avatarWearing: true, avatarMoreAccessories: true, avatarRig: true, avatarRemember: true, thumbCustomize: true, accessoryAdjust: true, outfitRotator: true, skinWheel: true, marketplaceValues: true, ...(stored.routilitySettings || {}) };
         if (window.location.pathname !== path) return;
-        if (settings.avatarSearch) window.RoUtilityAvatar.setup();
-        if (settings.avatarWearing || settings.avatarMoreAccessories) window.RoUtilityAvatar.setupWearing({ panel: settings.avatarWearing, values: settings.avatarWearingValues !== false, more: settings.avatarMoreAccessories });
-        if (settings.avatarRig) window.RoUtilityAvatar.setupRig();
-        if (settings.avatarRemember) window.RoUtilityAvatar.setupRemember();
-        if (settings.thumbCustomize) window.RoUtilityThumbCam.setup();
-        if (settings.accessoryAdjust) window.RoUtilityAccAdjust.setup();
-        if (settings.outfitRotator) window.RoUtilityRotator.setup();
-        if (settings.fakeBuy === true && settings.funOutfits !== false) window.RoUtilityFunOutfits.setup();
-        if (settings.skinWheel) window.RoUtilitySkinTone.setup();
-        if (settings.marketplaceValues) window.RoUtilityInventory.setup();
+        const safe = (fn) => { try { fn(); } catch {} };
+        if (settings.avatarSearch) safe(() => window.RoUtilityAvatar.setup());
+        if (settings.avatarWearing || settings.avatarMoreAccessories) safe(() => window.RoUtilityAvatar.setupWearing({ panel: settings.avatarWearing, values: settings.avatarWearingValues !== false, more: settings.avatarMoreAccessories }));
+        if (settings.avatarRig) safe(() => window.RoUtilityAvatar.setupRig());
+        if (settings.avatarRemember) safe(() => window.RoUtilityAvatar.setupRemember());
+        if (settings.thumbCustomize) safe(() => window.RoUtilityThumbCam.setup());
+        if (settings.accessoryAdjust) safe(() => window.RoUtilityAccAdjust.setup());
+        if (settings.outfitRotator) safe(() => window.RoUtilityRotator.setup());
+        if (settings.fakeBuy === true && settings.funOutfits !== false) safe(() => window.RoUtilityFunOutfits.setup());
+        if (settings.skinWheel) safe(() => window.RoUtilitySkinTone.setup());
+        if (settings.marketplaceValues) safe(() => window.RoUtilityInventory.setup());
       });
       return;
     }
@@ -740,6 +741,9 @@
     });
     if (favorites && listOwner) chrome.storage.local.get('routilitySettings', (stored) => {
       if (window.location.pathname === path && (stored.routilitySettings || {}).inventorySearch !== false) window.RoUtilityInvSearch.setup(listOwner, { favorites: true });
+    });
+    if (profile) chrome.storage.local.get('routilitySettings', (stored) => {
+      if (window.location.pathname === path && (stored.routilitySettings || {}).adminBadge !== false) window.RoUtilityFriends.adminBadges();
     });
     if (!profile && !inventory) return;
     chrome.storage.local.get('routilitySettings', (stored) => {

@@ -62,6 +62,18 @@
     return true;
   }
   window.RoUtilityHiddenSkeleton = hiPlace;
+  if (location.hostname === 'www.roblox.com') {
+    const avatarHost = () => {
+      if (document.getElementById('avatar-web-app')) return;
+      const app = document.getElementById('avatar-react-container');
+      if (!app) return;
+      const up = app.parentElement;
+      const host = up && !up.id && up !== document.body && up !== document.documentElement ? up : app;
+      host.id = 'avatar-web-app';
+    };
+    avatarHost();
+    new MutationObserver(avatarHost).observe(document.documentElement, { childList: true, subtree: true });
+  }
   if (location.hostname === 'www.roblox.com' && root.classList.contains('routility-hi-path') && window.navigation) {
     const born = Date.now();
     const guard = (e) => {
@@ -257,6 +269,7 @@
     const logo = (settings || {}).classicLogo === true ? '2016' : (settings || {}).classicLogo;
     root.classList.toggle('routility-classic-logo', logo === '2016');
     root.classList.toggle('routility-logo-2017', logo === '2017');
+    root.classList.toggle('routility-logo-2017red', logo === '2017red');
     root.classList.toggle('routility-classic-premium', !!(settings || {}).classicPremium);
     root.classList.toggle('routility-classic-verified', !!(settings || {}).classicVerified);
     root.classList.toggle('routility-classic-admin', !!(settings || {}).classicAdmin);

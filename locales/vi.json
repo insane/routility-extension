@@ -3264,10 +3264,11 @@
   "other": "Người tạo đã lưu mục này {n} lần. Nếu số tăng vọt, nó đã thay đổi kể từ lần cuối bạn xem."
  },
  "Roblox Logo": "Logo Roblox",
- "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the one with the tilted O from 2017 to 2022.": "Logo Roblox hiển thị ở góc trên bên trái: logo hiện tại, logo đỏ trắng từ 2006 đến 2016, hoặc logo chữ O nghiêng từ 2017 đến 2022.",
  "Today’s": "Hiện tại",
  "2006 to 2016": "2006 đến 2016",
  "2017 to 2022": "2017 đến 2022",
  "Last Played First": "Chơi gần nhất trước",
- "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "Hàng Tiếp tục ở Trang chủ được sắp xếp theo lần cuối bạn chơi từng trải nghiệm, mới nhất trước. RoUtility biết bạn đã chơi khi thấy bạn trong game lúc Roblox đang mở trên trình duyệt này."
+ "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "Hàng Tiếp tục ở Trang chủ được sắp xếp theo lần cuối bạn chơi từng trải nghiệm, mới nhất trước. RoUtility biết bạn đã chơi khi thấy bạn trong game lúc Roblox đang mở trên trình duyệt này.",
+ "2017 to 2018, red": "2017 đến 2018, đỏ",
+ "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.": "Logo Roblox hiển thị ở góc trên bên trái: logo hiện tại, logo đỏ trắng từ 2006 đến 2016, logo chữ O nghiêng màu đỏ từ 2017 đến 2018, hoặc logo trắng từ 2017 đến 2022."
 }

@@ -8,8 +8,13 @@
     {
       "version": "1.2.6",
       "date": "2026-11-17",
-      "summary": "Plays nicer with RoValra, RoSeal, RoPro, BTRoblox and RoQoL, hidden items open again, Classics gets a year picker and See All, and the Continue row puts what you played last first.",
+      "summary": "Plays nicer with RoValra, RoSeal, RoPro, BTRoblox and RoQoL, Avatar Editor and Sandbox fixed on Roblox’s newer avatar page, hidden items open again, Classics gets a year picker and See All, and the Continue row puts what you played last first.",
       "changes": [
+        { "type": "fixed", "text": "Avatar Editor and Sandbox work again for accounts Roblox moved to its newer avatar page, where every RoUtility avatar feature was missing." },
+        { "type": "new", "text": "Roblox Logo: the red one with the tilted O from 2017 to 2018." },
+        { "type": "fixed", "text": "Admin badges show again next to friends on Home after Roblox changed its friend tiles, and now on profile friend lists too." },
+        { "type": "improved", "text": "Classics (2017 Roblox Theme): games Roblox won’t let you join are left out." },
+        { "type": "improved", "text": "2017 Roblox Theme: the Avatar type and Body Type sliders sit on a white card like the old Avatar Editor." },
         { "type": "new", "text": "Last Played First (Home): the Continue row is sorted by when you last played each experience, newest first." },
         { "type": "improved", "text": "Classics (2017 Roblox Theme): up to 80 front page games for each year from 2012 to 2019 instead of about 12, pick the year right on the Games page, and See All opens them all in a grid." },
         { "type": "new", "text": "Roblox Logo: pick today’s logo, the red and white one from 2006 to 2016, or the one with the tilted O from 2017 to 2022." },

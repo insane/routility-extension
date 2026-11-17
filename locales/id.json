@@ -3264,10 +3264,11 @@
   "other": "Kreator sudah menyimpannya {n} kali. Kalau angkanya melonjak, berarti ada perubahan sejak terakhir kamu lihat."
  },
  "Roblox Logo": "Logo Roblox",
- "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the one with the tilted O from 2017 to 2022.": "Logo Roblox yang tampil di kiri atas: yang sekarang, yang merah putih dari 2006 sampai 2016, atau yang dengan O miring dari 2017 sampai 2022.",
  "Today’s": "Sekarang",
  "2006 to 2016": "2006 sampai 2016",
  "2017 to 2022": "2017 sampai 2022",
  "Last Played First": "Terakhir Dimainkan Dulu",
- "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "Baris Lanjutkan di Beranda diurutkan menurut kapan kamu terakhir memainkan tiap pengalaman, yang terbaru dulu. RoUtility tahu sebuah game dimainkan saat melihatmu di dalamnya selagi Roblox terbuka di browser ini."
+ "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "Baris Lanjutkan di Beranda diurutkan menurut kapan kamu terakhir memainkan tiap pengalaman, yang terbaru dulu. RoUtility tahu sebuah game dimainkan saat melihatmu di dalamnya selagi Roblox terbuka di browser ini.",
+ "2017 to 2018, red": "2017 sampai 2018, merah",
+ "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.": "Logo Roblox yang tampil di kiri atas: yang sekarang, yang merah putih dari 2006 sampai 2016, yang merah dengan O miring dari 2017 sampai 2018, atau yang putih dari 2017 sampai 2022."
 }

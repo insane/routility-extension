@@ -3264,10 +3264,11 @@
   "other": "作成者はこれを{n}回保存しています。数字が跳ね上がっていたら、前に見たときから変わっています。"
  },
  "Roblox Logo": "Robloxロゴ",
- "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the one with the tilted O from 2017 to 2022.": "左上に表示するRobloxロゴ：現在のもの、2006〜2016年の赤と白のもの、2017〜2022年の傾いたOのもの。",
  "Today’s": "現在",
  "2006 to 2016": "2006〜2016年",
  "2017 to 2022": "2017〜2022年",
  "Last Played First": "最後にプレイした順",
- "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "ホームの「続きから」の列を、各エクスペリエンスを最後にプレイした順に新しいものから並べます。このブラウザでRobloxを開いている間に、プレイ中のあなたを見つけるとRoUtilityが記録します。"
+ "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "ホームの「続きから」の列を、各エクスペリエンスを最後にプレイした順に新しいものから並べます。このブラウザでRobloxを開いている間に、プレイ中のあなたを見つけるとRoUtilityが記録します。",
+ "2017 to 2018, red": "2017〜2018年（赤）",
+ "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.": "左上に表示するRobloxロゴ：現在のもの、2006〜2016年の赤と白のもの、2017〜2018年の傾いたOの赤いもの、2017〜2022年の白いもの。"
 }

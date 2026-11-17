@@ -2607,6 +2607,18 @@ html.routility-2017 .routility-pt-head > .text-title-medium {
   font-weight: 400 !important;
 }
 
+html.routility-2017.routility-av-rig-on #avatar-web-app .left-wrapper .section-sliders,
+html.routility-2017 #avatar-web-app .left-wrapper .section-sliders {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: var(--c17-card) !important;
+  box-shadow: 0 1px 4px rgba(25, 25, 25, 0.12) !important;
+}
+
+html.routility-2017 #avatar-web-app .left-wrapper .section-sliders .routility-av-rig {
+  border-bottom-color: var(--c17-divider, #e3e3e3) !important;
+}
+
 html.routility-2017 #avatar-web-app .section-sliders .text-label {
   color: var(--c17-text) !important;
   font-weight: 400 !important;

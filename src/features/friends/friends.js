@@ -1157,7 +1157,8 @@
 
   const ADMIN_SPOTS = [
     { card: '#friends-web-app li.avatar-card, .routility-friends-grid li.avatar-card', box: '.avatar-name-container' },
-    { card: '.friends-carousel-tile', box: '.friends-carousel-tile-name' },
+    { card: '.friends-carousel-tile', box: '.friends-carousel-tile-name, [data-testid="friends-carousel-tile-labels"] > div:first-child, .routility-friend-name-row' },
+    { card: '.routility-classic li.list-item.friend', box: '.routility-friend-name-row' },
     { card: 'article.player-search-card', box: '.player-search-card-name' },
   ];
 

@@ -650,6 +650,7 @@
       const logo = el('img', 'rt-m-classic-logo' + (v === '2017' ? ' rt-m-logo-2017' : ''));
       logo.src = v === '2017' ? 'https://static.rbxcdn.com/images/Logo/roblox_logo_11212016.svg' : 'https://images.rbxcdn.com/b48b9cc9bf67813b.svg';
       logo.alt = '';
+      if (v === '2017red') return r([h('span', 'rt-m-classic-logo rt-m-logo-2017red')]);
       if (v !== '2016' && v !== '2017') return r([h('span', 'routility-roblox-mark rt-m-mark'), strong('Roblox')]);
       return r([logo]);
     },
@@ -788,7 +789,7 @@
           { key: 'classicFrontPage', parent: 'classicSite', title: LT('Classics Row'), desc: LT('A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.') },
           { key: 'classicYear', parent: 'classicFrontPage', title: LT('Classics Year'), desc: LT('Which year’s front page games show in the Classics row.'), options: [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019].map(y => [String(y), String(y)]) },
           { key: 'oldLeftNav', parent: 'classicSite', title: LT('Old Sidebar'), desc: LT('The old left menu with this theme. It’s the same switch as Old Sidebar in the Sidebar tab, so turning one on turns on both.') },
-          { key: 'classicLogo', title: LT('Roblox Logo'), desc: LT('Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the one with the tilted O from 2017 to 2022.'), options: [['today', LT('Today’s')], ['2016', LT('2006 to 2016')], ['2017', LT('2017 to 2022')]], legacy: { true: '2016', false: 'today' } },
+          { key: 'classicLogo', title: LT('Roblox Logo'), desc: LT('Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.'), options: [['today', LT('Today’s')], ['2016', LT('2006 to 2016')], ['2017red', LT('2017 to 2018, red')], ['2017', LT('2017 to 2022')]], legacy: { true: '2016', false: 'today' } },
           { key: 'classicPremium', title: LT('Classic Premium Icon'), desc: LT('The old Premium icon next to names instead of the Roblox Plus icon.') },
           { key: 'classicVerified', title: LT('Classic Verified Badge'), desc: LT('The original verified badge next to names, with sharp corners and the brighter blue.') },
           { key: 'classicAdmin', title: LT('Classic Admin Badge'), desc: LT('The old red R logo as the Roblox admin badge next to names, and the old Administrator badge in Roblox Badges.') },

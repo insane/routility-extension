@@ -3264,10 +3264,11 @@
   "other": "제작자가 이걸 {n}번 저장했어요. 숫자가 크게 늘었다면 마지막으로 본 뒤에 바뀐 거예요."
  },
  "Roblox Logo": "Roblox 로고",
- "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the one with the tilted O from 2017 to 2022.": "왼쪽 위에 표시할 Roblox 로고: 현재 로고, 2006~2016년의 빨간색과 흰색 로고, 2017~2022년의 기울어진 O 로고.",
  "Today’s": "현재",
  "2006 to 2016": "2006~2016년",
  "2017 to 2022": "2017~2022년",
  "Last Played First": "최근 플레이 순",
- "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "홈의 계속하기 줄을 각 체험을 마지막으로 플레이한 순서대로 최신순으로 정렬해요. 이 브라우저에서 Roblox가 열려 있는 동안 플레이 중인 모습을 보면 RoUtility가 기록해요."
+ "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "홈의 계속하기 줄을 각 체험을 마지막으로 플레이한 순서대로 최신순으로 정렬해요. 이 브라우저에서 Roblox가 열려 있는 동안 플레이 중인 모습을 보면 RoUtility가 기록해요.",
+ "2017 to 2018, red": "2017~2018년, 빨간색",
+ "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.": "왼쪽 위에 표시할 Roblox 로고: 현재 로고, 2006~2016년의 빨간색과 흰색 로고, 2017~2018년의 기울어진 O 빨간 로고, 2017~2022년의 흰색 로고."
 }

@@ -47,7 +47,7 @@
   let classicLoading = false;
   let classicFailed = 0;
   let classicFresh = false;
-  const classicKey = () => 'routility2017Classics2:' + classicYear;
+  const classicKey = () => 'routility2017Classics3:' + classicYear;
 
   let classicAsked = false;
 
@@ -84,6 +84,7 @@
         json(`https://games.roblox.com/v1/games?universeIds=${ids}`),
         json(`https://games.roblox.com/v1/games/votes?universeIds=${ids}`),
         json(`https://thumbnails.roblox.com/v1/games/icons?universeIds=${ids}&returnPolicy=PlaceHolder&size=256x256&format=Webp&isCircular=false`),
+        json(`https://games.roblox.com/v1/games/multiget-playability-status?universeIds=${ids}`),
       ]).catch(() => []);
     }));
     classicLoading = false;
@@ -95,6 +96,8 @@
     const vote = new Map(all(1).map(v => [v.id, v]));
     const icon = new Map(all(2).map(i => [i.targetId, i.imageUrl]));
     const games = new Map(all(0).map(g => [g.id, g]));
+    const blocked = new Set(parts.flatMap(p => (p && Array.isArray(p[3]) ? p[3] : [])).filter(x => x && x.isPlayable === false).map(x => x.universeId));
+    for (const id of blocked) games.delete(id);
     if (year !== classicYear) return;
     classicData = list.map(id => games.get(id)).filter(Boolean).map(g => {
       const v = vote.get(g.id);

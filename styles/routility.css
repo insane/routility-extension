@@ -5905,6 +5905,8 @@ li.avatar-card[data-routility-revealed="pending"] .avatar-card-caption::before {
   animation: routility-sk-pulse 1.2s ease-in-out infinite;
 }
 
+[data-testid="friends-carousel-tile-labels"] .routility-admin-badge,
+.routility-friend-name-row .routility-admin-badge,
 .friends-carousel-tile-name .routility-admin-badge {
   width: 1em;
   height: 1em;
@@ -10727,6 +10729,23 @@ html.routility-logo-2017:not(.routility-2017) #header .navbar-brand .icon-logo {
 html.routility-logo-2017:not(.routility-2017) .light-theme #header .navbar-brand .icon-logo,
 .light-theme .rt-m-logo-2017 {
   filter: brightness(0.2);
+}
+
+html.routility-logo-2017red:not(.routility-classic-logo) #header .navbar-brand .icon-logo.icon-logo,
+.rt-m-logo-2017red {
+  width: 118px !important;
+  height: 30px !important;
+  background-image: none !important;
+  background-color: #e2231a !important;
+  filter: none !important;
+  -webkit-mask: url("https://static.rbxcdn.com/images/Logo/roblox_logo_11212016.svg") no-repeat left center / contain;
+  mask: url("https://static.rbxcdn.com/images/Logo/roblox_logo_11212016.svg") no-repeat left center / contain;
+}
+
+.rt-m-logo-2017red {
+  display: block;
+  width: 115px !important;
+  height: 28px !important;
 }
 
 html.routility-classic-logo #header .navbar-brand .icon-logo {

@@ -3420,10 +3420,11 @@
   "other": "O criador salvou isso {n} vezes. Se o número saltar, mudou desde a última vez que você olhou."
  },
  "Roblox Logo": "Logo do Roblox",
- "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the one with the tilted O from 2017 to 2022.": "Qual logo do Roblox aparece no canto superior esquerdo: o atual, o vermelho e branco de 2006 a 2016 ou o do O inclinado de 2017 a 2022.",
  "Today’s": "Atual",
  "2006 to 2016": "2006 a 2016",
  "2017 to 2022": "2017 a 2022",
  "Last Played First": "Último jogado primeiro",
- "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "A fileira Continuar do Início é ordenada pela última vez que você jogou cada experiência, a mais recente primeiro. O RoUtility sabe que você jogou quando te vê no jogo enquanto o Roblox está aberto neste navegador."
+ "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "A fileira Continuar do Início é ordenada pela última vez que você jogou cada experiência, a mais recente primeiro. O RoUtility sabe que você jogou quando te vê no jogo enquanto o Roblox está aberto neste navegador.",
+ "2017 to 2018, red": "2017 a 2018, vermelho",
+ "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.": "Qual logo do Roblox aparece no canto superior esquerdo: o atual, o vermelho e branco de 2006 a 2016, o vermelho do O inclinado de 2017 a 2018 ou o branco de 2017 a 2022."
 }
