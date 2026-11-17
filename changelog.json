@@ -10,7 +10,7 @@
       "date": "2026-11-17",
       "summary": "Plays nicer with RoValra, RoSeal, RoPro, BTRoblox and RoQoL, Avatar Editor and Sandbox fixed on Roblox’s newer avatar page, hidden items open again, Classics gets a year picker and See All, and the Continue row puts what you played last first.",
       "changes": [
-        { "type": "fixed", "text": "Avatar Editor and Sandbox work again for accounts Roblox moved to its newer avatar page, where every RoUtility avatar feature was missing." },
+        { "type": "fixed", "text": "Avatar Editor and Sandbox work again for accounts Roblox moved to its newer avatar page, where every RoUtility avatar feature was missing, and Sandbox shows what you try on there." },
         { "type": "new", "text": "Roblox Logo: the red one with the tilted O from 2017 to 2018." },
         { "type": "fixed", "text": "Admin badges show again next to friends on Home after Roblox changed its friend tiles, and now on profile friend lists too." },
         { "type": "improved", "text": "Classics (2017 Roblox Theme): games Roblox won’t let you join are left out." },

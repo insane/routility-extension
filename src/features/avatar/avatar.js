@@ -888,8 +888,20 @@
   let sbAsked = '';
   let sbChecking = false;
 
+  let selfId = '';
+
+  async function myId() {
+    const tag = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+    if (tag) return tag;
+    if (!selfId) {
+      const d = await fetch('https://users.roblox.com/v1/users/authenticated', { credentials: 'include' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
+      selfId = d && d.id ? String(d.id) : '';
+    }
+    return selfId;
+  }
+
   async function checkOwned(ids) {
-    const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+    const me = await myId();
     const todo = ids.filter(id => !sbOwned.has(id));
     if (!me || !todo.length || sbChecking) return;
     sbChecking = true;

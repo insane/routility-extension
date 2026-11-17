@@ -73,7 +73,24 @@
     const m = document.querySelector('meta[name="user-data"]');
     return m ? m.getAttribute(attr) || '' : '';
   }
-  const me = () => Number(userMeta('data-userid')) || 0;
+  const nativeFetch = window.fetch;
+  let meId = 0;
+  let meAsked = false;
+  function learnMe() {
+    if (meAsked) return;
+    meAsked = true;
+    nativeFetch.call(window, 'https://users.roblox.com/v1/users/authenticated', { credentials: 'include' })
+      .then(r => (r.ok ? r.json() : null))
+      .then((d) => { if (d && d.id) meId = Number(d.id) || 0; else meAsked = false; })
+      .catch(() => { meAsked = false; });
+  }
+  const me = () => {
+    const id = Number(userMeta('data-userid'));
+    if (id) return id;
+    if (!meId) learnMe();
+    return meId;
+  };
+  document.addEventListener('DOMContentLoaded', () => { if (!Number(userMeta('data-userid'))) learnMe(); });
 
   function shown(real) {
     const base = !cfg.robux ? real : cfg.mult > 1 ? real * cfg.mult : cfg.amount;
