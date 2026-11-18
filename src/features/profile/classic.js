@@ -959,8 +959,12 @@
         const iconBox = icon.getBoundingClientRect();
         const hostBox = names.getBoundingClientRect();
         const center = iconBox.left + iconBox.width / 2 - hostBox.left;
-        tip.style.left = Math.round(center - tip.offsetWidth / 2) + 'px';
-        arrow.style.left = Math.round(tip.offsetWidth / 2 - 5) + 'px';
+        const box = (names.closest('.profile-about') || document.documentElement).getBoundingClientRect();
+        const minLeft = box.left + 4 - hostBox.left;
+        const maxLeft = box.right - 4 - hostBox.left - tip.offsetWidth;
+        const left = Math.round(Math.max(minLeft, Math.min(center - tip.offsetWidth / 2, maxLeft)));
+        tip.style.left = left + 'px';
+        arrow.style.left = Math.round(Math.max(6, Math.min(center - left - 5, tip.offsetWidth - 16))) + 'px';
       };
       let pinned = false;
       const hide = () => names.querySelector('.tooltip')?.remove();
