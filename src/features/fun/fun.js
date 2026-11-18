@@ -61,7 +61,9 @@
   }
 
   function multiplier() {
-    const m = Number(settings.fakeRobuxMode);
+    const mode = settings.fakeRobuxMode === undefined ? 'amount' : String(settings.fakeRobuxMode);
+    if (mode === 'amount') return 0;
+    const m = Number(mode === 'mult' ? String(settings.fakeRobuxMult === undefined ? '5' : settings.fakeRobuxMult) : mode);
     return Number.isFinite(m) && m > 1 ? Math.min(m, 1e9) : 0;
   }
 
@@ -358,7 +360,7 @@
   });
 
   function shownBalance(real) {
-    const base = settings.fakeRobux !== true ? real : multiplier() ? real * multiplier() : amount();
+    const base = settings.fakeRobux !== true ? real : multiplier() ? Math.min(Math.floor(real * multiplier()), 999999999999999) : amount();
     return Math.max(0, base - (buying() ? state.spent : 0));
   }
 

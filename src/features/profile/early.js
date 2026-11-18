@@ -221,7 +221,7 @@
   const errorPage = location.pathname === '/request-error';
   if (!errorPage && !/^\/users\/\d+\/profile\/?$/i.test(location.pathname)) return;
   chrome.storage.local.get(['routilitySettings', 'routilityLastProfile'], (s) => {
-    const settings = { revealTerminated: true, classicProfile: true, ...(s.routilitySettings || {}) };
+    const settings = { revealTerminated: true, classicProfile: false, ...(s.routilitySettings || {}) };
     if (settings.classicSite) {
       settings.classicProfile = true;
       settings.classicLayout = 'tabs';

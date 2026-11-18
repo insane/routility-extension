@@ -25,7 +25,7 @@
     return {
       robux: o.robux === true,
       amount: n(o.amount),
-      mult: n(o.mult),
+      mult: Number.isFinite(o.mult) && o.mult > 1 ? Math.min(o.mult, 1e9) : 0,
       buy: o.buy === true,
       spent: n(o.spent),
       items: Array.isArray(o.items) ? o.items.filter(x => x && typeof x.kind === 'string' && Number.isFinite(x.id)) : [],
@@ -93,7 +93,7 @@
   document.addEventListener('DOMContentLoaded', () => { if (!Number(userMeta('data-userid'))) learnMe(); });
 
   function shown(real) {
-    const base = !cfg.robux ? real : cfg.mult > 1 ? real * cfg.mult : cfg.amount;
+    const base = !cfg.robux ? real : cfg.mult > 1 ? Math.min(Math.floor(real * cfg.mult), 999999999999999) : cfg.amount;
     return Math.max(0, base - (cfg.buy ? cfg.spent : 0));
   }
 

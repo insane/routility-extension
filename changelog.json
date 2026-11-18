@@ -12,7 +12,8 @@
       "changes": [
         { "type": "new", "text": "Clans & Guilds (Forum): the old Club Houses forum for your clans, groups and guilds is back, with its pinned rules." },
         { "type": "improved", "text": "Other extensions: the chat bot tells you once which ones it found and what RoUtility hides because of them." },
-        { "type": "improved", "text": "Fake Robux (Fun Mode): multiply your Robux by 2 or 5, or all the way up to 1,000,000,000, and long choices in settings menus are no longer cut off." },
+        { "type": "improved", "text": "Classic Profile Layout is off by default, so profiles look like Roblox’s own until you turn it on in Settings. The 2017 Roblox Theme still uses it." },
+        { "type": "improved", "text": "Fake Robux (Fun Mode): Multiply your Robux takes any number you type, like 1.5 or 5000, instead of a fixed list. Long choices in settings menus are no longer cut off." },
         { "type": "improved", "text": "Adjust Accessories opens about four times faster, and your accessories show right away while the 3D preview loads." },
         { "type": "fixed", "text": "2017 Roblox Theme: pages no longer slide down a little when they finish loading, and your first scroll moves the whole page again." },
         { "type": "fixed", "text": "2017 Roblox Theme: Catalog cards no longer leave a big empty space under the price." },

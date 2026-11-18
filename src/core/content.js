@@ -559,7 +559,7 @@
     const terminated = path === '/request-error' && (window.location.hash.match(/routility-user=(\d+)/) || [])[1];
     if (terminated) {
       chrome.storage.local.get('routilitySettings', (stored) => {
-        const settings = { revealTerminated: true, classicProfile: true, inventoryValues: true, ...(stored.routilitySettings || {}) };
+        const settings = { revealTerminated: true, classicProfile: false, inventoryValues: true, ...(stored.routilitySettings || {}) };
         if (settings.classicSite) {
           settings.classicProfile = true;
           settings.classicLayout = 'tabs';
@@ -747,7 +747,7 @@
     });
     if (!profile && !inventory) return;
     chrome.storage.local.get('routilitySettings', (stored) => {
-      const settings = { inventoryValues: true, classicProfile: true, mutualFriends: true, hiddenFriends: true, ...(stored.routilitySettings || {}) };
+      const settings = { inventoryValues: true, classicProfile: false, mutualFriends: true, hiddenFriends: true, ...(stored.routilitySettings || {}) };
       if (settings.classicSite) {
         settings.classicProfile = true;
         settings.classicLayout = 'tabs';
