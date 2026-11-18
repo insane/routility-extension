@@ -2094,6 +2094,9 @@
  "Off sale": "Niedostępne w sprzedaży",
  "Off Sale": "Niedostępne w sprzedaży",
  "Off Topic": "Offtop",
+ "Clans & Guilds": "Klany i gildie",
+ "Talk about what’s going on in your clans, groups, companies and guilds, and about Roblox Communities in general.": "Rozmawiaj o tym, co dzieje się w twoich klanach, grupach, firmach i gildiach, i o społecznościach Roblox w ogóle.",
+ "Heads up: I noticed you also use {list}. When another extension already shows the same row, link or button as RoUtility, I hide RoUtility’s copy so nothing shows twice. You can still change any of it in Settings.": "Uwaga: widzę, że używasz też {list}. Gdy inne rozszerzenie pokazuje już ten sam wiersz, link lub przycisk co RoUtility, ukrywam kopię RoUtility, żeby nic nie było widać dwa razy. Wszystko możesz zmienić w Ustawieniach.",
  "Offensive content": "Obraźliwa treść",
  "Offering": "Oferuje",
  "Offering {n}": "Oferuje {n}",
@@ -3377,6 +3380,11 @@
  "Your Robux × 1,000": "Twoje Robux × 1000",
  "Your Robux × 1,000,000": "Twoje Robux × 1 000 000",
  "Your Robux × 10": "Twoje Robux × 10",
+ "Your Robux × 2": "Twoje Robux × 2",
+ "Your Robux × 5": "Twoje Robux × 5",
+ "Your Robux × 10,000,000": "Twoje Robux × 10 000 000",
+ "Your Robux × 100,000,000": "Twoje Robux × 100 000 000",
+ "Your Robux × 1,000,000,000": "Twoje Robux × 1 000 000 000",
  "Your Robux × 10,000": "Twoje Robux × 10 000",
  "Your Robux × 100": "Twoje Robux × 100",
  "Your Robux × 100,000": "Twoje Robux × 100 000",
@@ -3734,9 +3742,8 @@
  "Roblox Logo": "Logo Roblox",
  "Today’s": "Dzisiejsze",
  "2006 to 2016": "2006–2016",
- "2017 to 2022": "2017–2022",
  "Last Played First": "Ostatnio grane najpierw",
  "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "Wiersz Kontynuuj na stronie głównej jest posortowany według tego, kiedy ostatnio grałeś w każde doświadczenie, od najnowszego. RoUtility wie, że grałeś, gdy widzi cię w grze, kiedy Roblox jest otwarty w tej przeglądarce.",
  "2017 to 2018, red": "2017–2018, czerwone",
- "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.": "Które logo Roblox widać w lewym górnym rogu: dzisiejsze, czerwono-białe z lat 2006–2016, czerwone z przechylonym O z lat 2017–2018 czy białe z lat 2017–2022."
+ "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the red one with the tilted O from 2017 to 2018.": "Które logo Roblox widać w lewym górnym rogu: dzisiejsze, czerwono-białe z lat 2006–2016 czy czerwone z przechylonym O z lat 2017–2018."
 }

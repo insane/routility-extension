@@ -1840,6 +1840,9 @@
  "Off sale": "Nicht im Verkauf",
  "Off Sale": "Nicht im Verkauf",
  "Off Topic": "Off-Topic",
+ "Clans & Guilds": "Clans & Gilden",
+ "Talk about what’s going on in your clans, groups, companies and guilds, and about Roblox Communities in general.": "Rede darüber, was in deinen Clans, Gruppen, Firmen und Gilden los ist, und über Roblox-Communitys im Allgemeinen.",
+ "Heads up: I noticed you also use {list}. When another extension already shows the same row, link or button as RoUtility, I hide RoUtility’s copy so nothing shows twice. You can still change any of it in Settings.": "Kurzer Hinweis: Du nutzt auch {list}. Wenn eine andere Erweiterung schon dieselbe Zeile, denselben Link oder Button wie RoUtility zeigt, blende ich die Kopie von RoUtility aus, damit nichts doppelt erscheint. In den Einstellungen kannst du trotzdem alles ändern.",
  "Offensive content": "Anstößiger Inhalt",
  "Offering": "Bietet",
  "Offering {n}": "Bietet {n}",
@@ -3089,6 +3092,11 @@
  "Your Robux × 1,000": "Deine Robux × 1.000",
  "Your Robux × 1,000,000": "Deine Robux × 1.000.000",
  "Your Robux × 10": "Deine Robux × 10",
+ "Your Robux × 2": "Deine Robux × 2",
+ "Your Robux × 5": "Deine Robux × 5",
+ "Your Robux × 10,000,000": "Deine Robux × 10.000.000",
+ "Your Robux × 100,000,000": "Deine Robux × 100.000.000",
+ "Your Robux × 1,000,000,000": "Deine Robux × 1.000.000.000",
  "Your Robux × 10,000": "Deine Robux × 10.000",
  "Your Robux × 100": "Deine Robux × 100",
  "Your Robux × 100,000": "Deine Robux × 100.000",
@@ -3422,9 +3430,8 @@
  "Roblox Logo": "Roblox-Logo",
  "Today’s": "Heutiges",
  "2006 to 2016": "2006 bis 2016",
- "2017 to 2022": "2017 bis 2022",
  "Last Played First": "Zuletzt gespielt zuerst",
  "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "Die Weiterspielen-Reihe auf der Startseite wird danach sortiert, wann du jedes Erlebnis zuletzt gespielt hast, das neueste zuerst. RoUtility erkennt ein gespieltes Spiel, wenn es dich darin sieht, während Roblox in diesem Browser geöffnet ist.",
  "2017 to 2018, red": "2017 bis 2018, rot",
- "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.": "Welches Roblox-Logo oben links angezeigt wird: das heutige, das rot-weiße von 2006 bis 2016, das rote mit dem schrägen O von 2017 bis 2018 oder das weiße von 2017 bis 2022."
+ "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the red one with the tilted O from 2017 to 2018.": "Welches Roblox-Logo oben links angezeigt wird: das heutige, das rot-weiße von 2006 bis 2016 oder das rote mit dem schrägen O von 2017 bis 2018."
 }

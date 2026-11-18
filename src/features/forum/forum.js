@@ -17,6 +17,7 @@
       forums: [
         { id: 'lets-make-a-deal', name: LT('Let’s Make a Deal'), desc: LT('Limited trading and sales: post what you have, what you want, and talk values and the Roblox economy.') },
         { id: 'off-topic', name: LT('Off Topic'), desc: LT('Anything that doesn’t fit the other forums. Keep it friendly.') },
+        { id: 'clans-and-guilds', name: LT('Clans & Guilds'), desc: LT('Talk about what’s going on in your clans, groups, companies and guilds, and about Roblox Communities in general.') },
       ],
     },
     {

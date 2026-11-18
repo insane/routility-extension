@@ -162,7 +162,9 @@
     const place = () => {
       if (!popover) return;
       const r = btn.getBoundingClientRect();
-      popover.style.cssText = `position: fixed; left: ${r.left}px; top: ${r.bottom + 4}px; width: ${r.width}px; z-index: 1050;`;
+      popover.style.cssText = `position: fixed; left: ${r.left}px; top: ${r.bottom + 4}px; min-width: ${r.width}px; width: max-content; max-width: calc(100vw - 16px); z-index: 1050;`;
+      const w = popover.offsetWidth;
+      if (w > r.width) popover.style.left = Math.max(8, r.right - w) + 'px';
     };
     const outside = (e) => { if (!popover.contains(e.target) && !btn.contains(e.target)) close(); };
     const esc = (e) => { if (e.key === 'Escape') close(); };
@@ -204,6 +206,7 @@
       list.appendChild(menu);
       popover.appendChild(list);
       document.body.appendChild(popover);
+      place();
       btn.setAttribute('aria-expanded', 'true');
       document.addEventListener('mousedown', outside, true);
       document.addEventListener('keydown', esc, true);
@@ -647,11 +650,11 @@
     hideChat: () => r([muted(lt('Bottom right')), h('span', 'rt-m-pill rt-m-gone', lt('Chat'))]),
     classicLogo: (s) => {
       const v = s && s.classicLogo === true ? '2016' : s && s.classicLogo;
-      const logo = el('img', 'rt-m-classic-logo' + (v === '2017' ? ' rt-m-logo-2017' : ''));
-      logo.src = v === '2017' ? 'https://static.rbxcdn.com/images/Logo/roblox_logo_11212016.svg' : 'https://images.rbxcdn.com/b48b9cc9bf67813b.svg';
+      const logo = el('img', 'rt-m-classic-logo');
+      logo.src = 'https://images.rbxcdn.com/b48b9cc9bf67813b.svg';
       logo.alt = '';
       if (v === '2017red') return r([h('span', 'rt-m-classic-logo rt-m-logo-2017red')]);
-      if (v !== '2016' && v !== '2017') return r([h('span', 'routility-roblox-mark rt-m-mark'), strong('Roblox')]);
+      if (v !== '2016') return r([h('span', 'routility-roblox-mark rt-m-mark'), strong('Roblox')]);
       return r([logo]);
     },
     classicPremium: () => r([strong('Linkmon99'), h('span', 'icon rt-m-premium')]),
@@ -789,7 +792,7 @@
           { key: 'classicFrontPage', parent: 'classicSite', title: LT('Classics Row'), desc: LT('A Classics row at the top of the Games page with the big games from the Roblox front page of the year you pick, with their live player counts.') },
           { key: 'classicYear', parent: 'classicFrontPage', title: LT('Classics Year'), desc: LT('Which year’s front page games show in the Classics row.'), options: [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019].map(y => [String(y), String(y)]) },
           { key: 'oldLeftNav', parent: 'classicSite', title: LT('Old Sidebar'), desc: LT('The old left menu with this theme. It’s the same switch as Old Sidebar in the Sidebar tab, so turning one on turns on both.') },
-          { key: 'classicLogo', title: LT('Roblox Logo'), desc: LT('Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.'), options: [['today', LT('Today’s')], ['2016', LT('2006 to 2016')], ['2017red', LT('2017 to 2018, red')], ['2017', LT('2017 to 2022')]], legacy: { true: '2016', false: 'today' } },
+          { key: 'classicLogo', title: LT('Roblox Logo'), desc: LT('Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the red one with the tilted O from 2017 to 2018.'), options: [['today', LT('Today’s')], ['2016', LT('2006 to 2016')], ['2017red', LT('2017 to 2018, red')]], legacy: { true: '2016', false: 'today', 2017: 'today' } },
           { key: 'classicPremium', title: LT('Classic Premium Icon'), desc: LT('The old Premium icon next to names instead of the Roblox Plus icon.') },
           { key: 'classicVerified', title: LT('Classic Verified Badge'), desc: LT('The original verified badge next to names, with sharp corners and the brighter blue.') },
           { key: 'classicAdmin', title: LT('Classic Admin Badge'), desc: LT('The old red R logo as the Roblox admin badge next to names, and the old Administrator badge in Roblox Badges.') },
@@ -1279,7 +1282,7 @@
       groups: [
         { title: LT('Robux'), rows: [
           { key: 'fakeRobux', title: LT('Fake Robux'), desc: LT('Show any Robux balance you want everywhere on Roblox: the top bar, the Robux menu and every purchase window, which uses it to work out what you can afford. Turn on Fake Purchases too if you want buying to be fake.') },
-          { key: 'fakeRobuxMode', parent: 'fakeRobux', title: LT('Balance'), desc: LT('Pick any amount, or multiply the Robux you really have so it still moves with your real balance.'), options: [['amount', LT('Pick an amount')], ['10', LT('Your Robux × 10')], ['100', LT('Your Robux × 100')], ['1000', LT('Your Robux × 1,000')], ['10000', LT('Your Robux × 10,000')], ['100000', LT('Your Robux × 100,000')], ['1000000', LT('Your Robux × 1,000,000')]], robuxInput: 'amount', amountKey: 'fakeRobuxAmount' },
+          { key: 'fakeRobuxMode', parent: 'fakeRobux', title: LT('Balance'), desc: LT('Pick any amount, or multiply the Robux you really have so it still moves with your real balance.'), options: [['amount', LT('Pick an amount')], ['2', LT('Your Robux × 2')], ['5', LT('Your Robux × 5')], ['10', LT('Your Robux × 10')], ['100', LT('Your Robux × 100')], ['1000', LT('Your Robux × 1,000')], ['10000', LT('Your Robux × 10,000')], ['100000', LT('Your Robux × 100,000')], ['1000000', LT('Your Robux × 1,000,000')], ['10000000', LT('Your Robux × 10,000,000')], ['100000000', LT('Your Robux × 100,000,000')], ['1000000000', LT('Your Robux × 1,000,000,000')]], robuxInput: 'amount', amountKey: 'fakeRobuxAmount' },
         ] },
         { title: LT('Purchases'), rows: [
           { key: 'fakeBuy', title: LT('Fake Purchases'), desc: LT('Buy items, bundles, game passes and developer products like normal, through Roblox’s own purchase window and Purchase Completed screen. Your balance goes down and the item shows as owned, in your inventory too, but no Robux are spent and nothing is added to your account. Hats and other accessories also show up in the Avatar editor, and you can put them on there. Only you see them on your avatar. Real item purchases are blocked while this is on.') },

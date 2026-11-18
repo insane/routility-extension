@@ -1713,6 +1713,9 @@
  "Off sale": "Tidak dijual",
  "Off Sale": "Tidak Dijual",
  "Off Topic": "Di Luar Topik",
+ "Clans & Guilds": "Klan & Guild",
+ "Talk about what’s going on in your clans, groups, companies and guilds, and about Roblox Communities in general.": "Bahas apa yang terjadi di klan, grup, perusahaan, dan guild kamu, serta tentang Komunitas Roblox secara umum.",
+ "Heads up: I noticed you also use {list}. When another extension already shows the same row, link or button as RoUtility, I hide RoUtility’s copy so nothing shows twice. You can still change any of it in Settings.": "Info: aku lihat kamu juga pakai {list}. Kalau ekstensi lain sudah menampilkan baris, tautan, atau tombol yang sama dengan RoUtility, aku sembunyikan salinan RoUtility supaya tidak muncul dua kali. Kamu tetap bisa mengubah semuanya di Pengaturan.",
  "Offensive content": "Konten menyinggung",
  "Offering": "Menawarkan",
  "Offering {n}": "Menawarkan {n}",
@@ -2945,6 +2948,11 @@
  "Your Robux × 1,000": "Robux-mu × 1.000",
  "Your Robux × 1,000,000": "Robux-mu × 1.000.000",
  "Your Robux × 10": "Robux-mu × 10",
+ "Your Robux × 2": "Robux-mu × 2",
+ "Your Robux × 5": "Robux-mu × 5",
+ "Your Robux × 10,000,000": "Robux-mu × 10.000.000",
+ "Your Robux × 100,000,000": "Robux-mu × 100.000.000",
+ "Your Robux × 1,000,000,000": "Robux-mu × 1.000.000.000",
  "Your Robux × 10,000": "Robux-mu × 10.000",
  "Your Robux × 100": "Robux-mu × 100",
  "Your Robux × 100,000": "Robux-mu × 100.000",
@@ -3266,9 +3274,8 @@
  "Roblox Logo": "Logo Roblox",
  "Today’s": "Sekarang",
  "2006 to 2016": "2006 sampai 2016",
- "2017 to 2022": "2017 sampai 2022",
  "Last Played First": "Terakhir Dimainkan Dulu",
  "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "Baris Lanjutkan di Beranda diurutkan menurut kapan kamu terakhir memainkan tiap pengalaman, yang terbaru dulu. RoUtility tahu sebuah game dimainkan saat melihatmu di dalamnya selagi Roblox terbuka di browser ini.",
  "2017 to 2018, red": "2017 sampai 2018, merah",
- "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.": "Logo Roblox yang tampil di kiri atas: yang sekarang, yang merah putih dari 2006 sampai 2016, yang merah dengan O miring dari 2017 sampai 2018, atau yang putih dari 2017 sampai 2022."
+ "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the red one with the tilted O from 2017 to 2018.": "Logo Roblox yang tampil di kiri atas: yang sekarang, yang merah putih dari 2006 sampai 2016, atau yang merah dengan O miring dari 2017 sampai 2018."
 }

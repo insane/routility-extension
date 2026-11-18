@@ -906,6 +906,7 @@
         return;
       }
       s.data.user.description = r.description;
+      try { sessionStorage.removeItem(PROFILE_CACHE); } catch {}
       close(false);
     });
   }
@@ -1799,9 +1800,16 @@
     const fake = window.RoUtilityFun && window.RoUtilityFun.badges && window.RoUtilityFun.badges();
     const key = userId + (columns ? ':columns' : '') + (fake ? ':fb:' + Object.keys(fake).filter(k => fake[k]).join(',') : '');
     const changed = await new Promise(r => chrome.storage.local.get(FRIENDS_AT, st => r(((st && st[FRIENDS_AT]) || {}).at || 0)));
+    const mine = String(userId) === document.querySelector('meta[name="user-data"]')?.dataset.userid;
+    const own = mine ? fetch('https://users.roblox.com/v1/description', { credentials: 'include', cache: 'no-store' }).then(r => (r.ok ? r.json() : null)).catch(() => null) : null;
+    const withOwn = async (data) => {
+      const d = own && await own;
+      if (data && data.user && d && typeof d.description === 'string') data.user.description = d.description;
+      return data;
+    };
     const hit = cachedData(key, changed);
-    if (hit) return hit;
-    const data = await loadData(userId, columns);
+    if (hit) return withOwn(hit);
+    const data = await withOwn(await loadData(userId, columns));
     if (data) keepData(key, data);
     return data;
   }

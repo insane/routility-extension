@@ -268,7 +268,6 @@
     root.classList.toggle('routility-hide-chat', !!(settings || {}).hideChat);
     const logo = (settings || {}).classicLogo === true ? '2016' : (settings || {}).classicLogo;
     root.classList.toggle('routility-classic-logo', logo === '2016');
-    root.classList.toggle('routility-logo-2017', logo === '2017');
     root.classList.toggle('routility-logo-2017red', logo === '2017red');
     root.classList.toggle('routility-classic-premium', !!(settings || {}).classicPremium);
     root.classList.toggle('routility-classic-verified', !!(settings || {}).classicVerified);

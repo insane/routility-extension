@@ -1713,6 +1713,9 @@
  "Off sale": "판매 안 함",
  "Off Sale": "판매 종료",
  "Off Topic": "잡담",
+ "Clans & Guilds": "클랜 & 길드",
+ "Talk about what’s going on in your clans, groups, companies and guilds, and about Roblox Communities in general.": "클랜, 그룹, 회사, 길드에서 무슨 일이 있는지, 그리고 Roblox 커뮤니티 전반에 대해 이야기해 보세요.",
+ "Heads up: I noticed you also use {list}. When another extension already shows the same row, link or button as RoUtility, I hide RoUtility’s copy so nothing shows twice. You can still change any of it in Settings.": "참고로, {list}도 사용 중이시네요. 다른 확장 프로그램이 RoUtility와 같은 줄, 링크, 버튼을 이미 보여 주면 두 번 나오지 않도록 RoUtility 쪽을 숨겨요. 설정에서 언제든 바꿀 수 있어요.",
  "Offensive content": "불쾌한 콘텐츠",
  "Offering": "제공",
  "Offering {n}": "{n} 제공",
@@ -2945,6 +2948,11 @@
  "Your Robux × 1,000": "내 Robux × 1,000",
  "Your Robux × 1,000,000": "내 Robux × 1,000,000",
  "Your Robux × 10": "내 Robux × 10",
+ "Your Robux × 2": "내 Robux × 2",
+ "Your Robux × 5": "내 Robux × 5",
+ "Your Robux × 10,000,000": "내 Robux × 10,000,000",
+ "Your Robux × 100,000,000": "내 Robux × 100,000,000",
+ "Your Robux × 1,000,000,000": "내 Robux × 1,000,000,000",
  "Your Robux × 10,000": "내 Robux × 10,000",
  "Your Robux × 100": "내 Robux × 100",
  "Your Robux × 100,000": "내 Robux × 100,000",
@@ -3266,9 +3274,8 @@
  "Roblox Logo": "Roblox 로고",
  "Today’s": "현재",
  "2006 to 2016": "2006~2016년",
- "2017 to 2022": "2017~2022년",
  "Last Played First": "최근 플레이 순",
  "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "홈의 계속하기 줄을 각 체험을 마지막으로 플레이한 순서대로 최신순으로 정렬해요. 이 브라우저에서 Roblox가 열려 있는 동안 플레이 중인 모습을 보면 RoUtility가 기록해요.",
  "2017 to 2018, red": "2017~2018년, 빨간색",
- "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.": "왼쪽 위에 표시할 Roblox 로고: 현재 로고, 2006~2016년의 빨간색과 흰색 로고, 2017~2018년의 기울어진 O 빨간 로고, 2017~2022년의 흰색 로고."
+ "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the red one with the tilted O from 2017 to 2018.": "왼쪽 위에 표시할 Roblox 로고: 현재 로고, 2006~2016년의 빨간색과 흰색 로고, 2017~2018년의 기울어진 O 빨간 로고."
 }

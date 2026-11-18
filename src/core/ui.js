@@ -292,7 +292,8 @@
     arrow.style.left = Math.round(r.left + r.width / 2 - left - 5) + 'px';
     tipWatch = setInterval(() => {
       const t = tipFor;
-      if (!t || !t.isConnected || (!t.matches(':hover') && !t.contains(document.activeElement))) hideTip();
+      const now = t && t.isConnected ? t.getBoundingClientRect() : null;
+      if (!now || Math.abs(now.left - r.left) > 6 || Math.abs(now.top - r.top) > 6 || (!t.matches(':hover') && !t.contains(document.activeElement))) hideTip();
     }, 300);
   }
 

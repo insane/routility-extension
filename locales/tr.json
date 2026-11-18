@@ -1840,6 +1840,9 @@
  "Off sale": "Satışta değil",
  "Off Sale": "Satışta değil",
  "Off Topic": "Konu dışı",
+ "Clans & Guilds": "Klanlar ve Loncalar",
+ "Talk about what’s going on in your clans, groups, companies and guilds, and about Roblox Communities in general.": "Klanlarında, gruplarında, şirketlerinde ve loncalarında neler olduğunu ve genel olarak Roblox topluluklarını konuş.",
+ "Heads up: I noticed you also use {list}. When another extension already shows the same row, link or button as RoUtility, I hide RoUtility’s copy so nothing shows twice. You can still change any of it in Settings.": "Bilgin olsun, şunları da kullandığını gördüm: {list}. Başka bir uzantı RoUtility ile aynı satırı, bağlantıyı ya da düğmeyi zaten gösteriyorsa, hiçbir şey iki kez görünmesin diye RoUtility’nin kopyasını gizliyorum. Hepsini yine de Ayarlar’dan değiştirebilirsin.",
  "Offensive content": "Saldırgan içerik",
  "Offering": "Sunulan",
  "Offering {n}": "{n} sunuyor",
@@ -3089,6 +3092,11 @@
  "Your Robux × 1,000": "Robux'un × 1.000",
  "Your Robux × 1,000,000": "Robux'un × 1.000.000",
  "Your Robux × 10": "Robux'un × 10",
+ "Your Robux × 2": "Robux'un × 2",
+ "Your Robux × 5": "Robux'un × 5",
+ "Your Robux × 10,000,000": "Robux'un × 10.000.000",
+ "Your Robux × 100,000,000": "Robux'un × 100.000.000",
+ "Your Robux × 1,000,000,000": "Robux'un × 1.000.000.000",
  "Your Robux × 10,000": "Robux'un × 10.000",
  "Your Robux × 100": "Robux'un × 100",
  "Your Robux × 100,000": "Robux'un × 100.000",
@@ -3422,9 +3430,8 @@
  "Roblox Logo": "Roblox Logosu",
  "Today’s": "Bugünkü",
  "2006 to 2016": "2006–2016",
- "2017 to 2022": "2017–2022",
  "Last Played First": "Son Oynanan Önce",
  "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "Ana sayfadaki Devam Et satırı, her deneyimi en son ne zaman oynadığına göre en yeniden başlayarak sıralanır. RoUtility, Roblox bu tarayıcıda açıkken seni oyunda gördüğünde oynadığını bilir.",
  "2017 to 2018, red": "2017–2018, kırmızı",
- "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.": "Sol üst köşede hangi Roblox logosunun görüneceği: bugünkü, 2006–2016 arasındaki kırmızı beyaz logo, 2017–2018 arasındaki eğik O’lu kırmızı logo ya da 2017–2022 arasındaki beyaz logo."
+ "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the red one with the tilted O from 2017 to 2018.": "Sol üst köşede hangi Roblox logosunun görüneceği: bugünkü, 2006–2016 arasındaki kırmızı beyaz logo ya da 2017–2018 arasındaki eğik O’lu kırmızı logo."
 }

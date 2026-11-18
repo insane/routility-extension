@@ -1713,6 +1713,9 @@
  "Off sale": "Không bán",
  "Off Sale": "Ngừng bán",
  "Off Topic": "Lạc đề",
+ "Clans & Guilds": "Clan & Hội",
+ "Talk about what’s going on in your clans, groups, companies and guilds, and about Roblox Communities in general.": "Kể chuyện đang diễn ra trong clan, nhóm, công ty và hội của bạn, và bàn về các Cộng đồng Roblox nói chung.",
+ "Heads up: I noticed you also use {list}. When another extension already shows the same row, link or button as RoUtility, I hide RoUtility’s copy so nothing shows twice. You can still change any of it in Settings.": "Lưu ý: mình thấy bạn cũng dùng {list}. Khi một tiện ích khác đã hiện cùng hàng, liên kết hoặc nút giống RoUtility, mình sẽ ẩn bản của RoUtility để không bị hiện hai lần. Bạn vẫn có thể đổi mọi thứ trong Cài đặt.",
  "Offensive content": "Nội dung xúc phạm",
  "Offering": "Đưa ra",
  "Offering {n}": "Đưa ra {n}",
@@ -2945,6 +2948,11 @@
  "Your Robux × 1,000": "Robux của bạn × 1.000",
  "Your Robux × 1,000,000": "Robux của bạn × 1.000.000",
  "Your Robux × 10": "Robux của bạn × 10",
+ "Your Robux × 2": "Robux của bạn × 2",
+ "Your Robux × 5": "Robux của bạn × 5",
+ "Your Robux × 10,000,000": "Robux của bạn × 10.000.000",
+ "Your Robux × 100,000,000": "Robux của bạn × 100.000.000",
+ "Your Robux × 1,000,000,000": "Robux của bạn × 1.000.000.000",
  "Your Robux × 10,000": "Robux của bạn × 10.000",
  "Your Robux × 100": "Robux của bạn × 100",
  "Your Robux × 100,000": "Robux của bạn × 100.000",
@@ -3266,9 +3274,8 @@
  "Roblox Logo": "Logo Roblox",
  "Today’s": "Hiện tại",
  "2006 to 2016": "2006 đến 2016",
- "2017 to 2022": "2017 đến 2022",
  "Last Played First": "Chơi gần nhất trước",
  "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "Hàng Tiếp tục ở Trang chủ được sắp xếp theo lần cuối bạn chơi từng trải nghiệm, mới nhất trước. RoUtility biết bạn đã chơi khi thấy bạn trong game lúc Roblox đang mở trên trình duyệt này.",
  "2017 to 2018, red": "2017 đến 2018, đỏ",
- "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.": "Logo Roblox hiển thị ở góc trên bên trái: logo hiện tại, logo đỏ trắng từ 2006 đến 2016, logo chữ O nghiêng màu đỏ từ 2017 đến 2018, hoặc logo trắng từ 2017 đến 2022."
+ "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the red one with the tilted O from 2017 to 2018.": "Logo Roblox hiển thị ở góc trên bên trái: logo hiện tại, logo đỏ trắng từ 2006 đến 2016, hoặc logo chữ O nghiêng màu đỏ từ 2017 đến 2018."
 }

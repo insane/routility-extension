@@ -6,6 +6,22 @@
   },
   "releases": [
     {
+      "version": "1.2.7",
+      "date": "2026-11-18",
+      "summary": "The Clans & Guilds forum is back, the 2017 theme scrolls properly again, Adjust Accessories opens about four times faster, and the chat bot tells you which other extensions it found.",
+      "changes": [
+        { "type": "new", "text": "Clans & Guilds (Forum): the old Club Houses forum for your clans, groups and guilds is back, with its pinned rules." },
+        { "type": "improved", "text": "Other extensions: the chat bot tells you once which ones it found and what RoUtility hides because of them." },
+        { "type": "improved", "text": "Fake Robux (Fun Mode): multiply your Robux by 2 or 5, or all the way up to 1,000,000,000, and long choices in settings menus are no longer cut off." },
+        { "type": "improved", "text": "Adjust Accessories opens about four times faster, and your accessories show right away while the 3D preview loads." },
+        { "type": "fixed", "text": "2017 Roblox Theme: pages no longer slide down a little when they finish loading, and your first scroll moves the whole page again." },
+        { "type": "fixed", "text": "2017 Roblox Theme: Catalog cards no longer leave a big empty space under the price." },
+        { "type": "fixed", "text": "2017 Roblox Theme: the Refresh buttons on the Servers tab have a white icon with room around it." },
+        { "type": "fixed", "text": "Classic Profile Layout: your new About shows right after you change it, instead of the old one for a few minutes." },
+        { "type": "fixed", "text": "Chat: the resize hint no longer gets stuck on screen while you drag the corner." }
+      ]
+    },
+    {
       "version": "1.2.6",
       "date": "2026-11-17",
       "summary": "Plays nicer with RoValra, RoSeal, RoPro, BTRoblox and RoQoL, Avatar Editor and Sandbox fixed on Roblox’s newer avatar page, hidden items open again, Classics gets a year picker and See All, and the Continue row puts what you played last first.",

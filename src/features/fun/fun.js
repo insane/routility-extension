@@ -62,7 +62,7 @@
 
   function multiplier() {
     const m = Number(settings.fakeRobuxMode);
-    return Number.isFinite(m) && m > 1 ? Math.min(m, 1e6) : 0;
+    return Number.isFinite(m) && m > 1 ? Math.min(m, 1e9) : 0;
   }
 
   const buying = () => !!settings && settings.fakeBuy === true;

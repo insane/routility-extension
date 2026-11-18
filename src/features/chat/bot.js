@@ -9,7 +9,10 @@
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
   const MAX = 60;
 
-  const state = { msgs: [], onboarded: false, open: false, collapsed: false, unread: false };
+  const OTHERS_KEY = 'routilityOtherExtensions';
+  const state = { msgs: [], onboarded: false, open: false, collapsed: false, unread: false, told: [] };
+  let others = [];
+  let telling = false;
   let settings = {};
   let items = null;
   let features = null;
@@ -21,7 +24,7 @@
   const norm = s => String(s || '').toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9$+.\s]/g, ' ').replace(/\s+/g, ' ').trim();
 
   function save() {
-    chrome.storage.local.set({ [KEY]: { msgs: state.msgs.slice(-MAX), onboarded: state.onboarded, open: state.open, collapsed: state.collapsed, unread: state.unread } });
+    chrome.storage.local.set({ [KEY]: { msgs: state.msgs.slice(-MAX), onboarded: state.onboarded, open: state.open, collapsed: state.collapsed, unread: state.unread, told: state.told } });
   }
 
   function robuxRate() {
@@ -475,6 +478,30 @@
       { text: me() ? lt('Hey {name}! I’m the RoUtility bot. I live here in your chat.', { name: me() }) : lt('Hey! I’m the RoUtility bot. I live here in your chat.') },
       intro(),
     ];
+  }
+
+  function listOf(names) {
+    const lang = document.documentElement.dataset.routilityLang || 'en';
+    try {
+      return new Intl.ListFormat(lang === 'zh-cn' ? 'zh-CN' : lang === 'zh-tw' ? 'zh-TW' : lang, { type: 'conjunction' }).format(names);
+    } catch {
+      return names.join(', ');
+    }
+  }
+
+  async function tellOthers() {
+    if (telling || !state.onboarded || !others.length) return;
+    if (others.every(n => state.told.includes(n))) return;
+    telling = true;
+    const st = await new Promise(r => chrome.storage.local.get(KEY, r));
+    const told = new Set([...state.told, ...(((st[KEY] || {}).told) || [])]);
+    const fresh = others.filter(n => !told.has(n));
+    state.told = [...told, ...fresh];
+    if (fresh.length) {
+      save();
+      await botSay([{ text: lt('Heads up: I noticed you also use {list}. When another extension already shows the same row, link or button as RoUtility, I hide RoUtility’s copy so nothing shows twice. You can still change any of it in Settings.', { list: listOf(fresh) }), chips: [{ label: lt('Open Settings'), act: 'url', value: '/my/account#!/routility' }] }]);
+    }
+    telling = false;
   }
 
   function me() {
@@ -1008,10 +1035,12 @@
   }
 
   async function start() {
-    const st = await new Promise(r => chrome.storage.local.get([KEY, 'routilitySettings'], r));
+    const st = await new Promise(r => chrome.storage.local.get([KEY, 'routilitySettings', OTHERS_KEY], r));
     settings = st.routilitySettings || {};
     if (settings.chatBot === false) return;
     Object.assign(state, st[KEY] || {});
+    if (!Array.isArray(state.told)) state.told = [];
+    others = Array.isArray(st[OTHERS_KEY]) ? st[OTHERS_KEY] : [];
     const needCards = state.msgs.some(m => m.cards && m.cards.length);
     if (needCards) Promise.all([loadItems(), loadFeatures()]).then(render);
     const tick = onFrame(() => {
@@ -1024,13 +1053,16 @@
         render();
         botSay(onboard());
       }
+      if (state.onboarded) tellOthers();
     });
     new MutationObserver(tick).observe(document.body || document.documentElement, { childList: true, subtree: true });
     chrome.storage.onChanged.addListener((ch, area) => {
       if (area !== 'local') return;
       if (ch.routilitySettings) { settings = ch.routilitySettings.newValue || {}; render(); }
+      if (ch[OTHERS_KEY]) { others = Array.isArray(ch[OTHERS_KEY].newValue) ? ch[OTHERS_KEY].newValue : []; tick(); }
       if (ch[KEY] && ch[KEY].newValue) {
         const v = ch[KEY].newValue;
+        if (Array.isArray(v.told)) state.told = [...new Set([...state.told, ...v.told])];
         const theirs = v.msgs && v.msgs.length ? v.msgs[v.msgs.length - 1].t : 0;
         const ours = state.msgs.length ? state.msgs[state.msgs.length - 1].t : 0;
         if (v.msgs && theirs !== ours && !typing) {

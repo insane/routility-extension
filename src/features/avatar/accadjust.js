@@ -12,6 +12,22 @@
 
   let state = null;
   let csrf = '';
+  let modules = null;
+  let warmed = false;
+
+  function loadModules() {
+    if (!modules) {
+      modules = Promise.all([import(chrome.runtime.getURL('src/preview/ui.js')), import(chrome.runtime.getURL('src/preview/mesh.js'))]).then(([m]) => m);
+      modules.catch(() => { modules = null; });
+    }
+    return modules;
+  }
+
+  function warm() {
+    if (warmed) return;
+    warmed = true;
+    loadModules().then(ui => ui.warm()).catch(() => { warmed = false; });
+  }
 
   async function send(url, body) {
     for (let i = 0; i < 3; i++) {
@@ -352,30 +368,29 @@
     dialog.tabIndex = -1;
     dialog.focus();
 
-    (async () => {
-      const [ui, rulesRes] = await Promise.all([
-        Promise.all([import(chrome.runtime.getURL('src/preview/ui.js')), import(chrome.runtime.getURL('src/preview/mesh.js'))]).then(([m]) => m),
-        getJson(API + 'v1/avatar-rules'),
-      ]);
-      if (state !== s || s.modal !== overlay) return;
-      rules = rulesRes;
-      let preview = null;
-      try {
-        preview = await ui.adjustPreview(canvas);
-      } catch {}
-      if (state !== s || s.modal !== overlay) {
-        preview?.dispose();
-        return;
-      }
+    const live = () => state === s && s.modal === overlay;
+    const failLoad = () => {
       frame.classList.remove('routility-tc-wait');
-      if (!preview || !rules) {
-        picker.textContent = '';
-        setStatus(lt('Couldn’t load your avatar right now. Try again in a minute.'), true);
+      picker.textContent = '';
+      items = [];
+      sel = null;
+      paintTabs();
+      paintSliders();
+      sync();
+      setStatus(lt('Couldn’t load your avatar right now. Try again in a minute.'), true);
+    };
+
+    (async () => {
+      const ui = loadModules();
+      const [data, rulesRes] = await Promise.all([getJson(API + 'v2/avatar/avatar'), getJson(API + 'v1/avatar-rules')]);
+      if (!live()) return;
+      rules = rulesRes;
+      if (!rules || !data || !Array.isArray(data.assets)) {
+        failLoad();
         return;
       }
-      s.preview = preview;
       const types = new Set(rules.accessoryRefinementTypes || []);
-      items = (preview.data.assets || []).filter(a => a.assetType && types.has(a.assetType.id)).map(a => ({ id: a.id, name: a.name || lt('Accessory'), meta: a.meta, bounds: bounds(rules, a.assetType.name) })).filter(a => a.bounds);
+      items = data.assets.filter(a => a.assetType && types.has(a.assetType.id)).map(a => ({ id: a.id, name: a.name || lt('Accessory'), meta: a.meta, bounds: bounds(rules, a.assetType.name) })).filter(a => a.bounds);
       for (const a of items) {
         edits.set(a.id, fromMeta(a.meta));
         original.set(a.id, fromMeta(a.meta));
@@ -383,13 +398,30 @@
       if (!items.length) {
         picker.textContent = '';
         note.textContent = lt('You aren’t wearing anything that can be adjusted. Hats, face, neck, shoulder, front and back accessories can be.');
+      } else {
+        note.textContent = lt('Drag the preview to look around. Hair and waist accessories can’t be adjusted.');
+        sel = items[0];
+        paintPicker(null);
+        chrome.runtime.sendMessage({ type: 'getAssetThumbs', ids: items.map(a => String(a.id)) }, (res) => {
+          void chrome.runtime.lastError;
+          if (live()) paintPicker(res || {});
+        });
+      }
+      let preview = null;
+      try {
+        preview = await (await ui).adjustPreview(canvas);
+      } catch {}
+      if (!live()) {
+        preview?.dispose();
         return;
       }
-      note.textContent = lt('Drag the preview to look around. Hair and waist accessories can’t be adjusted.');
-      sel = items[0];
-      paintPicker(null);
-      const thumbs = await new Promise(r => chrome.runtime.sendMessage({ type: 'getAssetThumbs', ids: items.map(a => String(a.id)) }, (res) => { void chrome.runtime.lastError; r(res || {}); }));
-      if (state === s && s.modal === overlay) paintPicker(thumbs);
+      if (!preview) {
+        failLoad();
+        return;
+      }
+      frame.classList.remove('routility-tc-wait');
+      s.preview = preview;
+      for (const a of items) if (!same(edits.get(a.id), original.get(a.id))) preview.set(a.id, edits.get(a.id));
     })();
   }
 
@@ -400,7 +432,10 @@
     if (redraw.parentElement.querySelector(':scope > .routility-aa-open')) return;
     const b = button(lt('Adjust Accessories'), 'bg-action-standard content-action-standard routility-injected routility-aa-open');
     b.addEventListener('click', open);
+    b.addEventListener('pointerenter', warm);
+    b.addEventListener('focus', warm);
     state.trigger = b;
+    (window.requestIdleCallback || setTimeout)(() => { if (state) loadModules().catch(() => {}); });
     const after = redraw.parentElement.querySelector(':scope > .routility-tc-open') || redraw;
     after.after(b);
   }

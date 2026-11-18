@@ -10717,20 +10717,6 @@ html.routility-nav-collapsed .left-nav nav > ul > li {
 .routility-theme-presets { display: flex; flex-direction: column; gap: 10px; }
 .routility-page-off { display: none !important; }
 
-html.routility-logo-2017:not(.routility-2017) #header .navbar-brand .icon-logo {
-  width: 118px;
-  height: 30px;
-  background-image: url("https://static.rbxcdn.com/images/Logo/roblox_logo_11212016.svg") !important;
-  background-size: contain !important;
-  background-position: left center !important;
-  background-repeat: no-repeat !important;
-}
-
-html.routility-logo-2017:not(.routility-2017) .light-theme #header .navbar-brand .icon-logo,
-.light-theme .rt-m-logo-2017 {
-  filter: brightness(0.2);
-}
-
 html.routility-logo-2017red:not(.routility-classic-logo) #header .navbar-brand .icon-logo.icon-logo,
 .rt-m-logo-2017red {
   width: 118px !important;

@@ -1713,6 +1713,9 @@
  "Off sale": "未出售",
  "Off Sale": "已下架",
  "Off Topic": "闲聊",
+ "Clans & Guilds": "部族与公会",
+ "Talk about what’s going on in your clans, groups, companies and guilds, and about Roblox Communities in general.": "聊聊你的部族、群组、公司和公会里的新鲜事，以及 Roblox 社群的一切。",
+ "Heads up: I noticed you also use {list}. When another extension already shows the same row, link or button as RoUtility, I hide RoUtility’s copy so nothing shows twice. You can still change any of it in Settings.": "提醒一下：我发现你也在用 {list}。当其他扩展已经显示了和 RoUtility 相同的行、链接或按钮时，我会隐藏 RoUtility 的那一份，避免重复显示。你仍然可以在设置里修改。",
  "Offensive content": "冒犯性内容",
  "Offering": "提供",
  "Offering {n}": "提供 {n} 个",
@@ -2945,6 +2948,11 @@
  "Your Robux × 1,000": "你的 Robux × 1,000",
  "Your Robux × 1,000,000": "你的 Robux × 1,000,000",
  "Your Robux × 10": "你的 Robux × 10",
+ "Your Robux × 2": "你的 Robux × 2",
+ "Your Robux × 5": "你的 Robux × 5",
+ "Your Robux × 10,000,000": "你的 Robux × 10,000,000",
+ "Your Robux × 100,000,000": "你的 Robux × 100,000,000",
+ "Your Robux × 1,000,000,000": "你的 Robux × 1,000,000,000",
  "Your Robux × 10,000": "你的 Robux × 10,000",
  "Your Robux × 100": "你的 Robux × 100",
  "Your Robux × 100,000": "你的 Robux × 100,000",
@@ -3266,9 +3274,8 @@
  "Roblox Logo": "Roblox 标志",
  "Today’s": "现在的",
  "2006 to 2016": "2006 至 2016 年",
- "2017 to 2022": "2017 至 2022 年",
  "Last Played First": "最近玩过的在前",
  "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "主页的“继续”行按你最后一次玩每个体验的时间排序，最新的在前。当 Roblox 在此浏览器中打开时，RoUtility 看到你在游戏中就会记录。",
  "2017 to 2018, red": "2017 至 2018 年（红色）",
- "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.": "左上角显示哪个 Roblox 标志：现在的、2006 至 2016 年的红白标志、2017 至 2018 年带倾斜 O 的红色标志，或 2017 至 2022 年的白色标志。"
+ "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the red one with the tilted O from 2017 to 2018.": "左上角显示哪个 Roblox 标志：现在的、2006 至 2016 年的红白标志，或 2017 至 2018 年带倾斜 O 的红色标志。"
 }

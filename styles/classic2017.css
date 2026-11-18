@@ -363,6 +363,8 @@ html.routility-2017 .section-content {
 html.routility-2017 #content {
   padding: 12px 0 0 !important;
   line-height: 1.4;
+  overflow-x: clip !important;
+  overflow-y: visible !important;
 }
 
 html.routility-2017 :is(li.game-card:not(.routility-classic-game), .games-detail .game-carousel) .game-card-container {
@@ -811,6 +813,21 @@ html.routility-2017 :is(.filters-container, .catalog-search-options-top-bar) .fi
 }
 
 html.routility-2017 :is(.btn-secondary-xs, .btn-secondary-md).see-all-link-icon,
+html.routility-2017 .rbx-refresh.refresh-link-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px;
+  padding: 0 10px !important;
+}
+
+html.routility-2017 .rbx-refresh.refresh-link-icon::after {
+  position: static !important;
+  flex: none;
+  margin: 0 !important;
+  filter: brightness(0) invert(1);
+}
+
 html.routility-2017 .container-header .btn-more {
   padding: 4px !important;
   border: 0 !important;
@@ -1816,15 +1833,26 @@ html.routility-2017 .catalog-item-container .item-card-caption > * {
 
 html.routility-2017 #content ul.item-cards-stackable .catalog-item-container.catalog-item-container {
   height: auto !important;
-  min-height: 258px !important;
+  min-height: 0 !important;
   align-self: stretch !important;
 }
 
+html.routility-2017 #content ul.item-cards-stackable .catalog-item-container .item-card-container {
+  padding-bottom: 0 !important;
+}
+
 html.routility-2017 #content ul.item-cards-stackable .catalog-item-container .item-card-caption {
-  padding-bottom: 18px !important;
+  padding-bottom: 6px !important;
   height: auto !important;
   max-height: none !important;
   flex: 0 0 auto !important;
+}
+
+html.routility-2017 #content ul.item-cards-stackable .catalog-item-container .item-card-caption:not(:has(> .item-card-price ~ .item-card-price))::after {
+  content: '';
+  display: block;
+  grid-column: 1 / -1;
+  height: 22px;
 }
 
 html.routility-2017 #content ul.item-cards-stackable .catalog-item-container .item-card-caption .item-card-price {

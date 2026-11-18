@@ -15,6 +15,23 @@
     ['.left-nav nav > ul', ':scope > li', '.text-truncate-end'],
   ];
   const YIELD = 'routility-yield';
+  const SEEN_KEY = 'routilityOtherExtensions';
+  const OTHERS = [
+    ['BTRoblox', () => root.hasAttribute('btr-loaded') || !!document.getElementById('btr-detect-content')],
+    ['RoValra', () => !!document.querySelector('link[href*="rovalra.com/static/fonts/RoValraIcons"], [data-rovalra-asset], [data-rovalra-sidebar-item], #rovalra-fx-container, .rovalra-friend-ownership-container')],
+    ['RoSeal', () => root.getAttributeNames().some(n => n.startsWith('data-rosealfe-')) || !!document.querySelector('.roseal-left-nav-item, .roseal-menu-item')],
+    ['RoPro', () => !!document.querySelector('li.ropro-icon, .ropro-avatar-menu')],
+  ];
+  let seen = null;
+  chrome.storage.local.get(SEEN_KEY, (st) => { seen = new Set(Array.isArray(st[SEEN_KEY]) ? st[SEEN_KEY] : []); });
+
+  function detect() {
+    if (!seen || seen.size === OTHERS.length) return;
+    const found = OTHERS.filter(([name, test]) => !seen.has(name) && test()).map(([name]) => name);
+    if (!found.length) return;
+    for (const name of found) seen.add(name);
+    chrome.storage.local.set({ [SEEN_KEY]: [...seen] });
+  }
 
   const label = (n, sel) => ((n.querySelector(sel) || {}).textContent || '').trim().toLowerCase();
   const shown = (n) => !n.classList.contains(YIELD) && n.getClientRects().length > 0;
@@ -40,6 +57,7 @@
       if (root.classList.contains(cls) !== on) root.classList.toggle(cls, on);
     }
     dedupe();
+    detect();
   }
 
   let queued = false;

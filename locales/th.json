@@ -1713,6 +1713,9 @@
  "Off sale": "ไม่วางขาย",
  "Off Sale": "เลิกขายแล้ว",
  "Off Topic": "นอกเรื่อง",
+ "Clans & Guilds": "แคลนและกิลด์",
+ "Talk about what’s going on in your clans, groups, companies and guilds, and about Roblox Communities in general.": "คุยกันว่าเกิดอะไรขึ้นในแคลน กลุ่ม บริษัท และกิลด์ของคุณ และเรื่องคอมมูนิตี้ Roblox โดยรวม",
+ "Heads up: I noticed you also use {list}. When another extension already shows the same row, link or button as RoUtility, I hide RoUtility’s copy so nothing shows twice. You can still change any of it in Settings.": "แจ้งให้ทราบ: เห็นว่าคุณใช้ {list} ด้วย ถ้าส่วนขยายอื่นแสดงแถว ลิงก์ หรือปุ่มเดียวกับ RoUtility อยู่แล้ว ฉันจะซ่อนของ RoUtility ไว้เพื่อไม่ให้แสดงซ้ำ คุณยังเปลี่ยนได้ทุกอย่างในการตั้งค่า",
  "Offensive content": "เนื้อหาที่ไม่เหมาะสม",
  "Offering": "เสนอ",
  "Offering {n}": "เสนอ {n}",
@@ -2945,6 +2948,11 @@
  "Your Robux × 1,000": "Robux ของคุณ × 1,000",
  "Your Robux × 1,000,000": "Robux ของคุณ × 1,000,000",
  "Your Robux × 10": "Robux ของคุณ × 10",
+ "Your Robux × 2": "Robux ของคุณ × 2",
+ "Your Robux × 5": "Robux ของคุณ × 5",
+ "Your Robux × 10,000,000": "Robux ของคุณ × 10,000,000",
+ "Your Robux × 100,000,000": "Robux ของคุณ × 100,000,000",
+ "Your Robux × 1,000,000,000": "Robux ของคุณ × 1,000,000,000",
  "Your Robux × 10,000": "Robux ของคุณ × 10,000",
  "Your Robux × 100": "Robux ของคุณ × 100",
  "Your Robux × 100,000": "Robux ของคุณ × 100,000",
@@ -3266,9 +3274,8 @@
  "Roblox Logo": "โลโก้ Roblox",
  "Today’s": "ปัจจุบัน",
  "2006 to 2016": "2006 ถึง 2016",
- "2017 to 2022": "2017 ถึง 2022",
  "Last Played First": "เล่นล่าสุดก่อน",
  "The Continue row on Home is sorted by when you last played each experience, newest first. RoUtility knows a game was played when it sees you in it while Roblox is open in this browser.": "แถวเล่นต่อในหน้าแรกจะเรียงตามเวลาที่คุณเล่นแต่ละประสบการณ์ครั้งล่าสุด ใหม่สุดก่อน RoUtility รู้ว่าคุณเล่นเกมไหนเมื่อเห็นคุณอยู่ในเกมขณะเปิด Roblox ในเบราว์เซอร์นี้",
  "2017 to 2018, red": "2017 ถึง 2018 สีแดง",
- "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, the red one with the tilted O from 2017 to 2018, or the white one from 2017 to 2022.": "โลโก้ Roblox ที่แสดงมุมซ้ายบน: แบบปัจจุบัน แบบสีแดงขาวปี 2006 ถึง 2016 แบบตัว O เอียงสีแดงปี 2017 ถึง 2018 หรือแบบสีขาวปี 2017 ถึง 2022"
+ "Which Roblox logo shows in the top left corner: today’s, the red and white one from 2006 to 2016, or the red one with the tilted O from 2017 to 2018.": "โลโก้ Roblox ที่แสดงมุมซ้ายบน: แบบปัจจุบัน แบบสีแดงขาวปี 2006 ถึง 2016 หรือแบบตัว O เอียงสีแดงปี 2017 ถึง 2018"
 }

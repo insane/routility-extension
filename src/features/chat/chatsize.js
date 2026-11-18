@@ -81,6 +81,7 @@
     const s = shells()[0];
     const r = s ? s.getBoundingClientRect() : { width: START.w, height: START.h };
     drag = { x: e.clientX, y: e.clientY, w: r.width, h: r.height, id: e.pointerId, el: e.currentTarget };
+    delete drag.el.dataset.rtTip;
     drag.el.setPointerCapture(e.pointerId);
     document.documentElement.classList.add('routility-chat-dragging');
     drag.el.addEventListener('pointermove', move);
@@ -100,6 +101,7 @@
     drag.el.removeEventListener('pointermove', move);
     drag.el.removeEventListener('pointerup', end);
     drag.el.removeEventListener('pointercancel', end);
+    drag.el.dataset.rtTip = lt('Drag to resize, Double-click to reset');
     drag = null;
     document.documentElement.classList.remove('routility-chat-dragging');
     if (size && size.w === START.w && size.h === START.h) size = null;
