@@ -267,6 +267,7 @@ function cleanWriteBody(path, body) {
 }
 const REFRESH_INTERVAL = 15 * 60 * 1000;
 const RETRY_AFTER_FAILURE = 60 * 1000;
+const LIVE_INTERVAL = 5 * 60 * 1000;
 
 const inFlight = new Map();
 const cooldownUntil = new Map();
@@ -869,6 +870,15 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     getItems().then(items => {
       const item = msg.bundle ? bundleIndex(items).get(String(msg.bundle)) : items[msg.id];
       sendResponse({ item: item || null, ready: Object.keys(items).length > 0 });
+    });
+    return true;
+  }
+
+  if (msg.type === 'pricesVersion') {
+    getItems().then(async () => {
+      const age = Date.now() - ((itemsMemo && itemsMemo.routilityLastFetch) || 0);
+      if (age > LIVE_INTERVAL && Date.now() - lastFailure > RETRY_AFTER_FAILURE) await fetchAllItems();
+      sendResponse({ at: (itemsMemo && itemsMemo.routilityLastFetch) || 0 });
     });
     return true;
   }

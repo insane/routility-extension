@@ -1402,12 +1402,16 @@
     { type: 'inbound', kind: 'all', title: LT('Decline All'), desc: LT('Every inbound trade') },
     { type: 'outbound', kind: 'overpay', title: LT('Cancel Overpays'), desc: LT('Trades where you’d give more value than you get') },
     { type: 'outbound', kind: 'unowned', title: LT('Cancel Unowned Items'), desc: LT('Trades with an item either of you no longer owns') },
+    { type: 'outbound', kind: 'dropped', title: LT('Cancel Value Drops'), desc: LT('Trades that got worse for you since you sent them') },
+    { type: 'outbound', kind: 'old', title: LT('Cancel Old Trades'), desc: LT('Trades you sent more than a day ago') },
     { type: 'outbound', kind: 'all', title: LT('Cancel All'), desc: LT('Every outbound trade') },
   ];
   const CLEAN_ICONS = {
     overpay: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l6 6 4-4 8 8"/><path d="M15 17h6v-6"/></svg>',
     unowned: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v10l8 4 8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/><path d="M3 3l18 18"/></svg>',
     all: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+    dropped: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M3 7v4M3 7h4"/><path d="M15 21l3-3 3 3"/></svg>',
+    old: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
   };
   let csrf = '';
 
@@ -1434,7 +1438,7 @@
     for (let page = 0; page < 30; page++) {
       const d = await robloxJson(`https://trades.roblox.com/v1/trades/${type}?sortOrder=Desc&limit=100&cursor=${encodeURIComponent(cursor)}`);
       if (!d || !Array.isArray(d.data)) return page ? out : null;
-      for (const t of d.data) out.push({ id: String(t.id), name: t.user?.displayName || t.user?.name || '', user: t.user?.name || '', userId: t.user?.id });
+      for (const t of d.data) out.push({ id: String(t.id), name: t.user?.displayName || t.user?.name || '', user: t.user?.name || '', userId: t.user?.id, created: Date.parse(t.created) || 0 });
       cursor = d.nextPageCursor || '';
       if (!cursor) break;
     }
@@ -1453,12 +1457,50 @@
     return usd;
   }
 
+  const histories = new Map();
+
+  function history(id) {
+    if (!histories.has(id)) histories.set(id, window.RoUtilityUI.request({ type: 'getHistory', id }, r => !!(r && 'points' in r)).then(r => (r && r.points) || []).catch(() => []));
+    return histories.get(id);
+  }
+
+  async function offerThenNow(offer, at) {
+    const items = offer.items || [];
+    const keys = items.map(offerPriceKey);
+    const got = keys.some(Boolean) ? await prices(keys) : [];
+    const robux = (Number(offer.robux) || 0) * robuxRate;
+    let now = robux;
+    let then = robux;
+    await Promise.all(items.map(async (it, i) => {
+      const p = got[i];
+      const cur = p && Number.isFinite(p.usd) ? p.usd : (Number(it.recentAveragePrice) || 0) * robuxRate;
+      now += cur;
+      let past = cur;
+      const k = keys[i];
+      if (k && k.startsWith('id:')) {
+        const pts = await history(k.slice(3));
+        const before = pts.filter(x => x.ts * 1000 <= at).sort((a, b) => a.ts - b.ts).pop();
+        if (before && before.usd > 0) past = before.usd;
+      }
+      then += past;
+    }));
+    return { now, then };
+  }
+
   async function judge(entry, kind) {
     if (kind === 'all') return { hit: true };
+    if (kind === 'old') return { hit: entry.created > 0 && Date.now() - entry.created > 86400000, age: entry.created };
     const d = await rawDetail(entry.id);
     if (!d || !d.participantAOffer || !d.participantBOffer) return { hit: false, failed: true };
     const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
     const [mine, theirs] = String(d.participantBOffer.user?.id) === me ? [d.participantBOffer, d.participantAOffer] : [d.participantAOffer, d.participantBOffer];
+    if (kind === 'dropped') {
+      const at = entry.created || Date.parse(d.created) || 0;
+      if (!at) return { hit: false };
+      const [give, get] = await Promise.all([offerThenNow(mine, at), offerThenNow(theirs, at)]);
+      const drop = (get.then - give.then) - (get.now - give.now);
+      return { hit: drop >= 0.5 && drop >= 0.03 * Math.max(give.now, get.now), drop };
+    }
     if (kind === 'overpay') {
       const [give, get] = await Promise.all([offerValue(mine), offerValue(theirs)]);
       return { hit: give > get * 1.005 && give - get >= 0.01, give, get };
@@ -1658,7 +1700,9 @@
         let info = '';
         if (a.kind === 'overpay') info = lt('{give} vs {get}', { give: formatUSD(h.give), get: formatUSD(h.get) });
         if (a.kind === 'unowned') info = h.lost.join(', ');
-        li.append(names, el('span', 'text-caption-medium content-default routility-clean-item-info' + (a.kind === 'overpay' ? ' routility-clean-loss' : ''), info));
+        if (a.kind === 'dropped') info = lt('{drop} worse since you sent it', { drop: formatUSD(h.drop) });
+        if (a.kind === 'old') info = lt('Sent {when}', { when: relative(Date.now() - h.age) });
+        li.append(names, el('span', 'text-caption-medium content-default routility-clean-item-info' + (a.kind === 'overpay' || a.kind === 'dropped' ? ' routility-clean-loss' : ''), info));
         ul.appendChild(li);
       }
       body.appendChild(ul);
@@ -1723,6 +1767,28 @@
       }
     }
   }
+
+  window.addEventListener('routility-prices-updated', async (e) => {
+    const changed = (e.detail && e.detail.changed) || {};
+    if (!Object.keys(changed).length) return;
+    const offers = () => [...document.querySelectorAll('.trade-list-detail-offer, .trade-request-window-offer')];
+    const spots = (offer) => [
+      ...offerCards(offer).flatMap((card, j) => [['u' + j, card.querySelector('.routility-card-usd'), changed[cardKey(card)]], ['w' + j, card.querySelector('.routility-card-worth'), changed[cardKey(card)]]]),
+      ['tu', offer.querySelector('.routility-trade-usd .routility-usd-total') || offer.querySelector('.routility-trade-usd'), 0],
+      ['tv', offer.querySelector('.routility-trade-val .routility-val') || offer.querySelector('.routility-trade-val'), 0],
+    ];
+    const before = offers().map(o => new Map(spots(o).map(([k, n]) => [k, n ? n.textContent : null])));
+    await scanOffers();
+    const flash = window.RoUtilityUI.flash;
+    offers().forEach((offer, i) => {
+      const was = before[i];
+      if (!was) return;
+      let sum = 0;
+      const list = spots(offer);
+      for (const [k, n, dir] of list) if (dir && n && was.get(k) !== n.textContent) { flash(n, dir); sum += dir; }
+      for (const [k, n] of list) if (k[0] === 't' && n && was.get(k) !== n.textContent) flash(n, sum || 1);
+    });
+  });
 
   let lastFilterRows = 0;
   let proofOn = true;

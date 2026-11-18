@@ -96,6 +96,7 @@
         "src/features/themes/classic2017.js",
         "src/features/trading/calc.js",
         "src/features/trading/tradeads.js",
+        "src/features/trading/quicktrade.js",
         "src/features/items/itemcard.js",
         "src/features/friends/today.js",
         "src/features/home/wrapped.js",

@@ -15624,3 +15624,87 @@ html.routility-with-foreign-rig .routility-av-rig,
 html.routility-with-foreign-filter .routility-av-filter-btn {
   display: none !important;
 }
+
+.routility-qt-dialog {
+  width: min(460px, calc(100vw - 32px));
+  max-width: none;
+}
+
+.routility-qt-field.routility-qt-bad {
+  border-color: var(--color-system-alert, #df281f);
+  box-shadow: inset 0 0 0 1px var(--color-system-alert, #df281f);
+}
+
+.routility-qt-dialog .routility-qt-error {
+  color: var(--color-system-alert, #df281f);
+}
+
+.routility-qt-go {
+  flex: 0 0 auto;
+}
+
+.routility-qt-go:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.routility-qt-chip {
+  padding: 0 12px 0 4px;
+  max-width: 180px;
+}
+
+.routility-qt-face {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--color-shift-200, rgba(127, 127, 127, 0.12));
+}
+
+.routility-qt-icon {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+}
+
+.routility-qt-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.routility-flash-up,
+.routility-flash-down {
+  border-radius: 6px;
+  animation: routility-flash 2.4s ease-out;
+}
+
+.routility-flash-up {
+  --routility-flash: rgba(2, 183, 87, 0.22);
+}
+
+.routility-flash-down {
+  --routility-flash: rgba(240, 72, 72, 0.22);
+}
+
+.routility-flash-up,
+.routility-flash-up * {
+  color: #02b757 !important;
+}
+
+.routility-flash-down,
+.routility-flash-down * {
+  color: #f04848 !important;
+}
+
+@keyframes routility-flash {
+  0% { background-color: var(--routility-flash); box-shadow: 0 0 0 3px var(--routility-flash); }
+  70% { background-color: var(--routility-flash); box-shadow: 0 0 0 3px var(--routility-flash); }
+  100% { background-color: transparent; box-shadow: 0 0 0 3px transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .routility-flash-up,
+  .routility-flash-down {
+    animation: none;
+  }
+}

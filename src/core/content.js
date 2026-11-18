@@ -229,13 +229,37 @@
         deals();
         itemGuard?.disconnect();
         placeSimilar(item);
-        itemGuard = new MutationObserver(window.RoUtilityUI.onFrame(() => { ensureItemInfo(item); deals(); placeSimilar(item); }));
+        shownItem = item;
+        itemGuard = new MutationObserver(window.RoUtilityUI.onFrame(() => { ensureItemInfo(shownItem); deals(); placeSimilar(item); }));
         itemGuard.observe(document.querySelector('#item-details-container') || document.body, { childList: true, subtree: true });
       }
       if (settings.usdChart) window.RoUtilityChart.setup(itemId);
       if (settings.owners) window.RoUtilityOwners.setup(itemId);
     });
   }
+
+  let shownItem = null;
+
+  window.addEventListener('routility-prices-updated', async () => {
+    const itemId = getItemIdFromURL(window.location.href);
+    const old = shownItem;
+    if (!itemId || !old || String(old.id) !== itemId) return;
+    const res = await window.RoUtilityUI.request({ type: 'getItem', id: itemId }, r => !!(r && r.ready));
+    const next = res && res.item;
+    if (!next || shownItem !== old || getItemIdFromURL(window.location.href) !== itemId) return;
+    const data = await itemData.get(itemId);
+    if (data) itemData.set(itemId, Promise.resolve({ ...data, item: next }));
+    shownItem = next;
+    const dv = window.RoUtilityUI.itemValue(next) - window.RoUtilityUI.itemValue(old);
+    const du = (Number(next.usd) || 0) - (Number(old.usd) || 0);
+    if (!dv && Math.abs(du) < 0.005) return;
+    const details = document.querySelector('.item-details-section');
+    if (!details) return;
+    details.querySelectorAll('.routility-price-pair, .routility-usd, .routility-item-val').forEach(n => n.remove());
+    placePriceBlock(details, next);
+    window.RoUtilityUI.flash(details.querySelector('.routility-item-val'), Math.sign(dv));
+    window.RoUtilityUI.flash(details.querySelector('.routility-usd'), Math.abs(du) < 0.005 ? 0 : Math.sign(du));
+  });
 
   const itemExtras = { trades: true, stats: true, tags: true, calc: true, similar: true, usd: true, value: true, demand: true, trend: true, copies: true, change: true, owned: true };
   let similarItems = null;

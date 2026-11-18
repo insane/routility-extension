@@ -18,6 +18,7 @@
     { label: LT('Sandbox'), href: '/my/avatar?sandbox', icon: 'routility-sb-nav-icon', words: 'try on limiteds dominus', flag: 'avatarSandbox' },
     { label: LT('Inventory'), href: (me) => `/users/${me}/inventory`, icon: 'icon-regular-backpack', words: 'items' },
     { label: LT('Trades'), href: '/trades', icon: 'icon-regular-hand-two-arrows-horizontal', words: 'trading inbound outbound' },
+    { label: LT('Quick Trade'), action: 'routility-quick-trade', icon: 'icon-regular-hand-two-arrows-horizontal', words: 'trade with send open user username link', flag: 'quickTrade' },
     { label: LT('Trade Calculator'), href: '/trades/calculator', icon: 'routility-calc-nav-icon', words: 'value calc', flag: 'tradeCalculator' },
     { label: LT('Trade Ads'), href: '/trade-ads', icon: 'routility-ads-nav-icon', words: 'trading', flag: 'tradeAds' },
     { label: LT('Friend History'), href: '/friend-history', icon: 'routility-fh-nav-icon', words: 'unfriended removed added', flag: 'friendHistory' },
@@ -93,7 +94,7 @@
       if (p.flag && settings[p.flag] === false) continue;
       const label = lt(p.label);
       const sc = q ? Math.max(score(label, q), score(p.label, q), score(p.words, q) - 1) : 1;
-      if (sc > 0) out.push({ kind: 'page', sc: sc + 0.3, label, icon: p.icon, href: pageHref(p) });
+      if (sc > 0) out.push({ kind: 'page', sc: sc + 0.3, label, icon: p.icon, href: p.action ? '' : pageHref(p), action: p.action });
     }
     if (q) {
       for (const f of friends || []) {
@@ -221,6 +222,7 @@
       return;
     }
     close();
+    if (r.action) return window.dispatchEvent(new CustomEvent(r.action));
     go(r.href, newTab);
   }
 

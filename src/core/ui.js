@@ -885,6 +885,65 @@
     return v instanceof Promise ? undefined : v;
   }
 
+  let liveOn = true;
+  let liveAt = 0;
+  let liveBusy = false;
+  chrome.storage.local.get('routilitySettings', (st) => { liveOn = (st.routilitySettings || {}).livePrices !== false; });
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === 'local' && changes.routilitySettings) liveOn = (changes.routilitySettings.newValue || {}).livePrices !== false;
+  });
+
+  function priceDir(o, n) {
+    if (!o || !n) return 0;
+    const d = [(Number(n.usd) || 0) - (Number(o.usd) || 0), itemValue(n) - itemValue(o), (Number(n.rap) || 0) - (Number(o.rap) || 0)].find(x => Math.abs(x) >= 0.005);
+    return d ? Math.sign(d) : 0;
+  }
+
+  async function liveTick() {
+    if (!liveOn || liveBusy || document.hidden || location.hostname !== 'www.roblox.com') return;
+    liveBusy = true;
+    try {
+      const r = await request({ type: 'pricesVersion' }, x => !!(x && x.at));
+      if (!r || !r.at) return;
+      if (!liveAt || r.at === liveAt) { liveAt = r.at; return; }
+      liveAt = r.at;
+      const keys = [...priceCache.keys()].filter(k => !(priceCache.get(k) instanceof Promise));
+      const ids = keys.filter(k => k.startsWith('id:')).map(k => k.slice(3));
+      const names = keys.filter(k => k.startsWith('name:')).map(k => k.slice(5));
+      const bundles = keys.filter(k => k.startsWith('bundle:')).map(k => k.slice(7));
+      const changed = {};
+      if (keys.length) {
+        const res = await request({ type: 'getPrices', ids, names, bundles }, x => !!(x && x.ready));
+        if (res && res.ready) {
+          const next = new Map();
+          for (const id of ids) next.set('id:' + id, res.ids[id] || null);
+          for (const n of names) next.set('name:' + n, res.names[n] || null);
+          for (const b of bundles) next.set('bundle:' + b, (res.bundles || {})[b] || null);
+          for (const [k, v] of next) {
+            const dir = priceDir(priceNow(k), v);
+            if (dir) changed[k] = dir;
+            priceCache.set(k, v);
+          }
+        }
+      }
+      window.dispatchEvent(new CustomEvent('routility-prices-updated', { detail: { changed } }));
+    } finally {
+      liveBusy = false;
+    }
+  }
+
+  setInterval(liveTick, 60000);
+  setTimeout(liveTick, 8000);
+
+  function flash(node, dir) {
+    if (!node || !dir) return;
+    node.classList.remove('routility-flash-up', 'routility-flash-down');
+    void node.offsetWidth;
+    node.classList.add(dir > 0 ? 'routility-flash-up' : 'routility-flash-down');
+    clearTimeout(node._rtFlash);
+    node._rtFlash = setTimeout(() => node.classList.remove('routility-flash-up', 'routility-flash-down'), 2400);
+  }
+
   function mark(name) {
     const attr = 'data-rt-' + name;
     if (!document.documentElement.hasAttribute(attr)) document.documentElement.setAttribute(attr, String(Math.round(performance.now())));
@@ -1216,7 +1275,7 @@
     });
   }
 
-  window.RoUtilityUI = { stripNavBadges, gameDetails, tagIcon, tagIcons, json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, usdIcon, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, exactTime, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request, confirmDialog };
+  window.RoUtilityUI = { stripNavBadges, gameDetails, tagIcon, tagIcons, json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, usdIcon, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, exactTime, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request, confirmDialog, flash };
 })();
 
 (function () {
