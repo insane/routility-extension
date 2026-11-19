@@ -114,10 +114,10 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', settle, { once: true });
     else settle();
   }
-  const routed = location.pathname === '/charts' && location.search.match(/^\?routility=(\/(?:forum(?:\/[^&]*)?|trades\/calculator\/?|trade-ads\/?|friend-history\/?))&?(.*)$/);
+  const routed = location.pathname === '/charts' && location.search.match(/^\?routility=(\/(?:forum(?:\/[^&]*)?|trades\/calculator\/?|trade-ads\/?|mass-send\/?|friend-history\/?))&?(.*)$/);
   if (routed) {
     history.replaceState(history.state, '', routed[1] + (routed[2] ? '?' + routed[2] : '') + location.hash);
-    const titleKey = /^\/forum/.test(routed[1]) ? LT('Forum - Roblox') : /^\/trades/.test(routed[1]) ? LT('Trade Calculator - Roblox') : /^\/friend-history/.test(routed[1]) ? LT('Friend History - Roblox') : LT('Trade Ads - Roblox');
+    const titleKey = /^\/forum/.test(routed[1]) ? LT('Forum - Roblox') : /^\/trades/.test(routed[1]) ? LT('Trade Calculator - Roblox') : /^\/friend-history/.test(routed[1]) ? LT('Friend History - Roblox') : /^\/mass-send/.test(routed[1]) ? LT('Mass Send - Roblox') : LT('Trade Ads - Roblox');
     root.dataset.rtTitle = lt(titleKey);
     const fixTitle = () => {
       const want = root.dataset.rtTitle;
@@ -283,7 +283,7 @@
     const streamer = !!(settings || {}).streamerMode;
     if (calcPage) root.classList.toggle('routility-calc-page', (settings || {}).tradeCalculator !== false);
     if (forumPage) root.classList.toggle('routility-forum-page', (settings || {}).forum !== false);
-    if (adsPage) root.classList.toggle('routility-ads-page', (settings || {}).tradeAds !== false);
+    if (adsPage) root.classList.toggle('routility-ads-page', massPage ? (settings || {}).massSend !== false : (settings || {}).tradeAds !== false);
     if (historyPage) root.classList.toggle('routility-fh-page', (settings || {}).friendHistory !== false);
     if (serversPage) root.classList.toggle('routility-ps-page', (settings || {}).privateServers !== false);
     root.classList.toggle('routility-forum-topbar', (settings || {}).forum !== false && (settings || {}).forumTopLink !== false);
@@ -322,7 +322,8 @@
   const forumPage = /^\/forum(\/|$)/i.test(location.pathname);
   if (calcPage) root.classList.add('routility-calc-page');
   if (forumPage) root.classList.add('routility-forum-page');
-  const adsPage = /^\/trade-ads\/?$/i.test(location.pathname);
+  const massPage = /^\/mass-send\/?$/i.test(location.pathname);
+  const adsPage = massPage || /^\/trade-ads\/?$/i.test(location.pathname);
   if (adsPage) root.classList.add('routility-ads-page');
   const historyPage = /^\/friend-history\/?$/i.test(location.pathname);
   if (historyPage) root.classList.add('routility-fh-page');

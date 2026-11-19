@@ -1388,11 +1388,23 @@
   });
 
   let cleanOn = true;
+  let massOn = true;
+  let quickOn = true;
   let robuxRate = 0.0038;
   chrome.storage.local.get('routilitySettings', (st) => {
     const s = st.routilitySettings || {};
     cleanOn = s.tradeCleanup !== false;
+    massOn = s.massSend !== false;
+    quickOn = s.quickTrade !== false;
     robuxRate = window.RoUtilityUI.robuxRate(s);
+  });
+  chrome.storage.onChanged.addListener((c, area) => {
+    if (area !== 'local' || !c.routilitySettings) return;
+    const s = c.routilitySettings.newValue || {};
+    cleanOn = s.tradeCleanup !== false;
+    massOn = s.massSend !== false;
+    quickOn = s.quickTrade !== false;
+    ensureTools();
   });
 
   const BROOM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 3.5 13 10"/><path d="M11.2 9.3l3.5 3.5c.6.6.6 1.4 0 2l-.9.9-5.5-5.5.9-.9c.6-.6 1.4-.6 2 0z"/><path d="M8.3 10.2 4 14.5c1.4 3.2 3.4 5.2 6.5 6.5l4.3-4.3"/><path d="M7.5 17.5l2-2"/></svg>';
@@ -1415,21 +1427,100 @@
   };
   let csrf = '';
 
-  function ensureCleanButton() {
+  const SEND_MANY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 10.5 13.5"/><path d="M21 3l-6.5 18-4-7.5L3 9.5z"/><path d="M6.5 16.5 3 20"/><path d="M9 19l-1.5 1.5"/></svg>';
+  const QUICK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6 1.4 0 2.7.5 3.7 1.3"/><path d="M15 18h6M18.5 15.5 21 18l-2.5 2.5"/></svg>';
+  const DOTS = '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="19" cy="12" r="1.9"/></svg>';
+  const STATE = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
+  const MASS_URL = 'https://www.roblox.com/mass-send';
+
+  function openMass(e) {
+    if (e && (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1)) window.open(MASS_URL, '_blank', 'noopener');
+    else location.href = MASS_URL;
+  }
+
+  function tools() {
+    return [
+      quickOn && { key: 'quick', label: lt('Quick Trade'), icon: QUICK, run: () => window.dispatchEvent(new CustomEvent('routility-quick-trade')) },
+      massOn && { key: 'mass', label: lt('Mass Send'), icon: SEND_MANY, run: openMass, middle: true },
+      cleanOn && { key: 'clean', label: lt('Clean Up Trades'), icon: BROOM, run: openCleanup },
+    ].filter(Boolean);
+  }
+
+  function closeTools() {
+    document.querySelector('.routility-tools-menu')?.remove();
+    document.querySelector('.routility-tools-btn')?.setAttribute('aria-expanded', 'false');
+    document.removeEventListener('mousedown', toolsOutside, true);
+    document.removeEventListener('keydown', toolsKey, true);
+  }
+
+  function toolsOutside(e) {
+    if (!e.target.closest('.routility-tools')) closeTools();
+  }
+
+  function toolsKey(e) {
+    if (e.key === 'Escape') { e.stopPropagation(); closeTools(); document.querySelector('.routility-tools-btn')?.focus(); }
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      const items = [...document.querySelectorAll('.routility-tools-menu button')];
+      if (!items.length) return;
+      e.preventDefault();
+      const at = items.indexOf(document.activeElement);
+      items[(at + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length].focus();
+    }
+  }
+
+  function openTools(wrap, btn) {
+    if (wrap.querySelector('.routility-tools-menu')) return closeTools();
+    const menu = el('div', 'foundation-web-menu bg-surface-100 stroke-standard stroke-default shadow-transient-high radius-large padding-small routility-tools-menu');
+    menu.setAttribute('role', 'menu');
+    for (const t of tools()) {
+      const item = el('button', 'relative clip group/interactable focus-visible:outline-focus foundation-web-menu-item flex items-center content-default cursor-pointer stroke-none bg-none text-align-x-left width-full text-body-medium padding-x-medium padding-y-small gap-x-medium radius-medium');
+      item.type = 'button';
+      item.setAttribute('role', 'menuitem');
+      const layer = el('div', STATE);
+      layer.setAttribute('aria-hidden', 'true');
+      const icon = el('span', 'size-500 content-emphasis routility-tools-icon');
+      icon.innerHTML = t.icon;
+      item.append(layer, icon, el('span', null, t.label));
+      item.addEventListener('click', (e) => { closeTools(); t.run(e); });
+      if (t.middle) item.addEventListener('auxclick', (e) => { if (e.button === 1) { closeTools(); t.run(e); } });
+      menu.appendChild(item);
+    }
+    wrap.appendChild(menu);
+    btn.setAttribute('aria-expanded', 'true');
+    document.addEventListener('mousedown', toolsOutside, true);
+    document.addEventListener('keydown', toolsKey, true);
+    menu.querySelector('button')?.focus();
+  }
+
+  function ensureTools() {
     const actions = document.querySelector('.trades-header .trades-header-actions');
-    const has = actions && actions.querySelector('.routility-clean-btn');
-    if (!cleanOn || !actions) { has?.remove(); return; }
-    if (has) return;
-    const b = el('button', 'foundation-web-icon-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center padding-none stroke-none select-none size-1000 radius-medium bg-action-link routility-injected routility-clean-btn');
+    const list = tools();
+    const sig = list.map(t => t.key).join(',');
+    const has = actions && actions.querySelector('.routility-tools');
+    if (!actions || !list.length) { has?.remove(); return; }
+    if (has && has.dataset.sig === sig) return;
+    has?.remove();
+    const wrap = el('span', 'routility-injected routility-tools');
+    wrap.dataset.sig = sig;
+    const b = el('button', 'foundation-web-icon-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center padding-none stroke-none select-none size-1000 radius-medium bg-action-link routility-tools-btn');
     b.type = 'button';
-    b.setAttribute('aria-label', lt('Clean Up Trades'));
-    const layer = el('div', 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none');
+    const layer = el('div', STATE);
     layer.setAttribute('aria-hidden', 'true');
     const icon = el('span', 'size-600 content-emphasis routility-clean-icon');
-    icon.innerHTML = BROOM;
+    const one = list.length === 1 ? list[0] : null;
+    icon.innerHTML = one ? one.icon : DOTS;
+    const label = one ? one.label : lt('Trade Tools');
+    b.setAttribute('aria-label', label);
+    b.dataset.rtTip = label;
+    if (!one) {
+      b.setAttribute('aria-haspopup', 'menu');
+      b.setAttribute('aria-expanded', 'false');
+    }
     b.append(layer, icon);
-    b.addEventListener('click', openCleanup);
-    actions.prepend(b);
+    b.addEventListener('click', (e) => { if (one) one.run(e); else openTools(wrap, b); });
+    if (one && one.middle) b.addEventListener('auxclick', (e) => { if (e.button === 1) one.run(e); });
+    wrap.appendChild(b);
+    actions.prepend(wrap);
   }
 
   async function listAll(type) {
@@ -1751,7 +1842,7 @@
   }
 
   function scan() {
-    ensureCleanButton();
+    ensureTools();
     ensureProof();
     ensureAnalyze();
     scanRows();

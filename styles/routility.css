@@ -15717,3 +15717,57 @@ html.routility-with-foreign-filter .routility-av-filter-btn {
     animation: none;
   }
 }
+
+.routility-mass-opts { display: flex; flex-direction: column; gap: 10px; }
+.routility-mass-opt { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.routility-mass-opt-label { flex: 0 0 140px; }
+.routility-mass-opt .routility-ads-chips { flex: 1 1 auto; min-width: 0; }
+.routility-mass-busy .routility-ads-form-grid { opacity: 0.6; pointer-events: none; }
+.routility-mass-progress { display: flex; flex-direction: column; gap: 10px; }
+.routility-mass-status.routility-ads-hint-alert { color: var(--color-system-alert, #df281f); }
+.routility-mass-list { max-height: 360px; overflow-y: auto; }
+.routility-mass-list:empty { display: none; }
+.routility-mass-list a { text-decoration: none; }
+.routility-mass-list a:hover { text-decoration: underline; }
+.routility-mass-sent .routility-clean-item-info { color: var(--color-system-success, #39c582); }
+.routility-mass-failed .routility-clean-item-info { color: var(--color-system-alert, #df281f); }
+.routility-mass-skipped { opacity: 0.6; }
+.routility-mass-who { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.routility-mass-face { flex: none; width: 32px; height: 32px; border-radius: 50%; overflow: hidden; background: var(--color-shift-200, rgba(208, 217, 251, 0.08)); }
+.routility-mass-face img { width: 100%; height: 100%; display: block; }
+@media (max-width: 640px) {
+  .routility-mass-opt-label { flex-basis: 100%; }
+}
+.routility-ads-grid:has(> .routility-ads-card, > .routility-ads-sk-card) { grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); column-gap: 12px; row-gap: 18px; align-items: start; }
+.routility-ads-grid > .routility-ads-card { width: auto !important; height: auto !important; margin: 0 !important; padding: 0 !important; float: none !important; }
+.routility-ads-grid > .routility-ads-card > .item-card-container { width: 100% !important; height: auto !important; margin: 0 !important; overflow: visible !important; }
+.routility-ads-card .item-card-caption { padding-top: 6px; }
+.routility-ads-card .item-card-price { min-width: 0; }
+.routility-ads-card-on .item-card-thumb-container { outline: 2px solid var(--color-system-emphasis, #335fff); outline-offset: -2px; }
+.routility-ads-card .routility-calc-card-btn:focus-visible .item-card-thumb-container { outline: 2px solid var(--color-system-emphasis, #335fff); outline-offset: -2px; }
+.routility-ads-card .routility-calc-card-btn:disabled { cursor: not-allowed; }
+.routility-ads-card .routility-calc-card-btn:disabled > * { opacity: 0.45; }
+.routility-ads-card .routility-calc-card-btn:disabled:hover .item-card-thumb-container { filter: none; }
+.routility-ads-sk-card { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.routility-ads-sk-card .routility-ads-sk-thumb { display: block; width: 100%; aspect-ratio: 1; border-radius: calc(8px * var(--routility-round, 1)); }
+.routility-ads-sk-card .routility-ads-sk-line { display: block; height: 14px; border-radius: calc(6px * var(--routility-round, 1)); }
+.routility-ads-sk-card .routility-ads-sk-name { width: 82%; margin-top: 2px; }
+.routility-ads-sk-card .routility-ads-sk-rap { width: 64%; }
+.routility-ads-sk-card .routility-ads-sk-val { width: 58%; }
+.routility-ads-sk-card .routility-ads-sk-usd { width: 52%; }
+.routility-mass-inputs { display: flex; align-items: center; gap: 8px; }
+.routility-mass-inputs > .foundation-web-input:first-child { flex: 1 1 0; min-width: 0; }
+.routility-mass-inputs > .routility-mass-robux { flex: 0 0 150px; width: 150px; }
+.routility-mass-inputs > .routility-mass-add { flex: none; height: 40px; padding-left: 16px; padding-right: 16px; }
+@media (max-width: 480px) {
+  .routility-mass-inputs { flex-wrap: wrap; }
+  .routility-mass-inputs > .foundation-web-input:first-child { flex-basis: 100%; }
+  .routility-mass-inputs > .routility-mass-robux { flex: 1 1 0; width: auto; }
+}
+.routility-mass-robux .routility-ads-rbx { flex: none; }
+.routility-mass-total { margin-left: auto; align-self: center; min-width: 0; }
+.routility-mass-total:empty { display: none; }
+.routility-tools { position: relative; display: inline-flex; }
+.routility-tools-menu { position: absolute; top: calc(100% + 6px); right: 0; z-index: 30; min-width: 200px; display: flex; flex-direction: column; }
+.routility-tools-icon { display: inline-flex; flex: none; width: 20px; height: 20px; }
+.routility-tools-icon svg { width: 100%; height: 100%; }

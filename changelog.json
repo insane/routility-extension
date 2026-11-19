@@ -2,7 +2,8 @@
   "contributors": {
     "reqonn": { "github": "reqonn" },
     "awkward222": { "github": "awkward222" },
-    "primary999": { "github": "primary999" }
+    "primary999": { "github": "primary999" },
+    "Scripzy": { "github": "Scripzy" }
   },
   "releases": [
     {
@@ -10,7 +11,8 @@
       "date": "2026-11-18",
       "summary": "Quick Trade opens a trade from a username or profile link, values update live while you watch, the Clans & Guilds forum is back, the 2017 theme scrolls properly again, Adjust Accessories opens about four times faster, and the chat bot tells you which other extensions it found.",
       "changes": [
-        { "type": "new", "text": "Quick Trade (Trades): type a username or paste a profile link and the trade opens straight away, with the people you traded with last one click away. It’s next to Trades and in the command palette." },
+        { "type": "new", "text": "Quick Trade (Trades): type a username or paste a profile link and the trade opens straight away, with the people you traded with last one click away. It’s in the menu next to Trades and in the command palette.", "by": ["Scripzy"] },
+        { "type": "new", "text": "Mass Send (Trades): set up one offer and send it to everyone who owns what you want, from RoUtility’s owner list or Trade Ads. It checks each person’s inventory right before sending, skips anyone who no longer has the item, keeps track of Roblox’s 100 trades a day and waits out its limits by itself. Open it from the menu next to Trades.", "by": ["Scripzy"] },
         { "type": "new", "text": "Live Value Changes: on item pages and trades, values and prices update every few minutes without a refresh, and flash green when they go up or red when they go down." },
         { "type": "improved", "text": "Clean Up Trades: cancel outbound trades that got worse for you since you sent them, or that you sent more than a day ago." },
         { "type": "new", "text": "Clans & Guilds (Forum): the old Club Houses forum for your clans, groups and guilds is back, with its pinned rules." },

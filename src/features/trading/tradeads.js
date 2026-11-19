@@ -5,6 +5,7 @@
   const showing = shows('Ads');
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const PATH = /^\/trade-ads\/?$/i;
+  const MASS_PATH = /^\/mass-send\/?$/i;
   const SITE = 'https://routility.io';
   const STATE_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
   const CHIP_ON = ['bg-inverse-surface-0', 'content-inverse-emphasis'];
@@ -490,43 +491,59 @@
   }
 
   function itemCard(it, opts) {
-    const b = el('button', 'routility-ads-tile relative clip group/interactable cursor-pointer' + (opts.picked ? ' routility-ads-tile-on' : ''));
+    const card = el('div', 'list-item item-card routility-calc-card routility-ads-card' + (opts.picked ? ' routility-ads-card-on' : ''));
+    const b = el('button', 'item-card-container relative clip group/interactable cursor-pointer routility-calc-card-btn');
     b.type = 'button';
     b.disabled = !!opts.disabled;
-    b.appendChild(layer());
-    const box = el('span', 'routility-ads-tile-img');
+    b.setAttribute('aria-pressed', String(!!opts.picked));
+    const thumbBox = el('div', 'item-card-thumb-container');
+    const thumb = el('span', 'thumbnail-2d-container item-card-thumb');
     if (it.thumb) {
       const img = el('img', 'routility-fade');
       img.alt = '';
       img.loading = 'lazy';
       img.addEventListener('load', () => img.classList.add('routility-loaded'), { once: true });
       img.src = it.thumb;
-      box.appendChild(img);
+      thumb.appendChild(img);
     }
+    thumbBox.appendChild(thumb);
     if (it.rare || it.ultra || it.projected) {
-      const tags = el('span', 'routility-ads-gem');
+      const tags = el('span', 'routility-calc-tags');
       tags.append(...window.RoUtilityUI.tagIcons(it));
-      box.appendChild(tags);
+      thumbBox.appendChild(tags);
     }
-    if (opts.serial) box.appendChild(el('span', 'routility-ads-serial text-label-small', '#' + formatNumber(opts.serial)));
-    const rap = el('span', 'routility-ads-tile-rap text-label-small content-muted');
-    if (!showing.value && itemValue(it)) b.dataset.rtTip = window.RoUtilityUI.valueTip(it);
-    if (showing.value && itemValue(it)) rap.append(valueTag(itemValue(it), { short: true, className: 'routility-ads-tile-val' }), document.createTextNode(', '));
-    rap.append(document.createTextNode('RAP '), robuxIcon(), document.createTextNode(' ' + (it.rap ? compact(it.rap) : '-')));
-    b.append(box, el('span', 'routility-ads-tile-name text-label-medium content-emphasis', it.name), el('span', 'routility-ads-tile-usd text-title-medium content-emphasis', it.usd ? usd(it.usd) : lt('No price')), rap);
+    if (opts.serial) thumbBox.appendChild(el('span', 'routility-calc-serial text-label-small', '#' + formatNumber(opts.serial)));
+    const cap = el('div', 'item-card-caption');
+    cap.appendChild(el('div', 'item-card-name text-overflow', it.name));
+    const rap = el('div', 'text-overflow item-card-price routility-calc-price');
+    rap.append(el('span', 'icon-robux-16x16'), el('span', 'text-robux-tile', formatNumber(it.rap || 0)));
+    cap.appendChild(rap);
+    if (showing.value) {
+      const worth = el('div', 'text-overflow item-card-price routility-calc-price');
+      worth.appendChild(valueTag(itemValue(it) || it.rap || 0, { textClass: 'text-robux-tile', tip: false }));
+      worth.dataset.rtTip = itemValue(it) ? lt('Value: {value}', { value: formatNumber(itemValue(it)) }) : lt('Not valued yet, so this is its RAP');
+      cap.appendChild(worth);
+    }
+    const price = el('div', 'text-overflow item-card-price routility-calc-price');
+    price.append(window.RoUtilityUI.usdIcon('routility-logo'), el('span', 'text-robux-tile', it.usd ? usd(it.usd) : lt('No price')));
+    cap.appendChild(price);
+    b.append(thumbBox, cap);
     if (opts.onHold) b.dataset.rtTip = lt('On hold, can’t be traded yet');
     b.addEventListener('click', opts.onClick);
-    return b;
+    card.appendChild(b);
+    return card;
   }
 
   function skTile() {
-    const t = el('div', 'routility-ads-tile routility-ads-tile-sk');
+    const t = el('div', 'routility-ads-sk-card');
     t.setAttribute('aria-hidden', 'true');
-    t.append(el('span', 'routility-ads-tile-img routility-sk'), el('span', 'routility-sk routility-ads-sk-line routility-ads-sk-name'), el('span', 'routility-sk routility-ads-sk-line routility-ads-sk-name2'), el('span', 'routility-sk routility-ads-sk-line routility-ads-sk-usd'), el('span', 'routility-sk routility-ads-sk-line routility-ads-sk-rap'));
+    t.append(el('span', 'routility-sk routility-ads-sk-thumb'), el('span', 'routility-sk routility-ads-sk-line routility-ads-sk-name'), el('span', 'routility-sk routility-ads-sk-line routility-ads-sk-rap'));
+    if (showing.value) t.appendChild(el('span', 'routility-sk routility-ads-sk-line routility-ads-sk-val'));
+    t.appendChild(el('span', 'routility-sk routility-ads-sk-line routility-ads-sk-usd'));
     return t;
   }
 
-  function slotView(e, onRemove) {
+  function slotView(e, onRemove, opts = {}) {
     const b = el('button', 'routility-ads-slot relative clip group/interactable cursor-pointer' + (e ? ' routility-ads-slot-full' : ''));
     b.type = 'button';
     b.appendChild(layer());
@@ -545,7 +562,7 @@
         img.src = it.thumb;
         b.appendChild(img);
       }
-      b.appendChild(el('span', 'routility-ads-slot-cap text-label-small', it.usd ? usd(it.usd) : compact(it.rap)));
+      if (opts.cap !== false) b.appendChild(el('span', 'routility-ads-slot-cap text-label-small', it.usd ? usd(it.usd) : compact(it.rap)));
     } else if (e.kind === 'tag') {
       b.classList.add('routility-ads-slot-tag');
       b.appendChild(tagImg(e.tag));
@@ -814,6 +831,691 @@
     return root;
   }
 
+  const MASS_SOURCES = [['owners', LT('Item Owners')], ['ads', LT('Trade Ads')]];
+  const MASS_ACTIVE = [['1', LT('1 Day')], ['3', LT('3 Days')], ['7', LT('7 Days')], ['30', LT('30 Days')], ['any', LT('Any Time')]];
+  const MASS_COUNTS = [10, 25, 50, 100];
+  const CIID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  let massCsrf = '';
+  const DAILY = 100;
+  const DAY = 864e5;
+  const SENT_KEY = 'routilityMassSent';
+  const TO_KEY = 'routilityMassSentTo';
+  const WEEK = 7 * DAY;
+  const MASS_SKIPS = [['pending', LT('People I already have a trade with')], ['recent', LT('People I mass sent to this week')], ['traded', LT('People I’ve traded with')], ['friends', LT('My friends')], ['fresh', LT('Accounts under 30 days old')]];
+
+  function wait(ms) {
+    return new Promise(res => setTimeout(res, ms));
+  }
+
+  function clock(ms) {
+    return new Date(ms).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  }
+
+  function buildMass() {
+    const st = { off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null };
+    const root = el('div', 'routility-ads-post routility-mass');
+    const form = el('div', 'routility-ads-form-grid');
+    const sides = {};
+
+    const makeSide = (key, title) => {
+      const panel = el('section', 'routility-ads-panel bg-surface-100 radius-large');
+      const head = el('div', 'routility-ads-panel-head');
+      const count = el('span', 'text-body-small content-muted');
+      head.append(el('h2', 'text-heading-small content-emphasis margin-none', title), count);
+      const total = el('span', 'routility-mass-total');
+      head.appendChild(total);
+      const slots = el('div', 'routility-ads-slots');
+      panel.append(head, slots);
+      const side = { key, panel, count, slots, total };
+      const search = finput(key === 'off' ? lt('Search your inventory') : lt('Search all limiteds'));
+      const glass = el('span', 'grow-0 shrink-0 basis-auto icon icon-regular-magnifying-glass size-[var(--icon-size-medium)] content-muted');
+      glass.setAttribute('aria-hidden', 'true');
+      search.insertBefore(glass, search.input);
+      const row = el('div', 'routility-mass-inputs');
+      row.appendChild(search);
+      panel.appendChild(row);
+      if (key === 'off') {
+        const amount = finput(lt('Robux amount'), { inputmode: 'numeric', max: 9 });
+        amount.classList.add('routility-mass-robux');
+        amount.insertBefore(robuxIcon(), amount.input);
+        const add = fbutton(lt('Add'), 'bg-action-standard content-action-standard');
+        add.classList.add('routility-mass-add');
+        add.setAttribute('aria-label', lt('Add Robux'));
+        row.append(amount, add);
+        amount.input.addEventListener('input', () => { amount.input.value = amount.input.value.replace(/[^\d.,]/g, ''); });
+        const addAmount = () => {
+          const v = window.RoUtilityUI.parseAmount(amount.input.value, true);
+          if (!(v > 0)) return;
+          const same = st.off.find(e => e.kind === 'robux');
+          if (same) same.amount += v;
+          else if (st.off.length < 4) st.off.push({ kind: 'robux', amount: v });
+          else return hint(lt('Each side holds 4 things. Remove one to add more.'), true);
+          amount.input.value = '';
+          paint();
+        };
+        add.addEventListener('click', addAmount);
+        amount.input.addEventListener('keydown', (e) => { if (e.key === 'Enter') addAmount(); });
+      }
+      const grid = el('div', 'routility-ads-grid');
+      panel.appendChild(grid);
+      side.search = search;
+      side.grid = grid;
+      let typing = 0;
+      search.input.addEventListener('input', () => {
+        clearTimeout(typing);
+        typing = setTimeout(() => paintGrid(side), 120);
+      });
+      sides[key] = side;
+      return panel;
+    };
+
+    form.append(makeSide('off', lt('You Offer')), makeSide('look', lt('You Want')));
+    const sendPanel = el('section', 'routility-ads-panel routility-ads-note-panel routility-mass-panel bg-surface-100 radius-large');
+    const sendHead = el('div', 'routility-ads-panel-head');
+    const reach = el('span', 'text-body-small content-muted');
+    sendHead.append(el('h2', 'text-heading-small content-emphasis margin-none', lt('Send To')), reach);
+    const opts = el('div', 'routility-mass-opts');
+    const footRow = el('div', 'routility-ads-post-foot');
+    const start = fbutton(lt('Start Sending'), 'bg-action-emphasis content-action-emphasis');
+    const hintEl = el('span', 'text-body-small content-muted');
+    footRow.append(start, hintEl);
+    const progress = el('div', 'routility-mass-progress');
+    progress.hidden = true;
+    const status = el('div', 'text-body-medium content-default routility-mass-status');
+    status.setAttribute('role', 'status');
+    const bar = el('div', 'routility-clean-bar');
+    const fill = el('span');
+    bar.appendChild(fill);
+    const list = el('ul', 'routility-clean-list routility-mass-list');
+    progress.append(status, bar, list);
+    sendPanel.append(sendHead, opts, footRow, progress);
+    root.append(form, sendPanel);
+
+    function hint(text, alert) {
+      hintEl.textContent = text || defaultHint();
+      hintEl.classList.toggle('routility-ads-hint-alert', !!alert);
+    }
+
+    function defaultHint() {
+      return lt('Each person gets their own trade. RoUtility checks their inventory right before sending and skips anyone who no longer has the item. Keep this tab open while it sends.');
+    }
+
+    function optRow(label, children) {
+      const row = el('div', 'routility-mass-opt');
+      const chips = el('div', 'routility-ads-chips');
+      chips.append(...children);
+      row.append(el('span', 'text-label-medium content-muted routility-mass-opt-label', label), chips);
+      return row;
+    }
+
+    function paintOpts() {
+      const busy = !!st.job;
+      const rows = [
+        optRow(lt('Find people in'), MASS_SOURCES.map(([k, label]) => chip(lt(label), st.source === k, () => { st.source = k; paintOpts(); }))),
+      ];
+      if (st.source === 'owners') rows.push(optRow(lt('Online in the last'), MASS_ACTIVE.map(([k, label]) => chip(lt(label), st.active === k, () => { st.active = k; paintOpts(); }))));
+      rows.push(optRow(lt('Send up to'), MASS_COUNTS.map(n => chip(ltn(n, '{n} trade', '{n} trades', { n: formatNumber(n) }), st.max === n, () => { st.max = n; paintOpts(); }))));
+      rows.push(optRow(lt('Skip'), MASS_SKIPS.map(([k, label]) => chip(lt(label), st.skip[k], () => { st.skip[k] = !st.skip[k]; paintOpts(); }))));
+      opts.replaceChildren(...rows);
+      opts.querySelectorAll('button').forEach(b => { b.disabled = busy; });
+      reach.textContent = st.source === 'owners' ? lt('People who own what you want, from RoUtility’s owner list') : lt('People whose ads on routility.io offer what you want');
+    }
+
+    function paintSlots(side) {
+      const list = st[side.key];
+      side.count.textContent = lt('{count} of {max}', { count: list.length, max: 4 });
+      side.slots.replaceChildren(...Array.from({ length: 4 }, (_, i) => {
+        const e = list[i];
+        const b = slotView(e, () => { if (st.job) return; st[side.key] = list.filter(x => x !== e); paint(); }, { cap: false });
+        if (!e) b.addEventListener('click', () => side.search.input.focus());
+        return b;
+      }));
+      const items = list.filter(e => e.kind === 'item').map(e => itemInfo(e.assetId));
+      const robux = list.filter(e => e.kind === 'robux').reduce((n, e) => n + e.amount, 0);
+      const usdSum = items.reduce((n, it) => n + (it.usd || 0), 0) + robux * window.RoUtilityUI.robuxRate(settings);
+      const rapSum = items.reduce((n, it) => n + (it.rap || 0), 0) + robux;
+      const valSum = items.reduce((n, it) => n + (itemValue(it) || it.rap || 0), 0);
+      side.total.replaceChildren(...(list.length ? [totals(usdSum, rapSum, valSum)] : []));
+    }
+
+    function paintGrid(side) {
+      const q = side.search.input.value.trim().toLowerCase();
+      const words = q ? q.split(/\s+/) : [];
+      const match = (name, extra) => words.every(w => (name + ' ' + (extra || '')).toLowerCase().includes(w));
+      const full = st[side.key].length >= 4;
+      if (side.key === 'off') {
+        if (st.mine === null) return side.grid.replaceChildren(...Array.from({ length: 12 }, skTile));
+        if (st.mine.hidden) return side.grid.replaceChildren(el('div', 'routility-ads-grid-note text-body-small content-muted', lt('Your inventory is private, so your limiteds can’t be listed. Make it visible to everyone in Roblox privacy settings.')));
+        const list = st.mine.items.map(x => ({ x, it: itemInfo(x.assetId, x.name) })).filter(({ it }) => match(it.name, it.acr)).sort((a, b) => (b.it.usd || 0) - (a.it.usd || 0));
+        if (!list.length) return side.grid.replaceChildren(el('div', 'routility-ads-grid-note text-body-small content-muted', st.mine.items.length ? lt('No limiteds match that.') : lt('You don’t have any limiteds to offer.')));
+        return side.grid.replaceChildren(...list.slice(0, 120).map(({ x, it }) => {
+          const on = st.off.some(e => e.uaid === x.uaid);
+          return itemCard(it, { picked: on, serial: x.serial, onHold: x.onHold, disabled: !!st.job || x.onHold || (!on && full), onClick: () => {
+            if (on) st.off = st.off.filter(e => e.uaid !== x.uaid);
+            else if (st.off.length < 4) st.off.push({ kind: 'item', assetId: x.assetId, uaid: x.uaid });
+            paint();
+          } });
+        }));
+      }
+      if (!s.items.length) return side.grid.replaceChildren(...(s.itemsFailed ? [el('div', 'routility-ads-grid-note text-body-small content-muted', lt('Couldn’t load the item list. Refresh the page to try again.'))] : Array.from({ length: 12 }, skTile)));
+      const list = s.items.filter(i => match(i.name, (i.acr || '') + ' ' + i.id)).sort((a, b) => (b.usd || 0) - (a.usd || 0));
+      if (!list.length) return side.grid.replaceChildren(el('div', 'routility-ads-grid-note text-body-small content-muted', lt('No limiteds match that.')));
+      side.grid.replaceChildren(...list.slice(0, 120).map(it => {
+        const on = st.look.some(e => e.assetId === String(it.id));
+        return itemCard(it, { picked: on, disabled: !!st.job || (!on && full), onClick: () => {
+          if (on) st.look = st.look.filter(e => e.assetId !== String(it.id));
+          else if (st.look.length < 4) st.look.push({ kind: 'item', assetId: String(it.id) });
+          paint();
+        } });
+      }));
+    }
+
+    function sideRap(list) {
+      return list.reduce((t, e) => t + (e.kind === 'item' ? itemInfo(e.assetId).rap || 0 : 0), 0);
+    }
+
+    function balance() {
+      const robux = st.off.filter(e => e.kind === 'robux').reduce((n, e) => n + e.amount, 0);
+      const give = st.off.filter(e => e.kind === 'item').map(e => itemInfo(e.assetId));
+      const get = st.look.map(e => itemInfo(e.assetId));
+      const priced = [...give, ...get].every(it => it.usd > 0);
+      const worth = (it) => priced ? it.usd : (itemValue(it) || it.rap || 0);
+      const a = give.reduce((n, it) => n + worth(it), 0) + (priced ? robux * window.RoUtilityUI.robuxRate(settings) : robux);
+      const c = get.reduce((n, it) => n + worth(it), 0);
+      if (!(a > 0) || !(c > 0)) return null;
+      return Math.round(a / c * 100);
+    }
+
+    function paintStart() {
+      if (st.job) {
+        start.label.textContent = st.job.stop ? lt('Stopping') : lt('Stop');
+        start.disabled = st.job.stop;
+        start.classList.remove('bg-action-emphasis', 'content-action-emphasis');
+        start.classList.add('bg-system-alert', 'content-inverse-emphasis');
+        return;
+      }
+      start.label.textContent = lt('Start Sending');
+      start.classList.add('bg-action-emphasis', 'content-action-emphasis');
+      start.classList.remove('bg-system-alert', 'content-inverse-emphasis');
+      const items = st.off.filter(e => e.kind === 'item');
+      const free = st.allow && st.allow.freeTradesAllowance;
+      const limited = free && Number(free.limit) > 0 && Number(free.remaining) >= 0;
+      start.disabled = !items.length || !st.look.length;
+      if (st.allow && st.allow.canTrade === false) {
+        start.disabled = true;
+        return hint(lt('You can’t trade right now'), true);
+      }
+      if (limited && Number(free.remaining) === 0) {
+        start.disabled = true;
+        return hint(lt('You’re out of free trades this month, so Roblox won’t send more. Roblox Plus gives unlimited trades.'), true);
+      }
+      if (!items.length || !st.look.length) return hint(lt('Pick at least one of your items and one item you want. Roblox needs an item on each side of a trade.'));
+      const bal = balance();
+      if (bal !== null && (bal < 50 || bal > 200)) {
+        start.disabled = true;
+        return hint(lt('Your offer is worth {pct}% of what you’re asking. It has to be between 50% and 200%.', { pct: bal }), true);
+      }
+      const give = sideRap(items) + (st.off.find(e => e.kind === 'robux')?.amount || 0);
+      const get = sideRap(st.look);
+      const ratio = Number(st.meta && st.meta.minValueRatio) || 0;
+      if (ratio > 0 && give > 0 && get > 0 && (give < get * ratio || get < give * ratio)) return hint(lt('Roblox only sends trades where each side’s RAP is at least {pct}% of the other’s, so this offer would be refused.', { pct: Math.round(ratio * 100) }), true);
+      if (st.today !== null && st.today >= DAILY) {
+        start.disabled = true;
+        return hint(lt('You’ve sent about {max} trades in the last 24 hours, which is Roblox’s limit. Try again later.', { max: DAILY }), true);
+      }
+      const notes = [];
+      if (st.today !== null) notes.push(lt('{left} of {max} trades left today', { left: formatNumber(DAILY - st.today), max: DAILY }) + '.');
+      if (limited) notes.push(lt('{left} of {limit} free trades left this month', { left: Number(free.remaining), limit: free.limit }) + '.');
+      hint(notes.length ? notes.join(' ') + ' ' + defaultHint() : '');
+    }
+
+    function paint() {
+      paintSlots(sides.off);
+      paintSlots(sides.look);
+      paintGrid(sides.off);
+      paintGrid(sides.look);
+      paintOpts();
+      paintStart();
+      root.classList.toggle('routility-mass-busy', !!st.job);
+    }
+
+    async function robloxGet(url, job) {
+      for (let tries = 0; tries < 4 && !job.stop; tries++) {
+        let r;
+        try {
+          r = await fetch(url, { credentials: 'include' });
+        } catch {
+          await wait(1500);
+          continue;
+        }
+        if (r.status === 429) {
+          await cooldown(job, Number(r.headers.get('retry-after')), 15);
+          tries--;
+          continue;
+        }
+        return { status: r.status, body: r.ok ? await r.json().catch(() => null) : null };
+      }
+      return { status: 0, body: null };
+    }
+
+    async function cooldown(job, retryAfter, base) {
+      job.backoff = Math.min(Math.max((job.backoff || base / 2) * 2, base), 900);
+      const until = Date.now() + (retryAfter > 0 ? retryAfter : job.backoff) * 1000;
+      job.waiting = true;
+      setStatus(lt('Roblox asked to slow down. Sending resumes at {time}.', { time: clock(until) }));
+      while (!job.stop && Date.now() < until) await wait(500);
+      job.waiting = false;
+      setStatus();
+    }
+
+    let statusText = '';
+    function setStatus(text) {
+      const job = st.job;
+      if (text !== undefined) statusText = text;
+      if (!job) return;
+      const cap = job.cap || st.max;
+      status.textContent = statusText || lt('Sent {sent} of {max}, skipped {skipped}', { sent: formatNumber(job.sent), max: formatNumber(cap), skipped: formatNumber(job.skipped) });
+      fill.style.width = Math.min(100, job.sent / cap * 100) + '%';
+    }
+
+    function addRow(c) {
+      const li = el('li', 'routility-clean-item routility-clean-working');
+      const names = el('span', 'routility-clean-item-names');
+      const link = el('a', 'text-label-medium content-emphasis text-truncate-end', c.name ? '@' + c.name : lt('User {id}', { id: c.id }));
+      link.href = `https://www.roblox.com/users/${c.id}/profile`;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      names.appendChild(link);
+      const info = el('span', 'text-caption-medium content-muted routility-clean-item-info', lt('Checking'));
+      const face = el('span', 'routility-sk routility-sk-circle routility-mass-face');
+      const who = el('span', 'routility-mass-who');
+      who.append(face, names);
+      li.append(who, info);
+      request({ type: 'getHeadshots', ids: [String(c.id)] }, r => r && typeof r === 'object').then(pics => {
+        const src = pics && pics[String(c.id)];
+        if (!src) return;
+        const img = el('img', 'routility-fade');
+        img.alt = '';
+        img.addEventListener('load', () => { img.classList.add('routility-loaded'); face.classList.remove('routility-sk'); }, { once: true });
+        img.src = src;
+        face.appendChild(img);
+      });
+      list.prepend(li);
+      while (list.children.length > 200) list.lastChild.remove();
+      return (kind, text) => {
+        li.classList.remove('routility-clean-working');
+        li.classList.add('routility-mass-' + kind);
+        info.textContent = text;
+      };
+    }
+
+    async function outbound(job) {
+      const partners = new Set();
+      const recent = new Set();
+      let cursor = '';
+      for (let p = 0; p < 15 && !job.stop; p++) {
+        const r = await robloxGet(`https://trades.roblox.com/v1/trades/outbound?sortOrder=Desc&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`, job);
+        if (!r.body || !Array.isArray(r.body.data)) return { partners, recent, failed: p === 0 };
+        for (const t of r.body.data) {
+          if (t.user && t.user.id) partners.add(String(t.user.id));
+          const at = new Date(t.created).getTime();
+          if (Date.now() - at < DAY) recent.add(String(t.id));
+        }
+        cursor = r.body.nextPageCursor || '';
+        if (!cursor) break;
+      }
+      return { partners, recent };
+    }
+
+    function sentStore() {
+      return new Promise(res => chrome.storage.local.get(SENT_KEY, (v) => {
+        const all = (v && v[SENT_KEY]) || {};
+        const mine = all[myId()] || {};
+        for (const [id, at] of Object.entries(mine)) if (!(Date.now() - at < DAY)) delete mine[id];
+        res({ all, mine });
+      }));
+    }
+
+    async function rememberSent(id) {
+      const { all, mine } = await sentStore();
+      mine[id] = Date.now();
+      all[myId()] = mine;
+      chrome.storage.local.set({ [SENT_KEY]: all });
+    }
+
+    function toStore() {
+      return new Promise(res => chrome.storage.local.get(TO_KEY, (v) => {
+        const all = (v && v[TO_KEY]) || {};
+        const mine = all[myId()] || {};
+        for (const [id, at] of Object.entries(mine)) if (!(Date.now() - at < WEEK)) delete mine[id];
+        res({ all, mine });
+      }));
+    }
+
+    async function rememberTo(id) {
+      const { all, mine } = await toStore();
+      mine[String(id)] = Date.now();
+      all[myId()] = mine;
+      chrome.storage.local.set({ [TO_KEY]: all });
+    }
+
+    async function partnersIn(type, pages, job) {
+      const ids = new Set();
+      let cursor = '';
+      for (let p = 0; p < pages && !job.stop; p++) {
+        const r = await robloxGet(`https://trades.roblox.com/v1/trades/${type}?sortOrder=Desc&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`, job);
+        if (!r.body || !Array.isArray(r.body.data)) break;
+        for (const t of r.body.data) if (t.user && t.user.id) ids.add(String(t.user.id));
+        cursor = r.body.nextPageCursor || '';
+        if (!cursor) break;
+      }
+      return ids;
+    }
+
+    async function countToday(job) {
+      const [out, store] = await Promise.all([outbound(job), sentStore()]);
+      if (out.failed) return { count: null, partners: out.partners };
+      const ids = new Set([...out.recent, ...Object.keys(store.mine)]);
+      return { count: ids.size, partners: out.partners };
+    }
+
+    async function* candidates(job) {
+      const want = st.look.map(e => e.assetId);
+      if (st.source === 'ads') {
+        for (let page = 0; page < 50 && !job.stop; page++) {
+          const res = await request({ type: 'tradeAdsList', params: { page, itemId: want[0] } }, r => r && r.status !== 0);
+          const ads = res && res.data && Array.isArray(res.data.ads) ? res.data.ads : null;
+          if (!ads || !ads.length) return;
+          for (const ad of ads) {
+            if (!/^\d+$/.test(String(ad.roblox_id || ''))) continue;
+            const offered = new Set((ad.offering || []).map(x => String(x.asset_id)));
+            if (!want.every(a => offered.has(a))) continue;
+            yield { id: String(ad.roblox_id), name: String(ad.roblox_username || '') };
+          }
+        }
+        return;
+      }
+      const days = st.active === 'any' ? 0 : Number(st.active);
+      const cutoff = days ? Date.now() / 1000 - days * 86400 : 0;
+      const fresh = Date.now() / 1000 - 3 * 86400;
+      for (let page = 0; page < 400 && !job.stop; page++) {
+        const res = await request({ type: 'massOwners', id: want[0], page }, r => r !== undefined);
+        if (!res) return;
+        for (const o of res.owners) {
+          if (cutoff && !(o.active >= cutoff)) continue;
+          if (o.since > fresh) continue;
+          yield o;
+        }
+        if (!res.more) return;
+      }
+    }
+
+    async function copiesOf(userId, job) {
+      const need = new Map();
+      for (const e of st.look) need.set(e.assetId, (need.get(e.assetId) || 0) + 1);
+      const lookup = window.RoUtilityUI.catalogFor(s.items);
+      const got = new Map();
+      const held = new Set();
+      let cursor = '';
+      for (let p = 0; p < 60 && !job.stop; p++) {
+        const r = await robloxGet(`https://trades.roblox.com/v2/users/${userId}/tradableItems?sortBy=CreationTime&sortOrder=Desc&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`, job);
+        if (!r.body || !Array.isArray(r.body.items)) return { status: r.status === 403 ? 'private' : 'error' };
+        for (const it of r.body.items) {
+          const t = it.itemTarget || {};
+          if (!t.targetId) continue;
+          const bundle = t.itemType === 'Bundle';
+          const item = bundle ? lookup({ targetId: String(t.targetId), bundle: true }) : null;
+          const assetId = bundle ? (item ? String(item.id) : '') : String(t.targetId);
+          if (!need.has(assetId)) continue;
+          for (const x of (Array.isArray(it.instances) && it.instances.length ? it.instances : [it])) {
+            if (!CIID.test(String(x.collectibleItemInstanceId || ''))) continue;
+            if (x.isOnHold) { held.add(assetId); continue; }
+            if (!got.has(assetId)) got.set(assetId, []);
+            got.get(assetId).push(String(x.collectibleItemInstanceId));
+          }
+        }
+        if ([...need].every(([a, n]) => (got.get(a) || []).length >= n)) break;
+        cursor = r.body.nextPageCursor || '';
+        if (!cursor) break;
+      }
+      const picked = [];
+      for (const [a, n] of need) {
+        const have = got.get(a) || [];
+        if (have.length < n) return { status: held.has(a) ? 'held' : 'missing', assetId: a };
+        picked.push(...have.slice(0, n));
+      }
+      return { status: 'ok', ids: picked };
+    }
+
+    async function sendTrade(body, job) {
+      for (let tries = 0; tries < 5 && !job.stop; tries++) {
+        let r;
+        try {
+          r = await fetch('https://trades.roblox.com/v2/trades/send', { method: 'POST', credentials: 'include', headers: { 'content-type': 'application/json', ...(massCsrf ? { 'x-csrf-token': massCsrf } : {}) }, body: JSON.stringify(body) });
+        } catch {
+          await wait(2000);
+          continue;
+        }
+        if (r.headers.get('rblx-challenge-id')) return { kind: 'challenge' };
+        if (r.status === 403 && r.headers.get('x-csrf-token') && r.headers.get('x-csrf-token') !== massCsrf) {
+          massCsrf = r.headers.get('x-csrf-token');
+          tries--;
+          continue;
+        }
+        if (r.status === 429) {
+          job.sendWaits = (job.sendWaits || 0) + 1;
+          if (job.sendWaits > 5) return { kind: 'limit' };
+          const after = Number(r.headers.get('retry-after'));
+          await cooldown(job, after > 0 ? after : 61, 61);
+          tries--;
+          continue;
+        }
+        const data = await r.json().catch(() => null);
+        return { kind: 'reply', status: r.status, data };
+      }
+      return { kind: 'reply', status: 0, data: null };
+    }
+
+    const STOPS = {
+      4: LT('Roblox says you’re logged out. Log in again, then start over.'),
+      15: LT('Roblox says this trade is too uneven, so it won’t send it.'),
+      17: LT('You don’t have enough Robux for this offer.'),
+      18: LT('Roblox only allows Robux up to half of what the items in the trade are worth.'),
+      23: LT('Roblox wants to check it’s really you. Send one trade from Roblox’s trade window, then start again.'),
+      30: LT('This trade needs Roblox Plus to include Robux.'),
+    };
+
+    async function tryOne(c, job, done) {
+      if (st.skip.fresh) {
+        const u = await robloxGet(`https://users.roblox.com/v1/users/${c.id}`, job);
+        if (job.stop) return done('skipped', lt('Stopped'));
+        const made = u.body && new Date(u.body.created).getTime();
+        if (u.body && u.body.isBanned) { job.skipped++; return done('skipped', lt('Can’t trade with them')); }
+        if (made && Date.now() - made < 30 * DAY) { job.skipped++; return done('skipped', lt('Account is under 30 days old')); }
+      }
+      const ct = await robloxGet(`https://trades.roblox.com/v1/users/${c.id}/can-trade-with`, job);
+      if (job.stop) return done('skipped', lt('Stopped'));
+      if (!ct.body) { job.skipped++; return done('skipped', lt('Couldn’t check if you can trade')); }
+      if (!ct.body.canTrade) {
+        if (ct.body.status === 'SenderPrivacyTooStrict') { done('failed', lt('Your privacy settings block it')); return { stop: lt('Your privacy settings stop you from sending trades. Set Who can trade with me to Everyone in Roblox settings, then start again.') }; }
+        job.skipped++;
+        return done('skipped', ct.body.status === 'UserPrivacyTooStrict' ? lt('Their privacy settings block trades') : lt('Can’t trade with them'));
+      }
+      const found = await copiesOf(c.id, job);
+      if (job.stop) return done('skipped', lt('Stopped'));
+      if (found.status !== 'ok') {
+        job.skipped++;
+        const name = found.assetId ? itemInfo(found.assetId).name : '';
+        return done('skipped', found.status === 'held' ? lt('{item} is on hold', { item: name }) : found.status === 'missing' ? lt('Doesn’t have {item} anymore', { item: name }) : found.status === 'private' ? lt('Their inventory is private') : lt('Couldn’t load their items'));
+      }
+      const me = myId();
+      const body = {
+        senderOffer: { userId: Number(me), robux: st.off.find(e => e.kind === 'robux')?.amount || 0, collectibleItemInstanceIds: st.off.filter(e => e.kind === 'item').map(e => e.uaid) },
+        recipientOffer: { userId: Number(c.id), robux: 0, collectibleItemInstanceIds: found.ids },
+      };
+      job.posted = true;
+      const res = await sendTrade(body, job);
+      if (job.stop && res.kind !== 'reply') return done('skipped', lt('Stopped'));
+      if (res.kind === 'challenge') { done('failed', lt('Roblox wants to verify')); return { stop: lt(STOPS[23]) }; }
+      if (res.kind === 'limit') { done('failed', lt('Refused')); return { stop: lt('Roblox kept limiting new trades for about 5 minutes, so you’ve probably used its limit of {max} trades a day. Trades sent from anywhere count, even declined ones. Try again later.', { max: DAILY }) }; }
+      const d = res.data || {};
+      if (res.status === 200 && d.FailureReason !== undefined && d.ExpirationTimeInMinutes !== undefined) {
+        done('failed', lt('Trading paused'));
+        const hours = Math.max(1, Math.ceil(Number(d.ExpirationTimeInMinutes) / 60));
+        return { stop: ltn(hours, 'Roblox paused trading on your account for about {hours} hour.', 'Roblox paused trading on your account for about {hours} hours.', { hours: formatNumber(hours) }) };
+      }
+      if (res.status >= 200 && res.status < 300) {
+        job.sent++;
+        job.misses = 0;
+        job.backoff = 0;
+        job.sendWaits = 0;
+        rememberSent(String(d.tradeId || d.id || 'x' + Date.now() + Math.random()));
+        rememberTo(c.id);
+        if (st.today !== null) st.today++;
+        return done('sent', lt('Sent'));
+      }
+      const err = Array.isArray(d.errors) && d.errors[0] ? d.errors[0] : {};
+      const code = Number(err.code);
+      if (code === 22 && err.field === 'sender') { done('failed', lt('Your privacy settings block it')); return { stop: lt('Your privacy settings stop you from sending trades. Set Who can trade with me to Everyone in Roblox settings, then start again.') }; }
+      if (STOPS[code]) { done('failed', lt('Refused')); return { stop: lt(STOPS[code]) }; }
+      job.skipped++;
+      job.misses = (job.misses || 0) + 1;
+      if (code === 22) done('skipped', lt('Their privacy settings block trades'));
+      else if (code === 16) done('skipped', lt('Their trade filter wants a better offer'));
+      else if (code === 7) {
+        const mine = await robloxGet('https://trades.roblox.com/v2/users/me/can-trade', job);
+        const f = mine.body && mine.body.freeTradesAllowance;
+        if (mine.body && (mine.body.canTrade === false || (f && Number(f.limit) > 0 && Number(f.remaining) === 0))) {
+          st.allow = mine.body;
+          done('failed', lt('Refused'));
+          return { stop: mine.body.canTrade === false ? lt('You can’t trade right now') : lt('You’re out of free trades this month, so Roblox won’t send more. Roblox Plus gives unlimited trades.') };
+        }
+        done('skipped', lt('Can’t trade with them'));
+      }
+      else if (code === 12) done('failed', lt('Roblox says an item can’t be traded'));
+      else done('failed', lt('Roblox refused this one'));
+      if (job.misses >= 5) return { stop: lt('Roblox refused 5 trades in a row, so sending stopped. Check your offer and try again.') };
+      return null;
+    }
+
+    async function run() {
+      const job = { stop: false, sent: 0, skipped: 0 };
+      st.job = job;
+      list.replaceChildren();
+      progress.hidden = false;
+      paint();
+      setStatus(lt('Checking your items'));
+      const finish = (text, alert) => {
+        if (st.job !== job) return;
+        st.job = null;
+        window.removeEventListener('beforeunload', guard);
+        statusText = '';
+        status.textContent = text;
+        status.classList.toggle('routility-ads-hint-alert', !!alert);
+        bar.hidden = true;
+        paint();
+      };
+      status.classList.remove('routility-ads-hint-alert');
+      bar.hidden = false;
+      fill.style.width = '0%';
+      window.addEventListener('beforeunload', guard);
+      const mine = await window.RoUtilityUI.collectibles(myId(), { pages: 20 });
+      if (job.stop) return finish(lt('Stopped. Nothing was sent.'));
+      const have = new Map((mine.items || []).map(x => [String(x.key), x]));
+      for (const e of st.off.filter(x => x.kind === 'item')) {
+        const x = have.get(String(e.uaid));
+        if (!CIID.test(String(e.uaid)) || mine.status !== 'ok') return finish(lt('Couldn’t check your items with Roblox. Refresh the page and try again.'), true);
+        if (!x) return finish(lt('You don’t have {item} anymore. Remove it and pick again.', { item: itemInfo(e.assetId).name }), true);
+        if (x.onHold) return finish(lt('{item} is on hold, so it can’t be traded yet.', { item: itemInfo(e.assetId).name }), true);
+      }
+      const bal = balance();
+      if (bal !== null && (bal < 50 || bal > 200)) return finish(lt('Your offer is worth {pct}% of what you’re asking. It has to be between 50% and 200%.', { pct: bal }), true);
+      const skip = new Set([String(myId())]);
+      setStatus(lt('Checking your outbound trades'));
+      const today = await countToday(job);
+      if (job.stop) return finish(lt('Stopped. Nothing was sent.'));
+      if (today.count !== null) st.today = today.count;
+      if (st.today !== null && st.today >= DAILY) return finish(lt('You’ve sent about {max} trades in the last 24 hours, which is Roblox’s limit. Try again later.', { max: DAILY }), true);
+      job.cap = st.today !== null ? Math.min(st.max, DAILY - st.today) : st.max;
+      setStatus(lt('Checking who to skip'));
+      const lists = await Promise.all([
+        st.skip.pending ? Promise.resolve(today.partners) : null,
+        st.skip.pending ? partnersIn('inbound', 10, job) : null,
+        st.skip.traded ? partnersIn('completed', 10, job) : null,
+        st.skip.recent ? toStore().then(v => Object.keys(v.mine)) : null,
+        st.skip.friends ? window.RoUtilityUI.friendIds(myId()).then(ids => (ids || []).map(String)) : null,
+      ]);
+      if (job.stop) return finish(lt('Stopped. Nothing was sent.'));
+      for (const l of lists) if (l) for (const id of l) skip.add(String(id));
+      setStatus(lt('Finding people'));
+      let seen = 0;
+      let stopText = '';
+      for await (const c of candidates(job)) {
+        if (job.stop || job.sent >= job.cap) break;
+        if (skip.has(c.id)) continue;
+        skip.add(c.id);
+        seen++;
+        setStatus('');
+        const r = await tryOne(c, job, addRow(c));
+        if (r && r.stop) { stopText = r.stop; break; }
+        if (job.stop || job.sent >= job.cap) break;
+        await wait(job.posted ? 2500 + Math.random() * 1500 : 300);
+        job.posted = false;
+      }
+      const summary = ltn(job.sent, 'Sent {sent} trade, skipped {skipped}.', 'Sent {sent} trades, skipped {skipped}.', { sent: formatNumber(job.sent), skipped: formatNumber(job.skipped) });
+      if (stopText) return finish(stopText + ' ' + summary, true);
+      if (job.stop) return finish(lt('Stopped.') + ' ' + summary);
+      if (!seen) return finish(st.source === 'owners' ? lt('Nobody who owns that was online in that time. Try a longer time or Trade Ads.') : lt('No trade ads offer that right now. Try Item Owners.'), true);
+      if (job.sent < job.cap) return finish(lt('Ran out of people to send to.') + ' ' + summary);
+      if (job.cap < st.max) return finish(summary + ' ' + lt('That’s your {max} trades for today.', { max: DAILY }));
+      finish(summary);
+    }
+
+    function guard(e) {
+      e.preventDefault();
+      e.returnValue = '';
+    }
+
+    start.addEventListener('click', async () => {
+      if (st.job) {
+        st.job.stop = true;
+        paintStart();
+        return;
+      }
+      if (start.disabled) return;
+      const ok = await window.RoUtilityUI.confirmDialog({
+        title: ltn(Math.max(1, st.today !== null ? Math.min(st.max, DAILY - st.today) : st.max), 'Send this offer to {n} person?', 'Send this offer to up to {n} people?', { n: formatNumber(Math.max(1, st.today !== null ? Math.min(st.max, DAILY - st.today) : st.max)) }),
+        text: lt('Each one gets their own trade from you on Roblox. You can stop at any time, and trades already sent stay in your Outbound list.'),
+        confirm: lt('Start Sending'),
+        danger: false,
+      });
+      if (ok && !st.job) run();
+    });
+
+    root.start = () => {
+      if (root.started) return;
+      root.started = true;
+      paint();
+      s.itemsJob.then(() => { paintGrid(sides.look); paintStart(); });
+      const { json } = window.RoUtilityUI;
+      Promise.all([json('https://trades.roblox.com/v1/trades/metadata'), json('https://trades.roblox.com/v2/users/me/can-trade'), countToday({ stop: false })]).then(([meta, allow, today]) => {
+        st.meta = meta;
+        st.allow = allow;
+        if (today.count !== null) st.today = today.count;
+        if (!st.job) paintStart();
+      });
+      Promise.all([myCollectibles(), s.itemsJob]).then(([mine]) => {
+        st.mine = mine;
+        if (mine.failed) {
+          root.started = false;
+          hint(lt('Couldn’t load all your items right now. Open Mass Send again to retry.'), true);
+        }
+        paint();
+      });
+    };
+    return root;
+  }
+
   function go(view) {
     if (!s) return;
     s.view = view;
@@ -821,16 +1523,24 @@
     paintSeg();
     paintToolbar();
     const post = view === 'post';
-    s.root.querySelector('.routility-ads-sub').textContent = post ? lt('Pick what you’re offering and what you want back.') : view === 'mine' ? lt('Your ads stay up for 14 days. You can have 5 at a time.') : lt('Live from routility.io. See what people are offering and looking for, then send them a trade.');
-    for (const n of s.root.querySelectorAll('.routility-ads-toolbar, .routility-ads-list, .routility-ads-pager, .routility-ads-count')) n.hidden = post;
-    if (!s.post) {
+    const mass = view === 'mass';
+    s.root.querySelector('.routility-ads-sub').textContent = post ? lt('Pick what you’re offering and what you want back.') : mass ? lt('Set up one offer and send it to everyone who has what you want.') : view === 'mine' ? lt('Your ads stay up for 14 days. You can have 5 at a time.') : lt('Live from routility.io. See what people are offering and looking for, then send them a trade.');
+    for (const n of s.root.querySelectorAll('.routility-ads-toolbar, .routility-ads-list, .routility-ads-pager, .routility-ads-count')) n.hidden = post || mass;
+    if (post && !s.post) {
       s.post = buildPost();
       s.root.querySelector('.routility-ads-list').before(s.post);
     }
-    s.post.hidden = !post;
+    if (mass && !s.mass) {
+      s.mass = buildMass();
+      s.root.querySelector('.routility-ads-list').before(s.mass);
+    }
+    if (s.post) s.post.hidden = !post;
+    if (s.mass) s.mass.hidden = !mass;
     if (post) s.post.start();
+    else if (mass) s.mass.start();
     else load();
   }
+
 
   function paintSeg() {
     const seg = s.root.querySelector('.routility-ads-seg');
@@ -993,24 +1703,27 @@
     bar.replaceChildren(s.search, tiers, wrap);
   }
 
-  function build() {
-    const root = el('div', 'routility-injected routility-ads');
+  function build(mass) {
+    const root = el('div', 'routility-injected routility-ads' + (mass ? ' routility-mass-page' : ''));
     const head = el('div', 'routility-ads-top');
     const titles = el('div', 'routility-ads-titles');
-    titles.append(el('h1', 'text-heading-large content-emphasis margin-none', lt('Trade Ads')), el('p', 'text-body-medium content-muted margin-none routility-ads-sub', lt('Live from routility.io. See what people are offering and looking for, then send them a trade.')));
+    titles.append(el('h1', 'text-heading-large content-emphasis margin-none', mass ? lt('Mass Send') : lt('Trade Ads')), el('p', 'text-body-medium content-muted margin-none routility-ads-sub', lt('Live from routility.io. See what people are offering and looking for, then send them a trade.')));
     const seg = el('div', 'routility-ads-seg radius-circle bg-shift-200');
     seg.setAttribute('role', 'group');
     seg.setAttribute('aria-label', lt('Trade Ads views'));
+    seg.hidden = !!mass;
     head.append(titles, seg);
     const box = el('div', 'routility-ads-notice');
     box.hidden = true;
     box.setAttribute('role', 'status');
-    root.append(head, box, el('div', 'routility-ads-toolbar'), el('div', 'routility-ads-count text-body-medium content-muted'), el('div', 'routility-ads-list'), el('div', 'routility-ads-pager'), el('div', 'routility-ads-foot-note text-body-small content-muted', lt('Trade Ads come from routility.io and aren’t affiliated with Roblox. Only trade through Roblox’s own trade window.')));
+    root.append(head, box, el('div', 'routility-ads-toolbar'), el('div', 'routility-ads-count text-body-medium content-muted'), el('div', 'routility-ads-list'), el('div', 'routility-ads-pager'));
+    if (!mass) root.appendChild(el('div', 'routility-ads-foot-note text-body-small content-muted', lt('Trade Ads come from routility.io and aren’t affiliated with Roblox. Only trade through Roblox’s own trade window.')));
     return root;
   }
 
   function setup() {
-    if (!PATH.test(location.pathname) || s || settings.tradeAds === false) return;
+    const mass = MASS_PATH.test(location.pathname);
+    if (s || !(mass ? settings.massSend !== false : PATH.test(location.pathname) && settings.tradeAds !== false)) return;
     const content = document.querySelector('#content');
     if (!content) return;
     s = { view: 'browse', tier: 'all', sort: 'newest', q: '', total: null, page: 0, pageSize: 0, counts: null, items: [], byId: new Map() };
@@ -1023,10 +1736,11 @@
       s.items = items;
       s.byId = new Map(items.map(i => [String(i.id), i]));
     });
-    pageTitle(lt('Trade Ads') + ' - Roblox');
-    s.root = build();
+    pageTitle((mass ? lt('Mass Send') : lt('Trade Ads')) + ' - Roblox');
+    s.root = build(mass);
     content.appendChild(s.root);
     document.documentElement.classList.add('routility-ads-ready');
+    if (mass) return go('mass');
     paintSeg();
     paintToolbar();
     load();
@@ -1066,7 +1780,7 @@
   let navObserver = null;
 
   function startNav() {
-    if (navObserver || settings.tradeAds === false) return;
+    if (navObserver) return;
     let queued = false;
     navObserver = new MutationObserver(() => {
       if (queued) return;
@@ -1074,7 +1788,7 @@
       requestAnimationFrame(() => {
         queued = false;
         ensureNav();
-        if (PATH.test(location.pathname) && !s) setup();
+        if ((PATH.test(location.pathname) || MASS_PATH.test(location.pathname)) && !s) setup();
       });
     });
     navObserver.observe(document.body, { childList: true, subtree: true });
@@ -1084,7 +1798,6 @@
   if (location.hostname === 'www.roblox.com') {
     chrome.storage.local.get('routilitySettings', (st) => {
       settings = st.routilitySettings || {};
-      if (settings.tradeAds === false) return;
       startNav();
       setup();
     });
@@ -1092,7 +1805,7 @@
       if (area !== 'local' || !changes.routilitySettings) return;
       settings = changes.routilitySettings.newValue || {};
       ensureNav();
-      if (settings.tradeAds !== false) startNav();
+      startNav();
     });
   }
 })();

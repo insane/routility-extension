@@ -926,6 +926,16 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return true;
   }
 
+  if (msg.type === 'massOwners') {
+    const id = String(msg.id || '');
+    const page = Number(msg.page);
+    if (!/^\d{1,20}$/.test(id) || !Number.isInteger(page) || page < 0 || page > 5000) { sendResponse(null); return; }
+    getJson(`${API_BASE}/item-uaids/${id}?page=${page}&limit=50&filter=all&sort=since&dir=desc`)
+      .then(d => sendResponse(d && Array.isArray(d.uaids) ? { owners: d.uaids.filter(u => u && u.owner_id).map(u => ({ id: String(u.owner_id), name: String(u.owner_name || ''), active: Math.max(Number(u.last_online) || 0, Number(u.last_active) || 0, Number(u.ts) || 0), since: Number(u.ts) || 0 })), more: !!d.hasMore, total: Number(d.total) || 0 } : null))
+      .catch(() => sendResponse(null));
+    return true;
+  }
+
   if (msg.type === 'getAssetThumbs') {
     const all = [...new Set((msg.ids || []).map(String))];
     const ids = all.filter(id => /^\d+$/.test(id)).slice(0, 100);
@@ -2486,7 +2496,7 @@ chrome.notifications.onButtonClicked.addListener(async (id, index) => {
   if (url) chrome.tabs.create({ url });
 });
 
-const PAGE_RULES = { forum: 1, tradeCalculator: 2, tradeAds: 3, friendHistory: 4 };
+const PAGE_RULES = { forum: 1, tradeCalculator: 2, tradeAds: 3, friendHistory: 4, massSend: 5 };
 
 function syncRulesets(s) {
   const want = { studio: !!(s && s.studioStatus === true), fun: !!(s && s.fakeBuy === true) };

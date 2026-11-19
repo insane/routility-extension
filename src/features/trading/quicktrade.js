@@ -7,7 +7,6 @@
   const KEY = 'routilityQuickTrade';
   const MAX = 6;
   const LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
-  const ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6 1.4 0 2.7.5 3.7 1.3"/><path d="M15 18h6M18.5 15.5 21 18l-2.5 2.5"/></svg>';
   const STATUS = {
     ReceiverPrivacyTooStrict: LT('Not accepting trades from you. Their trade settings may only allow friends or people they follow.'),
     ReceiverCannotTrade: LT('This account can’t trade.'),
@@ -286,48 +285,14 @@
     fillRecent();
   }
 
-  function ensureButton() {
-    const actions = document.querySelector('.trades-header .trades-header-actions');
-    const has = actions && actions.querySelector('.routility-qt-btn');
-    if (!on || !actions) { has?.remove(); return; }
-    if (has) return;
-    const b = el('button', 'foundation-web-icon-button relative clip group/interactable focus-visible:outline-focus disabled:outline-none cursor-pointer relative flex items-center justify-center padding-none stroke-none select-none size-1000 radius-medium bg-action-link routility-injected routility-qt-btn');
-    b.type = 'button';
-    b.setAttribute('aria-label', lt('Quick Trade'));
-    b.title = lt('Quick Trade');
-    const layer = el('div', LAYER);
-    layer.setAttribute('aria-hidden', 'true');
-    const icon = el('span', 'size-600 content-emphasis routility-qt-icon');
-    icon.innerHTML = ICON;
-    b.append(layer, icon);
-    b.addEventListener('click', () => open());
-    actions.prepend(b);
-  }
-
-  let observer = null;
-  function watch() {
-    const trades = /^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?trades\/?$/i.test(location.pathname);
-    if (!trades || observer) return;
-    let queued = false;
-    observer = new MutationObserver(() => {
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(() => { queued = false; ensureButton(); });
-    });
-    observer.observe(document.documentElement, { childList: true, subtree: true });
-    ensureButton();
-  }
-
   window.addEventListener('routility-quick-trade', (e) => open(e.detail && e.detail.prefill));
 
   chrome.storage.local.get('routilitySettings', (st) => {
     on = (st.routilitySettings || {}).quickTrade !== false;
-    watch();
   });
   chrome.storage.onChanged.addListener((c, area) => {
     if (area !== 'local' || !c.routilitySettings) return;
     on = (c.routilitySettings.newValue || {}).quickTrade !== false;
     if (!on) close();
-    ensureButton();
   });
 })();
