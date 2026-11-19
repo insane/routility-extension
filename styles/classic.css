@@ -1,4 +1,4 @@
-.routility-classic-on #content > .profile-platform-container {
+html.routility-classic-on:not(.routility-with-btr-profile) #content > .profile-platform-container {
   display: none !important;
 }
 
