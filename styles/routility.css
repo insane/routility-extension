@@ -8014,12 +8014,21 @@ html.routility-streamer-account .routility-devices-list > li:not(:first-child) .
   position: relative;
 }
 
+.routility-search-thumb:has(.routility-search-dot) {
+  overflow: visible;
+}
+
+.routility-search-thumb:has(.routility-search-dot) img {
+  border-radius: inherit;
+}
+
 .routility-search-dot {
   position: absolute;
-  right: -1px;
-  bottom: -1px;
-  width: 10px;
-  height: 10px;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   box-shadow: 0 0 0 2px var(--color-surface-100, #191b1d);
 }

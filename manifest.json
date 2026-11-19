@@ -198,6 +198,16 @@
     },
     {
       "matches": [
+        "https://www.roblox.com/*"
+      ],
+      "js": [
+        "src/features/avatar/avatar-next.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
         "https://www.roblox.com/users/*/profile*"
       ],
       "js": [
