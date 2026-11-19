@@ -12,7 +12,8 @@
       "summary": "Quick Trade opens a trade from a username or profile link, values update live while you watch, the Clans & Guilds forum is back, the 2017 theme scrolls properly again, Adjust Accessories opens about four times faster, and the chat bot tells you which other extensions it found.",
       "changes": [
         { "type": "new", "text": "Quick Trade (Trades): type a username or paste a profile link and the trade opens straight away, with the people you traded with last one click away. It’s in the menu next to Trades and in the command palette.", "by": ["Scripzy"] },
-        { "type": "new", "text": "Mass Send (Trades): set up one offer and send it to everyone who owns what you want, from RoUtility’s owner list or Trade Ads. It checks each person’s inventory right before sending, skips anyone who no longer has the item, keeps track of Roblox’s 100 trades a day and waits out its limits by itself. Open it from the menu next to Trades.", "by": ["Scripzy"] },
+        { "type": "new", "text": "Mass Send (Trades): set up one offer and send it to everyone who owns what you want, from RoUtility’s owner list or Trade Ads. It checks each person’s inventory right before sending, skips anyone who no longer has the item, keeps track of Roblox’s 100 trades a day and waits out its limits by itself. An item range can fill the rest of your request with their own items, and Test Run shows who would get the trade without sending anything. Open it from the menu next to Trades.", "by": ["Scripzy"] },
+        { "type": "new", "text": "Trade History With Them (Trades): on the trade window and on profiles, see how many trades you’ve had with someone and how many went through, plus every trade routility.io tracked for them with anyone, with the Value and USD each one gained or lost." },
         { "type": "new", "text": "Live Value Changes: on item pages and trades, values and prices update every few minutes without a refresh, and flash green when they go up or red when they go down." },
         { "type": "improved", "text": "Clean Up Trades: cancel outbound trades that got worse for you since you sent them, or that you sent more than a day ago." },
         { "type": "new", "text": "Clans & Guilds (Forum): the old Club Houses forum for your clans, groups and guilds is back, with its pinned rules." },
@@ -25,7 +26,8 @@
         { "type": "fixed", "text": "2017 Roblox Theme: the Refresh buttons on the Servers tab have a white icon with room around it." },
         { "type": "fixed", "text": "Classic Profile Layout: your new About shows right after you change it, instead of the old one for a few minutes." },
         { "type": "fixed", "text": "Classic Profile Layout: the list of previous usernames is no longer cut off on the left." },
-        { "type": "fixed", "text": "Chat: the resize hint no longer gets stuck on screen while you drag the corner." }
+        { "type": "fixed", "text": "Chat: the resize hint no longer gets stuck on screen while you drag the corner." },
+        { "type": "fixed", "text": "Skin Tone by Body Parts (Avatar): after you change outfits, the color wheel and the highlighted color show each part’s real color instead of your previous avatar’s." }
       ]
     },
     {

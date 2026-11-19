@@ -452,6 +452,7 @@ function nameIndex(items) {
 }
 
 const ownersCache = new Map();
+const playerTradesCache = new Map();
 const OWNERS_TTL = 5 * 60 * 1000;
 const FILTERS = new Set(['premium', 'all', 'hoards']);
 
@@ -923,6 +924,26 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
   if (msg.type === 'getOwners') {
     getOwners(msg.id, msg.filter, msg.page).then(sendResponse);
+    return true;
+  }
+
+  if (msg.type === 'playerTrades') {
+    const id = String(msg.id || '');
+    const page = Number(msg.page);
+    if (!/^\d{1,20}$/.test(id) || !Number.isInteger(page) || page < 1 || page > 1000) { sendResponse(null); return; }
+    const url = `https://routility.io/web/player-trades/${id}?range=all&limit=20&page=${page}`;
+    const hit = playerTradesCache.get(url);
+    if (hit && Date.now() - hit.at < 180000) { sendResponse(hit.data); return; }
+    getJson(url)
+      .then(d => {
+        const data = d && Array.isArray(d.trades) && d.meta ? d : null;
+        if (data) {
+          playerTradesCache.set(url, { data, at: Date.now() });
+          if (playerTradesCache.size > 60) playerTradesCache.delete(playerTradesCache.keys().next().value);
+        }
+        sendResponse(data);
+      })
+      .catch(() => sendResponse(null));
     return true;
   }
 

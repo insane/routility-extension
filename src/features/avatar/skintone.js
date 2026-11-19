@@ -178,24 +178,70 @@
     }
     const dialog = input.closest('[role="dialog"]') || host;
     let body = null;
-    fetch('https://avatar.roblox.com/v2/avatar/avatar', { credentials: 'include' })
-      .then(r => (r.ok ? r.json() : null))
-      .then(d => {
-        body = (d && d.bodyColor3s) || null;
-        fromInput();
-      })
-      .catch(() => {});
-    function partColor() {
+    let fetchedAt = 0;
+    let loading = null;
+    let lastPart = null;
+    let fresh = true;
+    function refresh() {
+      if (loading) return loading;
+      fetchedAt = Date.now();
+      loading = fetch('https://avatar.roblox.com/v2/avatar/avatar', { credentials: 'include', cache: 'no-store' })
+        .then(r => (r.ok ? r.json() : null))
+        .then(d => {
+          if (d && d.bodyColor3s) body = d.bodyColor3s;
+          loading = null;
+          fromInput();
+        })
+        .catch(() => { loading = null; });
+      return loading;
+    }
+    function partName() {
       const radio = dialog.querySelector('input[type="radio"]:checked, [role="radio"][aria-checked="true"]');
-      const name = radio ? (radio.closest('label') || radio.parentElement).textContent.trim().toLowerCase() : 'all';
-      return body && parseColor(body[PARTS[name] || 'torsoColor3']);
+      return radio ? (radio.closest('label') || radio.parentElement).textContent.trim().toLowerCase() : 'all';
+    }
+    function partColor() {
+      return body && parseColor(body[PARTS[partName()] || 'torsoColor3']);
     }
     function fromInput() {
       if (dragging) return;
+      const part = partName();
+      if (part !== lastPart) {
+        lastPart = part;
+        fresh = true;
+        if (Date.now() - fetchedAt > 1500) refresh();
+      }
+      if (!panel.isConnected || panel.offsetParent === null) {
+        fetchedAt = 0;
+        return;
+      }
+      if (Date.now() - fetchedAt > 4000) refresh();
+      mark();
       const active = dialog.querySelector('button.color-dot.active');
-      const rgb = parseColor(input.value) || (active && parseColor(active.style.backgroundColor)) || partColor();
+      const typed = parseColor(input.value);
+      const rgb = typed || (fresh ? partColor() || (active && parseColor(active.style.backgroundColor)) : (active && parseColor(active.style.backgroundColor)) || partColor());
       if (rgb && toHex(rgb) !== toHex(current())) show(rgbToHsv(rgb));
     }
+    function mark() {
+      const real = fresh ? partColor() : null;
+      const hex = real ? toHex(real) : '';
+      let hit = null;
+      for (const dot of dialog.querySelectorAll('button.color-dot')) {
+        const c = parseColor(dot.style.backgroundColor);
+        const on = !!hex && !!c && toHex(c) === hex;
+        if (on) hit = dot;
+        if (dot.classList.contains('routility-dot-current') !== on) dot.classList.toggle('routility-dot-current', on);
+      }
+      const fix = !!real;
+      if (dialog.classList.contains('routility-skin-fixed') !== fix) dialog.classList.toggle('routility-skin-fixed', fix);
+      return hit;
+    }
+    dialog.addEventListener('click', (e) => {
+      if (e.target.closest('button.color-dot')) {
+        fresh = false;
+        mark();
+      }
+    }, true);
+    refresh();
 
     const pointAt = (e) => {
       const r = canvas.getBoundingClientRect();

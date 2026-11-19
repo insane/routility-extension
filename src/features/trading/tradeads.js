@@ -528,10 +528,24 @@
     price.append(window.RoUtilityUI.usdIcon('routility-logo'), el('span', 'text-robux-tile', it.usd ? usd(it.usd) : lt('No price')));
     cap.appendChild(price);
     b.append(thumbBox, cap);
-    if (opts.onHold) b.dataset.rtTip = lt('On hold, can’t be traded yet');
+    if (opts.onHold) {
+      b.dataset.rtTip = lt('On hold, can’t be traded yet');
+      card.dataset.hold = '1';
+    }
+    card.dataset.key = opts.key || '';
     b.addEventListener('click', opts.onClick);
     card.appendChild(b);
     return card;
+  }
+
+  function syncCards(grid, isOn, full, busy) {
+    for (const card of grid.querySelectorAll('.routility-ads-card')) {
+      const on = isOn(card.dataset.key);
+      card.classList.toggle('routility-ads-card-on', on);
+      const b = card.querySelector('button');
+      b.setAttribute('aria-pressed', String(on));
+      b.disabled = !!busy || card.dataset.hold === '1' || (!on && full);
+    }
   }
 
   function skTile() {
@@ -631,7 +645,7 @@
         else if (list.length < 4) list.push({ kind: u, amount: v });
         else return hint(lt('Each side holds 4 things. Remove one to add more.'), true);
         amount.input.value = '';
-        paint();
+        picks();
       };
       add.addEventListener('click', addAmount);
       amount.input.addEventListener('keydown', (e) => { if (e.key === 'Enter') addAmount(); });
@@ -681,7 +695,7 @@
       side.count.textContent = lt('{count} of {max}', { count: list.length, max: 4 });
       side.slots.replaceChildren(...Array.from({ length: 4 }, (_, i) => {
         const e = list[i];
-        const b = slotView(e, () => { st[side.key] = list.filter(x => x !== e); paint(); });
+        const b = slotView(e, () => { st[side.key] = list.filter(x => x !== e); picks(); });
         if (!e) b.addEventListener('click', () => side.search.input.focus());
         return b;
       }));
@@ -700,7 +714,7 @@
         b.addEventListener('click', () => {
           if (on) st.look = st.look.filter(e => !(e.kind === 'tag' && e.tag === tag));
           else if (st.look.length < 4) st.look.push({ kind: 'tag', tag });
-          paint();
+          picks();
         });
         return b;
       }));
@@ -718,10 +732,10 @@
         if (!list.length) return side.grid.replaceChildren(el('div', 'routility-ads-grid-note text-body-small content-muted', st.mine.items.length ? lt('No limiteds match that.') : lt('You don’t have any limiteds to offer.')));
         return side.grid.replaceChildren(...list.slice(0, 120).map(({ x, it }) => {
           const on = st.off.some(e => e.uaid === x.uaid);
-          return itemCard(it, { picked: on, serial: x.serial, onHold: x.onHold, disabled: x.onHold || (!on && full), onClick: () => {
-            if (on) st.off = st.off.filter(e => e.uaid !== x.uaid);
+          return itemCard(it, { key: x.uaid, picked: on, serial: x.serial, onHold: x.onHold, disabled: x.onHold || (!on && full), onClick: () => {
+            if (st.off.some(e => e.uaid === x.uaid)) st.off = st.off.filter(e => e.uaid !== x.uaid);
             else if (st.off.length < 4) st.off.push({ kind: 'item', assetId: x.assetId, uaid: x.uaid });
-            paint();
+            picks();
           } });
         }));
       }
@@ -730,10 +744,10 @@
       if (!list.length) return side.grid.replaceChildren(el('div', 'routility-ads-grid-note text-body-small content-muted', lt('No limiteds match that.')));
       side.grid.replaceChildren(...list.slice(0, 120).map(it => {
         const on = st.look.some(e => e.kind === 'item' && e.assetId === String(it.id));
-        return itemCard(it, { picked: on, disabled: !on && full, onClick: () => {
-          if (on) st.look = st.look.filter(e => !(e.kind === 'item' && e.assetId === String(it.id)));
+        return itemCard(it, { key: String(it.id), picked: on, disabled: !on && full, onClick: () => {
+          if (st.look.some(e => e.kind === 'item' && e.assetId === String(it.id))) st.look = st.look.filter(e => !(e.kind === 'item' && e.assetId === String(it.id)));
           else if (st.look.length < 4) st.look.push({ kind: 'item', assetId: String(it.id) });
-          paint();
+          picks();
         } });
       }));
     }
@@ -777,6 +791,16 @@
       paintTags();
       paintGrid(sides.off);
       paintGrid(sides.look);
+      paintPost();
+    }
+
+    function picks() {
+      st.lastError = '';
+      paintSlots(sides.off);
+      paintSlots(sides.look);
+      paintTags();
+      syncCards(sides.off.grid, k => st.off.some(e => e.uaid === k), st.off.length >= 4);
+      syncCards(sides.look.grid, k => st.look.some(e => e.kind === 'item' && e.assetId === k), st.look.length >= 4);
       paintPost();
     }
 
@@ -852,7 +876,7 @@
   }
 
   function buildMass() {
-    const st = { off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null };
+    const st = { off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null, rangeFrom: '', rangeTo: '', rangeCount: '' };
     const root = el('div', 'routility-ads-post routility-mass');
     const form = el('div', 'routility-ads-form-grid');
     const sides = {};
@@ -891,7 +915,7 @@
           else if (st.off.length < 4) st.off.push({ kind: 'robux', amount: v });
           else return hint(lt('Each side holds 4 things. Remove one to add more.'), true);
           amount.input.value = '';
-          paint();
+          picks();
         };
         add.addEventListener('click', addAmount);
         amount.input.addEventListener('keydown', (e) => { if (e.key === 'Enter') addAmount(); });
@@ -918,7 +942,9 @@
     const footRow = el('div', 'routility-ads-post-foot');
     const start = fbutton(lt('Start Sending'), 'bg-action-emphasis content-action-emphasis');
     const hintEl = el('span', 'text-body-small content-muted');
-    footRow.append(start, hintEl);
+    const test = fbutton(lt('Test Run'), 'bg-action-standard content-action-standard');
+    test.dataset.rtTip = lt('Goes through everything, but doesn’t send any trades');
+    footRow.append(start, test, hintEl);
     const progress = el('div', 'routility-mass-progress');
     progress.hidden = true;
     const status = el('div', 'text-body-medium content-default routility-mass-status');
@@ -928,7 +954,36 @@
     bar.appendChild(fill);
     const list = el('ul', 'routility-clean-list routility-mass-list');
     progress.append(status, bar, list);
-    sendPanel.append(sendHead, opts, footRow, progress);
+    const rangeBox = el('div', 'routility-mass-opt routility-mass-rangebox');
+    const rangeRight = el('div', 'routility-mass-rangeright');
+    const rangeFields = el('div', 'routility-mass-rangefields');
+    const rangeField = (label, prop, placeholder, opts2) => {
+      const wrap = el('label', 'routility-mass-field');
+      wrap.appendChild(el('span', 'text-caption-medium content-muted', label));
+      const f = finput(placeholder, { inputmode: 'numeric', max: opts2.max });
+      f.classList.add('routility-mass-range', opts2.cls);
+      if (opts2.logo) {
+        const logo = el('img', 'routility-val-logo routility-mass-range-logo');
+        logo.alt = '';
+        logo.src = chrome.runtime.getURL('assets/icons/logo.png');
+        f.insertBefore(logo, f.input);
+      }
+      f.input.addEventListener('input', () => {
+        f.input.value = f.input.value.replace(opts2.logo ? /[^\d.,kmbKMB]/g : /[^\d]/g, '');
+        st[prop] = f.input.value.trim();
+        paintSlots(sides.look);
+        paintStart();
+      });
+      wrap.appendChild(f);
+      rangeFields.appendChild(wrap);
+      return f;
+    };
+    const rFrom = rangeField(lt('From'), 'rangeFrom', lt('e.g. {n}', { n: '25k' }), { max: 14, logo: true, cls: 'routility-mass-range-val' });
+    const rTo = rangeField(lt('To'), 'rangeTo', lt('e.g. {n}', { n: '35k' }), { max: 14, logo: true, cls: 'routility-mass-range-val' });
+    const rCount = rangeField(lt('How many'), 'rangeCount', lt('Any'), { max: 1, logo: false, cls: 'routility-mass-range-count' });
+    rangeRight.append(rangeFields, el('span', 'text-body-small content-muted routility-mass-rangehelp', lt('Fills the empty boxes under You Want with items from each person’s own inventory, worth this much Value in total. How many is the number of items, blank for any. Leave From and To blank to turn it off.')));
+    rangeBox.append(el('span', 'text-label-medium content-muted routility-mass-opt-label', lt('Their items')), rangeRight);
+    sendPanel.append(sendHead, rangeBox, opts, footRow, progress);
     root.append(form, sendPanel);
 
     function hint(text, alert) {
@@ -958,6 +1013,9 @@
       rows.push(optRow(lt('Skip'), MASS_SKIPS.map(([k, label]) => chip(lt(label), st.skip[k], () => { st.skip[k] = !st.skip[k]; paintOpts(); }))));
       opts.replaceChildren(...rows);
       opts.querySelectorAll('button').forEach(b => { b.disabled = busy; });
+      const full = st.look.length >= 4;
+      for (const f of [rFrom, rTo, rCount]) f.input.disabled = busy || full;
+      rangeBox.classList.toggle('routility-mass-range-off', full);
       reach.textContent = st.source === 'owners' ? lt('People who own what you want, from RoUtility’s owner list') : lt('People whose ads on routility.io offer what you want');
     }
 
@@ -966,16 +1024,35 @@
       side.count.textContent = lt('{count} of {max}', { count: list.length, max: 4 });
       side.slots.replaceChildren(...Array.from({ length: 4 }, (_, i) => {
         const e = list[i];
-        const b = slotView(e, () => { if (st.job) return; st[side.key] = list.filter(x => x !== e); paint(); }, { cap: false });
+        const b = slotView(e, () => { if (st.job) return; st[side.key] = list.filter(x => x !== e); picks(); }, { cap: false });
         if (!e) b.addEventListener('click', () => side.search.input.focus());
+        if (!e && side.key === 'look' && range() && typeof range() === 'object') {
+          b.classList.add('routility-mass-slot-range');
+          b.appendChild(el('span', 'routility-mass-slot-note text-label-small content-muted', lt('Their items')));
+        }
         return b;
       }));
+      if (side.key === 'look') {
+        const full = list.length >= 4;
+        for (const f of [rFrom, rTo, rCount]) f.input.disabled = !!st.job || full;
+        rangeBox.classList.toggle('routility-mass-range-off', full);
+      }
       const items = list.filter(e => e.kind === 'item').map(e => itemInfo(e.assetId));
       const robux = list.filter(e => e.kind === 'robux').reduce((n, e) => n + e.amount, 0);
       const usdSum = items.reduce((n, it) => n + (it.usd || 0), 0) + robux * window.RoUtilityUI.robuxRate(settings);
       const rapSum = items.reduce((n, it) => n + (it.rap || 0), 0) + robux;
       const valSum = items.reduce((n, it) => n + (itemValue(it) || it.rap || 0), 0);
-      side.total.replaceChildren(...(list.length ? [totals(usdSum, rapSum, valSum)] : []));
+      const r = side.key === 'look' ? range() : null;
+      let extra = null;
+      if (r && typeof r === 'object') {
+        extra = el('span', 'text-label-medium content-muted routility-mass-range-sum');
+        const logo = el('img', 'routility-val-logo routility-mass-range-logo');
+        logo.alt = '';
+        logo.src = chrome.runtime.getURL('assets/icons/logo.png');
+        extra.append(document.createTextNode('+'), logo, document.createTextNode(compact(r.lo) + '–' + compact(r.hi)));
+        extra.dataset.rtTip = lt('+ {from}–{to} from their items', { from: compact(r.lo), to: compact(r.hi) });
+      }
+      side.total.replaceChildren(...(list.length ? [totals(usdSum, rapSum, valSum)] : []), ...(extra ? [extra] : []));
     }
 
     function paintGrid(side) {
@@ -990,10 +1067,10 @@
         if (!list.length) return side.grid.replaceChildren(el('div', 'routility-ads-grid-note text-body-small content-muted', st.mine.items.length ? lt('No limiteds match that.') : lt('You don’t have any limiteds to offer.')));
         return side.grid.replaceChildren(...list.slice(0, 120).map(({ x, it }) => {
           const on = st.off.some(e => e.uaid === x.uaid);
-          return itemCard(it, { picked: on, serial: x.serial, onHold: x.onHold, disabled: !!st.job || x.onHold || (!on && full), onClick: () => {
-            if (on) st.off = st.off.filter(e => e.uaid !== x.uaid);
+          return itemCard(it, { key: x.uaid, picked: on, serial: x.serial, onHold: x.onHold, disabled: !!st.job || x.onHold || (!on && full), onClick: () => {
+            if (st.off.some(e => e.uaid === x.uaid)) st.off = st.off.filter(e => e.uaid !== x.uaid);
             else if (st.off.length < 4) st.off.push({ kind: 'item', assetId: x.assetId, uaid: x.uaid });
-            paint();
+            picks();
           } });
         }));
       }
@@ -1002,10 +1079,10 @@
       if (!list.length) return side.grid.replaceChildren(el('div', 'routility-ads-grid-note text-body-small content-muted', lt('No limiteds match that.')));
       side.grid.replaceChildren(...list.slice(0, 120).map(it => {
         const on = st.look.some(e => e.assetId === String(it.id));
-        return itemCard(it, { picked: on, disabled: !!st.job || (!on && full), onClick: () => {
-          if (on) st.look = st.look.filter(e => e.assetId !== String(it.id));
+        return itemCard(it, { key: String(it.id), picked: on, disabled: !!st.job || (!on && full), onClick: () => {
+          if (st.look.some(e => e.assetId === String(it.id))) st.look = st.look.filter(e => e.assetId !== String(it.id));
           else if (st.look.length < 4) st.look.push({ kind: 'item', assetId: String(it.id) });
-          paint();
+          picks();
         } });
       }));
     }
@@ -1014,19 +1091,50 @@
       return list.reduce((t, e) => t + (e.kind === 'item' ? itemInfo(e.assetId).rap || 0 : 0), 0);
     }
 
-    function balance() {
+    function range() {
+      if (st.look.length >= 4 || (!st.rangeFrom && !st.rangeTo)) return null;
+      const parse = (v) => {
+        let t = String(v || '').trim().toLowerCase();
+        if (/^\d+,\d{1,2}[kmb]?$/.test(t)) t = t.replace(',', '.');
+        const m = t.replace(/[,\s]/g, '').match(/^(\d+(?:\.\d+)?)([kmb])?$/);
+        return m ? Math.round(Number(m[1]) * ({ k: 1e3, m: 1e6, b: 1e9 }[m[2]] || 1)) : NaN;
+      };
+      const a = parse(st.rangeFrom);
+      const c = parse(st.rangeTo);
+      if (!(a > 0) || !(c > 0)) return 'bad';
+      const count = st.rangeCount ? Number(st.rangeCount) : 0;
+      if (st.rangeCount && !(count >= 1 && count <= 4 - st.look.length)) return 'count';
+      return { lo: Math.min(a, c), hi: Math.max(a, c), count };
+    }
+
+    function balance(extra = 0) {
       const robux = st.off.filter(e => e.kind === 'robux').reduce((n, e) => n + e.amount, 0);
       const give = st.off.filter(e => e.kind === 'item').map(e => itemInfo(e.assetId));
       const get = st.look.map(e => itemInfo(e.assetId));
-      const priced = [...give, ...get].every(it => it.usd > 0);
+      const priced = !extra && [...give, ...get].every(it => it.usd > 0);
       const worth = (it) => priced ? it.usd : (itemValue(it) || it.rap || 0);
       const a = give.reduce((n, it) => n + worth(it), 0) + (priced ? robux * window.RoUtilityUI.robuxRate(settings) : robux);
-      const c = get.reduce((n, it) => n + worth(it), 0);
+      const c = get.reduce((n, it) => n + worth(it), 0) + extra;
       if (!(a > 0) || !(c > 0)) return null;
       return Math.round(a / c * 100);
     }
 
+    function paintTest() {
+      queueMicrotask(() => {
+        test.hidden = !!st.job;
+        test.disabled = start.disabled;
+      });
+    }
+
+    function offBalance() {
+      const r = range();
+      const checks = r && typeof r === 'object' ? [balance(r.lo), balance(r.hi)] : [balance()];
+      for (const p of checks) if (p !== null && (p < 50 || p > 200)) return p;
+      return null;
+    }
+
     function paintStart() {
+      paintTest();
       if (st.job) {
         start.label.textContent = st.job.stop ? lt('Stopping') : lt('Stop');
         start.disabled = st.job.stop;
@@ -1040,7 +1148,9 @@
       const items = st.off.filter(e => e.kind === 'item');
       const free = st.allow && st.allow.freeTradesAllowance;
       const limited = free && Number(free.limit) > 0 && Number(free.remaining) >= 0;
-      start.disabled = !items.length || !st.look.length;
+      const ranged = range();
+      const wantOk = st.look.length > 0 || (ranged && typeof ranged === 'object');
+      start.disabled = !items.length || !wantOk;
       if (st.allow && st.allow.canTrade === false) {
         start.disabled = true;
         return hint(lt('You can’t trade right now'), true);
@@ -1049,11 +1159,16 @@
         start.disabled = true;
         return hint(lt('You’re out of free trades this month, so Roblox won’t send more. Roblox Plus gives unlimited trades.'), true);
       }
-      if (!items.length || !st.look.length) return hint(lt('Pick at least one of your items and one item you want. Roblox needs an item on each side of a trade.'));
-      const bal = balance();
-      if (bal !== null && (bal < 50 || bal > 200)) {
+      const rangeMsg = ranged === 'bad' ? lt('Fill in both From and To, or leave both blank.') : ranged === 'count' ? ltn(4 - st.look.length, 'How many can be 1, since you have {n} empty box under You Want.', 'How many can be 1 to {n}, the empty boxes under You Want.', { n: 4 - st.look.length }) : '';
+      if (rangeMsg) {
         start.disabled = true;
-        return hint(lt('Your offer is worth {pct}% of what you’re asking. It has to be between 50% and 200%.', { pct: bal }), true);
+        return hint(rangeMsg, true);
+      }
+      if (!items.length || !wantOk) return hint(lt('Pick at least one of your items, and at least one item you want or a value range for their items. Roblox needs an item on each side of a trade.'));
+      const bad = offBalance();
+      if (bad !== null) {
+        start.disabled = true;
+        return hint(lt('Your offer is worth {pct}% of what you’re asking. It has to be between 50% and 200%.', { pct: bad }), true);
       }
       const give = sideRap(items) + (st.off.find(e => e.kind === 'robux')?.amount || 0);
       const get = sideRap(st.look);
@@ -1074,6 +1189,16 @@
       paintSlots(sides.look);
       paintGrid(sides.off);
       paintGrid(sides.look);
+      paintOpts();
+      paintStart();
+      root.classList.toggle('routility-mass-busy', !!st.job);
+    }
+
+    function picks() {
+      paintSlots(sides.off);
+      paintSlots(sides.look);
+      syncCards(sides.off.grid, k => st.off.some(e => e.uaid === k), st.off.length >= 4, st.job);
+      syncCards(sides.look.grid, k => st.look.some(e => e.assetId === k), st.look.length >= 4, st.job);
       paintOpts();
       paintStart();
       root.classList.toggle('routility-mass-busy', !!st.job);
@@ -1219,8 +1344,56 @@
       return { count: ids.size, partners: out.partners };
     }
 
+    function rangeTargets() {
+      const r = range();
+      if (!r || typeof r !== 'object') return [];
+      const list = s.items.filter(i => {
+        const v = itemValue(i) || i.rap || 0;
+        return v >= r.lo && v <= r.hi;
+      });
+      for (let i = list.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [list[i], list[j]] = [list[j], list[i]];
+      }
+      return list.map(i => String(i.id));
+    }
+
     async function* candidates(job) {
       const want = st.look.map(e => e.assetId);
+      if (!want.length) {
+        const targets = rangeTargets();
+        if (!targets.length) return;
+        if (st.source === 'ads') {
+          const fits = new Set(targets);
+          for (let page = 0; page < 50 && !job.stop; page++) {
+            const res = await request({ type: 'tradeAdsList', params: { page } }, r => r && r.status !== 0);
+            const ads = res && res.data && Array.isArray(res.data.ads) ? res.data.ads : null;
+            if (!ads || !ads.length) return;
+            for (const ad of ads) {
+              if (!/^\d+$/.test(String(ad.roblox_id || ''))) continue;
+              if (!(ad.offering || []).some(x => fits.has(String(x.asset_id)))) continue;
+              yield { id: String(ad.roblox_id), name: String(ad.roblox_username || '') };
+            }
+          }
+          return;
+        }
+        const days = st.active === 'any' ? 0 : Number(st.active);
+        const cutoff = days ? Date.now() / 1000 - days * 86400 : 0;
+        const live = targets.map(id => ({ id, page: 0, done: false }));
+        for (let round = 0; round < 40 && !job.stop && live.some(t => !t.done); round++) {
+          for (const t of live) {
+            if (t.done || job.stop) continue;
+            const res = await request({ type: 'massOwners', id: t.id, page: t.page }, r => r !== undefined);
+            t.page++;
+            if (!res || !res.more) t.done = true;
+            for (const o of (res && res.owners) || []) {
+              if (cutoff && !(o.active >= cutoff)) continue;
+              yield o;
+            }
+          }
+        }
+        return;
+      }
       if (st.source === 'ads') {
         for (let page = 0; page < 50 && !job.stop; page++) {
           const res = await request({ type: 'tradeAdsList', params: { page, itemId: want[0] } }, r => r && r.status !== 0);
@@ -1256,6 +1429,9 @@
       const lookup = window.RoUtilityUI.catalogFor(s.items);
       const got = new Map();
       const held = new Set();
+      const r = range();
+      const fill = r && typeof r === 'object' ? r : null;
+      const pool = [];
       let cursor = '';
       for (let p = 0; p < 60 && !job.stop; p++) {
         const r = await robloxGet(`https://trades.roblox.com/v2/users/${userId}/tradableItems?sortBy=CreationTime&sortOrder=Desc&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`, job);
@@ -1266,15 +1442,20 @@
           const bundle = t.itemType === 'Bundle';
           const item = bundle ? lookup({ targetId: String(t.targetId), bundle: true }) : null;
           const assetId = bundle ? (item ? String(item.id) : '') : String(t.targetId);
-          if (!need.has(assetId)) continue;
+          const wanted = need.has(assetId);
+          if (!wanted && !fill) continue;
+          const info = assetId ? s.byId.get(assetId) : null;
+          const worth = info ? (itemValue(info) || info.rap || 0) : 0;
           for (const x of (Array.isArray(it.instances) && it.instances.length ? it.instances : [it])) {
             if (!CIID.test(String(x.collectibleItemInstanceId || ''))) continue;
-            if (x.isOnHold) { held.add(assetId); continue; }
-            if (!got.has(assetId)) got.set(assetId, []);
-            got.get(assetId).push(String(x.collectibleItemInstanceId));
+            if (x.isOnHold) { if (wanted) held.add(assetId); continue; }
+            if (wanted && (got.get(assetId) || []).length < need.get(assetId)) {
+              if (!got.has(assetId)) got.set(assetId, []);
+              got.get(assetId).push(String(x.collectibleItemInstanceId));
+            } else if (fill && worth > 0) pool.push({ id: String(x.collectibleItemInstanceId), worth, name: info.name });
           }
         }
-        if ([...need].every(([a, n]) => (got.get(a) || []).length >= n)) break;
+        if (!fill && [...need].every(([a, n]) => (got.get(a) || []).length >= n)) break;
         cursor = r.body.nextPageCursor || '';
         if (!cursor) break;
       }
@@ -1284,7 +1465,35 @@
         if (have.length < n) return { status: held.has(a) ? 'held' : 'missing', assetId: a };
         picked.push(...have.slice(0, n));
       }
-      return { status: 'ok', ids: picked };
+      if (!fill) return { status: 'ok', ids: picked, extra: [] };
+      const best = pick(pool, fill.lo, fill.hi, 4 - st.look.length, fill.count);
+      if (!best) return { status: 'norange' };
+      return { status: 'ok', ids: picked.concat(best.items.map(x => x.id)), extra: best.items };
+    }
+
+    function pick(pool, lo, hi, slots, count) {
+      const items = pool.filter(x => x.worth <= hi).sort((a, c) => c.worth - a.worth).slice(0, 40);
+      const sizes = !(count > 0) ? Array.from({ length: slots }, (_, i) => i + 1) : count <= slots ? [count] : [];
+      for (const size of sizes) {
+        let best = null;
+        const chosen = [];
+        const walk = (from, sum) => {
+          if (chosen.length === size) {
+            if (sum >= lo && (!best || sum > best.sum)) best = { sum, items: chosen.slice() };
+            return;
+          }
+          for (let i = from; i < items.length; i++) {
+            if (sum + items[i].worth > hi) continue;
+            chosen.push(items[i]);
+            walk(i + 1, sum + items[i].worth);
+            chosen.pop();
+            if (best && best.sum === hi) return;
+          }
+        };
+        walk(0, 0);
+        if (best) return best;
+      }
+      return null;
     }
 
     async function sendTrade(body, job) {
@@ -1346,7 +1555,12 @@
       if (found.status !== 'ok') {
         job.skipped++;
         const name = found.assetId ? itemInfo(found.assetId).name : '';
-        return done('skipped', found.status === 'held' ? lt('{item} is on hold', { item: name }) : found.status === 'missing' ? lt('Doesn’t have {item} anymore', { item: name }) : found.status === 'private' ? lt('Their inventory is private') : lt('Couldn’t load their items'));
+        return done('skipped', found.status === 'norange' ? lt('Nothing of theirs fits the range') : found.status === 'held' ? lt('{item} is on hold', { item: name }) : found.status === 'missing' ? lt('Doesn’t have {item} anymore', { item: name }) : found.status === 'private' ? lt('Their inventory is private') : lt('Couldn’t load their items'));
+      }
+      const asks = found.extra.map(x => x.name).join(', ');
+      if (job.dry) {
+        job.sent++;
+        return done('sent', asks ? lt('Would send, asking for {items}', { items: asks }) : lt('Would send'));
       }
       const me = myId();
       const body = {
@@ -1372,6 +1586,7 @@
         rememberSent(String(d.tradeId || d.id || 'x' + Date.now() + Math.random()));
         rememberTo(c.id);
         if (st.today !== null) st.today++;
+        if (asks) return done('sent', lt('Sent, asking for {items}', { items: asks }));
         return done('sent', lt('Sent'));
       }
       const err = Array.isArray(d.errors) && d.errors[0] ? d.errors[0] : {};
@@ -1398,12 +1613,12 @@
       return null;
     }
 
-    async function run() {
-      const job = { stop: false, sent: 0, skipped: 0 };
+    async function run(dry) {
+      const job = { stop: false, sent: 0, skipped: 0, dry: !!dry };
       st.job = job;
       list.replaceChildren();
       progress.hidden = false;
-      paint();
+      picks();
       setStatus(lt('Checking your items'));
       const finish = (text, alert) => {
         if (st.job !== job) return;
@@ -1413,7 +1628,7 @@
         status.textContent = text;
         status.classList.toggle('routility-ads-hint-alert', !!alert);
         bar.hidden = true;
-        paint();
+        picks();
       };
       status.classList.remove('routility-ads-hint-alert');
       bar.hidden = false;
@@ -1428,15 +1643,15 @@
         if (!x) return finish(lt('You don’t have {item} anymore. Remove it and pick again.', { item: itemInfo(e.assetId).name }), true);
         if (x.onHold) return finish(lt('{item} is on hold, so it can’t be traded yet.', { item: itemInfo(e.assetId).name }), true);
       }
-      const bal = balance();
-      if (bal !== null && (bal < 50 || bal > 200)) return finish(lt('Your offer is worth {pct}% of what you’re asking. It has to be between 50% and 200%.', { pct: bal }), true);
+      const bad = offBalance();
+      if (bad !== null) return finish(lt('Your offer is worth {pct}% of what you’re asking. It has to be between 50% and 200%.', { pct: bad }), true);
       const skip = new Set([String(myId())]);
       setStatus(lt('Checking your outbound trades'));
       const today = await countToday(job);
       if (job.stop) return finish(lt('Stopped. Nothing was sent.'));
       if (today.count !== null) st.today = today.count;
-      if (st.today !== null && st.today >= DAILY) return finish(lt('You’ve sent about {max} trades in the last 24 hours, which is Roblox’s limit. Try again later.', { max: DAILY }), true);
-      job.cap = st.today !== null ? Math.min(st.max, DAILY - st.today) : st.max;
+      if (!dry && st.today !== null && st.today >= DAILY) return finish(lt('You’ve sent about {max} trades in the last 24 hours, which is Roblox’s limit. Try again later.', { max: DAILY }), true);
+      job.cap = !dry && st.today !== null ? Math.min(st.max, DAILY - st.today) : st.max;
       setStatus(lt('Checking who to skip'));
       const lists = await Promise.all([
         st.skip.pending ? Promise.resolve(today.partners) : null,
@@ -1462,12 +1677,14 @@
         await wait(job.posted ? 2500 + Math.random() * 1500 : 300);
         job.posted = false;
       }
-      const summary = ltn(job.sent, 'Sent {sent} trade, skipped {skipped}.', 'Sent {sent} trades, skipped {skipped}.', { sent: formatNumber(job.sent), skipped: formatNumber(job.skipped) });
+      const summary = dry
+        ? ltn(job.sent, 'Test run: {sent} person would get this trade, {skipped} skipped. Nothing was sent.', 'Test run: {sent} people would get this trade, {skipped} skipped. Nothing was sent.', { sent: formatNumber(job.sent), skipped: formatNumber(job.skipped) })
+        : ltn(job.sent, 'Sent {sent} trade, skipped {skipped}.', 'Sent {sent} trades, skipped {skipped}.', { sent: formatNumber(job.sent), skipped: formatNumber(job.skipped) });
       if (stopText) return finish(stopText + ' ' + summary, true);
       if (job.stop) return finish(lt('Stopped.') + ' ' + summary);
       if (!seen) return finish(st.source === 'owners' ? lt('Nobody who owns that was online in that time. Try a longer time or Trade Ads.') : lt('No trade ads offer that right now. Try Item Owners.'), true);
       if (job.sent < job.cap) return finish(lt('Ran out of people to send to.') + ' ' + summary);
-      if (job.cap < st.max) return finish(summary + ' ' + lt('That’s your {max} trades for today.', { max: DAILY }));
+      if (!dry && job.cap < st.max) return finish(summary + ' ' + lt('That’s your {max} trades for today.', { max: DAILY }));
       finish(summary);
     }
 
@@ -1490,6 +1707,11 @@
         danger: false,
       });
       if (ok && !st.job) run();
+    });
+
+    test.addEventListener('click', () => {
+      if (st.job || test.disabled) return;
+      run(true);
     });
 
     root.start = () => {
