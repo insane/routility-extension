@@ -218,6 +218,18 @@
     body.replaceChildren(ul);
   }
 
+  function thumbOf(x, map) {
+    const item = map.get(String(x.asset_id));
+    if (item && item.thumb) return item.thumb;
+    const raw = String(x.thumb || '');
+    if (!raw) return '';
+    try {
+      const inner = new URL(raw, SITE).searchParams.get('url');
+      if (inner && /^https:\/\/[a-z0-9.-]*rbxcdn\.com\//i.test(inner)) return inner;
+    } catch {}
+    return raw.startsWith('/') ? SITE + raw : raw;
+  }
+
   function itemsBlock(label, list, map) {
     const col = el('div', 'routility-tp-side');
     col.appendChild(el('span', 'text-caption-medium content-muted', label));
@@ -232,7 +244,7 @@
       img.alt = '';
       img.loading = 'lazy';
       img.addEventListener('load', () => img.classList.add('routility-loaded'), { once: true });
-      img.src = x.thumb ? (x.thumb.startsWith('/') ? SITE + x.thumb : x.thumb) : '';
+      img.src = thumbOf(x, map);
       const w = worthOf(x, map);
       it.append(img, el('span', 'text-caption-medium content-muted', w ? shortNum(w) : '-'));
       row.appendChild(it);
