@@ -4,6 +4,54 @@
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const CLASS = 'routility-skeleton';
   const root = document.documentElement;
+  if (location.hostname === 'www.roblox.com') {
+    const ME = 'routilityMe';
+    const fill = (meta, me) => {
+      meta.dataset.userid = me.userid;
+      meta.dataset.name = me.name || '';
+      meta.dataset.displayname = me.displayname || me.name || '';
+    };
+    const stand = () => {
+      const real = document.querySelector('meta[name="user-data"]:not([data-routility])');
+      if (real) {
+        const d = real.dataset;
+        if (/^\d+$/.test(d.userid || '')) {
+          try { localStorage.setItem(ME, JSON.stringify({ userid: d.userid, name: d.name || '', displayname: d.displayname || '' })); } catch {}
+        }
+        return;
+      }
+      if (!document.querySelector('.left-nav, #navigation-container, nav')) return;
+      let meta = null;
+      const place = (me) => {
+        if (!meta) {
+          meta = document.createElement('meta');
+          meta.name = 'user-data';
+          meta.dataset.routility = '1';
+          (document.head || root).appendChild(meta);
+        }
+        fill(meta, me);
+      };
+      let cached = null;
+      try { cached = JSON.parse(localStorage.getItem(ME) || 'null'); } catch {}
+      if (cached && /^\d+$/.test(cached.userid || '')) place(cached);
+      fetch('https://users.roblox.com/v1/users/authenticated', { credentials: 'include' })
+        .then(r => (r.status === 401 ? {} : r.ok ? r.json() : null))
+        .then((d) => {
+          if (!d) return;
+          if (!d.id) {
+            meta?.remove();
+            try { localStorage.removeItem(ME); } catch {}
+            return;
+          }
+          const me = { userid: String(d.id), name: d.name || '', displayname: d.displayName || d.name || '' };
+          try { localStorage.setItem(ME, JSON.stringify(me)); } catch {}
+          if (!cached || cached.userid !== me.userid || cached.name !== me.name || cached.displayname !== me.displayname) place(me);
+        })
+        .catch(() => {});
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', stand, { once: true });
+    else stand();
+  }
   if (location.hostname === 'www.roblox.com' && /^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?(?:catalog|bundles)\/\d+/i.test(location.pathname)) root.classList.add('routility-hi-path');
   if (location.hostname === 'www.roblox.com' && location.pathname === '/request-error' && !/routility-user=/.test(location.hash)) {
     try {
@@ -330,10 +378,10 @@
   const serversPage = /^\/private-servers\/?$/i.test(location.pathname);
   if (serversPage) root.classList.add('routility-ps-page');
   const NAV = [
-    ['promo', 'li:has(> a[href*="/plus?referrals"], > a[href="/plus"], > button > .icon-regular-roblox-plus)'],
-    ['home', 'li:has(> a[href$="roblox.com/home"])'],
-    ['profile', 'li:has(> a:is([href$="roblox.com/users/profile"], [data-rt-profile$="roblox.com/users/profile"]))'],
-    ['plus', 'li:has(> a[href$="roblox.com/plus"])'],
+    ['promo', 'li:has(> a[href*="/plus?referrals"], > a[href="/plus"]:not(.text-title-large), > button > .icon-regular-roblox-plus)'],
+    ['home', 'li:has(> a:is([href$="roblox.com/home"], [href="/home"]))'],
+    ['profile', 'li:not(:first-child):has(> a:is([href$="roblox.com/users/profile"], [data-rt-profile$="roblox.com/users/profile"], [href="/users/profile"], [data-rt-profile="/users/profile"]))'],
+    ['plus', 'li:has(> a:is([href$="roblox.com/plus"], [href="/plus"].text-title-large))'],
     ['messages', 'li:has(> a[href*="/my/messages"])'],
     ['friends', 'li:has(> a[href*="/users/friends"])'],
     ['history', 'li.routility-fh-nav'],
@@ -341,7 +389,7 @@
     ['sandbox', 'li.routility-sb-nav'],
     ['inventory', 'li:has(> a:is([href$="/users/inventory"], [data-rt-profile$="/users/inventory"]))'],
     ['servers', 'li.routility-ps-nav'],
-    ['trade', 'li:has(> a[href$="roblox.com/trades"])'],
+    ['trade', 'li:has(> a:is([href$="roblox.com/trades"], [href="/trades"]))'],
     ['calc', 'li.routility-calc-nav'],
     ['ads', 'li.routility-ads-nav'],
     ['communities', 'li:has(> a[href$="/communities"])'],

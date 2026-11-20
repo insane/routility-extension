@@ -2389,17 +2389,17 @@
   function navVisualizer(stored, settings, save) {
     const ENTRIES = [['promo', lt('Plus Promo Banner')], ['home', lt('Home')], ['profile', lt('Profile')], ['plus', 'Roblox Plus'], ['messages', lt('Messages')], ['friends', lt('Friends')], ['history', lt('Friend History')], ['avatar', lt('Avatar')], ['sandbox', lt('Sandbox')], ['inventory', lt('Inventory')], ['servers', lt('Private Servers')], ['trade', lt('Trade')], ['calc', lt('Trade Calculator')], ['ads', lt('Trade Ads')], ['communities', lt('Communities')], ['forum', lt('Forum')], ['newsroom', lt('Newsroom')], ['store', lt('Official Store')], ['giftcards', lt('Buy Gift Cards')]];
     const RULES = [
-        ['promo', 'li:has(> a[href*="/plus?referrals"], > a[href="/plus"], > button > .icon-regular-roblox-plus)'],
-        ['home', 'li:has(> a[href$="roblox.com/home"])'],
-        ['profile', 'li:has(> a:is([href$="roblox.com/users/profile"], [data-rt-profile$="roblox.com/users/profile"]))'],
-        ['plus', 'li:has(> a[href$="roblox.com/plus"])'],
+        ['promo', 'li:has(> a[href*="/plus?referrals"], > a[href="/plus"]:not(.text-title-large), > button > .icon-regular-roblox-plus)'],
+        ['home', 'li:has(> a:is([href$="roblox.com/home"], [href="/home"]))'],
+        ['profile', 'li:not(:first-child):has(> a:is([href$="roblox.com/users/profile"], [data-rt-profile$="roblox.com/users/profile"], [href="/users/profile"], [data-rt-profile="/users/profile"]))'],
+        ['plus', 'li:has(> a:is([href$="roblox.com/plus"], [href="/plus"].text-title-large))'],
         ['messages', 'li:has(> a[href*="/my/messages"])'],
         ['friends', 'li:has(> a[href*="/users/friends"])'],
         ['avatar', 'li:has(> a[href*="/my/avatar"]):not(.routility-sb-nav)'],
         ['sandbox', 'li.routility-sb-nav'],
         ['inventory', 'li:has(> a:is([href$="/users/inventory"], [data-rt-profile$="/users/inventory"]))'],
         ['servers', 'li.routility-ps-nav'],
-        ['trade', 'li:has(> a[href$="roblox.com/trades"])'],
+        ['trade', 'li:has(> a:is([href$="roblox.com/trades"], [href="/trades"]))'],
         ['calc', 'li.routility-calc-nav'],
         ['ads', 'li.routility-ads-nav'],
         ['communities', 'li:has(> a[href$="/communities"])'],
