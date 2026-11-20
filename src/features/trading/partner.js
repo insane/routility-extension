@@ -56,8 +56,18 @@
     return catalog;
   }
 
+  const partners = new Map();
+
   async function partnerOf() {
     const path = location.pathname;
+    const known = partners.get(path);
+    if (known && (known.pid || Date.now() - known.at < 30000)) return known.pid;
+    const pid = await lookupPartner(path);
+    partners.set(path, { pid, at: Date.now() });
+    return pid;
+  }
+
+  async function lookupPartner(path) {
     const direct = path.match(/^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?users\/(\d+)\/trade\/?$/i);
     if (direct) return direct[1];
     const counter = path.match(/^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?trades\/(\d+)\/counter\/?$/i);

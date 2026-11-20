@@ -1510,12 +1510,37 @@
       return null;
     }
 
+    async function landed(to, since) {
+      try {
+        const r = await fetch('https://trades.roblox.com/v1/trades/outbound?sortOrder=Desc&limit=10', { credentials: 'include' });
+        if (!r.ok) return null;
+        const d = await r.json();
+        if (!d || !Array.isArray(d.data)) return null;
+        const hit = d.data.find(t => String(t.user?.id) === String(to) && new Date(t.created).getTime() >= since - 60000);
+        return { hit: hit || null };
+      } catch {
+        return null;
+      }
+    }
+
     async function sendTrade(body, job) {
+      const since = Date.now();
+      let unsure = false;
       for (let tries = 0; tries < 5 && !job.stop; tries++) {
+        if (unsure) {
+          const seen = await landed(body.recipientOffer.userId, since);
+          if (!seen) {
+            await wait(3000);
+            continue;
+          }
+          if (seen.hit) return { kind: 'reply', status: 200, data: { id: seen.hit.id } };
+          unsure = false;
+        }
         let r;
         try {
           r = await fetch('https://trades.roblox.com/v2/trades/send', { method: 'POST', credentials: 'include', headers: { 'content-type': 'application/json', ...(massCsrf ? { 'x-csrf-token': massCsrf } : {}) }, body: JSON.stringify(body) });
         } catch {
+          unsure = true;
           await wait(2000);
           continue;
         }
@@ -1549,15 +1574,19 @@
     };
 
     async function tryOne(c, job, done) {
+      const halt = () => {
+        done('skipped', lt('Stopped'));
+        return { stopped: true };
+      };
       if (st.skip.fresh) {
         const u = await robloxGet(`https://users.roblox.com/v1/users/${c.id}`, job);
-        if (job.stop) return done('skipped', lt('Stopped'));
+        if (job.stop) return halt();
         const made = u.body && new Date(u.body.created).getTime();
         if (u.body && u.body.isBanned) { job.skipped++; return done('skipped', lt('Can’t trade with them')); }
         if (made && Date.now() - made < 30 * DAY) { job.skipped++; return done('skipped', lt('Account is under 30 days old')); }
       }
       const ct = await robloxGet(`https://trades.roblox.com/v1/users/${c.id}/can-trade-with`, job);
-      if (job.stop) return done('skipped', lt('Stopped'));
+      if (job.stop) return halt();
       if (!ct.body) { job.skipped++; return done('skipped', lt('Couldn’t check if you can trade')); }
       if (!ct.body.canTrade) {
         if (ct.body.status === 'SenderPrivacyTooStrict') { done('failed', lt('Your privacy settings block it')); return { stop: lt('Your privacy settings stop you from sending trades. Set Who can trade with me to Everyone in Roblox settings, then start again.') }; }
@@ -1565,7 +1594,7 @@
         return done('skipped', ct.body.status === 'UserPrivacyTooStrict' ? lt('Their privacy settings block trades') : lt('Can’t trade with them'));
       }
       const found = await copiesOf(c.id, job);
-      if (job.stop) return done('skipped', lt('Stopped'));
+      if (job.stop) return halt();
       if (found.status !== 'ok') {
         job.skipped++;
         const name = found.assetId ? itemInfo(found.assetId).name : '';
@@ -1583,7 +1612,7 @@
       };
       job.posted = true;
       const res = await sendTrade(body, job);
-      if (job.stop && res.kind !== 'reply') return done('skipped', lt('Stopped'));
+      if (job.stop && (res.kind !== 'reply' || res.status === 0)) return halt();
       if (res.kind === 'challenge') { done('failed', lt('Roblox wants to verify')); return { stop: lt(STOPS[23]) }; }
       if (res.kind === 'limit') { done('failed', lt('Refused')); return { stop: lt('Roblox kept limiting new trades for about 5 minutes, so you’ve probably used its limit of {max} trades a day. Trades sent from anywhere count, even declined ones. Try again later.', { max: DAILY }) }; }
       const d = res.data || {};
@@ -1691,6 +1720,7 @@
         setStatus('');
         const r = await tryOne(c, job, addRow(c));
         if (r && r.stop) { stopText = r.stop; break; }
+        if (r && r.stopped) break;
         job.done.add(c.id);
         if (job.stop || job.sent >= job.cap) break;
         await wait(job.posted ? 2500 + Math.random() * 1500 : 300);
