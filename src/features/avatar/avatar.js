@@ -330,7 +330,7 @@
   }
 
 
-  const FIXED = /Animation$|^Face$/;
+  const FIXED = /Animation$|^(Face|Head|DynamicHead)$/;
   const BODY_PART = /^(Head|DynamicHead|Torso|LeftArm|RightArm|LeftLeg|RightLeg)$/;
   const HIDDEN_TYPES = /Animation$/;
   const WRITE = /avatar\.roblox\.com\/v\d+\/avatar$|avatar\.roblox\.com\/v\d+\/outfits\/\d+\/wear|set-wearing|avatar\.roblox\.com\/v\d+\/avatar\/(set|remove|wear)/;
@@ -752,13 +752,13 @@
     return { card, search };
   }
 
-  async function viaSection(w, id, name, tabId, sub) {
+  async function viaSection(w, id, name, tabId, sub, own) {
     const back = currentSection();
     if (back) back.y = window.scrollY;
     const thaw = back ? freezePanel() : null;
     let found = { card: null, search: null };
     try {
-      if (await openSection(tabId, sub)) found = await findCard(id, name, BODY_PART.test(wear?.assets?.find(a => a.id === id)?.type || '') ? sub : '');
+      if (await openSection(tabId, sub)) found = await findCard(id, name, own && BODY_PART.test(wear?.assets?.find(a => a.id === id)?.type || '') ? sub : '');
       const target = found.card?.querySelector('.item-card-thumb-container');
       if (target && wear === w) {
         target.click();
@@ -798,8 +798,8 @@
     if (rigid && await viaAdvanced()) return true;
     if (wear !== w) return false;
     const section = SECTION_FOR[type];
-    if (section && await viaSection(w, id, item?.name, section[0], section[1])) return true;
-    return wear === w && viaSection(w, id, '', 'heading.recent-dropdown', 'Recently Worn');
+    if (section && await viaSection(w, id, item?.name, section[0], section[1], true)) return true;
+    return wear === w && viaSection(w, id, '', 'heading.recent-dropdown', 'Recently Worn', false);
   }
 
   function unequip(id) {
