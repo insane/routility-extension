@@ -9,9 +9,12 @@
     {
       "version": "1.3.1",
       "date": "2026-11-20",
-      "summary": "RoUtility works properly on Roblox’s newer pages again, with your menu layout and Fun Mode badges kept.",
+      "summary": "RoUtility works properly on Roblox’s newer pages again, Mass Send can’t send anyone the same trade twice, and the avatar Wearing list no longer removes the wrong item.",
       "changes": [
-        { "type": "fixed", "text": "Roblox’s newer pages: RoUtility knows who you are there again, so your left menu layout, Fun Mode badges and the other features that need your account keep working." }
+        { "type": "fixed", "text": "Roblox’s newer pages: RoUtility knows who you are there again, so your left menu layout, Fun Mode badges and the other features that need your account keep working." },
+        { "type": "fixed", "text": "Mass Send (Trades): if your connection drops while sending, it checks your outbound trades before trying again, so nobody gets the same trade twice. Stopping a run no longer skips the person it was on when you press Continue." },
+        { "type": "fixed", "text": "Wearing (Avatar): clicking your head no longer takes a while and removes a different item. Heads stay on like faces, since Roblox only lets you swap them." },
+        { "type": "fixed", "text": "Trade window: stops asking Roblox for the same trade over and over when it can’t tell who you’re trading with." }
       ]
     },
     {
