@@ -7,6 +7,14 @@
   },
   "releases": [
     {
+      "version": "1.3.1",
+      "date": "2026-11-20",
+      "summary": "RoUtility works properly on Roblox’s newer pages again, with your menu layout and Fun Mode badges kept.",
+      "changes": [
+        { "type": "fixed", "text": "Roblox’s newer pages: RoUtility knows who you are there again, so your left menu layout, Fun Mode badges and the other features that need your account keep working." }
+      ]
+    },
+    {
       "version": "1.3.0",
       "date": "2026-11-19",
       "summary": "Mass Send can continue after Roblox’s check instead of starting over, a few settings that showed as off now show correctly, and settings previews fit in every language.",
