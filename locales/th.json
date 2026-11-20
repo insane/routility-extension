@@ -1907,6 +1907,7 @@
  "Pick what you’re offering and what you want back.": "เลือกสิ่งที่คุณเสนอและสิ่งที่คุณอยากได้กลับมา",
  "Pick your own colors for Roblox: backgrounds, cards, text, links and the Play button. Start from a preset or set each color yourself.": "เลือกสีของคุณเองสำหรับ Roblox: พื้นหลัง การ์ด ข้อความ ลิงก์ และปุ่มเล่น เริ่มจากค่าที่ตั้งไว้ หรือตั้งแต่ละสีเอง",
  "Picking the best one…": "กำลังเลือกอันที่ดีที่สุด…",
+ "Picks up where it stopped, skipping everyone it already sent to": "ทำต่อจากจุดที่หยุด โดยข้ามคนที่ส่งไปแล้ว",
  "Ping": "ปิง",
  "Pinned Post": "โพสต์ที่ปักหมุด",
  "Pinned thread": "กระทู้ที่ปักหมุด",
@@ -2154,6 +2155,7 @@
  "Roblox didn’t save it. Try again.": "Roblox ไม่ได้บันทึก ลองอีกครั้ง",
  "Roblox didn’t save your About. Try again.": "Roblox ไม่ได้บันทึกเกี่ยวกับของคุณ ลองอีกครั้ง",
  "Roblox didn’t send this outfit": "Roblox ไม่ได้ส่งชุดนี้มา",
+ "Roblox didn’t send your avatar picture. Close this and try again in a moment.": "Roblox ไม่ได้ส่งรูปอวาตาร์ของคุณมา ปิดหน้านี้แล้วลองอีกครั้งในอีกสักครู่",
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox ไม่ได้ส่งการแลกเปลี่ยนของคุณมา ลองอีกครั้งในอีกสักครู่",
  "Roblox doesn’t go back further than {date}, so this counts your {n} purchases since then.": {
   "other": "Roblox ไม่มีประวัติย้อนไปก่อน {date} จึงนับการซื้อ {n} รายการตั้งแต่นั้น"
@@ -2208,7 +2210,7 @@
  "Roblox Studio is open, so Roblox shows you as “in Studio” and we can’t see which server you joined. Close Studio to see it next time.": "Roblox Studio เปิดอยู่ Roblox จึงแสดงคุณเป็น “อยู่ใน Studio” และเราดูไม่ได้ว่าคุณเข้าร่วมเซิร์ฟเวอร์ไหน ปิด Studio เพื่อดูในครั้งหน้า",
  "Roblox terminated this account. Shown via RoUtility.": "Roblox ระงับบัญชีนี้ แสดงผ่าน RoUtility",
  "Roblox username or user ID": "ชื่อผู้ใช้ Roblox หรือ User ID",
- "Roblox wants to check it’s really you. Send one trade from Roblox’s trade window, then start again.": "Roblox ต้องการยืนยันว่าเป็นคุณจริง ส่งการแลกเปลี่ยนหนึ่งครั้งจากหน้าต่างแลกเปลี่ยนของ Roblox แล้วเริ่มอีกครั้ง",
+ "Roblox wants to check it’s really you. Send one trade from Roblox’s trade window and finish the check, then press Continue.": "Roblox ต้องการยืนยันว่าเป็นคุณจริง ส่งการแลกเปลี่ยนหนึ่งครั้งจากหน้าต่างแลกเปลี่ยนของ Roblox และยืนยันให้เสร็จ แล้วกดดำเนินการต่อ",
  "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox ต้องการยืนยันว่าเป็นคุณก่อน ส่งรายการนี้จากแอป Roblox",
  "Roblox wants to verify": "Roblox ขอให้ยืนยัน",
  "Roblox won’t let you send Robux to this person right now.": "ตอนนี้ Roblox ไม่อนุญาตให้คุณส่ง Robux ให้คนนี้",
@@ -2469,6 +2471,7 @@
  "Skin Tone Color Wheel": "วงล้อสีผิว",
  "Skip": "ข้าม",
  "Skip R6 Warning": "ข้ามคำเตือน R6",
+ "Skipped": "ข้ามแล้ว",
  "Slideshow View": "มุมมองสไลด์โชว์",
  "Slot {n}": "ช่อง {n}",
  "Smarter Inventory Search": "ค้นหาคลังของที่ฉลาดขึ้น",

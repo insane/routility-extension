@@ -1907,6 +1907,7 @@
  "Pick what you’re offering and what you want back.": "Chọn thứ bạn đưa ra và thứ bạn muốn nhận lại.",
  "Pick your own colors for Roblox: backgrounds, cards, text, links and the Play button. Start from a preset or set each color yourself.": "Chọn màu riêng cho Roblox: nền, thẻ, chữ, liên kết và nút Chơi. Bắt đầu từ mẫu có sẵn hoặc tự đặt từng màu.",
  "Picking the best one…": "Đang chọn cái tốt nhất…",
+ "Picks up where it stopped, skipping everyone it already sent to": "Tiếp tục từ chỗ đã dừng, bỏ qua những người đã được gửi",
  "Ping": "Ping",
  "Pinned Post": "Bài viết đã ghim",
  "Pinned thread": "Chủ đề đã ghim",
@@ -2154,6 +2155,7 @@
  "Roblox didn’t save it. Try again.": "Roblox không lưu được. Hãy thử lại.",
  "Roblox didn’t save your About. Try again.": "Roblox không lưu được phần Giới thiệu của bạn. Hãy thử lại.",
  "Roblox didn’t send this outfit": "Roblox không gửi trang phục này",
+ "Roblox didn’t send your avatar picture. Close this and try again in a moment.": "Roblox không gửi ảnh avatar của bạn. Hãy đóng lại và thử lại sau giây lát.",
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox không gửi các giao dịch của bạn. Hãy thử lại sau giây lát.",
  "Roblox doesn’t go back further than {date}, so this counts your {n} purchases since then.": {
   "other": "Roblox không lưu lịch sử trước {date}, nên đây là {n} lượt mua của bạn từ đó đến nay."
@@ -2208,7 +2210,7 @@
  "Roblox Studio is open, so Roblox shows you as “in Studio” and we can’t see which server you joined. Close Studio to see it next time.": "Roblox Studio đang mở nên Roblox hiển thị bạn là “trong Studio” và chúng tôi không thấy được bạn đã vào máy chủ nào. Đóng Studio để thấy vào lần sau.",
  "Roblox terminated this account. Shown via RoUtility.": "Roblox đã khóa tài khoản này. Hiển thị qua RoUtility.",
  "Roblox username or user ID": "Tên người dùng hoặc ID người dùng Roblox",
- "Roblox wants to check it’s really you. Send one trade from Roblox’s trade window, then start again.": "Roblox muốn xác minh đúng là bạn. Hãy gửi một giao dịch từ cửa sổ giao dịch của Roblox rồi bắt đầu lại.",
+ "Roblox wants to check it’s really you. Send one trade from Roblox’s trade window and finish the check, then press Continue.": "Roblox muốn xác minh đúng là bạn. Hãy gửi một giao dịch từ cửa sổ giao dịch của Roblox và hoàn tất xác minh, rồi nhấn Tiếp tục.",
  "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox muốn xác minh đó là bạn trước. Hãy gửi khoản này từ ứng dụng Roblox.",
  "Roblox wants to verify": "Roblox yêu cầu xác minh",
  "Roblox won’t let you send Robux to this person right now.": "Hiện Roblox không cho bạn gửi Robux cho người này.",
@@ -2469,6 +2471,7 @@
  "Skin Tone Color Wheel": "Bánh xe màu da",
  "Skip": "Bỏ qua",
  "Skip R6 Warning": "Bỏ qua cảnh báo R6",
+ "Skipped": "Đã bỏ qua",
  "Slideshow View": "Dạng trình chiếu",
  "Slot {n}": "Ô {n}",
  "Smarter Inventory Search": "Tìm Kho Đồ Thông Minh Hơn",

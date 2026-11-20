@@ -15,8 +15,14 @@
   let state = null;
   let csrf = '';
 
-  function me() {
-    return document.querySelector('meta[name="user-data"]')?.dataset.userid || '';
+  let meId = '';
+  async function me() {
+    if (meId) return meId;
+    const tag = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+    if (tag) return (meId = String(tag));
+    const d = await getJson('https://users.roblox.com/v1/users/authenticated');
+    if (d && d.id) meId = String(d.id);
+    return meId;
   }
 
   async function send(url, body) {
@@ -67,7 +73,7 @@
   }
 
   async function loadEmotes() {
-    const id = me();
+    const id = await me();
     if (!id) return [];
     const list = [];
     let cursor = '';
@@ -92,7 +98,8 @@
   }
 
   async function avatarThumb(type) {
-    const id = me();
+    const id = await me();
+    if (!id) return null;
     const res = await getJson(`https://thumbnails.roblox.com/v1/users/${type.thumb}?userIds=${id}&size=420x420&format=Png&_=${Date.now()}`);
     const t = res && res.data && res.data[0];
     return t ? { state: t.state, url: t.imageUrl || '' } : null;
@@ -306,6 +313,7 @@
       if (tab === t) {
         frame.classList.remove('routility-tc-loading');
         if (before) setImg(before);
+        else setStatus(lt('Roblox didn’t send your avatar picture. Close this and try again in a moment.'), true);
       }
       return false;
     };

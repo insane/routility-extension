@@ -1907,6 +1907,7 @@
  "Pick what you’re offering and what you want back.": "Pilih apa yang kamu tawarkan dan apa yang kamu mau sebagai gantinya.",
  "Pick your own colors for Roblox: backgrounds, cards, text, links and the Play button. Start from a preset or set each color yourself.": "Pilih warnamu sendiri untuk Roblox: latar belakang, kartu, teks, tautan, dan tombol Main. Mulai dari preset atau atur setiap warna sendiri.",
  "Picking the best one…": "Memilih yang terbaik…",
+ "Picks up where it stopped, skipping everyone it already sent to": "Lanjut dari titik berhenti, melewati semua yang sudah dikirimi",
  "Ping": "Ping",
  "Pinned Post": "Postingan Disematkan",
  "Pinned thread": "Thread disematkan",
@@ -2154,6 +2155,7 @@
  "Roblox didn’t save it. Try again.": "Roblox tidak menyimpannya. Coba lagi.",
  "Roblox didn’t save your About. Try again.": "Roblox tidak menyimpan Tentang-mu. Coba lagi.",
  "Roblox didn’t send this outfit": "Roblox tidak mengirim outfit ini",
+ "Roblox didn’t send your avatar picture. Close this and try again in a moment.": "Roblox tidak mengirim gambar avatarmu. Tutup ini lalu coba lagi sebentar lagi.",
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox tidak mengirim perdaganganmu. Coba lagi sebentar lagi.",
  "Roblox doesn’t go back further than {date}, so this counts your {n} purchases since then.": {
   "other": "Roblox tidak menyimpan riwayat sebelum {date}, jadi ini menghitung {n} pembelianmu sejak saat itu."
@@ -2208,7 +2210,7 @@
  "Roblox Studio is open, so Roblox shows you as “in Studio” and we can’t see which server you joined. Close Studio to see it next time.": "Roblox Studio terbuka, jadi Roblox menampilkanmu sebagai “di Studio” dan kami tidak bisa melihat server mana yang kamu masuki. Tutup Studio untuk melihatnya lain kali.",
  "Roblox terminated this account. Shown via RoUtility.": "Roblox memblokir permanen akun ini. Ditampilkan lewat RoUtility.",
  "Roblox username or user ID": "Username atau user ID Roblox",
- "Roblox wants to check it’s really you. Send one trade from Roblox’s trade window, then start again.": "Roblox ingin memastikan ini benar-benar kamu. Kirim satu trade dari jendela trade Roblox, lalu mulai lagi.",
+ "Roblox wants to check it’s really you. Send one trade from Roblox’s trade window and finish the check, then press Continue.": "Roblox ingin memastikan ini benar-benar kamu. Kirim satu trade dari jendela trade Roblox dan selesaikan pemeriksaannya, lalu tekan Lanjutkan.",
  "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox ingin memastikan ini kamu dulu. Kirim yang ini dari aplikasi Roblox.",
  "Roblox wants to verify": "Roblox minta verifikasi",
  "Roblox won’t let you send Robux to this person right now.": "Roblox tidak mengizinkanmu mengirim Robux ke orang ini sekarang.",
@@ -2469,6 +2471,7 @@
  "Skin Tone Color Wheel": "Roda Warna Kulit",
  "Skip": "Lewati",
  "Skip R6 Warning": "Lewati Peringatan R6",
+ "Skipped": "Dilewati",
  "Slideshow View": "Tampilan Slideshow",
  "Slot {n}": "Slot {n}",
  "Smarter Inventory Search": "Pencarian Inventaris Lebih Pintar",

@@ -1907,6 +1907,7 @@
  "Pick what you’re offering and what you want back.": "提供するものと、代わりに欲しいものを選んでください。",
  "Pick your own colors for Roblox: backgrounds, cards, text, links and the Play button. Start from a preset or set each color yourself.": "Roblox の色を自由に選べます:背景、カード、テキスト、リンク、プレイボタン。プリセットから始めるか、色を1つずつ設定してください。",
  "Picking the best one…": "最適なものを選んでいます…",
+ "Picks up where it stopped, skipping everyone it already sent to": "止まったところから再開し、送信済みの相手はスキップします",
  "Ping": "Ping",
  "Pinned Post": "固定された投稿",
  "Pinned thread": "固定されたスレッド",
@@ -2154,6 +2155,7 @@
  "Roblox didn’t save it. Try again.": "Roblox が保存しませんでした。もう一度お試しください。",
  "Roblox didn’t save your About. Try again.": "Roblox が自己紹介を保存しませんでした。もう一度お試しください。",
  "Roblox didn’t send this outfit": "Roblox からこのコーデが届きませんでした",
+ "Roblox didn’t send your avatar picture. Close this and try again in a moment.": "Robloxからアバター画像が届きませんでした。閉じて少ししてからもう一度お試しください。",
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox からトレードが届きませんでした。少ししてからもう一度お試しください。",
  "Roblox doesn’t go back further than {date}, so this counts your {n} purchases since then.": {
   "other": "Robloxは{date}より前の履歴を返さないため、それ以降の{n}件の購入を集計しています。"
@@ -2208,7 +2210,7 @@
  "Roblox Studio is open, so Roblox shows you as “in Studio” and we can’t see which server you joined. Close Studio to see it next time.": "Roblox Studio が開いているため、Roblox 上では「Studio 使用中」と表示され、参加したサーバーを確認できません。次回確認するには Studio を閉じてください。",
  "Roblox terminated this account. Shown via RoUtility.": "Roblox がこのアカウントを停止しました。RoUtility 経由で表示しています。",
  "Roblox username or user ID": "Roblox のユーザー名またはユーザーID",
- "Roblox wants to check it’s really you. Send one trade from Roblox’s trade window, then start again.": "Robloxが本人確認を求めています。Robloxのトレード画面からトレードを1つ送ってから、もう一度始めてください。",
+ "Roblox wants to check it’s really you. Send one trade from Roblox’s trade window and finish the check, then press Continue.": "Robloxが本人確認を求めています。Robloxのトレード画面からトレードを1つ送って確認を済ませてから、「続ける」を押してください。",
  "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Robloxが本人確認を求めています。この送金はRobloxアプリから行ってください。",
  "Roblox wants to verify": "Robloxが確認を求めています",
  "Roblox won’t let you send Robux to this person right now.": "今はこの人にRobuxを送れません。",
@@ -2469,6 +2471,7 @@
  "Skin Tone Color Wheel": "肌の色のカラーホイール",
  "Skip": "スキップ",
  "Skip R6 Warning": "R6 の警告をスキップ",
+ "Skipped": "スキップ",
  "Slideshow View": "スライドショー表示",
  "Slot {n}": "スロット {n}",
  "Smarter Inventory Search": "スマートなインベントリ検索",

@@ -1907,6 +1907,7 @@
  "Pick what you’re offering and what you want back.": "选择你要提供的东西以及你想要的回报。",
  "Pick your own colors for Roblox: backgrounds, cards, text, links and the Play button. Start from a preset or set each color yourself.": "为 Roblox 选择你自己的颜色：背景、卡片、文字、链接和“开始游戏”按钮。可以从预设开始，也可以自己设置每种颜色。",
  "Picking the best one…": "正在挑选最佳的…",
+ "Picks up where it stopped, skipping everyone it already sent to": "从停下的地方继续，跳过已发送过的人",
  "Ping": "延迟",
  "Pinned Post": "置顶帖子",
  "Pinned thread": "置顶主题",
@@ -2154,6 +2155,7 @@
  "Roblox didn’t save it. Try again.": "Roblox 没有保存。请重试。",
  "Roblox didn’t save your About. Try again.": "Roblox 没有保存你的简介。请重试。",
  "Roblox didn’t send this outfit": "Roblox 没有发送这套服装",
+ "Roblox didn’t send your avatar picture. Close this and try again in a moment.": "Roblox 没有发送你的头像图片。请关闭后稍等再试。",
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox 没有发送你的交易。请稍后再试。",
  "Roblox doesn’t go back further than {date}, so this counts your {n} purchases since then.": {
   "other": "Roblox 只能查到 {date} 之后的记录，因此这里统计的是此后的 {n} 笔购买。"
@@ -2208,7 +2210,7 @@
  "Roblox Studio is open, so Roblox shows you as “in Studio” and we can’t see which server you joined. Close Studio to see it next time.": "Roblox Studio 已打开，所以 Roblox 会把你显示为“在 Studio 中”，我们无法看到你加入了哪个服务器。关闭 Studio 后，下次就能看到。",
  "Roblox terminated this account. Shown via RoUtility.": "Roblox 已封禁此账户。通过 RoUtility 显示。",
  "Roblox username or user ID": "Roblox 用户名或用户 ID",
- "Roblox wants to check it’s really you. Send one trade from Roblox’s trade window, then start again.": "Roblox 想确认是你本人。请先从 Roblox 的交易窗口发送一个交易，然后再开始。",
+ "Roblox wants to check it’s really you. Send one trade from Roblox’s trade window and finish the check, then press Continue.": "Roblox 想确认是你本人。请先从 Roblox 的交易窗口发送一个交易并完成验证，然后点“继续”。",
  "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox 想先确认是你本人。请在 Roblox 应用中发送这笔。",
  "Roblox wants to verify": "Roblox 要求验证",
  "Roblox won’t let you send Robux to this person right now.": "Roblox 目前不允许你向此人发送 Robux。",
@@ -2469,6 +2471,7 @@
  "Skin Tone Color Wheel": "肤色色轮",
  "Skip": "跳过",
  "Skip R6 Warning": "跳过 R6 警告",
+ "Skipped": "已跳过",
  "Slideshow View": "幻灯片视图",
  "Slot {n}": "槽位 {n}",
  "Smarter Inventory Search": "更智能的物品栏搜索",

@@ -942,9 +942,12 @@
     const footRow = el('div', 'routility-ads-post-foot');
     const start = fbutton(lt('Start Sending'), 'bg-action-emphasis content-action-emphasis');
     const hintEl = el('span', 'text-body-small content-muted');
+    const cont = fbutton(lt('Continue'), 'bg-action-emphasis content-action-emphasis');
+    cont.hidden = true;
+    cont.dataset.rtTip = lt('Picks up where it stopped, skipping everyone it already sent to');
     const test = fbutton(lt('Test Run'), 'bg-action-standard content-action-standard');
     test.dataset.rtTip = lt('Goes through everything, but doesn’t send any trades');
-    footRow.append(start, test, hintEl);
+    footRow.append(cont, start, test, hintEl);
     const progress = el('div', 'routility-mass-progress');
     progress.hidden = true;
     const status = el('div', 'text-body-medium content-default routility-mass-status');
@@ -1119,10 +1122,21 @@
       return Math.round(a / c * 100);
     }
 
+    function runSig() {
+      return JSON.stringify([st.off, st.look, st.rangeFrom, st.rangeTo, st.rangeCount, st.source, st.active, st.max]);
+    }
+
     function paintTest() {
       queueMicrotask(() => {
         test.hidden = !!st.job;
         test.disabled = start.disabled;
+        const can = !!(st.resume && !st.job && st.resume.sig === runSig());
+        cont.hidden = !can;
+        cont.disabled = start.disabled;
+        start.classList.toggle('bg-action-emphasis', !can || !!st.job);
+        start.classList.toggle('content-action-emphasis', !can || !!st.job);
+        start.classList.toggle('bg-action-standard', can && !st.job);
+        start.classList.toggle('content-action-standard', can && !st.job);
       });
     }
 
@@ -1530,7 +1544,7 @@
       15: LT('Roblox says this trade is too uneven, so it won’t send it.'),
       17: LT('You don’t have enough Robux for this offer.'),
       18: LT('Roblox only allows Robux up to half of what the items in the trade are worth.'),
-      23: LT('Roblox wants to check it’s really you. Send one trade from Roblox’s trade window, then start again.'),
+      23: LT('Roblox wants to check it’s really you. Send one trade from Roblox’s trade window and finish the check, then press Continue.'),
       30: LT('This trade needs Roblox Plus to include Robux.'),
     };
 
@@ -1613,16 +1627,19 @@
       return null;
     }
 
-    async function run(dry) {
-      const job = { stop: false, sent: 0, skipped: 0, dry: !!dry };
+    async function run(dry, resume) {
+      const job = { stop: false, sent: resume ? resume.sent : 0, skipped: resume ? resume.skipped : 0, dry: !!dry, done: new Set(resume ? resume.done : []) };
+      const startSent = job.sent;
+      st.resume = null;
       st.job = job;
-      list.replaceChildren();
+      if (!resume) list.replaceChildren();
       progress.hidden = false;
       picks();
       setStatus(lt('Checking your items'));
-      const finish = (text, alert) => {
+      const finish = (text, alert, again) => {
         if (st.job !== job) return;
         st.job = null;
+        if (again && !dry) st.resume = { done: [...job.done], sent: job.sent, skipped: job.skipped, sig: runSig() };
         window.removeEventListener('beforeunload', guard);
         statusText = '';
         status.textContent = text;
@@ -1651,7 +1668,7 @@
       if (job.stop) return finish(lt('Stopped. Nothing was sent.'));
       if (today.count !== null) st.today = today.count;
       if (!dry && st.today !== null && st.today >= DAILY) return finish(lt('You’ve sent about {max} trades in the last 24 hours, which is Roblox’s limit. Try again later.', { max: DAILY }), true);
-      job.cap = !dry && st.today !== null ? Math.min(st.max, DAILY - st.today) : st.max;
+      job.cap = !dry && st.today !== null ? Math.min(st.max, startSent + DAILY - st.today) : st.max;
       setStatus(lt('Checking who to skip'));
       const lists = await Promise.all([
         st.skip.pending ? Promise.resolve(today.partners) : null,
@@ -1662,6 +1679,7 @@
       ]);
       if (job.stop) return finish(lt('Stopped. Nothing was sent.'));
       for (const l of lists) if (l) for (const id of l) skip.add(String(id));
+      for (const id of job.done) skip.add(id);
       setStatus(lt('Finding people'));
       let seen = 0;
       let stopText = '';
@@ -1673,6 +1691,7 @@
         setStatus('');
         const r = await tryOne(c, job, addRow(c));
         if (r && r.stop) { stopText = r.stop; break; }
+        job.done.add(c.id);
         if (job.stop || job.sent >= job.cap) break;
         await wait(job.posted ? 2500 + Math.random() * 1500 : 300);
         job.posted = false;
@@ -1680,8 +1699,8 @@
       const summary = dry
         ? ltn(job.sent, 'Test run: {sent} person would get this trade, {skipped} skipped. Nothing was sent.', 'Test run: {sent} people would get this trade, {skipped} skipped. Nothing was sent.', { sent: formatNumber(job.sent), skipped: formatNumber(job.skipped) })
         : ltn(job.sent, 'Sent {sent} trade, skipped {skipped}.', 'Sent {sent} trades, skipped {skipped}.', { sent: formatNumber(job.sent), skipped: formatNumber(job.skipped) });
-      if (stopText) return finish(stopText + ' ' + summary, true);
-      if (job.stop) return finish(lt('Stopped.') + ' ' + summary);
+      if (stopText) return finish(stopText + ' ' + summary, true, true);
+      if (job.stop) return finish(lt('Stopped.') + ' ' + summary, false, job.sent < job.cap);
       if (!seen) return finish(st.source === 'owners' ? lt('Nobody who owns that was online in that time. Try a longer time or Trade Ads.') : lt('No trade ads offer that right now. Try Item Owners.'), true);
       if (job.sent < job.cap) return finish(lt('Ran out of people to send to.') + ' ' + summary);
       if (!dry && job.cap < st.max) return finish(summary + ' ' + lt('That’s your {max} trades for today.', { max: DAILY }));
@@ -1712,6 +1731,11 @@
     test.addEventListener('click', () => {
       if (st.job || test.disabled) return;
       run(true);
+    });
+
+    cont.addEventListener('click', () => {
+      if (st.job || cont.disabled || !st.resume || st.resume.sig !== runSig()) return;
+      run(false, st.resume);
     });
 
     root.start = () => {

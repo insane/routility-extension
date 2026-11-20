@@ -2034,8 +2034,10 @@ a.routility-hc-status:hover {
 
 .rt-m-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 6px;
+  row-gap: 4px;
   min-width: 0;
 }
 
@@ -15865,3 +15867,4 @@ html.routility-with-foreign-filter .routility-av-filter-btn {
 .routility-skin-fixed button.color-dot.active:not(.routility-dot-current)::after { display: none !important; }
 .routility-skin-fixed button.color-dot.routility-dot-current { position: relative; }
 .routility-skin-fixed button.color-dot.routility-dot-current::after { content: ""; position: absolute; inset: -4px; border: 2px solid rgb(15, 159, 255); border-radius: 50%; pointer-events: none; }
+.rt-m-row:has(> .rt-m-col) { flex-wrap: nowrap; }

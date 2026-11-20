@@ -1907,6 +1907,7 @@
  "Pick what you’re offering and what you want back.": "내놓을 것과 받고 싶은 것을 고르세요.",
  "Pick your own colors for Roblox: backgrounds, cards, text, links and the Play button. Start from a preset or set each color yourself.": "Roblox 색상을 직접 고르세요: 배경, 카드, 텍스트, 링크, 플레이 버튼. 프리셋에서 시작하거나 색을 하나씩 설정할 수 있습니다.",
  "Picking the best one…": "가장 좋은 서버를 고르는 중…",
+ "Picks up where it stopped, skipping everyone it already sent to": "멈춘 곳부터 이어서 하고, 이미 보낸 사람은 건너뜁니다",
  "Ping": "핑",
  "Pinned Post": "고정된 게시물",
  "Pinned thread": "고정된 스레드",
@@ -2154,6 +2155,7 @@
  "Roblox didn’t save it. Try again.": "Roblox에서 저장하지 않았습니다. 다시 시도하세요.",
  "Roblox didn’t save your About. Try again.": "Roblox에서 자기소개를 저장하지 않았습니다. 다시 시도하세요.",
  "Roblox didn’t send this outfit": "Roblox에서 이 의상을 보내지 않았습니다",
+ "Roblox didn’t send your avatar picture. Close this and try again in a moment.": "Roblox에서 아바타 사진을 보내지 않았습니다. 닫고 잠시 후 다시 시도하세요.",
  "Roblox didn’t send your trades. Try again in a moment.": "Roblox에서 거래를 보내지 않았습니다. 잠시 후 다시 시도하세요.",
  "Roblox doesn’t go back further than {date}, so this counts your {n} purchases since then.": {
   "other": "Roblox는 {date} 이전 기록을 제공하지 않아 그 이후 구매 {n}건을 집계했어요."
@@ -2208,7 +2210,7 @@
  "Roblox Studio is open, so Roblox shows you as “in Studio” and we can’t see which server you joined. Close Studio to see it next time.": "Roblox Studio가 열려 있어 Roblox에서 “Studio 사용 중”으로 표시되므로 어느 서버에 참여했는지 볼 수 없습니다. 다음에 확인하려면 Studio를 닫으세요.",
  "Roblox terminated this account. Shown via RoUtility.": "Roblox가 이 계정을 정지했습니다. RoUtility를 통해 표시합니다.",
  "Roblox username or user ID": "Roblox 사용자 이름 또는 사용자 ID",
- "Roblox wants to check it’s really you. Send one trade from Roblox’s trade window, then start again.": "Roblox에서 본인 확인을 요청합니다. Roblox 거래 창에서 거래를 하나 보낸 뒤 다시 시작하세요.",
+ "Roblox wants to check it’s really you. Send one trade from Roblox’s trade window and finish the check, then press Continue.": "Roblox에서 본인 확인을 요청합니다. Roblox 거래 창에서 거래를 하나 보내 확인을 마친 뒤 계속을 누르세요.",
  "Roblox wants to check it’s you first. Send this one from the Roblox app.": "Roblox가 먼저 본인 확인을 원해요. 이 송금은 Roblox 앱에서 보내세요.",
  "Roblox wants to verify": "Roblox가 확인을 요청합니다",
  "Roblox won’t let you send Robux to this person right now.": "지금은 이 사람에게 Robux를 보낼 수 없어요.",
@@ -2469,6 +2471,7 @@
  "Skin Tone Color Wheel": "피부색 색상환",
  "Skip": "건너뛰기",
  "Skip R6 Warning": "R6 경고 건너뛰기",
+ "Skipped": "건너뜀",
  "Slideshow View": "슬라이드쇼 보기",
  "Slot {n}": "슬롯 {n}",
  "Smarter Inventory Search": "더 똑똑한 인벤토리 검색",

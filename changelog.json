@@ -7,6 +7,24 @@
   },
   "releases": [
     {
+      "version": "1.3.0",
+      "date": "2026-11-19",
+      "summary": "Mass Send can continue after Roblox’s check instead of starting over, a few settings that showed as off now show correctly, and settings previews fit in every language.",
+      "changes": [
+        { "type": "improved", "text": "Mass Send (Trades): when Roblox stops a run to check it’s really you, a Continue button picks up where it left off instead of starting over." },
+        { "type": "fixed", "text": "Settings: Mass Send, Trade History With Them, You’ve Spent, Real Items First and Spending Breakdown showed as off even though they were on." },
+        { "type": "fixed", "text": "Settings: previews no longer get cut off or spill out of their box in longer languages." }
+      ]
+    },
+    {
+      "version": "1.2.10",
+      "date": "2026-11-19",
+      "summary": "Customize Thumbnail loads your avatar and emotes again on Roblox’s newer avatar page.",
+      "changes": [
+        { "type": "fixed", "text": "Customize Thumbnail (Avatar): your avatar picture and emotes load again for accounts Roblox moved to its newer avatar page, so you can see and change your headshot angle." }
+      ]
+    },
+    {
       "version": "1.2.9",
       "date": "2026-11-19",
       "summary": "Item pictures show again when you open a trade in Trade History.",
