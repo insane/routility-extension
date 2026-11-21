@@ -35,9 +35,13 @@
     const s = state;
     if (!s) return;
     ensureBox();
+    limListen();
+    limTab();
+    if (!LIM.on && !LIM.paused) document.querySelectorAll('.routility-av-lim-list, .routility-av-lim-crumb').forEach(n => n.remove());
+    limEnsure();
     const q = s.query;
     if (q && acronyms === null) loadAcronyms();
-    const cards = [...document.querySelectorAll(CARD)];
+    const cards = [...document.querySelectorAll(LIM.on ? '.tab-pane.active .avatar-item-list .routility-av-lim-list > li.item-card' : CARD)];
     let shown = 0;
     for (const li of cards) {
       const name = li.querySelector('.item-card-name')?.textContent || '';
@@ -104,7 +108,8 @@
   const NAMES = { recent: LT('recent items') };
 
   function placeholder() {
-    const parts = [...document.querySelectorAll('#avatar-web-app .breadcrumb-container li')].map(l => l.textContent.trim()).filter(Boolean);
+    if (LIM.on) return lt('Search limiteds');
+    const parts = LIM.on ? ['accessories', 'limiteds'] : [...document.querySelectorAll('#avatar-web-app .breadcrumb-container:not(.routility-av-lim-crumb) li')].map(l => l.textContent.trim()).filter(Boolean);
     const top = (parts[0] || '').toLowerCase();
     const last = parts.length > 1 ? parts[parts.length - 1].toLowerCase() : '';
     const sub = last && last !== 'all' ? (top === 'accessories' ? lt('{type} accessories', { type: last }) : last) : '';
@@ -126,8 +131,23 @@
       const worn = !!li.querySelector('.item-card-equipped[data-item-status="equipped"]');
       if (f.show === 'wearing' ? !worn : worn) return false;
     }
-    if (f.limited && !li.querySelector('.restriction-icon[class*="icon-limited"]')) return false;
+    if (f.limited) {
+      if (!li.querySelector('.restriction-icon[class*="icon-limited"]')) return false;
+      const own = tradable();
+      if (own && !own.has(cardId(li))) return false;
+    }
     return true;
+  }
+
+  function tradable() {
+    if (LIM.items) return LIM.ids;
+    limitedsData().then(() => {
+      if (state) {
+        state.lastGrowth = Date.now();
+        schedule();
+      }
+    });
+    return null;
   }
 
   function closeFilterMenu() {
@@ -319,6 +339,267 @@
     updateFilterButton();
   }
 
+  const LIM = { on: false, paused: false, items: null, ids: null, job: null, cards: null, pics: new Map(), busy: new Set(), csrf: '' };
+  const LIM_ON = 'routility-av-lim-on';
+  const CLASSIC = new Set(['Limited', 'LimitedUnique']);
+
+  async function catalogPost(body) {
+    for (let i = 0; i < 2; i++) {
+      try {
+        const r = await fetch('https://catalog.roblox.com/v1/catalog/items/details', { method: 'POST', credentials: 'include', headers: Object.assign({ 'content-type': 'application/json' }, LIM.csrf ? { 'x-csrf-token': LIM.csrf } : {}), body: JSON.stringify(body) });
+        if (r.status === 403 && r.headers.get('x-csrf-token')) { LIM.csrf = r.headers.get('x-csrf-token'); continue; }
+        return r.ok ? await r.json() : null;
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  function limitedsData() {
+    if (LIM.items) return Promise.resolve(LIM.items);
+    if (!LIM.job) {
+      LIM.job = (async () => {
+        const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
+        if (!me || !window.RoUtilityUI.collectibles) return [];
+        const r = await window.RoUtilityUI.collectibles(me, { pages: 30 });
+        const owned = new Map();
+        for (const x of (r && r.items) || []) {
+          if (x.bundle) continue;
+          const had = owned.get(x.targetId);
+          if (!had || x.rap > had.rap) owned.set(x.targetId, { id: x.targetId, name: x.name, rap: x.rap });
+        }
+        const ids = [...owned.keys()];
+        const out = [];
+        for (let i = 0; i < ids.length; i += 100) {
+          const d = await catalogPost({ items: ids.slice(i, i + 100).map(id => ({ itemType: 'Asset', id: Number(id) })) });
+          for (const it of (d && d.data) || []) {
+            const restr = it.itemRestrictions || [];
+            if (!restr.some(x => CLASSIC.has(x))) continue;
+            const type = SANDBOX_TYPES[it.assetType] || '';
+            if (!SECTION_FOR[type]) continue;
+            const o = owned.get(String(it.id));
+            if (o) out.push(Object.assign(o, { type, name: it.name || o.name }));
+          }
+        }
+        out.sort((a, b) => b.rap - a.rap);
+        LIM.items = out;
+        LIM.ids = new Set(out.map(x => x.id));
+        return out;
+      })();
+    }
+    return LIM.job;
+  }
+
+  function limThumbs(ids) {
+    const need = ids.filter(id => !LIM.pics.has(id));
+    const jobs = [];
+    for (let i = 0; i < need.length; i += 100) {
+      const part = need.slice(i, i + 100);
+      part.forEach(id => LIM.pics.set(id, ''));
+      jobs.push(fetch('https://thumbnails.roblox.com/v1/batch', { method: 'POST', credentials: 'include', headers: { 'content-type': 'application/json' }, body: JSON.stringify(part.map(id => ({ requestId: id, type: 'Asset', targetId: Number(id), size: '150x150', format: 'webp' }))) })
+        .then(r => (r.ok ? r.json() : null))
+        .then((d) => { for (const t of (d && d.data) || []) if (t.imageUrl) LIM.pics.set(String(t.targetId), t.imageUrl); })
+        .catch(() => {}));
+    }
+    return Promise.all(jobs);
+  }
+
+  function limWornIds() {
+    return new Set(wear && wear.assets ? wear.assets.filter(a => !a.fake).map(a => a.id) : []);
+  }
+
+  function limCard(it) {
+    const li = el('li', 'list-item item-card seven-column routility-av-lim-card');
+    li.dataset.id = it.id;
+    const box = el('div', 'item-card-container remove-panel');
+    const link = el('div', 'item-card-link');
+    const a = el('a', 'item-card-thumb-container');
+    a.href = `https://www.roblox.com/catalog/${it.id}/`;
+    const t = el('div', 'item-card-thumb');
+    const holder = el('span', 'thumbnail-2d-container float-left overflow-hidden');
+    const img = el('img');
+    img.alt = '';
+    img.loading = 'lazy';
+    img.dataset.for = it.id;
+    if (LIM.pics.get(it.id)) img.src = LIM.pics.get(it.id);
+    holder.appendChild(img);
+    t.appendChild(holder);
+    a.appendChild(t);
+    link.appendChild(a);
+    const cap = el('div', 'item-card-caption');
+    const nameLink = el('a', 'item-card-name-link');
+    nameLink.href = a.href;
+    const name = el('div', 'item-card-name', it.name);
+    name.title = it.name;
+    nameLink.appendChild(name);
+    cap.appendChild(nameLink);
+    box.append(link, cap);
+    li.appendChild(box);
+    const go = (e) => {
+      if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      e.preventDefault();
+      limToggle(it, li);
+    };
+    a.addEventListener('click', go);
+    nameLink.addEventListener('click', go);
+    return li;
+  }
+
+  async function limToggle(it, li) {
+    const w = wear;
+    if (!w || LIM.busy.has(it.id)) return;
+    const section = SECTION_FOR[it.type];
+    if (!section) return;
+    LIM.busy.add(it.id);
+    li.classList.add('routility-av-lim-pending');
+    const hide = () => {
+      LIM.paused = true;
+      document.documentElement.classList.remove(LIM_ON);
+      document.querySelectorAll('.routility-av-lim-list, .routility-av-lim-crumb').forEach(n => n.remove());
+      return () => {
+        LIM.paused = false;
+        if (!LIM.on) return;
+        document.documentElement.classList.add(LIM_ON);
+        limEnsure();
+      };
+    };
+    w.queue = (w.queue || Promise.resolve()).then(() => viaSection(w, it.id, it.name, section[0], section[1], false, hide)).catch(() => false).then((done) => {
+      LIM.busy.delete(it.id);
+      li.classList.remove('routility-av-lim-pending');
+      if (!done) wearError(lt('Couldn’t change {name}. Try again, or open its section.', { name: it.name }));
+      refreshWearing();
+    });
+  }
+
+  function limSkeleton() {
+    const li = el('li', 'list-item item-card seven-column routility-av-lim-sk');
+    li.append(el('div', 'routility-sk routility-av-lim-sk-thumb'), el('div', 'routility-sk routility-av-lim-sk-name'));
+    return li;
+  }
+
+  function limEnsure() {
+    if (!LIM.on || LIM.paused) return;
+    const holder = document.querySelector('.tab-pane.active #avatar-items-container .avatar-item-list');
+    if (!holder) return;
+    let list = holder.querySelector(':scope > .routility-av-lim-list');
+    if (!list) {
+      document.querySelectorAll('.routility-av-lim-list').forEach(n => n.remove());
+      list = el('ul', 'hlist item-cards-stackable routility-injected routility-av-lim-list');
+      holder.prepend(list);
+      list.append(...(LIM.cards && LIM.shown ? LIM.cards : Array.from({ length: 14 }, limSkeleton)));
+    }
+    const row = document.querySelector('#avatar-web-app .tab-pane.active .routility-av-crumb-row') || document.querySelector('#avatar-web-app .breadcrumb-container:not(.routility-av-lim-crumb)')?.parentElement;
+    if (row && !row.querySelector('.routility-av-lim-crumb')) {
+      document.querySelectorAll('.routility-av-lim-crumb').forEach(n => n.remove());
+      const crumb = el('ul', 'breadcrumb-container routility-injected routility-av-lim-crumb');
+      const first = el('li');
+      first.appendChild(el('span', null, lt('Accessories')));
+      const sep = el('li');
+      sep.appendChild(el('span', 'icon-right-16x16'));
+      const last = el('li');
+      last.appendChild(el('span', null, lt('Limiteds')));
+      crumb.append(first, sep, last);
+      row.prepend(crumb);
+    }
+  }
+
+  async function limRender() {
+    const started = Date.now();
+    document.querySelectorAll('.routility-av-lim-list').forEach(n => n.replaceChildren(...Array.from({ length: 14 }, limSkeleton)));
+    limEnsure();
+    const items = await limitedsData();
+    const wait = 350 - (Date.now() - started);
+    if (wait > 0) await new Promise(r => setTimeout(r, wait));
+    if (!LIM.on) return;
+    LIM.cards = items.length ? items.map(it => limCard(it)) : [el('li', 'text-secondary routility-av-lim-empty', lt('No classic limiteds you can wear.'))];
+    LIM.shown = true;
+    document.querySelectorAll('.routility-av-lim-list').forEach(n => n.replaceChildren(...LIM.cards));
+    limEnsure();
+    if (state) {
+      state.lastGrowth = Date.now();
+      schedule();
+    }
+    limThumbs(items.map(x => x.id)).then(() => {
+      for (const img of document.querySelectorAll('.routility-av-lim-list img[data-for]')) if (!img.src && LIM.pics.get(img.dataset.for)) img.src = LIM.pics.get(img.dataset.for);
+    });
+  }
+
+  const LIM_KEY = 'routilityAvLimiteds';
+
+  function limSet(on) {
+    if (LIM.on === on) return;
+    LIM.on = on;
+    try {
+      if (on) localStorage.setItem(LIM_KEY, '1');
+      else localStorage.removeItem(LIM_KEY);
+    } catch {}
+    document.documentElement.classList.toggle(LIM_ON, on);
+    document.querySelector('.routility-av-lim-tab')?.classList.toggle('active', on);
+    if (on) {
+      LIM.shown = false;
+      limRender();
+    } else document.querySelectorAll('.routility-av-lim-list, .routility-av-lim-crumb').forEach(n => n.remove());
+    if (state) {
+      state.lastGrowth = Date.now();
+      schedule();
+    }
+  }
+
+  let limAllowed = null;
+  try {
+    chrome.storage.local.get('routilitySettings', (st) => {
+      limAllowed = ((st && st.routilitySettings) || {}).avatarLimiteds !== false;
+      if (state) schedule();
+    });
+  } catch {}
+
+  function limTab() {
+    if (!limAllowed) {
+      if (limAllowed === false && LIM.on) limSet(false);
+      return;
+    }
+    const lists = [...document.querySelectorAll('#avatar-web-app .tab-horizontal-submenu ul')];
+    const ul = lists.find(u => [...u.children].some(li => li.textContent.trim() === 'Gear'));
+    if (!LIM.restored) {
+      let saved = false;
+      try { saved = localStorage.getItem(LIM_KEY) === '1'; } catch {}
+      if (saved && document.querySelector('.tab-pane.active #avatar-items-container .avatar-item-list')) {
+        LIM.restored = true;
+        limSet(true);
+      } else if (!saved) LIM.restored = true;
+    }
+    if (!ul || ul.querySelector('.routility-av-lim-tab')) return;
+    const li = el('li', 'routility-injected routility-av-lim-tab' + (LIM.on ? ' active' : ''), lt('Limiteds'));
+    const pick = (e) => {
+      if (e.button !== undefined && e.button !== 0) return;
+      e.preventDefault();
+      e.stopPropagation();
+      if (li.dataset.picked) return;
+      li.dataset.picked = '1';
+      const close = ul.querySelector(':scope > li.active:not(.routility-av-lim-tab)') || ul.querySelector(':scope > li:not(.routility-av-lim-tab)');
+      limSet(true);
+      if (close) press(close);
+    };
+    li.addEventListener('pointerdown', pick);
+    li.addEventListener('click', pick);
+    ul.appendChild(li);
+  }
+
+  let limWatch = false;
+  function limListen() {
+    if (limWatch) return;
+    limWatch = true;
+    const leave = (e) => {
+      if (!LIM.on || !e.isTrusted || (e.button !== undefined && e.button !== 0)) return;
+      const t = e.target;
+      if (t.closest?.('.routility-av-lim-tab')) return;
+      if (t.closest?.('#avatar-web-app .tab-horizontal-submenu li')) limSet(false);
+    };
+    document.addEventListener('pointerdown', leave, true);
+    document.addEventListener('click', leave, true);
+  }
+
   const schedule = onFrame(apply);
 
   function setup() {
@@ -363,7 +644,7 @@
   }
 
   function cardFor(id) {
-    const cards = [...document.querySelectorAll('.avatar-item-list li.item-card')].filter(l => !l.closest('.routility-av-snapshot') && (l.querySelector('a[href*="/catalog/"]')?.getAttribute('href') || '').includes(`/catalog/${id}/`));
+    const cards = [...document.querySelectorAll('.avatar-item-list li.item-card')].filter(l => !l.closest('.routility-av-snapshot, .routility-av-lim-list') && (l.querySelector('a[href*="/catalog/"]')?.getAttribute('href') || '').includes(`/catalog/${id}/`));
     return cards.find(c => c.closest('.tab-pane.active')) || cards[0] || null;
   }
 
@@ -418,7 +699,7 @@
   }
 
   function currentSection() {
-    const crumbs = [...document.querySelectorAll('#avatar-web-app .breadcrumb-container li')].map(l => l.textContent.trim()).filter(Boolean);
+    const crumbs = [...document.querySelectorAll('#avatar-web-app .breadcrumb-container:not(.routility-av-lim-crumb) li')].map(l => l.textContent.trim()).filter(Boolean);
     if (!crumbs.length) return null;
     const tab = [...document.querySelectorAll('#avatar-web-app .rbx-tab .rbx-tab-heading')].find(b => b.textContent.trim().toLowerCase() === crumbs[0].toLowerCase());
     if (!tab || !tab.id || crumbs.length < 2) return null;
@@ -651,7 +932,7 @@
     if (document.documentElement.dataset.routilityAvHook === '1') return;
     const thumb = e.target.closest?.('.tab-pane.active .avatar-item-list li.item-card');
     if (!thumb || !e.isTrusted) return;
-    const parts = [...document.querySelectorAll('#avatar-web-app .breadcrumb-container li')].map(l => l.textContent.trim().toLowerCase()).filter(Boolean);
+    const parts = LIM.on ? ['accessories', 'limiteds'] : [...document.querySelectorAll('#avatar-web-app .breadcrumb-container:not(.routility-av-lim-crumb) li')].map(l => l.textContent.trim().toLowerCase()).filter(Boolean);
     const id = ((thumb.querySelector('a[href*="/catalog/"]')?.getAttribute('href') || '').match(/\/catalog\/(\d+)/) || [])[1];
     if (!id || w.assets.some(a => a.id === id)) return;
     const rigid = rigidWorn();
@@ -752,10 +1033,11 @@
     return { card, search };
   }
 
-  async function viaSection(w, id, name, tabId, sub, own) {
+  async function viaSection(w, id, name, tabId, sub, own, prep) {
     const back = currentSection();
     if (back) back.y = window.scrollY;
     const thaw = back ? freezePanel() : null;
+    const restore = prep ? prep() : null;
     let found = { card: null, search: null };
     try {
       if (await openSection(tabId, sub)) found = await findCard(id, name, own && BODY_PART.test(wear?.assets?.find(a => a.id === id)?.type || '') ? sub : '');
@@ -778,6 +1060,7 @@
       }
       if (back) window.scrollTo(window.scrollX, back.y);
     } finally {
+      restore?.();
       thaw?.();
     }
     return !!found.card;

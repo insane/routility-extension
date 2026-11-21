@@ -1103,8 +1103,13 @@ html.routility-hide-makeup .avatar-tabs-scroller > .scroller-new {
   white-space: nowrap;
 }
 
-.routility-av-filter-btn.routility-av-filter-on {
+.routility-av-filter-btn.routility-av-filter-on,
+.routility-av-lim-btn.routility-av-filter-on {
   border-color: var(--color-system-emphasis, #3d8bff);
+}
+
+.routility-av-lim-btn {
+  white-space: nowrap;
 }
 
 .routility-av-filter-badge {
@@ -15880,32 +15885,48 @@ html.routility-with-foreign-filter .routility-av-filter-btn {
   text-decoration: line-through;
 }
 
-.trade-row-list > .routility-trade-filter,
-.routility-trade-filter {
+.routility-trade-allowance:has(> .routility-trade-prefs) {
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+
+.routility-trade-prefs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-left: 6px;
+}
+
+.trade-row-list > .routility-trade-prefs.routility-trade-prefs-own {
   display: flex;
   flex-direction: row !important;
-  align-items: center;
-  gap: 10px;
   width: fit-content;
-  margin: -8px 0 14px;
+  margin: -6px 0 14px;
+}
+
+.routility-trade-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: var(--color-shift-200, rgba(127, 127, 127, 0.16));
+  color: var(--color-content-emphasis, #f7f7f8) !important;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none !important;
   white-space: nowrap;
 }
 
-.routility-trade-allowance + .routility-trade-filter {
-  padding-left: 16px;
+.routility-trade-pill:hover {
+  background: var(--color-shift-300, rgba(127, 127, 127, 0.24));
+}
+
+.routility-trade-pill-label {
   color: var(--color-content-muted, #bcbec8);
-  text-decoration: none;
-}
-
-.routility-trade-filter:hover {
-  color: var(--color-content-emphasis, #f7f7f8);
-  text-decoration: none;
-}
-
-.routility-trade-filter-sep {
-  width: 1px;
-  height: 12px;
-  background: var(--color-stroke-default, rgba(127, 127, 127, 0.4));
+  font-weight: 400;
 }
 
 .routility-uname-price {
@@ -15946,4 +15967,123 @@ html.routility-with-foreign-filter .routility-av-filter-btn {
 .routility-log-pager .pager-cur span {
   color: var(--color-content-default, #d5d7dd);
   font-size: 14px;
+}
+
+.routility-ads-slot.routility-ads-slot-cash:not(.routility-ads-slot-full) {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--color-stroke-default, rgba(127, 127, 127, 0.35));
+  color: var(--color-content-muted, #8b8d96);
+}
+
+.routility-ads-slot.routility-ads-slot-cash:not(.routility-ads-slot-full) > .icon-filled-robux,
+.routility-ads-slot.routility-ads-slot-cash:not(.routility-ads-slot-full) > span[class*="robux"] {
+  opacity: 0.6;
+}
+
+html.routility-inv-lim-on .current-items > #assetsItems,
+html.routility-inv-lim-on .current-items > .pager-holder:not(.routility-inv-lim-pager) {
+  display: none !important;
+}
+
+.routility-inv-lim-note {
+  margin: 0 0 12px;
+}
+
+.routility-inv-lim-card .item-card-thumb-container {
+  position: relative;
+}
+
+.routility-inv-lim-serial {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.routility-inv-lim-hold {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+  vertical-align: -2px;
+  color: #f6cb5c !important;
+  background-color: #f6cb5c !important;
+  cursor: default;
+}
+
+html.routility-inv-lim-on ul.menu-vertical > li.menu-option.active:not(.routility-inv-lim-entry) {
+  background-color: transparent !important;
+}
+
+html.routility-inv-lim-on ul.menu-vertical > li.menu-option.active:not(.routility-inv-lim-entry) > .menu-secondary-container {
+  display: none !important;
+}
+
+.routility-inv-lim-entry > .menu-option-content:focus,
+.routility-inv-lim-entry > .menu-option-content:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.routility-inv-lim-note:empty {
+  display: none;
+}
+
+.routility-inv-lim-count:not(:empty) {
+  margin-left: 8px;
+  color: var(--color-content-muted, #8b8d96);
+}
+
+.routility-av-lim-on #avatar-web-app .tab-pane.active .avatar-item-list > .hlist:not(.routility-av-lim-list),
+html.routility-av-lim-on #avatar-web-app .breadcrumb-container:not(.routility-av-lim-crumb) {
+  display: none !important;
+}
+
+#avatar-web-app .tab-horizontal-submenu li.routility-av-lim-tab {
+  cursor: pointer;
+}
+
+html.routility-av-lim-on #avatar-web-app .tab-horizontal-submenu li.active:not(.routility-av-lim-tab) {
+  background: transparent !important;
+  font-weight: inherit;
+}
+
+.routility-av-lim-card.routility-av-lim-pending {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.routility-av-lim-sk-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+}
+
+.routility-av-lim-sk-name {
+  display: block;
+  width: 70%;
+  height: 12px;
+  margin-top: 10px;
+  border-radius: 6px;
+}
+
+.routility-av-lim-rap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.routility-av-lim-empty {
+  padding: 12px 0;
+}
+
+.routility-set-chip.routility-set-chip-community {
+  background: var(--color-action-emphasis-background, #335fff);
+  color: var(--color-action-emphasis-foreground, #fff);
 }

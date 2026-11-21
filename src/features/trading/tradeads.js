@@ -587,6 +587,34 @@
     return b;
   }
 
+  const CASH = new Set(['usd', 'robux']);
+  const goods = (list) => list.filter(e => !CASH.has(e.kind));
+
+  function fillSlots(box, list, onRemove, onEmpty, opts) {
+    const items = goods(list);
+    const cash = list.filter(e => CASH.has(e.kind));
+    const views = Array.from({ length: 4 }, (_, i) => {
+      const e = items[i];
+      const b = slotView(e, () => onRemove(e), opts);
+      if (!e) b.addEventListener('click', () => onEmpty('item', b));
+      return b;
+    });
+    const cashViews = cash.length ? cash.map(e => slotView(e, () => onRemove(e), opts)) : [slotView(null, () => {}, opts)];
+    cashViews.forEach((b) => {
+      b.classList.add('routility-ads-slot-cash');
+      if (!b.classList.contains('routility-ads-slot-full')) {
+        b.querySelector('.routility-ads-slot-plus')?.remove();
+        b.appendChild(robuxIcon());
+        b.setAttribute('aria-label', lt('Robux slot'));
+        b.dataset.rtTip = lt('Robux go here, so all 4 slots stay free for items');
+        b.addEventListener('click', () => onEmpty('cash', b));
+      }
+    });
+    box.style.gridTemplateColumns = `repeat(${4 + cashViews.length}, minmax(0, 1fr))`;
+    box.replaceChildren(...views, ...cashViews);
+    return items.length;
+  }
+
   function buildPost() {
     const st = { off: [], look: [], unit: { off: 'usd', look: 'usd' }, note: '', showAs: 'roblox', mine: null, user: undefined, sending: false };
     const root = el('div', 'routility-ads-post');
@@ -642,8 +670,7 @@
         const list = st[key];
         const same = list.find(e => e.kind === u);
         if (same) same.amount = u === 'usd' ? Math.round((same.amount + v) * 100) / 100 : same.amount + v;
-        else if (list.length < 4) list.push({ kind: u, amount: v });
-        else return hint(lt('Each side holds 4 things. Remove one to add more.'), true);
+        else list.push({ kind: u, amount: v });
         amount.input.value = '';
         picks();
       };
@@ -692,13 +719,8 @@
 
     function paintSlots(side) {
       const list = st[side.key];
-      side.count.textContent = lt('{count} of {max}', { count: list.length, max: 4 });
-      side.slots.replaceChildren(...Array.from({ length: 4 }, (_, i) => {
-        const e = list[i];
-        const b = slotView(e, () => { st[side.key] = list.filter(x => x !== e); picks(); });
-        if (!e) b.addEventListener('click', () => side.search.input.focus());
-        return b;
-      }));
+      const n = fillSlots(side.slots, list, (e) => { st[side.key] = list.filter(x => x !== e); picks(); }, (kind) => (kind === 'cash' ? side.amount.input : side.search.input).focus());
+      side.count.textContent = lt('{count} of {max}', { count: n, max: 4 });
     }
 
     function paintTags() {
@@ -710,10 +732,10 @@
         b.dataset.rtTip = lt(TAG_NAME[tag]) + ', ' + lt(TAG_TIP[tag]);
         b.setAttribute('aria-pressed', String(on));
         b.append(layer(), tagImg(tag));
-        b.disabled = !on && st.look.length >= 4;
+        b.disabled = !on && goods(st.look).length >= 4;
         b.addEventListener('click', () => {
           if (on) st.look = st.look.filter(e => !(e.kind === 'tag' && e.tag === tag));
-          else if (st.look.length < 4) st.look.push({ kind: 'tag', tag });
+          else if (goods(st.look).length < 4) st.look.push({ kind: 'tag', tag });
           picks();
         });
         return b;
@@ -724,7 +746,7 @@
       const q = side.search.input.value.trim().toLowerCase();
       const words = q ? q.split(/\s+/) : [];
       const match = (name, extra) => words.every(w => (name + ' ' + (extra || '')).toLowerCase().includes(w));
-      const full = st[side.key].length >= 4;
+      const full = goods(st[side.key]).length >= 4;
       if (side.key === 'off') {
         if (st.mine === null) return side.grid.replaceChildren(...Array.from({ length: 12 }, skTile));
         if (st.mine.hidden) return side.grid.replaceChildren(el('div', 'routility-ads-grid-note text-body-small content-muted', lt('Your inventory is private, so your limiteds can’t be listed. Make it visible to everyone in Roblox privacy settings.')));
@@ -734,7 +756,7 @@
           const on = st.off.some(e => e.uaid === x.uaid);
           return itemCard(it, { key: x.uaid, picked: on, serial: x.serial, onHold: x.onHold, disabled: x.onHold || (!on && full), onClick: () => {
             if (st.off.some(e => e.uaid === x.uaid)) st.off = st.off.filter(e => e.uaid !== x.uaid);
-            else if (st.off.length < 4) st.off.push({ kind: 'item', assetId: x.assetId, uaid: x.uaid });
+            else if (goods(st.off).length < 4) st.off.push({ kind: 'item', assetId: x.assetId, uaid: x.uaid });
             picks();
           } });
         }));
@@ -746,7 +768,7 @@
         const on = st.look.some(e => e.kind === 'item' && e.assetId === String(it.id));
         return itemCard(it, { key: String(it.id), picked: on, disabled: !on && full, onClick: () => {
           if (st.look.some(e => e.kind === 'item' && e.assetId === String(it.id))) st.look = st.look.filter(e => !(e.kind === 'item' && e.assetId === String(it.id)));
-          else if (st.look.length < 4) st.look.push({ kind: 'item', assetId: String(it.id) });
+          else if (goods(st.look).length < 4) st.look.push({ kind: 'item', assetId: String(it.id) });
           picks();
         } });
       }));
@@ -799,8 +821,8 @@
       paintSlots(sides.off);
       paintSlots(sides.look);
       paintTags();
-      syncCards(sides.off.grid, k => st.off.some(e => e.uaid === k), st.off.length >= 4);
-      syncCards(sides.look.grid, k => st.look.some(e => e.kind === 'item' && e.assetId === k), st.look.length >= 4);
+      syncCards(sides.off.grid, k => st.off.some(e => e.uaid === k), goods(st.off).length >= 4);
+      syncCards(sides.look.grid, k => st.look.some(e => e.kind === 'item' && e.assetId === k), goods(st.look).length >= 4);
       paintPost();
     }
 
@@ -906,14 +928,14 @@
         add.classList.add('routility-mass-add');
         add.setAttribute('aria-label', lt('Add Robux'));
         row.append(amount, add);
+        side.amount = amount;
         amount.input.addEventListener('input', () => { amount.input.value = amount.input.value.replace(/[^\d.,]/g, ''); });
         const addAmount = () => {
           const v = window.RoUtilityUI.parseAmount(amount.input.value, true);
           if (!(v > 0)) return;
           const same = st.off.find(e => e.kind === 'robux');
           if (same) same.amount += v;
-          else if (st.off.length < 4) st.off.push({ kind: 'robux', amount: v });
-          else return hint(lt('Each side holds 4 things. Remove one to add more.'), true);
+          else st.off.push({ kind: 'robux', amount: v });
           amount.input.value = '';
           picks();
         };
@@ -1024,17 +1046,23 @@
 
     function paintSlots(side) {
       const list = st[side.key];
-      side.count.textContent = lt('{count} of {max}', { count: list.length, max: 4 });
-      side.slots.replaceChildren(...Array.from({ length: 4 }, (_, i) => {
-        const e = list[i];
-        const b = slotView(e, () => { if (st.job) return; st[side.key] = list.filter(x => x !== e); picks(); }, { cap: false });
-        if (!e) b.addEventListener('click', () => side.search.input.focus());
-        if (!e && side.key === 'look' && range() && typeof range() === 'object') {
-          b.classList.add('routility-mass-slot-range');
-          b.appendChild(el('span', 'routility-mass-slot-note text-label-small content-muted', lt('Their items')));
-        }
-        return b;
-      }));
+      if (side.key === 'off') {
+        const n = fillSlots(side.slots, list, (e) => { if (st.job) return; st.off = list.filter(x => x !== e); picks(); }, (kind) => (kind === 'cash' && side.amount ? side.amount.input : side.search.input).focus(), { cap: false });
+        side.count.textContent = lt('{count} of {max}', { count: n, max: 4 });
+      } else {
+        side.count.textContent = lt('{count} of {max}', { count: list.length, max: 4 });
+        side.slots.style.gridTemplateColumns = '';
+        side.slots.replaceChildren(...Array.from({ length: 4 }, (_, i) => {
+          const e = list[i];
+          const b = slotView(e, () => { if (st.job) return; st[side.key] = list.filter(x => x !== e); picks(); }, { cap: false });
+          if (!e) b.addEventListener('click', () => side.search.input.focus());
+          if (!e && range() && typeof range() === 'object') {
+            b.classList.add('routility-mass-slot-range');
+            b.appendChild(el('span', 'routility-mass-slot-note text-label-small content-muted', lt('Their items')));
+          }
+          return b;
+        }));
+      }
       if (side.key === 'look') {
         const full = list.length >= 4;
         for (const f of [rFrom, rTo, rCount]) f.input.disabled = !!st.job || full;
@@ -1062,7 +1090,7 @@
       const q = side.search.input.value.trim().toLowerCase();
       const words = q ? q.split(/\s+/) : [];
       const match = (name, extra) => words.every(w => (name + ' ' + (extra || '')).toLowerCase().includes(w));
-      const full = st[side.key].length >= 4;
+      const full = goods(st[side.key]).length >= 4;
       if (side.key === 'off') {
         if (st.mine === null) return side.grid.replaceChildren(...Array.from({ length: 12 }, skTile));
         if (st.mine.hidden) return side.grid.replaceChildren(el('div', 'routility-ads-grid-note text-body-small content-muted', lt('Your inventory is private, so your limiteds can’t be listed. Make it visible to everyone in Roblox privacy settings.')));
@@ -1072,7 +1100,7 @@
           const on = st.off.some(e => e.uaid === x.uaid);
           return itemCard(it, { key: x.uaid, picked: on, serial: x.serial, onHold: x.onHold, disabled: !!st.job || x.onHold || (!on && full), onClick: () => {
             if (st.off.some(e => e.uaid === x.uaid)) st.off = st.off.filter(e => e.uaid !== x.uaid);
-            else if (st.off.length < 4) st.off.push({ kind: 'item', assetId: x.assetId, uaid: x.uaid });
+            else if (goods(st.off).length < 4) st.off.push({ kind: 'item', assetId: x.assetId, uaid: x.uaid });
             picks();
           } });
         }));
@@ -1084,7 +1112,7 @@
         const on = st.look.some(e => e.assetId === String(it.id));
         return itemCard(it, { key: String(it.id), picked: on, disabled: !!st.job || (!on && full), onClick: () => {
           if (st.look.some(e => e.assetId === String(it.id))) st.look = st.look.filter(e => e.assetId !== String(it.id));
-          else if (st.look.length < 4) st.look.push({ kind: 'item', assetId: String(it.id) });
+          else if (goods(st.look).length < 4) st.look.push({ kind: 'item', assetId: String(it.id) });
           picks();
         } });
       }));
@@ -1211,8 +1239,8 @@
     function picks() {
       paintSlots(sides.off);
       paintSlots(sides.look);
-      syncCards(sides.off.grid, k => st.off.some(e => e.uaid === k), st.off.length >= 4, st.job);
-      syncCards(sides.look.grid, k => st.look.some(e => e.assetId === k), st.look.length >= 4, st.job);
+      syncCards(sides.off.grid, k => st.off.some(e => e.uaid === k), goods(st.off).length >= 4, st.job);
+      syncCards(sides.look.grid, k => st.look.some(e => e.assetId === k), goods(st.look).length >= 4, st.job);
       paintOpts();
       paintStart();
       root.classList.toggle('routility-mass-busy', !!st.job);

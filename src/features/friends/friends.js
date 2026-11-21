@@ -433,12 +433,12 @@
         const r = pop.getBoundingClientRect();
         menuPin = { pop, btn, dx: r.left + r.width / 2 - (b.left + b.width / 2), dy: r.top - b.bottom };
       };
-      menuCard = deleted && /^\d+$/.test(id) ? { card, btn, id: Number(id) } : null;
+      menuCard = /^\d+$/.test(id) && (deleted || /^\/users\/friends\/?$/i.test(location.pathname)) ? { card, btn, id: Number(id) } : null;
       setTimeout(look, 30);
     }, true);
     document.addEventListener('click', async (e) => {
       const link = e.target.closest?.('#avatar-card-dropdown-menu a.friend-unfriend');
-      if (!link || !menuCard || link.textContent.trim()) return;
+      if (!link || !menuCard) return;
       e.preventDefault();
       e.stopImmediatePropagation();
       if (link.dataset.rtState === 'busy') return;

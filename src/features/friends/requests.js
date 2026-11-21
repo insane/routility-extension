@@ -383,9 +383,16 @@
   let sentBusy = false;
 
   async function markNative(s) {
-    const cards = [...document.querySelectorAll('#friends-web-app .tab-pane.active li')].filter(li => !li.closest('.routility-rf-list') && li.querySelector('.avatar-card-caption') && !li.querySelector('.routility-req-sent'));
-    if (!cards.length) return;
     const idOf = (li) => Number((li.querySelector('a[href*="/users/"]')?.getAttribute('href') || '').match(/\/users\/(\d+)/)?.[1]);
+    const cards = [...document.querySelectorAll('#friends-web-app .tab-pane.active li')].filter((li) => {
+      if (li.closest('.routility-rf-list') || !li.querySelector('.avatar-card-caption')) return false;
+      const line = li.querySelector('.routility-req-sent');
+      if (!line) return true;
+      if (line.dataset.for === String(idOf(li))) return false;
+      line.remove();
+      return true;
+    });
+    if (!cards.length) return;
     let missing = cards.some(li => !s.sent.has(idOf(li)));
     if (missing && !sentBusy) {
       sentBusy = true;
@@ -402,7 +409,10 @@
     for (const li of cards) {
       const info = s.sent.get(idOf(li));
       const label = li.querySelector('.avatar-card-caption .avatar-card-label');
-      if (info && label && !li.querySelector('.routility-req-sent')) label.after(sentLine(info));
+      if (!info || !label || li.querySelector('.routility-req-sent')) continue;
+      const line = sentLine(info);
+      line.dataset.for = String(idOf(li));
+      label.after(line);
     }
   }
 
@@ -872,6 +882,46 @@
     removeAll();
     document.querySelectorAll('.routility-req-sent').forEach(n => n.remove());
   }
+
+  const handled = new Set();
+
+  function hideHandled() {
+    let style = document.getElementById('routility-req-done-style');
+    if (!style) {
+      style = el('style', 'routility-injected');
+      style.id = 'routility-req-done-style';
+      document.head.appendChild(style);
+    }
+    style.textContent = [...handled].map(x => `#friends-web-app li.avatar-card[id="${x}"]`).join(', ') + ' { display: none !important; }';
+  }
+
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest?.('#friends-web-app li.avatar-card :is(.accept-friend, .ignore-friend)');
+    if (!btn || !rf || btn.closest('.routility-rf-list')) return;
+    const li = btn.closest('li.avatar-card');
+    const id = li && Number(li.id);
+    if (!id) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    const accept = btn.classList.contains('accept-friend');
+    const buttons = li.querySelectorAll('.avatar-card-btns button');
+    if ([...buttons].some(b => b.disabled)) return;
+    li.querySelector('.routility-rf-error')?.remove();
+    buttons.forEach(b => { b.disabled = true; });
+    btn.classList.add('routility-pending');
+    const ok = accept ? !!(await F().robloxPost(`https://friends.roblox.com/v1/users/${id}/accept-friend-request`, {})) : await decline(rf, id);
+    btn.classList.remove('routility-pending');
+    if (!ok) {
+      buttons.forEach(b => { b.disabled = false; });
+      const err = el('div', 'routility-injected routility-rf-error', accept ? lt('Couldn\u2019t accept. Try again.') : lt('Couldn\u2019t ignore. Try again.'));
+      li.querySelector('.avatar-card-container')?.appendChild(err);
+      setTimeout(() => err.remove(), 5000);
+      return;
+    }
+    if (rf) rf.gone.add(id);
+    handled.add(String(id));
+    hideHandled();
+  }, true);
 
   window.RoUtilityRequests = { setup, teardown };
   let passIgnoreAll = false;

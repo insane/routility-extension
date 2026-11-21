@@ -48,23 +48,24 @@
     const quality = FILTER[d.tradeQualityFilter];
     const who = WHO[d.whoCanTradeWithMe];
     if (!quality && !who) return;
-    const anchor = document.querySelector('.routility-trade-allowance') || header;
-    const key = (quality || '') + '|' + (who || '');
-    let part = document.querySelector('.routility-trade-filter');
-    if (part && part.dataset.key === key && part.previousElementSibling === anchor) return;
+    const host = document.querySelector('.routility-trade-allowance');
+    const key = (quality || '') + '|' + (who || '') + '|' + (host ? 'in' : 'own');
+    let part = document.querySelector('.routility-trade-prefs');
+    if (part && part.dataset.key === key && (host ? part.parentElement === host : part.previousElementSibling === header)) return;
     part?.remove();
-    part = el('a', 'routility-injected routility-trade-filter text-body-small');
-    part.href = '/my/account#!/privacy';
+    part = el('span', 'routility-injected routility-trade-prefs' + (host ? '' : ' routility-trade-prefs-own text-body-small'));
     part.dataset.key = key;
-    part.dataset.rtTip = lt('Change these in Privacy settings');
-    const bits = [];
-    if (quality) bits.push(lt('Filter: {level}', { level: lt(quality) }));
-    if (who) bits.push(lt('Trades from: {who}', { who: lt(who) }));
-    bits.forEach((t, i) => {
-      if (i) part.appendChild(el('span', 'routility-trade-filter-sep'));
-      part.appendChild(el('span', null, t));
-    });
-    anchor.after(part);
+    const pill = (label, value) => {
+      const a = el('a', 'routility-trade-pill');
+      a.href = '/my/account#!/privacy';
+      a.dataset.rtTip = lt('Change these in Privacy settings');
+      a.append(el('span', 'routility-trade-pill-label', label), el('span', null, value));
+      return a;
+    };
+    if (quality) part.appendChild(pill(lt('Filter'), lt(quality)));
+    if (who) part.appendChild(pill(lt('From'), lt(who)));
+    if (host) host.appendChild(part);
+    else header.after(part);
   }
 
   function usernamePrice() {

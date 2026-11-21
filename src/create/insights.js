@@ -3,7 +3,7 @@
 
   const { el, onFrame, formatNumber } = window.RoUtilityUI;
   const { lt, LT } = window.RoUtilityI18n;
-  const settings = { createTier: true, createO18: true, createBenchmark: true, createLaunches: true, createFees: true, createHolds: true };
+  const settings = { createIds: true, createTier: true, createO18: true, createBenchmark: true, createLaunches: true, createFees: true, createHolds: true };
   const cache = new Map();
   let lastUrl = '';
 
@@ -219,6 +219,57 @@
     });
   }
 
+  function placeMenu(universeId, placeId) {
+    for (const list of document.querySelectorAll('ul.MuiMenu-list[role="menu"]')) {
+      if (list.querySelector('.routility-ci-pm')) continue;
+      const items = [...list.children];
+      const studio = items.find(n => n.textContent.trim() === 'Edit in Studio');
+      if (!studio || items.length !== 1) continue;
+      const close = () => list.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+      const make = (label, run, href) => {
+        const n = href ? el('a', studio.className) : el('li', studio.className);
+        n.classList.add('routility-injected', 'routility-ci-pm');
+        n.setAttribute('role', 'menuitem');
+        n.tabIndex = -1;
+        n.appendChild(document.createTextNode(label));
+        if (href) {
+          const wrap = studio.querySelector('.MuiListItemIcon-root');
+          if (wrap) {
+            const box = wrap.cloneNode(false);
+            const NS = 'http://www.w3.org/2000/svg';
+            const svg = document.createElementNS(NS, 'svg');
+            const like = wrap.querySelector('svg');
+            svg.setAttribute('class', like ? like.getAttribute('class') || '' : 'MuiSvgIcon-root MuiSvgIcon-fontSizeMedium');
+            svg.setAttribute('viewBox', '0 0 24 24');
+            svg.setAttribute('focusable', 'false');
+            svg.setAttribute('aria-hidden', 'true');
+            svg.setAttribute('data-testid', 'LaunchIcon');
+            const path = document.createElementNS(NS, 'path');
+            path.setAttribute('d', 'M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z');
+            svg.appendChild(path);
+            box.appendChild(svg);
+            n.prepend(box);
+          }
+          n.href = href;
+          n.target = '_blank';
+          n.rel = 'noopener';
+          n.addEventListener('click', () => setTimeout(close, 0));
+        } else {
+          n.addEventListener('click', async () => {
+            try { await navigator.clipboard.writeText(run); } catch {}
+            close();
+          });
+        }
+        return n;
+      };
+      const game = `https://www.roblox.com/games/${placeId}`;
+      list.insertBefore(make(lt('Copy Universe ID'), universeId), studio);
+      list.insertBefore(make(lt('Copy Place ID'), placeId), studio);
+      list.insertBefore(make(lt('Copy URL'), game), studio);
+      list.insertBefore(make(lt('View on Roblox'), null, game), studio);
+    }
+  }
+
   function clear() {
     document.querySelectorAll('.routility-ci-o18, .routility-ci-bench, .routility-ci-launch, .routility-ci-fees, .routility-ci-holds').forEach(n => n.remove());
   }
@@ -240,6 +291,8 @@
       if (settings.createFees && tab === 'AvatarItems') feesStrip();
     }
     if (settings.createHolds && /^\/dashboard\/transactions\/?$/.test(path)) holdsCard();
+    const place = path.match(/^\/dashboard\/creations\/experiences\/(\d+)\/places\/(\d+)/);
+    if (place && settings.createIds !== false) placeMenu(place[1], place[2]);
   }
 
   chrome.storage.local.get('routilitySettings', (st) => {

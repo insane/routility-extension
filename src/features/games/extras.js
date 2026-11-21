@@ -1384,18 +1384,42 @@
     return ['v1', hash, time, a, b].join('|');
   }
 
+  const TRIED_KEY = 'routilityTriedServers';
+
+  function triedServers(placeId) {
+    try {
+      const all = JSON.parse(sessionStorage.getItem(TRIED_KEY) || '{}');
+      const now = Date.now();
+      return new Set(Object.entries(all[placeId] || {}).filter(([, t]) => now - t < 10 * 60000).map(([id]) => id));
+    } catch {
+      return new Set();
+    }
+  }
+
+  function rememberTried(placeId, id) {
+    try {
+      const all = JSON.parse(sessionStorage.getItem(TRIED_KEY) || '{}');
+      const now = Date.now();
+      const mine = Object.fromEntries(Object.entries(all[placeId] || {}).filter(([, t]) => now - t < 10 * 60000));
+      mine[String(id)] = now;
+      all[placeId] = mine;
+      sessionStorage.setItem(TRIED_KEY, JSON.stringify(all));
+    } catch {}
+  }
+
   const PEEK_URL = 'https://gamejoin.roblox.com/v1/join-game?_routility=1';
   let peekCsrf = '';
   let peekRun = null;
 
-  async function askMatchmaker(placeId) {
-    const body = JSON.stringify({ placeId: Number(placeId), gameJoinAttemptId: crypto.randomUUID() });
+  async function askMatchmaker(placeId, gameId) {
+    const url = gameId ? 'https://gamejoin.roblox.com/v1/join-game-instance' : PEEK_URL;
+    const body = JSON.stringify(gameId ? { placeId: Number(placeId), gameId: String(gameId), gameJoinAttemptId: crypto.randomUUID() } : { placeId: Number(placeId), gameJoinAttemptId: crypto.randomUUID() });
     const send = async () => {
       const headers = { 'Content-Type': 'application/json' };
       if (peekCsrf) headers['x-csrf-token'] = peekCsrf;
-      const token = await boundToken(PEEK_URL, 'POST', body).catch(() => null);
+      const token = await boundToken(url, 'POST', body).catch(() => null);
       if (token) headers['x-bound-auth-token'] = token;
-      return fetch(PEEK_URL, { method: 'POST', credentials: 'include', headers, body });
+      return fetch(url, { method: 'POST', credentials: 'include', headers, body });
     };
     try {
       let res = await send();
@@ -1977,11 +2001,14 @@
       host.after(tag);
     };
     p.playLabel = label;
+    const PRESS = ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'];
     const onClick = async (e) => {
       const btn = e.target.closest?.('[data-testid="play-button"]');
       if (!btn || btn.dataset.routilityBypass === '1' || (!wanted() && !avoiding()) || p !== page) return;
+      if (e.button !== undefined && e.button !== 0) return;
       e.preventDefault();
       e.stopImmediatePropagation();
+      if (e.type !== 'pointerup' && e.type !== 'click') return;
       if (busy) return;
       busy = true;
       let want = wanted();
@@ -1993,7 +2020,10 @@
       const normal = () => {
         modal.close();
         btn.dataset.routilityBypass = '1';
-        btn.click();
+        for (const type of PRESS) {
+          const C = type.startsWith('pointer') ? PointerEvent : MouseEvent;
+          btn.dispatchEvent(new C(type, { bubbles: true, cancelable: true, view: window, button: 0, pointerType: 'mouse', isPrimary: true }));
+        }
         setTimeout(() => { delete btn.dataset.routilityBypass; }, 0);
       };
       const anyChoice = { label: lt('Join any server'), emphasis: false, onClick: normal };
@@ -2004,7 +2034,9 @@
       };
       const go = (pick, dc) => {
         modal.status(lt('Starting Roblox…'));
+        rememberTried(placeId, pick.id);
         setTimeout(() => {
+          if (cancelled) return;
           modal.close();
           launchServer(placeId, pick, { dc, details: { placeVersion: pick.placeVersion, startedAt: pick.startedAt }, latest: p.latestVersion });
         }, 350);
@@ -2031,32 +2063,74 @@
         }
         if (cancelled) return;
       }
-      const bestOpen = (list) => list
-        .filter(sv => sv.maxPlayers > 0 && free(sv) >= 1 && !friendServers.has(String(sv.id)))
-        .sort((a, b) => (free(a) >= 2 ? 0 : 1) - (free(b) >= 2 ? 0 : 1) || (Number.isFinite(a.ping) ? a.ping : 999) - (Number.isFinite(b.ping) ? b.ping : 999) || b.playing - a.playing)[0];
+      const rosterPage = async (url) => {
+        for (let tries = 0; tries < 3 && !cancelled; tries++) {
+          let res = null;
+          const stop = new AbortController();
+          const timer = setTimeout(() => stop.abort(), 6000);
+          try { res = await fetch(url, { credentials: 'include', signal: stop.signal }); } catch {}
+          clearTimeout(timer);
+          if (res && res.ok) return res.json().catch(() => null);
+          if (res && res.status !== 429) return null;
+          const after = Number(res && res.headers.get('retry-after'));
+          await wait(Math.min(4000, (after > 0 ? after * 1000 : 1500) * (tries + 1)));
+        }
+        return null;
+      };
       let live = null;
       const liveServers = async () => {
         if (live) return live;
         live = new Map();
+        live.complete = false;
         let cursor = '';
         for (let i = 0; i < 5 && !cancelled; i++) {
-          const d = await json(`https://games.roblox.com/v1/games/${placeId}/servers/Public?sortOrder=Desc&excludeFullGames=true&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`);
-          for (const sv of (d && d.data) || []) if (sv && typeof sv.id === 'string') live.set(sv.id, sv);
-          cursor = d && d.nextPageCursor;
-          if (!cursor) break;
+          const d = await rosterPage(`https://games.roblox.com/v1/games/${placeId}/servers/Public?sortOrder=Desc&excludeFullGames=true&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`);
+          if (!d) break;
+          for (const sv of d.data || []) if (sv && typeof sv.id === 'string') live.set(sv.id, sv);
+          cursor = d.nextPageCursor;
+          if (!cursor) {
+            live.complete = true;
+            break;
+          }
         }
         return live;
       };
       const openNow = async (list) => {
         if (!list || !list.length) return [];
         const now = await liveServers();
-        return list.filter(sv => sv.fresh || now.has(sv.id)).map(sv => {
-          if (sv.fresh) return sv;
-          const l = now.get(sv.id);
-          return { ...sv, playing: Number(l.playing) || 0, maxPlayers: Number(l.maxPlayers) || sv.maxPlayers, ping: Number.isFinite(l.ping) ? l.ping : sv.ping };
-        });
+        const out = [];
+        for (const sv of list) {
+          if (sv.fresh) out.push(sv);
+          else if (now.has(sv.id)) {
+            const l = now.get(sv.id);
+            out.push({ ...sv, playing: Number(l.playing) || 0, maxPlayers: Number(l.maxPlayers) || sv.maxPlayers, ping: Number.isFinite(l.ping) ? l.ping : sv.ping });
+          } else if (!now.complete) out.push({ ...sv, unverified: true });
+        }
+        return out;
       };
-      const roomy = (list) => bestOpen((list || []).filter(sv => free(sv) >= 2));
+      const tried = triedServers(placeId);
+      const ranked = (list) => (list || [])
+        .filter(sv => sv.maxPlayers > 0 && free(sv) >= 1 && !friendServers.has(String(sv.id)) && !tried.has(String(sv.id)))
+        .sort((a, b) => (a.unverified ? 1 : 0) - (b.unverified ? 1 : 0) || (free(a) >= 2 ? 0 : 1) - (free(b) >= 2 ? 0 : 1) || (Number.isFinite(a.ping) ? a.ping : 999) - (Number.isFinite(b.ping) ? b.ping : 999) || b.playing - a.playing);
+      const checked = new Set();
+      let checks = true;
+      const launchFirst = async (list, dcFor, keep) => {
+        let n = 0;
+        const order = keep ? (list || []).filter(sv => sv.maxPlayers > 0 && free(sv) >= 1 && !friendServers.has(String(sv.id)) && !tried.has(String(sv.id))) : ranked(list);
+        for (const sv of order) {
+          if (cancelled || n >= 6) return cancelled;
+          if (checked.has(sv.id)) continue;
+          checked.add(sv.id);
+          n++;
+          const r = checks ? await askMatchmaker(placeId, sv.id) : null;
+          if (cancelled) return true;
+          if (r && r.status === 12) checks = false;
+          else if (r && !(r.joinScript && r.joinScript.GameId) && (r.status === 6 || /full|ended|shut ?down|no longer|not found/i.test(String(r.message || '')))) continue;
+          go(sv, dcFor(sv));
+          return true;
+        }
+        return false;
+      };
       let quickPool = null;
       const quickList = async (ids, label) => {
         if (!quickPool) {
@@ -2065,7 +2139,7 @@
           for (const order of ['Desc', 'Asc']) {
             let cursor = '';
             for (let i = 0; i < 3 && !cancelled; i++) {
-              const d = await json(`https://games.roblox.com/v1/games/${placeId}/servers/Public?sortOrder=${order}&excludeFullGames=true&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`);
+              const d = await rosterPage(`https://games.roblox.com/v1/games/${placeId}/servers/Public?sortOrder=${order}&excludeFullGames=true&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`);
               for (const sv of (d && d.data) || []) if (sv && typeof sv.id === 'string' && !pool.has(sv.id)) pool.set(sv.id, sv);
               cursor = d && d.nextPageCursor;
               if (!cursor) break;
@@ -2081,7 +2155,11 @@
         while (!found() && quickPool.checked < limit && !cancelled) {
           const chunk = quickPool.servers.slice(quickPool.checked, quickPool.checked + 30);
           quickPool.checked += chunk.length;
-          const r = await window.RoUtilityUI.request({ type: 'serverRegions', placeId, ids: chunk.map(x => x.id) }, x => x !== undefined);
+          let r = await window.RoUtilityUI.request({ type: 'serverRegions', placeId, ids: chunk.map(x => x.id) }, x => x !== undefined);
+          if (r && r.retryAfter && !cancelled) {
+            await wait(Math.min(5000, r.retryAfter * 1000));
+            r = await window.RoUtilityUI.request({ type: 'serverRegions', placeId, ids: chunk.map(x => x.id) }, x => x !== undefined);
+          }
           if (!r || r.retryAfter) break;
           for (const sv of chunk) {
             const dcId = r.regions ? r.regions[sv.id] : null;
@@ -2095,25 +2173,60 @@
       };
       const regionList = async (ids, label) => {
         if (cancelled) return null;
-        const res = await window.RoUtilityUI.request({ type: 'serverRegionList', placeId, ids, cursor: '' }, r => r !== undefined);
+        let res = await window.RoUtilityUI.request({ type: 'serverRegionList', placeId, ids, cursor: '' }, r => r !== undefined);
         if (cancelled) return null;
-        if (res && Array.isArray(res.servers)) return res.servers;
+        if (res && res.scanning && res.retryAfter && res.retryAfter <= 6) {
+          modal.status(lt('Looking up servers in {region}…', { region: label }));
+          await wait(res.retryAfter * 1000);
+          if (cancelled) return null;
+          res = await window.RoUtilityUI.request({ type: 'serverRegionList', placeId, ids, cursor: '' }, r => r !== undefined);
+          if (cancelled) return null;
+        }
+        if (res && Array.isArray(res.servers) && !res.servers.length && !res.nextCursor) return quickList(ids, label);
+        if (res && Array.isArray(res.servers)) {
+          const all = res.servers.slice();
+          let next = res.nextCursor;
+          for (let i = 0; i < 2 && next && !cancelled; i++) {
+            const more = await window.RoUtilityUI.request({ type: 'serverRegionList', placeId, ids, cursor: next }, r => r !== undefined);
+            if (!more || !Array.isArray(more.servers)) break;
+            all.push(...more.servers);
+            next = more.nextCursor;
+          }
+          return all;
+        }
         if (!res || !res.scanning) return null;
         return quickList(ids, label);
       };
       try {
         if (!want) {
           modal.status(friendServers.size ? ltn(friendServers.size, 'Finding a server without your friend…', 'Finding a server without your friends…') : lt('Finding an open server…'));
-          const pick = bestOpen([...(await liveServers()).values()]);
+          if (await launchFirst([...(await liveServers()).values()], () => null)) return;
           if (cancelled) return;
-          if (pick) return go(pick, null);
           modal.status(lt('Every open server has a friend in it'));
           return modal.choices([anyChoice]);
         }
-        modal.status(lt('Finding a server in {region}…', { region: wantLabel }));
+        modal.status(auto ? lt('Finding the closest server to you…') : lt('Finding a server in {region}…', { region: wantLabel }));
         const dcs = await window.RoUtilityUI.request({ type: 'getDatacenters' }, r => r && Array.isArray(r.list));
         if (cancelled) return;
         const all = (dcs && dcs.list) || [];
+        if (auto) {
+          const near = await rosterPage(`https://games.roblox.com/v2/games/${placeId}/servers/Public?cursor=&sortOrder=Desc&excludeFullGames=true&orderBy=BestLatency`);
+          if (cancelled) return;
+          const servers = ((near && near.data) || []).filter(sv => sv && typeof sv.id === 'string').map(sv => ({ id: sv.id, playing: Number(sv.playing) || 0, maxPlayers: Number(sv.maxPlayers) || 0, ping: sv.ping, fps: sv.fps }));
+          if (servers.length) {
+            const r = await window.RoUtilityUI.request({ type: 'serverRegions', placeId, ids: servers.slice(0, 30).map(sv => sv.id) }, x => x !== undefined);
+            if (cancelled) return;
+            for (const sv of servers) {
+              const id = r && r.regions ? r.regions[sv.id] : null;
+              if (Number.isFinite(id)) sv.datacenterId = id;
+            }
+            const first = servers.find(sv => Number.isFinite(sv.datacenterId));
+            const dc = first ? all.find(d => d.id === first.datacenterId) : null;
+            if (dc) modal.status(lt('Finding the closest server to you ({region})…', { region: niceName(placeName(dc)) }));
+            if (await launchFirst(servers, (sv) => all.find(d => d.id === sv.datacenterId) || null, true)) return;
+            if (cancelled) return;
+          }
+        }
         let home = all.find(dc => placeName(dc) === want);
         if (auto) {
           home = guessHome();
@@ -2138,16 +2251,12 @@
         if (cancelled) return;
         modal.status(lt('Checking which {region} servers have room right now…', { region: wantLabel }));
         const listed = await openNow(list);
-        let pick = roomy(listed);
-        if (!pick && !cancelled) pick = bestOpen(await quickList(ids, wantLabel));
-        if (!pick && !cancelled) pick = bestOpen(listed);
+        const dcOf = (fallback) => (sv) => all.find(dc => dc.id === sv.datacenterId) || fallback;
         if (cancelled) return;
-        if (pick) {
-          modal.status(lt('Picking the best one…'));
-          await wait(350);
-          if (cancelled) return;
-          return go(pick, all.find(dc => dc.id === pick.datacenterId) || home);
-        }
+        modal.status(lt('Picking the best one…'));
+        if (await launchFirst(listed, dcOf(home))) return;
+        if (await launchFirst(await quickList(ids, wantLabel), dcOf(home))) return;
+        if (cancelled) return;
         modal.status(lt('No open servers in {region}. Looking for the closest region…', { region: wantLabel }));
         let counts = p.regionCounts;
         if (!counts || !Array.isArray(counts.regions)) counts = await window.RoUtilityUI.request({ type: 'serverCounts', placeId }, r => r !== undefined);
@@ -2168,14 +2277,15 @@
           modal.status(lt('Checking {region}…', { region: niceName(g.name) }));
           const l = await regionList(g.ids, niceName(g.name));
           const nearby = l ? await openNow(l) : [];
-          const alt = roomy(nearby) || bestOpen(await quickList(g.ids, niceName(g.name))) || bestOpen(nearby);
-          if (alt) {
+          const pool = nearby.length ? nearby : await quickList(g.ids, niceName(g.name));
+          if (cancelled) return;
+          if (ranked(pool).length) {
             if (!auto) {
               modal.status(lt('No open servers in {region}. Joining {other}…', { region: wantLabel, other: niceName(g.name) }));
               await wait(900);
               if (cancelled) return;
             }
-            return go(alt, all.find(dc => dc.id === alt.datacenterId) || g.dc);
+            if (await launchFirst(pool, dcOf(g.dc))) return;
           }
         }
         joinAny(lt('No open servers in or near {region}. Joining any server…', { region: wantLabel }));
@@ -2185,8 +2295,8 @@
         busy = false;
       }
     };
-    document.addEventListener('click', onClick, true);
-    p.stopPlay = () => document.removeEventListener('click', onClick, true);
+    for (const type of PRESS) document.addEventListener(type, onClick, true);
+    p.stopPlay = () => { for (const type of PRESS) document.removeEventListener(type, onClick, true); };
   }
 
   function exactCounts(p, userId) {

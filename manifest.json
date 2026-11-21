@@ -81,6 +81,7 @@
         "src/features/badges/badges.js",
         "src/features/badges/badgemanage.js",
         "src/features/inventory/invsearch.js",
+        "src/features/inventory/limiteds.js",
         "src/features/profile/listorder.js",
         "src/features/games/games.js",
         "src/features/profile/hovercard.js",
