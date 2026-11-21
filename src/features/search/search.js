@@ -375,7 +375,7 @@
     const rows = ourRows();
     if (sel >= rows.length) sel = -1;
     rows.forEach((r, i) => r.classList.toggle('new-selected', i === sel));
-    m.classList.toggle('routility-search-own-sel', sel >= 0);
+    m.classList.toggle('routility-search-own-sel', sel >= 0 || !!m.querySelector(':scope > .routility-search-loading'));
     if (sel >= 0 && document.activeElement?.id === 'navbar-search-input') rows[sel].scrollIntoView({ block: 'nearest' });
   }
 

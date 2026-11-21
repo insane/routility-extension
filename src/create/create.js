@@ -4,7 +4,7 @@
   const { el, onFrame, formatUSD, formatNumber, robuxRate } = window.RoUtilityUI;
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const NS = 'http://www.w3.org/2000/svg';
-  const settings = { createScanner: true, createIds: true, createDevItems: true, createUsd: true, createSafety: true, createSelect: true, createStoreDates: true, createVersion: true, createTier: true };
+  const settings = { createScanner: true, createIds: true, createDevItems: true, createUsd: true, createSafety: true, createSelect: true, createStoreDates: true, createVersion: true, createTier: true, createDevex: true };
   let lastUrl = '';
   let page = null;
 
@@ -331,6 +331,113 @@
     return s;
   }
 
+  const USD = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  function devexDate(iso) {
+    const d = new Date(iso);
+    return Number.isNaN(d.getTime()) ? '' : d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function devexStatus(s) {
+    if (/complete/i.test(s)) return lt('Completed');
+    if (/reject|declin|fail|deni/i.test(s)) return lt('Declined');
+    if (/cancel/i.test(s)) return lt('Cancelled');
+    if (/pend|progress|submit|review|process/i.test(s)) return lt('Pending');
+    return String(s || '').replace(/([a-z])([A-Z])/g, '$1 $2');
+  }
+
+  function devexPage() {
+    const s = { data: null, asked: false };
+    const get = (url) => fetch(url, { credentials: 'include' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
+    const robuxIcon = () => {
+      const svg = document.querySelector('[data-testid="devex-cash-out-box"] [class*="robuxAmount"] > svg');
+      const icon = svg ? svg.cloneNode(true) : el('span');
+      icon.classList.add('routility-cr-dx-icon');
+      return icon;
+    };
+    const row = (label, robux, usd, cls) => {
+      const r = el('div', 'routility-cr-dx-row' + (cls ? ' ' + cls : ''));
+      r.appendChild(el('span', 'routility-cr-dx-label', label));
+      const mid = el('span', 'routility-cr-dx-robux');
+      if (robux !== null) mid.append(robuxIcon(), document.createTextNode(formatNumber(robux)));
+      r.append(mid, el('span', 'routility-cr-dx-usd', usd));
+      return r;
+    };
+    const plain = (label, value) => {
+      const r = el('div', 'routility-cr-dx-row routility-cr-dx-plain');
+      const v = el('span', 'routility-cr-dx-usd');
+      v.append(...[].concat(value));
+      r.append(el('span', 'routility-cr-dx-label', label), v);
+      return r;
+    };
+    const paint = (card) => {
+      const { fiat, eligible, info } = s.data;
+      card.textContent = '';
+      card.dataset.done = '1';
+      const head = el('div', 'routility-cr-dx-head');
+      head.appendChild(el('span', 'routility-cr-title', lt('DevEx Breakdown')));
+      const at = (fiat && fiat.lastProcessedTimestamp) || (eligible && eligible.updatedUtc);
+      if (at) head.appendChild(el('span', 'routility-cr-sub', lt('Updated {date}', { date: devexDate(at) })));
+      card.appendChild(head);
+      if (info && info.isDevExSuspended) {
+        const end = info.devExSuspensionEndTimeUtc ? devexDate(info.devExSuspensionEndTimeUtc) : '';
+        card.appendChild(el('div', 'routility-cr-dx-warn', end ? lt('DevEx is suspended until {date}.', { date: end }) : lt('DevEx is suspended.')));
+      } else if (info && info.isAtRiskOfSuspension) {
+        card.appendChild(el('div', 'routility-cr-dx-warn', lt('Your account is at risk of a DevEx suspension.')));
+      }
+      const oldRate = Number(fiat && fiat.robuxAt35ToUsdRate) || 0.0035;
+      const newRate = Number(fiat && fiat.robuxAt38ToUsdRate) || Number(info && info.conversionPercent) || 0.0038;
+      const o18Rate = Number(fiat && fiat.effectiveO18ToUsdRate) || 0.0054;
+      const total = Math.max(0, Number(eligible && eligible.eligibleRobux) || 0);
+      const mark = Math.max(0, Number(fiat && fiat.robuxAt35WatermarkRobux) || 0);
+      const older = Math.min(total, mark);
+      const newer = total - older;
+      const rate = (n) => '$' + String(n);
+      const grid = el('div', 'routility-cr-dx-grid');
+      if (older > 0) grid.appendChild(row(lt('Robux at {rate}', { rate: rate(oldRate) }), older, USD.format(older * oldRate)));
+      if (newer > 0 || !older) grid.appendChild(row(lt('Robux at {rate}', { rate: rate(newRate) }), newer, USD.format(newer * newRate)));
+      const o18 = Number(fiat && fiat.effectiveO18Robux) || 0;
+      if (fiat && fiat.shouldDisplayEffectiveO18Robux && o18 > 0) grid.appendChild(row(lt('From 18+ experiences at {rate}', { rate: rate(o18Rate) }), o18, USD.format(o18 * o18Rate)));
+      grid.appendChild(row(lt('Total'), total, USD.format(older * oldRate + newer * newRate), 'routility-cr-dx-total'));
+      if (info && info.lastImbursementSubmissionDate) {
+        const status = info.lastImbursementStatus || '';
+        const tone = /complete/i.test(status) ? 'ok' : /reject|declin|fail|deni|cancel/i.test(status) ? 'high' : 'medium';
+        const value = [document.createTextNode(devexDate(info.lastImbursementSubmissionDate))];
+        if (status) value.push(chip(devexStatus(status), tone));
+        grid.appendChild(plain(lt('Last cash-out'), value));
+        const last = new Date(info.lastImbursementSubmissionDate);
+        const now = new Date();
+        if (/complete/i.test(status) && last.getUTCFullYear() === now.getUTCFullYear() && last.getUTCMonth() === now.getUTCMonth()) {
+          grid.appendChild(plain(lt('Next cash-out'), document.createTextNode(devexDate(new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1, 12)).toISOString()))));
+        }
+      }
+      card.appendChild(grid);
+      if (mark > older) card.appendChild(el('div', 'routility-cr-sub routility-cr-dx-note', lt('{robux} more Robux cash out at {old} before you get {new}.', { robux: formatNumber(mark - older), old: rate(oldRate), new: rate(newRate) })));
+    };
+    s.run = () => {
+      const box = document.querySelector('[data-testid="devex-cash-out-box"]');
+      const host = box && box.closest('[class*="cashOutBoxContainer"]');
+      if (!host) return;
+      let card = document.querySelector('.routility-cr-devex');
+      if (!card) {
+        card = scanCard();
+        card.classList.add('routility-cr-devex');
+        host.appendChild(card);
+      } else if (card.parentElement !== host) host.appendChild(card);
+      if (s.data && !card.dataset.done) paint(card);
+      if (s.asked) return;
+      s.asked = true;
+      Promise.all([get('https://billing.roblox.com/v1/estimated-fiat'), get('https://apis.roblox.com/creator-devex-data-service/v1/devexEligibleRobux'), get('https://economy.roblox.com/v1/developer-exchange/info')]).then(([fiat, eligible, info]) => {
+        if (page !== s) return;
+        s.data = { fiat, eligible, info };
+        const now = document.querySelector('.routility-cr-devex');
+        if (!fiat && !eligible && !info) { now?.remove(); return; }
+        if (now) paint(now);
+      });
+    };
+    return s;
+  }
+
   function usdPass() {
     if (!settings.createUsd || /\/dashboard\/devex/.test(location.pathname)) return;
     for (const ic of document.querySelectorAll('main .icon-filled-robux, main .icon-regular-robux, [role="main"] .icon-filled-robux, table .icon-filled-robux')) {
@@ -603,6 +710,7 @@
       if ((settings.createScanner || settings.createVersion) && (m = path.match(/^\/store\/asset\/(\d+)/))) page = storePage(m[1]);
       else if (settings.createIds && (m = path.match(/^\/dashboard\/creations\/experiences\/(\d+)\/overview/))) page = experiencePage(m[1]);
       else if (settings.createDevItems && /^\/dashboard\/creations\/?$/.test(path)) page = devItemsPage();
+      else if (settings.createDevex && /^\/dashboard\/devex\/?$/.test(path)) page = devexPage();
       else page = null;
     }
     if (page) page.run();

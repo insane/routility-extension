@@ -124,7 +124,8 @@
         "src/features/games/changes.js",
         "src/features/games/gamemenu.js",
         "src/features/games/privateservers.js",
-        "src/features/general/palette.js"
+        "src/features/general/palette.js",
+        "src/features/general/insights.js"
       ],
       "css": [
         "styles/routility.css",
@@ -271,7 +272,8 @@
         "src/features/explorer/rbxm.js",
         "src/features/explorer/scan.js",
         "src/features/explorer/explorer.js",
-        "src/create/create.js"
+        "src/create/create.js",
+        "src/create/insights.js"
       ],
       "css": [
         "styles/explorer.css",

@@ -369,7 +369,7 @@
     h1.after(row);
     loadWithYou(pid).then(list => {
       const done = list.filter(t => t.type === 'completed').length;
-      you.info.replaceChildren(document.createTextNode(list.length ? ltn(list.length, '{n} trade', '{n} trades', { n: formatNumber(list.length) }) + ' · ' + ltn(done, '{n} went through', '{n} went through', { n: formatNumber(done) }) : lt('None yet')));
+      you.info.replaceChildren(document.createTextNode(list.length ? ltn(list.length, '{n} trade', '{n} trades', { n: formatNumber(list.length) }) + ', ' + ltn(done, '{n} went through', '{n} went through', { n: formatNumber(done) }) : lt('None yet')));
       you.more.textContent = list.length ? lt('See All') + ' ›' : '';
     });
     loadTheirs(pid, 1).then(async d => {
@@ -380,7 +380,7 @@
       }
       const total = (d.meta && d.meta.total_all) || 0;
       const parts = [document.createTextNode(total ? ltn(total, '{n} tracked', '{n} tracked', { n: formatNumber(total) }) : lt('None tracked'))];
-      if (total && d.meta.net) for (const n of nets(Number(d.meta.net.value), Number(d.meta.net.price))) parts.push(document.createTextNode(' · '), n);
+      if (total && d.meta.net) for (const n of nets(Number(d.meta.net.value), Number(d.meta.net.price))) parts.push(document.createTextNode(parts.length === 1 ? ', ' : ' '), n);
       them.info.replaceChildren(...parts);
       them.more.textContent = total ? lt('Open') + ' ›' : '';
     });

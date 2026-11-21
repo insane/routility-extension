@@ -15868,3 +15868,63 @@ html.routility-with-foreign-filter .routility-av-filter-btn {
 .routility-skin-fixed button.color-dot.routility-dot-current { position: relative; }
 .routility-skin-fixed button.color-dot.routility-dot-current::after { content: ""; position: absolute; inset: -4px; border: 2px solid rgb(15, 159, 255); border-radius: 50%; pointer-events: none; }
 .rt-m-row:has(> .rt-m-col) { flex-wrap: nowrap; }
+
+.avatar-name-container:has([data-rblx-verified-badge-icon]) > .routility-verified {
+  display: none;
+}
+
+.routility-plus-was {
+  margin-left: 6px;
+  color: var(--color-content-muted, #8b8d96);
+  font-weight: 400;
+  text-decoration: line-through;
+}
+
+.trade-row-list > .routility-trade-filter,
+.routility-trade-filter {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  margin: -8px 0 14px;
+  white-space: nowrap;
+}
+
+.routility-trade-allowance + .routility-trade-filter {
+  padding-left: 16px;
+  color: var(--color-content-muted, #bcbec8);
+  text-decoration: none;
+}
+
+.routility-trade-filter:hover {
+  color: var(--color-content-emphasis, #f7f7f8);
+  text-decoration: none;
+}
+
+.routility-trade-filter-sep {
+  width: 1px;
+  height: 12px;
+  background: var(--color-stroke-default, rgba(127, 127, 127, 0.4));
+}
+
+.routility-uname-price {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 12px;
+  color: var(--color-content-muted, #bcbec8);
+  font-size: 13px;
+}
+
+.routility-uname-price strong {
+  color: var(--color-content-emphasis, #f7f7f8);
+}
+
+.routility-uname-icon {
+  margin-left: 2px;
+}
+
+.routility-uname-hold {
+  display: none !important;
+}
