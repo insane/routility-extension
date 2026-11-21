@@ -15765,7 +15765,9 @@ html.routility-with-foreign-filter .routility-av-filter-btn {
 .routility-mass-inputs { display: flex; align-items: center; gap: 8px; }
 .routility-mass-inputs > .foundation-web-input:first-child { flex: 1 1 0; min-width: 0; }
 .routility-mass-inputs > .routility-mass-robux { flex: 0 0 150px; width: 150px; }
-.routility-mass-inputs > .routility-mass-add { flex: none; height: 40px; padding-left: 16px; padding-right: 16px; }
+.routility-mass-inputs > .routility-mass-pct { flex: 0 0 120px; width: 120px; }
+.routility-mass-pct-sign { flex: none; }
+.routility-mass-inputs > .routility-mass-shuffle { flex: none; height: 40px; padding-left: 16px; padding-right: 16px; }
 @media (max-width: 480px) {
   .routility-mass-inputs { flex-wrap: wrap; }
   .routility-mass-inputs > .foundation-web-input:first-child { flex-basis: 100%; }
@@ -16086,4 +16088,58 @@ html.routility-av-lim-on #avatar-web-app .tab-horizontal-submenu li.active:not(.
 .routility-set-chip.routility-set-chip-community {
   background: var(--color-action-emphasis-background, #335fff);
   color: var(--color-action-emphasis-foreground, #fff);
+}
+
+.routility-ads-card {
+  position: relative;
+}
+
+.routility-ads-count {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 24px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--color-system-emphasis, #335fff);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.routility-ads-minus {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.routility-ads-minus:hover {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.routility-ads-minus:disabled {
+  opacity: 0.4;
+  cursor: default;
 }

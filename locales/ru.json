@@ -4010,5 +4010,10 @@
  "Join the Community": "Вступить в сообщество",
  "In the Community": "В сообществе",
  "Looking up servers in {region}…": "Ищем серверы в {region}…",
- "Finding the closest server to you…": "Ищем ближайший к вам сервер…"
+ "Finding the closest server to you…": "Ищем ближайший к вам сервер…",
+ "Remove one": "Убрать один",
+ "Pick what you’re offering first, then Shuffle finds an upgrade for it.": "Сначала выберите, что предлагаете, затем «Перемешать» найдёт апгрейд.",
+ "No upgrades found for this offer. Try offering a bit more or less.": "Апгрейдов для этого предложения не нашлось. Предложите чуть больше или меньше.",
+ "Upgrade %": "Апгрейд, %",
+ "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "Подбирает случайные предметы, которые дороже вашего предложения на столько процентов в USD и ценности, с упором на хороший спрос"
 }

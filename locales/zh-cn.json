@@ -3542,5 +3542,10 @@
  "Join the Community": "加入社群",
  "In the Community": "已加入社群",
  "Looking up servers in {region}…": "正在查找 {region} 的服务器…",
- "Finding the closest server to you…": "正在查找离你最近的服务器…"
+ "Finding the closest server to you…": "正在查找离你最近的服务器…",
+ "Remove one": "移除一个",
+ "Pick what you’re offering first, then Shuffle finds an upgrade for it.": "先选择你要出的物品，随机会帮你找一个升级目标。",
+ "No upgrades found for this offer. Try offering a bit more or less.": "没有找到适合这个报价的升级目标，试着多出或少出一点。",
+ "Upgrade %": "升级 %",
+ "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "随机挑选在 USD 和价值上比你的报价高出这个比例的物品，优先需求良好的"
 }

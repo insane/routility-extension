@@ -513,6 +513,7 @@
       thumbBox.appendChild(tags);
     }
     if (opts.serial) thumbBox.appendChild(el('span', 'routility-calc-serial text-label-small', '#' + formatNumber(opts.serial)));
+    if (opts.count > 1) thumbBox.appendChild(el('span', 'routility-ads-count text-label-small', '×' + opts.count));
     const cap = el('div', 'item-card-caption');
     cap.appendChild(el('div', 'item-card-name text-overflow', it.name));
     const rap = el('div', 'text-overflow item-card-price routility-calc-price');
@@ -535,6 +536,19 @@
     card.dataset.key = opts.key || '';
     b.addEventListener('click', opts.onClick);
     card.appendChild(b);
+    if (opts.onMinus && opts.count > 0) {
+      const minus = el('button', 'routility-ads-minus');
+      minus.type = 'button';
+      minus.textContent = '−';
+      minus.disabled = !!opts.lockMinus;
+      minus.setAttribute('aria-label', lt('Remove one'));
+      minus.dataset.rtTip = lt('Remove one');
+      minus.addEventListener('click', (e) => {
+        e.stopPropagation();
+        opts.onMinus();
+      });
+      card.appendChild(minus);
+    }
     return card;
   }
 
@@ -599,7 +613,7 @@
       if (!e) b.addEventListener('click', () => onEmpty('item', b));
       return b;
     });
-    const cashViews = cash.length ? cash.map(e => slotView(e, () => onRemove(e), opts)) : [slotView(null, () => {}, opts)];
+    const cashViews = opts && opts.noCash ? [] : cash.length ? cash.map(e => slotView(e, () => onRemove(e), opts)) : [slotView(null, () => {}, opts)];
     cashViews.forEach((b) => {
       b.classList.add('routility-ads-slot-cash');
       if (!b.classList.contains('routility-ads-slot-full')) {
@@ -765,10 +779,14 @@
       const list = s.items.filter(i => match(i.name, (i.acr || '') + ' ' + i.id)).sort((a, b) => (b.usd || 0) - (a.usd || 0));
       if (!list.length) return side.grid.replaceChildren(el('div', 'routility-ads-grid-note text-body-small content-muted', lt('No limiteds match that.')));
       side.grid.replaceChildren(...list.slice(0, 120).map(it => {
-        const on = st.look.some(e => e.kind === 'item' && e.assetId === String(it.id));
-        return itemCard(it, { key: String(it.id), picked: on, disabled: !on && full, onClick: () => {
-          if (st.look.some(e => e.kind === 'item' && e.assetId === String(it.id))) st.look = st.look.filter(e => !(e.kind === 'item' && e.assetId === String(it.id)));
-          else if (goods(st.look).length < 4) st.look.push({ kind: 'item', assetId: String(it.id) });
+        const id = String(it.id);
+        const count = st.look.filter(e => e.kind === 'item' && e.assetId === id).length;
+        return itemCard(it, { key: id, picked: count > 0, count, disabled: full, onClick: () => {
+          if (goods(st.look).length < 4) st.look.push({ kind: 'item', assetId: id });
+          picks();
+        }, onMinus: () => {
+          const at = st.look.findIndex(e => e.kind === 'item' && e.assetId === id);
+          if (at >= 0) st.look.splice(at, 1);
           picks();
         } });
       }));
@@ -822,7 +840,7 @@
       paintSlots(sides.look);
       paintTags();
       syncCards(sides.off.grid, k => st.off.some(e => e.uaid === k), goods(st.off).length >= 4);
-      syncCards(sides.look.grid, k => st.look.some(e => e.kind === 'item' && e.assetId === k), goods(st.look).length >= 4);
+      paintGrid(sides.look);
       paintPost();
     }
 
@@ -920,27 +938,41 @@
       const row = el('div', 'routility-mass-inputs');
       row.appendChild(search);
       panel.appendChild(row);
+      if (key === 'look') {
+        const mix = fbutton(lt('Shuffle'), 'bg-action-standard content-action-standard', () => shuffle());
+        mix.classList.add('routility-mass-shuffle');
+        mix.dataset.rtTip = lt('Pick random items worth this much more than your offer in USD and Value, favoring good demand');
+        const pct = finput(lt('Upgrade'), { inputmode: 'numeric', max: 3 });
+        pct.classList.add('routility-mass-pct');
+        pct.input.setAttribute('aria-label', lt('Upgrade %'));
+        let saved = '';
+        try { saved = localStorage.getItem('routilityShufflePct') || ''; } catch {}
+        pct.input.value = /^\d{1,3}$/.test(saved) ? saved : '15';
+        pct.insertBefore(el('span', 'text-body-medium content-muted routility-mass-pct-sign', '+'), pct.input);
+        pct.appendChild(el('span', 'text-body-medium content-muted routility-mass-pct-sign', '%'));
+        pct.input.addEventListener('input', () => {
+          pct.input.value = pct.input.value.replace(/\D/g, '');
+          try { localStorage.setItem('routilityShufflePct', pct.input.value); } catch {}
+        });
+        pct.input.addEventListener('keydown', (e) => { if (e.key === 'Enter') shuffle(); });
+        row.append(pct, mix);
+        side.shuffle = mix;
+        side.pct = pct;
+      }
       if (key === 'off') {
-        const amount = finput(lt('Robux amount'), { inputmode: 'numeric', max: 9 });
+        const amount = finput(lt('Add Robux'), { inputmode: 'numeric', max: 13 });
         amount.classList.add('routility-mass-robux');
         amount.insertBefore(robuxIcon(), amount.input);
-        const add = fbutton(lt('Add'), 'bg-action-standard content-action-standard');
-        add.classList.add('routility-mass-add');
-        add.setAttribute('aria-label', lt('Add Robux'));
-        row.append(amount, add);
+        row.appendChild(amount);
         side.amount = amount;
-        amount.input.addEventListener('input', () => { amount.input.value = amount.input.value.replace(/[^\d.,]/g, ''); });
-        const addAmount = () => {
+        amount.input.addEventListener('input', () => {
+          amount.input.value = amount.input.value.replace(/[^\d.,]/g, '');
+          if (st.job) return;
           const v = window.RoUtilityUI.parseAmount(amount.input.value, true);
-          if (!(v > 0)) return;
-          const same = st.off.find(e => e.kind === 'robux');
-          if (same) same.amount += v;
-          else st.off.push({ kind: 'robux', amount: v });
-          amount.input.value = '';
+          st.off = st.off.filter(e => e.kind !== 'robux');
+          if (v > 0) st.off.push({ kind: 'robux', amount: v });
           picks();
-        };
-        add.addEventListener('click', addAmount);
-        amount.input.addEventListener('keydown', (e) => { if (e.key === 'Enter') addAmount(); });
+        });
       }
       const grid = el('div', 'routility-ads-grid');
       panel.appendChild(grid);
@@ -1016,6 +1048,71 @@
       hintEl.classList.toggle('routility-ads-hint-alert', !!alert);
     }
 
+    const DEMAND_WEIGHT = { Amazing: 6, High: 4, Normal: 2, Low: 0.5 };
+
+    function shuffle() {
+      if (st.job || !s.items.length) return;
+      const rate = window.RoUtilityUI.robuxRate(settings);
+      const valOf = it => itemValue(it) || it.rap || 0;
+      const usdOf = it => Number(it.usd) || 0;
+      const offVal = st.off.reduce((t, e) => t + (e.kind === 'robux' ? e.amount : e.kind === 'item' ? valOf(itemInfo(e.assetId)) : 0), 0);
+      const offUsd = st.off.reduce((t, e) => t + (e.kind === 'robux' ? e.amount * rate : e.kind === 'item' ? usdOf(itemInfo(e.assetId)) : 0), 0);
+      if (!(offVal > 0) && !(offUsd > 0)) return hint(lt('Pick what you’re offering first, then Shuffle finds an upgrade for it.'), true);
+      const byUsd = offUsd > 0;
+      const offer = byUsd ? offUsd : offVal;
+      const worthOf = byUsd ? usdOf : valOf;
+      const mine = new Set(st.off.filter(e => e.kind === 'item').map(e => e.assetId));
+      const current = new Set(st.look.map(e => e.assetId));
+      const pool = s.items.filter(it => !it.projected && it.demand !== 'Terrible' && !mine.has(String(it.id)) && worthOf(it) > 0);
+      const weight = (it) => (DEMAND_WEIGHT[it.demand] || (itemValue(it) ? 1 : 1.5)) * (current.has(String(it.id)) ? 0.3 : 1);
+      const draw = (list) => {
+        let roll = Math.random() * list.reduce((t, it) => t + weight(it), 0);
+        for (const it of list) { roll -= weight(it); if (roll <= 0) return it; }
+        return list[list.length - 1];
+      };
+      const combo = (n, lo, hi) => {
+        const got = [];
+        let sum = 0;
+        for (let i = 0; i < n; i++) {
+          const left = n - i;
+          const min = left === 1 ? offer * lo - sum : (offer * lo - sum) / left * 0.5;
+          const max = left === 1 ? offer * hi - sum : (offer * hi - sum) / left * 1.4;
+          const list = pool.filter(it => { const w = worthOf(it); return w >= min && w <= max && got.filter(g => g === it).length < 2; });
+          if (!list.length) return null;
+          const it = draw(list);
+          got.push(it);
+          sum += worthOf(it);
+        }
+        if (sum < offer * lo || sum > offer * hi) return null;
+        return got;
+      };
+      const up = Math.min(300, Number(sides.look.pct && sides.look.pct.input.value) || 0) / 100;
+      const goal = 1 + up;
+      const now = st.look.map(e => e.assetId).sort().join(',');
+      const found = new Map();
+      for (let tries = 0; tries < 1500 && found.size < 40; tries++) {
+        const n = 1 + Math.floor(Math.random() * 4);
+        const pad = tries < 900 ? 0.05 : 0.12;
+        const got = combo(n, Math.max(1, goal - pad), goal + pad);
+        if (!got) continue;
+        const key = got.map(it => String(it.id)).sort().join(',');
+        if (key === now || found.has(key)) continue;
+        const u = offUsd > 0 ? got.reduce((t, it) => t + usdOf(it), 0) / offUsd : goal;
+        const v = offVal > 0 ? got.reduce((t, it) => t + valOf(it), 0) / offVal : goal;
+        if (u < 1 || v < 1) continue;
+        found.set(key, { got, miss: Math.abs(u - goal) + Math.abs(v - goal) });
+      }
+      const best = [...found.values()].sort((x, y) => x.miss - y.miss).slice(0, 5);
+      const picked = best.length ? best[Math.floor(Math.random() * best.length)].got : null;
+      if (!picked) return hint(lt('No upgrades found for this offer. Try offering a bit more or less.'), true);
+      st.look = picked.map(it => ({ kind: 'item', assetId: String(it.id) }));
+      st.rangeFrom = '';
+      st.rangeTo = '';
+      st.rangeCount = '';
+      for (const f of [rFrom, rTo, rCount]) if (f && f.input) f.input.value = '';
+      picks();
+    }
+
     function defaultHint() {
       return lt('Each person gets their own trade. RoUtility checks their inventory right before sending and skips anyone who no longer has the item. Keep this tab open while it sends.');
     }
@@ -1047,7 +1144,9 @@
     function paintSlots(side) {
       const list = st[side.key];
       if (side.key === 'off') {
-        const n = fillSlots(side.slots, list, (e) => { if (st.job) return; st.off = list.filter(x => x !== e); picks(); }, (kind) => (kind === 'cash' && side.amount ? side.amount.input : side.search.input).focus(), { cap: false });
+        const n = fillSlots(side.slots, list, (e) => { if (st.job) return; st.off = list.filter(x => x !== e); picks(); }, () => side.search.input.focus(), { cap: false, noCash: true });
+        const robux = list.find(e => e.kind === 'robux');
+        if (side.amount && document.activeElement !== side.amount.input) side.amount.input.value = robux ? formatNumber(robux.amount) : '';
         side.count.textContent = lt('{count} of {max}', { count: n, max: 4 });
       } else {
         side.count.textContent = lt('{count} of {max}', { count: list.length, max: 4 });
@@ -1109,10 +1208,16 @@
       const list = s.items.filter(i => match(i.name, (i.acr || '') + ' ' + i.id)).sort((a, b) => (b.usd || 0) - (a.usd || 0));
       if (!list.length) return side.grid.replaceChildren(el('div', 'routility-ads-grid-note text-body-small content-muted', lt('No limiteds match that.')));
       side.grid.replaceChildren(...list.slice(0, 120).map(it => {
-        const on = st.look.some(e => e.assetId === String(it.id));
-        return itemCard(it, { key: String(it.id), picked: on, disabled: !!st.job || (!on && full), onClick: () => {
-          if (st.look.some(e => e.assetId === String(it.id))) st.look = st.look.filter(e => e.assetId !== String(it.id));
-          else if (goods(st.look).length < 4) st.look.push({ kind: 'item', assetId: String(it.id) });
+        const id = String(it.id);
+        const count = st.look.filter(e => e.assetId === id).length;
+        return itemCard(it, { key: id, picked: count > 0, count, disabled: !!st.job || full, lockMinus: !!st.job, onClick: () => {
+          if (st.job) return;
+          if (goods(st.look).length < 4) st.look.push({ kind: 'item', assetId: id });
+          picks();
+        }, onMinus: () => {
+          if (st.job) return;
+          const at = st.look.findIndex(e => e.assetId === id);
+          if (at >= 0) st.look.splice(at, 1);
           picks();
         } });
       }));
@@ -1240,7 +1345,7 @@
       paintSlots(sides.off);
       paintSlots(sides.look);
       syncCards(sides.off.grid, k => st.off.some(e => e.uaid === k), goods(st.off).length >= 4, st.job);
-      syncCards(sides.look.grid, k => st.look.some(e => e.assetId === k), goods(st.look).length >= 4, st.job);
+      paintGrid(sides.look);
       paintOpts();
       paintStart();
       root.classList.toggle('routility-mass-busy', !!st.job);

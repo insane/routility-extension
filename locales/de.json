@@ -3698,5 +3698,10 @@
  "Join the Community": "Der Community beitreten",
  "In the Community": "In der Community",
  "Looking up servers in {region}…": "Server in {region} werden gesucht…",
- "Finding the closest server to you…": "Der nächstgelegene Server wird gesucht…"
+ "Finding the closest server to you…": "Der nächstgelegene Server wird gesucht…",
+ "Remove one": "Eins entfernen",
+ "Pick what you’re offering first, then Shuffle finds an upgrade for it.": "Wähle zuerst dein Angebot, dann findet Mischen ein Upgrade dafür.",
+ "No upgrades found for this offer. Try offering a bit more or less.": "Kein Upgrade für dieses Angebot gefunden. Biete etwas mehr oder weniger an.",
+ "Upgrade %": "Upgrade in %",
+ "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "Wählt zufällige Items, die in USD und Wert so viel mehr wert sind als dein Angebot, bevorzugt mit guter Nachfrage"
 }

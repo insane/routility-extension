@@ -3698,5 +3698,10 @@
  "Join the Community": "Topluluğa katıl",
  "In the Community": "Toplulukta",
  "Looking up servers in {region}…": "{region} bölgesindeki sunucular aranıyor…",
- "Finding the closest server to you…": "Sana en yakın sunucu aranıyor…"
+ "Finding the closest server to you…": "Sana en yakın sunucu aranıyor…",
+ "Remove one": "Birini kaldır",
+ "Pick what you’re offering first, then Shuffle finds an upgrade for it.": "Önce ne teklif edeceğini seç, sonra Karıştır bir yükseltme bulur.",
+ "No upgrades found for this offer. Try offering a bit more or less.": "Bu teklif için yükseltme bulunamadı. Biraz daha fazla veya az teklif etmeyi dene.",
+ "Upgrade %": "Yükseltme %",
+ "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "USD ve Değer olarak teklifinden bu kadar fazla eden rastgele eşyalar seçer, talebi iyi olanları öne alır"
 }

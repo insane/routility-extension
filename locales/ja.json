@@ -3542,5 +3542,10 @@
  "Join the Community": "コミュニティに参加",
  "In the Community": "コミュニティ参加中",
  "Looking up servers in {region}…": "{region} のサーバーを探しています…",
- "Finding the closest server to you…": "一番近いサーバーを探しています…"
+ "Finding the closest server to you…": "一番近いサーバーを探しています…",
+ "Remove one": "1 つ外す",
+ "Pick what you’re offering first, then Shuffle finds an upgrade for it.": "まず出すものを選ぶと、シャッフルがアップグレードを探します。",
+ "No upgrades found for this offer. Try offering a bit more or less.": "この内容に合うアップグレードが見つかりません。少し増やすか減らしてみてください。",
+ "Upgrade %": "アップグレード %",
+ "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "USD と価値で、出すものよりこの割合だけ高いアイテムをランダムに選びます（需要の良いものを優先）"
 }

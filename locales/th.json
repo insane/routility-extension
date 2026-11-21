@@ -3542,5 +3542,10 @@
  "Join the Community": "เข้าร่วมคอมมูนิตี้",
  "In the Community": "อยู่ในคอมมูนิตี้",
  "Looking up servers in {region}…": "กำลังค้นหาเซิร์ฟเวอร์ใน {region}…",
- "Finding the closest server to you…": "กำลังหาเซิร์ฟเวอร์ที่ใกล้คุณที่สุด…"
+ "Finding the closest server to you…": "กำลังหาเซิร์ฟเวอร์ที่ใกล้คุณที่สุด…",
+ "Remove one": "เอาออกหนึ่งชิ้น",
+ "Pick what you’re offering first, then Shuffle finds an upgrade for it.": "เลือกสิ่งที่จะเสนอก่อน แล้วปุ่มสุ่มจะหาไอเทมอัปเกรดให้",
+ "No upgrades found for this offer. Try offering a bit more or less.": "ไม่พบไอเทมอัปเกรดสำหรับข้อเสนอนี้ ลองเสนอมากขึ้นหรือน้อยลงเล็กน้อย",
+ "Upgrade %": "อัปเกรด %",
+ "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "สุ่มไอเทมที่มีค่ามากกว่าข้อเสนอของคุณตามเปอร์เซ็นต์นี้ทั้ง USD และ Value โดยเน้นดีมานด์ดี"
 }
