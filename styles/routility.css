@@ -15928,3 +15928,22 @@ html.routility-with-foreign-filter .routility-av-filter-btn {
 .routility-uname-hold {
   display: none !important;
 }
+
+.routility-log-pager:empty {
+  display: none;
+}
+
+.routility-log-pager .pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.routility-log-pager .pager-cur span {
+  color: var(--color-content-default, #d5d7dd);
+  font-size: 14px;
+}

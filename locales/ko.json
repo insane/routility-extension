@@ -3517,5 +3517,6 @@
  "Limited Resale Split": "Limited 재판매 분배",
  "In Avatar items, how a Limited’s resale price is split between the seller, you and Roblox, plus the copy and restock limits.": "아바타 아이템에서 Limited 재판매 가격이 판매자, 나, Roblox에게 어떻게 나뉘는지와 수량 및 재입고 한도를 보여 줘요.",
  "Pending Sales Total": "대기 중인 판매 합계",
- "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "거래 위에 판매로 번 Robux 중 아직 대기 중인 금액과 판매 건수를 보여 줘요."
+ "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "거래 위에 판매로 번 Robux 중 아직 대기 중인 금액과 판매 건수를 보여 줘요.",
+ "Page {n} of {total}": "{total}페이지 중 {n}페이지"
 }

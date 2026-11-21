@@ -3985,5 +3985,6 @@
  "Limited Resale Split": "Podział odsprzedaży Limited",
  "In Avatar items, how a Limited’s resale price is split between the seller, you and Roblox, plus the copy and restock limits.": "W Przedmiotach awatara, jak cena odsprzedaży Limited dzieli się między sprzedawcę, ciebie i Roblox, plus limity kopii i uzupełnień.",
  "Pending Sales Total": "Suma oczekującej sprzedaży",
- "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "Nad Transakcjami, ile Robux ze sprzedaży wciąż oczekuje i z ilu sprzedaży."
+ "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "Nad Transakcjami, ile Robux ze sprzedaży wciąż oczekuje i z ilu sprzedaży.",
+ "Page {n} of {total}": "Strona {n} z {total}"
 }

@@ -3517,5 +3517,6 @@
  "Limited Resale Split": "Limited 轉售分成",
  "In Avatar items, how a Limited’s resale price is split between the seller, you and Roblox, plus the copy and restock limits.": "在虛擬人偶物品中，顯示 Limited 的轉售價格如何在賣家、你和 Roblox 之間分配，以及份數和補貨限制。",
  "Pending Sales Total": "待入帳銷售總額",
- "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "在交易上方顯示你的銷售中還有多少 Robux 待入帳，以及來自多少筆銷售。"
+ "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "在交易上方顯示你的銷售中還有多少 Robux 待入帳，以及來自多少筆銷售。",
+ "Page {n} of {total}": "第 {n} 頁，共 {total} 頁"
 }

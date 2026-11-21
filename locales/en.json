@@ -3669,5 +3669,6 @@
  "Limited Resale Split": "Limited Resale Split",
  "In Avatar items, how a Limited’s resale price is split between the seller, you and Roblox, plus the copy and restock limits.": "In Avatar items, how a Limited’s resale price is split between the seller, you and Roblox, plus the copy and restock limits.",
  "Pending Sales Total": "Pending Sales Total",
- "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "Above Transactions, how many Robux from your sales are still pending and from how many sales."
+ "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "Above Transactions, how many Robux from your sales are still pending and from how many sales.",
+ "Page {n} of {total}": "Page {n} of {total}"
 }

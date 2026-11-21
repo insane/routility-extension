@@ -3517,5 +3517,6 @@
  "Limited Resale Split": "Limited 転売の配分",
  "In Avatar items, how a Limited’s resale price is split between the seller, you and Roblox, plus the copy and restock limits.": "アバターアイテムで、Limited の転売価格が販売者、あなた、Roblox にどう分配されるかと、個数と再入荷の上限を表示します。",
  "Pending Sales Total": "保留中の販売合計",
- "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "取引の上に、販売の Robux のうちまだ保留中の額と販売件数を表示します。"
+ "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "取引の上に、販売の Robux のうちまだ保留中の額と販売件数を表示します。",
+ "Page {n} of {total}": "{total} ページ中 {n} ページ"
 }

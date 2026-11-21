@@ -7,6 +7,23 @@
   },
   "releases": [
     {
+      "version": "1.3.2",
+      "date": "2026-11-21",
+      "summary": "See the data Roblox loads but never shows: your DevEx rates, how your experience compares to similar ones, Robux still pending from sales, Plus savings in game stores and more.",
+      "changes": [
+        { "type": "new", "text": "DevEx Breakdown (Creator Hub): how many of your Robux cash out at $0.0035 and how many at $0.0038, the exact total, your last cash-out and when you can cash out next." },
+        { "type": "new", "text": "18+ DevEx Rate (Creator Hub): each experience overview says whether its Robux from players 18 and over can cash out at $0.0054, and what to change if it can’t." },
+        { "type": "new", "text": "Compared to Similar Experiences (Creator Hub): your retention, playtime, home page play rate and spending next to the average and top 10% of your genre." },
+        { "type": "new", "text": "Creator Hub: public launches left next to your publishing tier, the Limited resale split in Avatar items, and Robux still pending from sales on Transactions." },
+        { "type": "new", "text": "Plus Savings in Stores: a game’s Store shows the price before your Roblox Plus discount, crossed out next to what you pay." },
+        { "type": "new", "text": "Your Trade Settings (Trades): your trade quality filter and who can send you trades, under Unlimited trades." },
+        { "type": "new", "text": "Username Change Price (Settings): what changing your username costs, with the price before your Roblox Plus discount." },
+        { "type": "improved", "text": "What’s New (Settings): updates are split into pages of five instead of one long list." },
+        { "type": "fixed", "text": "Friends: terminated friends with a verified badge no longer show two checkmarks." },
+        { "type": "fixed", "text": "Search: Search in People no longer flashes highlighted while results load." }
+      ]
+    },
+    {
       "version": "1.3.1",
       "date": "2026-11-20",
       "summary": "RoUtility works properly on Roblox’s newer pages again, Mass Send can’t send anyone the same trade twice, and the avatar Wearing list no longer removes the wrong item.",

@@ -3985,5 +3985,6 @@
  "Limited Resale Split": "Распределение при перепродаже Limited",
  "In Avatar items, how a Limited’s resale price is split between the seller, you and Roblox, plus the copy and restock limits.": "В «Предметах аватара»: как цена перепродажи Limited делится между продавцом, вами и Roblox, плюс лимиты копий и пополнения.",
  "Pending Sales Total": "Сумма ожидающих продаж",
- "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "Над «Транзакциями»: сколько Robux от продаж ещё ожидают и от скольких продаж."
+ "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "Над «Транзакциями»: сколько Robux от продаж ещё ожидают и от скольких продаж.",
+ "Page {n} of {total}": "Страница {n} из {total}"
 }

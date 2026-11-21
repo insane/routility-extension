@@ -3113,7 +3113,41 @@
       }
       const current = chrome.runtime.getManifest().version;
       const installed = log.releases.find(r => r.version.localeCompare(current, undefined, { numeric: true }) <= 0);
-      for (const r of log.releases) {
+      const list = el('div', 'flex flex-col gap-xlarge');
+      const nav = el('div', 'routility-log-pager');
+      holder.append(list, nav);
+      const per = 5;
+      const pages = Math.max(1, Math.ceil(log.releases.length / per));
+      let page = 0;
+      const button = (side, disabled, step) => {
+        const li = el('li', 'pager-' + side + (disabled ? ' disabled' : ''));
+        const b = el('button', 'btn-generic-' + (side === 'prev' ? 'left' : 'right') + '-sm');
+        b.type = 'button';
+        b.disabled = disabled;
+        b.setAttribute('aria-label', side === 'prev' ? lt('Previous page') : lt('Next page'));
+        b.appendChild(el('span', side === 'prev' ? 'icon-left' : 'icon-right'));
+        b.addEventListener('click', () => {
+          page += step;
+          show();
+          section.scrollIntoView({ block: 'start' });
+        });
+        li.appendChild(b);
+        return li;
+      };
+      const show = () => {
+        list.textContent = '';
+        for (const r of log.releases.slice(page * per, page * per + per)) list.appendChild(release(r));
+        nav.textContent = '';
+        if (pages <= 1) return;
+        const ul = el('ul', 'pager');
+        ul.appendChild(button('prev', page === 0, -1));
+        const cur = el('li', 'pager-cur');
+        cur.appendChild(el('span', null, lt('Page {n} of {total}', { n: page + 1, total: pages })));
+        ul.appendChild(cur);
+        ul.appendChild(button('next', page >= pages - 1, 1));
+        nav.appendChild(ul);
+      };
+      const release = (r) => {
         const wrap = group(lt('Version {version}', { version: r.version }), logDate(r.date));
         wrap.classList.add('routility-log-group');
         if (r === installed) wrap.querySelector('.routility-set-group-head').appendChild(el('span', 'routility-set-chip routility-log-current', lt('Installed')));
@@ -3138,8 +3172,9 @@
           }
           card.appendChild(list);
         }
-        holder.appendChild(wrap);
-      }
+        return wrap;
+      };
+      show();
     });
   }
 

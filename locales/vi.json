@@ -3517,5 +3517,6 @@
  "Limited Resale Split": "Phân chia bán lại Limited",
  "In Avatar items, how a Limited’s resale price is split between the seller, you and Roblox, plus the copy and restock limits.": "Trong Vật phẩm avatar, cách giá bán lại Limited được chia giữa người bán, bạn và Roblox, cùng giới hạn số bản và nhập lại.",
  "Pending Sales Total": "Tổng bán hàng đang chờ",
- "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "Phía trên Giao dịch, bao nhiêu Robux từ bán hàng vẫn đang chờ và từ bao nhiêu đơn."
+ "Above Transactions, how many Robux from your sales are still pending and from how many sales.": "Phía trên Giao dịch, bao nhiêu Robux từ bán hàng vẫn đang chờ và từ bao nhiêu đơn.",
+ "Page {n} of {total}": "Trang {n} / {total}"
 }
