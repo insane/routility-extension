@@ -858,7 +858,8 @@
     sidebar();
     if (page) page.run();
     if (page && page.gid && settings.groupFind && !/^\/communities\/configure/i.test(location.pathname)) placeFinder(page.gid);
-    if (page && page.gid && settings.groupHiddenGames && /^\/communities\/\d+/i.test(location.pathname)) placeHiddenGames(page.gid);
+    const homeTab = !location.hash || /^#!?\/?(about|home)?\/?$/i.test(location.hash);
+    if (page && page.gid && settings.groupHiddenGames && homeTab && /^\/communities\/\d+/i.test(location.pathname)) placeHiddenGames(page.gid);
     else document.querySelectorAll('.routility-hg').forEach(n => n.remove());
   }
 
