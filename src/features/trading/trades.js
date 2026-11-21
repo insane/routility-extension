@@ -8,7 +8,8 @@
   const LOGO_URL = chrome.runtime.getURL('assets/icons/logo.png');
   const PRICE_SELECTOR = '.item-card-price:not(.routility-card-usd), .item-value:not(.routility-card-usd)';
   const TAB_TYPES = { Inbound: 'Inbound', Outbound: 'Outbound', Completed: 'Completed', Inactive: 'Inactive' };
-  const DETAILS_KEY = 'routilityTradeDetails4';
+  const DETAILS_KEY = 'routilityTradeDetails5';
+  const afterFee = (robux) => Math.floor((Number(robux) || 0) * 0.7);
 
   let observer = null;
 
@@ -174,6 +175,7 @@
     if (token !== offersToken) return;
     const robuxUsd = [0, 0];
     const robuxRaw = [0, 0];
+    const nativeRobux = [0, 0];
     if (offers.length === 2 && !offers[0].matches('.trade-request-window-offer')) {
       const id = await selectedTradeId();
       const d = id ? await rawDetail(id) : null;
@@ -182,7 +184,9 @@
         const me = document.querySelector('meta[name="user-data"]')?.dataset.userid;
         const [mine, theirs] = String(d.participantBOffer.user?.id) === me ? [d.participantBOffer, d.participantAOffer] : [d.participantAOffer, d.participantBOffer];
         robuxRaw[0] = Number(mine.robux) || 0;
-        robuxRaw[1] = Number(theirs.robux) || 0;
+        robuxRaw[1] = afterFee(theirs.robux);
+        nativeRobux[0] = robuxRaw[0];
+        nativeRobux[1] = Number(theirs.robux) || 0;
         robuxUsd[0] = robuxRaw[0] * robuxRate;
         robuxUsd[1] = robuxRaw[1] * robuxRate;
       }
@@ -190,7 +194,9 @@
       const boxes = [...document.querySelectorAll('.trade-request-window .robux-input-group input')];
       offers.forEach((o, i) => {
         const box = o.querySelector('.robux-input-group input') || boxes[i];
-        robuxRaw[i] = window.RoUtilityUI.parseAmount(box ? box.value : '', true);
+        const typed = window.RoUtilityUI.parseAmount(box ? box.value : '', true);
+        nativeRobux[i] = typed;
+        robuxRaw[i] = i === 1 ? afterFee(typed) : typed;
         robuxUsd[i] = robuxRaw[i] * robuxRate;
       });
     }
@@ -220,7 +226,8 @@
         return;
       }
       const t = totals[i];
-      const text = t.priced ? formatUSD(t.usd) + (t.missing ? '+' : '') : (t.missing ? lt('N/A') : formatCash(0));
+      const sideUsd = t.usd + robuxUsd[i];
+      const text = t.priced || robuxUsd[i] ? formatUSD(sideUsd) + (t.missing ? '+' : '') : (t.missing ? lt('N/A') : formatCash(0));
       const usdNode = el('span', 'routility-usd-total');
       if (usdNode) usdNode.append(usdMark(), el('span', 'text-robux-lg robux-line-value', text));
       if (show.price) summaryRow(offer, 'routility-trade-usd', usdNode ? '' : lt('Price:'), text, { withLogo: !usdNode, node: usdNode, title: t.missing ? ltn(t.missing, '{n} unpriced', '{n} unpriced') : '' });
@@ -234,14 +241,16 @@
       tradeWarning(offers, withRobux);
       lastRequest = { totals: withRobux, rap: [nativeTotal(offers[0]), nativeTotal(offers[1])], items: cardsPerOffer.map(list => list.length) };
     }
-    if (offers.length === 2 && valuesOn) diffPills(offers, totals, robuxUsd);
+    if (offers.length === 2 && valuesOn) diffPills(offers, totals, robuxUsd, [robuxRaw[0] - nativeRobux[0], robuxRaw[1] - nativeRobux[1]]);
   }
 
-  function diffPills(offers, totals, robuxUsd = [0, 0]) {
+  function diffPills(offers, totals, robuxUsd = [0, 0], feeAdjust = [0, 0]) {
     const host = offers[0];
     const rap = window.RoUtilityUI.formatNumber;
-    const rapGive = nativeTotal(offers[0]);
-    const rapGet = nativeTotal(offers[1]);
+    const nativeGive = nativeTotal(offers[0]);
+    const nativeGet = nativeTotal(offers[1]);
+    const rapGive = nativeGive === null ? null : nativeGive + feeAdjust[0];
+    const rapGet = nativeGet === null ? null : nativeGet + feeAdjust[1];
     const unsure = totals[0].missing + totals[1].missing;
     const usdGive = totals[0].usd + robuxUsd[0];
     const usdGet = totals[1].usd + robuxUsd[1];
@@ -356,7 +365,7 @@
           const [mine, theirs] = String(b.user?.id) === me ? [b, a] : [a, b];
           const keys = o => (o.items || []).map(offerPriceKey).filter(Boolean);
           const rap = o => (o.items || []).reduce((s, it) => s + (Number(it.recentAveragePrice) || 0), 0);
-          tradeDetails.set(id, { give: keys(mine), get: keys(theirs), rapGive: rap(mine), rapGet: rap(theirs) });
+          tradeDetails.set(id, { give: keys(mine), get: keys(theirs), rapGive: rap(mine), rapGet: rap(theirs), robuxGive: Number(mine.robux) || 0, robuxGet: afterFee(theirs.robux) });
           saveDetails();
         } else if (Date.now() >= robloxCooldown) {
           const n = (detailFails.get(id) || 0) + 1;
@@ -429,22 +438,26 @@
     const rap = window.RoUtilityUI.formatNumber;
     const pair = listPair.split('-');
     const valued = [...give, ...get].some(p => itemValue(p) > 0);
-    const hasRap = Number.isFinite(detail.rapGive) && Number.isFinite(detail.rapGet) && (detail.rapGive || detail.rapGet);
+    const rbGive = Number(detail.robuxGive) || 0;
+    const rbGet = Number(detail.robuxGet) || 0;
+    const rapGive = (Number(detail.rapGive) || 0) + rbGive;
+    const rapGet = (Number(detail.rapGet) || 0) + rbGet;
+    const hasRap = Number.isFinite(detail.rapGive) && Number.isFinite(detail.rapGet) && (rapGive || rapGet);
     const wantValue = pair.includes('value') && valued;
     const wantRap = (pair.includes('rap') || (pair.includes('value') && !valued)) && hasRap;
     if (wantRap) {
-      box.appendChild(pill(pillIcon('robux'), detail.rapGive, detail.rapGet, rap, lt('RAP: {give} vs {get}', { give: rap(detail.rapGive), get: rap(detail.rapGet) })));
+      box.appendChild(pill(pillIcon('robux'), rapGive, rapGet, rap, lt('RAP: {give} vs {get}', { give: rap(rapGive), get: rap(rapGet) })));
     }
     if (wantValue) {
       const sum = list => list.reduce((s, p) => s + worthOf(p), 0);
-      const giveVal = sum(give);
-      const getVal = sum(get);
+      const giveVal = sum(give) + rbGive;
+      const getVal = sum(get) + rbGet;
       box.appendChild(worthPill(giveVal, getVal, lt('Value: {give} vs {get}', { give: rap(giveVal), get: rap(getVal) })));
     }
     if (pair.includes('usd') && [...give, ...get].some(Boolean)) {
       const sum = list => list.reduce((s, p) => s + (p ? p.usd : 0), 0);
-      const giveUsd = sum(give);
-      const getUsd = sum(get);
+      const giveUsd = sum(give) + rbGive * robuxRate;
+      const getUsd = sum(get) + rbGet * robuxRate;
       box.appendChild(pill(pillIcon('usd'), giveUsd, getUsd, usdAmount, lt('Price: {give} vs {get}', { give: usdAmount(giveUsd), get: usdAmount(getUsd) })));
     }
     if (!box.children.length) return;
@@ -1536,11 +1549,11 @@
     return out;
   }
 
-  async function offerValue(offer) {
+  async function offerValue(offer, received) {
     const items = offer.items || [];
     const keys = items.map(offerPriceKey);
     const got = keys.some(Boolean) ? await prices(keys) : [];
-    let usd = (Number(offer.robux) || 0) * robuxRate;
+    let usd = (received ? afterFee(offer.robux) : Number(offer.robux) || 0) * robuxRate;
     items.forEach((it, i) => {
       const p = got[i];
       usd += p && Number.isFinite(p.usd) ? p.usd : (Number(it.recentAveragePrice) || 0) * robuxRate;
@@ -1555,11 +1568,11 @@
     return histories.get(id);
   }
 
-  async function offerThenNow(offer, at) {
+  async function offerThenNow(offer, at, received) {
     const items = offer.items || [];
     const keys = items.map(offerPriceKey);
     const got = keys.some(Boolean) ? await prices(keys) : [];
-    const robux = (Number(offer.robux) || 0) * robuxRate;
+    const robux = (received ? afterFee(offer.robux) : Number(offer.robux) || 0) * robuxRate;
     let now = robux;
     let then = robux;
     await Promise.all(items.map(async (it, i) => {
@@ -1588,12 +1601,12 @@
     if (kind === 'dropped') {
       const at = entry.created || Date.parse(d.created) || 0;
       if (!at) return { hit: false };
-      const [give, get] = await Promise.all([offerThenNow(mine, at), offerThenNow(theirs, at)]);
+      const [give, get] = await Promise.all([offerThenNow(mine, at), offerThenNow(theirs, at, true)]);
       const drop = (get.then - give.then) - (get.now - give.now);
       return { hit: drop >= 0.5 && drop >= 0.03 * Math.max(give.now, get.now), drop };
     }
     if (kind === 'overpay') {
-      const [give, get] = await Promise.all([offerValue(mine), offerValue(theirs)]);
+      const [give, get] = await Promise.all([offerValue(mine), offerValue(theirs, true)]);
       return { hit: give > get * 1.005 && give - get >= 0.01, give, get };
     }
     const [a, b] = await Promise.all([missingFor(mine), missingFor(theirs)]);

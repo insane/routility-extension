@@ -20,6 +20,7 @@
         { "type": "fixed", "text": "Region play (Servers): picking a region works again with Roblox’s new Play button, waits when Roblox is busy instead of joining any server, and skips servers you were just sent to." },
         { "type": "fixed", "text": "Friends: accepting, ignoring or unfriending no longer sends the list back to page 1, and request times stay on the right person." },
         { "type": "fixed", "text": "Communities: Hidden Experiences only shows on the Home tab instead of inside Posts." },
+        { "type": "fixed", "text": "Trades: Robux in a trade now count everywhere, in the totals, the pills and the trade list. Robux you get count after Roblox’s 30% fee." },
         { "type": "new", "text": "DevEx Breakdown (Creator Hub): how many of your Robux cash out at $0.0035 and how many at $0.0038, the exact total, your last cash-out and when you can cash out next." },
         { "type": "new", "text": "18+ DevEx Rate (Creator Hub): each experience overview says whether its Robux from players 18 and over can cash out at $0.0054, and what to change if it can’t." },
         { "type": "new", "text": "Compared to Similar Experiences (Creator Hub): your retention, playtime, home page play rate and spending next to the average and top 10% of your genre." },
