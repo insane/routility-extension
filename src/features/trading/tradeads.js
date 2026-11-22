@@ -2133,7 +2133,10 @@
     btn.append(layer(), el('span', 'content-muted', lt('Sort:')), el('span', 'content-emphasis', lt((SORTS.find(x => x[0] === s.sort) || SORTS[0])[1])), el('span', 'icon routility-calc-icon routility-calc-icon-chevron routility-ads-sort-caret'));
     btn.addEventListener('click', () => openSort(wrap, btn));
     wrap.appendChild(btn);
-    bar.replaceChildren(s.search, tiers, wrap);
+    if (bar.firstElementChild === s.search) {
+      while (bar.lastElementChild !== s.search) bar.lastElementChild.remove();
+      bar.append(tiers, wrap);
+    } else bar.replaceChildren(s.search, tiers, wrap);
   }
 
   function build(mass) {

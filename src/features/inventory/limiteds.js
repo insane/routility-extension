@@ -22,8 +22,11 @@
     if (data && data.id === id) return Promise.resolve(data);
     if (loading && loading.id === id) return loading.job;
     const job = collectibles(id, { pages: 30 }).then((r) => {
-      data = { id, status: r.status, items: (r.items || []).filter(x => !x.bundle) };
-      return data;
+      const got = { id, status: r.status, items: (r.items || []).filter(x => !x.bundle) };
+      if (r.status !== 'error') data = got;
+      return got;
+    }, () => ({ id, status: 'error', items: [] })).finally(() => {
+      if (loading && loading.job === job) loading = null;
     });
     loading = { id, job };
     return job;

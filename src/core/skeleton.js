@@ -4,6 +4,16 @@
   const { lt, ltn, LT } = window.RoUtilityI18n;
   const CLASS = 'routility-skeleton';
   const root = document.documentElement;
+  const toHead = (node) => {
+    if (document.head) return document.head.appendChild(node);
+    root.appendChild(node);
+    new MutationObserver((r, watch) => {
+      if (!document.head) return;
+      watch.disconnect();
+      if (node.parentNode === root) document.head.appendChild(node);
+    }).observe(root, { childList: true });
+    return node;
+  };
   if (location.hostname === 'www.roblox.com') {
     const ME = 'routilityMe';
     const fill = (meta, me) => {
@@ -27,7 +37,7 @@
           meta = document.createElement('meta');
           meta.name = 'user-data';
           meta.dataset.routility = '1';
-          (document.head || root).appendChild(meta);
+          toHead(meta);
         }
         fill(meta, me);
       };
@@ -95,7 +105,7 @@
         link.rel = 'stylesheet';
         link.href = u;
         link.className = 'routility-injected';
-        (document.head || root).appendChild(link);
+        toHead(link);
       }
     } catch {}
   }
@@ -216,7 +226,7 @@
       fontStyle.id = 'routility-font';
     }
     fontStyle.textContent = ok ? `@font-face { font-family: "RoUtility Custom"; src: url("${f.data}"); font-display: swap; }` : '';
-    if (!fontStyle.isConnected) (document.head || root).appendChild(fontStyle);
+    if (!fontStyle.isConnected) toHead(fontStyle);
     root.classList.toggle('routility-font-custom', ok && fontWanted);
   };
   const needFont = (settings) => {
@@ -278,7 +288,7 @@
       classicLink.rel = 'stylesheet';
       classicLink.href = chrome.runtime.getURL('styles/classic2017.css');
       classicLink.className = 'routility-2017-css';
-      (document.head || root).appendChild(classicLink);
+      toHead(classicLink);
     } else if (!on && classicLink) {
       classicLink.remove();
       classicLink = null;
@@ -425,7 +435,7 @@
     if (!navStyle) {
       navStyle = document.createElement('style');
       navStyle.id = 'routility-nav-layout';
-      (document.head || root).appendChild(navStyle);
+      toHead(navStyle);
     }
     if (navStyle.textContent !== css) navStyle.textContent = css;
   };
@@ -558,7 +568,7 @@
       themeStyle.id = 'routility-theme';
     }
     if (themeStyle.textContent !== css) themeStyle.textContent = css;
-    if (!themeStyle.isConnected) (document.head || root).appendChild(themeStyle);
+    if (!themeStyle.isConnected) toHead(themeStyle);
     root.classList.toggle('routility-themed', !!css);
     const bg = css ? bgCss(themeColors, themeLook) : '';
     if (!themeBgStyle) {
@@ -567,7 +577,7 @@
       themeBgStyle.id = 'routility-theme-bg';
     }
     if (themeBgStyle.textContent !== bg) themeBgStyle.textContent = bg;
-    if (!themeBgStyle.isConnected) themeStyle.after(themeBgStyle);
+    if (!themeBgStyle.isConnected) toHead(themeBgStyle);
   };
   let navCollapsed = false;
   let lastSettings = {};

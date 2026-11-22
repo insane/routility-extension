@@ -84,7 +84,10 @@
     let cursor = '';
     for (let page = 0; page < 5; page++) {
       const d = await robloxJson(`https://trades.roblox.com/v1/trades/${type}?sortOrder=Desc&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`);
-      if (!d || !Array.isArray(d.data)) break;
+      if (!d || !Array.isArray(d.data)) {
+        out.failed = true;
+        break;
+      }
       out.push(...d.data);
       cursor = d.nextPageCursor || '';
       if (!cursor) break;
@@ -94,9 +97,17 @@
 
   function loadWithYou(pid) {
     if (!withYou.has(pid)) {
-      withYou.set(pid, Promise.all(['inbound', 'outbound', 'completed', 'inactive'].map(type => listType(type).then(list => list
-        .filter(t => String(t.user && t.user.id) === pid)
-        .map(t => ({ id: String(t.id), at: Date.parse(t.created) || 0, type, status: String(t.status || '') }))))).then(parts => parts.flat().sort((a, b) => b.at - a.at)));
+      let failed = false;
+      const job = Promise.all(['inbound', 'outbound', 'completed', 'inactive'].map(type => listType(type).then((list) => {
+        if (list.failed) failed = true;
+        return list
+          .filter(t => String(t.user && t.user.id) === pid)
+          .map(t => ({ id: String(t.id), at: Date.parse(t.created) || 0, type, status: String(t.status || '') }));
+      }))).then((parts) => {
+        if (failed && withYou.get(pid) === job) withYou.delete(pid);
+        return parts.flat().sort((a, b) => b.at - a.at);
+      });
+      withYou.set(pid, job);
     }
     return withYou.get(pid);
   }

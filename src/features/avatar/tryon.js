@@ -122,6 +122,7 @@
     if (!st) return;
     st.observer?.disconnect();
     st = null;
+    if (document.querySelector('.routility-pv')) import(chrome.runtime.getURL('src/preview/ui.js')).then(ui => ui.close()).catch(() => {});
     document.querySelectorAll('.routility-pv-btn, .routility-pv, .routility-ig-btn').forEach(n => n.remove());
   }
 

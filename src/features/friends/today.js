@@ -70,6 +70,11 @@
       }
       const fresh = (await chrome.storage.local.get(key))[key] || log;
       await chrome.storage.local.set({ [key]: { day: today, events: events.slice(-KEEP), last: now, seen: at, claim: Math.max(at, fresh.claim || 0) } });
+    } catch {
+      if (!chrome.runtime?.id && timer) {
+        clearInterval(timer);
+        timer = null;
+      }
     } finally {
       busy = false;
     }

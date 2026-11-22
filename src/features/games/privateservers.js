@@ -48,14 +48,34 @@
     }
   }
 
+  let liveBusy = 0;
+  const liveWait = [];
+
+  function liveSlot() {
+    if (liveBusy < 3) {
+      liveBusy++;
+      return Promise.resolve();
+    }
+    return new Promise(res => liveWait.push(res));
+  }
+
+  function liveDone() {
+    const next = liveWait.shift();
+    if (next) next();
+    else liveBusy--;
+  }
+
   async function liveFor(placeId) {
     if (s.live.has(placeId)) return s.live.get(placeId);
-    const job = json(`https://games.roblox.com/v1/games/${placeId}/private-servers?limit=100`).then((d) => {
+    const live = s.live;
+    const job = liveSlot().then(() => json(`https://games.roblox.com/v1/games/${placeId}/private-servers?limit=100`)).then((d) => {
+      liveDone();
+      if (!d) live.delete(placeId);
       const map = new Map();
       for (const x of (d && d.data) || []) map.set(String(x.vipServerId), x);
       return map;
     });
-    s.live.set(placeId, job);
+    live.set(placeId, job);
     return job;
   }
 
@@ -154,8 +174,12 @@
   }
 
   async function load(key) {
-    if (s.data[key] !== undefined || s.loading.has(key)) return;
+    if ((s.data[key] !== undefined && s.data[key] !== null) || s.loading.has(key)) return;
     s.loading.add(key);
+    if (s.data[key] === null) {
+      s.data[key] = undefined;
+      render();
+    }
     const mine = s;
     const tab = TABS.find(t => t.key === key).tab;
     const list = await loadTab(tab);

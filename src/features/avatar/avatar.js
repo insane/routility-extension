@@ -577,6 +577,7 @@
       e.stopPropagation();
       if (li.dataset.picked) return;
       li.dataset.picked = '1';
+      setTimeout(() => { delete li.dataset.picked; }, 400);
       const close = ul.querySelector(':scope > li.active:not(.routility-av-lim-tab)') || ul.querySelector(':scope > li:not(.routility-av-lim-tab)');
       limSet(true);
       if (close) press(close);

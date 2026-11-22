@@ -338,8 +338,9 @@
       box.append(...skeletonStats());
       job.then((d) => {
         if (!box.isConnected || menu.dataset.routilityHc !== id) return;
-        if (d) fill(d);
-        else box.remove();
+        if (d) return fill(d);
+        menu.dataset.routilityHcFail = id;
+        box.remove();
       });
     });
     const actions = menu.querySelector('.in-game-friend-card--iarc > .in-game-friend-card-actions');
@@ -353,14 +354,14 @@
     if (!on || !tileId || !/^\/(home)?\/?$/i.test(location.pathname)) return;
     for (const menu of document.querySelectorAll('.friend-tile-dropdown')) {
       const id = menuOwner(menu);
-      if (id && (menu.dataset.routilityHc !== id || !menu.querySelector('.routility-hc-embed'))) {
+      if (id && menu.dataset.routilityHcFail !== id && (menu.dataset.routilityHc !== id || !menu.querySelector('.routility-hc-embed'))) {
         menu.querySelector('.routility-hc-embed')?.remove();
         embed(menu, id);
       }
     }
   }
 
-  new MutationObserver(check).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+  new MutationObserver(window.RoUtilityUI.onFrame(check)).observe(document.documentElement, { childList: true, subtree: true });
 
   document.addEventListener('mousedown', (e) => {
     if (card && !card.contains(e.target)) close();

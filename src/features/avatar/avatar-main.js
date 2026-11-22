@@ -95,7 +95,10 @@
           for (const x of o) walk(x, depth + 1);
           return;
         }
-        if (adjusted.has(Number(o.id)) && ('meta' in o || 'assetType' in o || Object.keys(o).length === 1) && (ours.has(Number(o.id)) || !refined(o.meta))) {
+        if (adjusted.has(Number(o.id)) && refined(o.meta) && JSON.stringify(o.meta) !== JSON.stringify(adjusted.get(Number(o.id)))) {
+          adjusted.set(Number(o.id), o.meta);
+          ours.delete(Number(o.id));
+        } else if (adjusted.has(Number(o.id)) && ('meta' in o || 'assetType' in o || Object.keys(o).length === 1)) {
           const meta = adjusted.get(Number(o.id));
           if (meta) o.meta = meta;
           else delete o.meta;

@@ -874,7 +874,7 @@
     preview = null;
   }
 
-  function previewSide(label, offer, map) {
+  function previewSide(label, offer, map, received) {
     const box = el('div', 'flex flex-col gap-xsmall');
     const items = (offer.items || []).map(it => {
       const k = offerItemKey(it);
@@ -908,7 +908,7 @@
     }
     if (!items.length && !(offer.robux > 0)) row.appendChild(el('span', 'text-body-small content-muted', lt('Nothing')));
     box.appendChild(row);
-    return { node: box, usd: usd + (Number(offer.robux) || 0) * robuxRate };
+    return { node: box, usd: usd + (received ? afterFee(offer.robux) : Number(offer.robux) || 0) * robuxRate };
   }
 
   async function openPreview(row, entry) {
@@ -934,7 +934,7 @@
     const [mine, theirs] = String(b.user?.id) === me ? [b, a] : [a, b];
     pop.textContent = '';
     const give = previewSide(lt('You give'), mine, map);
-    const get = previewSide(lt('You receive'), theirs, map);
+    const get = previewSide(lt('You receive'), theirs, map, true);
     pop.append(give.node, get.node);
     const need = [...pop.querySelectorAll('[data-thumb-key]')];
     if (need.length) {
@@ -1417,6 +1417,7 @@
     cleanOn = s.tradeCleanup !== false;
     massOn = s.massSend !== false;
     quickOn = s.quickTrade !== false;
+    robuxRate = window.RoUtilityUI.robuxRate(s);
     ensureTools();
   });
 
@@ -2458,9 +2459,10 @@
     retext();
     redraw();
     const flash = (b, words) => {
-      const was = b.label.textContent;
+      if (b.dataset.label === undefined) b.dataset.label = b.label.textContent;
+      clearTimeout(b.flashTimer);
       b.label.textContent = words;
-      setTimeout(() => { b.label.textContent = was; }, 1600);
+      b.flashTimer = setTimeout(() => { b.label.textContent = b.dataset.label; }, 1600);
     };
     copyImg.addEventListener('click', () => {
       if (!canvas) return;

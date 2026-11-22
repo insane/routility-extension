@@ -1028,7 +1028,7 @@
     }],
     ...BADGE_ROUTES.map(([m, re]) => [m, re, () => (cfg.badges ? { edit: badgeEdit } : null)]),
     ['GET', /^https:\/\/accountinformation\.roblox\.com\/v1\/users\/(\d+)\/roblox-badges/i, (m) => (cfg.badges && Number(m[1]) === me() ? { edit: adminBadgeList } : null)],
-    ['GET', /^https:\/\/premiumfeatures\.roblox\.com\/v1\/users\/(\d+)\/validate-membership/i, (m) => (cfg.badges && Number(m[1]) === me() ? { edit: () => String(cfg.badges.plus || cfg.badges.premium) } : null)],
+    ['GET', /^https:\/\/premiumfeatures\.roblox\.com\/v1\/users\/(\d+)\/validate-membership/i, (m) => (cfg.badges && (cfg.badges.plus || cfg.badges.premium) && Number(m[1]) === me() ? { edit: () => 'true' } : null)],
     ['PATCH', /^https:\/\/avatar\.roblox\.com\/v4\/avatar(?:[?#]|$)/, (m, req, b) => stripWear(b, d => d.avatarDefinition && d.avatarDefinition.updateAvatarModel && d.avatarDefinition.updateAvatarModel.assets, d => !Array.isArray(d.updateTypes) || d.updateTypes.includes('UpdateAssets'))],
     ['POST', /^https:\/\/avatar\.roblox\.com\/v1\/avatar\/set-wearing-assets(?:[?#]|$)/, (m, req, b) => stripWear(b, d => d.assetIds, () => true)],
     ['POST', /^https:\/\/avatar\.roblox\.com\/v2\/avatar\/set-wearing-assets(?:[?#]|$)/, (m, req, b) => stripWear(b, d => d.assets, () => true)],

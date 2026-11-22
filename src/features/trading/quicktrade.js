@@ -94,8 +94,8 @@
     return new Promise(r => chrome.storage.local.get(KEY, st => r(st[KEY] && Array.isArray(st[KEY].list) ? st[KEY] : null)));
   }
 
-  function saveRecent(list) {
-    chrome.storage.local.set({ [KEY]: { list: list.slice(0, MAX), seeded: true } });
+  function saveRecent(list, seeded = true) {
+    chrome.storage.local.set({ [KEY]: { list: list.slice(0, MAX), seeded } });
   }
 
   async function remember(u) {
@@ -108,8 +108,10 @@
   async function seed() {
     const out = [];
     const seen = new Set([me()]);
+    let ok = false;
     for (const type of ['inbound', 'outbound', 'completed']) {
       const d = await json(`https://trades.roblox.com/v1/trades/${type}?sortOrder=Desc&limit=10`);
+      if (d && Array.isArray(d.data)) ok = true;
       for (const t of (d && d.data) || []) {
         const u = t.user;
         if (!u || !u.id || seen.has(String(u.id))) continue;
@@ -119,7 +121,7 @@
     }
     out.sort((a, b) => b.at - a.at);
     const list = out.slice(0, MAX).map(({ id, name, display }) => ({ id, name, display }));
-    saveRecent(list);
+    if (ok) saveRecent(list);
     return list;
   }
 
@@ -153,6 +155,7 @@
 
   async function submit(target) {
     if (!s || s.busy) return;
+    const mine = s;
     let u = target || null;
     if (!u) {
       const q = parse(s.input.value);
@@ -164,7 +167,7 @@
       busy(true);
       setError('');
       u = await resolve(q);
-      if (!s) return;
+      if (s !== mine) return;
       if (!u) {
         busy(false);
         setError(lt('No one goes by that name.'));
@@ -186,7 +189,7 @@
       return;
     }
     const status = await tradeStatus(u.id);
-    if (!s) return;
+    if (s !== mine) return;
     if (status && status !== 'CanTrade') {
       busy(false);
       setError(STATUS[status] ? lt(STATUS[status]) : lt('You can’t trade with {name}.', { name: u.name }));
