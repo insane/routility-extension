@@ -16143,7 +16143,8 @@ html.routility-av-lim-on #avatar-web-app .tab-horizontal-submenu li.active:not(.
   opacity: 0.4;
   cursor: default;
 }
-.routility-mass-owned-right { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-width: 0; max-width: 420px; padding-top: 9px; }
+.routility-mass-owned-right { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-width: 0; }
+.routility-mass-owned-right > :not(.routility-ads-chips) { max-width: 420px; }
 .routility-mass-owned-track { position: relative; height: 20px; }
 .routility-mass-owned-track::before { content: ''; position: absolute; left: 10px; right: 10px; top: 7px; height: 6px; border-radius: 999px; background: linear-gradient(to right, rgba(127, 127, 127, 0.3) var(--rt-lo), var(--color-content-emphasis, #fff) var(--rt-lo), var(--color-content-emphasis, #fff) var(--rt-hi), rgba(127, 127, 127, 0.3) var(--rt-hi)); }
 .routility-mass-owned-track input.routility-mass-owned-input { -webkit-appearance: none; appearance: none; position: absolute; inset: 0; width: 100%; height: 20px; margin: 0; background: transparent !important; border: 0; pointer-events: none; z-index: 2; }

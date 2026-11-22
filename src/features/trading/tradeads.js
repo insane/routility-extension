@@ -1127,8 +1127,7 @@
       return row;
     }
 
-    function ownedText() {
-      const [a, b] = st.owned;
+    function ownedText([a, b] = st.owned) {
       const top = OWNED.length - 1;
       if (!a && b === top) return lt('Any length');
       if (b === top) return lt('{time} or more', { time: lt(OWNED[a][1]) });
@@ -1143,6 +1142,19 @@
       const value = el('span', 'text-body-medium content-default routility-mass-owned-val');
       const track = el('div', 'routility-mass-owned-track');
       const ends = el('div', 'routility-mass-owned-ends text-caption-medium content-muted');
+      const presets = [[0, top], [2, top], [4, top], [7, top], [0, 7], [0, 9]];
+      const quick = el('div', 'routility-ads-chips');
+      const picks = presets.map((pair) => {
+        const b = chip(ownedText(pair), false, () => {
+          st.owned = pair.slice();
+          lo.value = String(pair[0]);
+          hi.value = String(pair[1]);
+          paint();
+        });
+        b.disabled = !!st.job;
+        quick.appendChild(b);
+        return b;
+      });
       ends.append(el('span', null, lt('0 days')), el('span', null, lt('5+ years')));
       const make = (i, name) => {
         const input = el('input', 'routility-mass-owned-input');
@@ -1169,9 +1181,24 @@
         track.style.setProperty('--rt-hi', (st.owned[1] / top * 100) + '%');
         lo.style.zIndex = st.owned[0] >= top - 1 ? '3' : '';
         value.textContent = ownedText();
+        presets.forEach((pair, i) => {
+          const on = pair[0] === st.owned[0] && pair[1] === st.owned[1];
+          picks[i].classList.remove(...CHIP_ON, ...CHIP_OFF);
+          picks[i].classList.add(...(on ? CHIP_ON : CHIP_OFF));
+          picks[i].setAttribute('aria-pressed', String(on));
+        });
       };
+      track.addEventListener('pointerdown', (e) => {
+        if (st.job || e.target !== track) return;
+        const r = track.getBoundingClientRect();
+        const v = Math.round(Math.max(0, Math.min(1, (e.clientX - r.left - 10) / (r.width - 20))) * top);
+        const i = Math.abs(v - st.owned[0]) <= Math.abs(v - st.owned[1]) && v <= st.owned[1] - 1 ? 0 : 1;
+        st.owned[i] = i ? Math.max(v, st.owned[0] + 1) : v;
+        (i ? hi : lo).value = String(st.owned[i]);
+        paint();
+      });
       track.append(lo, hi);
-      right.append(value, track, ends);
+      right.append(quick, value, track, ends);
       row.append(el('span', 'text-label-medium content-muted routility-mass-opt-label', lt('Owned for')), right);
       paint();
       return row;
