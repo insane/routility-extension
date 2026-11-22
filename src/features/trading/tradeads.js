@@ -898,6 +898,7 @@
   const MASS_SOURCES = [['owners', LT('Item Owners')], ['ads', LT('Trade Ads')]];
   const MASS_ACTIVE = [['1', LT('1 Day')], ['3', LT('3 Days')], ['7', LT('7 Days')], ['30', LT('30 Days')], ['any', LT('Any Time')]];
   const MASS_COUNTS = [10, 25, 50, 100];
+  const OWNED = [[0, ''], [1, LT('1 day')], [3, LT('3 days')], [7, LT('1 week')], [30, LT('1 month')], [90, LT('3 months')], [180, LT('6 months')], [365, LT('1 year')], [730, LT('2 years')], [1095, LT('3 years')], [1460, LT('4 years')], [1825, LT('5 years')], [Infinity, '']];
   const CIID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   let massCsrf = '';
   const DAILY = 100;
@@ -917,7 +918,7 @@
   }
 
   function buildMass() {
-    const st = { off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, blocked: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null, rangeFrom: '', rangeTo: '', rangeCount: '' };
+    const st = { off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, blocked: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null, rangeFrom: '', rangeTo: '', rangeCount: '', owned: [2, OWNED.length - 1] };
     const root = el('div', 'routility-ads-post routility-mass');
     const form = el('div', 'routility-ads-form-grid');
     const sides = {};
@@ -1126,16 +1127,72 @@
       return row;
     }
 
+    function ownedText() {
+      const [a, b] = st.owned;
+      const top = OWNED.length - 1;
+      if (!a && b === top) return lt('Any length');
+      if (b === top) return lt('{time} or more', { time: lt(OWNED[a][1]) });
+      if (!a) return lt('Up to {time}', { time: lt(OWNED[b][1]) });
+      return lt('{from} to {to}', { from: lt(OWNED[a][1]), to: lt(OWNED[b][1]) });
+    }
+
+    function ownedRow() {
+      const top = OWNED.length - 1;
+      const row = el('div', 'routility-mass-opt routility-mass-owned');
+      const right = el('div', 'routility-mass-owned-right');
+      const value = el('span', 'text-body-medium content-default routility-mass-owned-val');
+      const track = el('div', 'routility-mass-owned-track');
+      const ends = el('div', 'routility-mass-owned-ends text-caption-medium content-muted');
+      ends.append(el('span', null, lt('0 days')), el('span', null, lt('5+ years')));
+      const make = (i, name) => {
+        const input = el('input', 'routility-mass-owned-input');
+        input.type = 'range';
+        input.min = '0';
+        input.max = String(top);
+        input.step = '1';
+        input.value = String(st.owned[i]);
+        input.disabled = !!st.job;
+        input.setAttribute('aria-label', name);
+        input.addEventListener('input', () => {
+          let v = Number(input.value);
+          v = i ? Math.max(v, st.owned[0] + 1) : Math.min(v, st.owned[1] - 1);
+          input.value = String(v);
+          st.owned[i] = v;
+          paint();
+        });
+        return input;
+      };
+      const lo = make(0, lt('Owned at least'));
+      const hi = make(1, lt('Owned at most'));
+      const paint = () => {
+        track.style.setProperty('--rt-lo', (st.owned[0] / top * 100) + '%');
+        track.style.setProperty('--rt-hi', (st.owned[1] / top * 100) + '%');
+        lo.style.zIndex = st.owned[0] >= top - 1 ? '3' : '';
+        value.textContent = ownedText();
+      };
+      track.append(lo, hi);
+      right.append(value, track, ends);
+      row.append(el('span', 'text-label-medium content-muted routility-mass-opt-label', lt('Owned for')), right);
+      paint();
+      return row;
+    }
+
+    function ownedBounds() {
+      const [a, b] = st.owned;
+      const now = Date.now() / 1000;
+      return { newest: a ? now - OWNED[a][0] * 86400 : Infinity, oldest: b < OWNED.length - 1 ? now - OWNED[b][0] * 86400 : 0 };
+    }
+
     function paintOpts() {
       const busy = !!st.job;
       const rows = [
         optRow(lt('Find people in'), MASS_SOURCES.map(([k, label]) => chip(lt(label), st.source === k, () => { st.source = k; paintOpts(); }))),
       ];
-      if (st.source === 'owners') rows.push(optRow(lt('Online in the last'), MASS_ACTIVE.map(([k, label]) => chip(lt(label), st.active === k, () => { st.active = k; paintOpts(); }))));
+      if (st.source === 'owners') rows.push(optRow(lt('Online in the last'), MASS_ACTIVE.map(([k, label]) => chip(lt(label), st.active === k, () => { st.active = k; paintOpts(); }))), ownedRow());
       rows.push(optRow(lt('Send up to'), MASS_COUNTS.map(n => chip(ltn(n, '{n} trade', '{n} trades', { n: formatNumber(n) }), st.max === n, () => { st.max = n; paintOpts(); }))));
       rows.push(optRow(lt('Skip'), MASS_SKIPS.map(([k, label]) => chip(lt(label), st.skip[k], () => { st.skip[k] = !st.skip[k]; paintOpts(); }))));
       opts.replaceChildren(...rows);
-      opts.querySelectorAll('button').forEach(b => { b.disabled = busy; });
+      opts.querySelectorAll('button, input').forEach(b => { b.disabled = busy; });
       const full = st.look.length >= 4;
       for (const f of [rFrom, rTo, rCount]) f.input.disabled = busy || full;
       rangeBox.classList.toggle('routility-mass-range-off', full);
@@ -1543,6 +1600,7 @@
         }
         const days = st.active === 'any' ? 0 : Number(st.active);
         const cutoff = days ? Date.now() / 1000 - days * 86400 : 0;
+        const held = ownedBounds();
         const live = targets.map(id => ({ id, page: 0, done: false }));
         for (let round = 0; round < 40 && !job.stop && live.some(t => !t.done); round++) {
           for (const t of live) {
@@ -1551,6 +1609,8 @@
             t.page++;
             if (!res || !res.more) t.done = true;
             for (const o of (res && res.owners) || []) {
+              if (o.since && o.since < held.oldest) { t.done = true; break; }
+              if (o.since > held.newest) continue;
               if (cutoff && !(o.active >= cutoff)) continue;
               yield o;
             }
@@ -1574,13 +1634,14 @@
       }
       const days = st.active === 'any' ? 0 : Number(st.active);
       const cutoff = days ? Date.now() / 1000 - days * 86400 : 0;
-      const fresh = Date.now() / 1000 - 3 * 86400;
+      const held = ownedBounds();
       for (let page = 0; page < 400 && !job.stop; page++) {
         const res = await request({ type: 'massOwners', id: want[0], page }, r => r !== undefined);
         if (!res) return;
         for (const o of res.owners) {
+          if (o.since && o.since < held.oldest) return;
+          if (o.since > held.newest) continue;
           if (cutoff && !(o.active >= cutoff)) continue;
-          if (o.since > fresh) continue;
           yield o;
         }
         if (!res.more) return;
