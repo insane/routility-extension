@@ -904,8 +904,9 @@
   const DAY = 864e5;
   const SENT_KEY = 'routilityMassSent';
   const TO_KEY = 'routilityMassSentTo';
+  const BLOCK_KEY = 'routilityMassBlocked';
   const WEEK = 7 * DAY;
-  const MASS_SKIPS = [['pending', LT('People I already have a trade with')], ['recent', LT('People I mass sent to this week')], ['traded', LT('People I’ve traded with')], ['friends', LT('My friends')], ['fresh', LT('Accounts under 30 days old')]];
+  const MASS_SKIPS = [['pending', LT('People I already have a trade with')], ['recent', LT('People I mass sent to this week')], ['blocked', LT('People I couldn’t send to this week')], ['traded', LT('People I’ve traded with')], ['friends', LT('My friends')], ['fresh', LT('Accounts under 30 days old')]];
 
   function wait(ms) {
     return new Promise(res => setTimeout(res, ms));
@@ -916,7 +917,7 @@
   }
 
   function buildMass() {
-    const st = { off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null, rangeFrom: '', rangeTo: '', rangeCount: '' };
+    const st = { off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, blocked: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null, rangeFrom: '', rangeTo: '', rangeCount: '' };
     const root = el('div', 'routility-ads-post routility-mass');
     const form = el('div', 'routility-ads-form-grid');
     const sides = {};
@@ -1464,6 +1465,22 @@
       }));
     }
 
+    function blockStore() {
+      return new Promise(res => chrome.storage.local.get(BLOCK_KEY, (v) => {
+        const all = (v && v[BLOCK_KEY]) || {};
+        const mine = all[myId()] || {};
+        for (const [id, at] of Object.entries(mine)) if (!(Date.now() - at < WEEK)) delete mine[id];
+        res({ all, mine });
+      }));
+    }
+
+    async function rememberBlocked(id) {
+      const { all, mine } = await blockStore();
+      mine[String(id)] = Date.now();
+      all[myId()] = mine;
+      chrome.storage.local.set({ [BLOCK_KEY]: all });
+    }
+
     async function rememberTo(id) {
       const { all, mine } = await toStore();
       mine[String(id)] = Date.now();
@@ -1715,7 +1732,7 @@
         const u = await robloxGet(`https://users.roblox.com/v1/users/${c.id}`, job);
         if (job.stop) return halt();
         const made = u.body && new Date(u.body.created).getTime();
-        if (u.body && u.body.isBanned) { job.skipped++; return done('skipped', lt('Can’t trade with them')); }
+        if (u.body && u.body.isBanned) { job.skipped++; rememberBlocked(c.id); return done('skipped', lt('Can’t trade with them')); }
         if (made && Date.now() - made < 30 * DAY) { job.skipped++; return done('skipped', lt('Account is under 30 days old')); }
       }
       const ct = await robloxGet(`https://trades.roblox.com/v1/users/${c.id}/can-trade-with`, job);
@@ -1724,12 +1741,14 @@
       if (!ct.body.canTrade) {
         if (ct.body.status === 'SenderPrivacyTooStrict') { done('failed', lt('Your privacy settings block it')); return { stop: lt('Your privacy settings stop you from sending trades. Set Who can trade with me to Everyone in Roblox settings, then start again.') }; }
         job.skipped++;
+        rememberBlocked(c.id);
         return done('skipped', ct.body.status === 'UserPrivacyTooStrict' ? lt('Their privacy settings block trades') : lt('Can’t trade with them'));
       }
       const found = await copiesOf(c.id, job);
       if (job.stop) return halt();
       if (found.status !== 'ok') {
         job.skipped++;
+        if (found.status === 'private') rememberBlocked(c.id);
         const name = found.assetId ? itemInfo(found.assetId).name : '';
         return done('skipped', found.status === 'norange' ? lt('Nothing of theirs fits the range') : found.status === 'held' ? lt('{item} is on hold', { item: name }) : found.status === 'missing' ? lt('Doesn’t have {item} anymore', { item: name }) : found.status === 'private' ? lt('Their inventory is private') : lt('Couldn’t load their items'));
       }
@@ -1771,7 +1790,10 @@
       if (STOPS[code]) { done('failed', lt('Refused')); return { stop: lt(STOPS[code]) }; }
       job.skipped++;
       job.misses = (job.misses || 0) + 1;
-      if (code === 22) done('skipped', lt('Their privacy settings block trades'));
+      if (code === 22) {
+        rememberBlocked(c.id);
+        done('skipped', lt('Their privacy settings block trades'));
+      }
       else if (code === 16) done('skipped', lt('Their trade filter wants a better offer'));
       else if (code === 7) {
         const mine = await robloxGet('https://trades.roblox.com/v2/users/me/can-trade', job);
@@ -1781,6 +1803,7 @@
           done('failed', lt('Refused'));
           return { stop: mine.body.canTrade === false ? lt('You can’t trade right now') : lt('You’re out of free trades this month, so Roblox won’t send more. Roblox Plus gives unlimited trades.') };
         }
+        rememberBlocked(c.id);
         done('skipped', lt('Can’t trade with them'));
       }
       else if (code === 12) done('failed', lt('Roblox says an item can’t be traded'));
@@ -1837,6 +1860,7 @@
         st.skip.pending ? partnersIn('inbound', 10, job) : null,
         st.skip.traded ? partnersIn('completed', 10, job) : null,
         st.skip.recent ? toStore().then(v => Object.keys(v.mine)) : null,
+        st.skip.blocked ? blockStore().then(v => Object.keys(v.mine)) : null,
         st.skip.friends ? window.RoUtilityUI.friendIds(myId()).then(ids => (ids || []).map(String)) : null,
       ]);
       if (job.stop) return finish(lt('Stopped. Nothing was sent.'));

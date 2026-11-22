@@ -16,6 +16,7 @@
         { "type": "improved", "text": "Trade Ads and Mass Send: Robux no longer take up an item slot, so all 4 stay free for items. In Mass Send you type Robux straight into Add Robux." },
         { "type": "improved", "text": "Trade Ads and Mass Send: add the same item more than once, with a count on the card and a button to remove one." },
         { "type": "new", "text": "Shuffle (Mass Send): set how much more you want, like +15%, and Shuffle fills You Want with one to four items that match it in USD and Value, favoring good demand." },
+        { "type": "improved", "text": "Mass Send: people you couldn’t send to, like those with trades turned off or a private inventory, are skipped for a week instead of being checked again every run." },
         { "type": "improved", "text": "Closest region (Servers): picks from Roblox’s own list of the servers with the best connection to you." },
         { "type": "new", "text": "Creator Hub: Copy Universe ID, Copy Place ID, Copy URL and View on Roblox in the menu on a place’s settings page." },
         { "type": "improved", "text": "Trades: your trade filter and who can trade with you show as pills next to Unlimited trades." },

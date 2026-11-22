@@ -3547,5 +3547,6 @@
  "Pick what you’re offering first, then Shuffle finds an upgrade for it.": "Hãy chọn thứ bạn đưa ra trước, rồi Xáo trộn sẽ tìm món nâng cấp.",
  "No upgrades found for this offer. Try offering a bit more or less.": "Không tìm thấy món nâng cấp cho đề nghị này. Thử đưa ra nhiều hơn hoặc ít hơn một chút.",
  "Upgrade %": "Nâng cấp %",
- "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "Chọn ngẫu nhiên các món đáng giá hơn đề nghị của bạn theo tỉ lệ này về USD và Giá trị, ưu tiên nhu cầu tốt"
+ "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "Chọn ngẫu nhiên các món đáng giá hơn đề nghị của bạn theo tỉ lệ này về USD và Giá trị, ưu tiên nhu cầu tốt",
+ "People I couldn’t send to this week": "Những người tôi không gửi được trong tuần này"
 }

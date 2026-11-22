@@ -3547,5 +3547,6 @@
  "Pick what you’re offering first, then Shuffle finds an upgrade for it.": "まず出すものを選ぶと、シャッフルがアップグレードを探します。",
  "No upgrades found for this offer. Try offering a bit more or less.": "この内容に合うアップグレードが見つかりません。少し増やすか減らしてみてください。",
  "Upgrade %": "アップグレード %",
- "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "USD と価値で、出すものよりこの割合だけ高いアイテムをランダムに選びます（需要の良いものを優先）"
+ "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "USD と価値で、出すものよりこの割合だけ高いアイテムをランダムに選びます（需要の良いものを優先）",
+ "People I couldn’t send to this week": "今週送れなかった人"
 }

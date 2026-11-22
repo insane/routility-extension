@@ -4015,5 +4015,6 @@
  "Pick what you’re offering first, then Shuffle finds an upgrade for it.": "Сначала выберите, что предлагаете, затем «Перемешать» найдёт апгрейд.",
  "No upgrades found for this offer. Try offering a bit more or less.": "Апгрейдов для этого предложения не нашлось. Предложите чуть больше или меньше.",
  "Upgrade %": "Апгрейд, %",
- "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "Подбирает случайные предметы, которые дороже вашего предложения на столько процентов в USD и ценности, с упором на хороший спрос"
+ "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "Подбирает случайные предметы, которые дороже вашего предложения на столько процентов в USD и ценности, с упором на хороший спрос",
+ "People I couldn’t send to this week": "Те, кому не удалось отправить на этой неделе"
 }

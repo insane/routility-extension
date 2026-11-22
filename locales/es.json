@@ -3703,5 +3703,6 @@
  "Pick what you’re offering first, then Shuffle finds an upgrade for it.": "Primero elige lo que ofreces y Aleatorio encontrará una mejora.",
  "No upgrades found for this offer. Try offering a bit more or less.": "No hay mejoras para esta oferta. Prueba a ofrecer un poco más o menos.",
  "Upgrade %": "Mejora %",
- "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "Elige objetos al azar que valen este porcentaje más que tu oferta en USD y Valor, priorizando buena demanda"
+ "Pick random items worth this much more than your offer in USD and Value, favoring good demand": "Elige objetos al azar que valen este porcentaje más que tu oferta en USD y Valor, priorizando buena demanda",
+ "People I couldn’t send to this week": "Personas a las que no pude enviar esta semana"
 }
