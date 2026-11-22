@@ -32,6 +32,9 @@
         { "type": "new", "text": "Username Change Price (Settings): what changing your username costs, with the price before your Roblox Plus discount." },
         { "type": "improved", "text": "What’s New (Settings): updates are split into pages of five instead of one long list." },
         { "type": "fixed", "text": "Friends: terminated friends with a verified badge no longer show two checkmarks." },
+        { "type": "fixed", "text": "Adjust Accessories: your adjustments stay when you change anything else on your avatar, even after a refresh." },
+        { "type": "improved", "text": "Adjust Accessories: Scale is one Size slider that scales the whole accessory, and the preview fits all of your accessories instead of zooming in on your head." },
+        { "type": "fixed", "text": "Navigation: no second verified badge next to your name on pages where Roblox shows its own." },
         { "type": "fixed", "text": "Search: Search in People no longer flashes highlighted while results load." }
       ]
     },

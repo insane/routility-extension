@@ -295,11 +295,14 @@ async function adjustBuild(scene, canvas) {
   animator.hold(tool);
   animator.update(0);
   scene.root.updateMatrixWorld(true);
-  const head = avatar.parts.find(m => m.userData.part && m.userData.part.name === 'Head');
-  if (head) {
-    const box = new THREE.Box3().setFromObject(head);
+  const box = new THREE.Box3();
+  for (const m of avatar.parts) if (m.userData.part && /^(Head|Torso|UpperTorso)$/.test(m.userData.part.name)) box.expandByObject(m);
+  for (const m of avatar.accessories) if (m.userData.accessory.attachment !== 'RightGripAttachment') box.expandByObject(m);
+  if (!box.isEmpty()) {
+    const size = box.getSize(new THREE.Vector3());
     box.getCenter(scene.target);
-    scene.distance = Math.max(5, box.getSize(new THREE.Vector3()).y * 6);
+    const fit = Math.max(size.y, size.x) / (2 * Math.tan(THREE.MathUtils.degToRad(scene.camera.fov / 2)));
+    scene.distance = Math.min(18, Math.max(5, fit * 1.45));
   }
   const fit = () => {
     const r = canvas.getBoundingClientRect();

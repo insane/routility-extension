@@ -130,6 +130,11 @@
       mine.slice(1).forEach(n => n.remove());
       const next = mine[0] || null;
       const has = !!next;
+      const native = [...name.parentElement.querySelectorAll('.verified-badge-icon-header, [aria-label="Verified Badge Icon"], [title="Verified Badge Icon"]')].some(n => !n.closest('.routility-nav-verified, .routility-fb-group'));
+      if (native) {
+        mine.forEach(n => n.remove());
+        continue;
+      }
       if (on && !has) {
         const badge = verifiedIcon();
         if (name === top) {

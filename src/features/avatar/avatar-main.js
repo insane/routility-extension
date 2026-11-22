@@ -51,13 +51,38 @@
     return body;
   }
 
-  const SAVE_URL = /avatar\.roblox\.com\/v\d+\/avatar\//;
+  const SAVE_URL = /avatar\.roblox\.com\/v\d+\/avatar(?:\/|[?#]|$)/;
+  const META_URL = /avatar\.roblox\.com\/v2\/avatar\/avatar(?:[?#]|$)/;
   const adjusted = new Map();
+  const ours = new Set();
+  const refined = m => !!(m && (m.position || m.rotation || m.scale));
   window.addEventListener('message', (e) => {
     const d = e.data;
     if (e.origin !== location.origin || !d || d.type !== 'routility-aa-saved' || !Array.isArray(d.items)) return;
-    for (const [id, meta] of d.items) adjusted.set(Number(id), meta || null);
+    for (const [id, meta] of d.items) {
+      adjusted.set(Number(id), meta || null);
+      ours.add(Number(id));
+    }
   });
+
+  function learnMeta(url, text) {
+    if (!META_URL.test(String(url)) || typeof text !== 'string') return;
+    try {
+      const d = JSON.parse(text);
+      if (!d || !Array.isArray(d.assets)) return;
+      for (const a of d.assets) {
+        const id = Number(a && a.id);
+        if (!id) continue;
+        if (refined(a.meta)) adjusted.set(id, a.meta);
+        else if (adjusted.has(id) && !ours.has(id)) adjusted.delete(id);
+      }
+    } catch {}
+  }
+
+  fetch('https://avatar.roblox.com/v2/avatar/avatar', { credentials: 'include', cache: 'no-store' })
+    .then(r => (r.ok ? r.text() : ''))
+    .then(t => learnMeta('https://avatar.roblox.com/v2/avatar/avatar', t))
+    .catch(() => {});
 
   function keepMeta(url, body) {
     if (!adjusted.size || typeof body !== 'string' || !SAVE_URL.test(String(url))) return body;
@@ -70,7 +95,7 @@
           for (const x of o) walk(x, depth + 1);
           return;
         }
-        if (adjusted.has(Number(o.id)) && ('meta' in o || 'assetType' in o || Object.keys(o).length === 1)) {
+        if (adjusted.has(Number(o.id)) && ('meta' in o || 'assetType' in o || Object.keys(o).length === 1) && (ours.has(Number(o.id)) || !refined(o.meta))) {
           const meta = adjusted.get(Number(o.id));
           if (meta) o.meta = meta;
           else delete o.meta;
@@ -142,7 +167,11 @@
   XMLHttpRequest.prototype.send = function (body) {
     if (this.__routilyMethod === 'GET' && READ_URL.test(String(this.__routilityUrl))) {
       this.addEventListener('load', () => {
-        try { learn(this.__routilityUrl, typeof this.response === 'string' ? this.response : JSON.stringify(this.response)); } catch {}
+        try {
+          const t = typeof this.response === 'string' ? this.response : JSON.stringify(this.response);
+          learn(this.__routilityUrl, t);
+          learnMeta(this.__routilityUrl, t);
+        } catch {}
       });
     }
     return xhrSend.call(this, keepMeta(this.__routilityUrl, keepBody(this.__routilityUrl, body)));
@@ -159,7 +188,7 @@
     } catch {}
     const job = origFetch.call(this, input, init);
     const method = String((init && init.method) || (input && input.method) || 'GET').toUpperCase();
-    if (method === 'GET' && READ_URL.test(String(url))) job.then(res => res.clone().text().then(t => learn(url, t))).catch(() => {});
+    if (method === 'GET' && READ_URL.test(String(url))) job.then(res => res.clone().text().then((t) => { learn(url, t); learnMeta(url, t); })).catch(() => {});
     if (method === 'GET' && OUTFIT_URL.test(String(url))) {
       return job.then(res => res.clone().text().then((t) => {
         const out = keepOutfit(t);

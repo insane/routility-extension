@@ -196,13 +196,15 @@
       if (!sel) return;
       const adj = edits.get(sel.id);
       const lim = sel.bounds;
-      for (const axis of AXES) {
-        const lo = lim.lo[tab][axis];
-        const hi = lim.hi[tab][axis];
+      const whole = tab === 'scale';
+      for (const axis of whole ? ['X'] : AXES) {
+        const lo = whole ? Math.max(...AXES.map(a => lim.lo.scale[a])) : lim.lo[tab][axis];
+        const hi = whole ? Math.min(...AXES.map(a => lim.hi.scale[a])) : lim.hi[tab][axis];
         const row = el('div', 'routility-tc-slider');
         const head = el('div', 'routility-tc-slider-head');
         const name = el('label', 'text-label-medium content-default routility-aa-axis');
-        name.append(el('span', 'routility-aa-dot routility-aa-dot-' + axis.toLowerCase(), axis));
+        if (whole) name.textContent = lt('Size');
+        else name.append(el('span', 'routility-aa-dot routility-aa-dot-' + axis.toLowerCase(), axis));
         const value = el('span', 'text-body-medium content-muted routility-tc-value');
         head.append(name, value);
         const input = el('input', 'routility-tc-range');
@@ -221,7 +223,7 @@
         };
         input.addEventListener('input', () => {
           const v = Math.max(lo, Math.min(hi, Number(input.value)));
-          adj[tab][axis] = Math.round(v * 1000) / 1000;
+          for (const a of whole ? AXES : [axis]) adj[tab][a] = Math.round(v * 1000) / 1000;
           paint();
           s.preview?.set(sel.id, adj);
           sync();
