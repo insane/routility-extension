@@ -3568,5 +3568,19 @@
  "{from} to {to}": "{from} sampai {to}",
  "Owned at least": "Dimiliki minimal",
  "Owned at most": "Dimiliki maksimal",
- "Owned for": "Dimiliki selama"
+ "Owned for": "Dimiliki selama",
+ "Any demand": "Permintaan apa pun",
+ "Normal demand or better": "Permintaan normal atau lebih baik",
+ "High demand or better": "Permintaan tinggi atau lebih baik",
+ "Amazing demand": "Permintaan luar biasa",
+ "Unvalued (RAP) items": "Item tanpa nilai (RAP)",
+ "Faces": "Wajah",
+ "Dropping or unstable items": "Item yang turun atau tidak stabil",
+ "Add items with": "Tambahkan item dengan",
+ "Never add": "Jangan pernah tambahkan",
+ "Before sending": "Sebelum mengirim",
+ "Let me review each trade": "Biarkan aku memeriksa setiap trade",
+ "Asking for {items}": "Meminta {items}",
+ "You skipped this one": "Kamu lewati",
+ "Check this trade, then press Send or Skip": "Periksa trade ini, lalu tekan Kirim atau Lewati"
 }

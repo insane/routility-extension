@@ -3720,5 +3720,19 @@
  "{from} to {to}": "{from} to {to}",
  "Owned at least": "Owned at least",
  "Owned at most": "Owned at most",
- "Owned for": "Owned for"
+ "Owned for": "Owned for",
+ "Any demand": "Any demand",
+ "Normal demand or better": "Normal demand or better",
+ "High demand or better": "High demand or better",
+ "Amazing demand": "Amazing demand",
+ "Unvalued (RAP) items": "Unvalued (RAP) items",
+ "Faces": "Faces",
+ "Dropping or unstable items": "Dropping or unstable items",
+ "Add items with": "Add items with",
+ "Never add": "Never add",
+ "Before sending": "Before sending",
+ "Let me review each trade": "Let me review each trade",
+ "Asking for {items}": "Asking for {items}",
+ "You skipped this one": "You skipped this one",
+ "Check this trade, then press Send or Skip": "Check this trade, then press Send or Skip"
 }

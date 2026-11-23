@@ -3568,5 +3568,19 @@
  "{from} to {to}": "{from}〜{to}",
  "Owned at least": "最短の所有期間",
  "Owned at most": "最長の所有期間",
- "Owned for": "所有期間"
+ "Owned for": "所有期間",
+ "Any demand": "需要は問わない",
+ "Normal demand or better": "需要が普通以上",
+ "High demand or better": "需要が高い以上",
+ "Amazing demand": "需要がとても高い",
+ "Unvalued (RAP) items": "価値なし（RAP）アイテム",
+ "Faces": "顔",
+ "Dropping or unstable items": "下落中・不安定なアイテム",
+ "Add items with": "追加するアイテムの需要",
+ "Never add": "追加しない",
+ "Before sending": "送信前",
+ "Let me review each trade": "トレードを1件ずつ確認する",
+ "Asking for {items}": "{items}を求める",
+ "You skipped this one": "スキップしました",
+ "Check this trade, then press Send or Skip": "このトレードを確認して、送信かスキップを押してください"
 }

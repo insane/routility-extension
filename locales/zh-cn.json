@@ -3568,5 +3568,19 @@
  "{from} to {to}": "{from}到{to}",
  "Owned at least": "最短持有",
  "Owned at most": "最长持有",
- "Owned for": "持有时长"
+ "Owned for": "持有时长",
+ "Any demand": "任意需求",
+ "Normal demand or better": "需求一般或更高",
+ "High demand or better": "需求高或更高",
+ "Amazing demand": "需求极高",
+ "Unvalued (RAP) items": "无估值（RAP）物品",
+ "Faces": "脸",
+ "Dropping or unstable items": "下跌或不稳定的物品",
+ "Add items with": "添加物品的需求",
+ "Never add": "从不添加",
+ "Before sending": "发送前",
+ "Let me review each trade": "让我逐个检查交易",
+ "Asking for {items}": "索要 {items}",
+ "You skipped this one": "你跳过了",
+ "Check this trade, then press Send or Skip": "检查这笔交易，然后按发送或跳过"
 }

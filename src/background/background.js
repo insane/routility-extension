@@ -862,7 +862,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
   if (msg.type === 'calcItems') {
     getItems().then(items => {
-      sendResponse(Object.values(items).map(i => ({ id: String(i.id), name: i.name || '', acr: i.acr || '', usd: Number.isFinite(i.usd) ? i.usd : 0, rap: i.rap || 0, value: Number(i.value) > 0 ? Number(i.value) : 0, bundleId: i.bundleId ? String(i.bundleId) : '', demand: i.demand || '', trend: i.trend || '', rare: !!i.rare, ultra: !!i.ultra, projected: !!i.projected, thumb: i.thumb || '' })));
+      sendResponse(Object.values(items).map(i => ({ id: String(i.id), name: i.name || '', acr: i.acr || '', usd: Number.isFinite(i.usd) ? i.usd : 0, rap: i.rap || 0, value: Number(i.value) > 0 ? Number(i.value) : 0, bundleId: i.bundleId ? String(i.bundleId) : '', demand: i.demand || '', trend: i.trend || '', rare: !!i.rare, ultra: !!i.ultra, projected: !!i.projected, thumb: i.thumb || '', type: Number(i.type) || 0 })));
     });
     return true;
   }

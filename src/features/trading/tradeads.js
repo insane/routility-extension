@@ -907,6 +907,10 @@
   const TO_KEY = 'routilityMassSentTo';
   const BLOCK_KEY = 'routilityMassBlocked';
   const WEEK = 7 * DAY;
+  const ADDS_KEY = 'routilityMassAdds';
+  const DEMAND_RANK = { Terrible: 0, Low: 1, Normal: 2, High: 3, Amazing: 4 };
+  const ADD_DEMAND = [['any', LT('Any demand')], ['Normal', LT('Normal demand or better')], ['High', LT('High demand or better')], ['Amazing', LT('Amazing demand')]];
+  const ADD_NEVER = [['rap', LT('Unvalued (RAP) items')], ['face', LT('Faces')], ['gear', LT('Gear')], ['trend', LT('Dropping or unstable items')]];
   const MASS_SKIPS = [['pending', LT('People I already have a trade with')], ['recent', LT('People I mass sent to this week')], ['blocked', LT('People I couldn’t send to this week')], ['traded', LT('People I’ve traded with')], ['friends', LT('My friends')], ['fresh', LT('Accounts under 30 days old')]];
 
   function wait(ms) {
@@ -918,7 +922,27 @@
   }
 
   function buildMass() {
-    const st = { off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, blocked: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null, rangeFrom: '', rangeTo: '', rangeCount: '', owned: [2, OWNED.length - 1] };
+    const st = { off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, blocked: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null, rangeFrom: '', rangeTo: '', rangeCount: '', owned: [2, OWNED.length - 1], adds: { demand: 'any', never: {} }, review: false, ownedCustom: false, more: false };
+    try { st.more = localStorage.getItem('routilityMassMore') === '1'; } catch {}
+    try {
+      const saved = JSON.parse(localStorage.getItem(ADDS_KEY) || 'null');
+      if (saved && typeof saved === 'object') {
+        if (ADD_DEMAND.some(([k]) => k === saved.demand)) st.adds.demand = saved.demand;
+        for (const [k] of ADD_NEVER) if (saved.never && saved.never[k] === true) st.adds.never[k] = true;
+        st.review = saved.review === true;
+      }
+    } catch {}
+    const saveAdds = () => { try { localStorage.setItem(ADDS_KEY, JSON.stringify({ demand: st.adds.demand, never: st.adds.never, review: st.review })); } catch {} };
+    const addOk = (it) => {
+      if (!it) return false;
+      const a = st.adds;
+      if (a.demand !== 'any' && !((DEMAND_RANK[it.demand] ?? -1) >= DEMAND_RANK[a.demand])) return false;
+      if (a.never.rap && !(itemValue(it) > 0)) return false;
+      if (a.never.face && Number(it.type) === 18) return false;
+      if (a.never.gear && Number(it.type) === 19) return false;
+      if (a.never.trend && /lower|unstable|fluctuat|drop/i.test(String(it.trend || ''))) return false;
+      return true;
+    };
     const root = el('div', 'routility-ads-post routility-mass');
     const form = el('div', 'routility-ads-form-grid');
     const sides = {};
@@ -1065,7 +1089,7 @@
       const worthOf = byUsd ? usdOf : valOf;
       const mine = new Set(st.off.filter(e => e.kind === 'item').map(e => e.assetId));
       const current = new Set(st.look.map(e => e.assetId));
-      const pool = s.items.filter(it => !it.projected && it.demand !== 'Terrible' && !mine.has(String(it.id)) && worthOf(it) > 0);
+      const pool = s.items.filter(it => !it.projected && it.demand !== 'Terrible' && !mine.has(String(it.id)) && worthOf(it) > 0 && addOk(it));
       const weight = (it) => (DEMAND_WEIGHT[it.demand] || (itemValue(it) ? 1 : 1.5)) * (current.has(String(it.id)) ? 0.3 : 1);
       const draw = (list) => {
         let roll = Math.random() * list.reduce((t, it) => t + weight(it), 0);
@@ -1144,9 +1168,11 @@
       const ends = el('div', 'routility-mass-owned-ends text-caption-medium content-muted');
       const presets = [[0, top], [2, top], [4, top], [7, top], [0, 7], [0, 9]];
       const quick = el('div', 'routility-ads-chips');
+      const custom = el('div', 'routility-mass-owned-custom');
       const picks = presets.map((pair) => {
         const b = chip(ownedText(pair), false, () => {
           st.owned = pair.slice();
+          st.ownedCustom = false;
           lo.value = String(pair[0]);
           hi.value = String(pair[1]);
           paint();
@@ -1155,6 +1181,9 @@
         quick.appendChild(b);
         return b;
       });
+      const own = chip(lt('Custom'), false, () => { st.ownedCustom = true; paint(); });
+      own.disabled = !!st.job;
+      quick.appendChild(own);
       ends.append(el('span', null, lt('0 days')), el('span', null, lt('5+ years')));
       const make = (i, name) => {
         const input = el('input', 'routility-mass-owned-input');
@@ -1181,12 +1210,16 @@
         track.style.setProperty('--rt-hi', (st.owned[1] / top * 100) + '%');
         lo.style.zIndex = st.owned[0] >= top - 1 ? '3' : '';
         value.textContent = ownedText();
-        presets.forEach((pair, i) => {
-          const on = pair[0] === st.owned[0] && pair[1] === st.owned[1];
-          picks[i].classList.remove(...CHIP_ON, ...CHIP_OFF);
-          picks[i].classList.add(...(on ? CHIP_ON : CHIP_OFF));
-          picks[i].setAttribute('aria-pressed', String(on));
-        });
+        const match = presets.some(pair => pair[0] === st.owned[0] && pair[1] === st.owned[1]);
+        if (!match) st.ownedCustom = true;
+        const mark = (b, on) => {
+          b.classList.remove(...CHIP_ON, ...CHIP_OFF);
+          b.classList.add(...(on ? CHIP_ON : CHIP_OFF));
+          b.setAttribute('aria-pressed', String(on));
+        };
+        presets.forEach((pair, i) => mark(picks[i], !st.ownedCustom && pair[0] === st.owned[0] && pair[1] === st.owned[1]));
+        mark(own, st.ownedCustom);
+        custom.hidden = !st.ownedCustom;
       };
       track.addEventListener('pointerdown', (e) => {
         if (st.job || e.target !== track) return;
@@ -1198,7 +1231,8 @@
         paint();
       });
       track.append(lo, hi);
-      right.append(quick, value, track, ends);
+      custom.append(value, track, ends);
+      right.append(quick, custom);
       row.append(el('span', 'text-label-medium content-muted routility-mass-opt-label', lt('Owned for')), right);
       paint();
       return row;
@@ -1218,6 +1252,21 @@
       if (st.source === 'owners') rows.push(optRow(lt('Online in the last'), MASS_ACTIVE.map(([k, label]) => chip(lt(label), st.active === k, () => { st.active = k; paintOpts(); }))), ownedRow());
       rows.push(optRow(lt('Send up to'), MASS_COUNTS.map(n => chip(ltn(n, '{n} trade', '{n} trades', { n: formatNumber(n) }), st.max === n, () => { st.max = n; paintOpts(); }))));
       rows.push(optRow(lt('Skip'), MASS_SKIPS.map(([k, label]) => chip(lt(label), st.skip[k], () => { st.skip[k] = !st.skip[k]; paintOpts(); }))));
+      const more = el('button', 'routility-mass-more text-label-medium content-default');
+      more.type = 'button';
+      more.setAttribute('aria-expanded', String(st.more));
+      more.append(el('span', null, lt('More options')), el('span', 'icon routility-calc-icon routility-calc-icon-chevron size-400 content-default' + (st.more ? ' routility-home-up' : '')));
+      more.addEventListener('click', () => {
+        st.more = !st.more;
+        try { localStorage.setItem('routilityMassMore', st.more ? '1' : '0'); } catch {}
+        paintOpts();
+      });
+      rows.push(more);
+      if (st.more) {
+        rows.push(optRow(lt('Add items with'), ADD_DEMAND.map(([k, label]) => chip(lt(label), st.adds.demand === k, () => { st.adds.demand = k; saveAdds(); paintOpts(); }))));
+        rows.push(optRow(lt('Never add'), ADD_NEVER.map(([k, label]) => chip(lt(label), !!st.adds.never[k], () => { st.adds.never[k] = !st.adds.never[k]; saveAdds(); paintOpts(); }))));
+        rows.push(optRow(lt('Before sending'), [chip(lt('Let me review each trade'), st.review, () => { st.review = !st.review; saveAdds(); paintOpts(); })]));
+      }
       opts.replaceChildren(...rows);
       opts.querySelectorAll('button, input').forEach(b => { b.disabled = busy; });
       const full = st.look.length >= 4;
@@ -1499,16 +1548,41 @@
       });
       list.prepend(li);
       while (list.children.length > 200) list.lastChild.remove();
-      return (kind, text) => {
+      const done = (kind, text) => {
         li.classList.remove('routility-clean-working');
         li.classList.add('routility-mass-' + kind);
         info.textContent = text;
       };
+      done.ask = (text) => new Promise((res) => {
+        const job = st.job;
+        info.textContent = text;
+        info.classList.add('routility-mass-asking');
+        const btns = el('span', 'routility-mass-review');
+        const go = fbutton(lt('Send'), 'bg-action-emphasis content-action-emphasis');
+        const no = fbutton(lt('Skip'), 'bg-shift-300 content-action-utility');
+        btns.append(no, go);
+        li.appendChild(btns);
+        li.classList.add('routility-mass-reviewing');
+        setStatus(lt('Check this trade, then press Send or Skip'));
+        const end = (v) => {
+          btns.remove();
+          li.classList.remove('routility-mass-reviewing');
+          info.classList.remove('routility-mass-asking');
+          if (job) job.wake = null;
+          setStatus('');
+          res(v);
+        };
+        go.addEventListener('click', () => end('send'));
+        no.addEventListener('click', () => end('skip'));
+        if (job) job.wake = () => end('stop');
+        go.focus();
+      });
+      return done;
     }
 
     async function outbound(job) {
       const partners = new Set();
-      const recent = new Set();
+      const recent = new Map();
       let cursor = '';
       for (let p = 0; p < 15 && !job.stop; p++) {
         const r = await robloxGet(`https://trades.roblox.com/v1/trades/outbound?sortOrder=Desc&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`, job);
@@ -1516,7 +1590,7 @@
         for (const t of r.body.data) {
           if (t.user && t.user.id) partners.add(String(t.user.id));
           const at = new Date(t.created).getTime();
-          if (Date.now() - at < DAY) recent.add(String(t.id));
+          if (Date.now() - at < DAY) recent.set(String(t.id), at);
         }
         cursor = r.body.nextPageCursor || '';
         if (!cursor) break;
@@ -1588,8 +1662,13 @@
     async function countToday(job) {
       const [out, store] = await Promise.all([outbound(job), sentStore()]);
       if (out.failed) return { count: null, partners: out.partners };
-      const ids = new Set([...out.recent, ...Object.keys(store.mine)]);
-      return { count: ids.size, partners: out.partners };
+      let added = false;
+      for (const [id, at] of out.recent) if (!store.mine[id]) { store.mine[id] = at; added = true; }
+      if (added) {
+        store.all[myId()] = store.mine;
+        chrome.storage.local.set({ [SENT_KEY]: store.all });
+      }
+      return { count: Object.keys(store.mine).length, partners: out.partners };
     }
 
     function rangeTargets() {
@@ -1704,7 +1783,7 @@
             if (wanted && (got.get(assetId) || []).length < need.get(assetId)) {
               if (!got.has(assetId)) got.set(assetId, []);
               got.get(assetId).push(String(x.collectibleItemInstanceId));
-            } else if (fill && worth > 0) pool.push({ id: String(x.collectibleItemInstanceId), worth, name: info.name });
+            } else if (fill && worth > 0 && addOk(info)) pool.push({ id: String(x.collectibleItemInstanceId), worth, name: info.name });
           }
         }
         if (!fill && [...need].every(([a, n]) => (got.get(a) || []).length >= n)) break;
@@ -1841,6 +1920,12 @@
         return done('skipped', found.status === 'norange' ? lt('Nothing of theirs fits the range') : found.status === 'held' ? lt('{item} is on hold', { item: name }) : found.status === 'missing' ? lt('Doesn’t have {item} anymore', { item: name }) : found.status === 'private' ? lt('Their inventory is private') : lt('Couldn’t load their items'));
       }
       const asks = found.extra.map(x => x.name).join(', ');
+      if (st.review && !job.dry) {
+        const all = st.look.map(e => itemInfo(e.assetId).name).concat(found.extra.map(x => x.name)).join(', ');
+        const said = await done.ask(lt('Asking for {items}', { items: all }));
+        if (said === 'stop' || job.stop) return halt();
+        if (said === 'skip') { job.skipped++; return done('skipped', lt('You skipped this one')); }
+      }
       if (job.dry) {
         job.sent++;
         return done('sent', asks ? lt('Would send, asking for {items}', { items: asks }) : lt('Would send'));
@@ -1990,6 +2075,7 @@
     start.addEventListener('click', async () => {
       if (st.job) {
         st.job.stop = true;
+        if (st.job.wake) st.job.wake();
         paintStart();
         return;
       }

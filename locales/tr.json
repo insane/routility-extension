@@ -3724,5 +3724,19 @@
  "{from} to {to}": "{from} ile {to} arası",
  "Owned at least": "En az sahip olma",
  "Owned at most": "En fazla sahip olma",
- "Owned for": "Sahip olma süresi"
+ "Owned for": "Sahip olma süresi",
+ "Any demand": "Herhangi bir talep",
+ "Normal demand or better": "Normal talep veya daha iyisi",
+ "High demand or better": "Yüksek talep veya daha iyisi",
+ "Amazing demand": "Muhteşem talep",
+ "Unvalued (RAP) items": "Değersiz (RAP) eşyalar",
+ "Faces": "Yüzler",
+ "Dropping or unstable items": "Düşen veya dengesiz eşyalar",
+ "Add items with": "Şu taleple eşya ekle",
+ "Never add": "Asla ekleme",
+ "Before sending": "Göndermeden önce",
+ "Let me review each trade": "Her takası ben kontrol edeyim",
+ "Asking for {items}": "{items} istiyor",
+ "You skipped this one": "Bunu atladın",
+ "Check this trade, then press Send or Skip": "Bu takası kontrol et, sonra Gönder veya Atla’ya bas"
 }

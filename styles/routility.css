@@ -16156,3 +16156,14 @@ html.routility-av-lim-on #avatar-web-app .tab-horizontal-submenu li.active:not(.
 @media (max-width: 640px) {
   .routility-mass-owned-right { padding-top: 0; max-width: none; }
 }
+.routility-mass-review { display: inline-flex; gap: 8px; flex: none; }
+.routility-mass-reviewing { flex-wrap: wrap; row-gap: 8px; }
+.routility-mass-reviewing .routility-clean-item-info.routility-mass-asking { flex: 1 1 200px; min-width: 0; white-space: normal; text-align: right; color: var(--color-content-default, inherit); }
+.routility-mass-owned-custom { display: flex; flex-direction: column; gap: 6px; max-width: 420px; }
+.routility-mass-owned-custom[hidden] { display: none; }
+.routility-mass-more { display: inline-flex; align-items: center; gap: 4px; align-self: flex-start; margin-left: 152px; padding: 4px 0; background: none; border: 0; cursor: pointer; }
+.routility-mass-more:hover > span:first-child { text-decoration: underline; }
+.routility-mass-more:disabled { cursor: default; opacity: 0.5; }
+@media (max-width: 640px) {
+  .routility-mass-more { margin-left: 0; }
+}

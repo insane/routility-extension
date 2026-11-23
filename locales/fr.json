@@ -3724,5 +3724,19 @@
  "{from} to {to}": "De {from} à {to}",
  "Owned at least": "Possédé au moins",
  "Owned at most": "Possédé au plus",
- "Owned for": "Possédé depuis"
+ "Owned for": "Possédé depuis",
+ "Any demand": "Toute demande",
+ "Normal demand or better": "Demande normale ou mieux",
+ "High demand or better": "Demande élevée ou mieux",
+ "Amazing demand": "Demande incroyable",
+ "Unvalued (RAP) items": "Objets sans valeur (RAP)",
+ "Faces": "Visages",
+ "Dropping or unstable items": "Objets en baisse ou instables",
+ "Add items with": "Ajouter des objets avec",
+ "Never add": "Ne jamais ajouter",
+ "Before sending": "Avant l’envoi",
+ "Let me review each trade": "Me laisser vérifier chaque échange",
+ "Asking for {items}": "Demande {items}",
+ "You skipped this one": "Tu l’as passé",
+ "Check this trade, then press Send or Skip": "Vérifie cet échange, puis appuie sur Envoyer ou Passer"
 }

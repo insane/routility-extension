@@ -3568,5 +3568,19 @@
  "{from} to {to}": "{from} ถึง {to}",
  "Owned at least": "ถือครองอย่างน้อย",
  "Owned at most": "ถือครองไม่เกิน",
- "Owned for": "ถือครองมา"
+ "Owned for": "ถือครองมา",
+ "Any demand": "ความต้องการใดก็ได้",
+ "Normal demand or better": "ความต้องการปกติขึ้นไป",
+ "High demand or better": "ความต้องการสูงขึ้นไป",
+ "Amazing demand": "ความต้องการสูงมาก",
+ "Unvalued (RAP) items": "ไอเทมไม่มีมูลค่า (RAP)",
+ "Faces": "ใบหน้า",
+ "Dropping or unstable items": "ไอเทมที่ราคาลดหรือไม่คงที่",
+ "Add items with": "เพิ่มไอเทมที่มี",
+ "Never add": "ไม่เพิ่มเลย",
+ "Before sending": "ก่อนส่ง",
+ "Let me review each trade": "ให้ฉันตรวจเทรดทีละรายการ",
+ "Asking for {items}": "ขอ {items}",
+ "You skipped this one": "คุณข้ามรายการนี้",
+ "Check this trade, then press Send or Skip": "ตรวจเทรดนี้ แล้วกดส่งหรือข้าม"
 }

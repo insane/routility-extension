@@ -3568,5 +3568,19 @@
  "{from} to {to}": "{from}~{to}",
  "Owned at least": "최소 보유 기간",
  "Owned at most": "최대 보유 기간",
- "Owned for": "보유 기간"
+ "Owned for": "보유 기간",
+ "Any demand": "수요 무관",
+ "Normal demand or better": "수요 보통 이상",
+ "High demand or better": "수요 높음 이상",
+ "Amazing demand": "수요 매우 높음",
+ "Unvalued (RAP) items": "가치 없는(RAP) 아이템",
+ "Faces": "얼굴",
+ "Dropping or unstable items": "하락 중이거나 불안정한 아이템",
+ "Add items with": "추가할 아이템 수요",
+ "Never add": "절대 추가 안 함",
+ "Before sending": "보내기 전",
+ "Let me review each trade": "거래를 하나씩 확인하기",
+ "Asking for {items}": "{items} 요청",
+ "You skipped this one": "건너뜀",
+ "Check this trade, then press Send or Skip": "이 거래를 확인한 뒤 보내기 또는 건너뛰기를 누르세요"
 }

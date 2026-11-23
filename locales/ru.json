@@ -4036,5 +4036,19 @@
  "{from} to {to}": "От {from} до {to}",
  "Owned at least": "Владеет минимум",
  "Owned at most": "Владеет максимум",
- "Owned for": "Владеет"
+ "Owned for": "Владеет",
+ "Any demand": "Любой спрос",
+ "Normal demand or better": "Обычный спрос или выше",
+ "High demand or better": "Высокий спрос или выше",
+ "Amazing demand": "Очень высокий спрос",
+ "Unvalued (RAP) items": "Предметы без цены (RAP)",
+ "Faces": "Лица",
+ "Dropping or unstable items": "Падающие или нестабильные предметы",
+ "Add items with": "Добавлять предметы со спросом",
+ "Never add": "Никогда не добавлять",
+ "Before sending": "Перед отправкой",
+ "Let me review each trade": "Дать мне проверить каждый обмен",
+ "Asking for {items}": "Просит {items}",
+ "You skipped this one": "Вы пропустили",
+ "Check this trade, then press Send or Skip": "Проверьте этот обмен и нажмите Отправить или Пропустить"
 }

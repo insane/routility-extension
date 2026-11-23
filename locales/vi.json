@@ -3568,5 +3568,19 @@
  "{from} to {to}": "Từ {from} đến {to}",
  "Owned at least": "Sở hữu tối thiểu",
  "Owned at most": "Sở hữu tối đa",
- "Owned for": "Đã sở hữu"
+ "Owned for": "Đã sở hữu",
+ "Any demand": "Nhu cầu bất kỳ",
+ "Normal demand or better": "Nhu cầu bình thường trở lên",
+ "High demand or better": "Nhu cầu cao trở lên",
+ "Amazing demand": "Nhu cầu cực cao",
+ "Unvalued (RAP) items": "Vật phẩm chưa định giá (RAP)",
+ "Faces": "Khuôn mặt",
+ "Dropping or unstable items": "Vật phẩm đang giảm hoặc không ổn định",
+ "Add items with": "Thêm vật phẩm có",
+ "Never add": "Không bao giờ thêm",
+ "Before sending": "Trước khi gửi",
+ "Let me review each trade": "Để tôi xem từng giao dịch",
+ "Asking for {items}": "Yêu cầu {items}",
+ "You skipped this one": "Bạn đã bỏ qua",
+ "Check this trade, then press Send or Skip": "Xem giao dịch này rồi nhấn Gửi hoặc Bỏ qua"
 }
