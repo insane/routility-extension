@@ -7,6 +7,17 @@
   },
   "releases": [
     {
+      "version": "1.3.3",
+      "date": "2026-11-23",
+      "summary": "Mass Send can wait for you to check each trade before it goes out, lets you choose what kind of items it adds, counts your trades left better and reads 20k in Add Robux.",
+      "changes": [
+        { "type": "new", "text": "Review each trade (Mass Send): turn it on under More options and every trade waits for you to press Send or Skip before it goes out." },
+        { "type": "new", "text": "Shuffle and value range adds (Mass Send): under More options, pick the demand the added items need and never add unvalued items, faces, gear or items that are dropping or unstable." },
+        { "type": "fixed", "text": "Mass Send: trades left today is more accurate, since trades that were declined or countered no longer drop out of the count." },
+        { "type": "fixed", "text": "Mass Send: typing 20k or 1.5m in Add Robux now adds 20,000 or 1,500,000 Robux instead of 20 or 1." }
+      ]
+    },
+    {
       "version": "1.3.2",
       "date": "2026-11-21",
       "summary": "See the data Roblox loads but never shows, play in your region again, find your limiteds in their own tab in the avatar editor and inventory, and keep Robux out of your item slots in trades.",
@@ -18,10 +29,6 @@
         { "type": "new", "text": "Shuffle (Mass Send): set how much more you want, like +15%, and Shuffle fills You Want with one to four items that match it in USD and Value, favoring good demand." },
         { "type": "improved", "text": "Mass Send: people you couldn’t send to, like those with trades turned off or a private inventory, are skipped for a week instead of being checked again every run." },
         { "type": "new", "text": "Owned For (Mass Send): drag a range to only send to people who’ve had the item for a certain time, like 3 days to 2 years, or skip owners who’ve held it 5+ years." },
-        { "type": "new", "text": "Review each trade (Mass Send): turn it on under More options and every trade waits for you to press Send or Skip before it goes out." },
-        { "type": "new", "text": "Shuffle and value range adds (Mass Send): under More options, pick the demand the added items need and never add unvalued items, faces, gear or items that are dropping or unstable." },
-        { "type": "fixed", "text": "Mass Send: trades left today is more accurate, since trades that were declined or countered no longer drop out of the count." },
-        { "type": "fixed", "text": "Mass Send: typing 20k or 1.5m in Add Robux now adds 20,000 or 1,500,000 Robux instead of 20 or 1." },
         { "type": "improved", "text": "Closest region (Servers): picks from Roblox’s own list of the servers with the best connection to you." },
         { "type": "new", "text": "Creator Hub: Copy Universe ID, Copy Place ID, Copy URL and View on Roblox in the menu on a place’s settings page." },
         { "type": "improved", "text": "Trades: your trade filter and who can trade with you show as pills next to Unlimited trades." },
