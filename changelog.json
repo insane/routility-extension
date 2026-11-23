@@ -29,7 +29,8 @@
         { "type": "new", "text": "Buy what you don’t own (Sandbox): a button under Outfit Worth shows what the pieces you don’t own cost, with your Roblox Plus discount, and lists each one with a link to buy it." },
         { "type": "fixed", "text": "Sandbox: no longer lands on the last Avatars page you had open." },
         { "type": "fixed", "text": "Sandbox: the Limiteds tab only shows on your real avatar, since Sandbox already has its own Limiteds filter." },
-        { "type": "fixed", "text": "Limited alerts: items that just became Limited no longer say Free, since they can only be bought from resellers." }
+        { "type": "fixed", "text": "Limited alerts: items that just became Limited no longer say Free, since they can only be bought from resellers." },
+        { "type": "fixed", "text": "Customize Thumbnail: the preview no longer leaves off your pants or shirt when you wear body parts like R6 Girl." }
       ]
     },
     {

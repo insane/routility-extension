@@ -791,10 +791,11 @@ export async function buildAvatar(scene, opts) {
       mesh = m;
       const slot = r15Slot(name);
       const hasTexture = assetIdOf((prop(inst, 'TextureID') || {}).value);
-      if (mesh && clothes && slot && clothes[slot] && !hasTexture) {
+      if (mesh && clothes && slot && clothes[slot]) {
+        const own = hasTexture ? await loadTexture(hasTexture, inst.className === 'MeshPart').catch(() => null) : null;
         mesh.material.dispose();
         const c = clothes[slot];
-        mesh.material = material(new THREE.Color(1, 1, 1), paint(color, [c], c.width, c.height));
+        mesh.material = material(new THREE.Color(1, 1, 1), paint(color, [own, c], c.width, c.height));
       }
     }
     if (!mesh) return;
