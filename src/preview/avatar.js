@@ -29,7 +29,7 @@ const BUILTIN = { 'fonts/sword.mesh': '12221720' };
 export function assetIdOf(value) {
   const builtin = String(value || '').match(/^rbxasset:\/\/(.+)$/i);
   if (builtin) return BUILTIN[builtin[1].toLowerCase()] || null;
-  const m = String(value || '').match(/(?:id=|rbxassetid:\/\/|\/asset\/\?id=)(\d+)/i) || String(value || '').match(/^(\d+)$/);
+  const m = String(value || '').match(/(?:id=|rbxassetid:\/\/|\/asset\/\?id=)\s*(\d+)/i) || String(value || '').trim().match(/^(\d+)$/);
   return m ? m[1] : null;
 }
 
