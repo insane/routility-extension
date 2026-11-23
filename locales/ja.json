@@ -3628,5 +3628,20 @@
  "Cancel after {n} days": {"other": "{n}日後にキャンセル"},
  "Cancel {n} waiting trades now": {"other": "返事待ちの{n}件を今すぐキャンセル"},
  "Cancel {n} waiting trades?": {"other": "返事待ちのトレード{n}件をキャンセルしますか？"},
- "Cancelled {n} trades.": {"other": "{n}件のトレードをキャンセルしました。"}
+ "Cancelled {n} trades.": {"other": "{n}件のトレードをキャンセルしました。"},
+ "Hats": "帽子",
+ "Neck": "首",
+ "Shoulders": "肩",
+ "Front": "前",
+ "Heads": "頭",
+ "Tops": "トップス",
+ "Bottoms": "ボトムス",
+ "Shoes": "靴",
+ "Skin Tone": "肌の色",
+ "Backgrounds": "背景",
+ "My Items": "自分のアイテム",
+ "Redo": "やり直す",
+ "{pct}% off with Roblox Plus": "Roblox Plusで{pct}%オフ",
+ "Buy the {n} you don’t own": {"other": "持っていない{n}個を購入"},
+ "Get the {n} you don’t own": {"other": "持っていない{n}個を入手"}
 }

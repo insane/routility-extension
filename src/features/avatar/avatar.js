@@ -555,6 +555,10 @@
   } catch {}
 
   function limTab() {
+    if (/^\/my\/avatar\/?$/i.test(location.pathname) && new URLSearchParams(location.search).has('sandbox')) {
+      document.querySelectorAll('.routility-av-lim-tab').forEach(n => n.remove());
+      return;
+    }
     if (!limAllowed) {
       if (limAllowed === false && LIM.on) limSet(false);
       return;
@@ -1169,8 +1173,63 @@
 
   const sbOwned = new Map();
   const sbCosts = new Map();
+  const sbMeta = new Map();
+  let sbBg = null;
   let sbAsked = '';
   let sbChecking = false;
+  let plusJob = null;
+
+  function plusOff() {
+    if (!plusJob) {
+      plusJob = fetch(`https://apis.roblox.com/subscriptions/v2/user/subscriptions?ProductType=Blackbird&ExpirationTimestampMsStart=${Date.now()}&ResultsPerPage=1`, { credentials: 'include' })
+        .then(r => (r.ok ? r.json() : null))
+        .then((d) => {
+          const sub = d && Array.isArray(d.subscriptions) && d.subscriptions[0];
+          const cfg = sub && sub.productInfo?.productTypeDetails?.robloxSubscriptionProductDetails?.featureConfig;
+          const feat = sub && sub.productTypeMembershipDetails?.robloxSubscriptionMembershipDetails?.features;
+          const tier = cfg && feat && (cfg.virtualTransactionDiscounts || []).find(t => t.tierId === feat.virtualTransactionDiscountTierId);
+          const pct = Number(tier && tier.discountPercent) || 0;
+          return pct > 0 && pct < 100 ? pct : 0;
+        })
+        .catch(() => 0)
+        .then((pct) => {
+          if (pct && wear) {
+            wear.rendered = '';
+            renderWearing();
+          }
+          return pct;
+        });
+      plusJob.value = 0;
+      plusJob.then((pct) => { plusJob.value = pct; });
+    }
+    return plusJob.value;
+  }
+
+  function buyMenu(anchor, list) {
+    const open = anchor.parentElement.querySelector('.routility-av-buy-menu');
+    if (open) return open.remove();
+    const menu = el('div', 'foundation-web-menu bg-surface-100 stroke-standard stroke-default shadow-transient-high radius-large padding-small routility-av-buy-menu');
+    menu.setAttribute('role', 'menu');
+    for (const x of list) {
+      const a = el('a', 'relative clip group/interactable focus-visible:outline-focus foundation-web-menu-item flex items-center gap-x-medium content-default cursor-pointer radius-medium padding-x-medium padding-y-small text-body-medium routility-av-buy-item');
+      a.href = `https://www.roblox.com/catalog/${x.id}`;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.setAttribute('role', 'menuitem');
+      const price = el('span', 'flex items-center gap-xsmall content-muted routility-av-buy-price');
+      if (x.pay > 0) price.appendChild(el('span', 'grow-0 shrink-0 basis-auto icon icon-regular-robux size-[var(--icon-size-small)]'));
+      price.appendChild(el('span', null, x.pay > 0 ? formatNumber(x.pay) : lt('Free')));
+      a.append(el('span', 'routility-av-buy-name', x.name || lt('Item {id}', { id: x.id })), price);
+      menu.appendChild(a);
+    }
+    anchor.after(menu);
+    const away = (e) => {
+      if (menu.contains(e.target) || anchor.contains(e.target)) return;
+      menu.remove();
+      document.removeEventListener('mousedown', away, true);
+    };
+    document.addEventListener('mousedown', away, true);
+  }
 
   let selfId = '';
 
@@ -1186,7 +1245,7 @@
 
   async function checkOwned(ids) {
     const me = await myId();
-    const todo = ids.filter(id => !sbOwned.has(id));
+    const todo = [...new Set(ids)].filter(id => !sbOwned.has(id));
     if (!me || !todo.length || sbChecking) return;
     sbChecking = true;
     try {
@@ -1208,7 +1267,8 @@
   }
 
   function ownedRow(assets) {
-    const ids = assets.map(a => a.id);
+    const bg = sbBg && sbBg.id ? String(sbBg.id) : '';
+    const ids = assets.map(a => a.id).concat(bg && !assets.some(a => a.id === bg) ? [bg] : []);
     const key = ids.slice().sort().join(',');
     if (ids.some(id => !sbCosts.has(id)) && sbAsked !== key) {
       sbAsked = key;
@@ -1219,8 +1279,9 @@
       return null;
     }
     let owned = 0;
-    let cost = 0;
     let off = 0;
+    const need = [];
+    const pct = plusOff();
     for (const id of ids) {
       if (sbOwned.get(id)) {
         owned++;
@@ -1228,19 +1289,44 @@
       }
       const c = sbCosts.get(id);
       if (c == null) continue;
-      if (c < 0) off++;
-      else cost += c;
+      if (c < 0) {
+        off++;
+        continue;
+      }
+      const m = sbMeta.get(id) || {};
+      const pay = !m.limited && pct ? Math.round(c * (100 - pct) / 100) : c;
+      need.push({ id, name: m.name, full: c, pay });
     }
+    const box = el('div', 'routility-av-worth-own-box');
     const row = el('div', 'routility-av-worth-own font-caption-body');
     row.appendChild(el('span', 'content-default', lt('You own {n} of {total}', { n: formatNumber(owned), total: formatNumber(ids.length) })));
-    if (cost > 0) {
-      const part = el('span', 'routility-av-worth-part');
-      part.dataset.rtTip = lt('What the pieces you don’t own cost right now, using the lowest resale price for limiteds');
-      part.append(el('span', 'icon-robux-16x16'), el('span', null, lt('{amount} to finish', { amount: formatNumber(cost) })));
-      row.appendChild(part);
-    }
     if (off) row.appendChild(el('span', 'content-muted', ltn(off, '{n} off sale', '{n} off sale', { n: formatNumber(off) })));
-    return row;
+    box.appendChild(row);
+    if (!need.length) return box;
+    const total = need.reduce((sum, x) => sum + x.pay, 0);
+    const brief = (n) => {
+      for (const [d, u] of [[1e9, 'B'], [1e6, 'M']]) if (n >= d) return (Math.floor(n / d * 10) / 10).toString().replace(/\.0$/, '') + u;
+      return formatNumber(n);
+    };
+    const before = need.reduce((sum, x) => sum + x.full, 0);
+    const wrap = el('div', 'routility-av-buy');
+    const btn = el('button', 'foundation-web-button relative clip group/interactable focus-visible:outline-focus cursor-pointer flex items-center justify-between stroke-none select-none radius-medium text-label-medium height-1000 padding-x-medium bg-action-emphasis content-action-emphasis width-full routility-av-buy-btn');
+    btn.type = 'button';
+    btn.setAttribute('aria-haspopup', 'menu');
+    const price = el('span', 'flex items-center gap-xsmall');
+    if (total > 0) price.appendChild(el('span', 'grow-0 shrink-0 basis-auto icon icon-regular-robux size-[var(--icon-size-small)]'));
+    price.appendChild(el('span', null, total > 0 ? brief(total) : lt('Free')));
+    const label = total > 0 ? ltn(need.length, 'Buy the {n} you don’t own', 'Buy the {n} you don’t own', { n: formatNumber(need.length) }) : ltn(need.length, 'Get the {n} you don’t own', 'Get the {n} you don’t own', { n: formatNumber(need.length) });
+    btn.append(el('span', 'text-no-wrap', label), price);
+    btn.addEventListener('click', () => buyMenu(btn, need));
+    wrap.appendChild(btn);
+    box.appendChild(wrap);
+    if (before > total) {
+      const note = el('div', 'flex items-center gap-xsmall content-muted font-caption-body routility-av-buy-plus');
+      note.append(el('span', 'grow-0 shrink-0 basis-auto icon icon-regular-robux size-[var(--icon-size-small)]'), el('s', null, brief(before)), el('span', null, lt('{pct}% off with Roblox Plus', { pct })));
+      box.appendChild(note);
+    }
+    return box;
   }
 
   function worthCard(rap, usd) {
@@ -1381,11 +1467,15 @@
     w.perf.observe({ type: 'resource' });
     w.onSandbox = (e) => {
       if (e.source !== window || !e.data || e.data.type !== 'routility-sandbox-state') return;
-      for (const x of (e.data.state && e.data.state.worn) || []) {
+      const st = e.data.state || {};
+      sbBg = st.background && st.background.id ? st.background : null;
+      for (const x of (st.worn || []).concat(sbBg ? [sbBg] : [])) {
         if (!x.known) continue;
+        const limited = (x.restrictions || []).some(r => /Limited|Collectible/i.test(r));
         const resale = Number.isFinite(x.lowest) && x.lowest > 0 ? x.lowest : null;
         const price = Number.isFinite(x.price) && x.price >= 0 ? x.price : null;
-        sbCosts.set(String(x.id), resale ?? price ?? -1);
+        sbCosts.set(String(x.id), limited ? resale ?? price ?? -1 : price ?? resale ?? -1);
+        sbMeta.set(String(x.id), { name: x.name || '', limited });
       }
       w.rendered = '';
       refreshWearing();

@@ -8,12 +8,17 @@
   const AVATAR = /^\/my\/avatar/i;
   const MODES = [['all', LT('All Items')], ['limited', LT('Limiteds')], ['classic', LT('Classic Limiteds')]];
   const SORTS = [['relevance', LT('Relevance')], ['favorites', LT('Most Favorited')], ['bestselling', LT('Bestselling')], ['updated', LT('Recently Updated')], ['high', LT('Price High to Low')], ['low', LT('Price Low to High')]];
+  const ACC = 'heading.accessories-dropdown';
+  const BODY = 'heading.body-dropdown';
+  const CLOTH = 'heading.clothing-dropdown';
+  const BG = 'backgrounds.title-dropdown';
+  const CATS = [['all', LT('All'), ACC, 0], ['hats', LT('Hats'), ACC, 0], ['hair', LT('Hair'), BODY, 2], ['face', LT('Face'), ACC, 1], ['neck', LT('Neck'), ACC, 2], ['shoulders', LT('Shoulders'), ACC, 3], ['front', LT('Front'), ACC, 4], ['back', LT('Back'), ACC, 5], ['waist', LT('Waist'), ACC, 6], ['gear', LT('Gear'), ACC, 7], ['heads', LT('Heads'), BODY, 0], ['tops', LT('Tops'), CLOTH, 0], ['bottoms', LT('Bottoms'), CLOTH, 6], ['shoes', LT('Shoes'), CLOTH, 10], ['classic', LT('Classic'), CLOTH, 13], ['skin', LT('Skin Tone'), BODY, 1], ['backgrounds', LT('Backgrounds'), BG, -1]];
+  const VIEW_KEY = 'routilitySandboxView';
   const FIELD_LAYER = 'absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none';
 
   let settings = {};
   let state = null;
   let banner = null;
-  let lastPick = null;
   let searchTimer = 0;
   let chipsFor = true;
   let snapSeq = 0;
@@ -24,10 +29,22 @@
   const PAGE = /^\/my\/avatar\/?$/i.test(location.pathname) && new URLSearchParams(location.search).has('sandbox');
   const sandboxOn = () => PAGE;
   const filter = () => (state && state.filter) || (() => { try { return (JSON.parse(sessionStorage.getItem(KEY) || 'null') || {}).filter; } catch { return null; } })() || { mode: 'classic', q: '', sort: 'high' };
+  const view = (() => {
+    let v = null;
+    try { v = JSON.parse(sessionStorage.getItem(VIEW_KEY) || 'null'); } catch {}
+    return { src: v && v.src === 'mine' ? 'mine' : 'market', cat: v && CATS.some(c => c[0] === v.cat) ? v.cat : 'all' };
+  })();
+  const saveView = () => {
+    try { sessionStorage.setItem(VIEW_KEY, JSON.stringify(view)); } catch {}
+    const d = document.documentElement.dataset;
+    d.routilitySbSrc = view.src;
+    d.routilitySbCat = view.cat;
+  };
+  if (PAGE) saveView();
   const send = (action, extra) => window.postMessage(Object.assign({ type: 'routility-sandbox', action }, extra || {}), location.origin);
 
   function exitSandbox() {
-    try { sessionStorage.removeItem(KEY); } catch {}
+    try { sessionStorage.removeItem(KEY); sessionStorage.removeItem(VIEW_KEY); } catch {}
     send('exit');
     location.href = 'https://www.roblox.com/my/avatar';
   }
@@ -57,47 +74,77 @@
   };
   const items = () => [...document.querySelectorAll('#avatar-web-app .tab-horizontal-submenu li')];
 
-  function refreshList() {
-    if (!lastPick) return;
-    const heading = document.getElementById(lastPick.heading);
-    if (!heading) return;
+  const HIDDEN_TAB = /recent|avatars|animations/i;
+  let defaultAt = 0;
+  function hiddenTabOpen() {
+    if (Date.now() - defaultAt < 1500) return;
+    const active = document.querySelector('#avatar-web-app .rbx-tab.active .rbx-tab-heading, #avatar-web-app .rbx-tab-heading.active');
+    if (active && HIDDEN_TAB.test(active.id || '')) go(view.cat);
+  }
+
+  const listed = () => items().filter(li => !li.classList.contains('routility-av-lim-tab'));
+  const rbxNames = {};
+
+  function pickIn(heading, index) {
     const open = () => heading.dispatchEvent(new MouseEvent('mouseover', { bubbles: true, view: window }));
     const close = () => heading.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, view: window }));
     open();
     setTimeout(() => {
-      const list = items();
-      const target = list.find(li => li.textContent.trim() === lastPick.label);
-      const other = list.find(li => li !== target && li.textContent.trim());
+      const list = listed();
+      const target = list[index];
       if (!target) return close();
+      if (heading.id === ACC && !rbxNames[ACC]) {
+        rbxNames[ACC] = list.map(li => li.textContent.trim());
+        paintCats();
+      }
+      const other = list.find(li => li !== target);
       if (other) fire(other);
       setTimeout(() => {
         open();
         setTimeout(() => {
-          const again = items().find(li => li.textContent.trim() === lastPick.label);
+          const again = listed()[index];
           if (again) fire(again);
           close();
+          defaultAt = Date.now();
         }, 150);
       }, 200);
     }, 150);
   }
 
-  function openDefault(tries = 0) {
-    const heading = document.getElementById('heading.accessories-dropdown');
+  function go(key, tries = 0) {
+    const c = CATS.find(x => x[0] === key) || CATS[0];
+    view.cat = c[0];
+    saveView();
+    paintCats();
+    const heading = document.getElementById(c[2]);
     if (!heading) {
-      if (tries < 40) setTimeout(() => openDefault(tries + 1), 250);
+      if (tries < 40) setTimeout(() => go(key, tries + 1), 250);
       return;
     }
-    const active = document.querySelector('#avatar-web-app .rbx-tab-heading.active, #avatar-web-app .rbx-tab.active .rbx-tab-heading, #avatar-web-app [aria-selected="true"].rbx-tab-heading');
-    if (active && !/recent|avatars/i.test(active.id || '')) return;
-    heading.dispatchEvent(new MouseEvent('mouseover', { bubbles: true, view: window }));
+    defaultAt = Date.now();
+    if (c[3] >= 0) return pickIn(heading, c[3]);
+    const acc = document.getElementById(ACC);
+    if (acc) pickIn(acc, 0);
     setTimeout(() => {
-      const first = items()[0];
-      if (first) {
-        lastPick = { heading: heading.id, label: first.textContent.trim() };
-        fire(first);
-      }
-      heading.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, view: window }));
-    }, 200);
+      fire(heading);
+      defaultAt = Date.now();
+    }, acc ? 900 : 0);
+  }
+
+  function setSrc(src) {
+    if (view.src === src) return;
+    view.src = src;
+    saveView();
+    paint();
+    placeTools();
+    go(view.cat);
+  }
+
+  function paintCats() {
+    if (!banner) return;
+    const name = (key, label, heading, index) => (heading === ACC && index > 0 && rbxNames[ACC] && rbxNames[ACC][index]) || lt(label);
+    banner.parts.cats.replaceChildren(...CATS.map(([key, label, heading, index]) => chip(name(key, label, heading, index), view.cat === key, () => go(key))));
+    banner.parts.src.replaceChildren(chip(lt('Marketplace'), view.src === 'market', () => setSrc('market')), chip(lt('My Items'), view.src === 'mine', () => setSrc('mine')));
   }
 
   function setFilter(next) {
@@ -105,7 +152,7 @@
     state = Object.assign({}, state || {}, { filter: f });
     send('filter', { filter: f });
     paint();
-    refreshList();
+    go(view.cat);
   }
 
   function build() {
@@ -126,10 +173,16 @@
     });
     undo.classList.add('routility-sb-undo');
     undo.disabled = true;
+    const redo = small(lt('Redo'), () => {
+      redo.disabled = true;
+      send('redo');
+    });
+    redo.classList.add('routility-sb-undo');
+    redo.disabled = true;
     const fits = small(lt('Saved Fits'), openFits);
     const save = small(lt('Save Fit'), () => saveFit(save));
     const exit = small(lt('Exit Sandbox'), exitSandbox);
-    root.append(icon, text, undo, fits, save, exit);
+    root.append(icon, text, undo, redo, fits, save, exit);
     const chips = el('div', 'routility-injected routility-sb-chips');
     const sort = dropdown(SORTS.map(([value, label]) => ({ value, label: lt(label) })), filter().sort || 'high', (v) => setFilter({ sort: v }), 'routility-sb-sort');
     sort.classList.add('routility-injected');
@@ -139,7 +192,9 @@
     showAll.type = 'button';
     showAll.addEventListener('click', () => setFilter({ mode: 'all' }));
     empty.append(el('span', 'text-body-small content-muted', lt('Nothing in this category matches your filter.')), showAll);
-    root.parts = { chips, sort, empty, undo };
+    const src = el('div', 'routility-injected routility-sb-src bg-shift-100');
+    const cats = el('div', 'routility-injected routility-sb-cats');
+    root.parts = { chips, sort, empty, undo, redo, src, cats };
     return root;
   }
 
@@ -147,10 +202,15 @@
     const p = banner.parts;
     const bar = document.querySelector('#avatar-web-app .routility-av-toolbar');
     const crumb = document.querySelector('#avatar-web-app .routility-av-crumb-row');
+    const mine = view.src === 'mine';
     if (bar && bar.lastElementChild !== p.sort) bar.appendChild(p.sort);
-    if (bar && bar.nextElementSibling !== p.empty) bar.after(p.empty);
+    if (bar && bar.nextElementSibling !== p.cats) bar.after(p.cats);
+    if (bar && p.cats.nextElementSibling !== p.empty) p.cats.after(p.empty);
+    if (crumb && crumb.firstElementChild !== p.src) crumb.prepend(p.src);
     if (crumb && crumb.lastElementChild !== p.chips) crumb.appendChild(p.chips);
-    if (p.chips.hidden !== !chipsFor) p.chips.hidden = !chipsFor;
+    if (p.chips.hidden !== (!chipsFor || mine)) p.chips.hidden = !chipsFor || mine;
+    if (p.sort.hidden !== mine) p.sort.hidden = mine;
+    if (mine && !p.empty.hidden) p.empty.hidden = true;
   }
 
   function syncSearch(input) {
@@ -164,8 +224,28 @@
   function paint() {
     if (!banner) return;
     banner.parts.undo.disabled = !(state && state.undo);
+    banner.parts.redo.disabled = !(state && state.redo);
     const f = filter();
     banner.parts.chips.replaceChildren(...MODES.map(([mode, label]) => chip(lt(label), f.mode === mode, () => setFilter({ mode }))));
+    paintCats();
+    paintBg();
+  }
+
+  let bgShown = -1;
+  async function paintBg() {
+    const id = PAGE && state && state.background ? Number(state.background.id) || 0 : 0;
+    if (id === bgShown) return;
+    bgShown = id;
+    let url = '';
+    if (id) {
+      const d = await fetch(`https://thumbnails.roblox.com/v1/assets?assetIds=${id}&size=420x420&format=Webp`, { credentials: 'include' }).then(r => (r.ok ? r.json() : null)).catch(() => null);
+      url = (d && d.data && d.data[0] && d.data[0].imageUrl) || '';
+    }
+    if (bgShown !== id) return;
+    const root = document.documentElement;
+    root.classList.toggle('routility-sb-has-bg', !!url);
+    if (url) root.style.setProperty('--routility-sb-bg', `url("${url.replace(/"/g, '')}")`);
+    else root.style.removeProperty('--routility-sb-bg');
   }
 
   let renderSeq = 0;
@@ -640,9 +720,10 @@
         send('filter', { filter: state.filter });
       }
       paint();
-      openDefault();
+      go(view.cat);
     }
     if (banner.nextElementSibling !== host) host.before(banner);
+    hiddenTabOpen();
     placeTools();
   }
 
@@ -705,18 +786,6 @@
     mine.querySelector('a').classList.toggle('bg-shift-200', here);
     if (here) avatar.classList.remove('bg-shift-200');
   }
-
-  document.addEventListener('pointerdown', (e) => {
-    const li = e.isTrusted && e.target.closest?.('#avatar-web-app .tab-horizontal-submenu li');
-    if (li && lastHeading) {
-      lastPick = { heading: lastHeading, label: li.textContent.trim() };
-    }
-  }, true);
-  let lastHeading = '';
-  document.addEventListener('mouseover', (e) => {
-    const h = e.isTrusted && e.target.closest?.('#avatar-web-app [id^="heading."]');
-    if (h) lastHeading = h.id;
-  }, true);
 
   window.addEventListener('message', (e) => {
     if (e.source !== window || !e.data || e.data.type !== 'routility-sandbox-result' || !banner) return;

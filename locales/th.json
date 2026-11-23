@@ -3628,5 +3628,20 @@
  "Cancel after {n} days": {"other": "ยกเลิกหลัง {n} วัน"},
  "Cancel {n} waiting trades now": {"other": "ยกเลิกเทรดที่รอตอบ {n} รายการตอนนี้"},
  "Cancel {n} waiting trades?": {"other": "ยกเลิกเทรดที่รอตอบ {n} รายการไหม"},
- "Cancelled {n} trades.": {"other": "ยกเลิกเทรด {n} รายการแล้ว"}
+ "Cancelled {n} trades.": {"other": "ยกเลิกเทรด {n} รายการแล้ว"},
+ "Hats": "หมวก",
+ "Neck": "คอ",
+ "Shoulders": "ไหล่",
+ "Front": "ด้านหน้า",
+ "Heads": "หัว",
+ "Tops": "ท่อนบน",
+ "Bottoms": "ท่อนล่าง",
+ "Shoes": "รองเท้า",
+ "Skin Tone": "สีผิว",
+ "Backgrounds": "พื้นหลัง",
+ "My Items": "ไอเท็มของฉัน",
+ "Redo": "ทำซ้ำ",
+ "{pct}% off with Roblox Plus": "ลด {pct}% กับ Roblox Plus",
+ "Buy the {n} you don’t own": {"other": "ซื้อ {n} ชิ้นที่คุณยังไม่มี"},
+ "Get the {n} you don’t own": {"other": "รับ {n} ชิ้นที่คุณยังไม่มี"}
 }

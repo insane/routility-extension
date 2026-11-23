@@ -3784,5 +3784,20 @@
  "Cancel after {n} days": {"one": "Annuler après {n} jour", "other": "Annuler après {n} jours"},
  "Cancel {n} waiting trades now": {"one": "Annuler {n} échange en attente maintenant", "other": "Annuler {n} échanges en attente maintenant"},
  "Cancel {n} waiting trades?": {"one": "Annuler {n} échange en attente ?", "other": "Annuler {n} échanges en attente ?"},
- "Cancelled {n} trades.": {"one": "{n} échange annulé.", "other": "{n} échanges annulés."}
+ "Cancelled {n} trades.": {"one": "{n} échange annulé.", "other": "{n} échanges annulés."},
+ "Hats": "Chapeaux",
+ "Neck": "Cou",
+ "Shoulders": "Épaules",
+ "Front": "Avant",
+ "Heads": "Têtes",
+ "Tops": "Hauts",
+ "Bottoms": "Bas",
+ "Shoes": "Chaussures",
+ "Skin Tone": "Teint",
+ "Backgrounds": "Arrière-plans",
+ "My Items": "Mes objets",
+ "Redo": "Rétablir",
+ "{pct}% off with Roblox Plus": "{pct}% de réduction avec Roblox Plus",
+ "Buy the {n} you don’t own": {"one": "Acheter le {n} que tu n’as pas", "other": "Acheter les {n} que tu n’as pas"},
+ "Get the {n} you don’t own": {"one": "Obtenir le {n} que tu n’as pas", "other": "Obtenir les {n} que tu n’as pas"}
 }

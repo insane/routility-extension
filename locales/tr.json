@@ -3784,5 +3784,20 @@
  "Cancel after {n} days": {"one": "{n} gün sonra iptal et", "other": "{n} gün sonra iptal et"},
  "Cancel {n} waiting trades now": {"one": "Bekleyen {n} takası şimdi iptal et", "other": "Bekleyen {n} takası şimdi iptal et"},
  "Cancel {n} waiting trades?": {"one": "Bekleyen {n} takas iptal edilsin mi?", "other": "Bekleyen {n} takas iptal edilsin mi?"},
- "Cancelled {n} trades.": {"one": "{n} takas iptal edildi.", "other": "{n} takas iptal edildi."}
+ "Cancelled {n} trades.": {"one": "{n} takas iptal edildi.", "other": "{n} takas iptal edildi."},
+ "Hats": "Şapkalar",
+ "Neck": "Boyun",
+ "Shoulders": "Omuzlar",
+ "Front": "Ön",
+ "Heads": "Kafalar",
+ "Tops": "Üstler",
+ "Bottoms": "Altlar",
+ "Shoes": "Ayakkabılar",
+ "Skin Tone": "Ten Rengi",
+ "Backgrounds": "Arka Planlar",
+ "My Items": "Eşyalarım",
+ "Redo": "Yinele",
+ "{pct}% off with Roblox Plus": "Roblox Plus ile %{pct} indirim",
+ "Buy the {n} you don’t own": {"one": "Sahip olmadığın {n} eşyayı satın al", "other": "Sahip olmadığın {n} eşyayı satın al"},
+ "Get the {n} you don’t own": {"one": "Sahip olmadığın {n} eşyayı al", "other": "Sahip olmadığın {n} eşyayı al"}
 }

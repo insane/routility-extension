@@ -3628,5 +3628,20 @@
  "Cancel after {n} days": {"other": "{n}일 후 취소"},
  "Cancel {n} waiting trades now": {"other": "대기 중인 거래 {n}개 지금 취소"},
  "Cancel {n} waiting trades?": {"other": "대기 중인 거래 {n}개를 취소할까요?"},
- "Cancelled {n} trades.": {"other": "거래 {n}개를 취소했어요."}
+ "Cancelled {n} trades.": {"other": "거래 {n}개를 취소했어요."},
+ "Hats": "모자",
+ "Neck": "목",
+ "Shoulders": "어깨",
+ "Front": "앞",
+ "Heads": "머리",
+ "Tops": "상의",
+ "Bottoms": "하의",
+ "Shoes": "신발",
+ "Skin Tone": "피부색",
+ "Backgrounds": "배경",
+ "My Items": "내 아이템",
+ "Redo": "다시 실행",
+ "{pct}% off with Roblox Plus": "Roblox Plus로 {pct}% 할인",
+ "Buy the {n} you don’t own": {"other": "없는 {n}개 구매"},
+ "Get the {n} you don’t own": {"other": "없는 {n}개 받기"}
 }

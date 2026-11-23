@@ -3780,5 +3780,20 @@
  "Cancel after {n} days": {"one": "Cancel after {n} day", "other": "Cancel after {n} days"},
  "Cancel {n} waiting trades now": {"one": "Cancel {n} waiting trade now", "other": "Cancel {n} waiting trades now"},
  "Cancel {n} waiting trades?": {"one": "Cancel {n} waiting trade?", "other": "Cancel {n} waiting trades?"},
- "Cancelled {n} trades.": {"one": "Cancelled {n} trade.", "other": "Cancelled {n} trades."}
+ "Cancelled {n} trades.": {"one": "Cancelled {n} trade.", "other": "Cancelled {n} trades."},
+ "Hats": "Hats",
+ "Neck": "Neck",
+ "Shoulders": "Shoulders",
+ "Front": "Front",
+ "Heads": "Heads",
+ "Tops": "Tops",
+ "Bottoms": "Bottoms",
+ "Shoes": "Shoes",
+ "Skin Tone": "Skin Tone",
+ "Backgrounds": "Backgrounds",
+ "My Items": "My Items",
+ "Redo": "Redo",
+ "{pct}% off with Roblox Plus": "{pct}% off with Roblox Plus",
+ "Buy the {n} you don’t own": {"one": "Buy the {n} you don’t own", "other": "Buy the {n} you don’t own"},
+ "Get the {n} you don’t own": {"one": "Get the {n} you don’t own", "other": "Get the {n} you don’t own"}
 }

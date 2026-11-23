@@ -3628,5 +3628,20 @@
  "Cancel after {n} days": {"other": "Batalkan setelah {n} hari"},
  "Cancel {n} waiting trades now": {"other": "Batalkan {n} trade yang menunggu sekarang"},
  "Cancel {n} waiting trades?": {"other": "Batalkan {n} trade yang menunggu?"},
- "Cancelled {n} trades.": {"other": "{n} trade dibatalkan."}
+ "Cancelled {n} trades.": {"other": "{n} trade dibatalkan."},
+ "Hats": "Topi",
+ "Neck": "Leher",
+ "Shoulders": "Bahu",
+ "Front": "Depan",
+ "Heads": "Kepala",
+ "Tops": "Atasan",
+ "Bottoms": "Bawahan",
+ "Shoes": "Sepatu",
+ "Skin Tone": "Warna Kulit",
+ "Backgrounds": "Latar",
+ "My Items": "Item Saya",
+ "Redo": "Ulangi",
+ "{pct}% off with Roblox Plus": "Diskon {pct}% dengan Roblox Plus",
+ "Buy the {n} you don’t own": {"other": "Beli {n} yang belum kamu punya"},
+ "Get the {n} you don’t own": {"other": "Dapatkan {n} yang belum kamu punya"}
 }

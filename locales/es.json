@@ -3784,5 +3784,20 @@
  "Cancel after {n} days": {"one": "Cancelar después de {n} día", "other": "Cancelar después de {n} días"},
  "Cancel {n} waiting trades now": {"one": "Cancelar {n} trade en espera ahora", "other": "Cancelar {n} trades en espera ahora"},
  "Cancel {n} waiting trades?": {"one": "¿Cancelar {n} trade en espera?", "other": "¿Cancelar {n} trades en espera?"},
- "Cancelled {n} trades.": {"one": "Se canceló {n} trade.", "other": "Se cancelaron {n} trades."}
+ "Cancelled {n} trades.": {"one": "Se canceló {n} trade.", "other": "Se cancelaron {n} trades."},
+ "Hats": "Sombreros",
+ "Neck": "Cuello",
+ "Shoulders": "Hombros",
+ "Front": "Frente",
+ "Heads": "Cabezas",
+ "Tops": "Partes de arriba",
+ "Bottoms": "Partes de abajo",
+ "Shoes": "Zapatos",
+ "Skin Tone": "Tono de piel",
+ "Backgrounds": "Fondos",
+ "My Items": "Mis ítems",
+ "Redo": "Rehacer",
+ "{pct}% off with Roblox Plus": "{pct}% de descuento con Roblox Plus",
+ "Buy the {n} you don’t own": {"one": "Comprar el {n} que no tienes", "other": "Comprar los {n} que no tienes"},
+ "Get the {n} you don’t own": {"one": "Obtener el {n} que no tienes", "other": "Obtener los {n} que no tienes"}
 }

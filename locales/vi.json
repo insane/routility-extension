@@ -3628,5 +3628,20 @@
  "Cancel after {n} days": {"other": "Hủy sau {n} ngày"},
  "Cancel {n} waiting trades now": {"other": "Hủy {n} giao dịch đang chờ ngay"},
  "Cancel {n} waiting trades?": {"other": "Hủy {n} giao dịch đang chờ?"},
- "Cancelled {n} trades.": {"other": "Đã hủy {n} giao dịch."}
+ "Cancelled {n} trades.": {"other": "Đã hủy {n} giao dịch."},
+ "Hats": "Mũ",
+ "Neck": "Cổ",
+ "Shoulders": "Vai",
+ "Front": "Phía trước",
+ "Heads": "Đầu",
+ "Tops": "Áo",
+ "Bottoms": "Quần",
+ "Shoes": "Giày",
+ "Skin Tone": "Màu da",
+ "Backgrounds": "Hình nền",
+ "My Items": "Vật phẩm của tôi",
+ "Redo": "Làm lại",
+ "{pct}% off with Roblox Plus": "Giảm {pct}% với Roblox Plus",
+ "Buy the {n} you don’t own": {"other": "Mua {n} món bạn chưa có"},
+ "Get the {n} you don’t own": {"other": "Nhận {n} món bạn chưa có"}
 }

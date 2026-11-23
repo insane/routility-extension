@@ -3628,5 +3628,20 @@
  "Cancel after {n} days": {"other": "{n} 天後取消"},
  "Cancel {n} waiting trades now": {"other": "立即取消 {n} 筆等待中的交易"},
  "Cancel {n} waiting trades?": {"other": "取消 {n} 筆等待中的交易？"},
- "Cancelled {n} trades.": {"other": "已取消 {n} 筆交易。"}
+ "Cancelled {n} trades.": {"other": "已取消 {n} 筆交易。"},
+ "Hats": "帽子",
+ "Neck": "頸部",
+ "Shoulders": "肩部",
+ "Front": "前面",
+ "Heads": "頭部",
+ "Tops": "上衣",
+ "Bottoms": "下身",
+ "Shoes": "鞋子",
+ "Skin Tone": "膚色",
+ "Backgrounds": "背景",
+ "My Items": "我的物品",
+ "Redo": "重做",
+ "{pct}% off with Roblox Plus": "Roblox Plus 優惠 {pct}%",
+ "Buy the {n} you don’t own": {"other": "購買你沒有的 {n} 件"},
+ "Get the {n} you don’t own": {"other": "領取你沒有的 {n} 件"}
 }

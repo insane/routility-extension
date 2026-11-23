@@ -16220,3 +16220,24 @@ html.routility-av-lim-on #avatar-web-app .tab-horizontal-submenu li.active:not(.
 .routility-mass-stat > b { font-weight: 700; }
 .routility-mass-stat-good > b { color: var(--color-system-success, #39c582); }
 .routility-mass-results > .routility-mass-pick > .routility-mass-pick-menu { left: auto; right: 0; }
+html.routility-sandbox #avatar-web-app .rbx-tabs-horizontal,
+html.routility-sandbox #avatar-web-app .right-wrapper-placeholder,
+html.routility-sandbox #avatar-web-app .routility-av-crumb-row > .breadcrumb-container {
+  display: none !important;
+}
+html.routility-sandbox #avatar-web-app .tab-content.rbx-tab-content { margin-top: 0 !important; }
+html.routility-sandbox #avatar-web-app .routility-av-crumb-row { justify-content: space-between; }
+.routility-sb-src { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; flex: none; }
+.routility-sb-cats { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 12px 0 4px; padding-bottom: 2px; }
+.routility-sb-cats::-webkit-scrollbar { display: none; }
+.routility-sb-cats > .routility-sb-chip { flex: none; }
+.routility-sb-sort[hidden] { display: none !important; }
+html.routility-sandbox.routility-sb-has-bg #avatar-web-app #UserAvatar { background: var(--routility-sb-bg) center / cover no-repeat !important; }
+.routility-av-buy { position: relative; margin-top: 10px; }
+.routility-av-buy-btn { gap: 12px; }
+.routility-av-buy-menu { position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 60; max-height: 280px; overflow-y: auto; }
+.routility-av-buy-item { justify-content: space-between; text-decoration: none !important; }
+.routility-av-buy-item:hover { background: var(--color-state-hover, rgba(208, 217, 251, 0.08)); }
+.routility-av-buy-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.routility-av-buy-price { flex: none; }
+.routility-av-buy-plus { margin-top: 6px; }

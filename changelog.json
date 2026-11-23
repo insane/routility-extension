@@ -9,7 +9,7 @@
     {
       "version": "1.3.3",
       "date": "2026-11-23",
-      "summary": "Mass Send can wait for you to check each trade before it goes out, shows how your last run did, saves your setups, lets you choose what kind of items it adds, counts your trades left better and reads 20k in Add Robux.",
+      "summary": "Mass Send can wait for you to check each trade, shows how your last run did and saves your setups, and Sandbox gets one row of categories, backgrounds and a buy button.",
       "changes": [
         { "type": "new", "text": "Review each trade (Mass Send): pick Let me review each trade under Before sending and every trade waits for you to press Send or Skip before it goes out." },
         { "type": "new", "text": "Shuffle picks (Mass Send): choose Upgrade, Downgrade or exactly how many items Shuffle adds, pick the demand the added items need and never add unvalued items, faces, gear or items that are dropping or unstable." },
@@ -21,7 +21,14 @@
         { "type": "improved", "text": "Mass Send: a simpler page, with every choice in a short row of dropdowns instead of rows of buttons." },
         { "type": "new", "text": "Last run (Mass Send): see how your last run did, with how many trades were accepted, countered, declined or are still waiting." },
         { "type": "new", "text": "Saved setups (Mass Send): save your items, what you want and every option, then load it again in one click." },
-        { "type": "new", "text": "Cancel unanswered trades (Mass Send): have Mass Send trades nobody answered cancel after 1, 2 or 3 days, even while Roblox isn’t open, or cancel the ones still waiting right away." }
+        { "type": "new", "text": "Cancel unanswered trades (Mass Send): have Mass Send trades nobody answered cancel after 1, 2 or 3 days, even while Roblox isn’t open, or cancel the ones still waiting right away." },
+        { "type": "improved", "text": "Sandbox: one row of categories replaces Roblox’s hover menus, starting on All so you can browse everything at once." },
+        { "type": "new", "text": "My Items (Sandbox): switch between your own items and the whole Marketplace." },
+        { "type": "new", "text": "Backgrounds (Sandbox): try any Marketplace background behind your avatar without changing your real one." },
+        { "type": "new", "text": "Redo (Sandbox): next to Undo, brings back what you just undid." },
+        { "type": "new", "text": "Buy what you don’t own (Sandbox): a button under Outfit Worth shows what the pieces you don’t own cost, with your Roblox Plus discount, and lists each one with a link to buy it." },
+        { "type": "fixed", "text": "Sandbox: no longer lands on the last Avatars page you had open." },
+        { "type": "fixed", "text": "Sandbox: the Limiteds tab only shows on your real avatar, since Sandbox already has its own Limiteds filter." }
       ]
     },
     {

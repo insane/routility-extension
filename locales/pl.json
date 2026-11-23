@@ -4096,5 +4096,20 @@
  "Cancel after {n} days": {"one": "Anuluj po {n} dniu", "few": "Anuluj po {n} dniach", "many": "Anuluj po {n} dniach", "other": "Anuluj po {n} dniach"},
  "Cancel {n} waiting trades now": {"one": "Anuluj teraz {n} czekającą wymianę", "few": "Anuluj teraz {n} czekające wymiany", "many": "Anuluj teraz {n} czekających wymian", "other": "Anuluj teraz {n} czekające wymiany"},
  "Cancel {n} waiting trades?": {"one": "Anulować {n} czekającą wymianę?", "few": "Anulować {n} czekające wymiany?", "many": "Anulować {n} czekających wymian?", "other": "Anulować {n} czekające wymiany?"},
- "Cancelled {n} trades.": {"one": "Anulowano {n} wymianę.", "few": "Anulowano {n} wymiany.", "many": "Anulowano {n} wymian.", "other": "Anulowano {n} wymiany."}
+ "Cancelled {n} trades.": {"one": "Anulowano {n} wymianę.", "few": "Anulowano {n} wymiany.", "many": "Anulowano {n} wymian.", "other": "Anulowano {n} wymiany."},
+ "Hats": "Kapelusze",
+ "Neck": "Szyja",
+ "Shoulders": "Ramiona",
+ "Front": "Przód",
+ "Heads": "Głowy",
+ "Tops": "Góry",
+ "Bottoms": "Doły",
+ "Shoes": "Buty",
+ "Skin Tone": "Kolor skóry",
+ "Backgrounds": "Tła",
+ "My Items": "Moje przedmioty",
+ "Redo": "Ponów",
+ "{pct}% off with Roblox Plus": "{pct}% taniej z Roblox Plus",
+ "Buy the {n} you don’t own": {"one": "Kup {n} brakujący", "few": "Kup {n} brakujące", "many": "Kup {n} brakujących", "other": "Kup {n} brakujące"},
+ "Get the {n} you don’t own": {"one": "Odbierz {n} brakujący", "few": "Odbierz {n} brakujące", "many": "Odbierz {n} brakujących", "other": "Odbierz {n} brakujące"}
 }
