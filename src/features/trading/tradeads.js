@@ -908,6 +908,8 @@
   const BLOCK_KEY = 'routilityMassBlocked';
   const WEEK = 7 * DAY;
   const ADDS_KEY = 'routilityMassAdds';
+  const RUNS_KEY = 'routilityMassRuns';
+  const SETUPS_KEY = 'routilityMassSetups';
   const DEMAND_RANK = { Terrible: 0, Low: 1, Normal: 2, High: 3, Amazing: 4 };
   const ADD_DEMAND = [['any', LT('Any demand')], ['Normal', LT('Normal demand or better')], ['High', LT('High demand or better')], ['Amazing', LT('Amazing demand')]];
   const ADD_NEVER = [['rap', LT('Unvalued (RAP) items')], ['face', LT('Faces')], ['gear', LT('Gear')], ['trend', LT('Dropping or unstable items')]];
@@ -922,7 +924,7 @@
   }
 
   function buildMass() {
-    const st = { off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, blocked: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null, rangeFrom: '', rangeTo: '', rangeCount: '', owned: [2, OWNED.length - 1], adds: { demand: 'any', never: {}, count: 'any' }, review: false, ownedCustom: false };
+    const st = { setups: [], cancel: 0, runAt: 0, off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, blocked: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null, rangeFrom: '', rangeTo: '', rangeCount: '', owned: [2, OWNED.length - 1], adds: { demand: 'any', never: {}, count: 'any' }, review: false, ownedCustom: false };
     try {
       const saved = JSON.parse(localStorage.getItem(ADDS_KEY) || 'null');
       if (saved && typeof saved === 'object') {
@@ -1030,7 +1032,11 @@
     cont.dataset.rtTip = lt('Picks up where it stopped, skipping everyone it already sent to');
     const test = fbutton(lt('Test Run'), 'bg-action-standard content-action-standard');
     test.dataset.rtTip = lt('Goes through everything, but doesn’t send any trades');
-    footRow.append(cont, start, test, hintEl);
+    const savedPick = menuButton(() => lt('Saved setups'), () => [{ plain: true, empty: lt('Nothing saved yet'), items: st.setups.map(x => ({ label: x.name, run: () => loadSetup(x), remove: () => removeSetup(x), removeLabel: lt('Delete') })) }], () => ({ label: lt('Save this setup'), run: saveSetup }));
+    savedPick.classList.add('routility-mass-saved');
+    footRow.append(cont, start, test, savedPick, hintEl);
+    const results = el('div', 'routility-mass-results');
+    results.hidden = true;
     const progress = el('div', 'routility-mass-progress');
     progress.hidden = true;
     const status = el('div', 'text-body-medium content-default routility-mass-status');
@@ -1065,7 +1071,7 @@
     const rFrom = rangeField(lt('From'), 'rangeFrom', lt('e.g. {n}', { n: '25k' }), { max: 14, logo: true, cls: 'routility-mass-range-val' });
     const rTo = rangeField(lt('To'), 'rangeTo', lt('e.g. {n}', { n: '35k' }), { max: 14, logo: true, cls: 'routility-mass-range-val' });
     const rCount = rangeField(lt('How many'), 'rangeCount', lt('Any'), { max: 1, logo: false, cls: 'routility-mass-range-count' });
-    sendPanel.append(sendHead, opts, footRow, progress);
+    sendPanel.append(sendHead, opts, footRow, results, progress);
     root.append(form, sendPanel);
 
     function hint(text, alert) {
@@ -1189,12 +1195,33 @@
         menu.setAttribute('role', 'menu');
         menu.addEventListener('routility-close', close);
         if (columns) menu.classList.add('routility-mass-pick-cols');
-        sections.forEach((sec, i) => {
+        (typeof sections === 'function' ? sections() : sections).forEach((sec, i) => {
           const host = columns && sec.title ? el('div', 'routility-mass-pick-col') : menu;
           if (host !== menu) menu.appendChild(host);
           if (i && !columns) menu.appendChild(el('div', 'routility-mass-pick-sep'));
           if (sec.title) host.appendChild(el('div', 'text-caption-medium content-muted routility-mass-pick-head', sec.title));
+          if (sec.empty && !sec.items.length) host.appendChild(el('div', 'text-body-small content-muted routility-mass-pick-empty', sec.empty));
           for (const o of sec.items) {
+            if (sec.plain) {
+              const row = el('div', 'routility-mass-pick-row');
+              const it = el('button', 'relative clip group/interactable focus-visible:outline-focus foundation-web-menu-item flex items-center content-default cursor-pointer stroke-none bg-none text-align-x-left width-full text-body-medium padding-x-medium padding-y-small radius-medium routility-mass-pick-item');
+              it.type = 'button';
+              it.setAttribute('role', 'menuitem');
+              it.append(layer(), el('span', 'routility-mass-pick-name', o.label));
+              it.addEventListener('click', () => { close(); o.run(); });
+              row.appendChild(it);
+              if (o.remove) {
+                const x = el('button', 'relative clip group/interactable focus-visible:outline-focus cursor-pointer stroke-none bg-none radius-medium routility-mass-pick-remove');
+                x.type = 'button';
+                x.setAttribute('aria-label', o.removeLabel || lt('Remove'));
+                x.dataset.rtTip = o.removeLabel || lt('Remove');
+                x.append(layer(), el('span', 'icon icon-regular-x size-400'));
+                x.addEventListener('click', () => { o.remove(); row.remove(); });
+                row.appendChild(x);
+              }
+              host.appendChild(row);
+              continue;
+            }
             if (sec.multi) {
               const it = item('menuitemcheckbox', !!o.on(), o.label);
               it.addEventListener('click', () => {
@@ -1211,11 +1238,12 @@
             }
           }
         });
-        if (footer) {
+        const foot = typeof footer === 'function' ? footer() : footer;
+        if (foot) {
           menu.appendChild(el('div', 'routility-mass-pick-sep'));
-          const f = el('button', 'relative clip group/interactable focus-visible:outline-focus foundation-web-menu-item flex items-center content-muted cursor-pointer stroke-none bg-none text-align-x-left width-full text-body-medium padding-x-medium padding-y-small radius-medium routility-mass-pick-item', footer.label);
+          const f = el('button', 'relative clip group/interactable focus-visible:outline-focus foundation-web-menu-item flex items-center content-muted cursor-pointer stroke-none bg-none text-align-x-left width-full text-body-medium padding-x-medium padding-y-small radius-medium routility-mass-pick-item', foot.label);
           f.type = 'button';
-          f.addEventListener('click', () => { close(); footer.run(); });
+          f.addEventListener('click', () => { close(); foot.run(); });
           menu.appendChild(f);
         }
         wrap.appendChild(menu);
@@ -1230,6 +1258,8 @@
         (menu.querySelector('[aria-checked="true"]') || menu.querySelector('button'))?.focus();
       });
       wrap.appendChild(btn);
+      wrap.btn = btn;
+      wrap.refresh = () => { label.textContent = text(); };
       return wrap;
     }
 
@@ -1490,6 +1520,8 @@
       queueMicrotask(() => {
         test.hidden = !!st.job;
         test.disabled = start.disabled;
+        savedPick.btn.disabled = !!st.job;
+        results.querySelectorAll('button').forEach(b => { b.disabled = !!st.job || !!st.cancelling; });
         const can = !!(st.resume && !st.job && st.resume.sig === runSig());
         cont.hidden = !can;
         cont.disabled = start.disabled;
@@ -1775,6 +1807,235 @@
       mine[String(id)] = Date.now();
       all[myId()] = mine;
       chrome.storage.local.set({ [TO_KEY]: all });
+    }
+
+    function runStore() {
+      return new Promise(res => chrome.storage.local.get(RUNS_KEY, (v) => {
+        const all = (v && v[RUNS_KEY]) || {};
+        const raw = all[myId()];
+        const mine = raw && typeof raw === 'object' && !Array.isArray(raw) ? raw : {};
+        mine.runs = (Array.isArray(mine.runs) ? mine.runs : []).filter(r => r && Array.isArray(r.ids) && Date.now() - r.at < 14 * DAY).slice(0, 20);
+        mine.cancel = [1, 2, 3].includes(mine.cancel) ? mine.cancel : 0;
+        res({ all, mine });
+      }));
+    }
+
+    let runWrite = Promise.resolve();
+    function rememberRun(id) {
+      const at = st.runAt;
+      if (!at || !id) return;
+      runWrite = runWrite.then(async () => {
+        const { all, mine } = await runStore();
+        let run = mine.runs.find(r => r.at === at);
+        if (!run) {
+          run = { at, ids: [] };
+          mine.runs.unshift(run);
+        }
+        if (!run.ids.includes(id)) run.ids.push(id);
+        all[myId()] = mine;
+        await chrome.storage.local.set({ [RUNS_KEY]: all });
+      }).catch(() => {});
+    }
+
+    async function tradesSince(type, since) {
+      const out = new Map();
+      let cursor = '';
+      for (let p = 0; p < 10; p++) {
+        let body = null;
+        try {
+          const r = await fetch(`https://trades.roblox.com/v1/trades/${type}?sortOrder=Desc&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`, { credentials: 'include' });
+          if (r.ok) body = await r.json();
+        } catch {}
+        if (!body || !Array.isArray(body.data)) return p ? out : null;
+        let older = false;
+        for (const t of body.data) {
+          if (new Date(t.created).getTime() < since - 120000) { older = true; continue; }
+          out.set(String(t.id), String(t.status || ''));
+        }
+        cursor = body.nextPageCursor || '';
+        if (!cursor || older) break;
+      }
+      return out;
+    }
+
+    async function declineOne(id) {
+      for (let i = 0; i < 6; i++) {
+        try {
+          const r = await fetch(`https://trades.roblox.com/v1/trades/${id}/decline`, { method: 'POST', credentials: 'include', headers: massCsrf ? { 'x-csrf-token': massCsrf } : {} });
+          if (r.status === 403 && r.headers.get('x-csrf-token')) { massCsrf = r.headers.get('x-csrf-token'); continue; }
+          if (r.status === 429) { await wait(5000 * (i + 1)); continue; }
+          return r.ok;
+        } catch {
+          await wait(1500);
+        }
+      }
+      return false;
+    }
+
+    let resultsAt = 0;
+    async function paintResults() {
+      const ticket = ++resultsAt;
+      const { mine } = await runStore();
+      st.cancel = mine.cancel;
+      const run = mine.runs.find(r => r.ids.length);
+      if (!run) {
+        results.hidden = true;
+        return;
+      }
+      const [open, done, gone] = await Promise.all([tradesSince('outbound', run.at), tradesSince('completed', run.at), tradesSince('inactive', run.at)]);
+      if (ticket !== resultsAt) return;
+      const n = { sent: run.ids.length, accepted: 0, countered: 0, declined: 0, waiting: 0 };
+      const waiting = [];
+      for (const id of run.ids) {
+        if (open && open.has(id)) { n.waiting++; waiting.push(id); }
+        else if (done && done.has(id)) n.accepted++;
+        else if (gone && gone.get(id) === 'Countered') n.countered++;
+        else if (gone && gone.has(id)) n.declined++;
+      }
+      const known = !!(open && done && gone);
+      const stat = (value, text, cls) => {
+        const b = el('span', 'text-body-small content-muted routility-mass-stat' + (cls ? ' ' + cls : ''));
+        b.append(el('b', 'content-emphasis', formatNumber(value)), document.createTextNode(' ' + text));
+        return b;
+      };
+      const stats = el('div', 'routility-mass-stats');
+      stats.appendChild(el('span', 'text-caption-medium content-muted routility-mass-results-label', lt('Last run, {time}', { time: ago(run.at) })));
+      stats.appendChild(stat(n.sent, lt('sent')));
+      if (known) {
+        stats.appendChild(stat(n.accepted, lt('accepted'), n.accepted ? 'routility-mass-stat-good' : ''));
+        stats.appendChild(stat(n.countered, lt('countered')));
+        stats.appendChild(stat(n.declined, lt('declined')));
+        stats.appendChild(stat(n.waiting, lt('waiting')));
+      }
+      const dayText = (d) => d ? ltn(d, 'Cancel after {n} day', 'Cancel after {n} days', { n: formatNumber(d) }) : lt('Keep waiting trades');
+      const cancelPick = menuButton(() => dayText(st.cancel), [
+        { title: lt('If they don’t answer'), items: [0, 1, 2, 3].map(d => ({ value: d, label: dayText(d) })), current: () => st.cancel, pick: (v) => setCancel(v, cancelPick) },
+      ], () => (waiting.length ? { label: ltn(waiting.length, 'Cancel {n} waiting trade now', 'Cancel {n} waiting trades now', { n: formatNumber(waiting.length) }), run: () => cancelNow(waiting) } : null));
+      cancelPick.dataset.rtTip = lt('Cancels Mass Send trades nobody answered, even while Roblox isn’t open');
+      results.replaceChildren(stats, cancelPick);
+      results.hidden = false;
+      paintTest();
+    }
+
+    async function setCancel(v, pickEl) {
+      const { all, mine } = await runStore();
+      mine.cancel = v;
+      all[myId()] = mine;
+      await chrome.storage.local.set({ [RUNS_KEY]: all });
+      st.cancel = v;
+      pickEl.refresh();
+    }
+
+    async function cancelNow(ids) {
+      if (st.job || st.cancelling || !ids.length) return;
+      const ok = await window.RoUtilityUI.confirmDialog({
+        title: ltn(ids.length, 'Cancel {n} waiting trade?', 'Cancel {n} waiting trades?', { n: formatNumber(ids.length) }),
+        text: lt('They’re taken off your Outbound list and the other person can’t accept them anymore.'),
+        confirm: lt('Cancel Trades'),
+        cancel: lt('Keep Them'),
+      });
+      if (!ok) return;
+      st.cancelling = true;
+      paintTest();
+      let gone = 0;
+      const label = results.querySelector('.routility-mass-results-label');
+      for (const [i, id] of ids.entries()) {
+        if (label) label.textContent = lt('Cancelling {n} of {total}', { n: formatNumber(i + 1), total: formatNumber(ids.length) });
+        if (await declineOne(id)) gone++;
+        await wait(600);
+      }
+      st.cancelling = false;
+      await paintResults();
+      hint(gone === ids.length ? ltn(gone, 'Cancelled {n} trade.', 'Cancelled {n} trades.', { n: formatNumber(gone) }) : lt('Cancelled {n} of {total}. Roblox refused the rest, so try again in a minute.', { n: formatNumber(gone), total: formatNumber(ids.length) }), gone !== ids.length);
+    }
+
+    function setupStore() {
+      return new Promise(res => chrome.storage.local.get(SETUPS_KEY, (v) => {
+        const all = (v && v[SETUPS_KEY]) || {};
+        const mine = Array.isArray(all[myId()]) ? all[myId()].filter(x => x && typeof x === 'object' && x.name) : [];
+        res({ all, mine });
+      }));
+    }
+
+    function snapshot() {
+      return {
+        off: st.off.map(e => ({ ...e })),
+        look: st.look.map(e => ({ ...e })),
+        rangeFrom: st.rangeFrom, rangeTo: st.rangeTo, rangeCount: st.rangeCount,
+        source: st.source, active: st.active, max: st.max,
+        owned: [...st.owned], ownedCustom: st.ownedCustom,
+        skip: { ...st.skip },
+        adds: { demand: st.adds.demand, never: { ...st.adds.never }, count: st.adds.count },
+        review: st.review,
+      };
+    }
+
+    function setupName() {
+      const names = (list) => {
+        const n = list.map(e => itemInfo(e.assetId).name);
+        return n.length > 2 ? lt('{items} and {n} more', { items: n.slice(0, 2).join(', '), n: n.length - 2 }) : n.join(', ');
+      };
+      const give = names(st.off.filter(e => e.kind === 'item'));
+      const items = st.look.filter(e => e.kind === 'item');
+      const r = range();
+      const want = items.length ? names(items) : r && typeof r === 'object' ? lt('{from} to {to}', { from: st.rangeFrom, to: st.rangeTo }) : '';
+      return want ? lt('{give} for {want}', { give, want }) : give;
+    }
+
+    async function saveSetup() {
+      if (st.job) return;
+      if (!st.off.some(e => e.kind === 'item')) return hint(lt('Pick at least one of your items first, then save.'), true);
+      const snap = snapshot();
+      const sig = JSON.stringify(snap);
+      const name = setupName();
+      const { all, mine } = await setupStore();
+      const list = [{ name, at: Date.now(), sig, ...snap }].concat(mine.filter(x => x.sig !== sig)).slice(0, 10);
+      all[myId()] = list;
+      await chrome.storage.local.set({ [SETUPS_KEY]: all });
+      st.setups = list;
+      hint(lt('Saved as {name}. Open Saved setups to use it again.', { name }));
+    }
+
+    async function removeSetup(x) {
+      const { all, mine } = await setupStore();
+      const list = mine.filter(y => y.sig !== x.sig);
+      all[myId()] = list;
+      await chrome.storage.local.set({ [SETUPS_KEY]: all });
+      st.setups = list;
+    }
+
+    function loadSetup(x) {
+      if (st.job) return;
+      const have = st.mine && !st.mine.failed ? new Set(st.mine.items.map(i => String(i.uaid))) : null;
+      const off = (Array.isArray(x.off) ? x.off : []).filter(e => e && ((e.kind === 'robux' && Number(e.amount) > 0) || (e.kind === 'item' && e.uaid && e.assetId)));
+      const missing = have ? off.filter(e => e.kind === 'item' && !have.has(String(e.uaid))) : [];
+      st.off = off.filter(e => !missing.includes(e)).map(e => e.kind === 'robux' ? { kind: 'robux', amount: Number(e.amount) } : { kind: 'item', assetId: String(e.assetId), uaid: String(e.uaid) });
+      st.look = (Array.isArray(x.look) ? x.look : []).filter(e => e && ((e.kind === 'item' && e.assetId) || (e.kind === 'tag' && TAGS.includes(e.tag)))).slice(0, 4).map(e => e.kind === 'tag' ? { kind: 'tag', tag: e.tag } : { kind: 'item', assetId: String(e.assetId) });
+      const text = (v) => (typeof v === 'string' ? v.replace(/[^\d.,kmbKMB]/g, '').slice(0, 14) : '');
+      st.rangeFrom = text(x.rangeFrom);
+      st.rangeTo = text(x.rangeTo);
+      st.rangeCount = /^[1-4]$/.test(String(x.rangeCount)) ? String(x.rangeCount) : '';
+      if (MASS_SOURCES.some(([k]) => k === x.source)) st.source = x.source;
+      if (MASS_ACTIVE.some(([k]) => k === x.active)) st.active = x.active;
+      if (MASS_COUNTS.includes(x.max)) st.max = x.max;
+      if (Array.isArray(x.owned) && x.owned.length === 2 && x.owned.every(v => Number.isInteger(v) && v >= 0 && v < OWNED.length) && x.owned[0] < x.owned[1]) st.owned = [...x.owned];
+      st.ownedCustom = x.ownedCustom === true;
+      if (x.skip && typeof x.skip === 'object') for (const [k] of MASS_SKIPS) st.skip[k] = x.skip[k] === true;
+      if (x.adds && typeof x.adds === 'object') {
+        if (ADD_DEMAND.some(([k]) => k === x.adds.demand)) st.adds.demand = x.adds.demand;
+        st.adds.never = {};
+        for (const [k] of ADD_NEVER) if (x.adds.never && x.adds.never[k] === true) st.adds.never[k] = true;
+        if (['any', 'up', 'down', '1', '2', '3', '4'].includes(String(x.adds.count))) st.adds.count = String(x.adds.count);
+      }
+      st.review = x.review === true;
+      saveAdds();
+      rFrom.input.value = st.rangeFrom;
+      rTo.input.value = st.rangeTo;
+      rCount.input.value = st.rangeCount;
+      const robux = st.off.find(e => e.kind === 'robux');
+      sides.off.amount.input.value = robux ? formatNumber(robux.amount) : '';
+      paint();
+      hint(missing.length ? lt('Loaded {name}. {items} isn’t in your inventory anymore, so it was left out.', { name: x.name, items: missing.map(e => itemInfo(e.assetId).name).join(', ') }) : lt('Loaded {name}.', { name: x.name }), missing.length > 0);
     }
 
     async function partnersIn(type, pages, job) {
@@ -2134,6 +2395,7 @@
         job.backoff = 0;
         job.sendWaits = 0;
         rememberSent(String(d.tradeId || d.id || 'x' + Date.now() + Math.random()));
+        if (d.tradeId || d.id) rememberRun(String(d.tradeId || d.id));
         rememberTo(c.id);
         if (st.today !== null) st.today++;
         if (asks) return done('sent', lt('Sent, asking for {items}', { items: asks }));
@@ -2172,6 +2434,7 @@
       const startSent = job.sent;
       st.resume = null;
       st.job = job;
+      if (!dry && !resume) st.runAt = Date.now();
       if (!resume) list.replaceChildren();
       progress.hidden = false;
       picks();
@@ -2186,6 +2449,7 @@
         status.classList.toggle('routility-ads-hint-alert', !!alert);
         bar.hidden = true;
         picks();
+        if (!dry) setTimeout(paintResults, 2000);
       };
       status.classList.remove('routility-ads-hint-alert');
       bar.hidden = false;
@@ -2286,6 +2550,8 @@
       root.started = true;
       paint();
       s.itemsJob.then(() => { paintGrid(sides.look); paintStart(); });
+      paintResults();
+      setupStore().then(({ mine }) => { st.setups = mine; });
       const { json } = window.RoUtilityUI;
       Promise.all([json('https://trades.roblox.com/v1/trades/metadata'), json('https://trades.roblox.com/v2/users/me/can-trade'), countToday({ stop: false })]).then(([meta, allow, today]) => {
         st.meta = meta;

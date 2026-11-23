@@ -1987,7 +1987,64 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === PLAY_ALARM) playtimeTick();
   if (alarm.name === ROT_ALARM) rotatorTick();
   if (alarm.name === BADGE_ALARM) badgeAutoTick();
+  if (alarm.name === MASS_ALARM) massCancelTick();
 });
+
+const MASS_ALARM = 'routility-mass-cancel';
+const MASS_RUNS = 'routilityMassRuns';
+let massRunning = null;
+
+async function syncMassAlarm() {
+  const all = (await chrome.storage.local.get(MASS_RUNS))[MASS_RUNS] || {};
+  const on = Object.values(all).some(r => r && [1, 2, 3].includes(r.cancel) && Array.isArray(r.runs) && r.runs.some(x => x && Array.isArray(x.ids) && x.ids.length));
+  const existing = await chrome.alarms.get(MASS_ALARM);
+  if (on && !existing) await chrome.alarms.create(MASS_ALARM, { delayInMinutes: 1, periodInMinutes: 30 });
+  if (!on && existing) await chrome.alarms.clear(MASS_ALARM);
+}
+
+async function massDecline(id, token) {
+  for (let i = 0; i < 4; i++) {
+    try {
+      const r = await fetch(`https://trades.roblox.com/v1/trades/${id}/decline`, { method: 'POST', credentials: 'include', headers: token.value ? { 'x-csrf-token': token.value } : {} });
+      if (r.status === 403 && r.headers.get('x-csrf-token')) { token.value = r.headers.get('x-csrf-token'); continue; }
+      if (r.status === 429) return false;
+      return r.ok;
+    } catch {
+      return false;
+    }
+  }
+  return false;
+}
+
+function massCancelTick() {
+  if (massRunning) return massRunning;
+  massRunning = (async () => {
+    const me = await signedInUser(true);
+    if (!me) return;
+    const all = (await chrome.storage.local.get(MASS_RUNS))[MASS_RUNS] || {};
+    const rec = all[me];
+    if (!rec || ![1, 2, 3].includes(rec.cancel) || !Array.isArray(rec.runs)) return;
+    const cutoff = Date.now() - rec.cancel * 864e5;
+    const due = new Set();
+    for (const run of rec.runs) if (run && run.at <= cutoff && Array.isArray(run.ids)) for (const id of run.ids) due.add(String(id));
+    if (!due.size) return;
+    const open = [];
+    let cursor = '';
+    for (let p = 0; p < 15; p++) {
+      const r = await authJson(`https://trades.roblox.com/v1/trades/outbound?sortOrder=Desc&limit=100${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`);
+      if (!r.data || !Array.isArray(r.data.data)) return;
+      for (const t of r.data.data) if (due.has(String(t.id))) open.push(String(t.id));
+      cursor = r.data.nextPageCursor || '';
+      if (!cursor) break;
+    }
+    const token = { value: '' };
+    for (const id of open.slice(0, 100)) {
+      await massDecline(id, token);
+      await new Promise(res => setTimeout(res, 800));
+    }
+  })().catch(() => {}).finally(() => { massRunning = null; });
+  return massRunning;
+}
 
 const BADGE_ALARM = 'routility-badge-auto';
 const BADGE_KEY = 'routilityBadgeAuto';
@@ -2537,8 +2594,8 @@ function syncRulesets(s) {
   chrome.declarativeNetRequest.updateStaticRules({ rulesetId: 'pages', enableRuleIds: pages.filter(([k]) => !s || s[k] !== false).map(([, id]) => id), disableRuleIds: pages.filter(([k]) => s && s[k] === false).map(([, id]) => id) }).catch(() => {});
 }
 
-chrome.runtime.onInstalled.addListener(() => { syncNotifyAlarm(); syncPlayAlarm(); syncRotatorAlarm(); syncBadgeAuto(); });
-chrome.runtime.onStartup.addListener(() => { syncNotifyAlarm(); syncPlayAlarm(); syncRotatorAlarm(); syncBadgeAuto(); setTimeout(() => playtimeSync('auto').catch(() => {}), 15000); });
+chrome.runtime.onInstalled.addListener(() => { syncNotifyAlarm(); syncPlayAlarm(); syncRotatorAlarm(); syncBadgeAuto(); syncMassAlarm(); });
+chrome.runtime.onStartup.addListener(() => { syncNotifyAlarm(); syncPlayAlarm(); syncRotatorAlarm(); syncBadgeAuto(); syncMassAlarm(); setTimeout(() => playtimeSync('auto').catch(() => {}), 15000); });
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area === 'local' && changes.routilitySettings) {
     syncNotifyAlarm();
@@ -2548,8 +2605,10 @@ chrome.storage.onChanged.addListener((changes, area) => {
     ensureLive();
     syncRulesets(changes.routilitySettings.newValue);
   }
+  if (area === 'local' && changes.routilityMassRuns) syncMassAlarm();
 });
 syncNotifyAlarm();
+syncMassAlarm();
 syncPlayAlarm();
 syncRotatorAlarm();
 syncBadgeAuto();

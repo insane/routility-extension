@@ -9,7 +9,7 @@
     {
       "version": "1.3.3",
       "date": "2026-11-23",
-      "summary": "Mass Send can wait for you to check each trade before it goes out, lets you choose what kind of items it adds, counts your trades left better and reads 20k in Add Robux.",
+      "summary": "Mass Send can wait for you to check each trade before it goes out, shows how your last run did, saves your setups, lets you choose what kind of items it adds, counts your trades left better and reads 20k in Add Robux.",
       "changes": [
         { "type": "new", "text": "Review each trade (Mass Send): pick Let me review each trade under Before sending and every trade waits for you to press Send or Skip before it goes out." },
         { "type": "new", "text": "Shuffle picks (Mass Send): choose Upgrade, Downgrade or exactly how many items Shuffle adds, pick the demand the added items need and never add unvalued items, faces, gear or items that are dropping or unstable." },
@@ -18,7 +18,10 @@
         { "type": "new", "text": "2-Step Verification (Mass Send): when Roblox asks to check it’s really you, type your code right in Mass Send and it keeps sending, instead of sending a trade from Roblox’s trade window." },
         { "type": "new", "text": "Mass Send: if Roblox needs you to verify while you’re in another tab or app, a notification tells you, and clicking it takes you back." },
         { "type": "new", "text": "Reset who I’ve sent to (Mass Send): in the Skip menu, forgets who you already mass sent to, so you can send the same people a new offer, like one with more Robux." },
-        { "type": "improved", "text": "Mass Send: a simpler page, with every choice in a short row of dropdowns instead of rows of buttons." }
+        { "type": "improved", "text": "Mass Send: a simpler page, with every choice in a short row of dropdowns instead of rows of buttons." },
+        { "type": "new", "text": "Last run (Mass Send): see how your last run did, with how many trades were accepted, countered, declined or are still waiting." },
+        { "type": "new", "text": "Saved setups (Mass Send): save your items, what you want and every option, then load it again in one click." },
+        { "type": "new", "text": "Cancel unanswered trades (Mass Send): have Mass Send trades nobody answered cancel after 1, 2 or 3 days, even while Roblox isn’t open, or cancel the ones still waiting right away." }
       ]
     },
     {
