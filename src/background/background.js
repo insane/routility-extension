@@ -1833,12 +1833,14 @@ async function handleLimitedNow(events, s) {
   }
   await chrome.storage.local.set({ [LIMITED_STATE]: { last, seen: [...seen].slice(-400) } });
   for (const ev of fresh.slice(-4)) {
-    const price = Number(ev.price) || 0;
+    const resale = ev.type === 'became_limited' || ev.priceKind === 'resale_only' || ev.price == null;
+    const price = resale ? 0 : Number(ev.price) || 0;
+    const free = !resale && Number(ev.price) === 0 && ev.priceKind === 'sale';
     const qty = Number(ev.totalQuantity) || 0;
-    const parts = [price ? `R$ ${price.toLocaleString('en-US')}` : lt('Free'), qty ? ltn(qty, '{n} copy', '{n} copies', { n: qty.toLocaleString('en-US') }) : '', ev.creatorName && !ev.isRoblox ? lt('by {creator}', { creator: ev.creatorName }) : ''].filter(Boolean);
+    const parts = [price ? `R$ ${price.toLocaleString('en-US')}` : free ? lt('Free') : '', qty ? ltn(qty, '{n} copy', '{n} copies', { n: qty.toLocaleString('en-US') }) : '', ev.creatorName && !ev.isRoblox ? lt('by {creator}', { creator: ev.creatorName }) : ''].filter(Boolean);
     const title = ev.type === 'became_limited' ? lt('Now Limited') : ev.isRoblox ? lt('New Limited') : lt('New UGC Limited');
     const icon = await thumbData('asset', ev.id);
-    await showNotification(`limited:${ev.type}:${ev.id}`, title, `${ev.name || lt('Unnamed item')}\n${parts.join(', ')}`, icon, `https://www.roblox.com/catalog/${ev.id}`, null, {
+    await showNotification(`limited:${ev.type}:${ev.id}`, title, [ev.name || lt('Unnamed item'), parts.join(', ')].filter(Boolean).join('\n'), icon, `https://www.roblox.com/catalog/${ev.id}`, null, {
       buttons: [{ title: lt('View Item'), url: `https://www.roblox.com/catalog/${ev.id}` }],
     });
   }
@@ -2643,7 +2645,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return true;
   }
   if (msg.type === 'notifyLimitedTest') {
-    const ev = { type: `test${Date.now()}`, id: 21070012, name: 'Dominus Empyreus', isRoblox: true, price: 0, totalQuantity: 26, creatorName: 'Roblox', at: Date.now() };
+    const ev = { type: `test${Date.now()}`, id: 21070012, name: 'Dominus Empyreus', isRoblox: true, price: 0, priceKind: 'sale', totalQuantity: 26, creatorName: 'Roblox', at: Date.now() };
     notifySettings().then(s => handleLimitedEvents([ev], { ...s, notifyLimiteds: true })).then(() => sendResponse(true));
     return true;
   }
