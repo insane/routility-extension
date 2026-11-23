@@ -992,13 +992,16 @@
         row.appendChild(amount);
         side.amount = amount;
         amount.input.addEventListener('input', () => {
-          amount.input.value = amount.input.value.replace(/[^\d.,]/g, '');
+          amount.input.value = amount.input.value.replace(/[^\d.,kKmM]/g, '').replace(/([kKmM]).+$/, '$1');
           if (st.job) return;
-          const v = window.RoUtilityUI.parseAmount(amount.input.value, true);
+          const raw = amount.input.value.trim();
+          const unit = /[kK]$/.test(raw) ? 1e3 : /[mM]$/.test(raw) ? 1e6 : 1;
+          const v = unit > 1 ? Math.round(window.RoUtilityUI.parseAmount(raw.slice(0, -1)) * unit) : window.RoUtilityUI.parseAmount(raw, true);
           st.off = st.off.filter(e => e.kind !== 'robux');
           if (v > 0) st.off.push({ kind: 'robux', amount: v });
           picks();
         });
+        amount.input.addEventListener('blur', () => { if (!st.job) picks(); });
       }
       const grid = el('div', 'routility-ads-grid');
       panel.appendChild(grid);

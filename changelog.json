@@ -21,6 +21,7 @@
         { "type": "new", "text": "Review each trade (Mass Send): turn it on under More options and every trade waits for you to press Send or Skip before it goes out." },
         { "type": "new", "text": "Shuffle and value range adds (Mass Send): under More options, pick the demand the added items need and never add unvalued items, faces, gear or items that are dropping or unstable." },
         { "type": "fixed", "text": "Mass Send: trades left today is more accurate, since trades that were declined or countered no longer drop out of the count." },
+        { "type": "fixed", "text": "Mass Send: typing 20k or 1.5m in Add Robux now adds 20,000 or 1,500,000 Robux instead of 20 or 1." },
         { "type": "improved", "text": "Closest region (Servers): picks from Roblox’s own list of the servers with the best connection to you." },
         { "type": "new", "text": "Creator Hub: Copy Universe ID, Copy Place ID, Copy URL and View on Roblox in the menu on a place’s settings page." },
         { "type": "improved", "text": "Trades: your trade filter and who can trade with you show as pills next to Unlimited trades." },
