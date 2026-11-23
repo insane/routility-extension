@@ -922,17 +922,17 @@
   }
 
   function buildMass() {
-    const st = { off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, blocked: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null, rangeFrom: '', rangeTo: '', rangeCount: '', owned: [2, OWNED.length - 1], adds: { demand: 'any', never: {} }, review: false, ownedCustom: false, more: false };
-    try { st.more = localStorage.getItem('routilityMassMore') === '1'; } catch {}
+    const st = { off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, blocked: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null, rangeFrom: '', rangeTo: '', rangeCount: '', owned: [2, OWNED.length - 1], adds: { demand: 'any', never: {}, count: 'any' }, review: false, ownedCustom: false };
     try {
       const saved = JSON.parse(localStorage.getItem(ADDS_KEY) || 'null');
       if (saved && typeof saved === 'object') {
         if (ADD_DEMAND.some(([k]) => k === saved.demand)) st.adds.demand = saved.demand;
         for (const [k] of ADD_NEVER) if (saved.never && saved.never[k] === true) st.adds.never[k] = true;
+        if (['any', 'up', 'down', '1', '2', '3', '4'].includes(String(saved.count))) st.adds.count = String(saved.count);
         st.review = saved.review === true;
       }
     } catch {}
-    const saveAdds = () => { try { localStorage.setItem(ADDS_KEY, JSON.stringify({ demand: st.adds.demand, never: st.adds.never, review: st.review })); } catch {} };
+    const saveAdds = () => { try { localStorage.setItem(ADDS_KEY, JSON.stringify({ demand: st.adds.demand, never: st.adds.never, count: st.adds.count, review: st.review })); } catch {} };
     const addOk = (it) => {
       if (!it) return false;
       const a = st.adds;
@@ -1040,8 +1040,6 @@
     bar.appendChild(fill);
     const list = el('ul', 'routility-clean-list routility-mass-list');
     progress.append(status, bar, list);
-    const rangeBox = el('div', 'routility-mass-opt routility-mass-rangebox');
-    const rangeRight = el('div', 'routility-mass-rangeright');
     const rangeFields = el('div', 'routility-mass-rangefields');
     const rangeField = (label, prop, placeholder, opts2) => {
       const wrap = el('label', 'routility-mass-field');
@@ -1067,9 +1065,7 @@
     const rFrom = rangeField(lt('From'), 'rangeFrom', lt('e.g. {n}', { n: '25k' }), { max: 14, logo: true, cls: 'routility-mass-range-val' });
     const rTo = rangeField(lt('To'), 'rangeTo', lt('e.g. {n}', { n: '35k' }), { max: 14, logo: true, cls: 'routility-mass-range-val' });
     const rCount = rangeField(lt('How many'), 'rangeCount', lt('Any'), { max: 1, logo: false, cls: 'routility-mass-range-count' });
-    rangeRight.append(rangeFields, el('span', 'text-body-small content-muted routility-mass-rangehelp', lt('Fills the empty boxes under You Want with items from each person’s own inventory, worth this much Value in total. How many is the number of items, blank for any. Leave From and To blank to turn it off.')));
-    rangeBox.append(el('span', 'text-label-medium content-muted routility-mass-opt-label', lt('Their items')), rangeRight);
-    sendPanel.append(sendHead, rangeBox, opts, footRow, progress);
+    sendPanel.append(sendHead, opts, footRow, progress);
     root.append(form, sendPanel);
 
     function hint(text, alert) {
@@ -1119,8 +1115,11 @@
       const goal = 1 + up;
       const now = st.look.map(e => e.assetId).sort().join(',');
       const found = new Map();
+      const mineCount = st.off.filter(e => e.kind === 'item').length;
+      const want = st.adds.count;
+      const sizes = want === 'up' ? [1, 2, 3].filter(k => k < mineCount).concat(mineCount <= 1 ? [1] : []) : want === 'down' ? [2, 3, 4].filter(k => k > mineCount).concat(mineCount >= 4 ? [4] : []) : /^[1-4]$/.test(String(want)) ? [Number(want)] : [1, 2, 3, 4];
       for (let tries = 0; tries < 1500 && found.size < 40; tries++) {
-        const n = 1 + Math.floor(Math.random() * 4);
+        const n = sizes[Math.floor(Math.random() * sizes.length)];
         const pad = tries < 900 ? 0.05 : 0.12;
         const got = combo(n, Math.max(1, goal - pad), goal + pad);
         if (!got) continue;
@@ -1154,6 +1153,90 @@
       return row;
     }
 
+    function menuButton(text, sections, footer, columns) {
+      const wrap = el('span', 'routility-mass-pick');
+      const btn = el('button', 'foundation-web-button relative clip group/interactable focus-visible:outline-focus cursor-pointer flex items-center gap-xsmall stroke-none select-none radius-circle text-label-medium height-800 padding-x-medium bg-shift-300 content-emphasis routility-mass-pick-btn');
+      btn.type = 'button';
+      btn.setAttribute('aria-haspopup', 'menu');
+      btn.setAttribute('aria-expanded', 'false');
+      const label = el('span', null, text());
+      btn.append(layer(), label, el('span', 'icon routility-calc-icon routility-calc-icon-chevron routility-ads-sort-caret'));
+      let menu = null;
+      const outside = (e) => { if (!wrap.contains(e.target)) close(); };
+      const keys = (e) => { if (e.key === 'Escape') { close(); btn.focus(); } };
+      const close = () => {
+        if (!menu) return;
+        menu.remove();
+        menu = null;
+        btn.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('mousedown', outside, true);
+        document.removeEventListener('keydown', keys, true);
+      };
+      const item = (role, on, labelText) => {
+        const it = el('button', 'relative clip group/interactable focus-visible:outline-focus foundation-web-menu-item flex items-center gap-x-medium content-default cursor-pointer stroke-none bg-none text-align-x-left width-full text-body-medium padding-x-medium padding-y-small radius-medium routility-mass-pick-item');
+        it.type = 'button';
+        it.setAttribute('role', role);
+        it.setAttribute('aria-checked', String(on));
+        const mark = el('span', role === 'menuitemcheckbox' ? 'routility-mass-pick-box' : 'routility-mass-pick-dot');
+        mark.appendChild(el('span', 'icon icon-filled-check size-400'));
+        it.append(layer(), mark, el('span', null, labelText));
+        return it;
+      };
+      btn.addEventListener('click', () => {
+        if (menu) return close();
+        document.querySelectorAll('.routility-mass-pick-menu').forEach(m => m.dispatchEvent(new Event('routility-close')));
+        menu = el('div', 'foundation-web-menu bg-surface-100 stroke-standard stroke-default shadow-transient-high radius-large padding-small routility-ads-sort-menu routility-mass-pick-menu');
+        menu.setAttribute('role', 'menu');
+        menu.addEventListener('routility-close', close);
+        if (columns) menu.classList.add('routility-mass-pick-cols');
+        sections.forEach((sec, i) => {
+          const host = columns && sec.title ? el('div', 'routility-mass-pick-col') : menu;
+          if (host !== menu) menu.appendChild(host);
+          if (i && !columns) menu.appendChild(el('div', 'routility-mass-pick-sep'));
+          if (sec.title) host.appendChild(el('div', 'text-caption-medium content-muted routility-mass-pick-head', sec.title));
+          for (const o of sec.items) {
+            if (sec.multi) {
+              const it = item('menuitemcheckbox', !!o.on(), o.label);
+              it.addEventListener('click', () => {
+                o.toggle();
+                it.setAttribute('aria-checked', String(!!o.on()));
+                label.textContent = text();
+              });
+              host.appendChild(it);
+            } else {
+              const on = sec.current() === o.value;
+              const it = item('menuitemradio', on, o.label);
+              it.addEventListener('click', () => { close(); if (sec.current() !== o.value) sec.pick(o.value); });
+              host.appendChild(it);
+            }
+          }
+        });
+        if (footer) {
+          menu.appendChild(el('div', 'routility-mass-pick-sep'));
+          const f = el('button', 'relative clip group/interactable focus-visible:outline-focus foundation-web-menu-item flex items-center content-muted cursor-pointer stroke-none bg-none text-align-x-left width-full text-body-medium padding-x-medium padding-y-small radius-medium routility-mass-pick-item', footer.label);
+          f.type = 'button';
+          f.addEventListener('click', () => { close(); footer.run(); });
+          menu.appendChild(f);
+        }
+        wrap.appendChild(menu);
+        const room = window.innerHeight - menu.getBoundingClientRect().top - 12;
+        if (menu.scrollHeight > room) {
+          menu.style.maxHeight = Math.max(200, room) + 'px';
+          menu.style.overflowY = 'auto';
+        }
+        btn.setAttribute('aria-expanded', 'true');
+        document.addEventListener('mousedown', outside, true);
+        document.addEventListener('keydown', keys, true);
+        (menu.querySelector('[aria-checked="true"]') || menu.querySelector('button'))?.focus();
+      });
+      wrap.appendChild(btn);
+      return wrap;
+    }
+
+    function choose(options, current, onChange) {
+      return menuButton(() => (options.find(o => o.value === current) || options[0]).label, [{ items: options, current: () => current, pick: onChange }]);
+    }
+
     function ownedText([a, b] = st.owned) {
       const top = OWNED.length - 1;
       if (!a && b === top) return lt('Any length');
@@ -1162,31 +1245,31 @@
       return lt('{from} to {to}', { from: lt(OWNED[a][1]), to: lt(OWNED[b][1]) });
     }
 
-    function ownedRow() {
+    function ownedPick() {
       const top = OWNED.length - 1;
-      const row = el('div', 'routility-mass-opt routility-mass-owned');
-      const right = el('div', 'routility-mass-owned-right');
+      const least = [0, 2, 4, 7].map(i => [i, top]);
+      const most = [4, 7].map(i => [0, i]);
+      const key = pair => pair.join('-');
+      if (![...least, ...most].some(pair => pair[0] === st.owned[0] && pair[1] === st.owned[1])) st.ownedCustom = true;
+      const now = () => (st.ownedCustom ? 'custom' : key(st.owned));
+      const set = (v) => {
+        if (v === 'custom') st.ownedCustom = true;
+        else { st.owned = v.split('-').map(Number); st.ownedCustom = false; }
+        paintOpts();
+      };
+      return menuButton(() => (st.ownedCustom ? lt('Custom') : ownedText()), [
+        { title: lt('Owned at least'), items: least.map(pair => ({ value: key(pair), label: ownedText(pair) })), current: now, pick: set },
+        { title: lt('Owned at most'), items: most.map(pair => ({ value: key(pair), label: ownedText(pair) })), current: now, pick: set },
+        { items: [{ value: 'custom', label: lt('Custom') }], current: now, pick: set },
+      ]);
+    }
+
+    function ownedSlider() {
+      const top = OWNED.length - 1;
+      const custom = el('div', 'routility-mass-owned-custom');
       const value = el('span', 'text-body-medium content-default routility-mass-owned-val');
       const track = el('div', 'routility-mass-owned-track');
       const ends = el('div', 'routility-mass-owned-ends text-caption-medium content-muted');
-      const presets = [[0, top], [2, top], [4, top], [7, top], [0, 7], [0, 9]];
-      const quick = el('div', 'routility-ads-chips');
-      const custom = el('div', 'routility-mass-owned-custom');
-      const picks = presets.map((pair) => {
-        const b = chip(ownedText(pair), false, () => {
-          st.owned = pair.slice();
-          st.ownedCustom = false;
-          lo.value = String(pair[0]);
-          hi.value = String(pair[1]);
-          paint();
-        });
-        b.disabled = !!st.job;
-        quick.appendChild(b);
-        return b;
-      });
-      const own = chip(lt('Custom'), false, () => { st.ownedCustom = true; paint(); });
-      own.disabled = !!st.job;
-      quick.appendChild(own);
       ends.append(el('span', null, lt('0 days')), el('span', null, lt('5+ years')));
       const make = (i, name) => {
         const input = el('input', 'routility-mass-owned-input');
@@ -1213,16 +1296,6 @@
         track.style.setProperty('--rt-hi', (st.owned[1] / top * 100) + '%');
         lo.style.zIndex = st.owned[0] >= top - 1 ? '3' : '';
         value.textContent = ownedText();
-        const match = presets.some(pair => pair[0] === st.owned[0] && pair[1] === st.owned[1]);
-        if (!match) st.ownedCustom = true;
-        const mark = (b, on) => {
-          b.classList.remove(...CHIP_ON, ...CHIP_OFF);
-          b.classList.add(...(on ? CHIP_ON : CHIP_OFF));
-          b.setAttribute('aria-pressed', String(on));
-        };
-        presets.forEach((pair, i) => mark(picks[i], !st.ownedCustom && pair[0] === st.owned[0] && pair[1] === st.owned[1]));
-        mark(own, st.ownedCustom);
-        custom.hidden = !st.ownedCustom;
       };
       track.addEventListener('pointerdown', (e) => {
         if (st.job || e.target !== track) return;
@@ -1235,10 +1308,8 @@
       });
       track.append(lo, hi);
       custom.append(value, track, ends);
-      right.append(quick, custom);
-      row.append(el('span', 'text-label-medium content-muted routility-mass-opt-label', lt('Owned for')), right);
       paint();
-      return row;
+      return custom;
     }
 
     function ownedBounds() {
@@ -1249,32 +1320,51 @@
 
     function paintOpts() {
       const busy = !!st.job;
-      const rows = [
-        optRow(lt('Find people in'), MASS_SOURCES.map(([k, label]) => chip(lt(label), st.source === k, () => { st.source = k; paintOpts(); }))),
-      ];
-      if (st.source === 'owners') rows.push(optRow(lt('Online in the last'), MASS_ACTIVE.map(([k, label]) => chip(lt(label), st.active === k, () => { st.active = k; paintOpts(); }))), ownedRow());
-      rows.push(optRow(lt('Send up to'), MASS_COUNTS.map(n => chip(ltn(n, '{n} trade', '{n} trades', { n: formatNumber(n) }), st.max === n, () => { st.max = n; paintOpts(); }))));
-      rows.push(optRow(lt('Skip'), MASS_SKIPS.map(([k, label]) => chip(lt(label), st.skip[k], () => { st.skip[k] = !st.skip[k]; paintOpts(); }))));
-      const more = el('button', 'routility-mass-more text-label-medium content-default');
-      more.type = 'button';
-      more.setAttribute('aria-expanded', String(st.more));
-      more.append(el('span', null, lt('More options')), el('span', 'icon routility-calc-icon routility-calc-icon-chevron size-400 content-default' + (st.more ? ' routility-home-up' : '')));
-      more.addEventListener('click', () => {
-        st.more = !st.more;
-        try { localStorage.setItem('routilityMassMore', st.more ? '1' : '0'); } catch {}
+      const field = (label, control) => {
+        const f = el('div', 'routility-mass-f');
+        f.append(el('span', 'text-caption-medium content-muted routility-mass-f-label', label), control);
+        return f;
+      };
+      const reset = async () => {
+        if (st.job) return;
+        const { all } = await toStore();
+        delete all[myId()];
+        chrome.storage.local.set({ [TO_KEY]: all });
+        st.skip.recent = false;
+        st.skip.pending = false;
+        st.resume = null;
         paintOpts();
-      });
-      rows.push(more);
-      if (st.more) {
-        rows.push(optRow(lt('Add items with'), ADD_DEMAND.map(([k, label]) => chip(lt(label), st.adds.demand === k, () => { st.adds.demand = k; saveAdds(); paintOpts(); }))));
-        rows.push(optRow(lt('Never add'), ADD_NEVER.map(([k, label]) => chip(lt(label), !!st.adds.never[k], () => { st.adds.never[k] = !st.adds.never[k]; saveAdds(); paintOpts(); }))));
-        rows.push(optRow(lt('Before sending'), [chip(lt('Let me review each trade'), st.review, () => { st.review = !st.review; saveAdds(); paintOpts(); })]));
-      }
+        paintStart();
+        hint(lt('Mass Send forgot who you sent to, so your next run can send them a new offer. Their earlier trades stay in your Outbound list.'));
+      };
+      const skipCount = () => MASS_SKIPS.filter(([k]) => st.skip[k]).length;
+      const skipMenu = menuButton(() => (skipCount() ? ltn(skipCount(), '{n} group', '{n} groups', { n: formatNumber(skipCount()) }) : lt('None')), [
+        { multi: true, items: MASS_SKIPS.map(([k, label]) => ({ label: lt(label), on: () => st.skip[k], toggle: () => { st.skip[k] = !st.skip[k]; } })) },
+      ], { label: lt('Reset who I’ve sent to'), run: reset });
+      const neverCount = () => ADD_NEVER.filter(([k]) => st.adds.never[k]).length + (st.adds.count !== 'any' ? 1 : 0);
+      const shuffleMenu = menuButton(() => lt((ADD_DEMAND.find(([k]) => k === st.adds.demand) || ADD_DEMAND[0])[1]) + (neverCount() ? ' +' + neverCount() : ''), [
+        { items: ADD_DEMAND.map(([k, label]) => ({ value: k, label: lt(label) })), current: () => st.adds.demand, pick: (v) => { st.adds.demand = v; saveAdds(); paintOpts(); } },
+        { title: lt('How many items'), items: [{ value: 'any', label: lt('Any number') }, { value: 'up', label: lt('Upgrade') }, { value: 'down', label: lt('Downgrade') }].concat([1, 2, 3, 4].map(n => ({ value: String(n), label: ltn(n, '{n} item', '{n} items', { n: formatNumber(n) }) }))), current: () => st.adds.count, pick: (v) => { st.adds.count = v; saveAdds(); paintOpts(); } },
+        { title: lt('Never add'), multi: true, items: ADD_NEVER.map(([k, label]) => ({ label: lt(label), on: () => !!st.adds.never[k], toggle: () => { st.adds.never[k] = !st.adds.never[k]; saveAdds(); } })) },
+      ]);
+      const line1 = el('div', 'routility-mass-line');
+      const theirs = field(lt('Their items worth'), rangeFields);
+      theirs.dataset.rtTip = lt('Fills empty You Want boxes with their own items worth this much. Leave blank to skip.');
+      line1.append(theirs, el('span', 'routility-mass-line-div'));
+      line1.append(field(lt('Find people in'), choose(MASS_SOURCES.map(([k, label]) => ({ value: k, label: lt(label) })), st.source, (v) => { st.source = v; paintOpts(); })));
+      if (st.source === 'owners') line1.append(field(lt('Online in the last'), choose(MASS_ACTIVE.map(([k, label]) => ({ value: k, label: lt(label) })), st.active, (v) => { st.active = v; paintOpts(); })));
+      line1.append(field(lt('Send up to'), choose(MASS_COUNTS.map(n => ({ value: n, label: ltn(n, '{n} trade', '{n} trades', { n: formatNumber(n) }) })), st.max, (v) => { st.max = v; paintOpts(); })));
+      const line2 = el('div', 'routility-mass-line');
+      if (st.source === 'owners') line2.append(field(lt('Owned for'), ownedPick()));
+      line2.append(field(lt('Skip'), skipMenu), field(lt('Shuffle picks'), shuffleMenu));
+      line2.append(field(lt('Before sending'), choose([{ value: 'send', label: lt('Send right away') }, { value: 'review', label: lt('Let me review each trade') }], st.review ? 'review' : 'send', (v) => { st.review = v === 'review'; saveAdds(); paintOpts(); })));
+      const rows = [line1, line2];
+      if (st.source === 'owners' && st.ownedCustom) rows.push(ownedSlider());
       opts.replaceChildren(...rows);
       opts.querySelectorAll('button, input').forEach(b => { b.disabled = busy; });
       const full = st.look.length >= 4;
       for (const f of [rFrom, rTo, rCount]) f.input.disabled = busy || full;
-      rangeBox.classList.toggle('routility-mass-range-off', full);
+      rangeFields.classList.toggle('routility-mass-range-off', full);
       reach.textContent = st.source === 'owners' ? lt('People who own what you want, from RoUtility’s owner list') : lt('People whose ads on routility.io offer what you want');
     }
 
@@ -1302,7 +1392,7 @@
       if (side.key === 'look') {
         const full = list.length >= 4;
         for (const f of [rFrom, rTo, rCount]) f.input.disabled = !!st.job || full;
-        rangeBox.classList.toggle('routility-mass-range-off', full);
+        rangeFields.classList.toggle('routility-mass-range-off', full);
       }
       const items = list.filter(e => e.kind === 'item').map(e => itemInfo(e.assetId));
       const robux = list.filter(e => e.kind === 'robux').reduce((n, e) => n + e.amount, 0);
@@ -1556,6 +1646,44 @@
         li.classList.add('routility-mass-' + kind);
         info.textContent = text;
       };
+      let codeNote = null;
+      let codeErr = '';
+      done.codeError = (text) => { codeErr = text; };
+      done.code = (text) => new Promise((res) => {
+        const job = st.job;
+        info.textContent = text;
+        info.classList.add('routility-mass-asking');
+        const box = el('span', 'routility-mass-review routility-mass-code');
+        const field = finput(lt('6-digit code'), { inputmode: 'numeric', max: 8 });
+        field.classList.add('routility-mass-code-field');
+        field.input.autocomplete = 'one-time-code';
+        const go = fbutton(lt('Verify'), 'bg-action-emphasis content-action-emphasis');
+        const no = fbutton(lt('Cancel'), 'bg-shift-300 content-action-utility');
+        codeNote = el('span', 'text-caption-medium routility-mass-code-note', codeErr);
+        codeNote.hidden = !codeErr;
+        codeErr = '';
+        box.append(field, no, go);
+        li.append(box, codeNote);
+        li.classList.add('routility-mass-reviewing');
+        setStatus(lt('Roblox wants to check it’s really you'));
+        const end = (v) => {
+          box.remove();
+          codeNote.remove();
+          codeNote = null;
+          li.classList.remove('routility-mass-reviewing');
+          info.classList.remove('routility-mass-asking');
+          if (job) job.wake = null;
+          setStatus('');
+          res(v);
+        };
+        const submit = () => { const v = field.input.value.replace(/\D/g, ''); if (v.length >= 6) end(v); else field.input.focus(); };
+        field.input.addEventListener('input', () => { field.input.value = field.input.value.replace(/\D/g, ''); if (codeNote) codeNote.hidden = true; });
+        field.input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
+        go.addEventListener('click', submit);
+        no.addEventListener('click', () => end(null));
+        if (job) job.wake = () => end(null);
+        field.input.focus();
+      });
       done.ask = (text) => new Promise((res) => {
         const job = st.job;
         info.textContent = text;
@@ -1843,7 +1971,7 @@
       }
     }
 
-    async function sendTrade(body, job) {
+    async function sendTrade(body, job, pass) {
       const since = Date.now();
       let unsure = false;
       for (let tries = 0; tries < 5 && !job.stop; tries++) {
@@ -1858,13 +1986,13 @@
         }
         let r;
         try {
-          r = await fetch('https://trades.roblox.com/v2/trades/send', { method: 'POST', credentials: 'include', headers: { 'content-type': 'application/json', ...(massCsrf ? { 'x-csrf-token': massCsrf } : {}) }, body: JSON.stringify(body) });
+          r = await fetch('https://trades.roblox.com/v2/trades/send', { method: 'POST', credentials: 'include', headers: { 'content-type': 'application/json', ...(massCsrf ? { 'x-csrf-token': massCsrf } : {}), ...(pass || {}) }, body: JSON.stringify(body) });
         } catch {
           unsure = true;
           await wait(2000);
           continue;
         }
-        if (r.headers.get('rblx-challenge-id')) return { kind: 'challenge' };
+        if (r.headers.get('rblx-challenge-id')) return { kind: 'challenge', id: r.headers.get('rblx-challenge-id'), type: r.headers.get('rblx-challenge-type') || '', meta: r.headers.get('rblx-challenge-metadata') || '' };
         if (r.status === 403 && r.headers.get('x-csrf-token') && r.headers.get('x-csrf-token') !== massCsrf) {
           massCsrf = r.headers.get('x-csrf-token');
           tries--;
@@ -1892,6 +2020,51 @@
       23: LT('Roblox wants to check it’s really you. Send one trade from Roblox’s trade window and finish the check, then press Continue.'),
       30: LT('This trade needs Roblox Plus to include Robux.'),
     };
+
+    async function tsvPost(url, data) {
+      let token = massCsrf;
+      for (let i = 0; i < 2; i++) {
+        let r;
+        try { r = await fetch(url, { method: 'POST', credentials: 'include', headers: { 'content-type': 'application/json', ...(token ? { 'x-csrf-token': token } : {}) }, body: JSON.stringify(data) }); } catch { return { ok: false, status: 0, data: null }; }
+        const fresh = r.headers.get('x-csrf-token');
+        if (r.status === 403 && fresh && fresh !== token) { token = massCsrf = fresh; continue; }
+        return { ok: r.ok, status: r.status, data: await r.json().catch(() => null) };
+      }
+      return { ok: false, status: 403, data: null };
+    }
+
+    async function verifyCode(ch, job, done) {
+      let meta;
+      try { meta = JSON.parse(atob(ch.meta)); } catch { return null; }
+      if (!meta || !meta.challengeId || !meta.userId) return null;
+      const base = `https://twostepverification.roblox.com/v1/users/${encodeURIComponent(meta.userId)}`;
+      const actionType = meta.actionType || 'Generic';
+      let media = 'Authenticator';
+      try {
+        const r = await fetch(`${base}/configuration?challengeId=${encodeURIComponent(meta.challengeId)}&actionType=${encodeURIComponent(actionType)}`, { credentials: 'include' });
+        const c = r.ok ? await r.json() : null;
+        if (c && c.primaryMediaType) media = c.primaryMediaType;
+      } catch {}
+      const path = { Authenticator: 'authenticator', Email: 'email', SMS: 'sms', RecoveryCode: 'recovery-codes' }[media] || 'authenticator';
+      if (path === 'email' || path === 'sms') await tsvPost(`${base}/challenges/${path}/send-code`, { challengeId: meta.challengeId, actionType });
+      const prompt = path === 'email' ? lt('Roblox emailed you a code. Enter it to keep sending.') : path === 'sms' ? lt('Roblox texted you a code. Enter it to keep sending.') : lt('Enter the code from your authenticator app to keep sending.');
+      for (;;) {
+        const code = await done.code(prompt);
+        if (!code || job.stop) return null;
+        const v = await tsvPost(`${base}/challenges/${path}/verify`, { challengeId: meta.challengeId, actionType, code });
+        const token = v.ok && v.data && v.data.verificationToken;
+        if (!token) { done.codeError(lt('That code didn’t work. Try again.')); continue; }
+        const answer = { verificationToken: token, rememberDevice: false, challengeId: meta.challengeId, actionType };
+        const c = await tsvPost('https://apis.roblox.com/challenge/v1/continue', { challengeID: ch.id, challengeType: ch.type, challengeMetadata: JSON.stringify(answer) });
+        if (!c.ok) { done.codeError(lt('Roblox didn’t accept the check. Try again.')); continue; }
+        return { 'rblx-challenge-id': ch.id, 'rblx-challenge-type': ch.type, 'rblx-challenge-metadata': btoa(JSON.stringify(answer)) };
+      }
+    }
+
+    function needYou() {
+      if (!document.hidden && document.hasFocus()) return;
+      try { chrome.runtime.sendMessage({ type: 'massAlert', title: lt('Mass Send needs you'), message: lt('Roblox wants to check it’s really you. Come back to finish the check, then press Continue.') }, () => void chrome.runtime.lastError); } catch {}
+    }
 
     async function tryOne(c, job, done) {
       const halt = () => {
@@ -1939,9 +2112,15 @@
         recipientOffer: { userId: Number(c.id), robux: 0, collectibleItemInstanceIds: found.ids },
       };
       job.posted = true;
-      const res = await sendTrade(body, job);
+      let res = await sendTrade(body, job);
+      if (res.kind === 'challenge' && /^twostepverification$/i.test(res.type)) {
+        needYou();
+        const pass = await verifyCode(res, job, done);
+        if (job.stop) return halt();
+        if (pass) res = await sendTrade(body, job, pass);
+      }
       if (job.stop && (res.kind !== 'reply' || res.status === 0)) return halt();
-      if (res.kind === 'challenge') { done('failed', lt('Roblox wants to verify')); return { stop: lt(STOPS[23]) }; }
+      if (res.kind === 'challenge') { done('failed', lt('Roblox wants to verify')); needYou(); return { stop: lt(STOPS[23]) }; }
       if (res.kind === 'limit') { done('failed', lt('Refused')); return { stop: lt('Roblox kept limiting new trades for about 5 minutes, so you’ve probably used its limit of {max} trades a day. Trades sent from anywhere count, even declined ones. Try again later.', { max: DAILY }) }; }
       const d = res.data || {};
       if (res.status === 200 && d.FailureReason !== undefined && d.ExpirationTimeInMinutes !== undefined) {
@@ -1963,7 +2142,7 @@
       const err = Array.isArray(d.errors) && d.errors[0] ? d.errors[0] : {};
       const code = Number(err.code);
       if (code === 22 && err.field === 'sender') { done('failed', lt('Your privacy settings block it')); return { stop: lt('Your privacy settings stop you from sending trades. Set Who can trade with me to Everyone in Roblox settings, then start again.') }; }
-      if (STOPS[code]) { done('failed', lt('Refused')); return { stop: lt(STOPS[code]) }; }
+      if (STOPS[code]) { done('failed', lt('Refused')); if (code === 23) needYou(); return { stop: lt(STOPS[code]) }; }
       job.skipped++;
       job.misses = (job.misses || 0) + 1;
       if (code === 22) {

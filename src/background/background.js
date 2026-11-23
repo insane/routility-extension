@@ -2502,6 +2502,15 @@ chrome.storage.onChanged.addListener((changes, area) => {
 });
 
 chrome.notifications.onClicked.addListener(async (id) => {
+  const back = /^mass:(\d+):/.exec(id);
+  if (back) {
+    chrome.notifications.clear(id);
+    chrome.tabs.update(Number(back[1]), { active: true }, (tab) => {
+      void chrome.runtime.lastError;
+      if (tab) chrome.windows.update(tab.windowId, { focused: true }, () => void chrome.runtime.lastError);
+    });
+    return;
+  }
   const links = (await chrome.storage.session.get(NOTIFY_LINKS))[NOTIFY_LINKS] || {};
   chrome.notifications.clear(id);
   const l = links[id];
@@ -2548,6 +2557,12 @@ ensureLive();
 chrome.storage.local.get('routilitySettings', (st) => syncRulesets(st.routilitySettings));
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  if (msg.type === 'massAlert') {
+    const tab = sender.tab && sender.tab.id;
+    if (typeof tab !== 'number') return;
+    chrome.notifications.create(`mass:${tab}:${Date.now()}`, { type: 'basic', iconUrl: chrome.runtime.getURL('assets/icons/icon128.png'), title: String(msg.title || '').slice(0, 80), message: String(msg.message || '').slice(0, 200), priority: 2, requireInteraction: true }, () => void chrome.runtime.lastError);
+    return;
+  }
   if (msg.type === 'notifyTest') {
     (async () => {
       const level = await new Promise(r => chrome.notifications.getPermissionLevel(r)).catch(() => 'granted');
