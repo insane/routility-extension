@@ -15875,6 +15875,16 @@ a.routility-tp-name:hover { text-decoration: underline; }
 .routility-tp-compact { grid-template-columns: minmax(120px, 180px) 1fr auto; padding: 10px 0; }
 .routility-tp-compact .routility-tp-whotext { flex-direction: row; align-items: baseline; gap: 10px; }
 .routility-tp-compact .routility-tp-item { width: 34px; height: 34px; }
+.routility-tp-extra { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: calc(8px * var(--routility-round, 1)); background: var(--color-shift-200, rgba(208, 217, 251, 0.08)); }
+.routility-tp-card { container-type: inline-size; }
+@container (max-width: 560px) {
+  .routility-tp-compact { grid-template-columns: minmax(0, 110px) minmax(0, 1fr) auto; gap: 10px; }
+  .routility-tp-compact .routility-tp-whotext { flex-direction: column; align-items: flex-start; gap: 0; }
+  .routility-tp-compact .routility-tp-name { max-width: 100%; }
+  .routility-tp-compact .routility-tp-swap { flex-wrap: nowrap; gap: 6px; }
+  .routility-tp-compact .routility-tp-items { gap: 4px; flex-wrap: nowrap; }
+  .routility-tp-compact .routility-tp-item, .routility-tp-compact .routility-tp-extra { width: 30px; height: 30px; }
+}
 @media (max-width: 640px) {
   .routility-tp-trade { grid-template-columns: 1fr auto; }
   .routility-tp-swap { grid-column: 1 / -1; grid-row: 2; }

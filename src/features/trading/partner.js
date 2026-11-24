@@ -247,9 +247,10 @@
     return (t.got || []).reduce((n, x) => n + thenOf(x, map), 0) - (t.gave || []).reduce((n, x) => n + thenOf(x, map), 0);
   }
 
-  function itemsRow(list, map) {
+  function itemsRow(list, map, cap) {
     const row = el('span', 'routility-tp-items');
-    for (const x of list) {
+    const shown = cap && list.length > cap ? list.slice(0, cap - 1) : list;
+    for (const x of shown) {
       const it = el('a', 'routility-tp-item');
       it.href = `https://www.roblox.com/catalog/${x.asset_id}`;
       it.target = '_blank';
@@ -264,6 +265,11 @@
       else img.dataset.asset = String(x.asset_id);
       it.appendChild(img);
       row.appendChild(it);
+    }
+    if (shown.length < list.length) {
+      const more = el('span', 'text-label-small content-muted routility-tp-extra', '+' + (list.length - shown.length));
+      more.dataset.rtTip = list.slice(shown.length).map(x => x.name).join('\n');
+      row.appendChild(more);
     }
     if (!list.length) row.appendChild(el('span', 'text-body-small content-muted', lt('Nothing')));
     return row;
@@ -289,7 +295,7 @@
     if (!compact) who.appendChild(face);
     who.appendChild(text);
     const swap = el('span', 'routility-tp-swap');
-    swap.append(itemsRow(t.gave || [], map), el('span', 'routility-tp-arrow content-muted', '→'), itemsRow(t.got || [], map));
+    swap.append(itemsRow(t.gave || [], map, compact ? 3 : 0), el('span', 'routility-tp-arrow content-muted', '→'), itemsRow(t.got || [], map, compact ? 3 : 0));
     const nums = el('span', 'routility-tp-nums');
     nums.appendChild(signed(tradeNet(t, map), 'value', [...(t.gave || []), ...(t.got || [])].some(x => !thenOf(x))));
     if (!compact && t.net_usd != null && Number.isFinite(Number(t.net_usd))) {
@@ -551,7 +557,10 @@
       return;
     }
     const pid = m[1];
-    if (have && have.dataset.pid === pid && have.parentElement === at.parent && have.classList.contains('routility-tp-classic') === at.classic) return;
+    if (have && have.dataset.pid === pid && have.parentElement === at.parent && have.classList.contains('routility-tp-classic') === at.classic) {
+      if (at.after && at.after !== have && have.previousElementSibling !== at.after) at.after.after(have);
+      return;
+    }
     if (profileBusy === pid || (profileEmpty === pid && !have)) return;
     if (!have && profileRetry && profileRetry.pid === pid && Date.now() < profileRetry.at) return;
     profileBusy = pid;
