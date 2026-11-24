@@ -15852,6 +15852,8 @@ html.routility-with-foreign-filter .routility-av-filter-btn {
 .routility-tp-who { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .routility-tp-face { width: 36px; height: 36px; border-radius: 50%; overflow: hidden; flex: none; background: var(--color-shift-200, rgba(208, 217, 251, 0.08)); }
 .routility-tp-face img { width: 100%; height: 100%; object-fit: cover; }
+.routility-tp-face-hidden { display: inline-flex; align-items: center; justify-content: center; color: var(--color-content-muted, #8a94a0); }
+.routility-tp-face-hidden .icon { width: 60%; height: 60%; background-color: currentColor; }
 .routility-tp-whotext { display: flex; flex-direction: column; min-width: 0; }
 .routility-tp-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; }
 a.routility-tp-name:hover { text-decoration: underline; }

@@ -158,11 +158,20 @@
     const id = side && side.id;
     const a = el(id ? 'a' : 'span', 'routility-it-user');
     if (id) a.href = `https://www.roblox.com/users/${id}/profile`;
-    const img = el('img', 'routility-it-head');
-    img.alt = '';
-    const src = id && heads.get(String(id));
-    if (src) img.src = src;
-    a.append(img, el('span', 'routility-it-name', (side && side.name) || lt('Hidden / Private')));
+    let face;
+    if (id) {
+      face = el('img', 'routility-it-head');
+      face.alt = '';
+      const src = heads.get(String(id));
+      if (src) face.src = src;
+    } else {
+      face = el('span', 'routility-it-head routility-it-head-hidden');
+      face.appendChild(el('span', 'icon icon-regular-person'));
+    }
+    const label = (side && side.name) || lt('Hidden / Private');
+    const name = el('span', 'routility-it-name' + (id ? '' : ' routility-it-name-hidden'), label);
+    name.dataset.rtTip = label;
+    a.append(face, name);
     return a;
   }
 

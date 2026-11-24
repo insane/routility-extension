@@ -299,6 +299,10 @@
     const face = el('span', 'routility-tp-face');
     const id = t.partner && t.partner.id;
     if (id && !compact) face.dataset.uid = String(id);
+    if (!id) {
+      face.classList.add('routility-tp-face-hidden');
+      face.appendChild(el('span', 'icon icon-regular-person'));
+    }
     const name = el(id ? 'a' : 'span', 'text-label-medium content-emphasis routility-tp-name', (t.partner && t.partner.name) || lt('Hidden / Private'));
     if (id) name.href = `https://www.roblox.com/users/${id}/profile`;
     const when = el('span', 'text-body-small content-muted routility-tp-when', ago(t.ts * 1000));

@@ -723,8 +723,25 @@ html.routility-modal-open body {
   text-decoration: none !important;
 }
 
-.routility-it-user:hover .routility-it-name {
+a.routility-it-user:hover .routility-it-name {
   text-decoration: underline;
+}
+
+.routility-it-head-hidden {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-content-muted, #8a94a0);
+}
+
+.routility-it-head-hidden .icon {
+  width: 60%;
+  height: 60%;
+  background-color: currentColor;
+}
+
+.routility-it-name-hidden {
+  color: var(--color-content-muted, #8a94a0);
 }
 
 .routility-it-head {
