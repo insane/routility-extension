@@ -867,6 +867,14 @@
  "Can’t trade with them": "Can’t trade with them",
  "Canadian Dollar": "Canadian Dollar",
  "Cancel": "Cancel",
+ "Decline": "Decline",
+ "Decline?": "Decline?",
+ "Declining…": "Declining…",
+ "Decline this trade": "Decline this trade",
+ "Cancel?": "Cancel?",
+ "Canceling…": "Canceling…",
+ "Canceled": "Canceled",
+ "Cancel this trade": "Cancel this trade",
  "Cancel {n} Trades": {
   "one": "Cancel {n} Trade",
   "other": "Cancel {n} Trades"

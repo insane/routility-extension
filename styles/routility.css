@@ -15585,6 +15585,12 @@ html:not(.routility-counters-blue) .left-nav nav .foundation-web-status-indicato
   cursor: default;
 }
 
+.routility-trade-allowance-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .routility-trade-allowance-dot {
   flex: none;
   width: 8px;
@@ -16286,3 +16292,59 @@ html.routility-sandbox.routility-sb-has-bg #avatar-web-app #UserAvatar { backgro
 .routility-bot-stat-v { display: inline-flex; align-items: center; gap: 4px; }
 .routility-bot-stat-ic { width: 13px; height: 13px; flex: none; }
 .routility-bot-stat-ic.routility-pill-ic-logo { color: #1a9bff; }
+
+.routility-row-x {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 6px;
+  padding: 0 7px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-action-standard-background, rgba(127, 127, 127, 0.2));
+  color: var(--color-content-emphasis, #fff);
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.5;
+  vertical-align: baseline;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.12s ease, background 0.12s ease;
+}
+
+.trade-row:hover .routility-row-x,
+.trade-row.selected .routility-row-x,
+.routility-row-x:focus-visible,
+.routility-row-x-armed,
+.routility-row-x-done,
+.routility-row-x:disabled {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .routility-row-x { opacity: 1; }
+}
+
+.routility-row-x:hover {
+  background: var(--color-action-standard-background-hover, rgba(127, 127, 127, 0.3));
+}
+
+.routility-row-x-armed,
+.routility-row-x-armed:hover {
+  background: #e5484d;
+  color: #fff;
+}
+
+.routility-row-x-done {
+  background: none;
+  padding: 0;
+  color: var(--color-content-muted, #8a94a0);
+  cursor: default;
+}
+
+.routility-row-x:disabled {
+  cursor: default;
+}
+
+.trade-row.routility-row-declined .trade-row-container {
+  opacity: 0.45;
+}

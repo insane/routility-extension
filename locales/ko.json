@@ -674,6 +674,14 @@
  "Can’t go public": "공개할 수 없음",
  "Canadian Dollar": "캐나다 달러",
  "Cancel": "취소",
+ "Decline": "거절",
+ "Decline?": "거절할까요?",
+ "Declining…": "거절하는 중…",
+ "Decline this trade": "이 거래 거절",
+ "Cancel?": "취소할까요?",
+ "Canceling…": "취소하는 중…",
+ "Canceled": "취소됨",
+ "Cancel this trade": "이 거래 취소",
  "Cancel {n} Trades": {
   "other": "거래 {n}건 취소"
  },
