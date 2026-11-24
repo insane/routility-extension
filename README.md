@@ -72,6 +72,7 @@ RoUtility adds the things Roblox doesn't show you to Roblox's own pages. There a
   <img src=".github/assets/screenshot-6.jpg" width="49%" alt="Value, USD price, demand and trend on an item page">
   <img src=".github/assets/screenshot-7.jpg" width="49%" alt="Trade Calculator with a verdict">
   <img src=".github/assets/screenshot-8.jpg" width="49%" alt="Server regions on a map">
+  <img src=".github/assets/screenshot-9.jpg" width="49%" alt="The RoUtility Forum in the classic 2017 style">
 </p>
 
 ## Install
