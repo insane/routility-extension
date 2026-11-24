@@ -935,6 +935,9 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     const hit = playerTradesCache.get(url);
     if (hit && Date.now() - hit.at < 180000) { sendResponse(hit.data); return; }
     getJson(url)
+      .then(d => (d && Array.isArray(d.trades) && !d.trades.length && page === 1
+        ? fetch(url, { credentials: 'omit', cache: 'no-cache' }).then(r => (r.ok ? r.json() : d), () => d)
+        : d))
       .then(d => {
         const data = d && Array.isArray(d.trades) && d.meta ? d : null;
         if (data) {

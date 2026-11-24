@@ -809,10 +809,19 @@
     }
   }
 
+  function stat(label, value, icon) {
+    const s = el('div', 'routility-bot-stat');
+    const v = el('span', 'text-label-medium content-emphasis routility-bot-stat-v');
+    if (icon) v.appendChild(el('span', icon === 'value' ? 'routility-pill-ic routility-pill-ic-logo routility-bot-stat-ic' : 'routility-val-icon routility-bot-stat-ic'));
+    v.appendChild(document.createTextNode(value));
+    s.append(el('span', 'text-caption-small content-muted', label), v);
+    return s;
+  }
+
   function short(n) {
     const [d, u] = n >= 1e9 ? [1e9, 'B'] : n >= 1e6 ? [1e6, 'M'] : [1e3, 'K'];
-    const v = n / d;
-    return v.toFixed(v >= 100 ? 0 : v >= 10 ? 1 : 2).replace(/\.?0+$/, '') + u;
+    const t = (n / d).toFixed(n / d >= 100 ? 0 : n / d >= 10 ? 1 : 2);
+    return (t.includes('.') ? t.replace(/\.?0+$/, '') : t) + u;
   }
 
   function itemById(id) {
@@ -844,8 +853,7 @@
       if (tags.length) names.append(el('span', 'text-caption-small content-muted', tags.join(', ')));
       top.append(thumb(i, 40), names);
       const stats = el('div', 'routility-bot-stats');
-      const stat = (label, value) => { const s = el('div', 'routility-bot-stat'); s.append(el('span', 'text-caption-small content-muted', label), el('span', 'text-label-medium content-emphasis', value)); return s; };
-      stats.append(stat(lt('Price'), i.usd ? shortUSD(i.usd) : '-'), ...(window.RoUtilityUI.shows('Bot').value && Number(i.value) > 0 ? [stat(lt('Value'), 'R$ ' + (i.value >= 1e5 ? short(i.value) : formatNumber(i.value)))] : []), stat('RAP', i.rap ? 'R$ ' + (i.rap >= 1e5 ? short(i.rap) : formatNumber(i.rap)) : '-'));
+      stats.append(stat(lt('Price'), i.usd ? shortUSD(i.usd) : '-'), ...(window.RoUtilityUI.shows('Bot').value && Number(i.value) > 0 ? [stat(lt('Value'), i.value >= 1e5 ? short(i.value) : formatNumber(i.value), 'value')] : []), stat('RAP', i.rap ? (i.rap >= 1e5 ? short(i.rap) : formatNumber(i.rap)) : '-', i.rap ? 'rap' : ''));
       a.append(top, stats);
       if (i.usd) a.appendChild(spark(i.id));
       return a;
@@ -864,8 +872,7 @@
       a.appendChild(top);
       if (c.known && !c.hidden) {
         const stats = el('div', 'routility-bot-stats routility-bot-stats-3');
-        const stat = (label, value) => { const s = el('div', 'routility-bot-stat'); s.append(el('span', 'text-caption-small content-muted', label), el('span', 'text-label-medium content-emphasis', value)); return s; };
-        stats.append(stat(lt('Price'), shortUSD(c.usd)), stat('RAP', 'R$ ' + (c.rap >= 1e4 ? short(c.rap) : formatNumber(c.rap))), stat(lt('Limiteds'), formatNumber(c.count)));
+        stats.append(stat(lt('Price'), shortUSD(c.usd)), stat('RAP', c.rap >= 1e4 ? short(c.rap) : formatNumber(c.rap), 'rap'), stat(lt('Limiteds'), formatNumber(c.count)));
         a.appendChild(stats);
       }
       return a;
