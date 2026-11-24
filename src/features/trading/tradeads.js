@@ -233,7 +233,7 @@
     if (id.startsWith('robux-')) return cashItem('robux', Number(x.robux) || 0);
     const a = el('a', 'routility-ads-item');
     a.href = `https://www.roblox.com/catalog/${encodeURIComponent(id)}`;
-    a.dataset.rtTip = (x.name || lt('Item')) + (x.usd ? ', ' + usd(Number(x.usd)) : '') + (adValue(x) ? ', ' + lt('Value {value}', { value: formatNumber(adValue(x)) }) : '') + (x.rap ? ', R$ ' + formatNumber(x.rap) : '');
+    window.RoUtilityUI.itemTip(a, { name: x.name || lt('Item'), value: adValue(x) || 0, usd: Number(x.usd) || 0, rap: Number(x.rap) || 0 });
     a.appendChild(thumbImg(x.thumb || '', 84));
     a.appendChild(priceLabel(x));
     return a;

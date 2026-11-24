@@ -191,18 +191,10 @@
     return li;
   }
 
-  function tileTip(it) {
-    const lines = [(it.name || '') + (it.serial ? ' #' + formatNumber(Number(it.serial)) : '')];
-    if (it.usd) lines.push(lt('Price') + ' ' + formatUSD(it.usd));
-    if (it.value_then) lines.push(lt('Value') + ' ' + formatNumber(it.value_then));
-    lines.push('RAP ' + formatNumber(it.rap || 0));
-    return lines.join('\n');
-  }
-
   function tile(it, assetId) {
     const a = el('a', 'routility-it-tile' + (String(it.asset_id) === assetId ? ' routility-it-this' : ''));
     a.href = `https://www.roblox.com/catalog/${it.asset_id}`;
-    a.dataset.rtTip = tileTip(it);
+    window.RoUtilityUI.itemTip(a, { name: it.name || '', serial: it.serial, value: Number(it.value_then) || 0, usd: Number(it.usd) || 0, rap: Number(it.rap) || 0 });
     const img = el('img');
     img.alt = it.name || '';
     img.decoding = 'async';

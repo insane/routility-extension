@@ -1355,7 +1355,7 @@
  "Every outbound trade": "Все исходящие обмены",
  "Every purchase": "Любая покупка",
  "Every purchase in this date range is counted.": "Учитывается каждая покупка за этот период.",
- "Every trade between you two that Roblox still lists": "Все обмены между вами, которые ещё есть в Roblox",
+ "What you gave and got in every trade between you two that Roblox still lists": "Что ты отдал и получил в каждом обмене между вами, который Roblox ещё показывает",
  "Every update, what changed and who helped make it.": "Каждое обновление: что изменилось и кто помог.",
  "Everyone": "Все",
  "Everyone joins as {type}, whatever their avatar is set to": "Все заходят как {type}, независимо от настроек аватара",
@@ -4111,5 +4111,11 @@
  "Redo": "Повторить",
  "{pct}% off with Roblox Plus": "Скидка {pct}% с Roblox Plus",
  "Buy the {n} you don’t own": {"one": "Купить {n} недостающий", "few": "Купить {n} недостающих", "many": "Купить {n} недостающих", "other": "Купить {n} недостающих"},
- "Get the {n} you don’t own": {"one": "Получить {n} недостающий", "few": "Получить {n} недостающих", "many": "Получить {n} недостающих", "other": "Получить {n} недостающих"}
+ "Get the {n} you don’t own": {"one": "Получить {n} недостающий", "few": "Получить {n} недостающих", "many": "Получить {n} недостающих", "other": "Получить {n} недостающих"},
+ "Hidden / Private": "Скрыт / Приватный",
+ "All Trades": "Все обмены",
+ "With You": "С тобой",
+ "Tracked": "Отслежено",
+ "Net Value": "Чистый Value",
+ "Net Cash": "Чистые деньги"
 }

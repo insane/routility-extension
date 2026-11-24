@@ -1046,7 +1046,7 @@
  "Every outbound trade": "모든 보낸 거래",
  "Every purchase": "모든 구매",
  "Every purchase in this date range is counted.": "이 기간의 모든 구매를 계산했습니다.",
- "Every trade between you two that Roblox still lists": "Roblox에 아직 남아 있는 두 사람 간의 모든 거래",
+ "What you gave and got in every trade between you two that Roblox still lists": "Roblox에 아직 남아 있는 두 사람 사이의 모든 거래에서 준 것과 받은 것",
  "Every update, what changed and who helped make it.": "모든 업데이트와 바뀐 점, 그리고 도와준 사람들.",
  "Everyone": "모두",
  "Everyone joins as {type}, whatever their avatar is set to": "아바타 설정과 관계없이 모두 {type}(으)로 참가해요",
@@ -3643,5 +3643,11 @@
  "Redo": "다시 실행",
  "{pct}% off with Roblox Plus": "Roblox Plus로 {pct}% 할인",
  "Buy the {n} you don’t own": {"other": "없는 {n}개 구매"},
- "Get the {n} you don’t own": {"other": "없는 {n}개 받기"}
+ "Get the {n} you don’t own": {"other": "없는 {n}개 받기"},
+ "Hidden / Private": "숨김 / 비공개",
+ "All Trades": "전체 거래",
+ "With You": "나와의 거래",
+ "Tracked": "추적됨",
+ "Net Value": "순 Value",
+ "Net Cash": "순 금액"
 }

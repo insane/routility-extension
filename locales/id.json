@@ -1046,7 +1046,7 @@
  "Every outbound trade": "Semua perdagangan keluar",
  "Every purchase": "Setiap pembelian",
  "Every purchase in this date range is counted.": "Semua pembelian dalam rentang tanggal ini dihitung.",
- "Every trade between you two that Roblox still lists": "Semua trade antara kalian berdua yang masih tercantum di Roblox",
+ "What you gave and got in every trade between you two that Roblox still lists": "Apa yang kamu berikan dan dapatkan di setiap trade antara kalian berdua yang masih ditampilkan Roblox",
  "Every update, what changed and who helped make it.": "Setiap pembaruan, apa yang berubah, dan siapa yang membantu.",
  "Everyone": "Semua orang",
  "Everyone joins as {type}, whatever their avatar is set to": "Semua masuk sebagai {type}, apa pun pengaturan avatar mereka",
@@ -3643,5 +3643,11 @@
  "Redo": "Ulangi",
  "{pct}% off with Roblox Plus": "Diskon {pct}% dengan Roblox Plus",
  "Buy the {n} you don’t own": {"other": "Beli {n} yang belum kamu punya"},
- "Get the {n} you don’t own": {"other": "Dapatkan {n} yang belum kamu punya"}
+ "Get the {n} you don’t own": {"other": "Dapatkan {n} yang belum kamu punya"},
+ "Hidden / Private": "Tersembunyi / Privat",
+ "All Trades": "Semua Trade",
+ "With You": "Denganmu",
+ "Tracked": "Terlacak",
+ "Net Value": "Value bersih",
+ "Net Cash": "Uang bersih"
 }

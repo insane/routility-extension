@@ -408,8 +408,11 @@
     const pct = ratio === null ? '' : ratio > 999 ? ' (>999%)' : ` (${ratio}%)`;
     const node = el('span', 'routility-row-pill' + (tone ? ' routility-pill-' + tone : ''));
     node.dataset.rtTip = title;
-    if (iconNode) node.appendChild(iconNode);
-    node.appendChild(el('span', null, sign + format(Math.abs(diff)) + pct));
+    if (iconNode && sign && !iconNode.classList.contains('routility-usd-ic')) node.append(el('span', null, sign), iconNode, el('span', null, format(Math.abs(diff)) + pct));
+    else {
+      if (iconNode) node.appendChild(iconNode);
+      node.appendChild(el('span', null, sign + format(Math.abs(diff)) + pct));
+    }
     return node;
   }
 
@@ -897,7 +900,7 @@
       } else if (/^b?\d+$/.test(i.thumbKey)) {
         t.dataset.thumbKey = i.thumbKey;
       }
-      t.dataset.rtTip = `${i.name}, ${i.usd > 0 ? formatUSD(i.usd) : lt('No price')}` + (itemValue(i) ? ', ' + lt('Value {value}', { value: formatNumber(itemValue(i)) }) : '');
+      window.RoUtilityUI.itemTip(t, { name: i.name, value: itemValue(i) || 0, usd: i.usd || 0, rap: i.rap || 0 });
       row.appendChild(t);
     }
     if (offer.robux > 0) {
@@ -2206,13 +2209,16 @@
       text(sign, sw <= size ? x + (size - sw) / 2 : x + size - sw, base, f, color);
     };
     const iconText = (kind, s, x, base, f, color, size, align = 'left', iconColor = color) => {
-      const [sign, rest] = splitSign(kind, s);
+      const lead = kind !== 'usd' && /^[+\-−]/.test(s) ? s[0] : '';
+      const [sign, rest] = splitSign(kind, lead ? s.slice(1) : s);
       g.font = f;
       const w = g.measureText(rest).width;
-      const start = align === 'right' ? x - w - size - 4 : x;
-      mark(kind, sign, start, base, f, size, iconColor);
-      text(rest, start + size + 4, base, f, color);
-      return w + size + 4;
+      const lw = lead ? g.measureText(lead).width + 3 : 0;
+      const start = align === 'right' ? x - w - size - 4 - lw : x;
+      if (lead) text(lead, start, base, f, color);
+      mark(kind, sign, start + lw, base, f, size, iconColor);
+      text(rest, start + lw + size + 4, base, f, color);
+      return lw + w + size + 4;
     };
     const round = (x, y, w, h, r) => {
       g.beginPath();

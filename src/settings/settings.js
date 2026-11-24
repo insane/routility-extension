@@ -676,7 +676,7 @@
     classicNames: () => r([strong(lt('Games')), strong(lt('Catalog')), strong(lt('Develop')), strong(lt('Groups'))], 'rt-m-spread'),
     navVerified: () => r([face(U.roblox, 24), strong('Roblox'), verified()]),
     robuxUsd: () => r([rb('400', 'rt-m-big'), h('span', 'rt-m-tip', '≈ ' + money(1.52))]),
-    txUsd: () => c([r([muted(lt('Purchases')), rb('8,000'), muted('≈ ' + money(30.40))], 'rt-m-spread'), r([strong(lt('Net')), rb('+1,250'), muted('≈ ' + money(4.75))], 'rt-m-spread')], 'rt-m-w190'),
+    txUsd: () => c([r([muted(lt('Purchases')), rb('8,000'), muted('≈ ' + money(30.40))], 'rt-m-spread'), r([strong(lt('Net')), h('span', 'rt-m-rb', ['+', el('span', 'icon-robux-16x16 rt-m-robux'), '1,250']), muted('≈ ' + money(4.75))], 'rt-m-spread')], 'rt-m-w190'),
     txFilters: () => r([pill(lt('Item: {name}', { name: 'Dominus' })), pill(lt('Pending')), pill(lt('Apply'), 'active')]),
     txSpending: () => c([r([muted('Adopt Me!'), rb('12,400')], 'rt-m-spread'), r([muted('Blox Fruits'), rb('8,150')], 'rt-m-spread')], 'rt-m-w190'),
     gameSpent: () => c([muted(lt('You’ve Spent')), rb('12,400')]),

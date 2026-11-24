@@ -1046,7 +1046,7 @@
  "Every outbound trade": "Mọi giao dịch đi",
  "Every purchase": "Mọi giao dịch mua",
  "Every purchase in this date range is counted.": "Mọi giao dịch mua trong khoảng ngày này đều được tính.",
- "Every trade between you two that Roblox still lists": "Mọi giao dịch giữa hai bạn mà Roblox vẫn còn lưu",
+ "What you gave and got in every trade between you two that Roblox still lists": "Những gì bạn đã đưa và nhận trong mọi giao dịch giữa hai người mà Roblox vẫn hiển thị",
  "Every update, what changed and who helped make it.": "Mọi bản cập nhật, những gì đã thay đổi và ai đã giúp.",
  "Everyone": "Mọi người",
  "Everyone joins as {type}, whatever their avatar is set to": "Mọi người vào game dưới dạng {type}, bất kể avatar được đặt thế nào",
@@ -3643,5 +3643,11 @@
  "Redo": "Làm lại",
  "{pct}% off with Roblox Plus": "Giảm {pct}% với Roblox Plus",
  "Buy the {n} you don’t own": {"other": "Mua {n} món bạn chưa có"},
- "Get the {n} you don’t own": {"other": "Nhận {n} món bạn chưa có"}
+ "Get the {n} you don’t own": {"other": "Nhận {n} món bạn chưa có"},
+ "Hidden / Private": "Ẩn / Riêng tư",
+ "All Trades": "Tất cả giao dịch",
+ "With You": "Với bạn",
+ "Tracked": "Đã theo dõi",
+ "Net Value": "Value ròng",
+ "Net Cash": "Tiền ròng"
 }

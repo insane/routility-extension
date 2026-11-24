@@ -1149,7 +1149,7 @@
  "Every outbound trade": "Jeder ausgehende Trade",
  "Every purchase": "Jeder Kauf",
  "Every purchase in this date range is counted.": "Jeder Kauf in diesem Zeitraum wird gezählt.",
- "Every trade between you two that Roblox still lists": "Jeder Trade zwischen euch beiden, den Roblox noch anzeigt",
+ "What you gave and got in every trade between you two that Roblox still lists": "Was du in jedem Trade zwischen euch beiden gegeben und bekommen hast, den Roblox noch anzeigt",
  "Every update, what changed and who helped make it.": "Jedes Update, was sich geändert hat und wer geholfen hat.",
  "Everyone": "Alle",
  "Everyone joins as {type}, whatever their avatar is set to": "Alle spielen als {type}, egal wie ihr Avatar eingestellt ist",
@@ -3799,5 +3799,11 @@
  "Redo": "Wiederholen",
  "{pct}% off with Roblox Plus": "{pct}% Rabatt mit Roblox Plus",
  "Buy the {n} you don’t own": {"one": "{n} fehlendes Item kaufen", "other": "Die {n} fehlenden Items kaufen"},
- "Get the {n} you don’t own": {"one": "{n} fehlendes Item holen", "other": "Die {n} fehlenden Items holen"}
+ "Get the {n} you don’t own": {"one": "{n} fehlendes Item holen", "other": "Die {n} fehlenden Items holen"},
+ "Hidden / Private": "Versteckt / Privat",
+ "All Trades": "Alle Trades",
+ "With You": "Mit dir",
+ "Tracked": "Erfasst",
+ "Net Value": "Netto-Value",
+ "Net Cash": "Netto-Geld"
 }

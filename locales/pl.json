@@ -1355,7 +1355,7 @@
  "Every outbound trade": "Każda wychodząca wymiana",
  "Every purchase": "Każdy zakup",
  "Every purchase in this date range is counted.": "Liczony jest każdy zakup z tego zakresu dat.",
- "Every trade between you two that Roblox still lists": "Każda wymiana między wami, którą Roblox wciąż pokazuje",
+ "What you gave and got in every trade between you two that Roblox still lists": "Co dałeś i dostałeś w każdej wymianie między wami, którą Roblox wciąż pokazuje",
  "Every update, what changed and who helped make it.": "Każda aktualizacja, co się zmieniło i kto pomógł.",
  "Everyone": "Wszyscy",
  "Everyone joins as {type}, whatever their avatar is set to": "Wszyscy dołączają jako {type}, bez względu na ustawienie awatara",
@@ -4111,5 +4111,11 @@
  "Redo": "Ponów",
  "{pct}% off with Roblox Plus": "{pct}% taniej z Roblox Plus",
  "Buy the {n} you don’t own": {"one": "Kup {n} brakujący", "few": "Kup {n} brakujące", "many": "Kup {n} brakujących", "other": "Kup {n} brakujące"},
- "Get the {n} you don’t own": {"one": "Odbierz {n} brakujący", "few": "Odbierz {n} brakujące", "many": "Odbierz {n} brakujących", "other": "Odbierz {n} brakujące"}
+ "Get the {n} you don’t own": {"one": "Odbierz {n} brakujący", "few": "Odbierz {n} brakujące", "many": "Odbierz {n} brakujących", "other": "Odbierz {n} brakujące"},
+ "Hidden / Private": "Ukryty / Prywatny",
+ "All Trades": "Wszystkie wymiany",
+ "With You": "Z tobą",
+ "Tracked": "Śledzone",
+ "Net Value": "Value netto",
+ "Net Cash": "Gotówka netto"
 }

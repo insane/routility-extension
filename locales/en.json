@@ -1282,7 +1282,7 @@
  "Every private server you own or were invited to, when it renews and who is playing.": "Every private server you own or were invited to, when it renews and who is playing.",
  "Every purchase": "Every purchase",
  "Every purchase in this date range is counted.": "Every purchase in this date range is counted.",
- "Every trade between you two that Roblox still lists": "Every trade between you two that Roblox still lists",
+ "What you gave and got in every trade between you two that Roblox still lists": "What you gave and got in every trade between you two that Roblox still lists",
  "Every update, what changed and who helped make it.": "Every update, what changed and who helped make it.",
  "Everyone": "Everyone",
  "Everyone joins as {type}, whatever their avatar is set to": "Everyone joins as {type}, whatever their avatar is set to",
@@ -3795,5 +3795,11 @@
  "Redo": "Redo",
  "{pct}% off with Roblox Plus": "{pct}% off with Roblox Plus",
  "Buy the {n} you don’t own": {"one": "Buy the {n} you don’t own", "other": "Buy the {n} you don’t own"},
- "Get the {n} you don’t own": {"one": "Get the {n} you don’t own", "other": "Get the {n} you don’t own"}
+ "Get the {n} you don’t own": {"one": "Get the {n} you don’t own", "other": "Get the {n} you don’t own"},
+ "Hidden / Private": "Hidden / Private",
+ "All Trades": "All Trades",
+ "With You": "With You",
+ "Tracked": "Tracked",
+ "Net Value": "Net value",
+ "Net Cash": "Net cash"
 }

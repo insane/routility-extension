@@ -896,7 +896,7 @@
         const pics = el('div', 'routility-bot-pics');
         for (const i of list.slice(0, 6)) {
           const t = thumb(i, 30);
-          t.dataset.rtTip = `${i.name}, ${i.usd ? formatUSD(i.usd) : lt('no price')}`;
+          window.RoUtilityUI.itemTip(t, { name: i.name, usd: Number(i.usd) || 0, rap: Number(i.rap) || 0 });
           pics.appendChild(t);
         }
         if (robux) pics.appendChild(el('span', 'text-caption-small content-default routility-bot-robux', '+ R$ ' + formatNumber(robux)));

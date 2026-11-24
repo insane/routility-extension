@@ -1046,7 +1046,7 @@
  "Every outbound trade": "所有送出的交易",
  "Every purchase": "每次購買",
  "Every purchase in this date range is counted.": "已統計此日期範圍內的所有購買。",
- "Every trade between you two that Roblox still lists": "Roblox 仍保留的你們之間的所有交易",
+ "What you gave and got in every trade between you two that Roblox still lists": "Roblox 仍顯示的你們之間每筆交易中你給出和得到的物品",
  "Every update, what changed and who helped make it.": "每次更新的內容，以及幫忙的人。",
  "Everyone": "所有人",
  "Everyone joins as {type}, whatever their avatar is set to": "無論虛擬人偶如何設定，所有人都以 {type} 加入",
@@ -3643,5 +3643,11 @@
  "Redo": "重做",
  "{pct}% off with Roblox Plus": "Roblox Plus 優惠 {pct}%",
  "Buy the {n} you don’t own": {"other": "購買你沒有的 {n} 件"},
- "Get the {n} you don’t own": {"other": "領取你沒有的 {n} 件"}
+ "Get the {n} you don’t own": {"other": "領取你沒有的 {n} 件"},
+ "Hidden / Private": "隱藏 / 私密",
+ "All Trades": "所有交易",
+ "With You": "與你",
+ "Tracked": "已追蹤",
+ "Net Value": "淨 Value",
+ "Net Cash": "淨金額"
 }

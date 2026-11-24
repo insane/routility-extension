@@ -394,7 +394,9 @@
       const row = el('div', 'flex items-center gap-small');
       if (icon && value !== '-') {
         const v = el('span', 'routility-calc-total-v text-heading-small ' + toneClass);
-        v.append(icon, el('span', null, value));
+        const lead = !icon.classList.contains('routility-usd-ic') && /^[+\-−]/.test(value) ? value[0] : '';
+        if (lead) v.append(el('span', null, lead), icon, el('span', null, value.slice(1)));
+        else v.append(icon, el('span', null, value));
         row.appendChild(v);
       } else row.appendChild(el('span', 'text-heading-small ' + toneClass, value));
       if (note) row.appendChild(el('span', 'text-label-medium ' + toneClass + ' routility-calc-pct', note));
@@ -1256,8 +1258,9 @@
       const x = 32 + (736 / 3) * i + 16;
       type(label.toUpperCase(), x, y + 25, 9, T.muted, 400);
       if (icon) {
-        robux(x, y + 37, 14, color);
-        type(value, x + 19, y + 49, 15, color, 800);
+        const lead = /^[+\-−]/.test(value) ? type(value[0], x, y + 49, 15, color, 800) + 3 : 0;
+        robux(x + lead, y + 37, 14, color);
+        type(lead ? value.slice(1) : value, x + lead + 19, y + 49, 15, color, 800);
       } else type(value, x, y + 49, 15, color, 800);
     });
     y += 92;

@@ -1046,7 +1046,7 @@
  "Every outbound trade": "การแลกเปลี่ยนขาออกทุกรายการ",
  "Every purchase": "การซื้อทุกครั้ง",
  "Every purchase in this date range is counted.": "นับการซื้อทุกครั้งในช่วงวันที่นี้แล้ว",
- "Every trade between you two that Roblox still lists": "การแลกเปลี่ยนทั้งหมดระหว่างคุณสองคนที่ Roblox ยังแสดงอยู่",
+ "What you gave and got in every trade between you two that Roblox still lists": "สิ่งที่คุณให้และได้รับในทุกการเทรดระหว่างคุณสองคนที่ Roblox ยังแสดงอยู่",
  "Every update, what changed and who helped make it.": "ทุกการอัปเดต สิ่งที่เปลี่ยน และใครช่วยทำ",
  "Everyone": "ทุกคน",
  "Everyone joins as {type}, whatever their avatar is set to": "ทุกคนเข้าเป็น {type} ไม่ว่าจะตั้งอวาตาร์ไว้แบบไหน",
@@ -3643,5 +3643,11 @@
  "Redo": "ทำซ้ำ",
  "{pct}% off with Roblox Plus": "ลด {pct}% กับ Roblox Plus",
  "Buy the {n} you don’t own": {"other": "ซื้อ {n} ชิ้นที่คุณยังไม่มี"},
- "Get the {n} you don’t own": {"other": "รับ {n} ชิ้นที่คุณยังไม่มี"}
+ "Get the {n} you don’t own": {"other": "รับ {n} ชิ้นที่คุณยังไม่มี"},
+ "Hidden / Private": "ซ่อน / ส่วนตัว",
+ "All Trades": "การเทรดทั้งหมด",
+ "With You": "กับคุณ",
+ "Tracked": "ติดตามแล้ว",
+ "Net Value": "Value สุทธิ",
+ "Net Cash": "เงินสุทธิ"
 }

@@ -279,8 +279,10 @@
     tipEl = el('div', 'tooltip ' + (above ? 'top routility-tip-top' : 'bottom') + ' in routility-tip');
     tipEl.setAttribute('role', 'tooltip');
     const arrow = el('div', 'tooltip-arrow');
-    const inner = el('div', 'tooltip-inner', text);
-    if (text.length > 40) inner.classList.add('routility-tip-long');
+    const rich = typeof target.rtTipBuild === 'function' ? target.rtTipBuild() : null;
+    const inner = el('div', 'tooltip-inner' + (rich ? ' routility-tip-rich' : ''), rich ? null : text);
+    if (rich) inner.appendChild(rich);
+    else if (text.split('\n').some(line => line.length > 40)) inner.classList.add('routility-tip-long');
     tipEl.append(arrow, inner);
     document.body.appendChild(tipEl);
     arrow.style[above ? 'borderTopColor' : 'borderBottomColor'] = getComputedStyle(inner).backgroundColor;
@@ -510,13 +512,42 @@
     return n >= 10000 ? compactCash(n) : formatNumber(n);
   }
 
+  function itemTipCard(info) {
+    const card = el('div', 'routility-itip');
+    const title = el('div', 'routility-itip-title', info.name || '');
+    if (info.serial) title.appendChild(el('span', 'routility-itip-serial', '#' + formatNumber(Number(info.serial))));
+    card.appendChild(title);
+    const row = (key, label, icon, text) => {
+      if (info[key] === undefined) return;
+      const n = Number(info[key]);
+      const v = el('span', 'routility-itip-v');
+      if (n > 0 && icon) v.appendChild(el('span', icon + ' routility-itip-ic'));
+      v.appendChild(document.createTextNode(n > 0 ? text(n) : '-'));
+      const line = el('div', 'routility-itip-row');
+      line.append(el('span', 'routility-itip-k', label), v);
+      card.appendChild(line);
+    };
+    row('value', lt('Value'), 'routility-pill-ic routility-pill-ic-logo', n => formatNumber(Math.round(n)));
+    row('usd', lt('Price'), null, n => formatCash(n));
+    row('rap', lt('RAP'), 'routility-val-icon', n => formatNumber(Math.round(n)));
+    return card;
+  }
+
+  function itemTip(node, info) {
+    node.dataset.rtTip = info.name || '';
+    node.dataset.rtTipPlace = 'top';
+    node.rtTipBuild = () => itemTipCard(info);
+    return node;
+  }
+
   function valueTag(value, opts = {}) {
     const v = Number(value) || 0;
     const tag = el('span', 'routility-val' + (opts.className ? ' ' + opts.className : ''));
     const icon = el('img', 'routility-val-logo');
     icon.src = chrome.runtime.getURL('assets/icons/logo.png');
     icon.alt = '';
-    tag.append(icon, el('span', opts.textClass || null, (opts.sign || '') + (opts.short ? shortValue(v) : formatNumber(v))));
+    if (opts.sign) tag.appendChild(el('span', opts.textClass || null, opts.sign));
+    tag.append(icon, el('span', opts.textClass || null, opts.short ? shortValue(v) : formatNumber(v)));
     if (opts.tip !== false) tag.dataset.rtTip = lt('Value: {value}', { value: formatNumber(v) });
     return tag;
   }
@@ -1275,7 +1306,7 @@
     });
   }
 
-  window.RoUtilityUI = { stripNavBadges, gameDetails, tagIcon, tagIcons, json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, usdIcon, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, exactTime, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request, confirmDialog, flash };
+  window.RoUtilityUI = { itemTip, stripNavBadges, gameDetails, tagIcon, tagIcons, json, parseAmount, pause, chunks, presence, rowGate, foreign, pageTitle, pager, keyNav, adminBadge, trackPopover, el, cardTags, dropdown, hiddenNote, verifiedBadge, usdIcon, blockedThumb, onFrame, robuxRate, formatUSD, formatCash, shortUSD, cash, toCash, fromCash, fxOf, currencies: FIAT, formatNumber, exactTime, itemValue, shortValue, valueTag, valueTip, shows, collectibles, catalogFor, friendIds, cashTile, cardKey, loadPrices, prices, priceNow, priceTitle, mark, request, confirmDialog, flash };
 })();
 
 (function () {

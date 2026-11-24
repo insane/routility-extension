@@ -1046,7 +1046,7 @@
  "Every outbound trade": "すべての送信トレード",
  "Every purchase": "すべての購入",
  "Every purchase in this date range is counted.": "この期間のすべての購入を集計しました。",
- "Every trade between you two that Roblox still lists": "Robloxにまだ残っている、2人の間のすべてのトレード",
+ "What you gave and got in every trade between you two that Roblox still lists": "Roblox にまだ残っている、2人の間のすべてのトレードで渡したものと受け取ったもの",
  "Every update, what changed and who helped make it.": "すべての更新内容と、手伝ってくれた人たち。",
  "Everyone": "全員",
  "Everyone joins as {type}, whatever their avatar is set to": "アバターの設定に関係なく、全員 {type} で参加します",
@@ -3643,5 +3643,11 @@
  "Redo": "やり直す",
  "{pct}% off with Roblox Plus": "Roblox Plusで{pct}%オフ",
  "Buy the {n} you don’t own": {"other": "持っていない{n}個を購入"},
- "Get the {n} you don’t own": {"other": "持っていない{n}個を入手"}
+ "Get the {n} you don’t own": {"other": "持っていない{n}個を入手"},
+ "Hidden / Private": "非表示 / 非公開",
+ "All Trades": "すべてのトレード",
+ "With You": "あなたと",
+ "Tracked": "記録済み",
+ "Net Value": "純 Value",
+ "Net Cash": "純額"
 }

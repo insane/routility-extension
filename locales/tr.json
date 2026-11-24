@@ -1149,7 +1149,7 @@
  "Every outbound trade": "Tüm giden takaslar",
  "Every purchase": "Her satın alma",
  "Every purchase in this date range is counted.": "Bu tarih aralığındaki her satın alma sayılır.",
- "Every trade between you two that Roblox still lists": "Roblox’ta hâlâ görünen, aranızdaki tüm takaslar",
+ "What you gave and got in every trade between you two that Roblox still lists": "Roblox’un hâlâ gösterdiği aranızdaki her takasta verdiklerin ve aldıkların",
  "Every update, what changed and who helped make it.": "Her güncelleme, neyin değiştiği ve kimin yardım ettiği.",
  "Everyone": "Herkes",
  "Everyone joins as {type}, whatever their avatar is set to": "Avatar ayarı ne olursa olsun herkes {type} olarak katılır",
@@ -3799,5 +3799,11 @@
  "Redo": "Yinele",
  "{pct}% off with Roblox Plus": "Roblox Plus ile %{pct} indirim",
  "Buy the {n} you don’t own": {"one": "Sahip olmadığın {n} eşyayı satın al", "other": "Sahip olmadığın {n} eşyayı satın al"},
- "Get the {n} you don’t own": {"one": "Sahip olmadığın {n} eşyayı al", "other": "Sahip olmadığın {n} eşyayı al"}
+ "Get the {n} you don’t own": {"one": "Sahip olmadığın {n} eşyayı al", "other": "Sahip olmadığın {n} eşyayı al"},
+ "Hidden / Private": "Gizli / Özel",
+ "All Trades": "Tüm takaslar",
+ "With You": "Seninle",
+ "Tracked": "Takip edilen",
+ "Net Value": "Net Value",
+ "Net Cash": "Net para"
 }
