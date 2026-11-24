@@ -541,6 +541,18 @@
     return true;
   }
 
+  function counterGone(id) {
+    const nav = performance.getEntriesByType('navigation')[0];
+    if (!nav || nav.responseStatus !== 404 || new URL(nav.name).pathname !== window.location.pathname) return false;
+    try {
+      sessionStorage.setItem('routilityCounter', id);
+    } catch {
+      return false;
+    }
+    window.location.replace('/trades');
+    return true;
+  }
+
   function handlePage() {
     restoreItemId();
     const path = window.location.pathname;
@@ -643,6 +655,7 @@
       return;
     }
     const counter = path.match(/^\/trades\/(\d+)\/counter\/?$/i);
+    if (counter && counterGone(counter[1])) return;
     const tradeBuilder = /^\/users\/\d+\/trade\/?$/i.test(path) || !!counter;
     if (tradeBuilder || /^\/trades\/?$/i.test(path)) {
       chrome.storage.local.get('routilitySettings', (stored) => {

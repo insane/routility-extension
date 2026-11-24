@@ -33,6 +33,7 @@
         { "type": "fixed", "text": "Sandbox: no longer lands on the last Avatars page you had open." },
         { "type": "fixed", "text": "Sandbox: the Limiteds tab only shows on your real avatar, since Sandbox already has its own Limiteds filter." },
         { "type": "fixed", "text": "Limited alerts: items that just became Limited no longer say Free, since they can only be bought from resellers." },
+        { "type": "fixed", "text": "Trades: refreshing a counter offer takes you straight back to it instead of Roblox’s Page Not Found." },
         { "type": "fixed", "text": "Customize Thumbnail: the preview no longer leaves off your pants or shirt when you wear body parts like R6 Girl." },
         { "type": "fixed", "text": "Avatar previews: some older items like Twin Kodachi no longer show up plain white." }
       ]

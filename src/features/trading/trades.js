@@ -2512,6 +2512,52 @@
     });
     dialogWatch.observe(document.body, { childList: true });
     schedule();
+    let counter = null;
+    try {
+      counter = sessionStorage.getItem('routilityCounter');
+      sessionStorage.removeItem('routilityCounter');
+    } catch {}
+    if (counter && /^\/trades\/?$/i.test(location.pathname)) reopenCounter(counter);
+  }
+
+  async function reopenCounter(id) {
+    const entries = await ensureList('Inbound', 100);
+    const i = entries.findIndex(e => e.id === id);
+    if (i < 0) return;
+    const until = Date.now() + 15000;
+    const pause = ms => new Promise(res => setTimeout(res, ms));
+    let row = null;
+    while (!row && Date.now() < until && /^\/trades\/?$/i.test(location.pathname)) {
+      const rows = [...document.querySelectorAll('.trade-row')];
+      if (currentTradeType() === 'Inbound' && rows[i]) row = rows[i];
+      else {
+        if (rows.length) rows[rows.length - 1].scrollIntoView({ block: 'end' });
+        await pause(300);
+      }
+    }
+    if (!row) return;
+    const name = row.querySelector('.text-lead')?.textContent.trim();
+    if (name && !entries[i].names.includes(name)) return;
+    let fresh = row.classList.contains('selected');
+    const box = document.querySelector('.trades-list-detail');
+    const watch = box && !fresh ? new MutationObserver(() => { fresh = true; }) : null;
+    watch?.observe(box, { childList: true, subtree: true, characterData: true });
+    if (!fresh) row.click();
+    try {
+      while (Date.now() < until && /^\/trades\/?$/i.test(location.pathname)) {
+        const head = document.querySelector('.trades-list-detail .trades-header-nowrap')?.textContent || '';
+        const buttons = [...document.querySelectorAll('.trade-buttons > button')].filter(b => !b.className.includes('routility'));
+        const counter = buttons.find(b => /^counter$/i.test(b.textContent.trim())) || (buttons.length === 3 ? buttons[1] : null);
+        if (fresh && row.classList.contains('selected') && entries[i].names.some(n => head.includes(n)) && counter && !counter.disabled) {
+          await pause(400);
+          if (row.classList.contains('selected') && counter.isConnected) counter.click();
+          return;
+        }
+        await pause(200);
+      }
+    } finally {
+      watch?.disconnect();
+    }
   }
 
   function teardown() {
