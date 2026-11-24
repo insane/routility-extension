@@ -1681,7 +1681,7 @@
       let codeNote = null;
       let codeErr = '';
       done.codeError = (text) => { codeErr = text; };
-      done.code = (text) => new Promise((res) => {
+      done.code = (text, key) => new Promise((res) => {
         const job = st.job;
         info.textContent = text;
         info.classList.add('routility-mass-asking');
@@ -1694,7 +1694,8 @@
         codeNote = el('span', 'text-caption-medium routility-mass-code-note', codeErr);
         codeNote.hidden = !codeErr;
         codeErr = '';
-        box.append(field, no, go);
+        if (key) box.append(no, go);
+        else box.append(field, no, go);
         li.append(box, codeNote);
         li.classList.add('routility-mass-reviewing');
         setStatus(lt('Roblox wants to check it’s really you'));
@@ -1708,13 +1709,13 @@
           setStatus('');
           res(v);
         };
-        const submit = () => { const v = field.input.value.replace(/\D/g, ''); if (v.length >= 6) end(v); else field.input.focus(); };
+        const submit = () => { if (key) return end('key'); const v = field.input.value.replace(/\D/g, ''); if (v.length >= 6) end(v); else field.input.focus(); };
         field.input.addEventListener('input', () => { field.input.value = field.input.value.replace(/\D/g, ''); if (codeNote) codeNote.hidden = true; });
         field.input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
         go.addEventListener('click', submit);
         no.addEventListener('click', () => end(null));
         if (job) job.wake = () => end(null);
-        field.input.focus();
+        (key ? go : field.input).focus();
       });
       done.ask = (text) => new Promise((res) => {
         const job = st.job;
@@ -2294,6 +2295,23 @@
       return { ok: false, status: 403, data: null };
     }
 
+    const b64u = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    const unb64 = (str) => { const t = String(str).replace(/-/g, '+').replace(/_/g, '/').replace(/=+$/, ''); return Uint8Array.from(atob(t + '='.repeat((4 - t.length % 4) % 4)), ch => ch.charCodeAt(0)); };
+
+    async function keyCheck(base, path, challengeId, actionType) {
+      const s = await tsvPost(`${base}/challenges/${path}/verify-start`, { challengeId, actionType });
+      let opts;
+      try { opts = JSON.parse(s.data.authenticationOptions).publicKey; } catch { return null; }
+      if (!opts || !opts.challenge) return null;
+      opts.challenge = unb64(opts.challenge);
+      for (const c of opts.allowCredentials || []) c.id = unb64(c.id);
+      let cred;
+      try { cred = await navigator.credentials.get({ publicKey: opts }); } catch { return null; }
+      if (!cred) return null;
+      const r = cred.response;
+      return JSON.stringify({ id: cred.id, rawId: b64u(cred.rawId), type: cred.type, response: { authenticatorData: b64u(r.authenticatorData), clientDataJSON: b64u(r.clientDataJSON), signature: b64u(r.signature), userHandle: r.userHandle ? b64u(r.userHandle) : '' } });
+    }
+
     async function verifyCode(ch, job, done) {
       let meta;
       try { meta = JSON.parse(atob(ch.meta)); } catch { return null; }
@@ -2306,15 +2324,22 @@
         const c = r.ok ? await r.json() : null;
         if (c && c.primaryMediaType) media = c.primaryMediaType;
       } catch {}
-      const path = { Authenticator: 'authenticator', Email: 'email', SMS: 'sms', RecoveryCode: 'recovery-codes' }[media] || 'authenticator';
+      const path = { Authenticator: 'authenticator', Email: 'email', SMS: 'sms', RecoveryCode: 'recovery-codes', Passkey: 'passkey', SecurityKey: 'security-key' }[media] || 'authenticator';
+      const key = path === 'passkey' || path === 'security-key';
       if (path === 'email' || path === 'sms') await tsvPost(`${base}/challenges/${path}/send-code`, { challengeId: meta.challengeId, actionType });
-      const prompt = path === 'email' ? lt('Roblox emailed you a code. Enter it to keep sending.') : path === 'sms' ? lt('Roblox texted you a code. Enter it to keep sending.') : lt('Enter the code from your authenticator app to keep sending.');
+      const prompt = path === 'email' ? lt('Roblox emailed you a code. Enter it to keep sending.') : path === 'sms' ? lt('Roblox texted you a code. Enter it to keep sending.') : path === 'passkey' ? lt('Press Verify, then use your passkey to keep sending.') : path === 'security-key' ? lt('Press Verify, then use your security key to keep sending.') : lt('Enter the code from your authenticator app to keep sending.');
       for (;;) {
-        const code = await done.code(prompt);
+        const code = await done.code(prompt, key);
         if (!code || job.stop) return null;
-        const v = await tsvPost(`${base}/challenges/${path}/verify`, { challengeId: meta.challengeId, actionType, code });
+        let v;
+        if (key) {
+          const cred = await keyCheck(base, path, meta.challengeId, actionType);
+          if (job.stop) return null;
+          if (!cred) { done.codeError(lt('The check didn’t finish. Try again.')); continue; }
+          v = await tsvPost(`${base}/challenges/${path}/verify-finish`, { challengeId: meta.challengeId, actionType, code: cred });
+        } else v = await tsvPost(`${base}/challenges/${path}/verify`, { challengeId: meta.challengeId, actionType, code });
         const token = v.ok && v.data && v.data.verificationToken;
-        if (!token) { done.codeError(lt('That code didn’t work. Try again.')); continue; }
+        if (!token) { done.codeError(key ? lt('The check didn’t finish. Try again.') : lt('That code didn’t work. Try again.')); continue; }
         const answer = { verificationToken: token, rememberDevice: false, challengeId: meta.challengeId, actionType };
         const c = await tsvPost('https://apis.roblox.com/challenge/v1/continue', { challengeID: ch.id, challengeType: ch.type, challengeMetadata: JSON.stringify(answer) });
         if (!c.ok) { done.codeError(lt('Roblox didn’t accept the check. Try again.')); continue; }
