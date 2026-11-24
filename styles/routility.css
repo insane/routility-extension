@@ -6241,6 +6241,11 @@ html.routility-settings-mode .menu-vertical .routility-menu-divider,
   background: radial-gradient(120% 90% at 50% 20%, #f2f4f8 0%, #d9dce3 70%);
 }
 
+.item-details-thumbnail-container:has(> .routility-pv) .thumbnail-button-container,
+.item-details-thumbnail-container:has(> .routility-pv) .thumbnail-ui-container {
+  visibility: hidden;
+}
+
 .routility-pv-canvas {
   display: block;
   width: 100%;

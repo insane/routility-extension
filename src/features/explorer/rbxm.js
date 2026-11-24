@@ -146,8 +146,8 @@
       case 0x12: return r.beU32s(n).map(v => ({ kind: 'enum', value: v }));
       case 0x13: return r.refs(n).map(v => ({ kind: 'ref', value: v }));
       case 0x14: return many(() => ({ kind: 'tuple', value: [r.i16(), r.i16(), r.i16()] }));
-      case 0x15: return many(() => ({ kind: 'sequence', count: Array.from({ length: r.u32() }, () => [r.f32(), r.f32(), r.f32()]).length }));
-      case 0x16: return many(() => ({ kind: 'sequence', count: Array.from({ length: r.u32() }, () => [r.f32(), r.f32(), r.f32(), r.f32(), r.f32()]).length }));
+      case 0x15: return many(() => { const keys = Array.from({ length: r.u32() }, () => [r.f32(), r.f32(), r.f32()]); return { kind: 'sequence', count: keys.length, keys }; });
+      case 0x16: return many(() => { const keys = Array.from({ length: r.u32() }, () => [r.f32(), r.f32(), r.f32(), r.f32(), r.f32()]); return { kind: 'sequence', count: keys.length, keys }; });
       case 0x17: return many(() => ({ kind: 'tuple', value: [round(r.f32()), round(r.f32())] }));
       case 0x18: { const a = r.floats(n), b = r.floats(n), c = r.floats(n), d = r.floats(n); return a.map((v, i) => ({ kind: 'tuple', value: [round(v), round(b[i]), round(c[i]), round(d[i])] })); }
       case 0x19: return many(() => {
@@ -283,6 +283,14 @@
       }
       if (t === 'Color3') return p.querySelector(':scope > R') ? { kind: 'color', value: [num(p, 'R'), num(p, 'G'), num(p, 'B')] } : (() => { const v = Number(txt) >>> 0; return { kind: 'color', value: [((v >> 16) & 255) / 255, ((v >> 8) & 255) / 255, (v & 255) / 255] }; })();
       if (t === 'Color3uint8') { const v = Number(txt) >>> 0; return { kind: 'color', value: [((v >> 16) & 255) / 255, ((v >> 8) & 255) / 255, (v & 255) / 255] }; }
+      if (t === 'NumberSequence' || t === 'ColorSequence') {
+        const nums = txt.split(/\s+/).filter(Boolean).map(Number);
+        const step = t === 'NumberSequence' ? 3 : 5;
+        const keys = [];
+        for (let i = 0; i + step <= nums.length; i += step) keys.push(nums.slice(i, i + step));
+        return { kind: 'sequence', count: keys.length, keys };
+      }
+      if (t === 'NumberRange') { const nums = txt.split(/\s+/).filter(Boolean).map(Number); return { kind: 'tuple', value: [round(nums[0] || 0), round(nums[1] ?? nums[0] ?? 0)] }; }
       if (t === 'Content') { const u = p.querySelector(':scope > url'); return u ? { kind: 'string', value: u.textContent.trim() } : { kind: 'none' }; }
       if (t === 'Ref') return txt && txt !== 'null' ? { kind: 'ref', value: refOf(txt) } : { kind: 'none' };
       if (t === 'BinaryString') return { kind: 'binary', size: Math.floor(txt.length * 3 / 4) };
