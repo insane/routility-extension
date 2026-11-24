@@ -7,18 +7,15 @@
   },
   "releases": [
     {
-      "version": "1.3.3",
-      "date": "2026-11-23",
-      "summary": "Mass Send can wait for you to check each trade, shows how your last run did and saves your setups, and Sandbox gets one row of categories, backgrounds and a buy button.",
+      "version": "1.3.4",
+      "date": "2026-11-24",
+      "summary": "Mass Send takes your 2-Step code, shows how your last run did and saves your setups, Sandbox gets one row of categories, backgrounds and a buy button, and profiles get a Trades section.",
       "changes": [
-        { "type": "new", "text": "Review each trade (Mass Send): pick Let me review each trade under Before sending and every trade waits for you to press Send or Skip before it goes out." },
-        { "type": "new", "text": "Shuffle picks (Mass Send): choose Upgrade, Downgrade or exactly how many items Shuffle adds, pick the demand the added items need and never add unvalued items, faces, gear or items that are dropping or unstable." },
-        { "type": "fixed", "text": "Mass Send: trades left today is more accurate, since trades that were declined or countered no longer drop out of the count." },
-        { "type": "fixed", "text": "Mass Send: typing 20k or 1.5m in Add Robux now adds 20,000 or 1,500,000 Robux instead of 20 or 1." },
         { "type": "new", "text": "2-Step Verification (Mass Send): when Roblox asks to check it’s really you, type your code right in Mass Send and it keeps sending, instead of sending a trade from Roblox’s trade window." },
         { "type": "new", "text": "Mass Send: if Roblox needs you to verify while you’re in another tab or app, a notification tells you, and clicking it takes you back." },
         { "type": "new", "text": "Reset who I’ve sent to (Mass Send): in the Skip menu, forgets who you already mass sent to, so you can send the same people a new offer, like one with more Robux." },
         { "type": "improved", "text": "Mass Send: a simpler page, with every choice in a short row of dropdowns instead of rows of buttons." },
+        { "type": "new", "text": "How many items (Mass Send): choose exactly how many items Shuffle adds to each trade, or leave it on Any number." },
         { "type": "new", "text": "Last run (Mass Send): see how your last run did, with how many trades were accepted, countered, declined or are still waiting." },
         { "type": "new", "text": "Saved setups (Mass Send): save your items, what you want and every option, then load it again in one click." },
         { "type": "new", "text": "Cancel unanswered trades (Mass Send): have Mass Send trades nobody answered cancel after 1, 2 or 3 days, even while Roblox isn’t open, or cancel the ones still waiting right away." },
@@ -35,7 +32,20 @@
         { "type": "fixed", "text": "Limited alerts: items that just became Limited no longer say Free, since they can only be bought from resellers." },
         { "type": "fixed", "text": "Trades: refreshing a counter offer takes you straight back to it instead of Roblox’s Page Not Found." },
         { "type": "fixed", "text": "Customize Thumbnail: the preview no longer leaves off your pants or shirt when you wear body parts like R6 Girl." },
-        { "type": "fixed", "text": "Avatar previews: some older items like Twin Kodachi no longer show up plain white." }
+        { "type": "fixed", "text": "Avatar previews: some older items like Twin Kodachi no longer show up plain white." },
+        { "type": "fixed", "text": "RoUtility Bot: item and player cards show round numbers right, like 310K instead of 31K, with the Value and Robux icons." },
+        { "type": "fixed", "text": "Trades on profiles: the Trades section no longer goes missing for a few minutes when routility.io briefly answers with no trades." }
+      ]
+    },
+    {
+      "version": "1.3.3",
+      "date": "2026-11-23",
+      "summary": "Mass Send can wait for you to check each trade before it goes out, lets you choose what kind of items it adds, counts your trades left better and reads 20k in Add Robux.",
+      "changes": [
+        { "type": "new", "text": "Review each trade (Mass Send): turn it on under More options and every trade waits for you to press Send or Skip before it goes out." },
+        { "type": "new", "text": "Shuffle and value range adds (Mass Send): under More options, pick the demand the added items need and never add unvalued items, faces, gear or items that are dropping or unstable." },
+        { "type": "fixed", "text": "Mass Send: trades left today is more accurate, since trades that were declined or countered no longer drop out of the count." },
+        { "type": "fixed", "text": "Mass Send: typing 20k or 1.5m in Add Robux now adds 20,000 or 1,500,000 Robux instead of 20 or 1." }
       ]
     },
     {
