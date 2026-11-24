@@ -764,14 +764,6 @@
  "Can’t go public": "Ne peut pas devenir public",
  "Canadian Dollar": "Dollar canadien",
  "Cancel": "Annuler",
- "Decline": "Refuser",
- "Decline?": "Refuser ?",
- "Declining…": "Refus…",
- "Decline this trade": "Refuser cet échange",
- "Cancel?": "Annuler ?",
- "Canceling…": "Annulation…",
- "Canceled": "Annulé",
- "Cancel this trade": "Annuler cet échange",
  "Cancel {n} Trades": {
   "one": "Annuler {n} échange",
   "other": "Annuler {n} échanges"

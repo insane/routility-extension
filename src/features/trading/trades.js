@@ -1116,61 +1116,6 @@
 
   let dialogWatch = null;
 
-  function rowAction(row, entry, type) {
-    const kind = type === 'Inbound' ? 'decline' : type === 'Outbound' ? 'cancel' : '';
-    const old = row.querySelector('.routility-row-x');
-    if (!kind || !entry.active || entry.declined) {
-      if (old && !old.classList.contains('routility-row-x-done')) old.remove();
-      return;
-    }
-    if (old && old.dataset.tradeId === entry.id) return;
-    old?.remove();
-    const status = row.querySelector('.trade-row-details .text-date-hint');
-    const host = status ? status.parentElement : row.querySelector('.trade-row-details') || row.querySelector('.trade-row-container');
-    if (!host) return;
-    const label = kind === 'decline' ? lt('Decline') : lt('Cancel');
-    const b = el('button', 'routility-injected routility-row-x', label);
-    b.type = 'button';
-    b.dataset.tradeId = entry.id;
-    b.dataset.rtTip = kind === 'decline' ? lt('Decline this trade') : lt('Cancel this trade');
-    let armed = 0;
-    b.addEventListener('click', async (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (b.disabled) return;
-      if (!armed) {
-        armed = setTimeout(() => {
-          armed = 0;
-          b.classList.remove('routility-row-x-armed');
-          b.textContent = label;
-        }, 3000);
-        b.classList.add('routility-row-x-armed');
-        b.textContent = kind === 'decline' ? lt('Decline?') : lt('Cancel?');
-        return;
-      }
-      clearTimeout(armed);
-      armed = 0;
-      b.disabled = true;
-      b.classList.remove('routility-row-x-armed');
-      b.textContent = kind === 'decline' ? lt('Declining…') : lt('Canceling…');
-      const ok = await declineTrade(entry.id);
-      if (!ok) {
-        b.disabled = false;
-        b.textContent = lt('Didn’t Work, Try Again');
-        setTimeout(() => { if (!b.disabled) b.textContent = label; }, 2500);
-        return;
-      }
-      entry.declined = true;
-      entry.active = false;
-      b.classList.add('routility-row-x-done');
-      b.textContent = kind === 'decline' ? lt('Declined') : lt('Canceled');
-      row.classList.add('routility-row-declined');
-    });
-    b.addEventListener('pointerdown', (e) => e.stopPropagation());
-    if (status) status.appendChild(b);
-    else host.appendChild(b);
-  }
-
   async function scanRows() {
     const rows = [...document.querySelectorAll('.trade-row')];
     if (!rows.length) return;
@@ -1193,7 +1138,6 @@
         continue;
       }
       dateRow(row, entry);
-      rowAction(row, entry, type);
       if (!valuesOn) {
         row.querySelectorAll('.routility-row-pills').forEach(n => n.remove());
         continue;

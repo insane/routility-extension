@@ -674,14 +674,6 @@
  "Can’t go public": "無法公開",
  "Canadian Dollar": "加幣",
  "Cancel": "取消",
- "Decline": "拒絕",
- "Decline?": "確定拒絕？",
- "Declining…": "正在拒絕…",
- "Decline this trade": "拒絕這筆交易",
- "Cancel?": "確定取消？",
- "Canceling…": "正在取消…",
- "Canceled": "已取消",
- "Cancel this trade": "取消這筆交易",
  "Cancel {n} Trades": {
   "other": "取消 {n} 筆交易"
  },

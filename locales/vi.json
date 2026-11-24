@@ -674,14 +674,6 @@
  "Can’t go public": "Không thể công khai",
  "Canadian Dollar": "Đô la Canada",
  "Cancel": "Hủy",
- "Decline": "Từ chối",
- "Decline?": "Từ chối?",
- "Declining…": "Đang từ chối…",
- "Decline this trade": "Từ chối giao dịch này",
- "Cancel?": "Hủy?",
- "Canceling…": "Đang hủy…",
- "Canceled": "Đã hủy",
- "Cancel this trade": "Hủy giao dịch này",
  "Cancel {n} Trades": {
   "other": "Hủy {n} giao dịch"
  },

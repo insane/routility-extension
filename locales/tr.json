@@ -764,14 +764,6 @@
  "Can’t go public": "Herkese açık olamaz",
  "Canadian Dollar": "Kanada Doları",
  "Cancel": "İptal",
- "Decline": "Reddet",
- "Decline?": "Reddedilsin mi?",
- "Declining…": "Reddediliyor…",
- "Decline this trade": "Bu takası reddet",
- "Cancel?": "İptal edilsin mi?",
- "Canceling…": "İptal ediliyor…",
- "Canceled": "İptal edildi",
- "Cancel this trade": "Bu takası iptal et",
  "Cancel {n} Trades": {
   "one": "{n} takası iptal et",
   "other": "{n} takası iptal et"

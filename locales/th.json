@@ -674,14 +674,6 @@
  "Can’t go public": "เปิดเป็นสาธารณะไม่ได้",
  "Canadian Dollar": "ดอลลาร์แคนาดา",
  "Cancel": "ยกเลิก",
- "Decline": "ปฏิเสธ",
- "Decline?": "ปฏิเสธไหม?",
- "Declining…": "กำลังปฏิเสธ…",
- "Decline this trade": "ปฏิเสธการแลกเปลี่ยนนี้",
- "Cancel?": "ยกเลิกไหม?",
- "Canceling…": "กำลังยกเลิก…",
- "Canceled": "ยกเลิกแล้ว",
- "Cancel this trade": "ยกเลิกการแลกเปลี่ยนนี้",
  "Cancel {n} Trades": {
   "other": "ยกเลิก {n} การแลกเปลี่ยน"
  },
