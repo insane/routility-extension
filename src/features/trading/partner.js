@@ -137,6 +137,24 @@
     return theirs.get(key);
   }
 
+  async function trackedWithYou(pid, since) {
+    const out = [];
+    for (let page = 1; page <= 50; page++) {
+      const d = await loadTheirs(pid, page);
+      if (!d || !Array.isArray(d.trades) || !d.trades.length) break;
+      out.push(...d.trades.filter(t => String(t.partner && t.partner.id) === me()));
+      if (page >= (Number(d.meta && d.meta.pages) || 1) || Number(d.trades[d.trades.length - 1].ts) * 1000 < since - 60000) break;
+    }
+    return out;
+  }
+
+  function trackedItems(tracked, at) {
+    const out = new Map();
+    const after = tracked.filter(t => Number(t.ts) * 1000 >= at - 60000).sort((a, b) => a.ts - b.ts);
+    for (const t of after) for (const x of [...(t.gave || []), ...(t.got || [])]) if (x.ciid && !out.has(x.ciid)) out.set(x.ciid, x);
+    return out;
+  }
+
   function statusText(t) {
     if (t.type === 'completed') return lt('Went through');
     if (t.type === 'inbound') return lt('Waiting for you');
@@ -337,11 +355,13 @@
     }
   }
 
-  function detailItems(offer, map) {
+  function detailItems(offer, map, then) {
     return ((offer && offer.items) || []).map((it) => {
       const target = it.itemTarget || {};
       const c = map.get(String(target.targetId || ''));
       const rap = Number(it.recentAveragePrice) || (c && Number(c.rap)) || 0;
+      const t = then && then.get(String(it.collectibleItemInstanceId || ''));
+      if (t) return { asset_id: String(target.targetId || ''), name: it.itemName || (c && c.name) || '', serial: Number(it.serialNumber) || 0, value_then: Number(t.value_then) || 0, usd: Number(t.usd) || 0, rap: Number(t.rap) || rap };
       return { asset_id: String(target.targetId || ''), name: it.itemName || (c && c.name) || '', serial: Number(it.serialNumber) || 0, value_then: (c && itemValue(c)) || 0, usd: c && c.usd > 0 ? c.usd : 0, rap };
     });
   }
@@ -358,14 +378,14 @@
     swap.appendChild(el('span', 'routility-sk routility-tp-sk-wide'));
     const nums = el('span', 'routility-tp-nums');
     li.append(who, swap, nums);
-    li.fill = (d, map) => {
+    li.fill = (d, map, then) => {
       if (!d || !d.participantAOffer || !d.participantBOffer) {
         swap.replaceChildren(el('span', 'text-body-small content-muted', lt('Couldn’t load this trade. Try again in a moment.')));
         return;
       }
       const [yours, theirs] = String(d.participantBOffer.user && d.participantBOffer.user.id) === me() ? [d.participantBOffer, d.participantAOffer] : [d.participantAOffer, d.participantBOffer];
-      const gave = detailItems(yours, map);
-      const got = detailItems(theirs, map);
+      const gave = detailItems(yours, map, then);
+      const got = detailItems(theirs, map, then);
       swap.replaceChildren(itemsRow(gave, map), el('span', 'routility-tp-arrow content-muted', '→'), itemsRow(got, map));
       const sum = (list, key) => list.reduce((n, x) => n + (Number(x[key]) || 0), 0);
       nums.replaceChildren(signed(got.reduce((n, x) => n + thenOf(x), 0) - gave.reduce((n, x) => n + thenOf(x), 0), 'value', [...gave, ...got].some(x => !thenOf(x))));
@@ -433,12 +453,13 @@
         ul.append(...rows);
         panes.you.replaceChildren(ul);
         const run = async () => {
-          const map = await catalogMap();
+          const done = list.filter(t => t.type === 'completed');
+          const [map, tracked] = await Promise.all([catalogMap(), done.length ? trackedWithYou(pid, Math.min(...done.map(t => t.at))) : []]);
           let next = 0;
           const worker = async () => {
             while (next < rows.length) {
               const i = next++;
-              rows[i].fill(await tradeDetail(list[i].id), map);
+              rows[i].fill(await tradeDetail(list[i].id), map, list[i].type === 'completed' ? trackedItems(tracked, list[i].at) : null);
             }
           };
           await Promise.all([worker(), worker(), worker()]);

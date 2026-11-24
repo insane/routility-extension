@@ -48,6 +48,7 @@ Mass Send takes your 2-Step code, shows how your last run did and saves your set
 - Avatar previews: some older items like Twin Kodachi no longer show up plain white.
 - RoUtility Bot: item and player cards show round numbers right, like 310K instead of 31K, with the Value and Robux icons.
 - Trades on profiles: the Trades section no longer goes missing for a few minutes when routility.io briefly answers with no trades.
+- Trades on profiles: Value in tracked trades and in With You now uses what each item was worth when the trade happened, like routility.io’s Trade Tracker, instead of today’s values.
 ```
 
 ## 1.3.3 (November 23, 2026)
