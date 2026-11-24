@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/assets/banner.png" alt="RoUtility: everything Roblox doesn't show you" width="100%">
+  <img src=".github/assets/banner.jpg" alt="RoUtility: everything Roblox doesn't show you" width="100%">
 </p>
 
 <h1 align="center">RoUtility</h1>
@@ -8,7 +8,7 @@
   USD values, trade tools and a lot of quality of life, built right into Roblox.
   <br>
   <a href="https://chromewebstore.google.com/detail/routility/ecnkdocplhnoclmeenflmcempkmlmpia"><b>Chrome Web Store</b></a>
-  &nbsp;·&nbsp;
+  &nbsp;&nbsp;&nbsp;
   <a href="https://routility.io"><b>routility.io</b></a>
 </p>
 
@@ -25,46 +25,53 @@ RoUtility adds the things Roblox doesn't show you to Roblox's own pages. There a
 ## What it does
 
 **Items and Marketplace**
-- USD value, RAP, demand and trend on every limited
-- Price history charts you can flip to USD, plus the best reseller deals
-- Owners list with serials, which of your friends own an item, and when you got yours
-- 3D try on preview and a Studio style Explorer for any model or accessory
+- RoUtility Value, USD price, RAP, demand, trend and copies on every limited, plus the best reseller deals
+- Price charts you can flip to your currency, recent trades for the item and who owns it, with serials
+- Which of your friends own an item, when you got yours, and how long others have owned theirs
+- Avatar Preview, Try In-Game and a Studio style Explorer for any model or accessory
 
 **Trading**
-- Values and a win or loss verdict on every offer
-- Trade Calculator with saved trades
-- Trade Ads, filters by item or player, and a one click cleanup for old trades
+- Values, RAP and price on every offer, with win and loss pills and an overpay warning before you send
+- Trade Calculator, Trade Ads and Quick Trade, plus search and filters for your trade list
+- Mass Send: send the same offer to the owners of an item, with saved setups, review before sending and a report of how your last run did
+- Every trade routility.io tracked for a player, right on their profile, and your own history with them
 
 **Profiles, Friends and Inventory**
-- Profile value and RAP, plus inventory search and sorting
-- Mutual friends, friend filters and friend lists Roblox hides
+- Profile value, RAP and price, Classic Profile layouts and private notes on anyone
+- Mutual friends, friend filters, hidden friend lists and Friend History of who was added and who is gone
 - Friend request filters by badges, mutuals, followers and join date
-- Friend History, a page of who was added to your friends list and who is no longer on it
+- Inventory search, values and a Limiteds category
+
+**Avatar**
+- Sandbox: try on anything from the Marketplace or your own items, with backgrounds and the cost of what you don't own
+- Customize Thumbnail, Adjust Accessories, wear up to 10 accessories, a skin tone color wheel and an outfit rotator
 
 **Experiences and Communities**
-- Server regions with a preferred region, and exact visit counts
-- Friends in a community, exact members and funds
-- Find online community members, filter by in-game status or place ID, and join their servers with game titles and icons
+- Server regions with ping, a map and a preferred region, recent servers and player filters
+- Exact visits and live stats, store totals, playtime tracking and a Private Servers page
+- Friends in a community, exact numbers, and online members you can join
 
 **Creator Hub**
-- Script Scan flags backdoors in Creator Store models before you insert them
-- Experience and place ids, quick links and Robux to USD
+- Script Scanner flags backdoors in Creator Store models before you insert them
+- Experience and place IDs, DevEx breakdowns, publishing tier and Robux in your currency
 
 **And more**
-- A community forum built into Roblox
-- Desktop notifications for new trades and new limiteds
-- Playtime tracking, an outfit rotator, badge cleanup and dozens of small fixes
+- The RoUtility Forum, a chat bot for values and settings, and a command palette
+- Desktop notifications for trades, new limiteds and price alerts
+- Themes, the 2017 Roblox look, Streamer Mode, Quick Settings and dozens of small fixes
+- 16 languages, following your Roblox language
 
 ## Screenshots
 
 <p align="center">
-  <img src=".github/assets/screenshot-1.png" width="49%" alt="USD prices on item pages">
-  <img src=".github/assets/screenshot-2.png" width="49%" alt="Values in search">
-  <img src=".github/assets/screenshot-3.png" width="49%" alt="Trade Calculator">
-  <img src=".github/assets/screenshot-4.png" width="49%" alt="3D preview">
-</p>
-<p align="center">
-  <img src=".github/assets/screenshot-5.png" width="49%" alt="Server regions">
+  <img src=".github/assets/screenshot-1.jpg" width="49%" alt="Mass Send">
+  <img src=".github/assets/screenshot-2.jpg" width="49%" alt="Sandbox">
+  <img src=".github/assets/screenshot-3.jpg" width="49%" alt="RoUtility Bot in Roblox chat">
+  <img src=".github/assets/screenshot-4.jpg" width="49%" alt="Tracked trades on a profile">
+  <img src=".github/assets/screenshot-5.jpg" width="49%" alt="The 2017 Roblox theme">
+  <img src=".github/assets/screenshot-6.jpg" width="49%" alt="Value, USD price, demand and trend on an item page">
+  <img src=".github/assets/screenshot-7.jpg" width="49%" alt="Trade Calculator with a verdict">
+  <img src=".github/assets/screenshot-8.jpg" width="49%" alt="Server regions on a map">
 </p>
 
 ## Install
