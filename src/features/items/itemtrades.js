@@ -155,13 +155,14 @@
   }
 
   function person(side, heads) {
-    const a = el('a', 'routility-it-user');
-    a.href = `https://www.roblox.com/users/${side.id}/profile`;
+    const id = side && side.id;
+    const a = el(id ? 'a' : 'span', 'routility-it-user');
+    if (id) a.href = `https://www.roblox.com/users/${id}/profile`;
     const img = el('img', 'routility-it-head');
     img.alt = '';
-    const src = heads.get(String(side.id));
+    const src = id && heads.get(String(id));
     if (src) img.src = src;
-    a.append(img, el('span', 'routility-it-name', side.name || lt('Hidden')));
+    a.append(img, el('span', 'routility-it-name', (side && side.name) || lt('Hidden / Private')));
     return a;
   }
 
