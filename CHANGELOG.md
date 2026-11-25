@@ -39,6 +39,7 @@ Mass Send takes your 2-Step code, shows how your last run did and saves your set
 ~ Gains and losses now read sign, icon, amount everywhere, like − 105K, in trade pills, the trade calculator and share images.
 ~ Hovering an item in tracked trades, item trades, trade ads, trade previews and the chat bot shows the same card with its Value, Price and RAP, like on routility.io.
 ~ Mass Send: skips people who no longer have the item right away, instead of looking through their whole inventory first.
+~ Free Trades Left: hovering Unlimited trades now says it comes with Roblox Plus or Premium, since Premium members trade without limits too.
 ```
 
 **Fixed**

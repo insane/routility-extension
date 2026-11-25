@@ -3847,7 +3847,7 @@
   "many": "{n} раз",
   "other": "{n} раза"
  },
- "Included with Roblox Plus": "Входит в Roblox Plus",
+ "Included with Roblox Plus or Premium": "Входит в Roblox Plus или Premium",
  "Resets {date}": "Сбросится {date}",
  "Uploaded By": "Загрузил",
  "The account that uploaded this item’s mesh and textures. Roblox only lists {creator}.": "Аккаунт, который загрузил меш и текстуры этого предмета. Roblox указывает только {creator}.",

@@ -3382,7 +3382,7 @@
  "{n} times": {
   "other": "{n}번"
  },
- "Included with Roblox Plus": "Roblox Plus에 포함",
+ "Included with Roblox Plus or Premium": "Roblox Plus 또는 Premium에 포함",
  "Resets {date}": "{date}에 초기화",
  "Uploaded By": "업로드한 사람",
  "The account that uploaded this item’s mesh and textures. Roblox only lists {creator}.": "이 아이템의 메시와 텍스처를 업로드한 계정이에요. Roblox는 {creator}만 표시해요.",

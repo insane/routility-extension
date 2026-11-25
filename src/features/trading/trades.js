@@ -1917,7 +1917,7 @@
     if (a.canTrade === false) return { text: lt('You can’t trade right now'), tip: lt('Roblox says your account can’t trade: {reason}', { reason: String(a.tradeEligibility || '').replace(/([a-z])([A-Z])/g, '$1 $2') }), tone: 'alert' };
     const f = a.freeTradesAllowance;
     if (!f || !(Number(f.limit) > 0)) return null;
-    if (Number(f.remaining) < 0) return { text: lt('Unlimited trades'), tip: lt('Included with Roblox Plus'), tone: 'plus' };
+    if (Number(f.remaining) < 0) return { text: lt('Unlimited trades'), tip: lt('Included with Roblox Plus or Premium'), tone: 'plus' };
     const now = new Date();
     const reset = new Date(now.getFullYear(), now.getMonth() + 1, 1).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
     return { text: lt('{left} of {limit} free trades left this month', { left: Math.max(0, Number(f.remaining)), limit: f.limit }), tip: lt('Resets {date}', { date: reset }), tone: Number(f.remaining) > 0 ? '' : 'alert' };

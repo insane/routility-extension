@@ -3382,7 +3382,7 @@
  "{n} times": {
   "other": "{n}回"
  },
- "Included with Roblox Plus": "Roblox Plusに含まれています",
+ "Included with Roblox Plus or Premium": "Roblox PlusまたはPremiumに含まれています",
  "Resets {date}": "{date}にリセット",
  "Uploaded By": "アップロード者",
  "The account that uploaded this item’s mesh and textures. Roblox only lists {creator}.": "このアイテムのメッシュとテクスチャをアップロードしたアカウントです。Robloxは{creator}しか表示しません。",

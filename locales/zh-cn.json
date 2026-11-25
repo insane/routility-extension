@@ -3382,7 +3382,7 @@
  "{n} times": {
   "other": "{n} 次"
  },
- "Included with Roblox Plus": "Roblox Plus 包含",
+ "Included with Roblox Plus or Premium": "Roblox Plus 或 Premium 包含",
  "Resets {date}": "{date} 重置",
  "Uploaded By": "上传者",
  "The account that uploaded this item’s mesh and textures. Roblox only lists {creator}.": "上传这件物品网格和贴图的账户。Roblox 只显示 {creator}。",
