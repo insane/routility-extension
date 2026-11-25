@@ -3495,10 +3495,6 @@
  "From {n} sales that are still pending": "아직 대기 중인 판매 {n}건",
  "Roblox Plus saves you {n} Robux": "Roblox Plus로 {n} Robux 절약",
  "Medium": "중간",
- "Friends and people you follow": "친구 및 팔로우하는 사람",
- "People you follow": "팔로우하는 사람",
- "No one": "아무도 없음",
- "Change these in Privacy settings": "개인정보 설정에서 변경하세요",
  "Filter: {level}": "필터: {level}",
  "Trades from: {who}": "거래 가능: {who}",
  "Your next change is free": "다음 변경은 무료예요",
@@ -3509,7 +3505,7 @@
  "Username Change Price": "사용자 이름 변경 가격",
  "Next to your username in Settings, what changing it costs you, with the price before your Roblox Plus discount.": "설정의 사용자 이름 옆에 변경 비용과 Roblox Plus 할인 전 가격을 보여 줘요.",
  "Your Trade Settings": "내 거래 설정",
- "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive.": "거래 아래에 거래 품질 필터와 거래를 보낼 수 있는 사람을 보여 줘서 일부 거래가 오지 않는 이유를 알 수 있어요.",
+ "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive. Click either one to change it.": "거래 아래에 거래 품질 필터와 거래를 보낼 수 있는 사람을 보여 줘서 일부 거래가 오지 않는 이유를 알 수 있어요. 둘 중 하나를 클릭하면 바꿀 수 있어요.",
  "18+ DevEx Rate": "18+ DevEx 환율",
  "On each experience overview, whether its Robux from players 18 and over can cash out at the higher $0.0054 rate, and what to change if it can’t.": "각 경험 개요에 18세 이상 플레이어의 Robux를 더 높은 $0.0054 환율로 환전할 수 있는지와, 안 된다면 무엇을 바꿔야 하는지 보여 줘요.",
  "Compared to Similar Experiences": "비슷한 경험과 비교",
@@ -3684,5 +3680,6 @@
  "{n} mass sends are waiting in the queue. Press Start Sending to run them.": {
   "other": "일괄 보내기 {n}건이 대기열에서 기다리고 있어요. 보내기 시작을 눌러 실행하세요."
  },
+ "Roblox didn’t save that. Try again.": "Roblox에 저장되지 않았어요. 다시 시도해 주세요.",
  "Net Cash": "순 금액"
 }

@@ -3963,10 +3963,6 @@
  "From {n} sales that are still pending": "Z {n} sprzedaży, które wciąż oczekują",
  "Roblox Plus saves you {n} Robux": "Roblox Plus oszczędza ci {n} Robux",
  "Medium": "Średni",
- "Friends and people you follow": "Znajomi i obserwowani",
- "People you follow": "Obserwowani",
- "No one": "Nikt",
- "Change these in Privacy settings": "Zmień to w ustawieniach prywatności",
  "Filter: {level}": "Filtr: {level}",
  "Trades from: {who}": "Wymiany od: {who}",
  "Your next change is free": "Następna zmiana jest darmowa",
@@ -3977,7 +3973,7 @@
  "Username Change Price": "Cena zmiany nazwy",
  "Next to your username in Settings, what changing it costs you, with the price before your Roblox Plus discount.": "Obok nazwy użytkownika w Ustawieniach, ile kosztuje jej zmiana, z ceną przed rabatem Roblox Plus.",
  "Your Trade Settings": "Twoje ustawienia wymian",
- "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive.": "Pod Wymianami twój filtr jakości i kto może wysyłać ci wymiany, żebyś wiedział, czemu niektóre nie docierają.",
+ "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive. Click either one to change it.": "Pod Wymianami twój filtr jakości i kto może wysyłać ci wymiany, żebyś wiedział, czemu niektóre nie docierają. Kliknij dowolny, żeby go zmienić.",
  "18+ DevEx Rate": "Kurs DevEx 18+",
  "On each experience overview, whether its Robux from players 18 and over can cash out at the higher $0.0054 rate, and what to change if it can’t.": "W przeglądzie każdego doświadczenia, czy Robux od graczy 18+ można wypłacić po wyższym kursie $0.0054 i co zmienić, jeśli nie.",
  "Compared to Similar Experiences": "Porównanie z podobnymi doświadczeniami",
@@ -4165,5 +4161,6 @@
   "many": "{n} masowych wysyłek czeka w kolejce. Naciśnij Zacznij wysyłać, aby je uruchomić.",
   "other": "{n} masowej wysyłki czeka w kolejce. Naciśnij Zacznij wysyłać, aby ją uruchomić."
  },
+ "Roblox didn’t save that. Try again.": "Roblox tego nie zapisał. Spróbuj ponownie.",
  "Net Cash": "Gotówka netto"
 }

@@ -3495,10 +3495,6 @@
  "From {n} sales that are still pending": "まだ保留中の {n} 件の販売から",
  "Roblox Plus saves you {n} Robux": "Roblox Plus で {n} Robux お得",
  "Medium": "中",
- "Friends and people you follow": "フレンドとフォロー中の人",
- "People you follow": "フォロー中の人",
- "No one": "誰も",
- "Change these in Privacy settings": "プライバシー設定で変更できます",
  "Filter: {level}": "フィルター: {level}",
  "Trades from: {who}": "トレード相手: {who}",
  "Your next change is free": "次の変更は無料です",
@@ -3509,7 +3505,7 @@
  "Username Change Price": "ユーザー名変更の価格",
  "Next to your username in Settings, what changing it costs you, with the price before your Roblox Plus discount.": "設定のユーザー名の横に、変更にかかる費用と Roblox Plus 割引前の価格を表示します。",
  "Your Trade Settings": "あなたのトレード設定",
- "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive.": "トレードの下に、トレード品質フィルターと送信できる相手を表示し、届かないトレードの理由がわかります。",
+ "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive. Click either one to change it.": "トレードの下に、トレード品質フィルターと送信できる相手を表示し、届かないトレードの理由がわかります。どちらかをクリックすると変更できます。",
  "18+ DevEx Rate": "18+ DevEx レート",
  "On each experience overview, whether its Robux from players 18 and over can cash out at the higher $0.0054 rate, and what to change if it can’t.": "各エクスペリエンスの概要に、18 歳以上のプレイヤーからの Robux を高い $0.0054 のレートで換金できるかと、できない場合に変えるべき点を表示します。",
  "Compared to Similar Experiences": "似たエクスペリエンスとの比較",
@@ -3684,5 +3680,6 @@
  "{n} mass sends are waiting in the queue. Press Start Sending to run them.": {
   "other": "一括送信{n}件がキューで待機中です。「送信を開始」を押すと実行されます。"
  },
+ "Roblox didn’t save that. Try again.": "Robloxに保存されませんでした。もう一度お試しください。",
  "Net Cash": "純額"
 }

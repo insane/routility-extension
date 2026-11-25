@@ -24,6 +24,7 @@
         { "type": "improved", "text": "Gains and losses now read sign, icon, amount everywhere, like − 105K, in trade pills, the trade calculator and share images." },
         { "type": "improved", "text": "Hovering an item in tracked trades, item trades, trade ads, trade previews and the chat bot shows the same card with its Value, Price and RAP, like on routility.io." },
         { "type": "improved", "text": "Mass Send: skips people who no longer have the item right away, instead of looking through their whole inventory first." },
+        { "type": "improved", "text": "Your Trade Settings: click Filter or From under Trades to change your trade quality filter or who can send you trades, without going to Privacy settings." },
         { "type": "improved", "text": "Free Trades Left: hovering Unlimited trades now says it comes with Roblox Plus or Premium, since Premium members trade without limits too." },
         { "type": "new", "text": "My Items (Sandbox): switch between your own items and the whole Marketplace." },
         { "type": "new", "text": "Backgrounds (Sandbox): try any Marketplace background behind your avatar without changing your real one." },

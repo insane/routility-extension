@@ -3963,10 +3963,6 @@
  "From {n} sales that are still pending": "От {n} продаж, которые ещё ожидают",
  "Roblox Plus saves you {n} Robux": "Roblox Plus экономит вам {n} Robux",
  "Medium": "Средний",
- "Friends and people you follow": "Друзья и те, на кого вы подписаны",
- "People you follow": "Те, на кого вы подписаны",
- "No one": "Никто",
- "Change these in Privacy settings": "Измените это в настройках приватности",
  "Filter: {level}": "Фильтр: {level}",
  "Trades from: {who}": "Обмены от: {who}",
  "Your next change is free": "Следующая смена бесплатна",
@@ -3977,7 +3973,7 @@
  "Username Change Price": "Цена смены имени",
  "Next to your username in Settings, what changing it costs you, with the price before your Roblox Plus discount.": "Рядом с именем пользователя в настройках: сколько стоит смена и цена до скидки Roblox Plus.",
  "Your Trade Settings": "Ваши настройки обмена",
- "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive.": "Под «Обменами» ваш фильтр качества и кто может отправлять вам обмены, чтобы было понятно, почему некоторые не приходят.",
+ "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive. Click either one to change it.": "Под «Обменами» ваш фильтр качества и кто может отправлять вам обмены, чтобы было понятно, почему некоторые не приходят. Нажмите на любой, чтобы изменить его.",
  "18+ DevEx Rate": "Курс DevEx 18+",
  "On each experience overview, whether its Robux from players 18 and over can cash out at the higher $0.0054 rate, and what to change if it can’t.": "В обзоре каждого впечатления: можно ли вывести Robux от игроков 18+ по повышенному курсу $0.0054 и что изменить, если нельзя.",
  "Compared to Similar Experiences": "Сравнение с похожими впечатлениями",
@@ -4167,5 +4163,6 @@
   "many": "{n} массовых отправок ждут в очереди. Нажми Начать отправку, чтобы запустить их.",
   "other": "{n} массовой отправки ждёт в очереди. Нажми Начать отправку, чтобы запустить её."
  },
+ "Roblox didn’t save that. Try again.": "Roblox не сохранил изменение. Попробуйте ещё раз.",
  "Net Cash": "Чистые деньги"
 }

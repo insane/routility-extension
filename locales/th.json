@@ -3495,10 +3495,6 @@
  "From {n} sales that are still pending": "จากการขาย {n} รายการที่ยังรออยู่",
  "Roblox Plus saves you {n} Robux": "Roblox Plus ช่วยประหยัด {n} Robux",
  "Medium": "ปานกลาง",
- "Friends and people you follow": "เพื่อนและคนที่คุณติดตาม",
- "People you follow": "คนที่คุณติดตาม",
- "No one": "ไม่มีใคร",
- "Change these in Privacy settings": "เปลี่ยนได้ในการตั้งค่าความเป็นส่วนตัว",
  "Filter: {level}": "ตัวกรอง: {level}",
  "Trades from: {who}": "เทรดจาก: {who}",
  "Your next change is free": "การเปลี่ยนครั้งถัดไปฟรี",
@@ -3509,7 +3505,7 @@
  "Username Change Price": "ราคาเปลี่ยนชื่อผู้ใช้",
  "Next to your username in Settings, what changing it costs you, with the price before your Roblox Plus discount.": "ข้างชื่อผู้ใช้ในการตั้งค่า บอกค่าเปลี่ยนชื่อและราคาก่อนส่วนลด Roblox Plus",
  "Your Trade Settings": "การตั้งค่าเทรดของคุณ",
- "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive.": "ใต้หัวข้อเทรด แสดงตัวกรองคุณภาพเทรดและใครส่งเทรดถึงคุณได้ เพื่อให้รู้ว่าทำไมบางเทรดไม่มาถึง",
+ "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive. Click either one to change it.": "ใต้หัวข้อเทรด แสดงตัวกรองคุณภาพเทรดและใครส่งเทรดถึงคุณได้ เพื่อให้รู้ว่าทำไมบางเทรดไม่มาถึง คลิกอันใดอันหนึ่งเพื่อเปลี่ยน",
  "18+ DevEx Rate": "อัตรา DevEx 18+",
  "On each experience overview, whether its Robux from players 18 and over can cash out at the higher $0.0054 rate, and what to change if it can’t.": "ในภาพรวมของแต่ละประสบการณ์ บอกว่า Robux จากผู้เล่นอายุ 18 ปีขึ้นไปถอนที่อัตรา $0.0054 ได้หรือไม่ และต้องแก้อะไรถ้าไม่ได้",
  "Compared to Similar Experiences": "เทียบกับประสบการณ์ที่คล้ายกัน",
@@ -3684,5 +3680,6 @@
  "{n} mass sends are waiting in the queue. Press Start Sending to run them.": {
   "other": "ส่งหลายคน {n} รายการกำลังรอในคิว กดเริ่มส่งเพื่อรัน"
  },
+ "Roblox didn’t save that. Try again.": "Roblox ไม่ได้บันทึก ลองอีกครั้ง",
  "Net Cash": "เงินสุทธิ"
 }

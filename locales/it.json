@@ -3651,10 +3651,6 @@
  "From {n} sales that are still pending": "Da {n} vendite ancora in sospeso",
  "Roblox Plus saves you {n} Robux": "Roblox Plus ti fa risparmiare {n} Robux",
  "Medium": "Medio",
- "Friends and people you follow": "Amici e persone che segui",
- "People you follow": "Persone che segui",
- "No one": "Nessuno",
- "Change these in Privacy settings": "Modificali nelle impostazioni Privacy",
  "Filter: {level}": "Filtro: {level}",
  "Trades from: {who}": "Scambi da: {who}",
  "Your next change is free": "Il prossimo cambio è gratis",
@@ -3665,7 +3661,7 @@
  "Username Change Price": "Prezzo cambio nome utente",
  "Next to your username in Settings, what changing it costs you, with the price before your Roblox Plus discount.": "Accanto al tuo nome utente nelle Impostazioni, quanto costa cambiarlo, con il prezzo prima dello sconto Roblox Plus.",
  "Your Trade Settings": "Le tue impostazioni di scambio",
- "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive.": "Sotto Scambi, il tuo filtro di qualità e chi può inviarti scambi, così sai perché alcuni non arrivano mai.",
+ "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive. Click either one to change it.": "Sotto Scambi, il tuo filtro di qualità e chi può inviarti scambi, così sai perché alcuni non arrivano mai. Clicca su uno dei due per cambiarlo.",
  "18+ DevEx Rate": "Tasso DevEx 18+",
  "On each experience overview, whether its Robux from players 18 and over can cash out at the higher $0.0054 rate, and what to change if it can’t.": "Nella panoramica di ogni esperienza, se i suoi Robux da giocatori di 18 anni o più possono essere prelevati al tasso più alto di $0.0054 e cosa cambiare in caso contrario.",
  "Compared to Similar Experiences": "Confronto con esperienze simili",
@@ -3845,5 +3841,6 @@
   "one": "{n} invio di massa è in attesa nella coda. Premi Inizia a inviare per eseguirlo.",
   "other": "{n} invii di massa sono in attesa nella coda. Premi Inizia a inviare per eseguirli."
  },
+ "Roblox didn’t save that. Try again.": "Roblox non l’ha salvato. Riprova.",
  "Net Cash": "Soldi netti"
 }

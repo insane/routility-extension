@@ -3647,10 +3647,6 @@
  "From {n} sales that are still pending": "From {n} sales that are still pending",
  "Roblox Plus saves you {n} Robux": "Roblox Plus saves you {n} Robux",
  "Medium": "Medium",
- "Friends and people you follow": "Friends and people you follow",
- "People you follow": "People you follow",
- "No one": "No one",
- "Change these in Privacy settings": "Change these in Privacy settings",
  "Filter: {level}": "Filter: {level}",
  "Trades from: {who}": "Trades from: {who}",
  "Your next change is free": "Your next change is free",
@@ -3661,7 +3657,7 @@
  "Username Change Price": "Username Change Price",
  "Next to your username in Settings, what changing it costs you, with the price before your Roblox Plus discount.": "Next to your username in Settings, what changing it costs you, with the price before your Roblox Plus discount.",
  "Your Trade Settings": "Your Trade Settings",
- "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive.": "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive.",
+ "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive. Click either one to change it.": "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive. Click either one to change it.",
  "18+ DevEx Rate": "18+ DevEx Rate",
  "On each experience overview, whether its Robux from players 18 and over can cash out at the higher $0.0054 rate, and what to change if it can’t.": "On each experience overview, whether its Robux from players 18 and over can cash out at the higher $0.0054 rate, and what to change if it can’t.",
  "Compared to Similar Experiences": "Compared to Similar Experiences",
@@ -3841,5 +3837,6 @@
   "one": "{n} mass send is waiting in the queue. Press Start Sending to run it.",
   "other": "{n} mass sends are waiting in the queue. Press Start Sending to run them."
  },
+ "Roblox didn’t save that. Try again.": "Roblox didn’t save that. Try again.",
  "Net Cash": "Net cash"
 }

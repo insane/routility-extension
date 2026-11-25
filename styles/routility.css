@@ -15967,6 +15967,73 @@ a.routility-tp-name:hover { text-decoration: underline; }
   font-weight: 400;
 }
 
+.routility-trade-pill-pick {
+  position: relative;
+  cursor: pointer;
+}
+
+.routility-trade-pill-dd.routility-dropdown {
+  position: static !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  width: auto !important;
+}
+
+.routility-trade-pill-dd > .input-dropdown-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  font: inherit !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+}
+
+.routility-trade-pill-dd > .input-dropdown-btn > .rbx-selection-label {
+  max-width: none !important;
+  padding: 0 !important;
+  font: inherit !important;
+  color: inherit !important;
+}
+
+.routility-trade-pill-dd > .input-dropdown-btn > .icon-down-16x16 {
+  position: static !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 -4px 0 0 !important;
+  transform: scale(0.75) !important;
+}
+
+.routility-trade-pill-dd > .dropdown-menu {
+  top: 100% !important;
+  left: 0 !important;
+  right: auto !important;
+  min-width: 100% !important;
+  width: max-content !important;
+  max-width: none !important;
+  margin-top: 4px !important;
+  z-index: 1060 !important;
+  font-weight: 400 !important;
+  white-space: nowrap !important;
+}
+
+.routility-trade-pill-busy {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.routility-trade-pill-bad {
+  box-shadow: inset 0 0 0 1px var(--color-system-alert, #e5484d);
+}
+
 .routility-uname-price {
   display: inline-flex;
   align-items: center;

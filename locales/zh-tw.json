@@ -3495,10 +3495,6 @@
  "From {n} sales that are still pending": "來自 {n} 筆仍待入帳的銷售",
  "Roblox Plus saves you {n} Robux": "Roblox Plus 為你節省 {n} Robux",
  "Medium": "中",
- "Friends and people you follow": "好友和你追蹤的人",
- "People you follow": "你追蹤的人",
- "No one": "沒有人",
- "Change these in Privacy settings": "在隱私設定中變更",
  "Filter: {level}": "篩選：{level}",
  "Trades from: {who}": "交易來源：{who}",
  "Your next change is free": "下次變更免費",
@@ -3509,7 +3505,7 @@
  "Username Change Price": "變更使用者名稱價格",
  "Next to your username in Settings, what changing it costs you, with the price before your Roblox Plus discount.": "在設定中的使用者名稱旁，顯示變更所需的費用，以及 Roblox Plus 折扣前的價格。",
  "Your Trade Settings": "你的交易設定",
- "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive.": "在交易下方顯示你的交易品質篩選和誰可以向你發送交易，讓你知道為什麼有些交易從未收到。",
+ "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive. Click either one to change it.": "在交易下方顯示你的交易品質篩選和誰可以向你發送交易，讓你知道為什麼有些交易從未收到。點擊任一項即可更改。",
  "18+ DevEx Rate": "18+ DevEx 匯率",
  "On each experience overview, whether its Robux from players 18 and over can cash out at the higher $0.0054 rate, and what to change if it can’t.": "在每個體驗的概覽中，顯示來自 18 歲以上玩家的 Robux 能否按較高的 $0.0054 匯率兌現，不能的話需要改什麼。",
  "Compared to Similar Experiences": "與同類體驗比較",
@@ -3684,5 +3680,6 @@
  "{n} mass sends are waiting in the queue. Press Start Sending to run them.": {
   "other": "有 {n} 次群發正在佇列中等待。按開始傳送即可執行。"
  },
+ "Roblox didn’t save that. Try again.": "Roblox 沒有儲存。請再試一次。",
  "Net Cash": "淨金額"
 }

@@ -3651,10 +3651,6 @@
  "From {n} sales that are still pending": "De {n} ventes encore en attente",
  "Roblox Plus saves you {n} Robux": "Roblox Plus te fait économiser {n} Robux",
  "Medium": "Moyen",
- "Friends and people you follow": "Amis et personnes que tu suis",
- "People you follow": "Personnes que tu suis",
- "No one": "Personne",
- "Change these in Privacy settings": "Modifie-les dans les paramètres de confidentialité",
  "Filter: {level}": "Filtre : {level}",
  "Trades from: {who}": "Échanges de : {who}",
  "Your next change is free": "Ton prochain changement est gratuit",
@@ -3665,7 +3661,7 @@
  "Username Change Price": "Prix du changement de pseudo",
  "Next to your username in Settings, what changing it costs you, with the price before your Roblox Plus discount.": "À côté de ton pseudo dans les paramètres, ce que coûte le changer, avec le prix avant ta réduction Roblox Plus.",
  "Your Trade Settings": "Tes paramètres d’échange",
- "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive.": "Sous Échanges, ton filtre de qualité et qui peut t’envoyer des échanges, pour comprendre pourquoi certains n’arrivent jamais.",
+ "Under Trades, your trade quality filter and who can send you trades, so you know why some trades never arrive. Click either one to change it.": "Sous Échanges, ton filtre de qualité et qui peut t’envoyer des échanges, pour comprendre pourquoi certains n’arrivent jamais. Clique sur l’un des deux pour le changer.",
  "18+ DevEx Rate": "Taux DevEx 18+",
  "On each experience overview, whether its Robux from players 18 and over can cash out at the higher $0.0054 rate, and what to change if it can’t.": "Sur l’aperçu de chaque expérience, si ses Robux venant des joueurs de 18 ans et plus peuvent être retirés au taux plus élevé de $0.0054, et quoi changer sinon.",
  "Compared to Similar Experiences": "Comparaison avec des expériences similaires",
@@ -3845,5 +3841,6 @@
   "one": "{n} envoi groupé attend dans la file d’attente. Appuie sur Lancer l’envoi pour l’exécuter.",
   "other": "{n} envois groupés attendent dans la file d’attente. Appuie sur Lancer l’envoi pour les exécuter."
  },
+ "Roblox didn’t save that. Try again.": "Roblox ne l’a pas enregistré. Réessaie.",
  "Net Cash": "Argent net"
 }
