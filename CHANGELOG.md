@@ -51,6 +51,7 @@ Mass Send takes your 2-Step code, shows how your last run did and saves your set
 - Trades on profiles: the Trades section no longer goes missing for a few minutes when routility.io briefly answers with no trades.
 - Trades on profiles: Value in tracked trades and in With You now uses what each item was worth when the trade happened, like routility.io’s Trade Tracker, instead of today’s values.
 - Inventory: switching from Limiteds to another category like Animations no longer leaves the inventory blank.
+- Trades on profiles: with Classic Profile on Two Columns, the Trades section sits in the left column instead of below a big empty gap.
 ```
 
 ## 1.3.3 (November 23, 2026)

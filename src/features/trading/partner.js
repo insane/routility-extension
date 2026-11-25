@@ -564,6 +564,8 @@
 
   function spot() {
     const wear = document.querySelector('.routility-classic .routility-classic-wearing');
+    const left = wear && wear.parentElement.querySelector(':scope > .routility-column-left');
+    if (left) return { classic: true, parent: left, after: [...left.children].reverse().find(n => !n.classList.contains('routility-tp-section')) || null };
     if (wear) return { classic: true, parent: wear.parentElement, after: wear };
     const content = document.querySelector('#content .profile-content');
     if (!content) return null;

@@ -37,7 +37,8 @@
         { "type": "fixed", "text": "RoUtility Bot: item and player cards show round numbers right, like 310K instead of 31K, with the Value and Robux icons." },
         { "type": "fixed", "text": "Trades on profiles: the Trades section no longer goes missing for a few minutes when routility.io briefly answers with no trades." },
         { "type": "fixed", "text": "Trades on profiles: Value in tracked trades and in With You now uses what each item was worth when the trade happened, like routility.io’s Trade Tracker, instead of today’s values." },
-        { "type": "fixed", "text": "Inventory: switching from Limiteds to another category like Animations no longer leaves the inventory blank." }
+        { "type": "fixed", "text": "Inventory: switching from Limiteds to another category like Animations no longer leaves the inventory blank." },
+        { "type": "fixed", "text": "Trades on profiles: with Classic Profile on Two Columns, the Trades section sits in the left column instead of below a big empty gap." }
       ]
     },
     {
