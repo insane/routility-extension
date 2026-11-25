@@ -25,6 +25,7 @@ Mass Send takes your 2-Step code, shows how your last run did and saves your set
 + Backgrounds (Sandbox): try any Marketplace background behind your avatar without changing your real one.
 + Redo (Sandbox): next to Undo, brings back what you just undid.
 + Buy what you don’t own (Sandbox): a button under Outfit Worth shows what the pieces you don’t own cost, with your Roblox Plus discount, and lists each one with a link to buy it.
++ Old Roblox Dark and Neon Sunset, two new theme presets.
 ```
 
 **Improved**
@@ -49,6 +50,7 @@ Mass Send takes your 2-Step code, shows how your last run did and saves your set
 - RoUtility Bot: item and player cards show round numbers right, like 310K instead of 31K, with the Value and Robux icons.
 - Trades on profiles: the Trades section no longer goes missing for a few minutes when routility.io briefly answers with no trades.
 - Trades on profiles: Value in tracked trades and in With You now uses what each item was worth when the trade happened, like routility.io’s Trade Tracker, instead of today’s values.
+- Inventory: switching from Limiteds to another category like Animations no longer leaves the inventory blank.
 ```
 
 ## 1.3.3 (November 23, 2026)

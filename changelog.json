@@ -27,6 +27,7 @@
         { "type": "new", "text": "Backgrounds (Sandbox): try any Marketplace background behind your avatar without changing your real one." },
         { "type": "new", "text": "Redo (Sandbox): next to Undo, brings back what you just undid." },
         { "type": "new", "text": "Buy what you don’t own (Sandbox): a button under Outfit Worth shows what the pieces you don’t own cost, with your Roblox Plus discount, and lists each one with a link to buy it." },
+        { "type": "new", "text": "Old Roblox Dark and Neon Sunset, two new theme presets." },
         { "type": "fixed", "text": "Sandbox: no longer lands on the last Avatars page you had open." },
         { "type": "fixed", "text": "Sandbox: the Limiteds tab only shows on your real avatar, since Sandbox already has its own Limiteds filter." },
         { "type": "fixed", "text": "Limited alerts: items that just became Limited no longer say Free, since they can only be bought from resellers." },
@@ -35,7 +36,8 @@
         { "type": "fixed", "text": "Avatar previews: some older items like Twin Kodachi no longer show up plain white." },
         { "type": "fixed", "text": "RoUtility Bot: item and player cards show round numbers right, like 310K instead of 31K, with the Value and Robux icons." },
         { "type": "fixed", "text": "Trades on profiles: the Trades section no longer goes missing for a few minutes when routility.io briefly answers with no trades." },
-        { "type": "fixed", "text": "Trades on profiles: Value in tracked trades and in With You now uses what each item was worth when the trade happened, like routility.io’s Trade Tracker, instead of today’s values." }
+        { "type": "fixed", "text": "Trades on profiles: Value in tracked trades and in With You now uses what each item was worth when the trade happened, like routility.io’s Trade Tracker, instead of today’s values." },
+        { "type": "fixed", "text": "Inventory: switching from Limiteds to another category like Animations no longer leaves the inventory blank." }
       ]
     },
     {
