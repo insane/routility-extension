@@ -12,7 +12,6 @@
   let data = null;
   let loading = null;
   let page = 0;
-  let crumb = null;
 
   function userId() {
     return (location.pathname.match(PATH) || [])[1] || null;
@@ -164,15 +163,14 @@
     entry?.classList.toggle('active', want);
     const menu = entry?.parentElement;
     menu?.querySelectorAll(':scope > li.menu-option:not(.routility-inv-lim-entry)').forEach(li => li.classList.toggle('routility-inv-lim-muted', want));
+    document.querySelectorAll('.routility-inv-lim-crumb').forEach(n => n.remove());
     const bc = document.querySelector('.current-items .breadcrumb-container, .breadcrumb-container');
     if (want && bc) {
-      if (!crumb) crumb = bc.innerHTML;
       const step = el('li');
       step.append(el('span', null, lt('Limiteds')), el('span', 'routility-inv-lim-count'));
-      bc.replaceChildren(step);
-    } else if (!want && bc && crumb !== null) {
-      bc.innerHTML = crumb;
-      crumb = null;
+      const own = el(bc.tagName.toLowerCase(), bc.className + ' routility-injected routility-inv-lim-crumb');
+      own.appendChild(step);
+      bc.after(own);
     }
     if (want) {
       page = 0;

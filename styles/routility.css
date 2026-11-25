@@ -16019,7 +16019,12 @@ a.routility-tp-name:hover { text-decoration: underline; }
 }
 
 html.routility-inv-lim-on .current-items > #assetsItems,
-html.routility-inv-lim-on .current-items > .pager-holder:not(.routility-inv-lim-pager) {
+html.routility-inv-lim-on .current-items > .pager-holder:not(.routility-inv-lim-pager),
+html.routility-inv-lim-on .breadcrumb-container:not(.routility-inv-lim-crumb) {
+  display: none !important;
+}
+
+html:not(.routility-inv-lim-on) .routility-inv-lim-crumb {
   display: none !important;
 }
 
