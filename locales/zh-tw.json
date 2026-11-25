@@ -3654,5 +3654,35 @@
  "With You": "與你",
  "Tracked": "已追蹤",
  "Net Value": "淨 Value",
+ "Add to Queue": "加入佇列",
+ "Added to the queue. Set up another offer, or press Start Sending.": "已加入佇列。可以再設定一個報價，或按開始傳送。",
+ "Backup codes": "備用代碼",
+ "Cancel this one": "取消這個",
+ "Canceled, sent {sent}": "已取消，已傳送 {sent} 筆",
+ "Done, sent {sent}, skipped {skipped}": "完成，已傳送 {sent} 筆，略過 {skipped} 筆",
+ "No backup codes found. Paste the codes from Roblox’s 2-Step settings.": "找不到備用代碼。請貼上 Roblox 兩步驟驗證設定中的代碼。",
+ "Optional. Paste up to 10 of your Roblox 2-Step backup codes and Mass Send uses one each time Roblox asks, so it keeps sending without you. They’re never saved.": "選填。最多貼上 10 個 Roblox 兩步驟驗證備用代碼，每次 Roblox 要求驗證時，群發會用掉一個，這樣不需要你在場也能繼續傳送。這些代碼絕不會被儲存。",
+ "Paste codes": "貼上代碼",
+ "Queue": "佇列",
+ "Saves this offer to the queue at the top so you can set up another. Start Sending runs them one after another.": "把這個報價儲存到頂部的佇列，方便你再設定一個。開始傳送會依序執行它們。",
+ "Sent {sent}, skipped {skipped}": "已傳送 {sent} 筆，略過 {skipped} 筆",
+ "Starting": "正在啟動",
+ "They run one after another, each with its own trades on Roblox. You can cancel any of them from the queue, and trades already sent stay in your Outbound list.": "它們會依序執行，各自在 Roblox 上傳送自己的交易。你可以在佇列中取消其中任何一個，已傳送的交易會保留在送出的清單中。",
+ "Waiting": "等待中",
+ "Mass Send will use your {n} backup codes when Roblox asks to check it’s you. It forgets them when you close this tab.": {
+  "other": "當 Roblox 要求驗證是你本人時，群發會使用你的 {n} 個備用代碼。關閉此分頁後就會忘記這些代碼。"
+ },
+ "Run {n} mass sends?": {
+  "other": "執行 {n} 次群發？"
+ },
+ "{n} codes left": {
+  "other": "還剩 {n} 個代碼"
+ },
+ "{n} mass sends": {
+  "other": "{n} 次群發"
+ },
+ "{n} mass sends are waiting in the queue. Press Start Sending to run them.": {
+  "other": "有 {n} 次群發正在佇列中等待。按開始傳送即可執行。"
+ },
  "Net Cash": "淨金額"
 }

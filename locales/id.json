@@ -3654,5 +3654,35 @@
  "With You": "Denganmu",
  "Tracked": "Terlacak",
  "Net Value": "Value bersih",
+ "Add to Queue": "Tambah ke Antrean",
+ "Added to the queue. Set up another offer, or press Start Sending.": "Ditambahkan ke antrean. Siapkan penawaran lain, atau tekan Mulai Kirim.",
+ "Backup codes": "Kode cadangan",
+ "Cancel this one": "Batalkan yang ini",
+ "Canceled, sent {sent}": "Dibatalkan, {sent} terkirim",
+ "Done, sent {sent}, skipped {skipped}": "Selesai, {sent} terkirim, {skipped} dilewati",
+ "No backup codes found. Paste the codes from Roblox’s 2-Step settings.": "Kode cadangan tidak ditemukan. Tempel kode dari pengaturan Verifikasi 2 Langkah Roblox.",
+ "Optional. Paste up to 10 of your Roblox 2-Step backup codes and Mass Send uses one each time Roblox asks, so it keeps sending without you. They’re never saved.": "Opsional. Tempel hingga 10 kode cadangan Verifikasi 2 Langkah Roblox kamu dan Kirim Massal memakai satu kode setiap kali Roblox memintanya, jadi pengiriman terus berjalan tanpa kamu. Kode tidak pernah disimpan.",
+ "Paste codes": "Tempel kode",
+ "Queue": "Antrean",
+ "Saves this offer to the queue at the top so you can set up another. Start Sending runs them one after another.": "Menyimpan penawaran ini ke antrean di atas supaya kamu bisa menyiapkan yang lain. Mulai Kirim menjalankannya satu per satu.",
+ "Sent {sent}, skipped {skipped}": "Terkirim {sent}, dilewati {skipped}",
+ "Starting": "Memulai",
+ "They run one after another, each with its own trades on Roblox. You can cancel any of them from the queue, and trades already sent stay in your Outbound list.": "Semuanya berjalan satu per satu, masing-masing dengan perdagangan sendiri di Roblox. Kamu bisa membatalkan salah satunya dari antrean, dan perdagangan yang sudah terkirim tetap ada di daftar Keluar.",
+ "Waiting": "Menunggu",
+ "Mass Send will use your {n} backup codes when Roblox asks to check it’s you. It forgets them when you close this tab.": {
+  "other": "Kirim Massal akan memakai {n} kode cadangan kamu saat Roblox meminta memastikan itu kamu. Kode dilupakan saat kamu menutup tab ini."
+ },
+ "Run {n} mass sends?": {
+  "other": "Jalankan {n} kirim massal?"
+ },
+ "{n} codes left": {
+  "other": "{n} kode tersisa"
+ },
+ "{n} mass sends": {
+  "other": "{n} kirim massal"
+ },
+ "{n} mass sends are waiting in the queue. Press Start Sending to run them.": {
+  "other": "{n} kirim massal menunggu di antrean. Tekan Mulai Kirim untuk menjalankannya."
+ },
  "Net Cash": "Uang bersih"
 }

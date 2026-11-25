@@ -924,7 +924,7 @@
   }
 
   function buildMass() {
-    const st = { setups: [], cancel: 0, runAt: 0, off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, blocked: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null, rangeFrom: '', rangeTo: '', rangeCount: '', owned: [2, OWNED.length - 1], adds: { demand: 'any', never: {}, count: 'any' }, review: false, ownedCustom: false };
+    const st = { setups: [], cancel: 0, runAt: 0, off: [], look: [], source: 'owners', active: '7', max: 25, skip: { pending: true, recent: true, blocked: true, traded: false, friends: false, fresh: false }, mine: null, job: null, meta: null, allow: null, today: null, rangeFrom: '', rangeTo: '', rangeCount: '', owned: [2, OWNED.length - 1], adds: { demand: 'any', never: {}, count: 'any' }, review: false, ownedCustom: false, backup: [], queue: [] };
     try {
       const saved = JSON.parse(localStorage.getItem(ADDS_KEY) || 'null');
       if (saved && typeof saved === 'object') {
@@ -1019,6 +1019,15 @@
     };
 
     form.append(makeSide('off', lt('You Offer')), makeSide('look', lt('You Want')));
+    const midBtn = el('button', 'routility-mass-mid');
+    midBtn.type = 'button';
+    midBtn.setAttribute('aria-label', lt('Add to Queue'));
+    midBtn.dataset.rtTip = lt('Add to Queue');
+    midBtn.appendChild(el('span', 'icon icon-regular-plus-large'));
+    form.classList.add('routility-mass-form');
+    form.appendChild(midBtn);
+    const placeMid = () => { const sl = sides.off.slots; midBtn.style.top = (sl.offsetTop + sl.offsetHeight / 2) + 'px'; };
+    new ResizeObserver(placeMid).observe(sides.off.slots);
     const sendPanel = el('section', 'routility-ads-panel routility-ads-note-panel routility-mass-panel bg-surface-100 radius-large');
     const sendHead = el('div', 'routility-ads-panel-head');
     const reach = el('span', 'text-body-small content-muted');
@@ -1034,7 +1043,11 @@
     test.dataset.rtTip = lt('Goes through everything, but doesn’t send any trades');
     const savedPick = menuButton(() => lt('Saved setups'), () => [{ plain: true, empty: lt('Nothing saved yet'), items: st.setups.map(x => ({ label: x.name, run: () => loadSetup(x), remove: () => removeSetup(x), removeLabel: lt('Delete') })) }], () => ({ label: lt('Save this setup'), run: saveSetup }));
     savedPick.classList.add('routility-mass-saved');
-    footRow.append(cont, start, test, savedPick, hintEl);
+    const queueBtn = fbutton(lt('Add to Queue'), 'bg-action-standard content-action-standard');
+    queueBtn.dataset.rtTip = lt('Saves this offer to the queue at the top so you can set up another. Start Sending runs them one after another.');
+    footRow.append(cont, start, queueBtn, test, savedPick, hintEl);
+    const queueBox = el('section', 'routility-ads-panel routility-mass-queue bg-surface-100 radius-large');
+    queueBox.hidden = true;
     const results = el('div', 'routility-mass-results');
     results.hidden = true;
     const progress = el('div', 'routility-mass-progress');
@@ -1072,7 +1085,164 @@
     const rTo = rangeField(lt('To'), 'rangeTo', lt('e.g. {n}', { n: '35k' }), { max: 14, logo: true, cls: 'routility-mass-range-val' });
     const rCount = rangeField(lt('How many'), 'rangeCount', lt('Any'), { max: 1, logo: false, cls: 'routility-mass-range-count' });
     sendPanel.append(sendHead, opts, footRow, results, progress);
-    root.append(form, sendPanel);
+    root.append(queueBox, form, sendPanel);
+
+    function queueThumbs(list) {
+      const row = el('span', 'routility-mass-q-items');
+      for (const e of list) {
+        if (e.kind === 'robux') {
+          const cash = el('span', 'routility-mass-q-cash text-label-small content-emphasis');
+          cash.append(el('span', 'icon-robux-16x16'), el('span', null, compact(e.amount)));
+          row.appendChild(cash);
+          continue;
+        }
+        const it = itemInfo(e.assetId);
+        const box = el('span', 'routility-mass-q-thumb');
+        box.dataset.rtTip = it.name;
+        if (it.thumb) {
+          const img = el('img', 'routility-fade');
+          img.alt = it.name;
+          img.addEventListener('load', () => img.classList.add('routility-loaded'), { once: true });
+          img.src = it.thumb;
+          box.appendChild(img);
+        }
+        row.appendChild(box);
+      }
+      return row;
+    }
+
+    function queueText(q) {
+      const counts = { sent: formatNumber(q.sent || 0), skipped: formatNumber(q.skipped || 0) };
+      if (q.state === 'waiting') return lt('Waiting');
+      if (q.state === 'running') return q.job ? lt('Sent {sent}, skipped {skipped}', { sent: formatNumber(q.job.sent), skipped: formatNumber(q.job.skipped) }) : lt('Starting');
+      if (q.state === 'canceled') return lt('Canceled, sent {sent}', counts);
+      return lt('Done, sent {sent}, skipped {skipped}', counts);
+    }
+
+    function queuePill(kind, give, get, format, title) {
+      const diff = get - give;
+      const tone = Math.abs(diff) < 0.005 ? null : diff < 0 ? 'overpay' : 'win';
+      const sign = diff < 0 ? '-' : diff > 0 ? '+' : '';
+      const ratio = give > 0 ? Math.round(Math.abs(diff / give * 100)) : null;
+      const pct = ratio === null ? '' : ratio > 999 ? ' (>999%)' : ` (${ratio}%)`;
+      const node = el('span', 'routility-row-pill' + (kind === 'logo' ? ' routility-row-pill-worth' : '') + (tone ? ' routility-pill-' + tone : ''));
+      node.dataset.rtTip = title;
+      const icon = el('span', 'routility-pill-ic ' + (kind === 'logo' ? 'routility-pill-ic-logo' : 'routility-usd-ic'));
+      icon.setAttribute('aria-hidden', 'true');
+      if (kind === 'logo' && sign) node.append(el('span', null, sign), icon, el('span', null, format(Math.abs(diff)) + pct));
+      else node.append(icon, el('span', null, sign + format(Math.abs(diff)) + pct));
+      return node;
+    }
+
+    function queueBar(q, card) {
+      const fillEl = card && card.querySelector('.routility-mass-q-bar > span');
+      if (fillEl && q.job) fillEl.style.width = Math.min(100, q.job.sent / (q.job.cap || st.max) * 100) + '%';
+    }
+
+    function paintQueue() {
+      queueBox.hidden = !st.queue.length;
+      if (!st.queue.length) return queueBox.replaceChildren();
+      const head = el('div', 'routility-ads-panel-head');
+      head.append(el('h2', 'text-heading-small content-emphasis margin-none', lt('Queue')), el('span', 'text-body-small content-muted', ltn(st.queue.length, '{n} mass send', '{n} mass sends', { n: formatNumber(st.queue.length) })));
+      const rows = el('div', 'routility-mass-q-list');
+      for (const q of st.queue) {
+        const card = el('div', 'routility-mass-q-card routility-mass-q-' + q.state);
+        const worthOf = (list) => list.reduce((n, e) => n + (e.kind === 'robux' ? Number(e.amount) || 0 : e.kind === 'item' ? (itemValue(itemInfo(e.assetId)) || itemInfo(e.assetId).rap || 0) : 0), 0);
+        const cashOf = (list) => list.reduce((n, e) => n + entryUsd(e), 0);
+        const give = worthOf(q.snap.off);
+        const get = q.range ? 0 : worthOf(q.snap.look);
+        const giveUsd = cashOf(q.snap.off);
+        const getUsd = q.range ? 0 : cashOf(q.snap.look);
+        const cashTag = (v) => el('span', 'routility-mass-q-usd', window.RoUtilityUI.shortUSD(v));
+        const side = (label, list, worth, cash, extra) => {
+          const row = el('div', 'routility-mass-q-side');
+          const top = el('span', 'routility-mass-q-label text-caption-medium content-muted');
+          top.appendChild(el('span', 'routility-mass-q-name', label));
+          if (worth > 0) top.appendChild(valueTag(worth, { textClass: 'content-default', tip: false, short: true }));
+          if (cash > 0) top.appendChild(cashTag(cash));
+          const items = queueThumbs(list);
+          if (extra) items.appendChild(extra);
+          row.append(top, items);
+          return row;
+        };
+        const swap = el('div', 'routility-mass-q-swap');
+        swap.append(side(lt('You Give'), q.snap.off, give, giveUsd), side(lt('You Get'), q.snap.look, get, getUsd, q.range ? el('span', 'text-label-small content-default routility-mass-q-range', q.range) : null));
+        const foot = el('div', 'routility-mass-q-foot');
+        const info = el('span', 'text-caption-medium routility-mass-q-status', queueText(q));
+        foot.appendChild(info);
+        if (q.state === 'running') {
+          const bar = el('span', 'routility-mass-q-bar');
+          bar.appendChild(el('span'));
+          foot.appendChild(bar);
+        }
+        const pills = el('span', 'routility-row-pills routility-mass-q-pills');
+        if (give > 0 && get > 0) pills.appendChild(queuePill('logo', give, get, formatNumber, lt('Value: {give} vs {get}', { give: formatNumber(give), get: formatNumber(get) })));
+        if (giveUsd > 0 && getUsd > 0) pills.appendChild(queuePill('usd', giveUsd, getUsd, window.RoUtilityUI.formatCash, lt('Price: {give} vs {get}', { give: window.RoUtilityUI.formatCash(giveUsd), get: window.RoUtilityUI.formatCash(getUsd) })));
+        if (pills.children.length) foot.appendChild(pills);
+        const x = el('button', 'routility-mass-q-x');
+        x.type = 'button';
+        x.setAttribute('aria-label', q.state === 'running' ? lt('Cancel') : lt('Remove'));
+        x.dataset.rtTip = q.state === 'running' ? lt('Cancel this one') : lt('Remove');
+        x.appendChild(el('span', 'icon icon-regular-x size-[var(--icon-size-medium)]'));
+        x.addEventListener('click', () => {
+          if (q.state === 'running') {
+            q.canceled = true;
+            if (q.job) { q.job.stop = true; if (q.job.wake) q.job.wake(); }
+            paintStart();
+          } else st.queue = st.queue.filter(y => y !== q);
+          paintQueue();
+        });
+        card.append(x, swap, foot);
+        rows.appendChild(card);
+        queueBar(q, card);
+      }
+      queueBox.replaceChildren(head, rows);
+    }
+
+    function addToQueue() {
+      if (st.job || start.disabled) return false;
+      const r = range();
+      const snap = snapshot();
+      if (st.queue.some(q => q.state === 'waiting' && JSON.stringify(q.snap) === JSON.stringify(snap))) return false;
+      st.queue.push({ snap, state: 'waiting', range: r && typeof r === 'object' ? lt('{from} to {to}', { from: st.rangeFrom, to: st.rangeTo }) : '' });
+      st.off = [];
+      st.look = [];
+      st.rangeFrom = '';
+      st.rangeTo = '';
+      st.rangeCount = '';
+      for (const f of [rFrom, rTo, rCount]) f.input.value = '';
+      picks();
+      paintQueue();
+      return true;
+    }
+
+    async function runQueue() {
+      st.queueStop = false;
+      for (const q of st.queue) {
+        if (q.state !== 'waiting') continue;
+        if (st.queueStop) break;
+        q.state = 'running';
+        loadSetup(q.snap);
+        const p = run();
+        q.job = st.job;
+        paintQueue();
+        await p;
+        q.sent = q.job ? q.job.sent : 0;
+        q.skipped = q.job ? q.job.skipped : 0;
+        q.state = q.canceled ? 'canceled' : 'done';
+        q.job = null;
+        paintQueue();
+        if (status.classList.contains('routility-ads-hint-alert') && !q.canceled) break;
+      }
+      st.queueStop = false;
+      paintStart();
+    }
+
+    const queueIt = () => {
+      if (addToQueue()) hint(lt('Added to the queue. Set up another offer, or press Start Sending.'));
+    };
+    queueBtn.addEventListener('click', queueIt);
+    midBtn.addEventListener('click', queueIt);
 
     function hint(text, alert) {
       hintEl.textContent = text || defaultHint();
@@ -1388,6 +1558,19 @@
       if (st.source === 'owners') line2.append(field(lt('Owned for'), ownedPick()));
       line2.append(field(lt('Skip'), skipMenu), field(lt('Shuffle picks'), shuffleMenu));
       line2.append(field(lt('Before sending'), choose([{ value: 'send', label: lt('Send right away') }, { value: 'review', label: lt('Let me review each trade') }], st.review ? 'review' : 'send', (v) => { st.review = v === 'review'; saveAdds(); paintOpts(); })));
+      const codes = finput(st.backup.length ? ltn(st.backup.length, '{n} code left', '{n} codes left', { n: formatNumber(st.backup.length) }) : lt('Paste codes'), { max: 400 });
+      codes.input.type = 'password';
+      codes.classList.add('routility-mass-backup');
+      codes.input.addEventListener('change', () => {
+        const list = codes.input.value.split(/[\s,;]+/).map(x => x.replace(/[^a-z0-9]/gi, '')).filter(x => x.length >= 6 && x.length <= 20);
+        st.backup = [...new Set(list)].slice(0, 10);
+        codes.input.value = '';
+        paintOpts();
+        hint(st.backup.length ? ltn(st.backup.length, 'Mass Send will use your {n} backup code when Roblox asks to check it’s you. It forgets it when you close this tab.', 'Mass Send will use your {n} backup codes when Roblox asks to check it’s you. It forgets them when you close this tab.', { n: formatNumber(st.backup.length) }) : lt('No backup codes found. Paste the codes from Roblox’s 2-Step settings.'), !st.backup.length);
+      });
+      const backup = field(lt('Backup codes'), codes);
+      backup.dataset.rtTip = lt('Optional. Paste up to 10 of your Roblox 2-Step backup codes and Mass Send uses one each time Roblox asks, so it keeps sending without you. They’re never saved.');
+      line2.append(backup);
       const rows = [line1, line2];
       if (st.source === 'owners' && st.ownedCustom) rows.push(ownedSlider());
       opts.replaceChildren(...rows);
@@ -1540,6 +1723,17 @@
     }
 
     function paintStart() {
+      paintStartBase();
+      queueBtn.disabled = !!st.job || start.disabled;
+      midBtn.disabled = queueBtn.disabled;
+      const waiting = st.queue.filter(q => q.state === 'waiting').length;
+      if (st.job || !waiting || (st.allow && st.allow.canTrade === false)) return;
+      start.disabled = false;
+      if (!queueBtn.disabled) return;
+      hint(ltn(waiting, '{n} mass send is waiting in the queue. Press Start Sending to run it.', '{n} mass sends are waiting in the queue. Press Start Sending to run them.', { n: formatNumber(waiting) }));
+    }
+
+    function paintStartBase() {
       paintTest();
       if (st.job) {
         start.label.textContent = st.job.stop ? lt('Stopping') : lt('Stop');
@@ -1647,6 +1841,12 @@
       const cap = job.cap || st.max;
       status.textContent = statusText || lt('Sent {sent} of {max}, skipped {skipped}', { sent: formatNumber(job.sent), max: formatNumber(cap), skipped: formatNumber(job.skipped) });
       fill.style.width = Math.min(100, job.sent / cap * 100) + '%';
+      const q = st.queue.find(x => x.job === job);
+      const card = q && queueBox.querySelectorAll('.routility-mass-q-card')[st.queue.indexOf(q)];
+      if (card) {
+        card.querySelector('.routility-mass-q-status').textContent = queueText(q);
+        queueBar(q, card);
+      }
     }
 
     function addRow(c) {
@@ -2150,6 +2350,12 @@
     async function copiesOf(userId, job) {
       const need = new Map();
       for (const e of st.look) need.set(e.assetId, (need.get(e.assetId) || 0) + 1);
+      for (const [a, n] of need) {
+        if (!/^\d+$/.test(a) || (s.byId.get(a) || {}).bundleId) continue;
+        const q = await robloxGet(`https://inventory.roblox.com/v1/users/${userId}/items/Asset/${a}?limit=100`, job);
+        if (job.stop) return { status: 'error' };
+        if (q.status === 200 && q.body && Array.isArray(q.body.data) && q.body.data.length < n) return { status: 'missing', assetId: a };
+      }
       const lookup = window.RoUtilityUI.catalogFor(s.items);
       const got = new Map();
       const held = new Set();
@@ -2318,6 +2524,21 @@
       if (!meta || !meta.challengeId || !meta.userId) return null;
       const base = `https://twostepverification.roblox.com/v1/users/${encodeURIComponent(meta.userId)}`;
       const actionType = meta.actionType || 'Generic';
+      const finish = async (v) => {
+        const token = v.ok && v.data && v.data.verificationToken;
+        if (!token) return null;
+        const answer = { verificationToken: token, rememberDevice: false, challengeId: meta.challengeId, actionType };
+        const c = await tsvPost('https://apis.roblox.com/challenge/v1/continue', { challengeID: ch.id, challengeType: ch.type, challengeMetadata: JSON.stringify(answer) });
+        if (!c.ok) return null;
+        return { 'rblx-challenge-id': ch.id, 'rblx-challenge-type': ch.type, 'rblx-challenge-metadata': btoa(JSON.stringify(answer)) };
+      };
+      while (st.backup.length && !job.stop) {
+        const code = st.backup.shift();
+        paintOpts();
+        const got = await finish(await tsvPost(`${base}/challenges/recovery-codes/verify`, { challengeId: meta.challengeId, actionType, code }));
+        if (got) return got;
+      }
+      if (job.stop) return null;
       let media = 'Authenticator';
       try {
         const r = await fetch(`${base}/configuration?challengeId=${encodeURIComponent(meta.challengeId)}&actionType=${encodeURIComponent(actionType)}`, { credentials: 'include' });
@@ -2545,9 +2766,22 @@
 
     start.addEventListener('click', async () => {
       if (st.job) {
+        st.queueStop = true;
         st.job.stop = true;
         if (st.job.wake) st.job.wake();
         paintStart();
+        return;
+      }
+      if (st.queue.some(q => q.state === 'waiting')) {
+        if (!start.disabled) addToQueue();
+        const n = st.queue.filter(q => q.state === 'waiting').length;
+        const go = await window.RoUtilityUI.confirmDialog({
+          title: ltn(n, 'Run {n} mass send?', 'Run {n} mass sends?', { n: formatNumber(n) }),
+          text: lt('They run one after another, each with its own trades on Roblox. You can cancel any of them from the queue, and trades already sent stay in your Outbound list.'),
+          confirm: lt('Start Sending'),
+          danger: false,
+        });
+        if (go && !st.job) runQueue();
         return;
       }
       if (start.disabled) return;

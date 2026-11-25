@@ -3810,5 +3810,40 @@
  "With You": "Con te",
  "Tracked": "Tracciati",
  "Net Value": "Value netto",
+ "Add to Queue": "Aggiungi alla coda",
+ "Added to the queue. Set up another offer, or press Start Sending.": "Aggiunto alla coda. Imposta un’altra offerta, oppure premi Inizia a inviare.",
+ "Backup codes": "Codici di backup",
+ "Cancel this one": "Annulla questo",
+ "Canceled, sent {sent}": "Annullato, inviati {sent}",
+ "Done, sent {sent}, skipped {skipped}": "Fatto, inviati {sent}, saltati {skipped}",
+ "No backup codes found. Paste the codes from Roblox’s 2-Step settings.": "Nessun codice di backup trovato. Incolla i codici dalle impostazioni della verifica in 2 passaggi di Roblox.",
+ "Optional. Paste up to 10 of your Roblox 2-Step backup codes and Mass Send uses one each time Roblox asks, so it keeps sending without you. They’re never saved.": "Facoltativo. Incolla fino a 10 dei tuoi codici di backup della verifica in 2 passaggi di Roblox e Invio di massa ne usa uno ogni volta che Roblox lo chiede, così continua a inviare senza di te. Non vengono mai salvati.",
+ "Paste codes": "Incolla i codici",
+ "Queue": "Coda",
+ "Saves this offer to the queue at the top so you can set up another. Start Sending runs them one after another.": "Salva questa offerta nella coda in alto così puoi impostarne un’altra. Inizia a inviare le esegue una dopo l’altra.",
+ "Sent {sent}, skipped {skipped}": "Inviati {sent}, saltati {skipped}",
+ "Starting": "Avvio",
+ "They run one after another, each with its own trades on Roblox. You can cancel any of them from the queue, and trades already sent stay in your Outbound list.": "Vengono eseguite una dopo l’altra, ciascuna con i suoi scambi su Roblox. Puoi annullarne una qualsiasi dalla coda, e gli scambi già inviati restano nella tua lista Inviati.",
+ "Waiting": "In attesa",
+ "Mass Send will use your {n} backup codes when Roblox asks to check it’s you. It forgets them when you close this tab.": {
+  "one": "Invio di massa userà {n} codice di backup quando Roblox chiede di verificare che sei tu. Lo dimentica quando chiudi questa scheda.",
+  "other": "Invio di massa userà i tuoi {n} codici di backup quando Roblox chiede di verificare che sei tu. Li dimentica quando chiudi questa scheda."
+ },
+ "Run {n} mass sends?": {
+  "one": "Eseguire {n} invio di massa?",
+  "other": "Eseguire {n} invii di massa?"
+ },
+ "{n} codes left": {
+  "one": "{n} codice rimasto",
+  "other": "{n} codici rimasti"
+ },
+ "{n} mass sends": {
+  "one": "{n} invio di massa",
+  "other": "{n} invii di massa"
+ },
+ "{n} mass sends are waiting in the queue. Press Start Sending to run them.": {
+  "one": "{n} invio di massa è in attesa nella coda. Premi Inizia a inviare per eseguirlo.",
+  "other": "{n} invii di massa sono in attesa nella coda. Premi Inizia a inviare per eseguirli."
+ },
  "Net Cash": "Soldi netti"
 }

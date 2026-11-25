@@ -3654,5 +3654,35 @@
  "With You": "あなたと",
  "Tracked": "記録済み",
  "Net Value": "純 Value",
+ "Add to Queue": "キューに追加",
+ "Added to the queue. Set up another offer, or press Start Sending.": "キューに追加しました。別のオファーを設定するか、「送信を開始」を押してください。",
+ "Backup codes": "バックアップコード",
+ "Cancel this one": "これをキャンセル",
+ "Canceled, sent {sent}": "キャンセルしました、送信済み{sent}件",
+ "Done, sent {sent}, skipped {skipped}": "完了、送信済み{sent}件、スキップ{skipped}件",
+ "No backup codes found. Paste the codes from Roblox’s 2-Step settings.": "バックアップコードが見つかりません。Robloxの2段階認証設定からコードを貼り付けてください。",
+ "Optional. Paste up to 10 of your Roblox 2-Step backup codes and Mass Send uses one each time Roblox asks, so it keeps sending without you. They’re never saved.": "任意です。Robloxの2段階認証バックアップコードを最大10個貼り付けると、Robloxから求められるたびに一括送信が1つずつ使い、あなたがいなくても送信を続けます。保存されることはありません。",
+ "Paste codes": "コードを貼り付け",
+ "Queue": "キュー",
+ "Saves this offer to the queue at the top so you can set up another. Start Sending runs them one after another.": "このオファーを上部のキューに保存して、別のオファーを設定できるようにします。「送信を開始」を押すと順番に実行されます。",
+ "Sent {sent}, skipped {skipped}": "送信済み{sent}件、スキップ{skipped}件",
+ "Starting": "開始中",
+ "They run one after another, each with its own trades on Roblox. You can cancel any of them from the queue, and trades already sent stay in your Outbound list.": "順番に実行され、それぞれRoblox上で独自のトレードを行います。キューからいつでもキャンセルでき、送信済みのトレードは「送信」リストに残ります。",
+ "Waiting": "待機中",
+ "Mass Send will use your {n} backup codes when Roblox asks to check it’s you. It forgets them when you close this tab.": {
+  "other": "Robloxが本人確認を求めたとき、一括送信は{n}個のバックアップコードを使います。このタブを閉じると忘れます。"
+ },
+ "Run {n} mass sends?": {
+  "other": "一括送信を{n}件実行しますか？"
+ },
+ "{n} codes left": {
+  "other": "残り{n}個"
+ },
+ "{n} mass sends": {
+  "other": "一括送信{n}件"
+ },
+ "{n} mass sends are waiting in the queue. Press Start Sending to run them.": {
+  "other": "一括送信{n}件がキューで待機中です。「送信を開始」を押すと実行されます。"
+ },
  "Net Cash": "純額"
 }

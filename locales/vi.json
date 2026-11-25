@@ -3654,5 +3654,35 @@
  "With You": "Với bạn",
  "Tracked": "Đã theo dõi",
  "Net Value": "Value ròng",
+ "Add to Queue": "Thêm vào hàng đợi",
+ "Added to the queue. Set up another offer, or press Start Sending.": "Đã thêm vào hàng đợi. Thiết lập một đề nghị khác, hoặc nhấn Bắt đầu gửi.",
+ "Backup codes": "Mã dự phòng",
+ "Cancel this one": "Hủy mục này",
+ "Canceled, sent {sent}": "Đã hủy, đã gửi {sent}",
+ "Done, sent {sent}, skipped {skipped}": "Xong, đã gửi {sent}, bỏ qua {skipped}",
+ "No backup codes found. Paste the codes from Roblox’s 2-Step settings.": "Không tìm thấy mã dự phòng. Hãy dán các mã từ phần cài đặt Xác minh 2 bước của Roblox.",
+ "Optional. Paste up to 10 of your Roblox 2-Step backup codes and Mass Send uses one each time Roblox asks, so it keeps sending without you. They’re never saved.": "Tùy chọn. Dán tối đa 10 mã dự phòng Xác minh 2 bước của Roblox và Gửi hàng loạt sẽ dùng một mã mỗi lần Roblox yêu cầu, nên nó tiếp tục gửi mà không cần bạn. Các mã không bao giờ được lưu.",
+ "Paste codes": "Dán mã",
+ "Queue": "Hàng đợi",
+ "Saves this offer to the queue at the top so you can set up another. Start Sending runs them one after another.": "Lưu đề nghị này vào hàng đợi ở trên cùng để bạn thiết lập thêm đề nghị khác. Bắt đầu gửi sẽ chạy lần lượt từng cái.",
+ "Sent {sent}, skipped {skipped}": "Đã gửi {sent}, bỏ qua {skipped}",
+ "Starting": "Đang bắt đầu",
+ "They run one after another, each with its own trades on Roblox. You can cancel any of them from the queue, and trades already sent stay in your Outbound list.": "Chúng chạy lần lượt, mỗi cái với các giao dịch riêng trên Roblox. Bạn có thể hủy bất kỳ cái nào từ hàng đợi, và các giao dịch đã gửi vẫn nằm trong danh sách Đi của bạn.",
+ "Waiting": "Đang chờ",
+ "Mass Send will use your {n} backup codes when Roblox asks to check it’s you. It forgets them when you close this tab.": {
+  "other": "Gửi hàng loạt sẽ dùng {n} mã dự phòng của bạn khi Roblox yêu cầu xác nhận là bạn. Nó sẽ quên các mã khi bạn đóng tab này."
+ },
+ "Run {n} mass sends?": {
+  "other": "Chạy {n} lượt gửi hàng loạt?"
+ },
+ "{n} codes left": {
+  "other": "Còn {n} mã"
+ },
+ "{n} mass sends": {
+  "other": "{n} lượt gửi hàng loạt"
+ },
+ "{n} mass sends are waiting in the queue. Press Start Sending to run them.": {
+  "other": "{n} lượt gửi hàng loạt đang chờ trong hàng đợi. Nhấn Bắt đầu gửi để chạy."
+ },
  "Net Cash": "Tiền ròng"
 }

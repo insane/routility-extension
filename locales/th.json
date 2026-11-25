@@ -3654,5 +3654,35 @@
  "With You": "กับคุณ",
  "Tracked": "ติดตามแล้ว",
  "Net Value": "Value สุทธิ",
+ "Add to Queue": "เพิ่มลงคิว",
+ "Added to the queue. Set up another offer, or press Start Sending.": "เพิ่มลงคิวแล้ว ตั้งค่าข้อเสนออื่นเพิ่ม หรือกดเริ่มส่ง",
+ "Backup codes": "รหัสสำรอง",
+ "Cancel this one": "ยกเลิกรายการนี้",
+ "Canceled, sent {sent}": "ยกเลิกแล้ว ส่งไปแล้ว {sent}",
+ "Done, sent {sent}, skipped {skipped}": "เสร็จสิ้น ส่งไปแล้ว {sent} ข้ามไป {skipped}",
+ "No backup codes found. Paste the codes from Roblox’s 2-Step settings.": "ไม่พบรหัสสำรอง วางรหัสจากการตั้งค่าการยืนยันแบบ 2 ขั้นตอนของ Roblox",
+ "Optional. Paste up to 10 of your Roblox 2-Step backup codes and Mass Send uses one each time Roblox asks, so it keeps sending without you. They’re never saved.": "ไม่บังคับ วางรหัสสำรองการยืนยันแบบ 2 ขั้นตอนของ Roblox ได้สูงสุด 10 รหัส แล้วส่งหลายคนจะใช้ทีละรหัสทุกครั้งที่ Roblox ขอ จึงส่งต่อได้โดยที่คุณไม่ต้องอยู่ รหัสจะไม่ถูกบันทึกไว้เลย",
+ "Paste codes": "วางรหัส",
+ "Queue": "คิว",
+ "Saves this offer to the queue at the top so you can set up another. Start Sending runs them one after another.": "บันทึกข้อเสนอนี้ลงคิวด้านบนเพื่อให้คุณตั้งค่าอีกรายการได้ เริ่มส่งจะรันทีละรายการตามลำดับ",
+ "Sent {sent}, skipped {skipped}": "ส่งแล้ว {sent} ข้ามไป {skipped}",
+ "Starting": "กำลังเริ่ม",
+ "They run one after another, each with its own trades on Roblox. You can cancel any of them from the queue, and trades already sent stay in your Outbound list.": "แต่ละรายการจะรันทีละรายการ โดยใช้การแลกเปลี่ยนของตัวเองบน Roblox คุณยกเลิกรายการใดก็ได้จากคิว และการแลกเปลี่ยนที่ส่งไปแล้วจะอยู่ในรายการขาออกต่อไป",
+ "Waiting": "รอคิว",
+ "Mass Send will use your {n} backup codes when Roblox asks to check it’s you. It forgets them when you close this tab.": {
+  "other": "ส่งหลายคนจะใช้รหัสสำรอง {n} รหัสของคุณเมื่อ Roblox ขอตรวจสอบว่าเป็นคุณ และจะลืมรหัสเมื่อคุณปิดแท็บนี้"
+ },
+ "Run {n} mass sends?": {
+  "other": "รันส่งหลายคน {n} รายการ?"
+ },
+ "{n} codes left": {
+  "other": "เหลือ {n} รหัส"
+ },
+ "{n} mass sends": {
+  "other": "ส่งหลายคน {n} รายการ"
+ },
+ "{n} mass sends are waiting in the queue. Press Start Sending to run them.": {
+  "other": "ส่งหลายคน {n} รายการกำลังรอในคิว กดเริ่มส่งเพื่อรัน"
+ },
  "Net Cash": "เงินสุทธิ"
 }

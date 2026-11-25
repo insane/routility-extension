@@ -26,6 +26,8 @@ Mass Send takes your 2-Step code, shows how your last run did and saves your set
 + Redo (Sandbox): next to Undo, brings back what you just undid.
 + Buy what you don’t own (Sandbox): a button under Outfit Worth shows what the pieces you don’t own cost, with your Roblox Plus discount, and lists each one with a link to buy it.
 + Old Roblox Dark and Neon Sunset, two new theme presets.
++ Queue (Mass Send): line up several offers with the button between You Offer and You Want, and Start Sending runs them one after another. Each card shows the Value and Price difference, and you can cancel any of them.
++ Backup codes (Mass Send): paste up to 10 of your 2-Step backup codes and Mass Send uses one each time Roblox asks, so it keeps sending. They’re never saved.
 ```
 
 **Improved**
@@ -36,6 +38,7 @@ Mass Send takes your 2-Step code, shows how your last run did and saves your set
 ~ Trades on profiles: tracked trades moved out of the profile header into their own Trades section with totals and the last 3 trades. The popup shows each trade’s items right away, with All Trades and With You as tabs, and With You shows what you gave and got in each trade.
 ~ Gains and losses now read sign, icon, amount everywhere, like − 105K, in trade pills, the trade calculator and share images.
 ~ Hovering an item in tracked trades, item trades, trade ads, trade previews and the chat bot shows the same card with its Value, Price and RAP, like on routility.io.
+~ Mass Send: skips people who no longer have the item right away, instead of looking through their whole inventory first.
 ```
 
 **Fixed**

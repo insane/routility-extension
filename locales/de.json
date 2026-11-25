@@ -3810,5 +3810,40 @@
  "With You": "Mit dir",
  "Tracked": "Erfasst",
  "Net Value": "Netto-Value",
+ "Add to Queue": "Zur Warteschlange hinzufügen",
+ "Added to the queue. Set up another offer, or press Start Sending.": "Zur Warteschlange hinzugefügt. Richte ein weiteres Angebot ein oder drücke auf Senden starten.",
+ "Backup codes": "Backup-Codes",
+ "Cancel this one": "Dieses abbrechen",
+ "Canceled, sent {sent}": "Abgebrochen, {sent} gesendet",
+ "Done, sent {sent}, skipped {skipped}": "Fertig, {sent} gesendet, {skipped} übersprungen",
+ "No backup codes found. Paste the codes from Roblox’s 2-Step settings.": "Keine Backup-Codes gefunden. Füge die Codes aus den 2-Schritt-Einstellungen von Roblox ein.",
+ "Optional. Paste up to 10 of your Roblox 2-Step backup codes and Mass Send uses one each time Roblox asks, so it keeps sending without you. They’re never saved.": "Optional. Füge bis zu 10 deiner Roblox-Backup-Codes für die 2-Schritt-Verifizierung ein, und der Massenversand nutzt jedes Mal einen, wenn Roblox danach fragt, sodass er ohne dich weitersendet. Sie werden nie gespeichert.",
+ "Paste codes": "Codes einfügen",
+ "Queue": "Warteschlange",
+ "Saves this offer to the queue at the top so you can set up another. Start Sending runs them one after another.": "Speichert dieses Angebot oben in der Warteschlange, damit du ein weiteres einrichten kannst. Senden starten führt sie nacheinander aus.",
+ "Sent {sent}, skipped {skipped}": "{sent} gesendet, {skipped} übersprungen",
+ "Starting": "Startet",
+ "They run one after another, each with its own trades on Roblox. You can cancel any of them from the queue, and trades already sent stay in your Outbound list.": "Sie laufen nacheinander, jeweils mit ihren eigenen Trades auf Roblox. Du kannst jeden davon in der Warteschlange abbrechen, und bereits gesendete Trades bleiben in deiner Liste Ausgehend.",
+ "Waiting": "Wartet",
+ "Mass Send will use your {n} backup codes when Roblox asks to check it’s you. It forgets them when you close this tab.": {
+  "one": "Der Massenversand nutzt deinen {n} Backup-Code, wenn Roblox zur Bestätigung auffordert, dass du es bist. Er vergisst ihn, sobald du diesen Tab schließt.",
+  "other": "Der Massenversand nutzt deine {n} Backup-Codes, wenn Roblox zur Bestätigung auffordert, dass du es bist. Er vergisst sie, sobald du diesen Tab schließt."
+ },
+ "Run {n} mass sends?": {
+  "one": "{n} Massenversand ausführen?",
+  "other": "{n} Massenversände ausführen?"
+ },
+ "{n} codes left": {
+  "one": "{n} Code übrig",
+  "other": "{n} Codes übrig"
+ },
+ "{n} mass sends": {
+  "one": "{n} Massenversand",
+  "other": "{n} Massenversände"
+ },
+ "{n} mass sends are waiting in the queue. Press Start Sending to run them.": {
+  "one": "{n} Massenversand wartet in der Warteschlange. Drücke auf Senden starten, um ihn auszuführen.",
+  "other": "{n} Massenversände warten in der Warteschlange. Drücke auf Senden starten, um sie auszuführen."
+ },
  "Net Cash": "Netto-Geld"
 }

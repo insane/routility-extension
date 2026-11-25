@@ -3654,5 +3654,35 @@
  "With You": "나와의 거래",
  "Tracked": "추적됨",
  "Net Value": "순 Value",
+ "Add to Queue": "대기열에 추가",
+ "Added to the queue. Set up another offer, or press Start Sending.": "대기열에 추가했어요. 다른 제안을 설정하거나 보내기 시작을 눌러 주세요.",
+ "Backup codes": "백업 코드",
+ "Cancel this one": "이것만 취소",
+ "Canceled, sent {sent}": "취소됨, {sent}건 보냄",
+ "Done, sent {sent}, skipped {skipped}": "완료, {sent}건 보냄, {skipped}건 건너뜀",
+ "No backup codes found. Paste the codes from Roblox’s 2-Step settings.": "백업 코드를 찾지 못했어요. Roblox의 2단계 인증 설정에서 코드를 붙여넣어 주세요.",
+ "Optional. Paste up to 10 of your Roblox 2-Step backup codes and Mass Send uses one each time Roblox asks, so it keeps sending without you. They’re never saved.": "선택 사항이에요. Roblox 2단계 인증 백업 코드를 최대 10개까지 붙여넣으면 Roblox에서 요청할 때마다 일괄 보내기가 하나씩 사용해서 직접 하지 않아도 계속 보내요. 코드는 저장되지 않아요.",
+ "Paste codes": "코드 붙여넣기",
+ "Queue": "대기열",
+ "Saves this offer to the queue at the top so you can set up another. Start Sending runs them one after another.": "이 제안을 위쪽 대기열에 저장해서 다른 제안을 설정할 수 있어요. 보내기 시작을 누르면 차례대로 실행돼요.",
+ "Sent {sent}, skipped {skipped}": "{sent}건 보냄, {skipped}건 건너뜀",
+ "Starting": "시작 중",
+ "They run one after another, each with its own trades on Roblox. You can cancel any of them from the queue, and trades already sent stay in your Outbound list.": "차례대로 실행되며, 각각 Roblox에서 자기만의 거래를 보내요. 대기열에서 원하는 것을 취소할 수 있고, 이미 보낸 거래는 보낸 거래 목록에 남아요.",
+ "Waiting": "대기 중",
+ "Mass Send will use your {n} backup codes when Roblox asks to check it’s you. It forgets them when you close this tab.": {
+  "other": "Roblox에서 본인 확인을 요청하면 일괄 보내기가 백업 코드 {n}개를 사용해요. 이 탭을 닫으면 잊어버려요."
+ },
+ "Run {n} mass sends?": {
+  "other": "일괄 보내기 {n}건을 실행할까요?"
+ },
+ "{n} codes left": {
+  "other": "코드 {n}개 남음"
+ },
+ "{n} mass sends": {
+  "other": "일괄 보내기 {n}건"
+ },
+ "{n} mass sends are waiting in the queue. Press Start Sending to run them.": {
+  "other": "일괄 보내기 {n}건이 대기열에서 기다리고 있어요. 보내기 시작을 눌러 실행하세요."
+ },
  "Net Cash": "순 금액"
 }
