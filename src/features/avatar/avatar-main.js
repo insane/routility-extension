@@ -55,6 +55,7 @@
   const META_URL = /avatar\.roblox\.com\/v2\/avatar\/avatar(?:[?#]|$)/;
   const adjusted = new Map();
   const ours = new Set();
+  let worn = new Map();
   const refined = m => !!(m && (m.position || m.rotation || m.scale));
   window.addEventListener('message', (e) => {
     const d = e.data;
@@ -70,6 +71,7 @@
     try {
       const d = JSON.parse(text);
       if (!d || !Array.isArray(d.assets)) return;
+      worn = new Map(d.assets.filter(a => a && a.id && a.meta && typeof a.meta === 'object').map(a => [Number(a.id), a.meta]));
       for (const a of d.assets) {
         const id = Number(a && a.id);
         if (!id) continue;
@@ -84,11 +86,31 @@
     .then(t => learnMeta('https://avatar.roblox.com/v2/avatar/avatar', t))
     .catch(() => {});
 
+  function keepWorn(data) {
+    const list = data && data.avatarDefinition && data.avatarDefinition.updateAvatarModel && data.avatarDefinition.updateAvatarModel.assets;
+    if (!Array.isArray(list)) return false;
+    let hit = false;
+    const next = new Map();
+    for (const a of list) {
+      const id = Number(a && a.id);
+      if (!id) continue;
+      if (a.meta && typeof a.meta === 'object') next.set(id, a.meta);
+      else if (Object.keys(a).length === 1 && worn.has(id) && !adjusted.has(id)) {
+        a.meta = worn.get(id);
+        next.set(id, a.meta);
+        hit = true;
+      }
+    }
+    worn = next;
+    return hit;
+  }
+
   function keepMeta(url, body) {
-    if (!adjusted.size || typeof body !== 'string' || !SAVE_URL.test(String(url))) return body;
+    if (typeof body !== 'string' || !SAVE_URL.test(String(url))) return body;
     try {
       const data = JSON.parse(body);
-      let hit = false;
+      let hit = keepWorn(data);
+      if (!adjusted.size) return hit ? JSON.stringify(data) : body;
       const walk = (o, depth) => {
         if (!o || typeof o !== 'object' || depth > 8) return;
         if (Array.isArray(o)) {
