@@ -380,6 +380,7 @@
     return line;
   }
 
+  const MAIN_HEADER = '#friends-web-app .tab-pane.active .container-header:not(.trusted-friend-requests-section *)';
   let sentBusy = false;
 
   async function markNative(s) {
@@ -520,7 +521,7 @@
 
   function hosts() {
     const pane = document.querySelector('#friends-web-app .tab-pane.active');
-    const content = pane && pane.querySelector('.friends-content');
+    const content = pane && pane.querySelector('.friends-content:not(.trusted-friend-requests-section)');
     const native = content && content.querySelector('ul.hlist.avatar-cards:not(.routility-rf-list)');
     if (!content || !native) return null;
     let list = content.querySelector('.routility-rf-list');
@@ -600,7 +601,7 @@
   }
 
   function paintCount(s) {
-    const head = document.querySelector('#friends-web-app .tab-pane.active .friends-subtitle');
+    const head = document.querySelector(MAIN_HEADER + ' .friends-subtitle');
     const header = head && head.parentElement;
     if (!head) return;
     let tag = head.querySelector('.routility-rf-count');
@@ -681,9 +682,10 @@
       btn.classList.toggle('routility-rf-btn-on', n > 0);
     }
     const box = document.querySelector('.routility-rf-actions');
-    const native = box && box.parentElement.querySelector('.ignore-button');
     if (box) {
-      const w = !s.on && native ? native.offsetWidth : 0;
+      const edge = box.parentElement.getBoundingClientRect().right;
+      const lefts = [...box.parentElement.querySelectorAll(':scope > .ignore-button, :scope > .rovalra-request-filters')].filter(n => n.offsetWidth).map(n => n.getBoundingClientRect().left);
+      const w = lefts.length ? Math.ceil(edge - Math.min(...lefts)) : 0;
       const right = w ? w + 8 + 'px' : '0px';
       if (box.style.right !== right) box.style.right = right;
     }
@@ -813,7 +815,7 @@
   function removeAll() {
     document.documentElement.classList.remove('routility-rf-on');
     document.querySelectorAll('.routility-rf-actions, .routility-rf-list, .routility-rf-pager, .routility-rf-count, .routility-rf-scan').forEach(n => n.remove());
-    document.querySelector('#friends-web-app .container-header.routility-rf-header')?.classList.remove('routility-rf-header');
+    document.querySelectorAll('#friends-web-app .container-header.routility-rf-header').forEach(n => n.classList.remove('routility-rf-header'));
   }
 
   function place() {
@@ -834,7 +836,9 @@
       run(s);
     }
     document.documentElement.classList.toggle('routility-rf-on', s.on);
-    const header = document.querySelector('#friends-web-app .tab-pane.active .container-header');
+    document.querySelectorAll('.trusted-friend-requests-section .routility-rf-actions').forEach(n => n.remove());
+    document.querySelector('.trusted-friend-requests-section .routility-rf-header')?.classList.remove('routility-rf-header');
+    const header = document.querySelector(MAIN_HEADER);
     if (header && !header.querySelector('.routility-rf-actions')) {
       header.classList.add('routility-rf-header');
       const box = el('div', 'routility-injected routility-rf-actions');
@@ -928,7 +932,7 @@
 
   document.addEventListener('click', async (e) => {
     const btn = e.target.closest?.('.request-tab-header button.ignore-button');
-    if (!btn) return;
+    if (!btn || btn.closest('.trusted-friend-requests-section')) return;
     if (passIgnoreAll) {
       passIgnoreAll = false;
       return;

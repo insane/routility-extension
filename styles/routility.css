@@ -6496,9 +6496,10 @@ html.routility-settings-mode .menu-vertical .routility-menu-divider,
   margin-left: 8px;
 }
 
-html.routility-rf-on #friends-web-app .tab-pane.active .friends-content > ul.hlist.avatar-cards:not(.routility-rf-list),
+html.routility-rf-on #friends-web-app .tab-pane.active .friends-content:not(.trusted-friend-requests-section) > ul.hlist.avatar-cards:not(.routility-rf-list),
 html.routility-rf-on #friends-web-app .tab-pane.active > .pager-holder:not(.routility-rf-pager),
-html.routility-rf-on #friends-web-app .tab-pane.active .container-header .ignore-button,
+html.routility-rf-on #friends-web-app .tab-pane.active .container-header.routility-rf-header > .ignore-button,
+html.routility-rf-on #friends-web-app .tab-pane.active .routility-rf-header > .rovalra-request-filters,
 html:not(.routility-rf-on) .routility-rf-ignore {
   display: none !important;
 }
