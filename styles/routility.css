@@ -3796,17 +3796,17 @@ html.routility-calc-page:not(.routility-calc-ready) #content::after {
 }
 
 html.routility-font-builder body,
-html.routility-font-builder body *:not([class*="icon"]):not(input[type="password"]) {
+html.routility-font-builder body *:not([class*="icon"]):not(icon):not(input[type="password"]) {
   font-family: "Builder Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 html.routility-font-custom body,
-html.routility-font-custom body *:not([class*="icon"]):not(input[type="password"]) {
+html.routility-font-custom body *:not([class*="icon"]):not(icon):not(input[type="password"]) {
   font-family: "RoUtility Custom", "Builder Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 html.routility-font-system body,
-html.routility-font-system body *:not([class*="icon"]):not(input[type="password"]) {
+html.routility-font-system body *:not([class*="icon"]):not(icon):not(input[type="password"]) {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }
 

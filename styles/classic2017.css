@@ -96,7 +96,7 @@ html.routility-2017.routility-2017-themed :is(body, .light-theme, .dark-theme) {
 }
 
 html.routility-2017 body,
-html.routility-2017 body *:not([class*="icon"]):not(input[type="password"]) {
+html.routility-2017 body *:not([class*="icon"]):not(icon):not(input[type="password"]) {
   font-family: "RoUtility Source Sans", "Source Sans Pro", Arial, Helvetica, sans-serif !important;
 }
 
