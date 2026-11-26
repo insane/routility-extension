@@ -15645,6 +15645,7 @@ html:not(.routility-counters-blue) .left-nav nav .foundation-web-status-indicato
   margin-left: 0 !important;
 }
 
+.routility-btr-friends > :not(.routility-classic-friends),
 .routility-yield,
 html.routility-with-btr-profile :is(.routility-classic, .routility-classic-reveal, .routility-classic-loading),
 html.routility-with-foreign-friendsown .routility-friendsown-chip,

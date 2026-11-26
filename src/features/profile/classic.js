@@ -478,7 +478,7 @@
     if (avatar) statusIcon(avatar, map.get(String(s.userId)), 'profile-avatar-status');
     const line = s.root.querySelector('.routility-columns-presence');
     if (line) presenceLine(line, map.get(String(s.userId)));
-    s.root.querySelectorAll('.routility-classic-people .friend').forEach((li, i) => {
+    peopleIn(s).forEach((li, i) => {
       const f = s.data.friends[i];
       const box = li.querySelector('.avatar-container');
       if (f && box) statusIcon(box, map.get(String(f.id)), 'friend-status');
@@ -1265,6 +1265,21 @@
     }
   }
 
+  function peopleIn(s) {
+    const out = [...s.root.querySelectorAll('.routility-classic-people .friend')];
+    return out.length || !s.btrFriends ? out : [...s.btrFriends.querySelectorAll('.routility-classic-people .friend')];
+  }
+
+  function placeBtrFriends(s) {
+    if (!s.data || !s.data.friendsHidden || !document.documentElement.classList.contains('routility-with-btr-profile')) return;
+    const host = document.querySelector('.btr-profile-container .btr-wrapper-Friends');
+    const sec = s.btrFriends || s.root.querySelector('.routility-classic-friends');
+    if (!host || !sec || sec.parentElement === host) return;
+    host.classList.add('routility-btr-friends');
+    host.appendChild(sec);
+    s.btrFriends = sec;
+  }
+
   function buildFriends(s) {
     const { counts, friends } = s.data;
     const sec = el('div', 'section home-friends routility-classic-friends');
@@ -1895,7 +1910,7 @@
       name.classList.remove('routility-sk-text');
       if (f.hasVerifiedBadge && !name.parentElement.querySelector('.routility-verified')) name.after(window.RoUtilityUI.verifiedBadge());
     });
-    s.root.querySelectorAll('.routility-classic-people .friend').forEach((li, i) => {
+    peopleIn(s).forEach((li, i) => {
       const f = s.data.friends[i];
       const name = li.querySelector('.friend-name');
       if (!f || !name) return;
@@ -1993,6 +2008,7 @@
     if (!data.user.isBanned) topCollectibles(s);
     fillLater(s);
     fillHiddenFriends(s);
+    placeBtrFriends(s);
     refreshPresence(s);
     s.presenceTimer = setInterval(() => refreshPresence(s), PRESENCE_EVERY);
     s.onVisible = () => { if (document.visibilityState === 'visible' && Date.now() - s.presenceAt > PRESENCE_EVERY) refreshPresence(s); };
@@ -2006,7 +2022,7 @@
     state = s;
     document.documentElement.classList.add(ON_CLASS);
     const placeRoot = () => { if (state === s && !s.root.isConnected) mount(s.root); };
-    s.observer = new MutationObserver(onFrame(() => { placeRoot(); syncActions(); }));
+    s.observer = new MutationObserver(onFrame(() => { placeRoot(); syncActions(); placeBtrFriends(s); }));
     s.observer.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true, characterData: true });
     placeRoot();
     s.onDoc = (e) => { if (!e.target.closest?.('.routility-classic-more-wrap')) closeMenu(); };
@@ -2112,7 +2128,7 @@
     set('.routility-classic-avatar', 'avatar:' + s.userId);
     if (head) s.root.querySelectorAll(`img[data-thumb="headshot:${s.userId}"]`).forEach(img => img.classList.add(head));
     renderWearPage(s, s.wearPage);
-    s.root.querySelectorAll('.routility-classic-people .friend').forEach((li, i) => { const f = s.data.friends[i]; const img = li.querySelector('.routility-classic-friend-avatar img'); if (f && img) setThumb(img, s.thumbs.get('head:' + f.id)); });
+    peopleIn(s).forEach((li, i) => { const f = s.data.friends[i]; const img = li.querySelector('.routility-classic-friend-avatar img'); if (f && img) setThumb(img, s.thumbs.get('head:' + f.id)); });
     s.root.querySelectorAll('.routility-classic-favorites .game-card-thumb').forEach((img, i) => { const g = s.data.favorites[i]; if (g) setThumb(img, s.thumbs.get('game:' + g.universeId)); });
     s.root.querySelectorAll('.routility-classic-badges .routility-classic-badge-thumb img').forEach((img, i) => { const b = s.data.badges[i]; if (b) setThumb(img, s.thumbs.get('badge:' + b.id)); });
     applyThumbs(s);
@@ -2125,6 +2141,8 @@
     document.removeEventListener('visibilitychange', state.onVisible);
     document.removeEventListener('click', state.onDoc);
     state.root?.remove();
+    state.btrFriends?.remove();
+    document.querySelectorAll('.routility-btr-friends').forEach(n => n.classList.remove('routility-btr-friends'));
     document.querySelectorAll('#content > .routility-classic, #content > .routility-modern').forEach(n => n.remove());
     closeMenu();
     state = null;

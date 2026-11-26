@@ -1446,7 +1446,7 @@ html.routility-classic-on:not(.routility-with-btr-profile) #content > .profile-p
   animation: routility-classic-fade 0.25s ease-out;
 }
 
-.routility-classic .routility-friend-name-row {
+:is(.routility-classic, .routility-btr-friends) .routility-friend-name-row {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1454,7 +1454,7 @@ html.routility-classic-on:not(.routility-with-btr-profile) #content > .profile-p
   margin-top: 3px;
 }
 
-.routility-classic .routility-friend-name-row .friend-name {
+:is(.routility-classic, .routility-btr-friends) .routility-friend-name-row .friend-name {
   width: auto;
   max-width: 100%;
   margin-top: 0;
