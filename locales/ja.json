@@ -3681,5 +3681,24 @@
   "other": "一括送信{n}件がキューで待機中です。「送信を開始」を押すと実行されます。"
  },
  "Roblox didn’t save that. Try again.": "Robloxに保存されませんでした。もう一度お試しください。",
- "Net Cash": "純額"
+ "Net Cash": "純額",
+ "T-Shirts": "Tシャツ",
+ "Shirts": "シャツ",
+ "My Classic Clothing": "マイクラシック衣類",
+ "Search Clothing": "衣類を検索",
+ "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "削除した衣類はインベントリから完全になくなります。Roblox製の衣類とリミテッドは削除できません。",
+ "Select clothing to delete it": "削除する衣類を選択",
+ "Can’t Delete": "削除不可",
+ "Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Roblox製の衣類とリミテッドは削除できません。",
+ "Couldn’t load your clothing right now. Try again in a minute.": "衣類を読み込めませんでした。1分後にもう一度お試しください。",
+ "You don’t have any classic clothing.": "クラシック衣類を持っていません。",
+ "No clothing matches your search.": "検索に一致する衣類はありません。",
+ "No clothing of this type.": "この種類の衣類はありません。",
+ "{failed} didn’t work. They’re still selected, try again.": "{failed} 件は失敗しました。選択されたままなので、もう一度お試しください。",
+ "Delete T-Shirts, Shirts and Pants you don’t want": "いらないTシャツ、シャツ、パンツを削除",
+ "Manage Classic Clothing": "クラシック衣類を管理",
+ "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "インベントリのクラシック衣類に管理ボタンを追加:Tシャツ、シャツ、パンツを検索し、選んだものを確認ステップ付きで削除できます。Roblox製の衣類とリミテッドは削除できません。",
+ "Delete {n} Items?": {"other": "{n} 個のアイテムを削除しますか?"},
+ "Deleted {n} items.": {"other": "{n} 個のアイテムを削除しました。"},
+ "Roblox didn’t allow {n} of them.": {"other": "そのうち {n} 個はRobloxに許可されませんでした。"}
 }

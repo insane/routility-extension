@@ -3838,5 +3838,24 @@
   "other": "{n} mass sends are waiting in the queue. Press Start Sending to run them."
  },
  "Roblox didn’t save that. Try again.": "Roblox didn’t save that. Try again.",
- "Net Cash": "Net cash"
+ "Net Cash": "Net cash",
+ "T-Shirts": "T-Shirts",
+ "Shirts": "Shirts",
+ "My Classic Clothing": "My Classic Clothing",
+ "Search Clothing": "Search Clothing",
+ "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.",
+ "Select clothing to delete it": "Select clothing to delete it",
+ "Can’t Delete": "Can’t Delete",
+ "Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Roblox doesn’t let you delete clothing made by Roblox or limiteds.",
+ "Couldn’t load your clothing right now. Try again in a minute.": "Couldn’t load your clothing right now. Try again in a minute.",
+ "You don’t have any classic clothing.": "You don’t have any classic clothing.",
+ "No clothing matches your search.": "No clothing matches your search.",
+ "No clothing of this type.": "No clothing of this type.",
+ "{failed} didn’t work. They’re still selected, try again.": "{failed} didn’t work. They’re still selected, try again.",
+ "Delete T-Shirts, Shirts and Pants you don’t want": "Delete T-Shirts, Shirts and Pants you don’t want",
+ "Manage Classic Clothing": "Manage Classic Clothing",
+ "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.",
+ "Delete {n} Items?": {"one": "Delete {n} Item?", "other": "Delete {n} Items?"},
+ "Deleted {n} items.": {"one": "Deleted {n} item.", "other": "Deleted {n} items."},
+ "Roblox didn’t allow {n} of them.": {"one": "Roblox didn’t allow {n} of them.", "other": "Roblox didn’t allow {n} of them."}
 }

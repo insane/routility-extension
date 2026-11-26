@@ -489,7 +489,7 @@
       return;
     }
     if (fallback) return;
-    const header = document.querySelector('#inventory-container assets-explorer .container-header');
+    const header = document.querySelector('#inventory-container :is(assets-explorer, .rbx-tab-content) .container-header');
     if (!header) return;
     const own2 = el('div', 'routility-injected routility-inv-toolbar routility-bm-bar');
     own2.appendChild(button());

@@ -11696,8 +11696,25 @@ html.routility-skeleton .game-home-page-container:has(> .game-home-page-loading-
   white-space: nowrap;
 }
 
-.routility-bm-bar {
+.routility-bm-bar,
+.routility-clm-bar {
   justify-content: flex-end;
+}
+
+.routility-clm-modal .routility-cm-search.form-control {
+  flex: 1 1 140px;
+}
+
+.routility-clm-note {
+  padding: 0 24px 8px;
+}
+
+.routility-clm-row.routility-clm-off {
+  opacity: 0.55;
+}
+
+.routility-clm-row.routility-clm-off .routility-cm-check {
+  cursor: default;
 }
 
 .routility-rot-custom {

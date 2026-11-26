@@ -3681,5 +3681,24 @@
   "other": "ส่งหลายคน {n} รายการกำลังรอในคิว กดเริ่มส่งเพื่อรัน"
  },
  "Roblox didn’t save that. Try again.": "Roblox ไม่ได้บันทึก ลองอีกครั้ง",
- "Net Cash": "เงินสุทธิ"
+ "Net Cash": "เงินสุทธิ",
+ "T-Shirts": "เสื้อยืด",
+ "Shirts": "เสื้อเชิ้ต",
+ "My Classic Clothing": "เสื้อผ้าคลาสสิกของฉัน",
+ "Search Clothing": "ค้นหาเสื้อผ้า",
+ "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "เสื้อผ้าที่ลบจะหายไปจากคลังของคุณถาวร Roblox ไม่ให้ลบเสื้อผ้าที่ Roblox สร้างหรือไอเทมลิมิเต็ด",
+ "Select clothing to delete it": "เลือกเสื้อผ้าเพื่อลบ",
+ "Can’t Delete": "ลบไม่ได้",
+ "Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Roblox ไม่ให้ลบเสื้อผ้าที่ Roblox สร้างหรือไอเทมลิมิเต็ด",
+ "Couldn’t load your clothing right now. Try again in a minute.": "โหลดเสื้อผ้าของคุณไม่ได้ตอนนี้ ลองใหม่ในอีกหนึ่งนาที",
+ "You don’t have any classic clothing.": "คุณไม่มีเสื้อผ้าคลาสสิก",
+ "No clothing matches your search.": "ไม่มีเสื้อผ้าที่ตรงกับการค้นหา",
+ "No clothing of this type.": "ไม่มีเสื้อผ้าประเภทนี้",
+ "{failed} didn’t work. They’re still selected, try again.": "{failed} รายการไม่สำเร็จ ยังถูกเลือกอยู่ ลองใหม่อีกครั้ง",
+ "Delete T-Shirts, Shirts and Pants you don’t want": "ลบเสื้อยืด เสื้อเชิ้ต และกางเกงที่คุณไม่ต้องการ",
+ "Manage Classic Clothing": "จัดการเสื้อผ้าคลาสสิก",
+ "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "ปุ่มจัดการที่เสื้อผ้าคลาสสิกในคลังของคุณ: ค้นหาเสื้อยืด เสื้อเชิ้ต และกางเกง แล้วลบรายการที่เลือกพร้อมขั้นตอนยืนยัน Roblox ไม่ให้ลบเสื้อผ้าที่ Roblox สร้างหรือไอเทมลิมิเต็ด",
+ "Delete {n} Items?": {"other": "ลบ {n} ไอเทม?"},
+ "Deleted {n} items.": {"other": "ลบ {n} ไอเทมแล้ว"},
+ "Roblox didn’t allow {n} of them.": {"other": "Roblox ไม่อนุญาต {n} รายการในนั้น"}
 }

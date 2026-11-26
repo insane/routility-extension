@@ -485,6 +485,7 @@
     window.RoUtilityRotator.teardown();
     window.RoUtilityFunOutfits.teardown();
     window.RoUtilityBadgeManage.teardown();
+    window.RoUtilityClothesManage.teardown();
     window.RoUtilitySkinTone.teardown();
     window.RoUtilityMutual.teardown();
     window.RoUtilityFriends.stopFriendDates();
@@ -799,6 +800,10 @@
       if (inventory && settings.badgeManage !== false) {
         const invOwner = inventory[1] || document.querySelector('meta[name="user-data"]')?.dataset.userid;
         if (invOwner) window.RoUtilityBadgeManage.setup(invOwner);
+      }
+      if (inventory && settings.clothesManage !== false) {
+        const invOwner = inventory[1] || document.querySelector('meta[name="user-data"]')?.dataset.userid;
+        if (invOwner) window.RoUtilityClothesManage.setup(invOwner);
       }
       if (inventory && (settings.ownedSince !== false || settings.badgeDates !== false)) {
         const invOwner = inventory[1] || document.querySelector('meta[name="user-data"]')?.dataset.userid;

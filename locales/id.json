@@ -3681,5 +3681,24 @@
   "other": "{n} kirim massal menunggu di antrean. Tekan Mulai Kirim untuk menjalankannya."
  },
  "Roblox didn’t save that. Try again.": "Roblox tidak menyimpannya. Coba lagi.",
- "Net Cash": "Uang bersih"
+ "Net Cash": "Uang bersih",
+ "T-Shirts": "Kaus",
+ "Shirts": "Kemeja",
+ "My Classic Clothing": "Pakaian Klasikku",
+ "Search Clothing": "Cari Pakaian",
+ "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Pakaian yang dihapus hilang dari inventarismu selamanya. Roblox tidak mengizinkanmu menghapus pakaian buatan Roblox atau limited.",
+ "Select clothing to delete it": "Pilih pakaian untuk menghapusnya",
+ "Can’t Delete": "Tidak Bisa Dihapus",
+ "Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Roblox tidak mengizinkanmu menghapus pakaian buatan Roblox atau limited.",
+ "Couldn’t load your clothing right now. Try again in a minute.": "Tidak bisa memuat pakaianmu sekarang. Coba lagi sebentar lagi.",
+ "You don’t have any classic clothing.": "Kamu tidak punya pakaian klasik.",
+ "No clothing matches your search.": "Tidak ada pakaian yang cocok dengan pencarianmu.",
+ "No clothing of this type.": "Tidak ada pakaian jenis ini.",
+ "{failed} didn’t work. They’re still selected, try again.": "{failed} gagal. Masih terpilih, coba lagi.",
+ "Delete T-Shirts, Shirts and Pants you don’t want": "Hapus kaus, kemeja, dan celana yang tidak kamu mau",
+ "Manage Classic Clothing": "Kelola Pakaian Klasik",
+ "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Tombol Kelola di Pakaian Klasik di inventarismu: cari kaus, kemeja, dan celanamu lalu hapus yang kamu pilih, dengan langkah konfirmasi. Roblox tidak mengizinkanmu menghapus pakaian buatan Roblox atau limited.",
+ "Delete {n} Items?": {"other": "Hapus {n} item?"},
+ "Deleted {n} items.": {"other": "{n} item dihapus."},
+ "Roblox didn’t allow {n} of them.": {"other": "Roblox tidak mengizinkan {n} di antaranya."}
 }

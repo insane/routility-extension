@@ -3681,5 +3681,24 @@
   "other": "有 {n} 次群发正在队列中等待。点击开始发送即可运行。"
  },
  "Roblox didn’t save that. Try again.": "Roblox 没有保存。请重试。",
- "Net Cash": "净金额"
+ "Net Cash": "净金额",
+ "T-Shirts": "T 恤",
+ "Shirts": "衬衫",
+ "My Classic Clothing": "我的经典服装",
+ "Search Clothing": "搜索服装",
+ "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "删除的服装会从你的物品栏中永久消失。Roblox 不允许删除 Roblox 制作的服装或限量物品。",
+ "Select clothing to delete it": "选择要删除的服装",
+ "Can’t Delete": "无法删除",
+ "Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Roblox 不允许删除 Roblox 制作的服装或限量物品。",
+ "Couldn’t load your clothing right now. Try again in a minute.": "现在无法加载你的服装。请一分钟后再试。",
+ "You don’t have any classic clothing.": "你没有经典服装。",
+ "No clothing matches your search.": "没有符合搜索的服装。",
+ "No clothing of this type.": "没有这种类型的服装。",
+ "{failed} didn’t work. They’re still selected, try again.": "{failed} 个没有成功。它们仍被选中,请再试一次。",
+ "Delete T-Shirts, Shirts and Pants you don’t want": "删除你不想要的 T 恤、衬衫和裤子",
+ "Manage Classic Clothing": "管理经典服装",
+ "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "在物品栏的经典服装上加一个管理按钮:搜索你的 T 恤、衬衫和裤子,确认后删除你选中的。Roblox 不允许删除 Roblox 制作的服装或限量物品。",
+ "Delete {n} Items?": {"other": "删除 {n} 件物品?"},
+ "Deleted {n} items.": {"other": "已删除 {n} 件物品。"},
+ "Roblox didn’t allow {n} of them.": {"other": "其中 {n} 件 Roblox 不允许删除。"}
 }

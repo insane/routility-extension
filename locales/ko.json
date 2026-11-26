@@ -3681,5 +3681,24 @@
   "other": "일괄 보내기 {n}건이 대기열에서 기다리고 있어요. 보내기 시작을 눌러 실행하세요."
  },
  "Roblox didn’t save that. Try again.": "Roblox에 저장되지 않았어요. 다시 시도해 주세요.",
- "Net Cash": "순 금액"
+ "Net Cash": "순 금액",
+ "T-Shirts": "티셔츠",
+ "Shirts": "셔츠",
+ "My Classic Clothing": "내 클래식 의류",
+ "Search Clothing": "의류 검색",
+ "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "삭제한 의류는 인벤토리에서 영구히 사라져요. Roblox가 만든 의류와 리미티드는 삭제할 수 없어요.",
+ "Select clothing to delete it": "삭제할 의류를 선택하세요",
+ "Can’t Delete": "삭제 불가",
+ "Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Roblox가 만든 의류와 리미티드는 삭제할 수 없어요.",
+ "Couldn’t load your clothing right now. Try again in a minute.": "지금 의류를 불러올 수 없어요. 1분 뒤에 다시 시도하세요.",
+ "You don’t have any classic clothing.": "클래식 의류가 없어요.",
+ "No clothing matches your search.": "검색과 일치하는 의류가 없어요.",
+ "No clothing of this type.": "이 종류의 의류가 없어요.",
+ "{failed} didn’t work. They’re still selected, try again.": "{failed}개는 실패했어요. 아직 선택되어 있으니 다시 시도하세요.",
+ "Delete T-Shirts, Shirts and Pants you don’t want": "원하지 않는 티셔츠, 셔츠, 바지를 삭제",
+ "Manage Classic Clothing": "클래식 의류 관리",
+ "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "인벤토리의 클래식 의류에 관리 버튼 추가: 티셔츠, 셔츠, 바지를 검색하고 고른 것을 확인 단계를 거쳐 삭제해요. Roblox가 만든 의류와 리미티드는 삭제할 수 없어요.",
+ "Delete {n} Items?": {"other": "아이템 {n}개를 삭제할까요?"},
+ "Deleted {n} items.": {"other": "아이템 {n}개를 삭제했어요."},
+ "Roblox didn’t allow {n} of them.": {"other": "그중 {n}개는 Roblox가 허용하지 않았어요."}
 }

@@ -3842,5 +3842,24 @@
   "other": "{n} Massenversände warten in der Warteschlange. Drücke auf Senden starten, um sie auszuführen."
  },
  "Roblox didn’t save that. Try again.": "Roblox hat das nicht gespeichert. Versuch es noch mal.",
- "Net Cash": "Netto-Geld"
+ "Net Cash": "Netto-Geld",
+ "T-Shirts": "T-Shirts",
+ "Shirts": "Shirts",
+ "My Classic Clothing": "Meine klassische Kleidung",
+ "Search Clothing": "Kleidung suchen",
+ "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Gelöschte Kleidung ist für immer aus deinem Inventar weg. Roblox lässt dich keine Kleidung von Roblox und keine Limiteds löschen.",
+ "Select clothing to delete it": "Wähle Kleidung aus, um sie zu löschen",
+ "Can’t Delete": "Nicht löschbar",
+ "Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Roblox lässt dich keine Kleidung von Roblox und keine Limiteds löschen.",
+ "Couldn’t load your clothing right now. Try again in a minute.": "Deine Kleidung konnte gerade nicht geladen werden. Versuch es in einer Minute noch mal.",
+ "You don’t have any classic clothing.": "Du hast keine klassische Kleidung.",
+ "No clothing matches your search.": "Keine Kleidung passt zu deiner Suche.",
+ "No clothing of this type.": "Keine Kleidung dieser Art.",
+ "{failed} didn’t work. They’re still selected, try again.": "{failed} hat nicht geklappt. Sie sind noch ausgewählt, versuch es noch mal.",
+ "Delete T-Shirts, Shirts and Pants you don’t want": "Lösche T-Shirts, Shirts und Hosen, die du nicht willst",
+ "Manage Classic Clothing": "Klassische Kleidung verwalten",
+ "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Ein Verwalten-Button bei deiner klassischen Kleidung im Inventar: Durchsuche deine T-Shirts, Shirts und Hosen und lösche die ausgewählten, mit Bestätigung. Roblox lässt dich keine Kleidung von Roblox und keine Limiteds löschen.",
+ "Delete {n} Items?": {"one": "{n} Item löschen?", "other": "{n} Items löschen?"},
+ "Deleted {n} items.": {"one": "{n} Item gelöscht.", "other": "{n} Items gelöscht."},
+ "Roblox didn’t allow {n} of them.": {"one": "Roblox hat {n} davon nicht erlaubt.", "other": "Roblox hat {n} davon nicht erlaubt."}
 }

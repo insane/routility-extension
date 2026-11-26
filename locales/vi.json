@@ -3681,5 +3681,24 @@
   "other": "{n} lượt gửi hàng loạt đang chờ trong hàng đợi. Nhấn Bắt đầu gửi để chạy."
  },
  "Roblox didn’t save that. Try again.": "Roblox chưa lưu thay đổi. Hãy thử lại.",
- "Net Cash": "Tiền ròng"
+ "Net Cash": "Tiền ròng",
+ "T-Shirts": "Áo phông",
+ "Shirts": "Áo sơ mi",
+ "My Classic Clothing": "Quần áo cổ điển của tôi",
+ "Search Clothing": "Tìm quần áo",
+ "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Quần áo đã xóa sẽ biến mất khỏi kho đồ của bạn vĩnh viễn. Roblox không cho xóa quần áo do Roblox tạo hoặc đồ limited.",
+ "Select clothing to delete it": "Chọn quần áo để xóa",
+ "Can’t Delete": "Không thể xóa",
+ "Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Roblox không cho xóa quần áo do Roblox tạo hoặc đồ limited.",
+ "Couldn’t load your clothing right now. Try again in a minute.": "Không tải được quần áo của bạn lúc này. Hãy thử lại sau một phút.",
+ "You don’t have any classic clothing.": "Bạn không có quần áo cổ điển nào.",
+ "No clothing matches your search.": "Không có quần áo nào khớp với tìm kiếm.",
+ "No clothing of this type.": "Không có quần áo loại này.",
+ "{failed} didn’t work. They’re still selected, try again.": "{failed} không thành công. Vẫn đang được chọn, hãy thử lại.",
+ "Delete T-Shirts, Shirts and Pants you don’t want": "Xóa áo phông, áo sơ mi và quần bạn không muốn",
+ "Manage Classic Clothing": "Quản lý quần áo cổ điển",
+ "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Nút Quản lý ở Quần áo cổ điển trong kho đồ: tìm áo phông, áo sơ mi và quần của bạn rồi xóa những món bạn chọn, có bước xác nhận. Roblox không cho xóa quần áo do Roblox tạo hoặc đồ limited.",
+ "Delete {n} Items?": {"other": "Xóa {n} món?"},
+ "Deleted {n} items.": {"other": "Đã xóa {n} món."},
+ "Roblox didn’t allow {n} of them.": {"other": "Roblox không cho phép {n} món trong số đó."}
 }

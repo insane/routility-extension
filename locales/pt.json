@@ -3842,5 +3842,24 @@
   "other": "{n} envios em massa estão aguardando na fila. Pressione Começar a enviar para executá-los."
  },
  "Roblox didn’t save that. Try again.": "O Roblox não salvou isso. Tente de novo.",
- "Net Cash": "Dinheiro líquido"
+ "Net Cash": "Dinheiro líquido",
+ "T-Shirts": "Camisetas",
+ "Shirts": "Camisas",
+ "My Classic Clothing": "Minhas roupas clássicas",
+ "Search Clothing": "Pesquisar roupas",
+ "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Roupas excluídas somem do seu inventário para sempre. O Roblox não deixa você excluir roupas feitas pelo Roblox nem limiteds.",
+ "Select clothing to delete it": "Selecione roupas para excluí-las",
+ "Can’t Delete": "Não dá para excluir",
+ "Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "O Roblox não deixa você excluir roupas feitas pelo Roblox nem limiteds.",
+ "Couldn’t load your clothing right now. Try again in a minute.": "Não foi possível carregar suas roupas agora. Tente de novo em um minuto.",
+ "You don’t have any classic clothing.": "Você não tem roupas clássicas.",
+ "No clothing matches your search.": "Nenhuma roupa corresponde à sua pesquisa.",
+ "No clothing of this type.": "Nenhuma roupa deste tipo.",
+ "{failed} didn’t work. They’re still selected, try again.": "{failed} não funcionaram. Continuam selecionados, tente de novo.",
+ "Delete T-Shirts, Shirts and Pants you don’t want": "Exclua camisetas, camisas e calças que você não quer",
+ "Manage Classic Clothing": "Gerenciar roupas clássicas",
+ "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Um botão Gerenciar nas suas roupas clássicas do inventário: pesquise suas camisetas, camisas e calças e exclua as que escolher, com uma etapa de confirmação. O Roblox não deixa você excluir roupas feitas pelo Roblox nem limiteds.",
+ "Delete {n} Items?": {"one": "Excluir {n} item?", "other": "Excluir {n} itens?"},
+ "Deleted {n} items.": {"one": "{n} item excluído.", "other": "{n} itens excluídos."},
+ "Roblox didn’t allow {n} of them.": {"one": "O Roblox não permitiu {n} deles.", "other": "O Roblox não permitiu {n} deles."}
 }

@@ -4162,5 +4162,24 @@
   "other": "{n} masowej wysyłki czeka w kolejce. Naciśnij Zacznij wysyłać, aby ją uruchomić."
  },
  "Roblox didn’t save that. Try again.": "Roblox tego nie zapisał. Spróbuj ponownie.",
- "Net Cash": "Gotówka netto"
+ "Net Cash": "Gotówka netto",
+ "T-Shirts": "T-shirty",
+ "Shirts": "Koszule",
+ "My Classic Clothing": "Moje klasyczne ubrania",
+ "Search Clothing": "Szukaj ubrań",
+ "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Usunięte ubrania znikają z ekwipunku na zawsze. Roblox nie pozwala usuwać ubrań stworzonych przez Roblox ani limitedów.",
+ "Select clothing to delete it": "Zaznacz ubrania, aby je usunąć",
+ "Can’t Delete": "Nie można usunąć",
+ "Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Roblox nie pozwala usuwać ubrań stworzonych przez Roblox ani limitedów.",
+ "Couldn’t load your clothing right now. Try again in a minute.": "Nie udało się teraz wczytać ubrań. Spróbuj ponownie za minutę.",
+ "You don’t have any classic clothing.": "Nie masz klasycznych ubrań.",
+ "No clothing matches your search.": "Żadne ubranie nie pasuje do wyszukiwania.",
+ "No clothing of this type.": "Brak ubrań tego typu.",
+ "{failed} didn’t work. They’re still selected, try again.": "{failed} się nie udało. Nadal są zaznaczone, spróbuj ponownie.",
+ "Delete T-Shirts, Shirts and Pants you don’t want": "Usuń T-shirty, koszule i spodnie, których nie chcesz",
+ "Manage Classic Clothing": "Zarządzaj klasycznymi ubraniami",
+ "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Przycisk Zarządzaj przy klasycznych ubraniach w ekwipunku: przeszukaj T-shirty, koszule i spodnie i usuń wybrane, z krokiem potwierdzenia. Roblox nie pozwala usuwać ubrań stworzonych przez Roblox ani limitedów.",
+ "Delete {n} Items?": {"one": "Usunąć {n} przedmiot?", "few": "Usunąć {n} przedmioty?", "many": "Usunąć {n} przedmiotów?", "other": "Usunąć {n} przedmiotu?"},
+ "Deleted {n} items.": {"one": "Usunięto {n} przedmiot.", "few": "Usunięto {n} przedmioty.", "many": "Usunięto {n} przedmiotów.", "other": "Usunięto {n} przedmiotu."},
+ "Roblox didn’t allow {n} of them.": {"one": "Roblox nie zezwolił na {n} z nich.", "few": "Roblox nie zezwolił na {n} z nich.", "many": "Roblox nie zezwolił na {n} z nich.", "other": "Roblox nie zezwolił na {n} z nich."}
 }

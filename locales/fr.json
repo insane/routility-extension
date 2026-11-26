@@ -3842,5 +3842,24 @@
   "other": "{n} envois groupés attendent dans la file d’attente. Appuie sur Lancer l’envoi pour les exécuter."
  },
  "Roblox didn’t save that. Try again.": "Roblox ne l’a pas enregistré. Réessaie.",
- "Net Cash": "Argent net"
+ "Net Cash": "Argent net",
+ "T-Shirts": "T-shirts",
+ "Shirts": "Chemises",
+ "My Classic Clothing": "Mes vêtements classiques",
+ "Search Clothing": "Rechercher des vêtements",
+ "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Les vêtements supprimés disparaissent de ton inventaire pour de bon. Roblox ne te laisse pas supprimer les vêtements créés par Roblox ni les limiteds.",
+ "Select clothing to delete it": "Sélectionne des vêtements pour les supprimer",
+ "Can’t Delete": "Impossible à supprimer",
+ "Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Roblox ne te laisse pas supprimer les vêtements créés par Roblox ni les limiteds.",
+ "Couldn’t load your clothing right now. Try again in a minute.": "Impossible de charger tes vêtements pour le moment. Réessaie dans une minute.",
+ "You don’t have any classic clothing.": "Tu n’as aucun vêtement classique.",
+ "No clothing matches your search.": "Aucun vêtement ne correspond à ta recherche.",
+ "No clothing of this type.": "Aucun vêtement de ce type.",
+ "{failed} didn’t work. They’re still selected, try again.": "{failed} n’ont pas marché. Ils sont toujours sélectionnés, réessaie.",
+ "Delete T-Shirts, Shirts and Pants you don’t want": "Supprime les T-shirts, chemises et pantalons dont tu ne veux pas",
+ "Manage Classic Clothing": "Gérer les vêtements classiques",
+ "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Un bouton Gérer sur tes vêtements classiques dans ton inventaire : cherche parmi tes T-shirts, chemises et pantalons et supprime ceux que tu choisis, avec une étape de confirmation. Roblox ne te laisse pas supprimer les vêtements créés par Roblox ni les limiteds.",
+ "Delete {n} Items?": {"one": "Supprimer {n} article ?", "other": "Supprimer {n} articles ?"},
+ "Deleted {n} items.": {"one": "{n} article supprimé.", "other": "{n} articles supprimés."},
+ "Roblox didn’t allow {n} of them.": {"one": "Roblox en a refusé {n}.", "other": "Roblox en a refusé {n}."}
 }

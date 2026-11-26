@@ -80,6 +80,7 @@
         "src/features/profile/mutual.js",
         "src/features/badges/badges.js",
         "src/features/badges/badgemanage.js",
+        "src/features/inventory/clothesmanage.js",
         "src/features/inventory/invsearch.js",
         "src/features/inventory/limiteds.js",
         "src/features/profile/listorder.js",

@@ -3842,5 +3842,24 @@
   "other": "{n} toplu gönderim kuyrukta bekliyor. Çalıştırmak için Göndermeye Başla'ya bas."
  },
  "Roblox didn’t save that. Try again.": "Roblox bunu kaydetmedi. Tekrar dene.",
- "Net Cash": "Net para"
+ "Net Cash": "Net para",
+ "T-Shirts": "Tişörtler",
+ "Shirts": "Gömlekler",
+ "My Classic Clothing": "Klasik Kıyafetlerim",
+ "Search Clothing": "Kıyafet Ara",
+ "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Silinen kıyafetler envanterinden kalıcı olarak gider. Roblox, Roblox’un yaptığı kıyafetleri ve limitedleri silmene izin vermez.",
+ "Select clothing to delete it": "Silmek için kıyafet seç",
+ "Can’t Delete": "Silinemez",
+ "Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Roblox, Roblox’un yaptığı kıyafetleri ve limitedleri silmene izin vermez.",
+ "Couldn’t load your clothing right now. Try again in a minute.": "Kıyafetlerin şu an yüklenemedi. Bir dakika sonra tekrar dene.",
+ "You don’t have any classic clothing.": "Hiç klasik kıyafetin yok.",
+ "No clothing matches your search.": "Aramanla eşleşen kıyafet yok.",
+ "No clothing of this type.": "Bu türde kıyafet yok.",
+ "{failed} didn’t work. They’re still selected, try again.": "{failed} işe yaramadı. Hâlâ seçili, tekrar dene.",
+ "Delete T-Shirts, Shirts and Pants you don’t want": "İstemediğin tişört, gömlek ve pantolonları sil",
+ "Manage Classic Clothing": "Klasik Kıyafetleri Yönet",
+ "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Envanterindeki Klasik Kıyafetler’e bir Yönet düğmesi: tişört, gömlek ve pantolonlarını ara ve seçtiklerini onay adımıyla sil. Roblox, Roblox’un yaptığı kıyafetleri ve limitedleri silmene izin vermez.",
+ "Delete {n} Items?": {"one": "{n} öğe silinsin mi?", "other": "{n} öğe silinsin mi?"},
+ "Deleted {n} items.": {"one": "{n} öğe silindi.", "other": "{n} öğe silindi."},
+ "Roblox didn’t allow {n} of them.": {"one": "Roblox bunlardan {n} tanesine izin vermedi.", "other": "Roblox bunlardan {n} tanesine izin vermedi."}
 }

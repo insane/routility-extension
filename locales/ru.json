@@ -4164,5 +4164,24 @@
   "other": "{n} массовой отправки ждёт в очереди. Нажми Начать отправку, чтобы запустить её."
  },
  "Roblox didn’t save that. Try again.": "Roblox не сохранил изменение. Попробуйте ещё раз.",
- "Net Cash": "Чистые деньги"
+ "Net Cash": "Чистые деньги",
+ "T-Shirts": "Футболки",
+ "Shirts": "Рубашки",
+ "My Classic Clothing": "Моя классическая одежда",
+ "Search Clothing": "Поиск одежды",
+ "Deleted clothing is gone from your inventory for good. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Удалённая одежда исчезает из инвентаря навсегда. Roblox не даёт удалять одежду от Roblox и лимитеды.",
+ "Select clothing to delete it": "Выберите одежду, чтобы удалить её",
+ "Can’t Delete": "Нельзя удалить",
+ "Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Roblox не даёт удалять одежду от Roblox и лимитеды.",
+ "Couldn’t load your clothing right now. Try again in a minute.": "Не удалось загрузить одежду. Попробуйте через минуту.",
+ "You don’t have any classic clothing.": "У вас нет классической одежды.",
+ "No clothing matches your search.": "Ничего не найдено по вашему запросу.",
+ "No clothing of this type.": "Нет одежды этого типа.",
+ "{failed} didn’t work. They’re still selected, try again.": "{failed} не удалось. Они всё ещё выбраны, попробуйте снова.",
+ "Delete T-Shirts, Shirts and Pants you don’t want": "Удалите ненужные футболки, рубашки и штаны",
+ "Manage Classic Clothing": "Управление классической одеждой",
+ "A Manage button on your Classic Clothing in your inventory: search your T-Shirts, Shirts and Pants and delete the ones you pick, with a confirm step. Roblox doesn’t let you delete clothing made by Roblox or limiteds.": "Кнопка «Управлять» у классической одежды в инвентаре: ищите среди футболок, рубашек и штанов и удаляйте выбранные с подтверждением. Roblox не даёт удалять одежду от Roblox и лимитеды.",
+ "Delete {n} Items?": {"one": "Удалить {n} предмет?", "few": "Удалить {n} предмета?", "many": "Удалить {n} предметов?", "other": "Удалить {n} предмета?"},
+ "Deleted {n} items.": {"one": "Удалён {n} предмет.", "few": "Удалено {n} предмета.", "many": "Удалено {n} предметов.", "other": "Удалено {n} предмета."},
+ "Roblox didn’t allow {n} of them.": {"one": "Roblox не разрешил удалить {n} из них.", "few": "Roblox не разрешил удалить {n} из них.", "many": "Roblox не разрешил удалить {n} из них.", "other": "Roblox не разрешил удалить {n} из них."}
 }
