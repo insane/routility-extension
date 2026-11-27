@@ -7,6 +7,24 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 - Code: [@Scripzy](https://github.com/Scripzy), [@primary999](https://github.com/primary999), [@reqonn](https://github.com/reqonn), [@awkward222](https://github.com/awkward222)
 - Bug reports and ideas: [@reqonn](https://github.com/reqonn), api_cats
 
+## 1.3.5 (November 27, 2026)
+
+A Manage button to delete classic clothing you don’t want, Inventory Search and Manage Badges back on Roblox’s new inventory page, and hidden friend lists inside BTRoblox’s profile.
+
+**New**
+
+```diff
++ Manage Classic Clothing: a Manage button on your Classic Clothing in your inventory lets you search your T-Shirts, Shirts and Pants and delete the ones you pick. Clothing made by Roblox and limiteds are marked, since Roblox doesn’t allow deleting them.
+```
+
+**Fixed**
+
+```diff
+- Inventory Search: the search bar shows again on inventories and favorites after Roblox changed the page.
+- Manage Badges: the Manage button shows on your inventory’s Badges again after Roblox changed the page.
+- Hidden friend lists with BTRoblox: when BTRoblox's profile is on, RoUtility's friends now show in its Friends box instead of a greyed-out list you can't click.
+```
+
 ## 1.3.4 (November 24, 2026)
 
 Mass Send takes your 2-Step code, shows how your last run did and saves your setups, Sandbox gets one row of categories, backgrounds and a buy button, and profiles get a Trades section.
@@ -28,7 +46,6 @@ Mass Send takes your 2-Step code, shows how your last run did and saves your set
 + Old Roblox Dark and Neon Sunset, two new theme presets.
 + Queue (Mass Send): line up several offers with the button between You Offer and You Want, and Start Sending runs them one after another. Each card shows the Value and Price difference, and you can cancel any of them.
 + Backup codes (Mass Send): paste up to 10 of your 2-Step backup codes and Mass Send uses one each time Roblox asks, so it keeps sending. They’re never saved.
-+ Manage Classic Clothing: a Manage button on your Classic Clothing in your inventory lets you search your T-Shirts, Shirts and Pants and delete the ones you pick. Clothing made by Roblox and limiteds are marked, since Roblox doesn’t allow deleting them.
 ```
 
 **Improved**
@@ -41,9 +58,6 @@ Mass Send takes your 2-Step code, shows how your last run did and saves your set
 ~ Hovering an item in tracked trades, item trades, trade ads, trade previews and the chat bot shows the same card with its Value, Price and RAP, like on routility.io.
 ~ Mass Send: skips people who no longer have the item right away, instead of looking through their whole inventory first.
 ~ Your Trade Settings: click Filter or From under Trades to change your trade quality filter or who can send you trades, without going to Privacy settings.
-~ Inventory Search: the search bar shows again on inventories and favorites after Roblox changed the page.
-~ Manage Badges: the Manage button shows on your inventory’s Badges again after Roblox changed the page.
-~ Hidden friend lists with BTRoblox: when BTRoblox's profile is on, RoUtility's friends now show in its Friends box instead of a greyed-out list you can't click.
 ~ Friend Requests: Search and Filter stay on the main Friend Requests row when you have Trusted Friend Requests, and make room for RoValra's Filters button instead of covering it.
 ~ 2017 Roblox theme and custom fonts: icons added by other extensions like RoValra show properly again, instead of turning into words like lock-closed.
 ~ Wearing list: removing a hat after wearing an outfit no longer messes up your avatar, since the outfit's layering and accessory adjustments are now kept.
