@@ -47,8 +47,10 @@
     return state.categories;
   }
 
+  const EXPLORER = ':is(#inventory-container, #favorites-container) :is(assets-explorer, .rbx-tab-content > .current-items)';
+
   function crumbs() {
-    return [...document.querySelectorAll(':is(#inventory-container, #favorites-container) .assets-explorer-title .breadcrumb-container li span.ng-binding')].map(s => s.textContent.trim());
+    return [...document.querySelectorAll(':is(#inventory-container, #favorites-container) .assets-explorer-title .breadcrumb-container li > span:not([class*="icon"])')].map(s => s.textContent.trim()).filter(Boolean);
   }
 
   async function currentType() {
@@ -238,7 +240,7 @@
   async function ensureBox() {
     const s = state;
     if (!s || s.ensuring) return;
-    const header = document.querySelector(':is(#inventory-container, #favorites-container) assets-explorer .container-header');
+    const header = document.querySelector(EXPLORER + ' .container-header');
     if (!header) return;
     const key = crumbs().join('/');
     const existing = header.parentElement.querySelector(':scope > .routility-inv-toolbar');
@@ -470,7 +472,7 @@
       s.scope = key === ALL ? ALL : 'type';
       if (!sortsFor(active(s)).some(x => x[0] === s.sort)) s.sort = 'newest';
       s.key = '';
-      document.querySelector(':is(#inventory-container, #favorites-container) assets-explorer .routility-inv-toolbar')?.remove();
+      document.querySelector(EXPLORER + ' .routility-inv-toolbar')?.remove();
       ensureBox().then(() => document.querySelector('.routility-inv-search input')?.focus());
       run(s.query);
     });
@@ -523,7 +525,7 @@
   function render() {
     const s = state;
     if (!s) return;
-    const explorer = document.querySelector(':is(#inventory-container, #favorites-container) assets-explorer');
+    const explorer = document.querySelector(EXPLORER);
     if (!explorer) return;
     let host = explorer.querySelector('.routility-inv-results');
     const searching = !!s.result;
@@ -597,7 +599,7 @@
     s.observer = new MutationObserver(onFrame(() => {
       if (state !== s) return;
       ensureBox();
-      const explorer = document.querySelector(':is(#inventory-container, #favorites-container) assets-explorer');
+      const explorer = document.querySelector(EXPLORER);
       if (explorer && s.result && !explorer.querySelector('.routility-inv-results')) render();
     }));
     s.observer.observe(document.querySelector('#content') || document.body, { childList: true, subtree: true });

@@ -1554,9 +1554,9 @@ html:not(.routility-2017) #game-detail-page ul.game-stat-container:has(> li.game
   white-space: nowrap;
 }
 
-assets-explorer.routility-inv-searching ul.item-cards:not(.routility-inv-grid):not(.routility-inv-sk),
-assets-explorer.routility-inv-searching .pager-holder,
-assets-explorer.routility-inv-searching .section-content-off {
+:is(assets-explorer, .current-items).routility-inv-searching ul.item-cards:not(.routility-inv-grid):not(.routility-inv-sk),
+:is(assets-explorer, .current-items).routility-inv-searching .pager-holder,
+:is(assets-explorer, .current-items).routility-inv-searching .section-content-off {
   display: none !important;
 }
 
@@ -13727,7 +13727,7 @@ ul.routility-list-ordered {
   display: none;
 }
 
-assets-explorer ul.item-cards:has(.routility-card-worth) > li.list-item {
+:is(assets-explorer, .current-items) ul.item-cards:has(.routility-card-worth) > li.list-item {
   height: 262px !important;
 }
 
