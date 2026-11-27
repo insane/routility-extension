@@ -496,6 +496,7 @@
     window.RoUtilityWearing.teardown();
     window.RoUtilityTryOn.teardown();
     window.RoUtilityPriceAlert.teardown();
+    window.RoUtilityPriceWar.teardown();
     window.RoUtilityExplorer.teardown();
     window.RoUtilityOwned.teardown();
     window.RoUtilityGames.teardown();
@@ -626,6 +627,7 @@
         const tryOpts = { preview: (stored.routilitySettings || {}).avatarPreview !== false, game: (stored.routilitySettings || {}).tryInGame !== false};
         if (window.location.pathname === path && id && (tryOpts.preview || tryOpts.game)) window.RoUtilityTryOn.setup(id, tryOpts);
         if (window.location.pathname === path && id && (stored.routilitySettings || {}).priceAlerts !== false) window.RoUtilityPriceAlert.setup(id);
+        if (window.location.pathname === path && id && (stored.routilitySettings || {}).priceWar !== false) window.RoUtilityPriceWar.setup(id);
       });
       return;
     }

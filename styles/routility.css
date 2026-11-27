@@ -7456,6 +7456,54 @@ table.routility-tx-filtered > tbody > tr:not(.routility-tx-row):has(> td),
   gap: 10px;
 }
 
+.routility-war-pop {
+  width: 330px;
+  max-height: min(560px, calc(100vh - 120px));
+  overflow-y: auto;
+}
+
+.routility-war-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 0 2px;
+  border-top: 1px solid var(--color-stroke-muted, rgba(255, 255, 255, 0.1));
+}
+
+.routility-war-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.routility-war-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.routility-war-opts[hidden],
+.routility-war-row[hidden] {
+  display: none;
+}
+
+.routility-war-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.routility-war-row .routility-war-field {
+  width: 150px;
+  height: 34px;
+}
+
+.routility-war-status:empty {
+  display: none;
+}
+
 .routility-alert-sub {
   margin-top: -4px;
 }

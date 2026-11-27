@@ -922,6 +922,12 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return true;
   }
 
+  if (msg.type === 'priceWarNow') {
+    warTick();
+    sendResponse(true);
+    return;
+  }
+
   if (msg.type === 'getOwners') {
     getOwners(msg.id, msg.filter, msg.page).then(sendResponse);
     return true;
@@ -1993,6 +1999,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === ROT_ALARM) rotatorTick();
   if (alarm.name === BADGE_ALARM) badgeAutoTick();
   if (alarm.name === MASS_ALARM) massCancelTick();
+  if (alarm.name === WAR_ALARM) warTick();
 });
 
 const MASS_ALARM = 'routility-mass-cancel';
@@ -2049,6 +2056,111 @@ function massCancelTick() {
     }
   })().catch(() => {}).finally(() => { massRunning = null; });
   return massRunning;
+}
+
+const WAR_ALARM = 'routility-price-war';
+const WAR_KEY = 'routilityPriceWar';
+let warRunning = null;
+
+async function syncWarAlarm() {
+  const st = await chrome.storage.local.get(['routilitySettings', WAR_KEY]);
+  const allowed = (st.routilitySettings || {}).priceWar !== false;
+  const on = allowed && Object.values(st[WAR_KEY] || {}).some(w => w && w.mode && w.mode !== 'off');
+  const existing = await chrome.alarms.get(WAR_ALARM);
+  if (on && !existing) await chrome.alarms.create(WAR_ALARM, { delayInMinutes: 5, periodInMinutes: 5 });
+  if (!on && existing) await chrome.alarms.clear(WAR_ALARM);
+}
+
+async function warPatch(url, body, token) {
+  for (let i = 0; i < 3; i++) {
+    try {
+      const r = await fetch(url, { method: 'PATCH', credentials: 'include', headers: Object.assign({ 'content-type': 'application/json' }, token.value ? { 'x-csrf-token': token.value } : {}), body: JSON.stringify(body) });
+      if (r.headers.get('rblx-challenge-id')) return 'verify';
+      if (r.status === 403 && r.headers.get('x-csrf-token') && r.headers.get('x-csrf-token') !== token.value) {
+        token.value = r.headers.get('x-csrf-token');
+        continue;
+      }
+      return r.ok ? 'ok' : 'failed';
+    } catch {
+      return 'failed';
+    }
+  }
+  return 'failed';
+}
+
+function warTick() {
+  if (warRunning) return warRunning;
+  warRunning = (async () => {
+    const st = await chrome.storage.local.get(['routilitySettings', WAR_KEY]);
+    if ((st.routilitySettings || {}).priceWar === false) return;
+    const all = st[WAR_KEY] || {};
+    const me = await signedInUser(true);
+    if (!me) return;
+    const ids = Object.keys(all).filter(id => all[id] && all[id].mode !== 'off' && String(all[id].seller) === me && all[id].cid);
+    if (!ids.length) return;
+    const byItem = new Map();
+    for (const id of ids) {
+      const cid = all[id].cid;
+      if (!byItem.has(cid)) byItem.set(cid, []);
+      byItem.get(cid).push(id);
+    }
+    const result = new Map();
+    const token = { value: '' };
+    let paused = 0;
+    for (const [cid, list] of byItem) {
+      const base = `https://apis.roblox.com/marketplace-sales/v1/item/${cid}`;
+      const mine = await authJson(`${base}/resellable-instances?ownerType=User&ownerId=${me}&limit=500`);
+      if (!mine.data) continue;
+      const [sellers, params] = await Promise.all([authJson(`${base}/resellers?limit=30`), authJson(`${base}/get-resale-parameters`)]);
+      if (!sellers.data) continue;
+      const floorMin = Number(params.data && params.data.priceFloor) || 0;
+      const others = (sellers.data.data || []).filter(x => String(x.seller && x.seller.sellerId) !== me).map(x => Number(x.price)).filter(n => n > 0).sort((a, b) => a - b);
+      const cheapest = others[0] || 0;
+      for (const id of list) {
+        const w = all[id];
+        const inst = (mine.data.itemInstances || []).find(x => x.collectibleInstanceId === id);
+        if (!inst || inst.saleState !== 'OnSale') {
+          result.set(id, null);
+          continue;
+        }
+        const now = Number(inst.price) || 0;
+        const at = Date.now();
+        if (!cheapest) {
+          result.set(id, { last: { kind: 'alone', at, price: now } });
+          continue;
+        }
+        const want = w.mode === 'match' ? cheapest : cheapest - Math.max(1, Number(w.by) || 1);
+        const target = Math.max(want, Number(w.floor) || 0, floorMin, 1);
+        if (target >= now) {
+          result.set(id, { last: { kind: want < now ? 'floor' : 'cheapest', at, price: now, next: cheapest } });
+          continue;
+        }
+        const res = await warPatch(`${base}/instance/${id}/resale`, { price: target, isOnSale: true, sellerId: Number(me), sellerType: 'User', collectibleProductId: inst.collectibleProductId }, token);
+        if (res === 'verify') {
+          paused++;
+          result.set(id, { mode: 'off', last: { kind: 'verify', at } });
+        } else if (res === 'ok') {
+          result.set(id, { last: { kind: 'lowered', at, from: now, price: target, next: cheapest } });
+        } else {
+          result.set(id, { last: { kind: 'failed', at } });
+        }
+        await new Promise(r => setTimeout(r, 600));
+      }
+    }
+    if (!result.size) return;
+    const fresh = (await chrome.storage.local.get(WAR_KEY))[WAR_KEY] || {};
+    for (const [id, change] of result) {
+      if (!fresh[id] || fresh[id].at !== all[id].at) continue;
+      if (change === null) delete fresh[id];
+      else Object.assign(fresh[id], change);
+    }
+    await chrome.storage.local.set({ [WAR_KEY]: fresh });
+    if (paused) {
+      const hit = all[[...result.keys()].find(id => result.get(id) && result.get(id).mode === 'off')] || {};
+      await showNotification(`war:${Date.now()}`, lt('Price War paused'), `${hit.name || ''}\n${lt('Roblox asked you to verify before changing the price. Change it once yourself, then turn Price War back on.')}`.trim(), chrome.runtime.getURL('assets/icons/icon128.png'), hit.itemId ? `https://www.roblox.com/catalog/${hit.itemId}` : 'https://www.roblox.com/home', null).catch(() => {});
+    }
+  })().catch(() => {}).finally(() => { warRunning = null; });
+  return warRunning;
 }
 
 const BADGE_ALARM = 'routility-badge-auto';
@@ -2599,21 +2711,24 @@ function syncRulesets(s) {
   chrome.declarativeNetRequest.updateStaticRules({ rulesetId: 'pages', enableRuleIds: pages.filter(([k]) => !s || s[k] !== false).map(([, id]) => id), disableRuleIds: pages.filter(([k]) => s && s[k] === false).map(([, id]) => id) }).catch(() => {});
 }
 
-chrome.runtime.onInstalled.addListener(() => { syncNotifyAlarm(); syncPlayAlarm(); syncRotatorAlarm(); syncBadgeAuto(); syncMassAlarm(); });
-chrome.runtime.onStartup.addListener(() => { syncNotifyAlarm(); syncPlayAlarm(); syncRotatorAlarm(); syncBadgeAuto(); syncMassAlarm(); setTimeout(() => playtimeSync('auto').catch(() => {}), 15000); });
+chrome.runtime.onInstalled.addListener(() => { syncNotifyAlarm(); syncPlayAlarm(); syncRotatorAlarm(); syncBadgeAuto(); syncMassAlarm(); syncWarAlarm(); });
+chrome.runtime.onStartup.addListener(() => { syncNotifyAlarm(); syncPlayAlarm(); syncRotatorAlarm(); syncBadgeAuto(); syncMassAlarm(); syncWarAlarm(); setTimeout(() => playtimeSync('auto').catch(() => {}), 15000); });
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area === 'local' && changes.routilitySettings) {
     syncNotifyAlarm();
     syncPlayAlarm();
     syncRotatorAlarm();
     syncBadgeAuto();
+    syncWarAlarm();
     ensureLive();
     syncRulesets(changes.routilitySettings.newValue);
   }
   if (area === 'local' && changes.routilityMassRuns) syncMassAlarm();
+  if (area === 'local' && changes.routilityPriceWar) syncWarAlarm();
 });
 syncNotifyAlarm();
 syncMassAlarm();
+syncWarAlarm();
 syncPlayAlarm();
 syncRotatorAlarm();
 syncBadgeAuto();

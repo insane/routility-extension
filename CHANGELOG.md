@@ -9,11 +9,12 @@ Every RoUtility update, what changed and who helped. The same log is in the exte
 
 ## 1.3.5 (November 27, 2026)
 
-A Manage button to delete classic clothing you don’t want, Inventory Search and Manage Badges back on Roblox’s new inventory page, and hidden friend lists inside BTRoblox’s profile.
+Price War keeps your listings the cheapest, a Manage button deletes classic clothing you don’t want, and Inventory Search and Manage Badges are back on Roblox’s new inventory page.
 
 **New**
 
 ```diff
++ Price War: on limiteds you’re selling, a Price War link under Best Price keeps your copy the cheapest. Pick Undercut or Match cheapest and a lowest price, and every 5 minutes it lowers your listing when someone lists under you. It never goes under your lowest price and never raises it.
 + Manage Classic Clothing: a Manage button on your Classic Clothing in your inventory lets you search your T-Shirts, Shirts and Pants and delete the ones you pick. Clothing made by Roblox and limiteds are marked, since Roblox doesn’t allow deleting them.
 ```
 

@@ -114,6 +114,7 @@
         "src/features/profile/wearing.js",
         "src/features/avatar/tryon.js",
         "src/features/items/pricealert.js",
+        "src/features/items/pricewar.js",
         "src/features/items/hiddenitem.js",
         "src/features/items/purchaselock.js",
         "src/features/chat/bot.js",
