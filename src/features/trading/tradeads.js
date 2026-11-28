@@ -1245,8 +1245,14 @@
     midBtn.addEventListener('click', queueIt);
 
     function hint(text, alert) {
-      hintEl.textContent = text || defaultHint();
-      hintEl.classList.toggle('routility-ads-hint-alert', !!alert);
+      const why = st.blocked && text !== st.blocked.text ? st.blocked : null;
+      hintEl.textContent = why ? why.text + (text ? ' ' + text : '') : text || defaultHint();
+      hintEl.classList.toggle('routility-ads-hint-alert', !!(alert || (why && why.alert)));
+    }
+
+    function block(text, alert) {
+      st.blocked = { text, alert: !!alert };
+      hint(text, alert);
     }
 
     const DEMAND_WEIGHT = { Amazing: 6, High: 4, Normal: 2, Low: 0.5 };
@@ -1729,12 +1735,14 @@
       const waiting = st.queue.filter(q => q.state === 'waiting').length;
       if (st.job || !waiting || (st.allow && st.allow.canTrade === false)) return;
       start.disabled = false;
+      st.blocked = null;
       if (!queueBtn.disabled) return;
       hint(ltn(waiting, '{n} mass send is waiting in the queue. Press Start Sending to run it.', '{n} mass sends are waiting in the queue. Press Start Sending to run them.', { n: formatNumber(waiting) }));
     }
 
     function paintStartBase() {
       paintTest();
+      st.blocked = null;
       if (st.job) {
         start.label.textContent = st.job.stop ? lt('Stopping') : lt('Stop');
         start.disabled = st.job.stop;
@@ -1753,22 +1761,22 @@
       start.disabled = !items.length || !wantOk;
       if (st.allow && st.allow.canTrade === false) {
         start.disabled = true;
-        return hint(lt('You can’t trade right now'), true);
+        return block(lt('You can’t trade right now'), true);
       }
       if (limited && Number(free.remaining) === 0) {
         start.disabled = true;
-        return hint(lt('You’re out of free trades this month, so Roblox won’t send more. Roblox Plus gives unlimited trades.'), true);
+        return block(lt('You’re out of free trades this month, so Roblox won’t send more. Roblox Plus gives unlimited trades.'), true);
       }
       const rangeMsg = ranged === 'bad' ? lt('Fill in both From and To, or leave both blank.') : ranged === 'count' ? ltn(4 - st.look.length, 'How many can be 1, since you have {n} empty box under You Want.', 'How many can be 1 to {n}, the empty boxes under You Want.', { n: 4 - st.look.length }) : '';
       if (rangeMsg) {
         start.disabled = true;
-        return hint(rangeMsg, true);
+        return block(rangeMsg, true);
       }
-      if (!items.length || !wantOk) return hint(lt('Pick at least one of your items, and at least one item you want or a value range for their items. Roblox needs an item on each side of a trade.'));
+      if (!items.length || !wantOk) return block(lt('Pick at least one of your items, and at least one item you want or a value range for their items. Roblox needs an item on each side of a trade.'));
       const bad = offBalance();
       if (bad !== null) {
         start.disabled = true;
-        return hint(lt('Your offer is worth {pct}% of what you’re asking. It has to be between 50% and 200%.', { pct: bad }), true);
+        return block(lt('Your offer is worth {pct}% of what you’re asking. It has to be between 50% and 200%.', { pct: bad }), true);
       }
       const give = sideRap(items) + (st.off.find(e => e.kind === 'robux')?.amount || 0);
       const get = sideRap(st.look);
@@ -1776,7 +1784,7 @@
       if (ratio > 0 && give > 0 && get > 0 && (give < get * ratio || get < give * ratio)) return hint(lt('Roblox only sends trades where each side’s RAP is at least {pct}% of the other’s, so this offer would be refused.', { pct: Math.round(ratio * 100) }), true);
       if (st.today !== null && st.today >= DAILY) {
         start.disabled = true;
-        return hint(lt('You’ve sent about {max} trades in the last 24 hours, which is Roblox’s limit. Try again later.', { max: DAILY }), true);
+        return block(lt('You’ve sent about {max} trades in the last 24 hours, which is Roblox’s limit. Try again later.', { max: DAILY }), true);
       }
       const notes = [];
       if (st.today !== null) notes.push(lt('{left} of {max} trades left today', { left: formatNumber(DAILY - st.today), max: DAILY }) + '.');

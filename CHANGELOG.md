@@ -30,6 +30,7 @@ Price War keeps your listings the cheapest, a Manage button deletes classic clot
 **Fixed**
 
 ```diff
+- Mass Send: the reason Start Sending is greyed out stays on screen after you paste backup codes, load a setup or queue an offer, instead of getting replaced.
 - Customize Thumbnail: the Full Body preview now matches the thumbnail Roblox makes, instead of showing your avatar smaller and higher.
 - Fun Mode: limiteds you buy now show in your Collectibles, not just in the totals.
 - Inventory Search: the search bar shows again on inventories and favorites after Roblox changed the page.

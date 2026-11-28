@@ -17,6 +17,7 @@
         { "type": "new", "text": "Price War: on limiteds you’re selling, a Price War link under Best Price keeps your copy the cheapest. Pick Undercut or Match cheapest and a lowest price, and every 5 minutes it lowers your listing when someone lists under you. It never goes under your lowest price and never raises it." },
         { "type": "new", "text": "Manage Classic Clothing: a Manage button on your Classic Clothing in your inventory lets you search your T-Shirts, Shirts and Pants and delete the ones you pick. Clothing made by Roblox and limiteds are marked, since Roblox doesn’t allow deleting them." },
         { "type": "improved", "text": "Profiles load faster with Classic Profile on, since RoUtility starts loading them as soon as the page opens instead of waiting for Roblox." },
+        { "type": "fixed", "text": "Mass Send: the reason Start Sending is greyed out stays on screen after you paste backup codes, load a setup or queue an offer, instead of getting replaced." },
         { "type": "fixed", "text": "Customize Thumbnail: the Full Body preview now matches the thumbnail Roblox makes, instead of showing your avatar smaller and higher." },
         { "type": "fixed", "text": "Fun Mode: limiteds you buy now show in your Collectibles, not just in the totals." },
         { "type": "fixed", "text": "Inventory Search: the search bar shows again on inventories and favorites after Roblox changed the page." },
