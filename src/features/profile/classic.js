@@ -13,7 +13,20 @@
 
   let csrf = '';
 
+  function takePrefetch(url) {
+    const pf = window.RoUtilityProfilePrefetch;
+    if (!pf || !pf.map.has(url) || Date.now() - pf.at > 60000) return null;
+    const hit = pf.map.get(url);
+    pf.map.delete(url);
+    return hit;
+  }
+
   async function fetchRetry(url, opts, tries = 2) {
+    const pre = !opts && takePrefetch(url);
+    if (pre) {
+      const r = await pre;
+      if (r && r.status && r.status !== 429 && r.status < 500) return r;
+    }
     let last = { status: 0, body: null };
     let renewed = false;
     for (let attempt = 0; attempt < tries; attempt++) {
@@ -1787,7 +1800,10 @@
   async function forumPosts(userId) {
     const st = await new Promise(r => chrome.storage.local.get('routilitySettings', r));
     if ((st.routilitySettings || {}).forum === false) return null;
-    const res = await Promise.race([window.RoUtilityUI.request({ type: 'forumApi', path: `/users/${userId}` }, r => r && 'status' in r), new Promise(r => setTimeout(r, 2500))]);
+    const pf = window.RoUtilityProfilePrefetch;
+    const early = pf && pf.forum && pf.userId === String(userId) && Date.now() - pf.at < 60000 ? pf.forum : null;
+    if (pf && early) pf.forum = null;
+    const res = await Promise.race([early ? early.then(r => (r && 'status' in r ? r : window.RoUtilityUI.request({ type: 'forumApi', path: `/users/${userId}` }, x => x && 'status' in x))) : window.RoUtilityUI.request({ type: 'forumApi', path: `/users/${userId}` }, r => r && 'status' in r), new Promise(r => setTimeout(r, 2500))]);
     const posts = res && res.status === 200 && res.data ? Number(res.data.posts) : NaN;
     return Number.isSafeInteger(posts) && posts >= 0 ? posts : null;
   }

@@ -3729,5 +3729,6 @@
  "{when}: lowered from R$ {from} to R$ {price}, someone listed at R$ {next}.": "{when}: R$ {from}에서 R$ {price}로 내렸어요. 누군가 R$ {next}에 올렸어요.",
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}: 다른 판매자가 없어서 R$ {price} 그대로예요.",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}: 누군가 R$ {next}에 올렸지만 최저 가격보다 낮아서 R$ {price} 그대로예요.",
- "{when}: yours is already the cheapest at R$ {price}.": "{when}: 이미 R$ {price}로 최저가예요."
+ "{when}: yours is already the cheapest at R$ {price}.": "{when}: 이미 R$ {price}로 최저가예요.",
+ "Price and RAP": "가격과 RAP"
 }

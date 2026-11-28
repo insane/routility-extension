@@ -106,6 +106,10 @@
     const rap = s.profileRap !== false;
     const w = s.profileShort === true ? { both: 164, worth: 85, rap: 80, usd: 67 } : { both: 200, worth: 104, rap: 96, usd: 72 };
     const pills = el('div', 'routility-sk-row routility-sk-values');
+    if (s.profilePills === 'price') {
+      pills.appendChild(bar(rap ? w.usd + w.rap + 8 : w.usd + 24, 28, 'routility-sk-value'));
+      return pills;
+    }
     if (worth && rap && !/^(separate|gray)$/.test(s.profilePills)) pills.appendChild(bar(w.both, 28, 'routility-sk-value'));
     else {
       if (worth) pills.appendChild(bar(w.worth, 28, 'routility-sk-value'));
@@ -240,6 +244,31 @@
       history.replaceState(history.state, '', `/users/${pending}/profile`);
     }
     const modern = terminated && !settings.classicProfile;
+    const target = location.pathname.split('/')[2];
+    if (!terminated && /^\d+$/.test(target || '') && !window.RoUtilityProfilePrefetch) {
+      const lim = settings.classicLayout === 'columns' ? 50 : 10;
+      const urls = [
+        `users.roblox.com/v1/users/${target}`,
+        `users.roblox.com/v1/users/${target}/username-history?limit=50&sortOrder=Desc`,
+        `friends.roblox.com/v1/users/${target}/friends/count`,
+        `friends.roblox.com/v1/users/${target}/followers/count`,
+        `friends.roblox.com/v1/users/${target}/followings/count`,
+        `premiumfeatures.roblox.com/v1/users/${target}/validate-membership`,
+        `avatar.roblox.com/v1/users/${target}/currently-wearing`,
+        `accountinformation.roblox.com/v1/users/${target}/roblox-badges`,
+        `badges.roblox.com/v1/users/${target}/badges?limit=${lim}&sortOrder=Desc`,
+        `games.roblox.com/v2/users/${target}/favorite/games?limit=${lim}&sortOrder=Desc`,
+        `games.roblox.com/v2/users/${target}/games?accessFilter=Public&limit=50&sortOrder=Asc`,
+        `friends.roblox.com/v1/users/${target}/friends/find?limit=50`,
+        `groups.roblox.com/v1/users/${target}/groups/roles?includeLocked=true`,
+        `accountinformation.roblox.com/v1/users/${target}/promotion-channels?alwaysReturnUrls=true`,
+      ].map(u => 'https://' + u);
+      const map = new Map(urls.map(u => [u, fetch(u, { credentials: 'include' }).then(async r => ({ status: r.status, body: r.ok ? await r.json().catch(() => null) : null })).catch(() => ({ status: 0, body: null }))]));
+      const forum = settings.forum === false ? null : new Promise(r => {
+        try { chrome.runtime.sendMessage({ type: 'forumApi', path: `/users/${target}` }, res => { void chrome.runtime.lastError; r(res); }); } catch { r(null); }
+      });
+      window.RoUtilityProfilePrefetch = { userId: target, map, forum, at: Date.now() };
+    }
     document.documentElement.classList.add('routility-classic-on');
     const place = () => {
       const content = document.getElementById('content');

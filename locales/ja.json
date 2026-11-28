@@ -3729,5 +3729,6 @@
  "{when}: lowered from R$ {from} to R$ {price}, someone listed at R$ {next}.": "{when}: R$ {from} から R$ {price} に下げました。誰かが R$ {next} で出品しています。",
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}: 他に誰も出品していないので R$ {price} のままです。",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}: 誰かが R$ {next} で出品しましたが、最低価格より下なので R$ {price} のままです。",
- "{when}: yours is already the cheapest at R$ {price}.": "{when}: すでに R$ {price} で最安値です。"
+ "{when}: yours is already the cheapest at R$ {price}.": "{when}: すでに R$ {price} で最安値です。",
+ "Price and RAP": "価格と RAP"
 }

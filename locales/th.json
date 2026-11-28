@@ -3729,5 +3729,6 @@
  "{when}: lowered from R$ {from} to R$ {price}, someone listed at R$ {next}.": "{when}: ลดจาก R$ {from} เป็น R$ {price} มีคนตั้งขายที่ R$ {next}",
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}: ไม่มีคนอื่นขาย จึงคงไว้ที่ R$ {price}",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}: มีคนตั้งขายที่ R$ {next} แต่ต่ำกว่าราคาต่ำสุดของคุณ จึงคงไว้ที่ R$ {price}",
- "{when}: yours is already the cheapest at R$ {price}.": "{when}: ของคุณถูกที่สุดอยู่แล้วที่ R$ {price}"
+ "{when}: yours is already the cheapest at R$ {price}.": "{when}: ของคุณถูกที่สุดอยู่แล้วที่ R$ {price}",
+ "Price and RAP": "ราคาและ RAP"
 }

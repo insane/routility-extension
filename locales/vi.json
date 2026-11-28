@@ -3729,5 +3729,6 @@
  "{when}: lowered from R$ {from} to R$ {price}, someone listed at R$ {next}.": "{when}: đã hạ từ R$ {from} xuống R$ {price}, có người bán R$ {next}.",
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}: không ai khác bán, nên giữ R$ {price}.",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}: có người bán R$ {next}, nhưng thấp hơn giá thấp nhất của bạn, nên giữ R$ {price}.",
- "{when}: yours is already the cheapest at R$ {price}.": "{when}: bản của bạn đã rẻ nhất ở R$ {price}."
+ "{when}: yours is already the cheapest at R$ {price}.": "{when}: bản của bạn đã rẻ nhất ở R$ {price}.",
+ "Price and RAP": "Giá và RAP"
 }

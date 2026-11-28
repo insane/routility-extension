@@ -14,13 +14,21 @@ Price War keeps your listings the cheapest, a Manage button deletes classic clot
 **New**
 
 ```diff
++ Price and RAP (Profile Pill Style): the old look is back, with your price on the blue RoUtility pill joined to RAP.
 + Price War: on limiteds you’re selling, a Price War link under Best Price keeps your copy the cheapest. Pick Undercut or Match cheapest and a lowest price, and every 5 minutes it lowers your listing when someone lists under you. It never goes under your lowest price and never raises it.
 + Manage Classic Clothing: a Manage button on your Classic Clothing in your inventory lets you search your T-Shirts, Shirts and Pants and delete the ones you pick. Clothing made by Roblox and limiteds are marked, since Roblox doesn’t allow deleting them.
+```
+
+**Improved**
+
+```diff
+~ Profiles load faster with Classic Profile on, since RoUtility starts loading them as soon as the page opens instead of waiting for Roblox.
 ```
 
 **Fixed**
 
 ```diff
+- Fun Mode: limiteds you buy now show in your Collectibles, not just in the totals.
 - Inventory Search: the search bar shows again on inventories and favorites after Roblox changed the page.
 - Manage Badges: the Manage button shows on your inventory’s Badges again after Roblox changed the page.
 - Hidden friend lists with BTRoblox: when BTRoblox's profile is on, RoUtility's friends now show in its Friends box instead of a greyed-out list you can't click.

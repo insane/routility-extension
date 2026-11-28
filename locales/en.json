@@ -3886,5 +3886,6 @@
  "{when}: lowered from R$ {from} to R$ {price}, someone listed at R$ {next}.": "{when}: lowered from R$ {from} to R$ {price}, someone listed at R$ {next}.",
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}: no one else is selling, so it stayed at R$ {price}.",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.",
- "{when}: yours is already the cheapest at R$ {price}.": "{when}: yours is already the cheapest at R$ {price}."
+ "{when}: yours is already the cheapest at R$ {price}.": "{when}: yours is already the cheapest at R$ {price}.",
+ "Price and RAP": "Price and RAP"
 }

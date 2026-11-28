@@ -495,7 +495,7 @@
     revealTerminated: () => r([circle(28), c([h('span', 'rt-m-strike', lt('Account Deleted')), r([strong('ava_builds'), muted(lt('Banned'))])])]),
     inventoryValues: () => g([A.frigidus, A.stv, A.v3000].map(id => cell([thumb(id, 36), liveUsd(id, 'rt-m-tiny')])), 3, 'rt-m-full'),
     profilePills: (s = {}) => {
-      const style = /^(separate|gray)$/.test(s.profilePills) ? s.profilePills : 'joined';
+      const style = /^(separate|gray|price)$/.test(s.profilePills) ? s.profilePills : 'joined';
       const logo = el('img', 'routility-worth-logo');
       logo.src = LOGO;
       logo.alt = '';
@@ -503,6 +503,13 @@
       const worth = h('span', 'rt-m-vpill bg-shift-300 content-action-utility routility-worth-pill', [logo, '42M']);
       const rap = h('span', 'rt-m-vpill bg-shift-300 content-action-utility routility-rap-pill', [el('span', 'icon-robux-16x16 routility-rap-icon'), '13.8M']);
       const price = h('span', 'rt-m-vpill bg-shift-300 content-action-utility routility-value-pill', cash.symbol + Math.round(139734 * cash.rate / 1000) + 'K');
+      if (style === 'price') {
+        const logo2 = el('img', 'routility-worth-logo');
+        logo2.src = LOGO;
+        logo2.alt = '';
+        const usd = h('span', 'rt-m-vpill bg-shift-300 content-action-utility routility-worth-pill', [logo2, cash.symbol + Math.round(139734 * cash.rate / 1000) + 'K']);
+        return r([h('span', 'flex routility-split-pill', [usd, rap])], 'routility-value-row routility-pills-price');
+      }
       return r([...(style === 'joined' ? [h('span', 'flex routility-split-pill', [worth, rap])] : [worth, rap]), price], 'routility-value-row routility-pills-' + style);
     },
     purchaseLock: () => c([h('span', 'rt-m-pill rt-m-hold', lt('Buy')), muted(lt('Hold to confirm'))]),
@@ -1152,7 +1159,7 @@
           { key: 'profileValue', parent: 'inventoryValues', title: LT('Value on Profiles'), desc: LT('Their RoUtility Value in Robux, counting RAP for items we haven’t valued yet.') },
           { key: 'profileRap', parent: 'inventoryValues', title: LT('RAP on Profiles'), desc: LT('The total RAP of their limiteds.') },
           { key: 'profileShort', parent: 'inventoryValues', title: LT('Short Numbers on Profiles'), desc: LT('Show the profile pills like 7.27M+ instead of 7,270,616. The + means it was rounded down. Hover a pill for the exact number.') },
-          { key: 'profilePills', parent: 'inventoryValues', title: LT('Profile Pill Style'), desc: LT('How the Value, RAP and Price pills look on profiles, inventories and trades.'), options: [['joined', LT('Combined')], ['separate', LT('Separate')], ['gray', LT('Minimal')]] },
+          { key: 'profilePills', parent: 'inventoryValues', title: LT('Profile Pill Style'), desc: LT('How the Value, RAP and Price pills look on profiles, inventories and trades.'), options: [['joined', LT('Combined')], ['separate', LT('Separate')], ['gray', LT('Minimal')], ['price', LT('Price and RAP')]] },
           { key: 'ownedSince', title: LT('How Long They’ve Owned It'), desc: LT('How long each item has been in anyone’s inventory, next to its creator, like By Roblox, 3y. Hover it for the exact date.') },
         ] },
         { title: LT('Finding Things'), rows: [

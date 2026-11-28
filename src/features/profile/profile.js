@@ -172,7 +172,7 @@
   chrome.storage.local.get('routilitySettings', (s) => {
     const st = s.routilitySettings || {};
     shortOn = st.profileShort === true;
-    if (/^(separate|gray)$/.test(st.profilePills)) pillStyle = st.profilePills;
+    if (/^(separate|gray|price)$/.test(st.profilePills)) pillStyle = st.profilePills;
   });
 
   function pillNumber(n, more) {
@@ -246,6 +246,17 @@
     p.setAttribute('stroke-linejoin', 'round');
     s.appendChild(p);
     return s;
+  }
+
+  async function funAssets(userId) {
+    const fun = window.RoUtilityFun;
+    if (!fun || !fun.limiteds) return null;
+    const list = await fun.limiteds(userId).catch(() => []);
+    if (!list || !list.length) return null;
+    const assets = list.map(x => ({ assetId: x.kind === 'bundle' ? 'b' + x.id : x.id, name: x.name || '', recentAveragePrice: 0, serialNumber: x.listing && x.listing.serial != null ? x.listing.serial : null }));
+    const p = await priced('fun:' + userId, assets, true, Date.now());
+    for (const a of assets) a.recentAveragePrice = Number(p.prices[String(a.assetId)] && p.prices[String(a.assetId)].rap) || 0;
+    return { assets, prices: p.prices };
   }
 
   function groupItems(s) {
@@ -398,7 +409,9 @@
       note.textContent = s && s.private ? lt('This inventory is private.') : lt('Couldn’t load this inventory right now.');
       return;
     }
-    const all = groupItems(s).sort(SORTS[sortBy]);
+    const fun = await funAssets(userId);
+    if (!backdrop.isConnected) return;
+    const all = groupItems(fun ? { assets: s.assets.concat(fun.assets), prices: { ...fun.prices, ...s.prices } } : s).sort(SORTS[sortBy]);
     const thumbs = new Map();
     let list = all;
     let shown = 0;
@@ -447,11 +460,11 @@
     search.focus();
   }
 
-  function makeWorthPill(userId, summary, name) {
+  function makeWorthPill(userId, summary, name, usd) {
     const a = el('a', PILL_CLASS + ' routility-worth-pill');
     a.href = `https://routility.io/player/${userId}`;
     a.style.textDecoration = 'none';
-    a.dataset.rtTip = lt('Value: {value}', { value: formatNumber(summary.worth) });
+    a.dataset.rtTip = usd ? lt('Price: {value}', { value: window.RoUtilityUI.cash().symbol + formatNumber(Math.round(window.RoUtilityUI.toCash(summary.usd))) }) : lt('Value: {value}', { value: formatNumber(summary.worth) });
     const layer = el('div', STATE_LAYER);
     layer.setAttribute('aria-hidden', 'true');
     a.appendChild(layer);
@@ -459,7 +472,7 @@
     const logo = el('img', 'routility-worth-logo');
     logo.src = LOGO_URL;
     logo.alt = '';
-    tag.append(logo, el('span', null, pillNumber(summary.worth, !summary.complete)));
+    tag.append(logo, el('span', null, usd ? pillText(summary) : pillNumber(summary.worth, !summary.complete)));
     a.appendChild(tag);
     a.addEventListener('mouseenter', () => { scan(userId); }, { once: true });
     a.addEventListener('click', (e) => {
@@ -473,6 +486,15 @@
 
   function pillSet(userId, summary, name) {
     const out = [];
+    if (pillStyle === 'price') {
+      if (summary.private) return [makePill(userId, summary, name)];
+      const price = makeWorthPill(userId, summary, name, true);
+      const rap = showing.rap ? makeRapPill(userId, summary, name) : null;
+      if (!rap) return [price];
+      const split = el('div', 'flex routility-split-pill');
+      split.append(price, rap);
+      return [split];
+    }
     const worth = hasWorth(summary) ? makeWorthPill(userId, summary, name) : null;
     const rap = showing.rap && !summary.private ? makeRapPill(userId, summary, name) : null;
     if (worth && rap && pillStyle === 'joined') {
@@ -487,9 +509,15 @@
   }
 
   function skeletonPills() {
-    const both = pillStyle === 'joined' && showing.value && showing.rap;
     const w = shortOn ? { both: 164, worth: 85, rap: 80, usd: 67 } : { both: 200, worth: 104, rap: 96, usd: 72 };
     const big = pillPlace !== 'TradeWindow' && !(state && state.mode === 'classic');
+    if (pillStyle === 'price') {
+      const pill = el('span', PILL_CLASS + ' routility-worth-pill' + (showing.rap ? ' routility-split-skeleton' : '') + ' routility-pill-skeleton');
+      pill.style.width = Math.round((showing.rap ? w.usd + w.rap + 8 : w.usd + 24) * (big ? 1.1 : 1)) + 'px';
+      pill.dataset.rtTip = lt('Adding up inventory value…');
+      return [pill];
+    }
+    const both = pillStyle === 'joined' && showing.value && showing.rap;
     return [both && ['routility-worth-pill routility-split-skeleton', w.both], !both && showing.value && ['routility-worth-pill', w.worth], !both && showing.rap && ['routility-rap-pill', w.rap], showing.usd && ['routility-value-pill', w.usd]]
       .filter(Boolean).map(([c, width]) => {
         const pill = el('span', PILL_CLASS + ' ' + c + ' routility-pill-skeleton');

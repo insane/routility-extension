@@ -13582,8 +13582,8 @@ html.routility-hi-off .routility-hi-loading, html.routility-hi-failed .routility
 
 :is(.routility-value-row, .routility-trade-inv-pills) :is(.routility-value-pill, .routility-worth-pill, .routility-rap-pill) { border-radius: calc(8px * var(--routility-round, 1)) !important; }
 :is(.routility-value-row, .routility-trade-inv-pills) .routility-value-pill { background-color: var(--color-shift-300, rgba(127, 127, 127, 0.2)) !important; color: var(--color-content-emphasis) !important; }
-:is(.routility-pills-joined, .routility-pills-separate) .routility-worth-pill { background-color: rgb(15, 159, 255) !important; color: #fff !important; }
-:is(.routility-pills-joined, .routility-pills-separate) .routility-worth-logo { filter: brightness(0) invert(1); }
+:is(.routility-pills-joined, .routility-pills-separate, .routility-pills-price) .routility-worth-pill { background-color: rgb(15, 159, 255) !important; color: #fff !important; }
+:is(.routility-pills-joined, .routility-pills-separate, .routility-pills-price) .routility-worth-logo { filter: brightness(0) invert(1); }
 .routility-pills-gray .routility-rap-pill { background-color: var(--color-shift-300, rgba(127, 127, 127, 0.2)) !important; color: var(--color-content-emphasis) !important; }
 .routility-pills-gray .routility-rap-icon { filter: brightness(0) saturate(100%) invert(52%) sepia(93%) saturate(1500%) hue-rotate(118deg) brightness(92%); }
 .routility-split-pill { flex: none; }

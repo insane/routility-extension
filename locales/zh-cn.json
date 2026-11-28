@@ -3729,5 +3729,6 @@
  "{when}: lowered from R$ {from} to R$ {price}, someone listed at R$ {next}.": "{when}：已从 R$ {from} 降到 R$ {price}，有人挂了 R$ {next}。",
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}：没有其他人在卖，所以保持 R$ {price}。",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}：有人挂了 R$ {next}，但低于你的最低价格，所以保持 R$ {price}。",
- "{when}: yours is already the cheapest at R$ {price}.": "{when}：你的已经是最低价 R$ {price}。"
+ "{when}: yours is already the cheapest at R$ {price}.": "{when}：你的已经是最低价 R$ {price}。",
+ "Price and RAP": "价格和 RAP"
 }

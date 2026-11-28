@@ -4212,5 +4212,6 @@
  "{when}: lowered from R$ {from} to R$ {price}, someone listed at R$ {next}.": "{when}: снижено с R$ {from} до R$ {price}, кто-то выставил за R$ {next}.",
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}: больше никто не продаёт, цена осталась R$ {price}.",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}: кто-то выставил за R$ {next}, но это ниже вашей минимальной цены, цена осталась R$ {price}.",
- "{when}: yours is already the cheapest at R$ {price}.": "{when}: ваша уже самая дешёвая за R$ {price}."
+ "{when}: yours is already the cheapest at R$ {price}.": "{when}: ваша уже самая дешёвая за R$ {price}.",
+ "Price and RAP": "Цена и RAP"
 }

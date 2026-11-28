@@ -3890,5 +3890,6 @@
  "{when}: lowered from R$ {from} to R$ {price}, someone listed at R$ {next}.": "{when} : baissé de R$ {from} à R$ {price}, quelqu’un vend à R$ {next}.",
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when} : personne d’autre ne vend, il est resté à R$ {price}.",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when} : quelqu’un vend à R$ {next}, mais c’est sous ton prix minimum, il est resté à R$ {price}.",
- "{when}: yours is already the cheapest at R$ {price}.": "{when} : la tienne est déjà la moins chère à R$ {price}."
+ "{when}: yours is already the cheapest at R$ {price}.": "{when} : la tienne est déjà la moins chère à R$ {price}.",
+ "Price and RAP": "Prix et RAP"
 }
