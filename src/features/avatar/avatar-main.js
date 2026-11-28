@@ -36,6 +36,7 @@
       const data = JSON.parse(body);
       const model = data && data.avatarDefinition && data.avatarDefinition.updateAvatarModel;
       const holder = model && model.playerAvatarType !== undefined ? model : data;
+      if (holder && holder.playerAvatarType === 'R6') serverType = 'R6';
       if (!holder || holder.playerAvatarType !== 'R15') return body;
       if (Date.now() < wantR15Until) {
         serverType = 'R15';
