@@ -3891,5 +3891,8 @@
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}: ninguém mais vende, então ficou em R$ {price}.",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}: alguém anunciou a R$ {next}, mas está abaixo do seu preço mínimo, então ficou em R$ {price}.",
  "{when}: yours is already the cheapest at R$ {price}.": "{when}: a sua já é a mais barata a R$ {price}.",
- "Price and RAP": "Preço e RAP"
+ "Price and RAP": "Preço e RAP",
+ "See-Through Avatar Preview": "Prévia de avatar transparente",
+ "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "Esconde o fundo brilhante atrás do seu avatar no editor de avatar, para o seu tema ou fundo aparecer.",
+ "Backdrop": "Fundo"
 }

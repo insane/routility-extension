@@ -3730,5 +3730,8 @@
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}：沒有其他人在賣，所以保持 R$ {price}。",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}：有人掛了 R$ {next}，但低於你的最低價格，所以保持 R$ {price}。",
  "{when}: yours is already the cheapest at R$ {price}.": "{when}：你的已經是最低價 R$ {price}。",
- "Price and RAP": "價格和 RAP"
+ "Price and RAP": "價格和 RAP",
+ "See-Through Avatar Preview": "透明頭像預覽",
+ "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "隱藏頭像編輯器裡頭像後面的閃光背景，讓你的主題或背景透出來。",
+ "Backdrop": "背景"
 }

@@ -3730,5 +3730,8 @@
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}: 다른 판매자가 없어서 R$ {price} 그대로예요.",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}: 누군가 R$ {next}에 올렸지만 최저 가격보다 낮아서 R$ {price} 그대로예요.",
  "{when}: yours is already the cheapest at R$ {price}.": "{when}: 이미 R$ {price}로 최저가예요.",
- "Price and RAP": "가격과 RAP"
+ "Price and RAP": "가격과 RAP",
+ "See-Through Avatar Preview": "투명한 아바타 미리보기",
+ "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "아바타 편집기에서 아바타 뒤의 반짝이는 배경을 숨겨 테마나 배경이 보이게 해요.",
+ "Backdrop": "배경"
 }

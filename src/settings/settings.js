@@ -552,6 +552,7 @@
     outfitRotator: () => c([r([strong(lt('Outfit Rotator')), pill(lt('Every 15 Minutes'), 'active')], 'rt-m-spread'), r([thumb(A.valk, 26), thumb(A.fedora, 26), thumb(A.empyreus, 26), thumb(A.stv, 26)])], 'rt-m-w190'),
     thumbCustomize: () => r([h('span', 'rt-m-tc-frame', [thumb(A.valk, 44)]), c([r([muted(lt('Field of View')), strong('25°')], 'rt-m-spread'), h('span', 'rt-m-bar rt-m-bar-blue', [h('span', null, null, { width: '33%' })]), r([muted(lt('Rotation')), strong('25.5°')], 'rt-m-spread'), h('span', 'rt-m-bar rt-m-bar-blue', [h('span', null, null, { width: '71%' })])], 'rt-m-tc-ctrls')]),
     avatarRig: () => c([r([strong(lt('Avatar type')), r([muted('R6'), h('span', 'rt-m-switch', [h('span')]), strong('R15')])], 'rt-m-spread'), r([muted(lt('Body Type')), muted('100%')], 'rt-m-spread'), h('span', 'rt-m-bar rt-m-bar-blue', [h('span', null, null, { width: '100%' })])], 'rt-m-w190'),
+    avatarClearBack: () => r([h('span', 'rt-m-pill rt-m-gone', lt('Backdrop')), pill(lt('Avatar'))]),
     hideMakeup: () => r([pill(lt('Clothing')), h('span', 'rt-m-pill rt-m-gone', lt('Makeup')), pill(lt('Body'))]),
     avatarWearing: () => c([r([strong(lt('Wearing')), liveUsd(`${A.fedora},${A.valk},${A.stv},${A.v3000},${A.frigidus}`, 'rt-m-tiny')], 'rt-m-spread'), muted(lt('{n} items, {worn}/{max} accessories', { n: 5, worn: 5, max: 10 })), g([A.fedora, A.valk, A.stv, A.v3000, A.frigidus].map(id => thumb(id, 24)), 5)], 'rt-m-w190'),
     avoidFriends: () => c([r([pill(lt('Play'), 'active')]), r([face(U.cv, 18), face(U.linkmon, 18), muted(lt('not in that server'))])]),
@@ -1028,6 +1029,7 @@
           { key: 'sandboxShowcase', parent: 'avatarSandbox', title: LT('Enlarge Showcase'), desc: LT('When you enlarge your Sandbox avatar, show its Outfit Worth and the items you’re wearing along the bottom.') },
           { key: 'avatarSearch', title: LT('Item Search'), desc: LT('A search box above your items, by name, asset ID or limited acronym like CWHP. Its label follows the section you’re in.') },
           { key: 'avatarLimiteds', title: LT('Limiteds Tab'), desc: LT('A Limiteds tab after Gear in Accessories with every classic limited you own, ready to wear.') },
+          { key: 'avatarClearBack', title: LT('See-Through Avatar Preview'), desc: LT('Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.'), keywords: 'avatar background backdrop transparent see through clear sparkle' },
           { key: 'hideMakeup', title: LT('Hide Makeup Tab'), desc: LT('Removes the Makeup tab so the other tabs fit without scrolling.') },
         ] },
         { title: LT('Preview'), rows: [

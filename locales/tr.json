@@ -3891,5 +3891,8 @@
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}: başka satan yok, bu yüzden R$ {price} olarak kaldı.",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}: biri R$ {next} fiyatla koydu ama bu en düşük fiyatının altında, bu yüzden R$ {price} olarak kaldı.",
  "{when}: yours is already the cheapest at R$ {price}.": "{when}: seninki zaten R$ {price} ile en ucuz.",
- "Price and RAP": "Fiyat ve RAP"
+ "Price and RAP": "Fiyat ve RAP",
+ "See-Through Avatar Preview": "Şeffaf Avatar Önizlemesi",
+ "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "Avatar düzenleyicide avatarının arkasındaki parıltılı zemini gizler, böylece temanı veya arka planını görürsün.",
+ "Backdrop": "Zemin"
 }

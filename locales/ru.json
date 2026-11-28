@@ -4213,5 +4213,8 @@
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}: больше никто не продаёт, цена осталась R$ {price}.",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}: кто-то выставил за R$ {next}, но это ниже вашей минимальной цены, цена осталась R$ {price}.",
  "{when}: yours is already the cheapest at R$ {price}.": "{when}: ваша уже самая дешёвая за R$ {price}.",
- "Price and RAP": "Цена и RAP"
+ "Price and RAP": "Цена и RAP",
+ "See-Through Avatar Preview": "Прозрачный предпросмотр аватара",
+ "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "Скрывает блестящий фон за аватаром в редакторе аватара, чтобы была видна ваша тема или фон.",
+ "Backdrop": "Фон"
 }

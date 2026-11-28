@@ -314,6 +314,7 @@
     if (!revealOn) document.querySelectorAll('.routility-deleted-wait').forEach(n => n.classList.remove('routility-deleted-wait'));
     root.classList.toggle(CLASS, (settings || {}).skeletonLoading !== false);
     root.classList.toggle('routility-hide-makeup', (settings || {}).hideMakeup !== false);
+    root.classList.toggle('routility-avatar-clear', (settings || {}).avatarClearBack === true);
     root.classList.toggle('routility-hide-sponsored', (settings || {}).hideSponsored !== false);
     root.classList.toggle('routility-hide-download-button', (settings || {}).hideDownloadButton !== false);
     root.classList.toggle('routility-av-rig-on', (settings || {}).avatarRig !== false);

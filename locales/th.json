@@ -3730,5 +3730,8 @@
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}: ไม่มีคนอื่นขาย จึงคงไว้ที่ R$ {price}",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}: มีคนตั้งขายที่ R$ {next} แต่ต่ำกว่าราคาต่ำสุดของคุณ จึงคงไว้ที่ R$ {price}",
  "{when}: yours is already the cheapest at R$ {price}.": "{when}: ของคุณถูกที่สุดอยู่แล้วที่ R$ {price}",
- "Price and RAP": "ราคาและ RAP"
+ "Price and RAP": "ราคาและ RAP",
+ "See-Through Avatar Preview": "ตัวอย่างอวาตาร์แบบโปร่งใส",
+ "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "ซ่อนพื้นหลังระยิบระยับหลังอวาตาร์ในตัวแก้ไขอวาตาร์ เพื่อให้เห็นธีมหรือพื้นหลังของคุณ",
+ "Backdrop": "พื้นหลัง"
 }

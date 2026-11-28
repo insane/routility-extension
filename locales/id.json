@@ -3730,5 +3730,8 @@
  "{when}: no one else is selling, so it stayed at R$ {price}.": "{when}: tidak ada yang menjual, jadi tetap R$ {price}.",
  "{when}: someone listed at R$ {next}, but that’s under your lowest price, so it stayed at R$ {price}.": "{when}: ada yang menjual R$ {next}, tapi itu di bawah harga terendahmu, jadi tetap R$ {price}.",
  "{when}: yours is already the cheapest at R$ {price}.": "{when}: punyamu sudah termurah di R$ {price}.",
- "Price and RAP": "Harga dan RAP"
+ "Price and RAP": "Harga dan RAP",
+ "See-Through Avatar Preview": "Pratinjau Avatar Tembus Pandang",
+ "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "Menyembunyikan latar berkilau di belakang avatarmu di editor Avatar, supaya tema atau latarmu terlihat.",
+ "Backdrop": "Latar"
 }

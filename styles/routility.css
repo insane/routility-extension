@@ -889,6 +889,10 @@ html.routility-search-kbd ul.dropdown-menu > .navbar-search-option:hover:not(.ne
   zoom: 0.75;
 }
 
+html.routility-avatar-clear #avatar-web-app .avatar-back {
+  background-image: none !important;
+}
+
 html.routility-hide-makeup .avatar-tabs-scroller li:has(> #label\.makeup-dropdown),
 html.routility-hide-makeup .avatar-tabs-scroller > .scroller-new {
   display: none !important;
