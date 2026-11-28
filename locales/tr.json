@@ -3894,5 +3894,9 @@
  "Price and RAP": "Fiyat ve RAP",
  "See-Through Avatar Preview": "Şeffaf Avatar Önizlemesi",
  "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "Avatar düzenleyicide avatarının arkasındaki parıltılı zemini gizler, böylece temanı veya arka planını görürsün.",
- "Backdrop": "Zemin"
+ "Backdrop": "Zemin",
+ "Layer Clothing of the Same Type": "Aynı Türden Kıyafetleri Katmanla",
+ "Wear more than one jacket, shirt, sweater or other layered clothing of the same type, like 2 jackets, instead of Roblox swapping one out. Click a worn piece to take it off. Shoes still swap.": "Aynı türden birden fazla ceket, gömlek, kazak veya başka katmanlı kıyafet giy, örneğin 2 ceket; Roblox birini değiştirmez. Giydiğin parçaya tıklayarak çıkar. Ayakkabılar yine değişir.",
+ "Jackets": "Ceketler",
+ "Layered": "Katmanlı"
 }

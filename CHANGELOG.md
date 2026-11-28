@@ -14,6 +14,7 @@ Price War keeps your listings the cheapest, a Manage button deletes classic clot
 **New**
 
 ```diff
++ Layer Clothing of the Same Type (Avatar): wear 2 jackets, shirts or sweaters at once instead of Roblox swapping one out. Turn it on under Wear Up to 10 Accessories.
 + See-Through Avatar Preview (Avatar): an option to hide the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.
 + Price and RAP (Profile Pill Style): the old look is back, with your price on the blue RoUtility pill joined to RAP.
 + Price War: on limiteds you’re selling, a Price War link under Best Price keeps your copy the cheapest. Pick Undercut or Match cheapest and a lowest price, and every 5 minutes it lowers your listing when someone lists under you. It never goes under your lowest price and never raises it.
@@ -29,6 +30,7 @@ Price War keeps your listings the cheapest, a Manage button deletes classic clot
 **Fixed**
 
 ```diff
+- Customize Thumbnail: the Full Body preview now matches the thumbnail Roblox makes, instead of showing your avatar smaller and higher.
 - Fun Mode: limiteds you buy now show in your Collectibles, not just in the totals.
 - Inventory Search: the search bar shows again on inventories and favorites after Roblox changed the page.
 - Manage Badges: the Manage button shows on your inventory’s Badges again after Roblox changed the page.

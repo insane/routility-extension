@@ -3733,5 +3733,9 @@
  "Price and RAP": "ราคาและ RAP",
  "See-Through Avatar Preview": "ตัวอย่างอวาตาร์แบบโปร่งใส",
  "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "ซ่อนพื้นหลังระยิบระยับหลังอวาตาร์ในตัวแก้ไขอวาตาร์ เพื่อให้เห็นธีมหรือพื้นหลังของคุณ",
- "Backdrop": "พื้นหลัง"
+ "Backdrop": "พื้นหลัง",
+ "Layer Clothing of the Same Type": "ใส่เสื้อผ้าประเภทเดียวกันซ้อนกัน",
+ "Wear more than one jacket, shirt, sweater or other layered clothing of the same type, like 2 jackets, instead of Roblox swapping one out. Click a worn piece to take it off. Shoes still swap.": "ใส่แจ็กเก็ต เสื้อเชิ้ต สเวตเตอร์ หรือเสื้อผ้าแบบเลเยอร์ประเภทเดียวกันได้มากกว่าหนึ่งชิ้น เช่น แจ็กเก็ต 2 ตัว แทนที่ Roblox จะสลับออก คลิกชิ้นที่ใส่อยู่เพื่อถอด รองเท้ายังสลับเหมือนเดิม",
+ "Jackets": "แจ็กเก็ต",
+ "Layered": "เลเยอร์"
 }

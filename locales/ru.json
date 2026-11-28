@@ -4216,5 +4216,9 @@
  "Price and RAP": "Цена и RAP",
  "See-Through Avatar Preview": "Прозрачный предпросмотр аватара",
  "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "Скрывает блестящий фон за аватаром в редакторе аватара, чтобы была видна ваша тема или фон.",
- "Backdrop": "Фон"
+ "Backdrop": "Фон",
+ "Layer Clothing of the Same Type": "Одежда одного типа слоями",
+ "Wear more than one jacket, shirt, sweater or other layered clothing of the same type, like 2 jackets, instead of Roblox swapping one out. Click a worn piece to take it off. Shoes still swap.": "Носите больше одной куртки, рубашки, свитера или другой многослойной одежды одного типа, например 2 куртки, вместо того чтобы Roblox заменял одну. Нажмите на надетую вещь, чтобы снять её. Обувь по-прежнему заменяется.",
+ "Jackets": "Куртки",
+ "Layered": "Слои"
 }

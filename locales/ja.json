@@ -3733,5 +3733,9 @@
  "Price and RAP": "価格と RAP",
  "See-Through Avatar Preview": "透明なアバタープレビュー",
  "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "アバターエディターでアバターの後ろのキラキラした背景を隠し、テーマや背景が見えるようにします。",
- "Backdrop": "背景"
+ "Backdrop": "背景",
+ "Layer Clothing of the Same Type": "同じ種類の服を重ね着",
+ "Wear more than one jacket, shirt, sweater or other layered clothing of the same type, like 2 jackets, instead of Roblox swapping one out. Click a worn piece to take it off. Shoes still swap.": "ジャケット2枚のように、同じ種類のジャケット、シャツ、セーターなどのレイヤード衣類を複数着られます。Roblox が入れ替えることはありません。着ているアイテムをクリックすると外せます。靴は今まで通り入れ替わります。",
+ "Jackets": "ジャケット",
+ "Layered": "レイヤード"
 }

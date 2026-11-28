@@ -3733,5 +3733,9 @@
  "Price and RAP": "价格和 RAP",
  "See-Through Avatar Preview": "透明头像预览",
  "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "隐藏头像编辑器里头像后面的闪光背景，让你的主题或背景透出来。",
- "Backdrop": "背景"
+ "Backdrop": "背景",
+ "Layer Clothing of the Same Type": "叠穿同类服装",
+ "Wear more than one jacket, shirt, sweater or other layered clothing of the same type, like 2 jackets, instead of Roblox swapping one out. Click a worn piece to take it off. Shoes still swap.": "可以穿多件同类的夹克、衬衫、毛衣等分层服装，比如 2 件夹克，Roblox 不会替换掉其中一件。点击已穿的物品即可脱下。鞋子仍会替换。",
+ "Jackets": "夹克",
+ "Layered": "分层"
 }

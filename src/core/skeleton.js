@@ -319,6 +319,7 @@
     root.classList.toggle('routility-hide-download-button', (settings || {}).hideDownloadButton !== false);
     root.classList.toggle('routility-av-rig-on', (settings || {}).avatarRig !== false);
     root.classList.toggle('routility-av-more', (settings || {}).avatarMoreAccessories !== false);
+    root.classList.toggle('routility-av-layers', (settings || {}).avatarMoreAccessories !== false && (settings || {}).avatarMoreLayered === true);
     root.classList.toggle('routility-keep-r6', (settings || {}).keepR6 === true);
     root.classList.toggle('routility-av-sticky', (settings || {}).avatarSticky !== false);
     root.classList.toggle('routility-counters-blue', (settings || {}).navCounters === 'blue');

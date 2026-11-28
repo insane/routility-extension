@@ -8,6 +8,8 @@
   const enabled = () => root.classList.contains('routility-av-more');
   const RIGID = new Set([8, 41, 42, 43, 44, 45, 46, 47, 57, 58]);
   const LAYERED = new Set([41, 64, 65, 66, 67, 68, 69, 70, 71, 72]);
+  const STACKS = new Set([64, 65, 66, 67, 68, 69, 72]);
+  const layersOn = () => root.classList.contains('routility-av-layers');
   const MAX = 10;
   const NEEDS = ['currentlyWornAssetsList', 'advancedAccessorySlots', 'setWearingAssets'];
   const WRAPPED = Symbol.for('routility.avNext');
@@ -16,7 +18,7 @@
 
   function kind(asset) {
     const id = asset && asset.assetType && asset.assetType.id;
-    return { rigid: RIGID.has(id), layered: LAYERED.has(id) };
+    return { rigid: RIGID.has(id), layered: LAYERED.has(id), stacks: RIGID.has(id) || (layersOn() && STACKS.has(id)) };
   }
 
   function wrapWear(ctx) {
@@ -29,7 +31,7 @@
     const wrapped = function (asset, ...rest) {
       const list = worn && worn.currentlyWornAssetsList;
       const k = kind(asset);
-      if (!enabled() || (!k.rigid && !k.layered) || !Array.isArray(list)) return Reflect.apply(original, this, [asset, ...rest]);
+      if (!enabled() || !k.stacks || !Array.isArray(list)) return Reflect.apply(original, this, [asset, ...rest]);
       let rigidLeft = MAX;
       let layeredLeft = MAX;
       const out = [];

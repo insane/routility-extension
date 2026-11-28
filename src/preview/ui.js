@@ -376,7 +376,8 @@ async function thumbBuild(scene, canvas) {
       }
       const size = box.getSize(new THREE.Vector3());
       box.getCenter(scene.target);
-      scene.distance = (Math.max(size.y, size.x * 0.9) * 0.85) / half;
+      scene.distance = (Math.max(size.y, size.x * 0.9) * 0.85) / half / (custom ? 1.475 - 0.0037 * cam.fov : 1);
+      if (custom) scene.target.y += size.y * 0.02;
       scene.pitch = custom ? 0 : 0.12;
     }
     scene.yaw = custom ? -THREE.MathUtils.degToRad(Number(o.rot) || 0) : -0.62;

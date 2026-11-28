@@ -2,10 +2,12 @@
   'use strict';
 
   const RIGID = new Set([8, 41, 42, 43, 44, 45, 46, 47, 57, 58]);
+  const LAYERED = new Set([64, 65, 66, 67, 68, 69, 72]);
   const MAX = 10;
   const root = document.documentElement;
   const enabled = () => root.classList.contains('routility-av-more');
   const keepR6 = () => root.classList.contains('routility-keep-r6');
+  const stacks = (typeId) => RIGID.has(typeId) || (LAYERED.has(typeId) && root.classList.contains('routility-av-layers'));
   const DYNAMIC_HEAD = 79;
 
   let wantR15Until = 0;
@@ -243,7 +245,7 @@
       let left = MAX;
       for (const a of [asset, ...current]) {
         if (!a || out.includes(a)) continue;
-        if (RIGID.has(a.assetType && a.assetType.id)) {
+        if (stacks(a.assetType && a.assetType.id)) {
           if (left > 0) {
             out.push(a);
             left--;
@@ -262,7 +264,7 @@
   function wrapLimit(original) {
     if (typeof original !== 'function' || original.__routility) return original;
     const wrapped = function (typeId, ...rest) {
-      if (enabled() && RIGID.has(Number(typeId))) return undefined;
+      if (enabled() && stacks(Number(typeId))) return undefined;
       return original.call(this, typeId, ...rest);
     };
     wrapped.__routility = true;

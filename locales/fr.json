@@ -3894,5 +3894,9 @@
  "Price and RAP": "Prix et RAP",
  "See-Through Avatar Preview": "Aperçu d’avatar transparent",
  "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "Masque le fond scintillant derrière ton avatar dans l’éditeur d’avatar, pour laisser voir ton thème ou ton fond.",
- "Backdrop": "Fond"
+ "Backdrop": "Fond",
+ "Layer Clothing of the Same Type": "Superposer des vêtements du même type",
+ "Wear more than one jacket, shirt, sweater or other layered clothing of the same type, like 2 jackets, instead of Roblox swapping one out. Click a worn piece to take it off. Shoes still swap.": "Porte plus d’une veste, chemise, pull ou autre vêtement en couches du même type, comme 2 vestes, au lieu que Roblox en remplace un. Clique sur une pièce portée pour l’enlever. Les chaussures se remplacent toujours.",
+ "Jackets": "Vestes",
+ "Layered": "En couches"
 }

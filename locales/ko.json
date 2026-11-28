@@ -3733,5 +3733,9 @@
  "Price and RAP": "가격과 RAP",
  "See-Through Avatar Preview": "투명한 아바타 미리보기",
  "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "아바타 편집기에서 아바타 뒤의 반짝이는 배경을 숨겨 테마나 배경이 보이게 해요.",
- "Backdrop": "배경"
+ "Backdrop": "배경",
+ "Layer Clothing of the Same Type": "같은 종류 옷 겹쳐 입기",
+ "Wear more than one jacket, shirt, sweater or other layered clothing of the same type, like 2 jackets, instead of Roblox swapping one out. Click a worn piece to take it off. Shoes still swap.": "재킷 2개처럼 같은 종류의 재킷, 셔츠, 스웨터 등 레이어드 의류를 여러 개 입을 수 있어요. Roblox가 하나를 바꾸지 않아요. 입은 아이템을 클릭하면 벗어요. 신발은 그대로 바뀌어요.",
+ "Jackets": "재킷",
+ "Layered": "레이어드"
 }

@@ -581,6 +581,7 @@
     classicGroups: () => r([h('span', 'rt-m-tiny rt-m-strike', lt('Communities')), strong(lt('Groups'))]),
     classicPackages: () => r([h('span', 'rt-m-tiny rt-m-strike', lt('Bundles')), strong(lt('Packages'))]),
     keepR6: () => r([face(U.linkmon, 46), c([r([pill('R6', 'active'), pill('R15')]), muted(lt('Dynamic head on, still R6'))])]),
+    avatarMoreLayered: () => r([pill(lt('Jackets') + ' 2'), muted(lt('Layered'))]),
     avatarMoreAccessories: () => c([muted(lt('{worn}/{max} accessories', { worn: 5, max: 10 })), g([A.empyreus, A.frigidus, A.fedora, A.valk, A.stv].map(id => thumb(id, 28)).concat([tile(28, [h('span', 'rt-m-plus', '+')], 'rt-m-dash')]), 6)], 'rt-m-w190'),
     gameStats: () => r([c([muted(lt('Visits')), strong('44,988,572,987')]), c([muted(lt('Updated')), strong(ltn(1, '{n} hour ago', '{n} hours ago'))])], 'rt-m-spread'),
     badgeTools: () => r([pill(lt('Rarest First'), 'active'), pill(lt('Not Owned'))]),
@@ -1048,6 +1049,7 @@
           { key: 'avatarWearing', title: LT('Wearing Panel'), desc: LT('What your avatar has on, under the preview, with the price and R$ value of worn limiteds. Click an item to take it off.') },
           { key: 'avatarWearingValues', parent: 'avatarWearing', title: LT('Price and R$ Value'), desc: LT('The Price and R$ value of the limiteds you’re wearing, above your items. Off, the panel only shows what you have on.') },
           { key: 'avatarMoreAccessories', title: LT('Wear Up to 10 Accessories'), desc: LT('Wear up to 10 accessories, like 4 hats or 2 face accessories, with a normal click instead of Roblox swapping one out.') },
+          { key: 'avatarMoreLayered', parent: 'avatarMoreAccessories', title: LT('Layer Clothing of the Same Type'), desc: LT('Wear more than one jacket, shirt, sweater or other layered clothing of the same type, like 2 jackets, instead of Roblox swapping one out. Click a worn piece to take it off. Shoes still swap.'), keywords: 'layered clothing jacket jackets shirt sweater two multiple stack same type' },
         ] },
         { title: LT('Free Items'), rows: [
           { custom: 'freeItems', title: LT('Get Every Free Roblox Item'), desc: LT('Adds every free item Roblox made in the Marketplace to your inventory, like classic faces, hats, clothes, bundles and emotes. Skips what you already own and never spends Robux. It goes one item every couple of seconds, so keep this tab open while it runs.') },

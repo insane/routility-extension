@@ -3733,5 +3733,9 @@
  "Price and RAP": "Giá và RAP",
  "See-Through Avatar Preview": "Xem trước avatar trong suốt",
  "Hides the sparkly backdrop behind your avatar in the Avatar editor, so your theme or background shows through.": "Ẩn nền lấp lánh phía sau avatar trong trình chỉnh sửa avatar, để chủ đề hoặc hình nền của bạn hiện ra.",
- "Backdrop": "Nền"
+ "Backdrop": "Nền",
+ "Layer Clothing of the Same Type": "Mặc chồng đồ cùng loại",
+ "Wear more than one jacket, shirt, sweater or other layered clothing of the same type, like 2 jackets, instead of Roblox swapping one out. Click a worn piece to take it off. Shoes still swap.": "Mặc nhiều hơn một áo khoác, áo sơ mi, áo len hoặc quần áo layered cùng loại, như 2 áo khoác, thay vì Roblox đổi mất một cái. Bấm vào món đang mặc để cởi ra. Giày vẫn đổi như cũ.",
+ "Jackets": "Áo khoác",
+ "Layered": "Layered"
 }
